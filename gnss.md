@@ -12,7 +12,7 @@ GPS:
       Range: [0-256)
 - GPS Timing (UTC Time <-> GPS Time)[https://www.labsat.co.uk/index.php/en/gps-time-calculator]  
 - (GPS icd)[http://www.gps.gov/technical/icwg/]:(200C)[http://www.gps.gov/technical/icwg/ICD-GPS-200C.pdf]
-- (Glonass icd)[http://www.unoosa.org/pdf/icg/2009/icg-4/01.pdf]
+- (Glonass icd)[http://gauss.gge.unb.ca/GLONASS.ICD-98.pdf]
 - (Rinex)[ftp://igscb.jpl.nasa.gov/igscb/data/format/rinex210.txt]: 
 - (RRLP)[http://www.qtc.jp/3GPP/Specs/GSM_GERAN/44031-861.pdf] :
 
