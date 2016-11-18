@@ -17,5 +17,11 @@
  
  - function
  
+ - target
+|  target … : prerequisites …
+|        recipe
+|        …
+|        …
+
 ## Arguments:
  - 
