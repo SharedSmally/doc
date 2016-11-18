@@ -7,12 +7,11 @@
 ## Script:
  - statements concated with * \ *,  and each one ends with * ; *
  - if-else-endif
- 
+ ```
    if [ ! -f $file ]; then \ 
-
-   echo "file ", $file, " not exists"; \ 
-   
+      echo "file ", $file, " not exists"; \ 
    fi   
+```   
  - for-loop
 for var in ${vars}; do \ 
 
