@@ -21,7 +21,7 @@
  - [xslt 1.0](https://www.w3.org/TR/xslt)
  - [xslt 2.0](https://www.w3.org/TR/xslt20/)
  - New features in xslt 2.0
- -- Conversion of result tree fragments to node-sets
- -- Multiple output documents
- -- Built-in support for grouping
- -- User-defined functions implemented in XSLT
+ ..* Conversion of result tree fragments to node-sets
+ ..* Multiple output documents
+ ..* Built-in support for grouping
+ ..* User-defined functions implemented in XSLT
