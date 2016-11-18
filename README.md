@@ -1,6 +1,8 @@
 [github markdown cheatsheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)
 =======
-Headers:  start with #: # H1    ## H2  ### H3   #### H4   ##### H5  ###### H6
+[Manual](https://guides.github.com/features/mastering-markdown/)
+
+Headers:  start with #: 
 # H1    
 ## H2     
 ### H3    
