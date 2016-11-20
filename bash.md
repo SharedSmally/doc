@@ -62,12 +62,8 @@ expression1 && expression2
 expression1 || expression2
 ```
 #### Special Parameters
-- *
-
-($*) Expands to the positional parameters, starting from one.
-- @
-
-($@) Expands to the positional parameters, starting from one.
+- ***:  ($*) Expands to the positional parameters, starting from one.
+- *@*: ($@) Expands to the positional parameters, starting from one.
 - #
 
 ($#) Expands to the number of positional parameters in decimal.
