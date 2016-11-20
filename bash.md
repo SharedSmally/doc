@@ -1,6 +1,11 @@
 Bash
 ======
 
+* Item 1
+* Item 2
+  * Item 2a
+  * Item 2b
+  
 ## [Reference](https://www.gnu.org/software/bash/manual/bash.html)
 - Pipeline: a sequence of one or more commands separated by one of the control operators **|** or **|&**:
 ```bash
