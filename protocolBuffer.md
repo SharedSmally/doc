@@ -2,7 +2,10 @@
 ======
 
 ## Download Protocol Buffer
-- Protoc: the compiler on Linux, Windows, and MacOSX
+- Protoc Platform: 
+  - Linux
+  - Windows
+  - MacOSX
 - Language Compiler:
  - CXX
  - ObjectiveC
