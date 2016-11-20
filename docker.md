@@ -2,15 +2,15 @@ docker
 ======
 
 ## VM
-- Build VMs:
+- VM operations:
 
 **docker-machine _create | rm | start | stop | restart | kill_**
 
 - VM status:
 
-**docker-machine _active | config | env | ip | url | status | ls_**
+**docker-machine _active | config | env | ip | url | status | ls | inspect_**
 
-- VM config:
+- VM setup:
 
 **docker-machine _upgrade | regenerate-cert | provision_**
 
@@ -19,6 +19,29 @@ docker
 **docker-machine _ssh|scp_**
 
 ## Container
-- List containers:
+- image operations:
+**docker _build | rmi | tag _**
 
-**docker _ps_**
+- images:
+
+**docker _images | history | _**
+
+- container operations:
+
+**docker _create | start | stop | restart | kill | pause | unpause | update_**
+
+- containers status:
+
+**docker _ps | top | logs | stats | load | export _**
+
+- container config:
+
+**docker _port | network | service | volume | cp _**
+
+- container interaction:
+
+**docker _run | exec _**
+
+- Hub docker:
+
+**docker _pull | push | login | logout | commit _**
