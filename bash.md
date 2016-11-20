@@ -50,10 +50,16 @@ select name [in words …]; do commands; done
 ```bash  
 (( expression ))
 ```
-
   - [[…]]: Return a status of 0 or 1 depending on the evaluation of the conditional expression expression.
 ```bash  
  [[ expression ]]
+```
+  - combined expressions:
+```bash  
+( expression )
+! expression
+expression1 && expression2
+expression1 || expression2
 ```
 
 ## Tips
