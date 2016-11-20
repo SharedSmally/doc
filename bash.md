@@ -27,17 +27,17 @@ case word in [ [(] pattern [| pattern]…) command-list ;;]… esac
 ```bash
  until test-commands; do consequent-commands; done
 ```
-  * while
+  + while
 ```bash
  while test-commands; do consequent-commands; done
 ```
-  * for
+  + for
 ```bash
  for name [ [in [words …] ] ; ] do commands; done
  
  for (( expr1 ; expr2 ; expr3 )) ; do commands ; done
 ```
-  * select
+  + select
 ```bash
 select name [in words …]; do commands; done
 ```
