@@ -9,7 +9,7 @@ Bash
 - List of Commands: sequence of one or more pipelines separated by one of the operators **;**, **&**, **&&**, or **||**, and optionally terminated by one of **;**, **&**, or a **newline**
 
 - Condition: if-elif-else-fi
- - if
+  - if
 ```bash
 if test-commands; then
   consequent-commands;
@@ -18,20 +18,20 @@ if test-commands; then
 [else alternate-consequents;]
 fi
 ```
- -case 
+  - case 
 ```bash
 case word in [ [(] pattern [| pattern]…) command-list ;;]… esac
 ```
-- Loop: for; while; 
- - until
+- Loop: until; while; for
+  - until
 ```bash
  until test-commands; do consequent-commands; done
 ```
- - while
+  - while
 ```bash
  while test-commands; do consequent-commands; done
 ```
- - for
+  - for
 ```bash
  for name [ [in [words …] ] ; ] do commands; done
  
