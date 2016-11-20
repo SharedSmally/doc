@@ -23,6 +23,7 @@ if test-commands; then
 [else alternate-consequents;]
 fi
 ```
+
   - case 
 ```bash
 case word in [ [(] pattern [| pattern]…) command-list ;;]… esac
