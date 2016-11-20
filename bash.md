@@ -6,14 +6,14 @@ Bash
 
 - Condition: if-elif-else-fi
  - if
- 
+```bash
 if test-commands; then
   consequent-commands;
 [elif more-test-commands; then
   more-consequents;]
 [else alternate-consequents;]
 fi
-
+```
  -case 
  
 case word in [ [(] pattern [| pattern]…) command-list ;;]… esac
