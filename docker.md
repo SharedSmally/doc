@@ -33,16 +33,16 @@ docker
 
 - containers status:
 
-**docker _ps | top | logs | stats | load | export _**
+**docker _ps | top | logs | stats | load | export_**
 
 - container config:
 
-**docker _port | network | service | volume | cp _**
+**docker _port | network | service | volume | cp_**
 
 - container interaction:
 
-**docker _run | exec _**
+**docker _run | exec_**
 
 - Hub docker:
 
-**docker _pull | push | login | logout | commit _**
+**docker _pull | push | login | logout | commit_**
