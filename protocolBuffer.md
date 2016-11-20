@@ -2,15 +2,15 @@
 ======
 
 ## Download Protocol Buffer
-- Protoc Platform: 
+- Protoc Platform: (bin/protoc and include/google/protobuf/*.prot for non-cxx compile) 
   - Linux
   - Windows
   - MacOSX
 - Language Compiler:
- - CXX
+ - [CXX](https://github.com/google/protobuf/blob/master/src/README.md) : (Compile with: ./configure --prefix=xxx;  make &&  make install)
  - ObjectiveC
  - C Sharp
- - Java
+ - Java 
  - JavaScript
  - PHP
  - Python
