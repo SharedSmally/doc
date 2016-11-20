@@ -18,7 +18,14 @@
 ## [Guide](https://developers.google.com/protocol-buffers/docs/overview)
 
 ## [Reference](https://developers.google.com/protocol-buffers/docs/reference/overview)
-
+#### CXX
+ - [Generate code](https://developers.google.com/protocol-buffers/docs/reference/cpp-generated)
+ - [Allocation](https://developers.google.com/protocol-buffers/docs/reference/arenas)
+ - [C++ API](https://developers.google.com/protocol-buffers/docs/reference/cpp/)
+#### Java
+ - [Benerate code](https://developers.google.com/protocol-buffers/docs/reference/java-generated)
+ - [JavaDoc API](https://developers.google.com/protocol-buffers/docs/reference/java/)
+ 
 ## [Protoc Buffer v3](https://developers.google.com/protocol-buffers/docs/reference/proto3-spec)
   
 ### Protocol File
