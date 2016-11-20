@@ -15,6 +15,7 @@ Bash
 
 - Condition: if-elif-else; case
   - if
+  - case 
 ```bash
 if test-commands; then
   consequent-commands;
@@ -23,7 +24,6 @@ if test-commands; then
 [else alternate-consequents;]
 fi
 ```
-
   - case 
 ```bash
 case word in [ [(] pattern [| pattern]…) command-list ;;]… esac
