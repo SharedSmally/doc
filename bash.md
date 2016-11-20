@@ -15,21 +15,26 @@ if test-commands; then
 fi
 ```
  -case 
- 
+```bash
 case word in [ [(] pattern [| pattern]…) command-list ;;]… esac
-
+```
 - Loop: for; while; 
  - until
+```bash
  until test-commands; do consequent-commands; done
+```
  - while
+```bash
  while test-commands; do consequent-commands; done
+```
  - for
+```bash
  for name [ [in [words …] ] ; ] do commands; done
  
  for (( expr1 ; expr2 ; expr3 )) ; do commands ; done
- 
+```
 ## Tips
 - [Detect OS type](http://stackoverflow.com/questions/3466166/how-to-check-if-running-in-cygwin-mac-or-linux)
-
+```
 ** uname -s **
-
+```
