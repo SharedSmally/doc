@@ -15,7 +15,10 @@
  - PHP
  - Python
  - Ruby
+ 
 ## [Guide](https://developers.google.com/protocol-buffers/docs/overview)
+#### [Language Guide] (https://developers.google.com/protocol-buffers/docs/proto3)
+#### [Encoding] (https://developers.google.com/protocol-buffers/docs/encoding)
 
 ## [Reference](https://developers.google.com/protocol-buffers/docs/reference/overview)
 #### CXX
