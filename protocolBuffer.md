@@ -21,7 +21,7 @@
 
 ## [Protoc Buffer v3](https://developers.google.com/protocol-buffers/docs/reference/proto3-spec)
   
- #### Protocol File
+### Protocol File
 ``` script
 proto = syntax { import | package | option | topLevelDef | emptyStatement }
 topLevelDef = message | enum | service
@@ -47,7 +47,38 @@ message outer {
   map<int32, string> my_map = 4;
 }
 ```
-
+#### Syntax
+```
+syntax = "syntax" "=" quote "proto3" quote ";"
+```
+#### Import 
+The import statement is used to import another .proto's definitions.
+```
+import = "import" [ "weak" | "public" ] strLit ";" 
+```
+Example:
+```
+import public "other.proto";
+```
+#### Package
+The package specifier can be used to prevent name clashes between protocol message types.
+```
+package = "package" fullIdent ";"
+```
+Example:
+```
+package foo.bar;
+```
+#### Option
+Ssed in proto files, messages, enums and services. An option can be a protobuf defined option or a custom option. 
+```
+option = "option" optionName  "=" constant ";"
+optionName = ( ident | "(" fullIdent ")" ) { "." ident }
+```
+Example:
+```
+option java_package = "com.example.foo";
+```
 #### Top Level definitions
 
 ##### Enum definition
@@ -97,8 +128,64 @@ service SearchService {
   rpc Search (SearchRequest) returns (SearchResponse);
 }
 ``` 
+#### Fields
+Fields are the basic elements of a protocol buffer message. Fields can be normal fields, oneof fields, or map fields. A field has a type and field number.
+```
+type = "double" | "float" | "int32" | "int64" | "uint32" | "uint64"
+      | "sint32" | "sint64" | "fixed32" | "fixed64" | "sfixed32" | "sfixed64"
+      | "bool" | "string" | "bytes" | messageType | enumType
+fieldNumber = intLit;
+```
+
+#### Normal field
+Each field has type, name and field number. It may have field options.
+```
+field = [ "repeated" ] type fieldName "=" fieldNumber [ "[" fieldOptions "]" ] ";"
+fieldOptions = fieldOption { ","  fieldOption }
+fieldOption = optionName "=" constant
+```
+Examples:
+```
+foo.bar nested_message = 2;
+repeated int32 samples = 4 [packed=true];
+```
+#### Oneof and oneof field
+A oneof consists of oneof fields and a oneof name.
+```
+oneof = "oneof" oneofName "{" { oneofField | emptyStatement } "}"
+oneofField = type fieldName "=" fieldNumber [ "[" fieldOptions "]" ] ";"
+```
+Example:
+```
+oneof foo {
+    string name = 4;
+    SubMessage sub_message = 9;
+}
+```
+#### Map field
+```
+A map field has a key type, value type, name, and field number. The key type can be any integral or string type.
+mapField = "map" "<" keyType "," type ">" mapName "=" fieldNumber [ "[" fieldOptions "]" ] ";"
+keyType = "int32" | "int64" | "uint32" | "uint64" | "sint32" | "sint64" |
+          "fixed32" | "fixed64" | "sfixed32" | "sfixed64" | "bool" | "string"
+```
+Example:
+```
+map<string, Project> projects = 3;
+```
+#### Reserved
+Reserved statements declare a range of field numbers or field names that cannot be used in this message.
+```
+reserved = "reserved" ( ranges | fieldNames ) ";"
+fieldNames = fieldName { "," fieldName }
+```
+Examples:
+```
+reserved 2, 15, 9 to 11;
+reserved "foo", "bar";
+```
 #### Types:
-    - boolean: bool
+    - boolean: bool ("true" | "false" )
     - integer32:[int32,uint32,sint32; fixed32,sfixed32];
     - integer64:[int64,uint64,sint64; fixed64,sfixed64];
     - float: double, float
