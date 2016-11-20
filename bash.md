@@ -71,6 +71,12 @@ expression1 || expression2
 - **!**:  (**$!**) Expands to the process ID of the job most recently placed into the background, whether executed as an asynchronous command or using the bg builtin.
 - **0**: (**$0**) Expands to the name of the shell or shell script. 
 
+#### [Builtin Functions](https://www.gnu.org/software/bash/manual/bash.html#Bash-Builtins)
+#### [Variables](https://www.gnu.org/software/bash/manual/bash.html#Bash-Variables)
+#### [Conditional Expressions](https://www.gnu.org/software/bash/manual/bash.html#Bash-Conditional-Expressions)
+#### [Shell Arithmetic](https://www.gnu.org/software/bash/manual/bash.html#Shell-Arithmetic)
+#### [Directory Stack](https://www.gnu.org/software/bash/manual/bash.html#The-Directory-Stack)
+#### [Job Control](https://www.gnu.org/software/bash/manual/bash.html#Job-Control-Builtins)
 
 
 ## Tips
