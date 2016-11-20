@@ -1,17 +1,15 @@
 Bash
 ======
 
-* Item 1
-* Item 2
-  * Item 2a
-  * Item 2b
   
 ## [Reference](https://www.gnu.org/software/bash/manual/bash.html)
-#### Pipeline: a sequence of one or more commands separated by one of the control operators **|** or **|&**:
+#### Pipeline
+ a sequence of one or more commands separated by one of the control operators **|** or **|&**:
 ```bash
 [time [-p]] [!] command1 [ | or |& command2 ] …
 ```
-#### List of Commands: sequence of one or more pipelines separated by one of the operators **;**, **&**, **&&**, or **||**, and optionally terminated by one of **;**, **&**, or a **newline**
+#### List of Commands
+sequence of one or more pipelines separated by one of the operators **;**, **&**, **&&**, or **||**, and optionally terminated by one of **;**, **&**, or a **newline**
 
 #### Condition: if-elif-else; case
   - if
