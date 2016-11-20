@@ -22,8 +22,9 @@
  - [Generate code](https://developers.google.com/protocol-buffers/docs/reference/cpp-generated)
  - [Allocation](https://developers.google.com/protocol-buffers/docs/reference/arenas)
  - [C++ API](https://developers.google.com/protocol-buffers/docs/reference/cpp/)
+ 
 #### Java
- - [Benerate code](https://developers.google.com/protocol-buffers/docs/reference/java-generated)
+ - [Generate code](https://developers.google.com/protocol-buffers/docs/reference/java-generated)
  - [JavaDoc API](https://developers.google.com/protocol-buffers/docs/reference/java/)
  
 ## [Protoc Buffer v3](https://developers.google.com/protocol-buffers/docs/reference/proto3-spec)
