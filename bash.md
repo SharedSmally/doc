@@ -71,7 +71,253 @@ expression1 || expression2
 - **!**:  (**$!**) Expands to the process ID of the job most recently placed into the background, whether executed as an asynchronous command or using the bg builtin.
 - **0**: (**$0**) Expands to the name of the shell or shell script. 
 
-#### [Builtin Functions](https://www.gnu.org/software/bash/manual/bash.html#Bash-Builtins)
+
+
+#### [Builtins](https://www.gnu.org/software/bash/manual/bash.html#Bash-Builtins)
+- : (a colon): Do nothing beyond expanding arguments and performing redirections. 
+```bash 
+ : [arguments]
+```
+
+- . (a period): Read and execute commands from the filename argument in the current shell context. 
+```bash 
+ . filename [arguments]
+```
+
+- break: Exit from a for, while, until, or select loop. 
+```bash 
+  break [n]
+```
+
+- continue: Resume the next iteration of an enclosing for, while, until, or select loop. 
+```bash 
+  continue [n]
+```
+
+-  cd: Change the current working directory to directory. I
+```bash 
+  cd [-L|[-P [-e]] [-@] [directory]
+```
+
+-  eval
+```bash 
+  eval [arguments]
+```
+
+-  exec
+```bash 
+  exec [-cl] [-a name] [command [arguments]]
+```
+
+-  exit
+```bash 
+  exit [n]
+```
+
+-  export
+```bash 
+  export [-fn] [-p] [name[=value]]
+```
+
+-  getopts
+```bash 
+  getopts optstring name [args]
+ 
+```
+
+-  hash
+```bash 
+  hash [-r] [-p filename] [-dt] [name]
+```
+
+-  pwd
+```bash 
+  pwd [-LP]
+ ```
+
+-  readonly
+```bash 
+  readonly [-aAf] [-p] [name[=value]] …
+ ```
+
+-  return
+```bash 
+  return [n]
+ ```
+
+-  shift
+```bash 
+  shift [n]
+ ```
+
+-  test
+```bash 
+  test [ expr ];  test [ ! expr ]; test expr1 -a expr2;  expr1 -o expr2
+```
+
+-  times
+```bash 
+  times
+ ```
+
+-  trap
+```bash 
+ 
+ trap [-lp] [arg] [sigspec …]
+```
+
+-  umask
+```bash 
+  umask [-p] [-S] [mode]
+```
+
+-  unset
+```bash 
+  unset [-fnv] [name]
+ ```
+
+-  set
+```bash 
+  set [--abefhkmnptuvxBCEHPT] [-o option-name] [argument …]
+set [+abefhkmnptuvxBCEHPT] [+o option-name] [argument …]
+```
+
+- shopt
+```bash 
+ shopt [-pqsu] [-o] [optname …]
+```
+
+#### [Builtin Commands](https://www.gnu.org/software/bash/manual/bash.html#Shell-Builtin-Commands)
+- alias
+```bash 
+alias [-p] [name[=value] …]
+```
+
+-  bind
+ bind [-m keymap] [-lpsvPSVX]
+bind [-m keymap] [-q function] [-u function] [-r keyseq]
+bind [-m keymap] -f filename
+bind [-m keymap] -x keyseq:shell-command
+bind [-m keymap] keyseq:function-name
+bind [-m keymap] keyseq:readline-command
+```
+
+- builtin
+```bash  
+ builtin [shell-builtin [args]]
+ 
+
+```
+
+- caller
+```bash 
+  caller [expr]
+
+```
+
+- command
+```bash 
+  command [-pVv] command [arguments …]
+
+```
+
+- declare
+```bash 
+  declare [-aAfFgilnrtux] [-p] [name[=value] …]
+
+ ```
+
+- echo
+```bash 
+  echo [-neE] [arg …]
+ 
+ ```
+
+- enable
+```bash 
+  enable [-a] [-dnps] [-f filename] [name …]
+ 
+ ```
+
+- help
+```bash 
+  help [-dms] [pattern]
+ 
+ ```
+
+- let
+```bash 
+  let expression [expression …]
+ 
+ 
+```
+
+-  local
+```bash 
+  local [option] name[=value] …
+ 
+```
+
+-  logout
+```bash 
+  logout [n]
+ 
+```
+
+-  mapfile
+```bash 
+  mapfile [-d delim] [-n count] [-O origin] [-s count] [-t] [-u fd]
+    [-C callback] [-c quantum] [array]
+	
+```
+
+- printf
+```bash 
+  printf [-v var] format [arguments]
+ 
+ ```
+
+- read
+```bash 
+  read [-ers] [-a aname] [-d delim] [-i text] [-n nchars]
+    [-N nchars] [-p prompt] [-t timeout] [-u fd] [name …]	
+```
+
+- readarray
+```bash 
+  readarray [-d delim] [-n count] [-O origin] [-s count] [-t] [-u fd]
+    [-C callback] [-c quantum] [array]
+
+```
+
+- source
+```bash 
+  source filename
+
+```
+
+-  type
+```bash 
+  type [-afptP] [name …]
+ 
+```
+
+-  typeset
+```bash 
+  typeset [-afFgrxilnrtux] [-p] [name[=value] …]
+ 
+```
+
+-  ulimit
+```bash 
+  ulimit [-HSabcdefiklmnpqrstuvxPT] [limit]
+```
+
+- unalias
+```bash 
+  unalias [-a] [name … ]
+```
+
 #### [Variables](https://www.gnu.org/software/bash/manual/bash.html#Bash-Variables)
 #### [Conditional Expressions](https://www.gnu.org/software/bash/manual/bash.html#Bash-Conditional-Expressions)
 #### [Shell Arithmetic](https://www.gnu.org/software/bash/manual/bash.html#Shell-Arithmetic)
