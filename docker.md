@@ -20,11 +20,12 @@ docker
 
 ## Container
 - image operations:
+
 **docker _build | rmi | tag _**
 
 - images:
 
-**docker _images | history | _**
+**docker _images | history _**
 
 - container operations:
 
