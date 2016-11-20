@@ -28,19 +28,19 @@
     - string: string; bytes
     - enum
     
-  ...script
+ ``` script
   type = "double" | "float" | "int32" | "int64" | "uint32" | "uint64"
       | "sint32" | "sint64" | "fixed32" | "fixed64" | "sfixed32" | "sfixed64"
       | "bool" | "string" | "bytes" | messageType | enumType
-  ...
+ ``` 
   
  ## Protocol File
-... 
+``` script
 proto = syntax { import | package | option | topLevelDef | emptyStatement }
 topLevelDef = message | enum | service
-... 
+```
 Sample
-... 
+``` script 
 syntax = “proto3”;
 import public “other.proto”;
 option java_package = "com.example.foo";
@@ -59,4 +59,4 @@ message outer {
   EnumAllowingAlias enum_field =3;
   map<int32, string> my_map = 4;
 }
-...
+```
