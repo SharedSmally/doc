@@ -46,12 +46,12 @@ select name [in words …]; do commands; done
 ```
 
 #### Expression
-  - ((…))
+  - ((…)): The arithmetic expression is evaluated according to the rules. If the value of the expression is non-zero, the return status is 0; otherwise the return status is 1
 ```bash  
 (( expression ))
 ```
 
-  - [[…]]
+  - [[…]]: Return a status of 0 or 1 depending on the evaluation of the conditional expression expression.
 ```bash  
  [[ expression ]]
 ```
