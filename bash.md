@@ -8,8 +8,8 @@ Bash
 ```
 - List of Commands: sequence of one or more pipelines separated by one of the operators **;**, **&**, **&&**, or **||**, and optionally terminated by one of **;**, **&**, or a **newline**
 
-- Condition: if-elif-else-fi
-  - if
+- Condition: if-elif-else; case
+  -- if
 ```bash
 if test-commands; then
   consequent-commands;
@@ -18,27 +18,40 @@ if test-commands; then
 [else alternate-consequents;]
 fi
 ```
-  - case 
+  -- case 
 ```bash
 case word in [ [(] pattern [| pattern]…) command-list ;;]… esac
 ```
-- Loop: until; while; for
-  - until
+- Loop: until; while; for;select
+  -- until
 ```bash
  until test-commands; do consequent-commands; done
 ```
-  - while
+  -- while
 ```bash
  while test-commands; do consequent-commands; done
 ```
-  - for
+  -- for
 ```bash
  for name [ [in [words …] ] ; ] do commands; done
  
  for (( expr1 ; expr2 ; expr3 )) ; do commands ; done
 ```
+  -- select
+```bash
+select name [in words …]; do commands; done
+```
 
+ - Expression
+  -- ((…))
+```bash  
+(( expression ))
+```
 
+  -- [[…]]
+```bash  
+ [[ expression ]]
+```
 
 ## Tips
 - [Detect OS type](http://stackoverflow.com/questions/3466166/how-to-check-if-running-in-cygwin-mac-or-linux)
