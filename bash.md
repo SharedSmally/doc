@@ -194,7 +194,8 @@ alias [-p] [name[=value] …]
 ```
 
 -  bind
- bind [-m keymap] [-lpsvPSVX]
+```bash 
+bind [-m keymap] [-lpsvPSVX]
 bind [-m keymap] [-q function] [-u function] [-r keyseq]
 bind [-m keymap] -f filename
 bind [-m keymap] -x keyseq:shell-command
