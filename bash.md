@@ -1,8 +1,12 @@
 Bash
 ======
 
-## [Programming](http://tldp.org/HOWTO/Bash-Prog-Intro-HOWTO.html)
 ## [Reference](https://www.gnu.org/software/bash/manual/bash.html)
+- Pipeline: a sequence of one or more commands separated by one of the control operators **|** or **|&**:
+```bash
+[time [-p]] [!] command1 [ | or |& command2 ] …
+```
+- List of Commands: sequence of one or more pipelines separated by one of the operators **;**, **&**, **&&**, or **||**, and optionally terminated by one of **;**, **&**, or a **newline**
 
 - Condition: if-elif-else-fi
  - if
@@ -33,6 +37,9 @@ case word in [ [(] pattern [| pattern]…) command-list ;;]… esac
  
  for (( expr1 ; expr2 ; expr3 )) ; do commands ; done
 ```
+
+
+
 ## Tips
 - [Detect OS type](http://stackoverflow.com/questions/3466166/how-to-check-if-running-in-cygwin-mac-or-linux)
 ```
