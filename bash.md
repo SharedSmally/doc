@@ -76,5 +76,5 @@ expression1 || expression2
 ## Tips
 - [Detect OS type](http://stackoverflow.com/questions/3466166/how-to-check-if-running-in-cygwin-mac-or-linux)
 ```bash
-**uname -s**
+uname -s
 ```
