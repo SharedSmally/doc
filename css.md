@@ -8,9 +8,9 @@ Inline-style:
 ![alt text](https://en.wikipedia.org/wiki/File:CSS3_taxonomy_and_status-v2.png "CSS current status")
 
 Reference-style: 
-![alt text][logo]
+![alt text][status]
 
-[logo]: https://en.wikipedia.org/wiki/File:CSS3_taxonomy_and_status-v2.png "Logo Title Text 2"
+[status]: https://en.wikipedia.org/wiki/File:CSS3_taxonomy_and_status-v2.png "Logo Title Text 2"
 
 
 Current status: 
