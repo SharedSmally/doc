@@ -7,6 +7,19 @@ Inline-style:
 Inline-style: 
 ![alt text](https://en.wikipedia.org/wiki/File:CSS3_taxonomy_and_status-v2.png "CSS current status")
 
+Reference-style: 
+![alt text][logo]
+
+[logo]: https://en.wikipedia.org/wiki/File:CSS3_taxonomy_and_status-v2.png "Logo Title Text 2"
+
+
+Current status: 
+![alt text][logo]
+
+[logo]: https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 2"
+
+
+
 ![alt text](https://en.wikipedia.org/wiki/File:CSS3_taxonomy_and_status-v2.png "current status")
 
 ### Standard
