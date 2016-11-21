@@ -4,6 +4,7 @@ CSS
 Inline-style: 
 ![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 1")
 
+Inline-style: 
 ![alt text](https://en.wikipedia.org/wiki/File:CSS3_taxonomy_and_status-v2.png "CSS current status")
 
 ![alt text](https://en.wikipedia.org/wiki/File:CSS3_taxonomy_and_status-v2.png "current status")
