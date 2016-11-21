@@ -4,13 +4,23 @@ jQuery
 ### Projects
  - [Sizzle](https://sizzlejs.com/): (CSS Selector Engine)
  - [jQuery](https://jquery.com/): CSS javascript library based on Sizzle to manipulate DOM, handle events, and AJAX, etc. See [jQuery API doc](http://api.jquery.com/) 
- - [jQuery UI](https://jqueryui.com/): CSS UI javascript library based on jQuery, including    
-    - Interactions
+    - [AJAX](http://api.jquery.com/category/ajax/)
+    - [Attribute](http://api.jquery.com/category/attributes/) and [Property](http://api.jquery.com/category/properties/)
+    - [Callback Objects](http://api.jquery.com/category/callbacks-object/)
+    - [Deferred Object](http://api.jquery.com/category/deferred-object/)
+    - [Data](http://api.jquery.com/category/data/)
+    - [Effect](http://api.jquery.com/category/effects/)
+    - [Events](http://api.jquery.com/category/events/)
+    - [DOM manipulations](http://api.jquery.com/category/manipulation/)
+    - [Forms](http://api.jquery.com/category/forms/)
+    - [Selector] (http://api.jquery.com/category/selectors/)
+ - [jQuery UI](https://jqueryui.com/): CSS UI javascript library based on jQuery, [API](http://api.jqueryui.com/) includes
+    - [Interactions](http://api.jqueryui.com/category/interactions/)
        - Draggable,Droppable
        - Resizable
        - Selectable
        - Sortable          
-    - Widgets
+    - [Widgets](http://api.jqueryui.com/category/widgets/)
        - Accordion
        - Autocomplete
        - Button
@@ -25,7 +35,7 @@ jQuery
        - Spinner
        - Tabs
        - Tooltip 
-    - Effects
+    - [Effects](http://api.jqueryui.com/category/effects/)
        - Add /Remove/Switch/Toggle Class
        - Hide/Show/Toggle
        - Color Animation
