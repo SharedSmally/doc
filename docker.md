@@ -46,3 +46,27 @@ docker
 - Hub docker:
 
 **docker _pull | push | login | logout | commit_**
+
+
+## Docker File:  [Reference](https://docs.docker.com/engine/reference/builder/)
+
+- Build Image from docker file:
+```
+$ docker build .
+```
+- Reference
+-- FROM:
+
+-- Run
+
+-- Expose
+
+-
+
+```
+    FROM ubuntu:14.04
+    RUN apt-get update
+    RUN apt-get install -y curl
+    EXPOSE <port> [<port>...]
+    ENV PATH /usr/local/postgres-$PG_MAJOR/bin:$PATH
+```
