@@ -55,13 +55,14 @@ docker
 $ docker build .
 ```
 - Reference
--- FROM:
 
--- Run
+  - FROM:
 
--- Expose
+  - Run
 
--
+  - Expose
+
+  -
 
 ```
     FROM ubuntu:14.04
