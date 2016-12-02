@@ -68,7 +68,7 @@ $ docker build -f /path/to/a/Dockerfile .
 
   - Run: execute any commands in a new layer on top of the current image and commit the results.
 ```
-   RUN <command> (shell form, the command is run in a shell, which by default is /bin/sh -c on Linux or cmd /S /C on Windows)
+   RUN <command> (shell form, the command is run in a shell [/bin/sh -c on Linux or cmd /S /C on Windows])
    RUN ["executable", "param1", "param2"] (exec form)
 ```
 
@@ -147,9 +147,9 @@ such as:
      --timeout=DURATION (default: 30s)
      --retries=N (default: 3)
   
-  Ex.   
-  HEALTHCHECK --interval=5m --timeout=3s \
-  CMD curl -f http://localhost/ || exit 1
+  ex.   
+    HEALTHCHECK --interval=5m --timeout=3s \
+    CMD curl -f http://localhost/ || exit 1
 ```
 
   - SHELL: allows the default shell used for the shell form of commands to be overridden. 
@@ -160,7 +160,7 @@ such as:
   - ONBUILD: adds to the image a trigger instruction to be executed at a later time, when the image is used as the base for another build.
 ```  
    ONBUILD [INSTRUCTION]
-Ex.   
+ex.   
    [...]
    ONBUILD ADD . /app/src
    ONBUILD RUN /usr/local/bin/python-build --dir /app/src
@@ -193,3 +193,5 @@ RUN echo moo > oink
 
     $ docker build --build-arg CONT_IMG_VER=v2.0.1 Dockerfile
 ```
+
+When the Docker container starts, only the **CMD** command is run. The only processes that will be running inside the container is the CMD command, and all processes that it spawns.
