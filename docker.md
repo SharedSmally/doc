@@ -55,8 +55,6 @@ docker
 $ docker build .
 $ docker build -f /path/to/a/Dockerfile .
 ```
-- Reference
-
   - Directive
 ```
   # directive=value1
