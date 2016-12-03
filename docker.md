@@ -23,28 +23,75 @@ docker
 ```
     images    List images
     build     Build an image from a Dockerfile
+    rmi       Remove one or more images
+    
     load      Load an image from a tar archive or STDIN
     save      Save one or more images to a tar archive (streamed to STDOUT by default)
+    
     pull      Pull an image or a repository from a registry
     push      Push an image or a repository to a registry
-    rmi       Remove one or more images
+    
     history   Show the history of an image
     search    Search the Docker Hub for images
     tag       Tag an image into a repository
-    commit    Create a new image from a container's changes
+        
     login     Log in to a Docker registry.
     logout    Log out from a Docker registry.
+    
+    commit    Create a new image from a container's changes
 ```    
-- Build Image:
-**$ docker build -f dockerfiles/Dockerfile.prod  -t myapp_prod . _**
-**docker _build -t tagname(a:b) -f dockfile . _**
+- Example:
 
-- List Images:
-
-**docker _images_**
-
+   - Create Image
+   
+     $ docker build -f dockerfiles/Dockerfile.prod  -t myapp_prod:v1 . 
+  
+   - List Image
+   
+     docker images
 
 ## [Docker Container]()
+- Container docker commands
+```
+    ps        List containers
+    create    Create a new container
+    rm        Remove one or more containers
+    rename    Rename a container
+    restart   Restart a container
+    start     Start one or more stopped containers
+    stop      Stop one or more running containers
+    kill      Kill one or more running containers
+    pause     Pause all processes within one or more containers
+    unpause   Unpause all processes within one or more containers
+    attach    Attach to a running container
+    wait      Block until a container stops, then print its exit code
+
+    run       Run a command in a new container
+    events    Get real time events from the server
+    exec      Run a command in a running container
+
+    export    Export a container's filesystem as a tar archive
+    import    Import the contents from a tarball to create a filesystem image
+
+    inspect   Return low-level information on a container, image or task
+    diff      Inspect changes on a container's filesystem
+    port      List port mappings or a specific mapping for the container
+    stats     Display a live stream of container(s) resource usage statistics
+    top       Display the running processes of a container
+
+    info      Display system-wide information
+    logs      Fetch the logs of a container
+    version   Show the Docker version information
+
+    network   Manage Docker networks
+    node      Manage Docker Swarm nodes
+    volume    Manage Docker volumes
+    cp        Copy files/folders between a container and the local filesystem
+    update    Update configuration of one or more containers
+
+    service   Manage Docker services
+    swarm     Manage Docker Swarm
+```
 - container operations:
 
 **docker _create | start | stop | restart | kill | pause | unpause | update_**
