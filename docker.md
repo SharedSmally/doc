@@ -18,6 +18,15 @@ docker
 
 **docker-machine _ssh|scp_**
 
+- Login docker VM:
+```
+   docker-machine ssh default
+   login to docker VM of "default":
+   docker@default:~$ sudo -i
+    ...........
+   root@default:~# 
+```
+
 ## [Docker Image](https://docs.docker.com/engine/tutorials/dockerimages/)
  - Image docker commands
 ```
