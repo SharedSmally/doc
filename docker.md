@@ -25,6 +25,8 @@ docker
    docker@default:~$ sudo -i
     ...........
    root@default:~# 
+   
+   The docker related files (images) are stored in /mnt/sda1/var/lib/docker. 
 ```
 
 ## [Docker Image](https://docs.docker.com/engine/tutorials/dockerimages/)
