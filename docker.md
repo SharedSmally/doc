@@ -1,7 +1,7 @@
 docker
 ======
 
-## VM
+## Docker VM (hold docker container)
 - VM operations:
 
 **docker-machine _create | rm | start | stop | restart | kill_**
@@ -18,19 +18,39 @@ docker
 
 **docker-machine _ssh|scp_**
 
-## Container
-- image operations:
+## [Docker Image](https://docs.docker.com/engine/tutorials/dockerimages/)
+ - Image docker commands
+```
+    images    List images
+    build     Build an image from a Dockerfile
+    load      Load an image from a tar archive or STDIN
+    save      Save one or more images to a tar archive (streamed to STDOUT by default)
+    pull      Pull an image or a repository from a registry
+    push      Push an image or a repository to a registry
+    rmi       Remove one or more images
+    history   Show the history of an image
+    search    Search the Docker Hub for images
+    tag       Tag an image into a repository
+    commit    Create a new image from a container's changes
+    login     Log in to a Docker registry.
+    logout    Log out from a Docker registry.
+```    
+- Build Image:
+**$ docker build -f dockerfiles/Dockerfile.prod  -t myapp_prod . _**
+**docker _build -t tagname(a:b) -f dockfile . _**
 
-**docker _build | rmi | tag_**
+- List Images:
 
-- images:
+**docker _images_**
 
-**docker _images | history_**
 
+## [Docker Container]()
 - container operations:
 
 **docker _create | start | stop | restart | kill | pause | unpause | update_**
-
+```
+    docker run -t -i ubuntu:14.04 /bin/bash
+```
 - containers status:
 
 **docker _ps | top | logs | stats | load | export_**
@@ -42,6 +62,7 @@ docker
 - container interaction:
 
 **docker _run | exec_**
+docker run -t -i training/sinatra /bin/bash
 
 - Hub docker:
 
