@@ -65,12 +65,12 @@ docker
 ## [Docker Container](~/.docker)
 - Container docker commands
 ```
-    ps        List containers
-    create    Create a new container
-    rm        Remove one or more containers
-    rename    Rename a container
-    restart   Restart a container
-    start     Start one or more stopped containers
+    ps        List containers:   docker ps -a  (all)
+    create    Create a new container:   docker create [OPTIONS] IMAGE [CMD] [ARGS]
+    rm        Remove one or more containers:   docker rm CONTAINER
+    rename    Rename a container:    docker renamte CONTAINER NEW_NAME
+    restart   Restart a container:   
+    start     Start one or more stopped containers: docker start CONTAINER
     stop      Stop one or more running containers
     kill      Kill one or more running containers
     pause     Pause all processes within one or more containers
@@ -81,27 +81,30 @@ docker
     run       Run a command in a new container 
     exec      Run a command in a running container
 
-    export    Export a container's filesystem as a tar archive
-    import    Import the contents from a tarball to create a filesystem image
+    export    Export a container's filesystem as a tar archive:  docker export -o FILE CONTAINER 
+    import    Import the contents from a tarball to create a filesystem image:  docker import [OPTIONS] file|URL|- [IMAGE]
+
+    info      Display system-wide information:     docker info
+    version   Show the Docker version information: docker version
 
     inspect   Return low-level information on a container, image or task
     diff      Inspect changes on a container's filesystem
     port      List port mappings or a specific mapping for the container
     stats     Display a live stream of container(s) resource usage statistics
-    top       Display the running processes of a container
-
+    top       Display the running processes of a container    
     events    Get real time events from the server
-    info      Display system-wide information:   _docker info_
-    logs      Fetch the logs of a container:    _docker logs [options] CONTAINER_
-    version   Show the Docker version information
-
-    network   Manage Docker networks
-    node      Manage Docker Swarm nodes
-    volume    Manage Docker volumes
+    logs      Fetch the logs of a container:     docker logs [options] CONTAINER
+    
+    network   Manage Docker networks:  docker network [create|rm|connect|disconnect|inspect|ls] [OPTIONS]
+    volume    Manage Docker volumes:   docker volume [create|rm|inspect|ls] [OPTIONS]
     cp        Copy files/folders between a container and the local filesystem
-    update    Update configuration of one or more containers
+                  docker cp CONTAINER:SRC_PATH DEST_PATH
+                  docker cp SRC_PATH CONTAINER:DEST_PATH 
+    update    Update configuration of one or more containers, such as CPU, memory resource:
+                  docker update CONTAINER [options]
 
-    service   Manage Docker services
+    service   Manage Docker services:   dpcler service [create|inspect|ps|ls|rm|scale|update]
+    node      Manage Docker Swarm nodes
     swarm     Manage Docker Swarm
 ```
 - container operations:
