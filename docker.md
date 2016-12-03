@@ -23,34 +23,46 @@ docker
 ```
     images    List images
     build     Build an image from a Dockerfile
+    tag       Tag an image into a repository
     rmi       Remove one or more images
     
     load      Load an image from a tar archive or STDIN
     save      Save one or more images to a tar archive (streamed to STDOUT by default)
     
-    pull      Pull an image or a repository from a registry
-    push      Push an image or a repository to a registry
+    commit    Create a new image from a container's changes
     
     history   Show the history of an image
     search    Search the Docker Hub for images
-    tag       Tag an image into a repository
-        
+
     login     Log in to a Docker registry.
+    pull      Pull an image or a repository from a registry
+    push      Push an image or a repository to a registry
     logout    Log out from a Docker registry.
-    
-    commit    Create a new image from a container's changes
 ```    
 - Example:
 
-   - Create Image
+   - List Images
+   
+     $ docker images
+     
+   - Create Image: Image name(repository:tag or ID)
    
      $ docker build -f dockerfiles/Dockerfile.prod  -t myapp_prod:v1 . 
-  
-   - List Image
+     
+   - Tag Image
    
-     docker images
+     $ docker tag 5db5f8471261 user/test1:devel
+     
+   - Create a new container and login (outside of container)
+   
+     $ docker run -i -t 5db5f8471261
+     
+   - Commit container changes to a new Image (outside of container):
+   
+     $ docker commit 5db5f8471261
+     $ docker commit [OPTIONS] CONTAINER [REPOSITORY[:TAG]]
 
-## [Docker Container]()
+## [Docker Container](~/.docker)
 - Container docker commands
 ```
     ps        List containers
@@ -65,9 +77,8 @@ docker
     unpause   Unpause all processes within one or more containers
     attach    Attach to a running container
     wait      Block until a container stops, then print its exit code
-
-    run       Run a command in a new container
-    events    Get real time events from the server
+    
+    run       Run a command in a new container 
     exec      Run a command in a running container
 
     export    Export a container's filesystem as a tar archive
@@ -79,8 +90,9 @@ docker
     stats     Display a live stream of container(s) resource usage statistics
     top       Display the running processes of a container
 
-    info      Display system-wide information
-    logs      Fetch the logs of a container
+    events    Get real time events from the server
+    info      Display system-wide information:   _docker info_
+    logs      Fetch the logs of a container:    _docker logs [options] CONTAINER_
     version   Show the Docker version information
 
     network   Manage Docker networks
@@ -110,10 +122,6 @@ docker
 
 **docker _run | exec_**
 docker run -t -i training/sinatra /bin/bash
-
-- Hub docker:
-
-**docker _pull | push | login | logout | commit_**
 
 
 ## Docker File:  [Reference](https://docs.docker.com/engine/reference/builder/)
