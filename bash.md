@@ -326,7 +326,20 @@ bind [-m keymap] keyseq:readline-command
 #### [Shell Arithmetic](https://www.gnu.org/software/bash/manual/bash.html#Shell-Arithmetic)
 #### [Directory Stack](https://www.gnu.org/software/bash/manual/bash.html#The-Directory-Stack)
 #### [Job Control](https://www.gnu.org/software/bash/manual/bash.html#Job-Control-Builtins)
-
+#### [Functions](http://tldp.org/HOWTO/Bash-Prog-Intro-HOWTO-8.html)
+```bash
+ #!/bin/bash 
+                function quit {
+                   exit
+                }  
+                function e {   # with parameter: $1, ...$9; $@
+                    echo $1 
+                }  
+                e Hello
+                e World
+                quit
+                echo foo 
+```
 
 ## Tips
 - [Detect OS type](http://stackoverflow.com/questions/3466166/how-to-check-if-running-in-cygwin-mac-or-linux)
