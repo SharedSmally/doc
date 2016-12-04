@@ -9,6 +9,26 @@ cxx
  
  - CMake
     - CMake plugins: CMakeEclipse; CMakeEd; CMakeBuilder
+    
+    - Create a project with CMakeLists.txt; then run the command:
+```
+ % mkdir ctest 
+ % cd ctest
+ % vi  CMakeLists.txt 
+cmake_minimum_required (VERSION 2.8.11)
+project (HELLO)
+
+add_subdirectory (libsrc)
+add_subdirectory (src)
+
+ %cmake -G"Eclipse CDT4 - Unix Makefiles" -DCMAKE_BUILD_TYPE=Debug ./ 
+
+There are two Eclipse files in the tree:
+ ~/.project
+ ~/.cproject
+The project can be imported to eclipse:  Menu File->Import>General->Existing projects into workspace: 
+```
+    
  
  - Maven + Nar
  
