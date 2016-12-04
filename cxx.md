@@ -15,10 +15,11 @@ cxx
  - Gradle + cxx
  
  
- ## AutoTool:
+ ## [AutoMake/AutoConfig](https://www.gnu.org/software/automake/manual/automake.html):
  
  - Create an AutoConfig/AutoMake package in an empty directory.
-    - src/main.c : the source file 
+ 
+   - src/main.c : the source file 
 ```cpp    
 ~/amhello % cat src/main.c
 #include <config.h>
@@ -32,13 +33,13 @@ main (void)
   return 0;
 }
 ```
-    - README: documentation for the package.
+   - README: documentation for the package.
 ```    
 ~/amhello % cat README
 This is a demonstration package for GNU Automake.
 Type 'info Automake' to read the Automake manual.
 ```
-    - Makefile.am and src/Makefile.am: contain Automake instructions for these two directories.
+   - Makefile.am and src/Makefile.am: contain Automake instructions for these two directories.
 ```
 ~/amhello % cat src/Makefile.am
 bin_PROGRAMS = hello
@@ -69,7 +70,8 @@ configure.ac: installing './missing'
 configure.ac: installing './compile'
 src/Makefile.am: installing './depcomp' 
  ```
- - Config project
+
+   - Config and build project
  ```
  ~/amhello % ./configure
  ~/amhello % make
