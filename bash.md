@@ -1,6 +1,8 @@
 Bash
 ======
 
+## Customized .bashrc
+ See [LDP](http://www.tldp.org/LDP/abs/html/sample-bashrc.html) for the customized .bashrc and .bash_profile
   
 ## [Reference](https://www.gnu.org/software/bash/manual/bash.html)
 #### Pipeline
