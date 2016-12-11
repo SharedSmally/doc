@@ -62,12 +62,36 @@
  - Controllers
  - Domain Classes
  - Services
- - Tag Libraries
- 
- - Servlet API
- - Constraints
+ - Tag Libraries  
+ - [Constraints](http://docs.grails.org/latest/ref/Constraints/Usage.html):  **static constraints = { ... }**
+    - Pattern
+       - [creditCard](http://docs.grails.org/latest/ref/Constraints/creditCard.html):_cardNumber creditCard: true_
+       - [email](http://docs.grails.org/latest/ref/Constraints/email.html):_homeEmail email: true_
+       - [url](http://docs.grails.org/latest/ref/Constraints/url.html):_homePage url: true_
+       - [matches](http://docs.grails.org/latest/ref/Constraints/matches.html):_login matches: "[a-zA-Z]+"_
+    - Range
+       - [max](http://docs.grails.org/latest/ref/Constraints/max.html):_age max: new Date();price max: 999F_    
+       - [min](http://docs.grails.org/latest/ref/Constraints/min.html):_age min: new Date();price min: 0F_
+       - [inList](http://docs.grails.org/latest/ref/Constraints/inList.html):_name inList: ["Joe", "Fred", "Bob"]_
+       - [range](http://docs.grails.org/latest/ref/Constraints/range.html):_http://docs.grails.org/latest/ref/Constraints/range.html_
+       - [notEqual](http://docs.grails.org/latest/ref/Constraints/notEqual.html):_username notEqual: "Bob"_
+    - Size
+       - [maxSize](http://docs.grails.org/latest/ref/Constraints/maxSize.html):_children maxSize: 25_
+       - [minSize](http://docs.grails.org/latest/ref/Constraints/minSize.html):_children minSize: 25_
+       - [size](http://docs.grails.org/latest/ref/Constraints/size.html):_children size: 5..15_
+    - Boolean Flags
+       - [bindable](http://docs.grails.org/latest/ref/Constraints/bindable.html):_salary bindable: false_
+       - [blank](http://docs.grails.org/latest/ref/Constraints/blank.html):_login blank: false_
+       - [nullable](http://docs.grails.org/latest/ref/Constraints/nullable.html):_age nullable: true_
+       - [unique](http://docs.grails.org/latest/ref/Constraints/unique.html):_username unique: true_
+    - Misc 
+       - [attributes](http://docs.grails.org/latest/ref/Constraints/attributes.html): _birthDate attributes: [years: 2000..2011]_
+       - [validator](http://docs.grails.org/latest/ref/Constraints/validator.html):
+       - [scale](http://docs.grails.org/latest/ref/Constraints/scale.html):_salary scale: 2_
+       - [widget](http://docs.grails.org/latest/ref/Constraints/widget.html):_description widget: 'textarea'_       
  - Database Mapping
  - Tags
+ - Servlet API
  
 ## [API]()
 ## [Plugins]()
