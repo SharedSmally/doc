@@ -73,7 +73,7 @@
        - [max](http://docs.grails.org/latest/ref/Constraints/max.html):_age max: new Date();price max: 999F_    
        - [min](http://docs.grails.org/latest/ref/Constraints/min.html):_age min: new Date();price min: 0F_
        - [inList](http://docs.grails.org/latest/ref/Constraints/inList.html):_name inList: ["Joe", "Fred", "Bob"]_
-       - [range](http://docs.grails.org/latest/ref/Constraints/range.html):_http://docs.grails.org/latest/ref/Constraints/range.html_
+       - [range](http://docs.grails.org/latest/ref/Constraints/range.html):_age range: 18..65_
        - [notEqual](http://docs.grails.org/latest/ref/Constraints/notEqual.html):_username notEqual: "Bob"_
     - Size
        - [maxSize](http://docs.grails.org/latest/ref/Constraints/maxSize.html):_children maxSize: 25_
@@ -89,7 +89,37 @@
        - [validator](http://docs.grails.org/latest/ref/Constraints/validator.html):
        - [scale](http://docs.grails.org/latest/ref/Constraints/scale.html):_salary scale: 2_
        - [widget](http://docs.grails.org/latest/ref/Constraints/widget.html):_description widget: 'textarea'_       
- - Database Mapping
+ - [Database Mapping](http://docs.grails.org/latest/ref/Database%20Mapping/Usage.html): **static mapping = { .... }**
+    - Data Structure
+       - [table](http://docs.grails.org/latest/ref/Database%20Mapping/table.html):_table "book_catalog" [name; schema; catalog]_    
+       - [joinTable](http://docs.grails.org/latest/ref/Database%20Mapping/joinTable.html):_chapterPageCounts indexColumn: [name: "chapter_number", type: Integer], joinTable: [column: "page_count"]_
+       - [column](http://docs.grails.org/latest/ref/Database%20Mapping/column.html):_currency column: "currency", sqlType: "char", length: 3;  [map:column; sqlType; enumType[ordinal|string]; index(string); unique(true|false); length(integer); precision(integer); scale(integer);comment (string);defaultValue(value)]_
+       - [indexColumn](http://docs.grails.org/latest/ref/Database%20Mapping/indexColumn.html):_matrix indexColumn: [name: "the_matrix", type: Integer]_
+       - [id](http://docs.grails.org/latest/ref/Database%20Mapping/id.html):_id generator: 'hilo',
+           params: [table: 'hi_value', column: 'next_value', max_lo: 100]_
+       - [discriminator](http://docs.grails.org/latest/ref/Database%20Mapping/discriminator.html):_discriminator "audio" [column; value; formula; type ]_
+       - [cascade](http://docs.grails.org/latest/ref/Database%20Mapping/cascade.html):_books cascade: 'all-delete-orphan'  [all, merge, save-update, delete, lock, refresh, evict, replicate or all-delete-orphan]_       
+    - Boolean Flags      
+       - [dynamicInsert](http://docs.grails.org/latest/ref/Database%20Mapping/dynamicInsert.html):_dynamicInsert true_
+       - [dynamicUpdate](http://docs.grails.org/latest/ref/Database%20Mapping/dynamicUpdate.html):_dynamicUpdate true_
+       - [updateable](http://docs.grails.org/latest/ref/Database%20Mapping/updateable.html):_ author insertable: false_
+       - [insertable](http://docs.grails.org/latest/ref/Database%20Mapping/insertable.html):_author insertable: false_
+       
+       - [autoTimestamp](http://docs.grails.org/latest/ref/Database%20Mapping/autoTimestamp.html):_autoTimestamp false_
+       - [version](http://docs.grails.org/latest/ref/Database%20Mapping/version.html):_version false_
+    
+       - [autoImport](http://docs.grails.org/latest/ref/Database%20Mapping/autoImport.html):_autoImport false_
+       - [cache](http://docs.grails.org/latest/ref/Database%20Mapping/cache.html):_cache true_
+       - [lazy](http://docs.grails.org/latest/ref/Database%20Mapping/lazy.html):_author lazy: false_
+       - [ignoreNotFound](http://docs.grails.org/latest/ref/Database%20Mapping/ignoreNotFound.html):_thumbnail ignoreNotFound: true_
+    - Misc Options
+       - [batchSize](http://docs.grails.org/latest/ref/Database%20Mapping/batchSize.html):_batchSize 10_
+       - [comment](http://docs.grails.org/latest/ref/Database%20Mapping/comment.html):_comment "your comment here"_
+       - [fetch](http://docs.grails.org/latest/ref/Database%20Mapping/fetch.html):_books fetch: 'join' [join or select.]_
+       - [order](http://docs.grails.org/latest/ref/Database%20Mapping/order.html):_order "desc" ["desc" or "asc"]_
+       - [sort](http://docs.grails.org/latest/ref/Database%20Mapping/sort.html):_sort "releaseDate"_
+       - [type](http://docs.grails.org/latest/ref/Database%20Mapping/type.html):_title type: "text"_    
+
  - Tags
  - Servlet API
  
