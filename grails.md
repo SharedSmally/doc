@@ -130,9 +130,102 @@
          - [response](http://docs.grails.org/latest/ref/Controllers/response.html):
          - [servletContext](http://docs.grails.org/latest/ref/Controllers/servletContext.html):
          - [session](http://docs.grails.org/latest/ref/Controllers/session.html):        
- - Domain Classes
+ - [Domain Classes](http://docs.grails.org/latest/ref/Domain%20Classes/Usage.html):_grails create-domain-class org.bookstore.Book_
+     - Relationship
+         - [belongsTo](http://docs.grails.org/latest/ref/Domain%20Classes/belongsTo.html):_static belongsTo = [author: Author]_
+         - [constraints](http://docs.grails.org/latest/ref/Domain%20Classes/constraints.html):_static constraints = { }_
+         - [hasMany](http://docs.grails.org/latest/ref/Domain%20Classes/hasMany.html):_static hasMany = [books: Book]_
+         - [hasOne](http://docs.grails.org/latest/ref/Domain%20Classes/hasOne.html):_static hasOne = [nose: Nose]_
+         - [mapWith](http://docs.grails.org/latest/ref/Domain%20Classes/mapWith.html):_static mapWith = "none"_
+         - [mappedBy](http://docs.grails.org/latest/ref/Domain%20Classes/mappedBy.html):_static mappedBy = [outgoingFlights: 'departureAirport',incomingFlights: 'destinationAirport']_
+         - [mapping](http://docs.grails.org/latest/ref/Domain%20Classes/mapping.html):_static mapping = { ...}_
+         - [embedded](http://docs.grails.org/latest/ref/Domain%20Classes/embedded.html):_static embedded = ['bornInCountry', 'livesInCountry']_
+         - [transients](http://docs.grails.org/latest/ref/Domain%20Classes/transients.html):_static transients = ['upperCaseName']_
+         - [fetchMode](http://docs.grails.org/latest/ref/Domain%20Classes/fetchMode.html):_static fetchMode = [books: 'eager']_              - CRUD 
+         - [get](http://docs.grails.org/latest/ref/Domain%20Classes/get.html):_def b = Book.get(1)_
+         - [load](http://docs.grails.org/latest/ref/Domain%20Classes/load.html):_def b = Book.load(1)_     
+         - [delete](http://docs.grails.org/latest/ref/Domain%20Classes/delete.html):_def book = Book.get(1); book.delete()_
+         - [read](http://docs.grails.org/latest/ref/Domain%20Classes/read.html):_def b = Book.read(1)_
+         - [save](http://docs.grails.org/latest/ref/Domain%20Classes/save.html):_def b = new Book(title: "The Shining");b.save()_
+         - [isAttached](http://docs.grails.org/latest/ref/Domain%20Classes/isAttached.html):_if (!b.isAttached()) {b.attch(); }_         
+         - [attach](http://docs.grails.org/latest/ref/Domain%20Classes/attach.html):_b.attach();_
+         - [isDirty](http://docs.grails.org/latest/ref/Domain%20Classes/isDirty.html):_if (b.isDirty()) {  if (b.isDirty('title')) {}}_
+         - [getDirtyPropertyNames](http://docs.grails.org/latest/ref/Domain%20Classes/getDirtyPropertyNames.html):_def names = b.dirtyPropertyNames_
+         - [getPersistentValue](http://docs.grails.org/latest/ref/Domain%20Classes/getPersistentValue.html):_def originalName = b.getPersistentValue('name')_
+         - [discard](http://docs.grails.org/latest/ref/Domain%20Classes/discard.html):_def b = Book.get(1); b.title = "Blah"; b.discard() _
+         - [exists](http://docs.grails.org/latest/ref/Domain%20Classes/exists.html):_if (Account.exists(accountId)) {}_
+         - [lock](http://docs.grails.org/latest/ref/Domain%20Classes/lock.html):_def book = Book.get(1);book.lock()_
+         - [merge](http://docs.grails.org/latest/ref/Domain%20Classes/merge.html):_def b = new Book(title: "The Shining");b = b.merge()_
+         - [refresh](http://docs.grails.org/latest/ref/Domain%20Classes/refresh.html):_def b = Book.get(1); ...; b.refresh()_
+         - [addTo](http://docs.grails.org/latest/ref/Domain%20Classes/addTo.html):_def a = new Author(name: "Stephen King").addToFiction(fictBook).addToNonFiction(nonFictBook).save()_                    
+     - Operations
+         - [getAll](http://docs.grails.org/latest/ref/Domain%20Classes/getAll.html):_def bookList = Book.getAll([1, 2, 3])_
+         - [count](http://docs.grails.org/latest/ref/Domain%20Classes/count.html):_int bookCount = Book.count()_
+         - [countBy](http://docs.grails.org/latest/ref/Domain%20Classes/countBy.html):_def c = Book.countByTitle("The Shining")_
+         - [first](http://docs.grails.org/latest/ref/Domain%20Classes/first.html):_p = Person.first(sort: 'lastName')_
+         - [last](http://docs.grails.org/latest/ref/Domain%20Classes/last.html):_p = Person.last('lastName')_
+         - [list](http://docs.grails.org/latest/ref/Domain%20Classes/list.html):_def results = Book.list(max: 10)_
+             - max - The maximum number to list
+             - offset - The offset from the first result to list from
+             - order - How to order the list, either "desc" or "asc"
+             - sort - The property name to sort by
+             - ignoreCase - Whether to ignore the case when sorting. Default is true.
+             - fetch - The fetch policy for the object’s associations as a Map
+             - readOnly - true if returned objects should not be automatically dirty-checked (simlar to read())
+             - fetchSize - number of rows fetched by the underlying JDBC driver per round trip
+             - flushMode - Hibernate FlushMode override, defaults to FlushMode.AUTO
+             - timeout - query timeout in seconds     
+         - [listOrderBy](http://docs.grails.org/latest/ref/Domain%20Classes/listOrderBy.html):_def results=Book.listOrderByTitle(max: 10)_
+             - max - The maximum number to list
+             - offset - The offset from the first result to list from
+             - order - The order to list by, either "desc" or "asc"    
+         - [removeFrom](http://docs.grails.org/latest/ref/Domain%20Classes/removeFrom.html):_def author = Author.findByName("Stephen King"); def book = author.books.find { it.title == 'The Stand' }; author.removeFromBooks(book)_
+     - Find
+         - [find](http://docs.grails.org/latest/ref/Domain%20Classes/find.html):_Book.find("from Book as b where b.author='Dan Brown'")_
+             - query - An HQL query
+             - positionalParams - A List of parameters for a positional parametrized HQL query
+             - namedParams - A Map of named parameters a HQL query
+             - queryParams - A Map of query parameters. Currently, only cache is supported
+             - example - An instance of the domain class for query by example     
+         - [findAll](http://docs.grails.org/latest/ref/Domain%20Classes/findAll.html):_Book.findAll("from Book as b where b.author=?", ['Dan Brown'])_
+         - [findAllBy](http://docs.grails.org/latest/ref/Domain%20Classes/findAllBy.html):_results = Book.findAllByReleaseDateBetween(firstDate, new Date())_
+         - [findAllWhere](http://docs.grails.org/latest/ref/Domain%20Classes/findAllWhere.html):_def books = Book.findAllWhere(author: "Stephen King", title: "The Stand")_
+         - [findBy](http://docs.grails.org/latest/ref/Domain%20Classes/findBy.html):_def b = Book.findByTitle("The Shining")_
+         - [findOrCreateBy](http://docs.grails.org/latest/ref/Domain%20Classes/findOrCreateBy.html):_def b = Book.findOrCreateByTitle("The Shining")_
+         - [findOrCreateWhere](http://docs.grails.org/latest/ref/Domain%20Classes/findOrCreateWhere.html):_def book = Book.findOrCreateWhere(author: "Stephen King", title: "The Stand")_
+         - [findOrSaveBy](http://docs.grails.org/latest/ref/Domain%20Classes/findOrSaveBy.html):_def b = Book.findOrSaveByTitleAndAuthor("The Sum of All Fears", "Tom Clancy")_
+         - [findOrSaveWhere](http://docs.grails.org/latest/ref/Domain%20Classes/findOrSaveWhere.html):_def book = Book.findOrSaveWhere(author: "Stephen King", title: "The Stand")_
+         - [findWhere](http://docs.grails.org/latest/ref/Domain%20Classes/findWhere.html):_def book = Book.findWhere(author: "Stephen King", title: "The Stand")_
+     - Query
+         - [createCriteria](http://docs.grails.org/latest/ref/Domain%20Classes/createCriteria.html):_def c = Account.createCriteria(); cxxx_
+         - [executeQuery](http://docs.grails.org/latest/ref/Domain%20Classes/executeQuery.html):_ccount.executeQuery("select distinct a.number from Account a")_
+             - query - An HQL query
+             - positionalParams - A List of parameters for a positional parameterized query
+             - namedParams - A Map of named parameters for a named parameterized query
+             - metaParams - A Map of pagination parameters max or/and offset, as well as Hibernate query parameters readOnly, fetchSize, timeout, and flushMode
+         - [executeUpdate](http://docs.grails.org/latest/ref/Domain%20Classes/executeUpdate.html):_Account.executeUpdate("delete Book b where b.author=?",[Author.load(1)])_
+             - query - An HQL query with DML-style operations
+             - positionalParams - A List of parameters for a positional parameterized HQL query
+             - namedParams - A Map of parameters for a named parameterized HQL query     
+         - [where](http://docs.grails.org/latest/ref/Domain%20Classes/where.html):_def query = Person.where { firstName == "Bart"};Person bart = query.find()_
+         - [whereAny](http://docs.grails.org/latest/ref/Domain%20Classes/whereAny.html):_def query = Person.whereAny { firstName == "Bart"; firstName == "Lisa"}; Person bart = query.find()_
+         - [namedQueries](http://docs.grails.org/latest/ref/Domain%20Classes/namedQueries.html):__         
+     - Validate
+         - [validate](http://docs.grails.org/latest/ref/Domain%20Classes/validate.html):_if (!b.validate()) {}_
+         - [clearErrors](http://docs.grails.org/latest/ref/Domain%20Classes/clearErrors.html):_b.clearErrors()_
+         - [hasErrors](http://docs.grails.org/latest/ref/Domain%20Classes/hasErrors.html):_b.validate(); if (b.hasErrors()) { }_
+         - [errors](http://docs.grails.org/latest/ref/Domain%20Classes/errors.html):__
+     - Misc   
+         - [ident](http://docs.grails.org/latest/ref/Domain%20Classes/ident.html):_b.save(); println b.ident()_
+         - [instanceOf](http://docs.grails.org/latest/ref/Domain%20Classes/instanceOf.html):_ if (child.instanceOf(Other)) {_
+         - [properties](http://docs.grails.org/latest/ref/Domain%20Classes/properties.html):_def b = new Book(title: "The Shining");b.properties = params; b.save()_
+         - [withCriteria](http://docs.grails.org/latest/ref/Domain%20Classes/withCriteria.html):__
+         - [withNewSession](http://docs.grails.org/latest/ref/Domain%20Classes/withNewSession.html):_Book.withNewSession { session ->// do work }_
+         - [withSession](http://docs.grails.org/latest/ref/Domain%20Classes/withSession.html):_Book.withSession { session ->  session.clear() }_
+         - [withTransaction](http://docs.grails.org/latest/ref/Domain%20Classes/withTransaction.html):_Account.withTransaction { status ->...}_
  - Services
  - Tags
+ - Tag Library
  
  - [Constraints](http://docs.grails.org/latest/ref/Constraints/Usage.html):  **static constraints = { ... }**
     - Pattern
