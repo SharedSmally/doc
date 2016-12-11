@@ -233,7 +233,7 @@
          - session - A service is created for the scope of a user session
          - singleton (default) - Only one instance of the service ever exists
      - [Transactional](http://docs.grails.org/latest/ref/Services/transactional.html):_static transactional = true_
- - Tags
+ - Tags: ${_expression_}, **${it}** for iterator variable
     - Flow Control
          - [if](http://docs.grails.org/latest/ref/Tags/if.html):**\<g:if test="${name == 'fred'}">...\</g:if>**
          - [else](http://docs.grails.org/latest/ref/Tags/else.html):**\<g:else>...\</g:else>**
