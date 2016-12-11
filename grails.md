@@ -133,26 +133,27 @@
        - [session]():
     
  - Servlet API
-    - [request](http://docs.grails.org/latest/ref/Servlet%20API/request.html):
-    
-    The Grails enhances the HttpServletRequest instance by adding the following new properties and methods:
-       - XML - An instance of `XmlSlurper’s GPathResult class that allows parsing of an incoming XML request (useful for REST).
-       - JSON - An instance of Grails' JSONObject class that allows parsing of an incoming JSON request (useful for JSON based REST).
-       - forwardURI - Useful for obtaining the current request URI since the request object’s requestURI property returns the original URI, not the matched one.
-       - isRedirected() - Returns true if a redirect has been issued for this request .
-       - get - Returns true if the current request is an HTTP GET request.
-       - post - Returns true if the current request is an HTTP POST request.
-       - each - Implementation of Groovy’s each method for iterating over request attributes.
-       - find - Implementation of Groovy’s default find method for searching request attributes.
-       - findAll - Implementation of Groovy’s default findAll method for searching request attributes.
+    - [request](http://docs.grails.org/latest/ref/Servlet%20API/request.html): The **_request_** object is an instance of the Grails enhanced HttpServletRequest instance by adding the following new properties and methods:
+       - XML - An instance of `XmlSlurper’s GPathResult class that allows parsing of an incoming XML request (useful for REST)
+       - JSON - An instance of Grails' JSONObject class that allows parsing of an incoming JSON request (useful for JSON based REST)
+       - forwardURI - Useful for obtaining the current request URI since the request object’s requestURI property returns the original URI, not the matched one
+       - isRedirected() - Returns true if a redirect has been issued for this request 
+       - get - Returns true if the current request is an HTTP GET request
+       - post - Returns true if the current request is an HTTP POST request
+       - each - Implementation of Groovy’s each method for iterating over request attributes
+       - find - Implementation of Groovy’s default find method for searching request attributes
+       - findAll - Implementation of Groovy’s default findAll method for searching request attributes
+       - format - The request format, used for Content Negotiation
+       - withFormat(Closure) - The withFormat method, used for Content Negotiation
+       - xhr - Returns true if the current request is an Ajax request    
+    - [response](http://docs.grails.org/latest/ref/Servlet%20API/response.html):The **_response**_ object is an instance of the Servlet API’s HttpServletResponse class:
        - format - The request format, used for Content Negotiation.
        - withFormat(Closure) - The withFormat method, used for Content Negotiation.
-       - xhr - Returns true if the current request is an Ajax request.
-    
-    - [response]():
-    
-    - [servletContext]():
-    - [session]():
+       - Grails also overrides the left shift operator on the response object making it easier to write to the response writer:
+       
+            response << "Hello World"            
+    - [servletContext]():The **_ervletContext_** object is an instance of the Servlet API’s ServletContext class.
+    - [session]():The **_session_** object is an instance of the Servlet API’s HttpSession class
     
 
 ## [API]()
