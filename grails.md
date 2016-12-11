@@ -56,13 +56,84 @@
          - [create-script](http://docs.grails.org/latest/ref/Command%20Line/create-script.html):**grails create-script** _simplename_
          - [run-script](http://docs.grails.org/latest/ref/Command%20Line/run-script.html):**grails** _[env]\*_ **run-script** _scripts_
          - [create-command](http://docs.grails.org/latest/ref/Command%20Line/create-command.html):**grails create-command** _simplename_
-         - [run-command](http://docs.grails.org/latest/ref/Command%20Line/run-command.html):**grails _[env]_\* run-command** _command_ 
-
-    
- - Controllers
+         - [run-command](http://docs.grails.org/latest/ref/Command%20Line/run-command.html):**grails _[env]_\* run-command** _command_   
+ - [Controllers](http://docs.grails.org/latest/ref/Plug-ins/controllers.html)
+     - Attributes
+         - [grailsApplication](http://docs.grails.org/latest/ref/Controllers/grailsApplication.html):An instance of the GrailsApplication class
+         - [controllerName](http://docs.grails.org/latest/ref/Controllers/controllerName.html):Returns the name of the currently executing controller.
+         - [actionName](http://docs.grails.org/latest/ref/Controllers/actionName.html):Returns the name of the currently executing action
+         - [errors](http://docs.grails.org/latest/ref/Controllers/errors.html):An instance of the Spring Errors interface containing errors associated with this controller.
+         - [hasErrors]():Check if a controller has errors associated with it.
+     - Settable Properties 
+         - [responseFormats](http://docs.grails.org/latest/ref/Controllers/responseFormats.html):_static responseFormats = ['xml', 'json']_         
+         - [scope](http://docs.grails.org/latest/ref/Controllers/scope.html):_static scope = "session" [singleton|prototype|session]_
+         - [namespace](http://docs.grails.org/latest/ref/Controllers/namespace.html):_static namespace = 'reports'_
+         - [allowedMethods](http://docs.grails.org/latest/ref/Controllers/allowedMethods.html):_static allowedMethods = [action1:'POST', action3:['POST', 'DELETE']]_
+         - [bindData](http://docs.grails.org/latest/ref/Controllers/bindData.html):_bindData(target, params, [include: ['firstName', 'lastName']], "author")_
+            - target - The target object to bind to
+            - params - A Map of source parameters, often the params object when used in a controller
+            - includesExcludes - (Optional) A map with 'include' and/or 'exclude' lists containing the names of properties to either include or exclude.
+            - prefix - (Optional) A string representing a prefix to use to filter parameters. The method will automatically append a '.' when matching the prefix to parameters, so you can use 'author' to filter for parameters such as 'author.name'.
+         - [chain](http://docs.grails.org/latest/ref/Controllers/chain.html):_chain(controller*, action, id*, model, params*)_
+            - uri - The full uri to redirect to (example /book/list, book/show/2)
+            - controller (optional) - The controller to redirect to; defaults to the current controller if not specified
+            - namespace (optional) - the namespace of the controller to chain to
+            - action - The action to redirect to, either a string name or a reference to an action within the current controller
+            - id (optional) - The id to use in redirection
+            - model - The model to chain to the next action
+            - params (optional) - Parameters to pass to the action chained to.
+         - [defaultAction](http://docs.grails.org/latest/ref/Controllers/defaultAction.html): _static defaultAction = "list"_
+     - Actions
+         - [forward](http://docs.grails.org/latest/ref/Controllers/forward.html):_forward action: "show", id: 4, params: [author: "Stephen King"]_
+             - controller - The controller to redirect to; defaults to the current controller if not specified
+             - namespace (optional) - the namespace of the controller to forward to
+             - action - The action to redirect to, either a string name or a reference to an action within the current controller
+             - id - The id to use in redirection
+             - params - Parameters to pass to the action redirected to.
+         - [redirect](http://docs.grails.org/latest/ref/Controllers/redirect.html):_redirect(controller: "book", action: "show", fragment: "profile")_
+             - action (optional) - the name of the action to use in the link, if not specified the default action will be linked
+             - controller (optional) - the name of the controller to use in the link, if not specified the current controller will be linked
+             - namespace (optional) - the namespace of the controller to redirect to
+             - plugin (optional) - the name of the plugin which provides the controller
+             - id (optional) - the id to use in the link
+             - fragment (optional) - The link fragment (often called anchor tag) to use
+             - mapping (optional) - The named URL mapping to use to rewrite the link
+             - params (optional) - a map containing request parameters
+             - url (optional) - a map containing the action, controller, id etc.
+             - absolute (optional) - If true will prefix the link target address with the value of the grails.serverURL property from application.groovy, or http://localhost:port; if there is no value in application.groovy and not running in the production environment.
+             - base (optional) - Sets the prefix to be added to the link target address, typically an absolute server URL. This overrides the behaviour of the absolute property if both are specified.
+             - permanent (optional) - If true the redirect will be issued with a 301 HTTP status code (permanently moved), otherwise a 302 HTTP status code will be issued
+         - [render](http://docs.grails.org/latest/ref/Controllers/render.html):_render(view: "viewName", model: [book: theShining])_
+             - text (optional) - The text to render
+             - builder (optional) - The builder to use when rendering markup
+             - view (optional) - The view to delegate the rendering to
+             - template (optional) - The template to render. A template is usually an HTML snippet and the file starts with an underscore ("_"). This is used mostly in AJAX requests.
+             - layout (optional) - The layout to use for the response
+             - var (optional) - The name of the variable to be passed into a template, defaults to the Groovy default argument 'it' if not specified
+             - bean (optional) - The bean to use in rendering
+             - model (optional) - The model to use in rendering
+             - collection (optional) - For rendering a template against each item in a collection
+             - contentType (optional) - The contentType of the response
+             - encoding (optional) - The encoding of the response
+             - converter (as single non-named first parameter) - A Converter that should be rendered as Response
+             - plugin (optional) - The plugin to look for the template in
+             - status (optional) - The HTTP status code to use
+             - file (optional) - The byte[], java.io.File, or inputStream you wish to send with the response
+             - fileName (optional) - For specifying an attachment file name while rendering a file.         
+         - [withForm](http://docs.grails.org/latest/ref/Controllers/withForm.html)
+         - [withFormat](http://docs.grails.org/latest/ref/Controllers/withFormat.html):            
+     - Common Parameters     
+         - [params](http://docs.grails.org/latest/ref/Controllers/params.html):
+         - [request](http://docs.grails.org/latest/ref/Controllers/request.html):        
+         - [flash](http://docs.grails.org/latest/ref/Controllers/flash.html):
+         - [respond](http://docs.grails.org/latest/ref/Controllers/respond.html):
+         - [response](http://docs.grails.org/latest/ref/Controllers/response.html):
+         - [servletContext](http://docs.grails.org/latest/ref/Controllers/servletContext.html):
+         - [session](http://docs.grails.org/latest/ref/Controllers/session.html):        
  - Domain Classes
  - Services
  - Tags
+ 
  - [Constraints](http://docs.grails.org/latest/ref/Constraints/Usage.html):  **static constraints = { ... }**
     - Pattern
        - [creditCard](http://docs.grails.org/latest/ref/Constraints/creditCard.html):_cardNumber creditCard: true_
