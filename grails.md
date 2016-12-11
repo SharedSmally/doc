@@ -223,9 +223,28 @@
          - [withNewSession](http://docs.grails.org/latest/ref/Domain%20Classes/withNewSession.html):_Book.withNewSession { session ->// do work }_
          - [withSession](http://docs.grails.org/latest/ref/Domain%20Classes/withSession.html):_Book.withSession { session ->  session.clear() }_
          - [withTransaction](http://docs.grails.org/latest/ref/Domain%20Classes/withTransaction.html):_Account.withTransaction { status ->...}_
- - Services
+ - [Services](http://docs.grails.org/latest/ref/Services/Usage.html):_grails create-service org.bookstore.Book_
+     - [scope](http://docs.grails.org/latest/ref/Services/scope.html): _class BookService {  static scope = "session";  ... }_
+         - prototype - A new service is created every time it is injected into another class
+         - request - A new service will be created per request
+         - flash - A new service will be created for the current and next request only
+         - flow - In web flows the service will exist for the scope of the flow
+         - conversation - In web flows the service will exist for the scope of the conversation. ie a root flow and its sub flows
+         - session - A service is created for the scope of a user session
+         - singleton (default) - Only one instance of the service ever exists
+     - [Transactional](http://docs.grails.org/latest/ref/Services/transactional.html):_static transactional = true_
  - Tags
- - Tag Library
+
+ - Tag Libraries: The objects used in Tag Libraries
+     - [actionName](http://docs.grails.org/latest/ref/Tag%20Libraries/actionName.html):
+     - [controllerName](http://docs.grails.org/latest/ref/Tag%20Libraries/controllerName.html):
+     - [flash](http://docs.grails.org/latest/ref/Tag%20Libraries/flash.html):
+     - [pageScope](http://docs.grails.org/latest/ref/Tag%20Libraries/pageScope.html):
+     - [params](http://docs.grails.org/latest/ref/Tag%20Libraries/params.html):
+     - [request](http://docs.grails.org/latest/ref/Tag%20Libraries/request.html):
+     - [response](http://docs.grails.org/latest/ref/Tag%20Libraries/response.html):
+     - [servletContext](http://docs.grails.org/latest/ref/Tag%20Libraries/servletContext.html):
+     - [session](http://docs.grails.org/latest/ref/Tag%20Libraries/session.html):
  
  - [Constraints](http://docs.grails.org/latest/ref/Constraints/Usage.html):  **static constraints = { ... }**
     - Pattern
