@@ -235,7 +235,7 @@
      - [Transactional](http://docs.grails.org/latest/ref/Services/transactional.html):_static transactional = true_
  - Tags
     - Flow Control
-         - [if](http://docs.grails.org/latest/ref/Tags/if.html):**\<g:if test="${name == 'fred'}">...</g:if>**
+         - [if](http://docs.grails.org/latest/ref/Tags/if.html):**\<g:if test="${name == 'fred'}">...\</g:if>**
          - [else](http://docs.grails.org/latest/ref/Tags/else.html):**<g:else>...</g:else>**
          - [elseif](http://docs.grails.org/latest/ref/Tags/elseif.html):**<g:elseif test="${name == 'bob'}"></g:elseif>**
          - [unless](http://docs.grails.org/latest/ref/Tags/unless.html):**<g:unless test="${name == 'fred'}"> Hello ${name}!</g:unless>
