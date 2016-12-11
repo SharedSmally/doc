@@ -4,20 +4,20 @@
 ## [User Guide](http://docs.grails.org/latest/guide/single.html)
 ## [Quick Reference] ()
  - Command Line
-    - [Usage](http://docs.grails.org/latest/ref/Command%20Line/Usage.html)
+      - [Usage](http://docs.grails.org/latest/ref/Command%20Line/Usage.html)
 ```
 grails <<environment>>* <<command name>>
 ```
-    - Main Tasks
-        - clean;
-        - compile 
-        - Packing
-          - package;
-          - package-plugin
-          - war
-        - docs
-        - console
-        - shell
+      - Main Tasks
+          - clean;
+          - compile 
+          - Packing
+              - package;
+              - package-plugin
+              - war
+          - docs
+          - console
+          - shell
     - Help Tasks   
         - help
         - stats
