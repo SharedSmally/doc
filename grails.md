@@ -5,9 +5,9 @@
 ## [Quick Reference] ()
  - Command Line
       - [Usage](http://docs.grails.org/latest/ref/Command%20Line/Usage.html)
-
+```
 grails <<environment>>* <<command name>>
-
+```
       - Main Tasks
           - clean;
           - compile 
