@@ -119,13 +119,12 @@
        - [sort](http://docs.grails.org/latest/ref/Database%20Mapping/sort.html):_sort "releaseDate"_
        - [type](http://docs.grails.org/latest/ref/Database%20Mapping/type.html):_title type: "text"_    
 
- - [Tag Libraries](http://docs.grails.org/latest/ref/Tag%20Libraries/Usage.html)  
-    - [actionName]():
-    - [controllerName]():
-    - [flash]():
-    - [pageScope]():
-    - [params]():
-    
+ - [Objects for Tag Libraries](http://docs.grails.org/latest/ref/Tag%20Libraries/Usage.html)  
+    - [actionName](http://docs.grails.org/latest/ref/Tag%20Libraries/actionName.html):the name of the currently executing action
+    - [controllerName](http://docs.grails.org/latest/ref/Tag%20Libraries/controllerName.html): the name of the currently executing controller
+    - [flash](http://docs.grails.org/latest/ref/Tag%20Libraries/flash.html): A temporary storage map that stores objects within the session for the next request and the next request only.
+    - [pageScope](http://docs.grails.org/latest/ref/Tag%20Libraries/pageScope.html):A reference to the binding of the GSP that the tag library is being executed within.
+    - [params](http://docs.grails.org/latest/ref/Tag%20Libraries/params.html):A mutable multi-dimensional map (hash) of request (CGI) parameters.
     - Servlet API Info
        - [request]():
        - [response]():
@@ -149,8 +148,7 @@
     - [response](http://docs.grails.org/latest/ref/Servlet%20API/response.html):The **_response**_ object is an instance of the Servlet API’s HttpServletResponse class:
        - format - The request format, used for Content Negotiation.
        - withFormat(Closure) - The withFormat method, used for Content Negotiation.
-       - Grails also overrides the left shift operator on the response object making it easier to write to the response writer:
-       
+       - Grails also overrides the left shift operator on the response object making it easier to write to the response writer:       
             response << "Hello World"            
     - [servletContext]():The **_ervletContext_** object is an instance of the Servlet API’s ServletContext class.
     - [session]():The **_session_** object is an instance of the Servlet API’s HttpSession class
