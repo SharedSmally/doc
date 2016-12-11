@@ -62,7 +62,8 @@
  - Controllers
  - Domain Classes
  - Services
- - Tag Libraries  
+ - Tags
+ 
  - [Constraints](http://docs.grails.org/latest/ref/Constraints/Usage.html):  **static constraints = { ... }**
     - Pattern
        - [creditCard](http://docs.grails.org/latest/ref/Constraints/creditCard.html):_cardNumber creditCard: true_
@@ -103,11 +104,9 @@
        - [dynamicInsert](http://docs.grails.org/latest/ref/Database%20Mapping/dynamicInsert.html):_dynamicInsert true_
        - [dynamicUpdate](http://docs.grails.org/latest/ref/Database%20Mapping/dynamicUpdate.html):_dynamicUpdate true_
        - [updateable](http://docs.grails.org/latest/ref/Database%20Mapping/updateable.html):_ author insertable: false_
-       - [insertable](http://docs.grails.org/latest/ref/Database%20Mapping/insertable.html):_author insertable: false_
-       
+       - [insertable](http://docs.grails.org/latest/ref/Database%20Mapping/insertable.html):_author insertable: false_       
        - [autoTimestamp](http://docs.grails.org/latest/ref/Database%20Mapping/autoTimestamp.html):_autoTimestamp false_
        - [version](http://docs.grails.org/latest/ref/Database%20Mapping/version.html):_version false_
-    
        - [autoImport](http://docs.grails.org/latest/ref/Database%20Mapping/autoImport.html):_autoImport false_
        - [cache](http://docs.grails.org/latest/ref/Database%20Mapping/cache.html):_cache true_
        - [lazy](http://docs.grails.org/latest/ref/Database%20Mapping/lazy.html):_author lazy: false_
@@ -120,9 +119,42 @@
        - [sort](http://docs.grails.org/latest/ref/Database%20Mapping/sort.html):_sort "releaseDate"_
        - [type](http://docs.grails.org/latest/ref/Database%20Mapping/type.html):_title type: "text"_    
 
- - Tags
+ - [Tag Libraries](http://docs.grails.org/latest/ref/Tag%20Libraries/Usage.html)  
+    - [actionName]():
+    - [controllerName]():
+    - [flash]():
+    - [pageScope]():
+    - [params]():
+    
+    - Servlet API Info
+       - [request]():
+       - [response]():
+       - [servletContext]():
+       - [session]():
+    
  - Servlet API
- 
+    - [request](http://docs.grails.org/latest/ref/Servlet%20API/request.html):
+    
+    The Grails enhances the HttpServletRequest instance by adding the following new properties and methods:
+       - XML - An instance of `XmlSlurper’s GPathResult class that allows parsing of an incoming XML request (useful for REST).
+       - JSON - An instance of Grails' JSONObject class that allows parsing of an incoming JSON request (useful for JSON based REST).
+       - forwardURI - Useful for obtaining the current request URI since the request object’s requestURI property returns the original URI, not the matched one.
+       - isRedirected() - Returns true if a redirect has been issued for this request .
+       - get - Returns true if the current request is an HTTP GET request.
+       - post - Returns true if the current request is an HTTP POST request.
+       - each - Implementation of Groovy’s each method for iterating over request attributes.
+       - find - Implementation of Groovy’s default find method for searching request attributes.
+       - findAll - Implementation of Groovy’s default findAll method for searching request attributes.
+       - format - The request format, used for Content Negotiation.
+       - withFormat(Closure) - The withFormat method, used for Content Negotiation.
+       - xhr - Returns true if the current request is an Ajax request.
+    
+    - [response]():
+    
+    - [servletContext]():
+    - [session]():
+    
+
 ## [API]()
 ## [Plugins]()
 
