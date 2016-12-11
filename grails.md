@@ -8,6 +8,7 @@
 ```
 grails <<environment>>* <<command name>>
 ```
+
       - Main Tasks
           - clean;
           - compile 
@@ -18,7 +19,7 @@ grails <<environment>>* <<command name>>
           - docs
           - console
           - shell
-    - Help Tasks   
+      - Help Tasks   
         - help
         - stats
         - bug-report;
@@ -59,6 +60,7 @@ grails <<environment>>* <<command name>>
         - run-script
         - create-command
         - run-command
+        
  - Plug-ins
  - Controllers
  - Domain Classes
