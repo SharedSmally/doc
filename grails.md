@@ -4,21 +4,21 @@
 ## [User Guide](http://docs.grails.org/latest/guide/single.html)
 ## [Quick Reference] ()
  - Command Line
-     - [Usage](http://docs.grails.org/latest/ref/Command%20Line/Usage.html):  **grails** __[environment]__\* _command name_
+     - [Usage](http://docs.grails.org/latest/ref/Command%20Line/Usage.html):  **grails** _[environment]_\* _command name_
      - Main Tasks
-         - clean;
-         - compile 
+         - [clean](http://docs.grails.org/latest/ref/Command%20Line/clean.html): **grails** _clean_
+         - [compile](http://docs.grails.org/latest/ref/Command%20Line/compile.html): **grails** _compile_
          - Packing
               - package;
               - package-plugin
               - war
          - docs
-         - console
+         - [console](http://docs.grails.org/latest/ref/Command%20Line/console.html):**grails** _[environment]_\* __console__ 
          - shell
      - Help Tasks   
          - help
          - stats
-         - bug-report;
+         - [bug-report](http://docs.grails.org/latest/ref/Command%20Line/bug-report.html): **grails bug-report**
          - dependency-report       
      - Plugins:
          - create-plugin
@@ -30,7 +30,7 @@
          - profile-info
          - install-templates
      - Application
-         - create-app
+         - [create-app](http://docs.grails.org/latest/ref/Command%20Line/create-app.html): **grails create-app** _name_ **[--profile] _PROFILE NAME_ [--features] _FEATURE NAMES_**
          - run-app
          - stop-app
      - Controller
