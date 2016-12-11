@@ -8,12 +8,12 @@
      - Main Tasks
          - [clean](http://docs.grails.org/latest/ref/Command%20Line/clean.html): **grails** __clean__
          - [compile](http://docs.grails.org/latest/ref/Command%20Line/compile.html): **grails** __compile__
-         - Packing
+         - Packaging
               - [package](http://docs.grails.org/latest/ref/Command%20Line/package.html):**grails package**
               - [package-plugin](http://docs.grails.org/latest/ref/Command%20Line/package-plugin.html):**grails package-plugin**
               - [war](http://docs.grails.org/latest/ref/Command%20Line/war.html):**grails [environment]\* war** _arguments\*_
               - install
-         - [docs](http://docs.grails.org/latest/ref/Command%20Line/docs.html):** apply plugin: "org.grails.grails-doc"; gradle docs**
+         - [docs](http://docs.grails.org/latest/ref/Command%20Line/docs.html):**apply plugin: "org.grails.grails-doc"; gradle docs**
          - [console](http://docs.grails.org/latest/ref/Command%20Line/console.html):**grails** _[environment]_\* __console__ 
          - [shell](http://docs.grails.org/latest/ref/Command%20Line/shell.html):**grails _environment]\*_ shell**
      - Help Tasks   
@@ -35,7 +35,7 @@
          - [stop-app](http://docs.grails.org/latest/ref/Command%20Line/stop-app.html):**grails stop-app** _[--port=9090 --host=mywebsite]_
          - [install-templates](http://docs.grails.org/latest/ref/Command%20Line/install-templates.html):**grails install-templates**
      - Controller
-         - create-controller](http://docs.grails.org/latest/ref/Command%20Line/create-controller.html): **grails create-controller** _fullname_ 
+         - [create-controller](http://docs.grails.org/latest/ref/Command%20Line/create-controller.html): **grails create-controller** _fullname_ 
          - [generate-controller](http://docs.grails.org/latest/ref/Command%20Line/generate-controller.html):**grails generate-controller** _domain class name_ _[-Dforce]_
          - [generate-all](http://docs.grails.org/latest/ref/Command%20Line/generate-all.html):**grails generate-all** _fullname_ _[-Dforce]_
          - [generate-views](http://docs.grails.org/latest/ref/Command%20Line/generate-views.html):**grails generate-views _domain class name_
