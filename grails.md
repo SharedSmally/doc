@@ -234,7 +234,71 @@
          - singleton (default) - Only one instance of the service ever exists
      - [Transactional](http://docs.grails.org/latest/ref/Services/transactional.html):_static transactional = true_
  - Tags
-
+    - Flow Control
+         - [if](http://docs.grails.org/latest/ref/Tags/if.html):**<g:if test="${name == 'fred'}">...</g:if>**
+         - [else](http://docs.grails.org/latest/ref/Tags/else.html):**<g:else>...</g:else>**
+         - [elseif](http://docs.grails.org/latest/ref/Tags/elseif.html):**<g:elseif test="${name == 'bob'}"></g:elseif>**
+         - [unless](http://docs.grails.org/latest/ref/Tags/unless.html):**<g:unless test="${name == 'fred'}"> Hello ${name}!</g:unless>
+         - [while](http://docs.grails.org/latest/ref/Tags/while.html):**<g:while test="${i < 5}">...</g:while>**
+         - [each](http://docs.grails.org/latest/ref/Tags/each.html):**<g:each in="${books}">...</g:each>**
+         - [eachError](http://docs.grails.org/latest/ref/Tags/eachError.html):**<g:eachError bean="${book}"></g:eachError>**
+         - [grep](http://docs.grails.org/latest/ref/Tags/grep.html):**<g:grep in="${books.title}" filter="~/.*Groovy.*/">...</g:grep>**
+         - [hasErrors](http://docs.grails.org/latest/ref/Tags/hasErrors.html):**<g:hasErrors bean="${book}">...</g:hasErrors>**
+         - [collect](http://docs.grails.org/latest/ref/Tags/collect.html):**<g:collect in="${books}" expr="it.title">...</g:collect>**
+         - [set](http://docs.grails.org/latest/ref/Tags/set.html):**<g:set var="tomorrow" value="${new Date() + 1}" />**
+         - [pageProperty](http://docs.grails.org/latest/ref/Tags/pageProperty.html):**<g:pageProperty name="page.title"/>**         
+         - [isAvailable](http://docs.grails.org/latest/ref/Tags/isAvailable.html):**<plugin:isAvailable name="spring-security-core">    </plugin:isAvailable>**
+         - [isNotAvailable](http://docs.grails.org/latest/ref/Tags/isNotAvailable.html):**<plugin:isNotAvailable name="spring-security-core"></plugin:isNotAvailable>**      
+         - [findAll](http://docs.grails.org/latest/ref/Tags/findAll.html):**<g:findAll in="${books}" expr="it.author == 'Stephen King'">  ...</g:findAll>**         
+    - UI Element
+         - [form](http://docs.grails.org/latest/ref/Tags/form.html):**<g:form name="myForm" action="myaction" id="1">...</g:form>**   
+         - [actionSubmit](http://docs.grails.org/latest/ref/Tags/actionSubmit.html):**<g:actionSubmit value="DeleteAll"                onclick="return confirm('Are you sure???')" />**
+         - [actionSubmitImage](http://docs.grails.org/latest/ref/Tags/actionSubmitImage.html):**<g:actionSubmitImage value="Update" action="update" src="${resource(dir: 'images', file: 'update.gif')}" />**
+         - [submitButton](http://docs.grails.org/latest/ref/Tags/submitButton.html):**<g:submitButton name="update" value="Update" />**
+         - [checkBox](http://docs.grails.org/latest/ref/Tags/checkBox.html):**<g:checkBox name="myCheckbox" value="${true}" />**
+         - [radio](http://docs.grails.org/latest/ref/Tags/radio.html):**<g:radio name="myGroup" value="2" checked="true"/>**
+         - [radioGroup](http://docs.grails.org/latest/ref/Tags/radioGroup.html):**<g:radioGroup name="myGroup" values="[1,2,3]" value="1" >...</g:radioGroup>**
+         - [field](http://docs.grails.org/latest/ref/Tags/field.html):**<g:field type="number" name="isbn" min="5" max="10" required="" value="${bookInstance?.isbn}"/>**
+         - [hiddenField ](http://docs.grails.org/latest/ref/Tags/hiddenField.html):**<g:hiddenField name="myField" value="myValue" />**
+         - [passwordField](http://docs.grails.org/latest/ref/Tags/passwordField.html):**<g:passwordField name="myPasswordField" value="${myPassword}" />**         
+         - [textField]():**<g:textArea name="myField" value="myValue" rows="5" cols="40"/>**
+         - [textArea](http://docs.grails.org/latest/ref/Tags/textArea.html):**
+         - [select](http://docs.grails.org/latest/ref/Tags/select.html):**<g:select name="user.company.id" from="${Company.list()}"  value="${user?.company.id}"   optionKey="id" />**         
+         - [countrySelect](http://docs.grails.org/latest/ref/Tags/countrySelect.html):**<g:countrySelect name="user.country" value="${country}" noSelection="['':'-Choose your country-']"/>**        
+         - [timeZoneSelect](http://docs.grails.org/latest/ref/Tags/timeZoneSelect.html):**<g:timeZoneSelect name="myTimeZone" value="${tz}" />**
+         - [currencySelect](http://docs.grails.org/latest/ref/Tags/currencySelect.html):**<g:currencySelect name="myCurrency" value="${currency}" />**
+         - [datePicker](http://docs.grails.org/latest/ref/Tags/datePicker.html):**<g:datePicker name="myDate" value="${new Date()}" noSelection="['':'-Choose-']"/>**        
+         - [localeSelect](http://docs.grails.org/latest/ref/Tags/localeSelect.html):**<g:localeSelect name="myLocale" value="${locale}" />**
+         - [uploadForm](http://docs.grails.org/latest/ref/Tags/uploadForm.html):**<g:uploadForm name="myUpload"><input type="file" name="myFile" /></g:uploadForm>**
+         - [paginate](http://docs.grails.org/latest/ref/Tags/paginate.html):**<g:paginate controller="book" action="list" total="${bookCount}" />**
+         - [render](http://docs.grails.org/latest/ref/Tags/render.html):**<g:render template="displaybook" bean="${book}" />**
+         - [renderErrors](http://docs.grails.org/latest/ref/Tags/renderErrors.html):**<g:renderErrors bean="${book}" as="list" />**               
+    - HTML element
+         - [include](http://docs.grails.org/latest/ref/Tags/include.html):**<g:include action="show" id="${currentBook.id}" />**
+         - [javascript](http://docs.grails.org/latest/ref/Tags/javascript.html):**<g:javascript src="myscript.js" />**
+         - [header](http://docs.grails.org/latest/ref/Tags/header.html):**<g:header name="Content-Type" />**
+         - [img](http://docs.grails.org/latest/ref/Tags/img.html):**<g:img dir="images" file="logo.png" width="40" height="40"/>**
+         - [link](http://docs.grails.org/latest/ref/Tags/link.html):**<g:link action="show" id="${currentBook.id}">${currentBook.name}</g:link>**     
+         - [resource](http://docs.grails.org/latest/ref/Tags/resource.html):**<g:resource dir="css" file="main.css" absolute="true" />** 
+         - [layoutBody](http://docs.grails.org/latest/ref/Tags/layoutBody.html):** <g:layoutHead />**
+         - [layoutHead](http://docs.grails.org/latest/ref/Tags/layoutHead.html):**<body><g:layoutBody /></body>**
+         - [layoutTitle](http://docs.grails.org/latest/ref/Tags/layoutTitle.html):**<title><g:layoutTitle default="Some Title" /></title>**
+         - [applyLayout](http://docs.grails.org/latest/ref/Tags/applyLayout.html):**<g:applyLayout name="myLayout" template="displaybook" params="[books: books]" />**
+         - [message](http://docs.grails.org/latest/ref/Tags/localeSelect.html):**<g:message error="${it}" />**
+         - [meta](http://docs.grails.org/latest/ref/Tags/meta.html):**<g:meta name="info.app.version"/>**
+         - [cookie](http://docs.grails.org/latest/ref/Tags/cookie.html):**<g:cookie name="myCookie" />**
+         - [country](http://docs.grails.org/latest/ref/Tags/country.html):**<g:country code="${user.country}"/>**
+         - [createLink](http://docs.grails.org/latest/ref/Tags/createLink.html):**<g:createLink controller="book" />**
+         - [createLinkTo](http://docs.grails.org/latest/ref/Tags/createLinkTo.html):**<g:createLinkTo dir="css" file="main.css" />**
+         - [external](http://docs.grails.org/latest/ref/Tags/external.html):**<g:external dir="css" file="main.css" />**
+         - [fieldError](http://docs.grails.org/latest/ref/Tags/fieldError.html):**<g:fieldError bean="${book}" field="title" />**
+         - [fieldValue](http://docs.grails.org/latest/ref/Tags/fieldValue.html):**<g:fieldValue bean="${book}" field="title" />**
+    - Misc
+         - [formatBoolean](http://docs.grails.org/latest/ref/Tags/formatBoolean.html):**<g:formatBoolean boolean="${myBoolean}" true="True!" false="False!" />**
+         - [formatDate](http://docs.grails.org/latest/ref/Tags/formatDate.html):**<g:formatDate date="${date}" type="datetime" style="LONG" timeStyle="SHORT"/>**
+         - [formatNumber](http://docs.grails.org/latest/ref/Tags/formatNumber.html):**<g:formatNumber number="${myCurrencyAmount}" type="currency" currencyCode="EUR" />**
+         - [join](http://docs.grails.org/latest/ref/Tags/join.html):**<g:join in="['Grails', 'Groovy', 'Gradle']" delimiter="_"/>**
+         - [sortableColumn](http://docs.grails.org/latest/ref/Tags/set.html):**<g:sortableColumn property="title" title="Title" style="width: 200px" />**
  - Tag Libraries: The objects used in Tag Libraries
      - [actionName](http://docs.grails.org/latest/ref/Tag%20Libraries/actionName.html):
      - [controllerName](http://docs.grails.org/latest/ref/Tag%20Libraries/controllerName.html):
@@ -245,7 +309,6 @@
      - [response](http://docs.grails.org/latest/ref/Tag%20Libraries/response.html):
      - [servletContext](http://docs.grails.org/latest/ref/Tag%20Libraries/servletContext.html):
      - [session](http://docs.grails.org/latest/ref/Tag%20Libraries/session.html):
- 
  - [Constraints](http://docs.grails.org/latest/ref/Constraints/Usage.html):  **static constraints = { ... }**
     - Pattern
        - [creditCard](http://docs.grails.org/latest/ref/Constraints/creditCard.html):_cardNumber creditCard: true_
