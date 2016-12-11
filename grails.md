@@ -56,14 +56,39 @@
          - [create-script](http://docs.grails.org/latest/ref/Command%20Line/create-script.html):**grails create-script** _simplename_
          - [run-script](http://docs.grails.org/latest/ref/Command%20Line/run-script.html):**grails** _[env]\*_ **run-script** _scripts_
          - [create-command](http://docs.grails.org/latest/ref/Command%20Line/create-command.html):**grails create-command** _simplename_
-         - [run-command](http://docs.grails.org/latest/ref/Command%20Line/run-command.html):**grails _[env]_\* run-command** _command_
-        
- - Plug-ins
+         - [run-command](http://docs.grails.org/latest/ref/Command%20Line/run-command.html):**grails _[env]_\* run-command** _command_ 
+ - [Plug-ins](http://docs.grails.org/latest/ref/Plug-ins/Usage.html): **grails create-plugin simple; grails package-plugin; grails install**
+    - [URL mappings](http://docs.grails.org/latest/ref/Plug-ins/URL%20mappings.html):The URLMappings plugin configures Grails' URL Mapping infrastructure.
+        - grailsUrlMappingsHolderBean - A UrlMappingsHolderFactoryBean factory bean that constructs a grails.web.mapping.UrlMappingsHolder instance that stores all of the URL mappings.
+        - urlMappingsTargetSource - A Spring HotSwappableTargetSource used in auto-reloading to automatically update URL mappings when changed.
+        - grailsUrlMappingsHolder - A Spring ProxyFactoryBean that proxies onto the actual UrlMappingsHolder instance using the HotSwappableTargetSource
+    - [codecs](http://docs.grails.org/latest/ref/Plug-ins/codecs.html): Provides the facility to register encoders and decoders of textual data as methods on any object. The provided Codecs are:
+        - HTMLCodec - encodes/decodes HTML mark-up
+        - URLCodec - encodes/decodes URLs
+        - JavascriptCodec - encodes (escapes) JavaScript
+        - Base64Codec - encodes/decodes Base64 data
+        - HexCodec - encodes a byte array or list of integers into a hex string, and decodes hex strings into byte array
+        - MD5Codec - encodes a byte array or list of integers, or the characters of a string (using default system encoding) into an MD5 digest as a hex string
+        - MD5BytesCodec - encodes a byte array or list of integers, or the characters of a string (using default system encoding) into an MD5 digest as a byte array
+        - SHA1Codec - encodes a byte array or list of integers, or the characters of a string (using default system encoding) into an SHA1 digest as a hex string
+        - SHA1BytesCodec - encodes a byte array or list of integers, or the characters of a string (using default system encoding) into an SHA1 digest as a byte array
+        - SHA256Codec - encodes a byte array or list of integers, or the characters of a string (using default system encoding) into an SHA256 digest as a hex string
+        - SHA256BytesCodec - encodes byte array or list of integers, or the characters of a string (using default system encoding) into an SHA256 digest as a byte array    
+    - [core](http://docs.grails.org/latest/ref/Plug-ins/core.html):The core plugin adds methods and beans that other plugins rely upon
+    - [dataSource](http://docs.grails.org/latest/ref/Plug-ins/dataSource.html):The dataSource plugin configures the Grails JDBC DataSource.
+    - [hibernate]():The hibernate plugin configures the Hibernate implementation of GORM.
+    - [i18n](http://docs.grails.org/latest/ref/Plug-ins/i18n.html):The i18n plugin configures Grails' support for Internationalization.
+    - [logging](http://docs.grails.org/latest/ref/Plug-ins/logging.html):The logging plugin configures Grails' support for Logging with logback.
+    - [scaffolding](http://docs.grails.org/latest/ref/Plug-ins/scaffolding.html):The scaffolding plugin configures Grails' support for CRUD via scaffolding.
+    - [controllers](http://docs.grails.org/latest/ref/Plug-ins/controllers.html):
+    - [domainClasses](http://docs.grails.org/latest/ref/Plug-ins/domainClasses.html):The domainClass plugin configures Grails domain classes as prototyped beans in the Spring ApplicationContext
+    - [services](http://docs.grails.org/latest/ref/Plug-ins/services.html):The services plugin configures Grails' support for Services.
+    - [servlets](http://docs.grails.org/latest/ref/Plug-ins/servlets.html):The servlets plugin enhances Servlet API classes with new methods
+    
  - Controllers
  - Domain Classes
  - Services
  - Tags
- 
  - [Constraints](http://docs.grails.org/latest/ref/Constraints/Usage.html):  **static constraints = { ... }**
     - Pattern
        - [creditCard](http://docs.grails.org/latest/ref/Constraints/creditCard.html):_cardNumber creditCard: true_
@@ -118,19 +143,6 @@
        - [order](http://docs.grails.org/latest/ref/Database%20Mapping/order.html):_order "desc" ["desc" or "asc"]_
        - [sort](http://docs.grails.org/latest/ref/Database%20Mapping/sort.html):_sort "releaseDate"_
        - [type](http://docs.grails.org/latest/ref/Database%20Mapping/type.html):_title type: "text"_    
-
- - [Objects for Tag Libraries](http://docs.grails.org/latest/ref/Tag%20Libraries/Usage.html)  
-    - [actionName](http://docs.grails.org/latest/ref/Tag%20Libraries/actionName.html):the name of the currently executing action
-    - [controllerName](http://docs.grails.org/latest/ref/Tag%20Libraries/controllerName.html): the name of the currently executing controller
-    - [flash](http://docs.grails.org/latest/ref/Tag%20Libraries/flash.html): A temporary storage map that stores objects within the session for the next request and the next request only.
-    - [pageScope](http://docs.grails.org/latest/ref/Tag%20Libraries/pageScope.html):A reference to the binding of the GSP that the tag library is being executed within.
-    - [params](http://docs.grails.org/latest/ref/Tag%20Libraries/params.html):A mutable multi-dimensional map (hash) of request (CGI) parameters.
-    - Servlet API Info
-       - [request]():
-       - [response]():
-       - [servletContext]():
-       - [session]():
-    
  - Servlet API
     - [request](http://docs.grails.org/latest/ref/Servlet%20API/request.html): The **_request_** object is an instance of the Grails enhanced HttpServletRequest instance by adding the following new properties and methods:
        - XML - An instance of `XmlSlurper’s GPathResult class that allows parsing of an incoming XML request (useful for REST)
