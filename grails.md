@@ -4,7 +4,7 @@
 ## [User Guide](http://docs.grails.org/latest/guide/single.html)
 ## [Quick Reference] ()
  - Command Line
-     * [Usage](http://docs.grails.org/latest/ref/Command%20Line/Usage.html):  grails ** environment** \* __ command name __
+     * [Usage](http://docs.grails.org/latest/ref/Command%20Line/Usage.html):  *grails* _environment_ \* _command name_
      * Main Tasks
          * clean;
          * compile 
