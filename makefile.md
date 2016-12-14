@@ -53,3 +53,11 @@ $(call <name_of_function>[, <param>][,<param>][,...])
 contents := $(shell cat foo)
 files := $(shell echo *.c)
 ```
+
+## Tips:
+- Keep the intermediate file, need to use the special target .PRECIOUS:
+```
+.PRECIOUS: fact_test_without_proxies.c fact_test_main.c fact_test_without_proxies.o
+.PRECIOUS: %.c %.o
+```
+Its only effect is that these files will not be deleted if Make is killed or interrupted.
