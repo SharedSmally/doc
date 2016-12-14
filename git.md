@@ -24,3 +24,31 @@ git
   - $ git push http://example.com/repo.git
     
     [your credentials are used automatically]
+    
+ - Clone the repository:
+    
+    git clone remote_url local_dir
+  
+ - Current changes:
+   
+   git status 
+   
+   git diff
+   
+-  Changes Log
+
+   git log
+   
+   git show  _id_
+   
+- Commit changes
+
+   git add file(s)
+   
+   git commit -m "message"
+
+- Push changes to repository
+
+   git push
+   
+   
