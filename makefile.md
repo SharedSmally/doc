@@ -24,6 +24,22 @@ done
   ```
  - function
  
+ Here is a simple Makefile with a custom function:
+```
+define generate_file
+    sed 's/{NAME}/$(1)/' greetings.tmpl >$(2).txt
+endef
+
+all:
+    $(call generate_file,John Doe,101)
+    $(call generate_file,Peter Pan,102)
+
+```
+Call function:  In function the first parameter becomes $(1), the second $(2), etc.
+```
+$(call <name_of_function>[, <param>][,<param>][,...])
+```
+
  - target
  ``` 
   target … : prerequisites …
@@ -31,5 +47,9 @@ done
         …
         …
  ```
-## Arguments:
- - 
+## Built-in Functions:
+ - Run command:
+```
+contents := $(shell cat foo)
+files := $(shell echo *.c)
+```
