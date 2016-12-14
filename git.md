@@ -25,11 +25,11 @@ git
     
     [your credentials are used automatically]
     
- - Clone the repository:
+- Clone the repository:
     
     git clone remote_url local_dir
   
- - Current changes:
+- Current changes:
    
    git status 
    
