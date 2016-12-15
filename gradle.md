@@ -13,15 +13,14 @@ There is a one-to-one relationship between a [Project](https://docs.gradle.org/c
 
 The top level script blocks are listed below.
 
-|     Block     	 | Description  |
-| ---------------- |:------------:|
-|allprojects { }	 |Configures this project and each of its sub-projects.
-|artifacts { }	   |Configures the published artifacts for this project.
-|buildscript { }	 |Configures the build script classpath for this project.
-|configurations { }	|Configures the dependency configurations for this project.
-|dependencies { }	 |Configures the dependencies for this project.
-|repositories { }	 |Configures the repositories for this project.
-|sourceSets { }	   |Configures the source sets of this project.
-|subprojects { }	 |Configures the sub-projects of this project.
-|publishing { }	   |Configures the PublishingExtension added by the publishing plugin.
-
+|     Block     	  | Description  |
+| ----------------- |:------------:|
+|[allprojects](https://docs.gradle.org/current/dsl/org.gradle.api.Project.html) { }	  |Configures this project and each of its sub-projects.
+|[subprojects](https://docs.gradle.org/current/dsl/org.gradle.api.Project.html) { }	  |Configures the sub-projects of this project.
+|[configurations](https://docs.gradle.org/current/dsl/org.gradle.api.artifacts.ConfigurationContainer.html) { }	|Configures the dependency configurations for this project.
+|[buildscript](https://docs.gradle.org/current/javadoc/org/gradle/api/initialization/dsl/ScriptHandler.html) { }	  |Configures the build script classpath for this project.
+|(artifacts](https://docs.gradle.org/current/dsl/org.gradle.api.artifacts.dsl.ArtifactHandler.html) { }	    |Configures the published artifacts for this project.
+|[publishing](https://docs.gradle.org/current/dsl/org.gradle.api.publish.PublishingExtension.html) { }	    |Configures the PublishingExtension added by the publishing plugin.
+|[repositories](https://docs.gradle.org/current/dsl/org.gradle.api.artifacts.dsl.RepositoryHandler.html) { }	  |Configures the repositories for this project.
+|[dependencies](https://docs.gradle.org/current/dsl/org.gradle.api.artifacts.dsl.DependencyHandler.html) { }	  |Configures the dependencies for this project.
+|[sourceSets](https://docs.gradle.org/current/javadoc/org/gradle/api/tasks/SourceSetContainer.html) { }	    |Configures the source sets of this project.
