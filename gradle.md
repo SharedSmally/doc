@@ -24,7 +24,8 @@ The top level script blocks are listed below.
 |[repositories](https://docs.gradle.org/current/dsl/org.gradle.api.artifacts.dsl.RepositoryHandler.html) { }	  |Configures the repositories for this project. Delegate to [RepositoryHandler](https://docs.gradle.org/current/dsl/org.gradle.api.artifacts.dsl.RepositoryHandler.html)
 |[dependencies](https://docs.gradle.org/current/dsl/org.gradle.api.artifacts.dsl.DependencyHandler.html) { }	  |Configures the dependencies for this project. Delegate to [DependencyHandler](https://docs.gradle.org/current/dsl/org.gradle.api.artifacts.dsl.DependencyHandler.html)
 |[sourceSets](https://docs.gradle.org/current/javadoc/org/gradle/api/tasks/SourceSetContainer.html) { }	    |Configures the source sets of this project. Delegate to [SourceSetContainer](https://docs.gradle.org/current/javadoc/org/gradle/api/tasks/SourceSetContainer.html)
+
 |[task](https://docs.gradle.org/current/dsl/org.gradle.api.Task.html) | A Task represents a single atomic piece of work for a build, such as compiling classes or generating javadoc. Delegate to [Task](https://docs.gradle.org/current/dsl/org.gradle.api.Task.html) 
-|[ant]() |
+|[ant](https://docs.gradle.org/current/javadoc/org/gradle/api/AntBuilder.html) | An instance of an [AntBuilder](https://docs.gradle.org/current/javadoc/org/gradle/api/AntBuilder.html)  that allows to use Ant from your build script.
 |[gradle](https://docs.gradle.org/current/dsl/org.gradle.api.invocation.Gradle.html) | Represents an invocation of [Gradle](https://docs.gradle.org/current/dsl/org.gradle.api.invocation.Gradle.html). Obtain a Gradle instance by calling Project.getGradle().
 |[script](https://docs.gradle.org/current/dsl/org.gradle.api.Script.html) | This interface is implemented by all Gradle scripts to add in some Gradle-specific methods.
