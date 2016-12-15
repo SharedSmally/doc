@@ -15,12 +15,16 @@ The top level script blocks are listed below.
 
 |     Block     	  | Description  |
 | ----------------- |:------------:|
-|[allprojects](https://docs.gradle.org/current/dsl/org.gradle.api.Project.html) { }	  |Configures this project and each of its sub-projects.
-|[subprojects](https://docs.gradle.org/current/dsl/org.gradle.api.Project.html) { }	  |Configures the sub-projects of this project.
-|[configurations](https://docs.gradle.org/current/dsl/org.gradle.api.artifacts.ConfigurationContainer.html) { }	|Configures the dependency configurations for this project.
-|[buildscript](https://docs.gradle.org/current/javadoc/org/gradle/api/initialization/dsl/ScriptHandler.html) { }	  |Configures the build script classpath for this project.
-|(artifacts](https://docs.gradle.org/current/dsl/org.gradle.api.artifacts.dsl.ArtifactHandler.html) { }	    |Configures the published artifacts for this project.
-|[publishing](https://docs.gradle.org/current/dsl/org.gradle.api.publish.PublishingExtension.html) { }	    |Configures the PublishingExtension added by the publishing plugin.
-|[repositories](https://docs.gradle.org/current/dsl/org.gradle.api.artifacts.dsl.RepositoryHandler.html) { }	  |Configures the repositories for this project.
-|[dependencies](https://docs.gradle.org/current/dsl/org.gradle.api.artifacts.dsl.DependencyHandler.html) { }	  |Configures the dependencies for this project.
-|[sourceSets](https://docs.gradle.org/current/javadoc/org/gradle/api/tasks/SourceSetContainer.html) { }	    |Configures the source sets of this project.
+|[allprojects](https://docs.gradle.org/current/dsl/org.gradle.api.Project.html) { }	  |Configures this project and each of its sub-projects. Delegate to [Project](https://docs.gradle.org/current/dsl/org.gradle.api.Project.html)
+|[subprojects](https://docs.gradle.org/current/dsl/org.gradle.api.Project.html) { }	  |Configures the sub-projects of this project. Delegate to [Project](https://docs.gradle.org/current/dsl/org.gradle.api.Project.html)
+|[configurations](https://docs.gradle.org/current/dsl/org.gradle.api.artifacts.ConfigurationContainer.html) { }	|Configures the dependency configurations for this project. Delegate to [ConfigurationContainer](https://docs.gradle.org/current/dsl/org.gradle.api.artifacts.ConfigurationContainer.html)
+|[buildscript](https://docs.gradle.org/current/javadoc/org/gradle/api/initialization/dsl/ScriptHandler.html) { }	  |Configures the build script classpath for this project. Delegate to [ScriptHandler] (https://docs.gradle.org/current/javadoc/org/gradle/api/initialization/dsl/ScriptHandler.html)
+|[artifacts](https://docs.gradle.org/current/dsl/org.gradle.api.artifacts.dsl.ArtifactHandler.html) { }	    |Configures the published artifacts for this project. Delegate to [ArtifactHandler](https://docs.gradle.org/current/dsl/org.gradle.api.artifacts.dsl.ArtifactHandler.html)
+|[publishing](https://docs.gradle.org/current/dsl/org.gradle.api.publish.PublishingExtension.html) { }	    |Configures the PublishingExtension added by the publishing plugin. Delegate to [PublishingExtension](https://docs.gradle.org/current/dsl/org.gradle.api.publish.PublishingExtension.html)
+|[repositories](https://docs.gradle.org/current/dsl/org.gradle.api.artifacts.dsl.RepositoryHandler.html) { }	  |Configures the repositories for this project. Delegate to [RepositoryHandler](https://docs.gradle.org/current/dsl/org.gradle.api.artifacts.dsl.RepositoryHandler.html)
+|[dependencies](https://docs.gradle.org/current/dsl/org.gradle.api.artifacts.dsl.DependencyHandler.html) { }	  |Configures the dependencies for this project. Delegate to [DependencyHandler](https://docs.gradle.org/current/dsl/org.gradle.api.artifacts.dsl.DependencyHandler.html)
+|[sourceSets](https://docs.gradle.org/current/javadoc/org/gradle/api/tasks/SourceSetContainer.html) { }	    |Configures the source sets of this project. Delegate to [SourceSetContainer](https://docs.gradle.org/current/javadoc/org/gradle/api/tasks/SourceSetContainer.html)
+|[task](https://docs.gradle.org/current/dsl/org.gradle.api.Task.html) | A Task represents a single atomic piece of work for a build, such as compiling classes or generating javadoc. Delegate to [Task](https://docs.gradle.org/current/dsl/org.gradle.api.Task.html) 
+|[ant]() |
+|[gradle](https://docs.gradle.org/current/dsl/org.gradle.api.invocation.Gradle.html) | Represents an invocation of [Gradle](https://docs.gradle.org/current/dsl/org.gradle.api.invocation.Gradle.html). Obtain a Gradle instance by calling Project.getGradle().
+|[script](https://docs.gradle.org/current/dsl/org.gradle.api.Script.html) | This interface is implemented by all Gradle scripts to add in some Gradle-specific methods.
