@@ -30,7 +30,7 @@ Some core types in Gradle: [API JavaDoc](https://docs.gradle.org/current/javadoc
 
 |     Block     	  | Description  |
 | ----------------- |:------------:|
-|[task](https://docs.gradle.org/current/dsl/org.gradle.api.Task.html) | A Task represents a single atomic piece of work for a build, such as compiling classes or generating javadoc. Delegate to [Task](https://docs.gradle.org/current/dsl/org.gradle.api.Task.html) 
+|[task](https://docs.gradle.org/current/dsl/org.gradle.api.Task.html) | A single atomic piece of work for a build, such as compiling classes or generating javadoc. It consists of list of Actions. Delegate to [Task](https://docs.gradle.org/current/dsl/org.gradle.api.Task.html) 
 |[ant](https://docs.gradle.org/current/javadoc/org/gradle/api/AntBuilder.html) | An instance of an [AntBuilder](https://docs.gradle.org/current/javadoc/org/gradle/api/AntBuilder.html)  that allows to use Ant from your build script.
 |[gradle](https://docs.gradle.org/current/dsl/org.gradle.api.invocation.Gradle.html) | Represents an invocation of [Gradle](https://docs.gradle.org/current/dsl/org.gradle.api.invocation.Gradle.html). Obtain a Gradle instance by calling Project.getGradle().
 |[script](https://docs.gradle.org/current/dsl/org.gradle.api.Script.html) | This interface is implemented by all Gradle scripts to add in some Gradle-specific methods.
