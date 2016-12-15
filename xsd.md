@@ -4,20 +4,20 @@ XSD
 
 ### XSD String Data Types
 - xsd:anySimpleType
-    - xsd:QName:  _[prefix_NCName : ]_local_NCName
-    - xsd:string
-        - xsd:normalizedString : no CR,LF,TAB, muitiple SPs
-             - xsd:token : no leading/trailing SP and multiple SPs, coudl be one SP
-                 - restricted by xsd:language
-                 - restricted by xsd:NMTOKEN:  (no SP)
-                      - used in list xsd:NMTOKENS
-                 - xsd:Name: (XML Name, start with letter, underscore (\_), colon(:))
-                      - xsd:NCName: (non-colonized name, no colon :)
-                          - restricted by xsd:ID (unique within XML document)
-                          - restricted by xsd:IDREF
+    - **xsd:QName**:  _[prefix_NCName : ]_local_NCName
+    - **xsd:string**
+        - **xsd:normalizedString** : no CR,LF,TAB, muitiple SPs
+             - **xsd:token** : no leading/trailing SP and multiple SPs, coudl be one SP
+                 - restricted by **xsd:language**
+                 - restricted by **xsd:NMTOKEN**:  (no SP)
+                      - used in list **xsd:NMTOKENS**
+                 - **xsd:Name**: (XML Name, start with letter, underscore (\_), colon(:))
+                      - **xsd:NCName**: (non-colonized name, no colon :)
+                          - restricted by **xsd:ID** (unique within XML document)
+                          - restricted by **xsd:IDREF**
                               - used in list xsd:IDREFS
-                          - restricted by xsd:ENTITY
-                              - used in list xsd:ENTITIES
+                          - restricted by **xsd:ENTITY**
+                              - used in list **xsd:ENTITIES**
 
 - string:  xsd:string
  
