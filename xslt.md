@@ -67,15 +67,14 @@
 </xsl:apply-templates>
 ```
 - Control
-    - if
+      - if
 ```xml
 <xsl:if
   test = expression >
   <!-- Content: sequence-constructor -->
 </xsl:if>
 ```
-
-    - conditional Processing
+      - conditional Processing
 ```xml
 <xsl:choose>
   <!-- Content: (xsl:when+, xsl:otherwise?) -->
@@ -90,8 +89,7 @@
   <!-- Content: sequence-constructor -->
 </xsl:otherwise>
 ```
-
-    - Repeat
+      - Repeat
 ```xml
 <xsl:for-each
   select = expression >
