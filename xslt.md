@@ -16,7 +16,229 @@
    java -cp ${SAXON_HOME}/saxon9-xqj.jar:${SAXON_HOME}/saxon9he.jar \
      net.sf.saxon.Transform -xsl:$1 -s:$2 -o:$3
 
+## Components
+- XSLT root
+```xml
+<xsl:stylesheet
+  id? = id
+  version = decimal
+  default-mode? = eqname | "#unnamed"
+  default-validation? = "preserve" | "strip"
+  input-type-annotations? = "preserve" | "strip" | "unspecified"
+  default-collation? = uris
+  extension-element-prefixes? = prefixes
+  exclude-result-prefixes? = prefixes
+  expand-text? = boolean
+  use-when? = expression
+  xpath-default-namespace? = uri >
+  <!-- Content: (declarations) -->
+</xsl:stylesheet>
+```
+- Import
+```
+<xsl:import  href = uri />
+<xsl:include  href = uri />
+```
+- template
+```xml
+<xsl:template
+  match? = pattern
+  name? = eqname
+  priority? = decimal
+  mode? = tokens
+  as? = sequence-type
+  visibility? = "public" | "private" | "final" | "abstract" >
+  <!-- Content: (xsl:context-item?, xsl:param*, sequence-constructor) -->
+</xsl:template>
+```
+- call-template
+```xml
+<xsl:call-template
+  name = eqname >
+  <!-- Content: xsl:with-param* -->
+</xsl:call-template>
+```
+- apply-templates
+```xml
+<xsl:apply-templates
+  select? = expression
+  mode? = token >
+  <!-- Content: (xsl:sort | xsl:with-param)* -->
+</xsl:apply-templates>
+```
+- Control
+    - if
+```xml
+<xsl:if
+  test = expression >
+  <!-- Content: sequence-constructor -->
+</xsl:if>
+```
 
+    - conditional Processing
+```xml
+<xsl:choose>
+  <!-- Content: (xsl:when+, xsl:otherwise?) -->
+</xsl:choose>
+
+<xsl:when
+  test = expression >
+  <!-- Content: sequence-constructor -->
+</xsl:when>
+
+<xsl:otherwise>
+  <!-- Content: sequence-constructor -->
+</xsl:otherwise>
+```
+
+    - Repeat
+```xml
+<xsl:for-each
+  select = expression >
+  <!-- Content: (xsl:sort*, sequence-constructor) -->
+</xsl:for-each>
+```
+
+- Variable and Parameter
+```
+<xsl:variable
+  name = eqname
+  select? = expression
+  as? = sequence-type
+  static? = boolean
+  visibility? = "public" | "private" | "final" | "abstract" >
+  <!-- Content: sequence-constructor -->
+</xsl:variable>
+
+<xsl:param
+  name = eqname
+  select? = expression
+  as? = sequence-type
+  required? = boolean
+  tunnel? = boolean
+  static? = boolean >
+  <!-- Content: sequence-constructor -->
+</xsl:param>
+
+<xsl:with-param
+  name = eqname
+  select? = expression
+  as? = sequence-type
+  tunnel? = boolean >
+  <!-- Content: sequence-constructor -->
+</xsl:with-param>
+```
+- XML node
+```xml
+Document Node
+<xsl:document
+  validation? = "strict" | "lax" | "preserve" | "strip"
+  type? = eqname >
+  <!-- Content: sequence-constructor -->
+</xsl:document>
+Text Node
+<xsl:text
+  [disable-output-escaping]? = boolean >
+  <!-- Content: #PCDATA -->
+</xsl:text>
+Processing Instructions
+<xsl:processing-instruction
+  name = { ncname }
+  select? = expression >
+  <!-- Content: sequence-constructor -->
+</xsl:processing-instruction>
+Namespace Node
+<xsl:namespace
+  name = { ncname }
+  select? = expression >
+  <!-- Content: sequence-constructor -->
+</xsl:namespace>
+Deep Copy of Nodes
+<xsl:copy-of  
+  select = expression
+  copy-accumulators? = boolean
+  copy-namespaces? = boolean
+  type? = eqname
+  validation? = "strict" | "lax" | "preserve" | "strip" />
+Shadow Copy of Nodes
+<xsl:copy
+  select? = expression
+  copy-namespaces? = boolean
+  inherit-namespaces? = boolean
+  use-attribute-sets? = eqnames
+  type? = eqname
+  validation? = "strict" | "lax" | "preserve" | "strip" >
+  <!-- Content: sequence-constructor -->
+</xsl:copy>
+
+Sequence
+<xsl:sequence
+  select? = expression >
+  <!-- Content: sequence-constructor -->
+</xsl:sequence>
+
+```
+
+- Output
+```
+<xsl:value-of
+  select? = expression
+  separator? = { string }
+  [disable-output-escaping]? = boolean >
+  <!-- Content: sequence-constructor -->
+</xsl:value-of>
+```
+- Multiple Document
+```xml
+<xsl:result-document
+  format? = { eqname }
+  href? = { uri }
+  validation? = "strict" | "lax" | "preserve" | "strip"
+  type? = eqname
+  method? = "xml" | "html" | "xhtml" | "text" | "json" | "adaptive" | eqname
+  allow-duplicate-names? = { boolean }
+  build-tree? = { boolean }
+  byte-order-mark? = { boolean }
+  cdata-section-elements? = { eqnames }
+  doctype-public? = { string }
+  doctype-system? = { string }
+  encoding? = { string }
+  escape-uri-attributes? = { boolean }
+  html-version? = { decimal }
+  include-content-type? = { boolean }
+  indent? = { boolean }
+  item-separator? = { string }
+  json-node-output-method? = "xml" | "html" | "xhtml" | "text" | eqname
+  media-type? = { string }
+  normalization-form? = { "NFC" | "NFD" | "NFKC" | "NFKD" | "fully-normalized" | "none" | nmtoken }
+  omit-xml-declaration? = { boolean }
+  parameter-document? = { uri }
+  standalone? = { boolean | "omit" }
+  suppress-indentation? = { eqnames }
+  undeclare-prefixes? = { boolean }
+  use-character-maps? = eqnames
+  output-version? = { nmtoken } >
+  <!-- Content: sequence-constructor -->
+</xsl:result-document>
+```
+- Sort
+```xml
+<xsl:sort
+  select? = expression
+  lang? = { language }
+  order? = { "ascending" | "descending" }
+  collation? = { uri }
+  stable? = { boolean }
+  case-order? = { "upper-first" | "lower-first" }
+  data-type? = { "text" | "number" | eqname } >
+  <!-- Content: sequence-constructor -->
+</xsl:sort>
+
+<xsl:perform-sort
+  select? = expression >
+  <!-- Content: (xsl:sort+, sequence-constructor) -->
+</xsl:perform-sort>
+```
 ## xslt
  - [xslt 1.0](https://www.w3.org/TR/xslt)
  - [xslt 2.0](https://www.w3.org/TR/xslt20/)
