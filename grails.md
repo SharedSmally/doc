@@ -1,25 +1,26 @@
 [grails](http://www.grails.org/)
 =======
-## [User Guide](http://docs.grails.org/latest/guide/single.html)
-## [Grails API](http://docs.grails.org/latest/api/)
+- [User Guide](http://docs.grails.org/latest/guide/single.html)
+- [Grails API](http://docs.grails.org/latest/api/)
 [GORM](http://gorm.grails.org/latest/): 
 ======
-## [GORM API](http://gorm.grails.org/latest/api/)
-## [GORM User Guide](http://docs.grails.org/latest/guide/GORM.html)
-   - Hibernate:  [Documentation](http://gorm.grails.org/latest/hibernate/manual/index.html) / [API](http://gorm.grails.org/latest/hibernate/api/index.html)
-   - Neo4j: [Documentation](http://gorm.grails.org/latest/neo4j/manual/index.html) / [API](http://gorm.grails.org/latest/neo4j/api/index.html)
-   - Cassandra: [Documentation](http://gorm.grails.org/latest/cassandra/manual/index.html) / [API](http://gorm.grails.org/latest/cassandra/api/index.html)
-   - MongoDB: [Documentation](http://gorm.grails.org/latest/mongodb/manual/index.html) / [API](http://gorm.grails.org/latest/mongodb/api/index.html)
-   - RxGORM: [Documentation](http://gorm.grails.org/latest/rx/manual/index.html) / [API](http://gorm.grails.org/latest/rx/api/index.html)
+- [GORM API](http://gorm.grails.org/latest/api/)
+- [GORM User Guide](http://docs.grails.org/latest/guide/GORM.html)
+- Hibernate:  [Documentation](http://gorm.grails.org/latest/hibernate/manual/index.html) / [API](http://gorm.grails.org/latest/hibernate/api/index.html)
+- Neo4j: [Documentation](http://gorm.grails.org/latest/neo4j/manual/index.html) / [API](http://gorm.grails.org/latest/neo4j/api/index.html)
+- Cassandra: [Documentation](http://gorm.grails.org/latest/cassandra/manual/index.html) / [API](http://gorm.grails.org/latest/cassandra/api/index.html)
+- MongoDB: [Documentation](http://gorm.grails.org/latest/mongodb/manual/index.html) / [API](http://gorm.grails.org/latest/mongodb/api/index.html)
+- RxGORM: [Documentation](http://gorm.grails.org/latest/rx/manual/index.html) / [API](http://gorm.grails.org/latest/rx/api/index.html)
        - [For REST](http://gorm.grails.org/latest/rx/rest-client/manual/index.html)
        - [For MongoDB](http://gorm.grails.org/latest/rx/manual/index.html)
-   - Redis: [Documentation](http://gorm.grails.org/latest/redis/manual/index.html) / [API](http://gorm.grails.org/latest/redis/api/index.html)
+- Redis: [Documentation](http://gorm.grails.org/latest/redis/manual/index.html) / [API](http://gorm.grails.org/latest/redis/api/index.html)
 [Plugins](http://docs.grails.org/latest/guide/plugins.html)
 ======
-### [Grails repositiory](http://grails.org/plugins.html)
-### [Bintray repository](https://bintray.com/grails/plugins)
-  
-  - [Spring Security Core](http://grails.org/plugins.html#plugin/spring-security-core):
+- Repository
+   - [Grails repositiory](http://grails.org/plugins.html)
+   - [Bintray repository](https://bintray.com/grails/plugins)
+- Plugins
+   - [Spring Security Core](http://grails.org/plugins.html#plugin/spring-security-core):
       - Dependency: compile 'org.grails.plugins:spring-security-core:3.1.1'
       - [GitHub](https://github.com/grails-plugins/grails-spring-security-core)
       - [Document](https://github.com/grails-plugins/grails-spring-security-core)
@@ -32,7 +33,7 @@
         
         grails s2-create-role-hierarchy-entry <classname>
 ```        
-  - [Spring Security UI](http://grails.org/plugins.html#plugin/spring-security-ui)
+   - [Spring Security UI](http://grails.org/plugins.html#plugin/spring-security-ui)
       - Dependency: compile 'org.grails.plugins:spring-security-ui:3.0.0.M2'
       - [Document](http://grails-plugins.github.io/grails-spring-security-ui/)
       - [User Guide](http://grails-plugins.github.io/grails-spring-security-ui/v3/index.html)
@@ -46,17 +47,18 @@
             - register; registrationcode; 
             - requestmap; role; user; securityinfo; 
   
-  - [Spring REST Security](http://grails.org/plugins.html#plugin/spring-security-rest)
+   - [Spring REST Security](http://grails.org/plugins.html#plugin/spring-security-rest)
         - [GitHub](https://github.com/alvarosanchez/grails-spring-security-rest)
         - [User Guide](http://alvarosanchez.github.io/grails-spring-security-rest/latest/docs/index.html)
-  - [Actuator UI](http://grails.org/plugins.html#plugin/actuator-ui)
+   - [Actuator UI](http://grails.org/plugins.html#plugin/actuator-ui)
         - Dependency:  compile 'org.grails.plugins:actuator-ui:1.1'
         - [GitHub]()
         - [User Guide]()
-  - [Asset-pipeline]:  static resources
+   - [Asset-pipeline]:  static resources
         - Dependency:  compile 'org.grails.plugins:asset-pipeline:3.2.1'
         
-## [Quick Reference] ()
+Quick Reference (profile/plugin/app;  domain,service,controller,taglib; unit/integration/functional-test)
+======
  - Command Line
      - [Usage](http://docs.grails.org/latest/ref/Command%20Line/Usage.html):  **grails** _[environment]_\* _command name_
      - Main Tasks
@@ -529,6 +531,5 @@ grails generate-all Book
     - [services](http://docs.grails.org/latest/ref/Plug-ins/services.html):The services plugin configures Grails' support for Services.
     - [servlets](http://docs.grails.org/latest/ref/Plug-ins/servlets.html):The servlets plugin enhances Servlet API classes with new methods
     
-## [API]()
 
 
