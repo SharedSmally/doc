@@ -1,10 +1,23 @@
 [grails](http://www.grails.org/)
 =======
 ## [User Guide](http://docs.grails.org/latest/guide/single.html)
-## [Plugins](http://docs.grails.org/latest/guide/plugins.html)
-
-  ### [Grails repositiory](http://grails.org/plugins.html)
-  ### [Bintray repository](https://bintray.com/grails/plugins)
+## [Grails API](http://docs.grails.org/latest/api/)
+[GORM](http://gorm.grails.org/latest/): 
+======
+## [GORM API](http://gorm.grails.org/latest/api/)
+## [GORM User Guide](http://docs.grails.org/latest/guide/GORM.html)
+   - Hibernate:  [Documentation](http://gorm.grails.org/latest/hibernate/manual/index.html) / [API](http://gorm.grails.org/latest/hibernate/api/index.html)
+   - Neo4j: [Documentation](http://gorm.grails.org/latest/neo4j/manual/index.html) / [API](http://gorm.grails.org/latest/neo4j/api/index.html)
+   - Cassandra: [Documentation](http://gorm.grails.org/latest/cassandra/manual/index.html) / [API](http://gorm.grails.org/latest/cassandra/api/index.html)
+   - MongoDB: [Documentation](http://gorm.grails.org/latest/mongodb/manual/index.html) / [API](http://gorm.grails.org/latest/mongodb/api/index.html)
+   - RxGORM: [Documentation](http://gorm.grails.org/latest/rx/manual/index.html) / [API](http://gorm.grails.org/latest/rx/api/index.html)
+       - [For REST](http://gorm.grails.org/latest/rx/rest-client/manual/index.html)
+       - [For MongoDB](http://gorm.grails.org/latest/rx/manual/index.html)
+   - Redis: [Documentation](http://gorm.grails.org/latest/redis/manual/index.html) / [API](http://gorm.grails.org/latest/redis/api/index.html)
+[Plugins](http://docs.grails.org/latest/guide/plugins.html)
+======
+### [Grails repositiory](http://grails.org/plugins.html)
+### [Bintray repository](https://bintray.com/grails/plugins)
   
   - [Spring Security Core](http://grails.org/plugins.html#plugin/spring-security-core):
       - Dependency: compile 'org.grails.plugins:spring-security-core:3.1.1'
@@ -32,6 +45,7 @@
             - auth; layout; persistentlogin; 
             - register; registrationcode; 
             - requestmap; role; user; securityinfo; 
+  
   - [Spring REST Security](http://grails.org/plugins.html#plugin/spring-security-rest)
         - [GitHub](https://github.com/alvarosanchez/grails-spring-security-rest)
         - [User Guide](http://alvarosanchez.github.io/grails-spring-security-rest/latest/docs/index.html)
