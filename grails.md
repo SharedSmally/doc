@@ -477,12 +477,15 @@ grails generate-all Book
     
 ## [API]()
 
-## [Plugins](http://grails.org/plugins.html)
-  - Spring Security Core
-        - [GitHub](https://github.com/grails-plugins/grails-spring-security-core)
-        - [Document](https://github.com/grails-plugins/grails-spring-security-core)
-        - [User Guide] (https://grails-plugins.github.io/grails-spring-security-core/v3/)
-        - Script: 
+## [Plugins]
+  ### [Grails 3 plugins](http://grails.org/plugins.html)
+  ### [Bintray repository for Grails 3 plugins](https://bintray.com/grails/plugins)
+  - [Spring Security Core](http://grails.org/plugins.html#plugin/spring-security-core):
+      - Dependency: compile 'org.grails.plugins:spring-security-core:3.1.1'
+      - [GitHub](https://github.com/grails-plugins/grails-spring-security-core)
+      - [Document](https://github.com/grails-plugins/grails-spring-security-core)
+      - [User Guide] (https://grails-plugins.github.io/grails-spring-security-core/v3/)
+      - Script: 
 ```        
         grails s2-quickstart DOMAIN_CLASS_PACKAGE USER_CLASS_NAME ROLE_CLASS_NAME [REQUESTMAP_CLASS_NAME] [--groupClassName=GROUP_CLASS_NAME]
         
@@ -490,7 +493,7 @@ grails generate-all Book
         
         grails s2-create-role-hierarchy-entry <classname>
 ```        
-  - [Spring Security UI]()
+  - [Spring Security UI](http://grails.org/plugins.html#plugin/spring-security-ui)
       - Dependency: compile 'org.grails.plugins:spring-security-ui:3.0.0.M2'
       - [Document](http://grails-plugins.github.io/grails-spring-security-ui/)
       - [User Guide](http://grails-plugins.github.io/grails-spring-security-ui/v3/index.html)
@@ -503,7 +506,12 @@ grails generate-all Book
             - auth; layout; persistentlogin; 
             - register; registrationcode; 
             - requestmap; role; user; securityinfo; 
-
-  - [Spring REST Security]()
+  - [Spring REST Security](http://grails.org/plugins.html#plugin/spring-security-rest)
+        - [GitHub](https://github.com/alvarosanchez/grails-spring-security-rest)
+        - [User Guide](http://alvarosanchez.github.io/grails-spring-security-rest/latest/docs/index.html)
   - [Actuator UI](http://grails.org/plugins.html#plugin/actuator-ui)
-
+        - Dependency:  compile 'org.grails.plugins:actuator-ui:1.1'
+        - [GitHub]()
+        - [User Guide]()
+  - [Asset-pipeline]:  static resources
+        - Dependency:  compile 'org.grails.plugins:asset-pipeline:3.2.1'
