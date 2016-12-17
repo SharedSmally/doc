@@ -31,28 +31,28 @@
               $ grails list-profiles
 
                Available Profiles
-               -  base - The base profile extended by other profiles
-               - profile - A profile for creating new Grails profiles
-               - plugin - Profile for plugins designed to work across all profiles               
-                     - rest\-api-plugin - Profile for REST API plugins    
-                     - web\-plugin - Profile for Plugins designed for Web applications                              
-               -  angular - A profile for creating applications using AngularJS
-               -  angular2 - A profile for creating Grails applications with Angular 2
+               -  base \- The base profile extended by other profiles
+               - profile \- A profile for creating new Grails profiles
+               - plugin \- Profile for plugins designed to work across all profiles               
+                     - rest\-api-plugin \- Profile for REST API plugins    
+                     - web\-plugin \- Profile for Plugins designed for Web applications                              
+               -  angular \- A profile for creating applications using AngularJS
+               -  angular2 \- A profile for creating Grails applications with Angular 2
                      - less\-asset\-pipeline;asset\-pipeline
                      - hibernate4; hibernate5; mongodb; neo4j; rx\-mongodb;
                      - json\-views; markup]\-views; 
                      - security
-               -  rest-api - Profile for REST API applications:
+               -  rest-api \- Profile for REST API applications:
                      - less\-asset\-pipeline;asset\-pipeline
                      - hibernate4; hibernate5; mongodb; neo4j; rx\-mongodb;
                      - json\-views; markup]\-views; 
                      - security
-               -  web - Profile for Web applications:[less]asset-pipeline;
+               -  web \- Profile for Web applications:
                      - less\-asset\-pipeline;asset\-pipeline
                      - hibernate4; hibernate5; mongodb; neo4j; rx\-mongodb;
                      - json\-views; markup]\-views; 
-               -  react - A profile for creating Grails applications with a React frontend               
-               -  webpack - A profile for creating applications with node-based frontends using webpack
+               -  react \- A profile for creating Grails applications with a React frontend               
+               -  webpack \- A profile for creating applications with node-based frontends using webpack
          - [profile-info](http://docs.grails.org/latest/ref/Command%20Line/profile-info.html):**grails profile-info** _name_
      - Application
          - [create-app](http://docs.grails.org/latest/ref/Command%20Line/create-app.html): **grails create-app** _simplename_ **[--profile] _PROFILE NAME_ [--features] _FEATURE NAMES_**
