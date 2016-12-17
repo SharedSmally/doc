@@ -1,7 +1,45 @@
 [grails](http://www.grails.org/)
 =======
-
 ## [User Guide](http://docs.grails.org/latest/guide/single.html)
+## [Plugins](http://docs.grails.org/latest/guide/plugins.html)
+  ### [Grails repositiory](http://grails.org/plugins.html)
+  ### [Bintray repository](https://bintray.com/grails/plugins)
+  - [Spring Security Core](http://grails.org/plugins.html#plugin/spring-security-core):
+      - Dependency: compile 'org.grails.plugins:spring-security-core:3.1.1'
+      - [GitHub](https://github.com/grails-plugins/grails-spring-security-core)
+      - [Document](https://github.com/grails-plugins/grails-spring-security-core)
+      - [User Guide] (https://grails-plugins.github.io/grails-spring-security-core/v3/)
+      - Script: 
+```        
+        grails s2-quickstart DOMAIN_CLASS_PACKAGE USER_CLASS_NAME ROLE_CLASS_NAME [REQUESTMAP_CLASS_NAME] [--groupClassName=GROUP_CLASS_NAME]
+        
+        grails s2-create-persistent-token <classname>
+        
+        grails s2-create-role-hierarchy-entry <classname>
+```        
+  - [Spring Security UI](http://grails.org/plugins.html#plugin/spring-security-ui)
+      - Dependency: compile 'org.grails.plugins:spring-security-ui:3.0.0.M2'
+      - [Document](http://grails-plugins.github.io/grails-spring-security-ui/)
+      - [User Guide](http://grails-plugins.github.io/grails-spring-security-ui/v3/index.html)
+      - Scripts
+```
+    grails s2ui-override <type> [controllerPackage]
+```    
+       type: 
+            - aclclass; aclentry; aclobjectidentity; aclsid; 
+            - auth; layout; persistentlogin; 
+            - register; registrationcode; 
+            - requestmap; role; user; securityinfo; 
+  - [Spring REST Security](http://grails.org/plugins.html#plugin/spring-security-rest)
+        - [GitHub](https://github.com/alvarosanchez/grails-spring-security-rest)
+        - [User Guide](http://alvarosanchez.github.io/grails-spring-security-rest/latest/docs/index.html)
+  - [Actuator UI](http://grails.org/plugins.html#plugin/actuator-ui)
+        - Dependency:  compile 'org.grails.plugins:actuator-ui:1.1'
+        - [GitHub]()
+        - [User Guide]()
+  - [Asset-pipeline]:  static resources
+        - Dependency:  compile 'org.grails.plugins:asset-pipeline:3.2.1'
+        
 ## [Quick Reference] ()
  - Command Line
      - [Usage](http://docs.grails.org/latest/ref/Command%20Line/Usage.html):  **grails** _[environment]_\* _command name_
@@ -477,41 +515,4 @@ grails generate-all Book
     
 ## [API]()
 
-## [Plugins]
-  ### [Grails 3 plugins](http://grails.org/plugins.html)
-  ### [Bintray repository for Grails 3 plugins](https://bintray.com/grails/plugins)
-  - [Spring Security Core](http://grails.org/plugins.html#plugin/spring-security-core):
-      - Dependency: compile 'org.grails.plugins:spring-security-core:3.1.1'
-      - [GitHub](https://github.com/grails-plugins/grails-spring-security-core)
-      - [Document](https://github.com/grails-plugins/grails-spring-security-core)
-      - [User Guide] (https://grails-plugins.github.io/grails-spring-security-core/v3/)
-      - Script: 
-```        
-        grails s2-quickstart DOMAIN_CLASS_PACKAGE USER_CLASS_NAME ROLE_CLASS_NAME [REQUESTMAP_CLASS_NAME] [--groupClassName=GROUP_CLASS_NAME]
-        
-        grails s2-create-persistent-token <classname>
-        
-        grails s2-create-role-hierarchy-entry <classname>
-```        
-  - [Spring Security UI](http://grails.org/plugins.html#plugin/spring-security-ui)
-      - Dependency: compile 'org.grails.plugins:spring-security-ui:3.0.0.M2'
-      - [Document](http://grails-plugins.github.io/grails-spring-security-ui/)
-      - [User Guide](http://grails-plugins.github.io/grails-spring-security-ui/v3/index.html)
-      - Scripts
-```
-    grails s2ui-override <type> [controllerPackage]
-```    
-       type: 
-            - aclclass; aclentry; aclobjectidentity; aclsid; 
-            - auth; layout; persistentlogin; 
-            - register; registrationcode; 
-            - requestmap; role; user; securityinfo; 
-  - [Spring REST Security](http://grails.org/plugins.html#plugin/spring-security-rest)
-        - [GitHub](https://github.com/alvarosanchez/grails-spring-security-rest)
-        - [User Guide](http://alvarosanchez.github.io/grails-spring-security-rest/latest/docs/index.html)
-  - [Actuator UI](http://grails.org/plugins.html#plugin/actuator-ui)
-        - Dependency:  compile 'org.grails.plugins:actuator-ui:1.1'
-        - [GitHub]()
-        - [User Guide]()
-  - [Asset-pipeline]:  static resources
-        - Dependency:  compile 'org.grails.plugins:asset-pipeline:3.2.1'
+
