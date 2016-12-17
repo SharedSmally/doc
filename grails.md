@@ -417,11 +417,11 @@
  ```
 grails generate-controller Book
 ```
-or to generate the views:
+ To generate the views:
 ```
 grails generate-views Book
 ```
-or to generate everything:
+ To generate everything:
 ```
 grails generate-all Book
 ```
