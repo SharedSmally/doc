@@ -37,9 +37,20 @@
                    - rest-api-plugin - Profile for REST API plugins    
                    - web-plugin - Profile for Plugins designed for Web applications                              
                -  angular - A profile for creating applications using AngularJS
-               -  angular2 - A profile for creating Grails applications with Angular 2:[less]asset-pipeline; hibernate[4|5]|mongodb|neo4j|rx-mongodb; [json|markup]-views; security           
-               -  rest-api - Profile for REST API applications:[less]asset-pipeline; hibernate[4|5]|mongodb|neo4j|rx-mongodb; [json|markup]-views; security
-               -  web - Profile for Web applications:[less]asset-pipeline; hibernate[4|5]|mongodb|neo4j|rx-mongodb; [json|markup]-views
+               -  angular2 - A profile for creating Grails applications with Angular 2
+                    - less-asset-pipeline;asset-pipeline
+                    - hibernate4; hibernate5; mongodb; neo4j; rx-mongodb;
+                    - json-views; markup]-views; 
+                    - security
+               -  rest-api - Profile for REST API applications:
+                    - less-asset-pipeline;asset-pipeline
+                    - hibernate4; hibernate5; mongodb; neo4j; rx-mongodb;
+                    - json-views; markup]-views; 
+                    - security
+               -  web - Profile for Web applications:[less]asset-pipeline;
+                    - less-asset-pipeline;asset-pipeline
+                    - hibernate4; hibernate5; mongodb; neo4j; rx-mongodb;
+                    - json-views; markup]-views; 
                -  react - A profile for creating Grails applications with a React frontend               
                -  webpack - A profile for creating applications with node-based frontends using webpack
          - [profile-info](http://docs.grails.org/latest/ref/Command%20Line/profile-info.html):**grails profile-info** _name_
