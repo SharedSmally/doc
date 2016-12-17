@@ -476,6 +476,34 @@ grails generate-all Book
     - [servlets](http://docs.grails.org/latest/ref/Plug-ins/servlets.html):The servlets plugin enhances Servlet API classes with new methods
     
 ## [API]()
-## [Plugins]()
 
+## [Plugins](http://grails.org/plugins.html)
+  - Spring Security Core
+        - [GitHub](https://github.com/grails-plugins/grails-spring-security-core)
+        - [Document](https://github.com/grails-plugins/grails-spring-security-core)
+        - [User Guide] (https://grails-plugins.github.io/grails-spring-security-core/v3/)
+        - Script: 
+```        
+        grails s2-quickstart DOMAIN_CLASS_PACKAGE USER_CLASS_NAME ROLE_CLASS_NAME [REQUESTMAP_CLASS_NAME] [--groupClassName=GROUP_CLASS_NAME]
+        
+        grails s2-create-persistent-token <classname>
+        
+        grails s2-create-role-hierarchy-entry <classname>
+```        
+  - [Spring Security UI]()
+      - Dependency: compile 'org.grails.plugins:spring-security-ui:3.0.0.M2'
+      - [Document](http://grails-plugins.github.io/grails-spring-security-ui/)
+      - [User Guide](http://grails-plugins.github.io/grails-spring-security-ui/v3/index.html)
+      - Scripts
+```
+    grails s2ui-override <type> [controllerPackage]
+```    
+       type: 
+            - aclclass; aclentry; aclobjectidentity; aclsid; 
+            - auth; layout; persistentlogin; 
+            - register; registrationcode; 
+            - requestmap; role; user; securityinfo; 
+
+  - [Spring REST Security]()
+  - [Actuator UI](http://grails.org/plugins.html#plugin/actuator-ui)
 
