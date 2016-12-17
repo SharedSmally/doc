@@ -2,8 +2,10 @@
 =======
 ## [User Guide](http://docs.grails.org/latest/guide/single.html)
 ## [Plugins](http://docs.grails.org/latest/guide/plugins.html)
+
   ### [Grails repositiory](http://grails.org/plugins.html)
   ### [Bintray repository](https://bintray.com/grails/plugins)
+  
   - [Spring Security Core](http://grails.org/plugins.html#plugin/spring-security-core):
       - Dependency: compile 'org.grails.plugins:spring-security-core:3.1.1'
       - [GitHub](https://github.com/grails-plugins/grails-spring-security-core)
