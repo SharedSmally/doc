@@ -28,6 +28,20 @@
      - Profile
          - [create-profile](http://docs.grails.org/latest/ref/Command%20Line/create-profile.html):**grails create-profile** _simple name_
          - [list-profiles](http://docs.grails.org/latest/ref/Command%20Line/list-profiles.html):**grails list-profiles** 
+              $ grails list-profiles
+
+               Available Profiles
+               -  base - The base profile extended by other profiles
+               - profile - A profile for creating new Grails profiles
+               - plugin - Profile for plugins designed to work across all profiles               
+                   - rest-api-plugin - Profile for REST API plugins    
+                   - web-plugin - Profile for Plugins designed for Web applications                              
+               -  angular - A profile for creating applications using AngularJS
+               -  angular2 - A profile for creating Grails applications with Angular 2               
+               -  rest-api - Profile for REST API applications
+               -  react - A profile for creating Grails applications with a React frontend
+               -  web - Profile for Web applications
+               -  webpack - A profile for creating applications with node-based frontends using webpack
          - [profile-info](http://docs.grails.org/latest/ref/Command%20Line/profile-info.html):**grails profile-info** _name_
      - Application
          - [create-app](http://docs.grails.org/latest/ref/Command%20Line/create-app.html): **grails create-app** _simplename_ **[--profile] _PROFILE NAME_ [--features] _FEATURE NAMES_**
