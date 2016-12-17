@@ -1,4 +1,4 @@
-[grails](http://www.grails.org/)
+[GRAILS](http://www.grails.org/)
 =======
 - [User Guide](http://docs.grails.org/latest/guide/single.html)
 - [Grails API](http://docs.grails.org/latest/api/)
