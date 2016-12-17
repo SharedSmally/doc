@@ -388,6 +388,43 @@
        - [order](http://docs.grails.org/latest/ref/Database%20Mapping/order.html):_order "desc" ["desc" or "asc"]_
        - [sort](http://docs.grails.org/latest/ref/Database%20Mapping/sort.html):_sort "releaseDate"_
        - [type](http://docs.grails.org/latest/ref/Database%20Mapping/type.html):_title type: "text"_    
+ - [Scaffolding](http://docs.grails.org/latest/guide/scaffolding.html): Generate basic CRUD interfaces for a domain class:
+     - index
+     - show
+     - edit
+     - delete
+     - create
+     - save
+     - update
+
+ build.gradle:
+ ```
+ dependencies {
+        // ...
+        compile "org.grails.plugins:scaffolding"
+        // ...
+    }
+ ```
+ For Controller:
+ ```
+ class BookController {
+      static scaffold = true
+    or
+      static scaffold = Book
+}
+ ```
+ To generate a controller type:
+ ```
+grails generate-controller Book
+```
+or to generate the views:
+```
+grails generate-views Book
+```
+or to generate everything:
+```
+grails generate-all Book
+```
  - Servlet API
     - [request](http://docs.grails.org/latest/ref/Servlet%20API/request.html): The **_request_** object is an instance of the Grails enhanced HttpServletRequest instance by adding the following new properties and methods:
        - XML - An instance of `XmlSlurper’s GPathResult class that allows parsing of an incoming XML request (useful for REST)
