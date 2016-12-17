@@ -2,8 +2,9 @@
 =======
 - [User Guide](http://docs.grails.org/latest/guide/single.html)
 - [Grails API](http://docs.grails.org/latest/api/)
+
 [GORM](http://gorm.grails.org/latest/): 
-======
+=======
 - [GORM API](http://gorm.grails.org/latest/api/)
 - [GORM User Guide](http://docs.grails.org/latest/guide/GORM.html)
 - Hibernate:  [Documentation](http://gorm.grails.org/latest/hibernate/manual/index.html) / [API](http://gorm.grails.org/latest/hibernate/api/index.html)
@@ -57,8 +58,9 @@
    - [Asset-pipeline]:  static resources
         - Dependency:  compile 'org.grails.plugins:asset-pipeline:3.2.1'
         
-Quick Reference (profile/plugin/app;  domain,service,controller,taglib; unit/integration/functional-test)
+Quick Reference 
 ======
+Include profile/plugin/app;  domain,service,controller,taglib; unit/integration/functional-test.
  - Command Line
      - [Usage](http://docs.grails.org/latest/ref/Command%20Line/Usage.html):  **grails** _[environment]_\* _command name_
      - Main Tasks
