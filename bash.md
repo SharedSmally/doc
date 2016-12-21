@@ -346,3 +346,10 @@ bind [-m keymap] keyseq:readline-command
 ```bash
 uname -s
 ```
+- Find exclude paths
+```bash
+find . ! -path './src/*' ! -path './include/*' ! -path './libsrc/*'  -name *.cpp  -s | xargs grep test_ > cpp.txt
+cut -d':' -f1 cpp.txt | sort -u > cpp1.txt
+```
+
+
