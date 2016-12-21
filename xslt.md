@@ -268,8 +268,10 @@ Sequence
    - method="xml"
    - method="html"
 - [xslt functions] (http://www.w3schools.com/xml/xsl_functions.asp)
-
-
+- Counter
+```
+<xsl:for-each select="for $i in 1 to $length return $i">...</xsl:for-each>
+```
 - Multiple Outputs
 ```
 <xsl:template match="/">
