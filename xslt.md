@@ -67,15 +67,14 @@
 </xsl:apply-templates>
 ```
 - Control
-      -  if
+       - if
 ```xml
 <xsl:if
   test = expression >
   <!-- Content: sequence-constructor -->
 </xsl:if>
 ```
-
-      -  conditional Processing
+       - conditional Processing
 ```xml
 <xsl:choose>
   <!-- Content: (xsl:when+, xsl:otherwise?) -->
@@ -90,15 +89,13 @@
   <!-- Content: sequence-constructor -->
 </xsl:otherwise>
 ```
-
-      -  Repeat
+       - Repeat
 ```xml
 <xsl:for-each
   select = expression >
   <!-- Content: (xsl:sort*, sequence-constructor) -->
 </xsl:for-each>
 ```
-
 - Variable and Parameter
 ```
 <xsl:variable
@@ -128,6 +125,21 @@
   <!-- Content: sequence-constructor -->
 </xsl:with-param>
 ```
+- Function
+```
+<xsl:function
+  name = eqname
+  as? = sequence-type
+  visibility? = "public" | "private" | "final" | "abstract"
+  streamability? = "unclassified" | "absorbing" | "inspection" | "filter" | "shallow-descent" | "deep-descent" | "ascent" | eqname
+  override-extension-function? = boolean
+  [override]? = boolean
+  new-each-time? = "yes" | "true" | "1" | "no" | "false" | "0" | "maybe"
+  cache? = boolean >
+  <!-- Content: (xsl:param*, sequence-constructor) -->
+</xsl:function>
+```
+
 - XML node
 ```xml
 Document Node
