@@ -271,6 +271,9 @@ Sequence
 - Counter
 ```
 <xsl:for-each select="for $i in 1 to $length return $i">...</xsl:for-each>
+  <xsl:for-each select="1 to $cnt">
+    ... do something ...
+  </xsl:for-each>
 ```
 - Multiple Outputs
 ```
