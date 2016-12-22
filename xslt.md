@@ -16,7 +16,7 @@
    java -cp ${SAXON_HOME}/saxon9-xqj.jar:${SAXON_HOME}/saxon9he.jar \
      net.sf.saxon.Transform -xsl:$1 -s:$2 -o:$3
 
-## Components
+## Components:  [Reference](http://www.w3schools.com/xml/xsl_elementref.asp)
 - XSLT root
 ```xml
 <xsl:stylesheet
