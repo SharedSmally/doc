@@ -48,7 +48,7 @@ jQuery
            - [Document](https://github.com/mar10/fancytree/wiki)
            - [Demo](http://wwwendt.de/tech/fancytree/demo/)
        - [jsTree](https://www.jstree.com/)
-             - [git] (https://github.com/vakata/jstree)
-             - [Document](https://www.jstree.com/api/)
-             - [Demo](https://www.jstree.com/demo/)
+           - [git](https://github.com/vakata/jstree)
+           - [Document](https://www.jstree.com/api/)
+           - [Demo](https://www.jstree.com/demo/)
 
