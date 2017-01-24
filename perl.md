@@ -22,4 +22,8 @@ my $body = $dom->createElement('body');
 $root->appendChild($body);
 $root->setOwnerDocument ($dom);
 print $dom->toString;
+
+#dom document has only one child:
+# use dom->appendChild() if no root element
+# or dom->replaceChild() if root element exists
 ```
