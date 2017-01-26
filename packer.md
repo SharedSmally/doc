@@ -1,6 +1,6 @@
 #[Packer] (https://www.packer.io/)
 
-## [Doc](https://www.packer.io/docs/); [github](https://github.com/mitchellh/packer)
+## [Doc](https://www.packer.io/docs/); [github] (https://github.com/mitchellh/packer)
 
 ## Command:
 ```
