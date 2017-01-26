@@ -5,11 +5,11 @@
   - Internal Network: - VMs can connect each other within the same internal network. no connection between host and guest. Need DHCP server.
 
 ## List NICs
-- ifconfig -a
+- ifconfig -a(Solaris);  ipconfig (Windows); ip (linux)
 - ip link show;  
 - ip link set [name] up
    name: Two character prefixes based on the type of interface:
-   - en -- ethernet
+   - en -- ethernet;  enp0s10, ... 
    - sl -- serial line IP (slip)
    - wl -- wlan
    - ww -- wwan
