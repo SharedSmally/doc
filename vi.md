@@ -27,22 +27,26 @@
 - M	Move to middle of screen
 - L	Move to botton of screen
 - %	Move to associated ( ), { }, [ ]
+
 ### Delete
 - x	Delete character to the right of cursor
 - X	Delete character to the left of cursor
 - D	Delete to the end of the line
 - dd	Delete current line
 - :d	Delete current line
+
 ### Searching
 - /string	Search forward for string
 - ?string	Search back for string
 - n	Search for next instance of string
 - N	Search for previous instance of string
+
 ### Replace
 - :s/pattern/string/flags	Replace pattern with string according to flags.
 - g	Flag - Replace all occurences of pattern
 - c	Flag - Confirm replaces.
 - &	Repeat last :s command
+
 ### Regular Expressions
 - . (dot)	Any single character except newline
 - *	zero or more occurances of any character
