@@ -3,7 +3,9 @@
 ## [Doc](https://www.packer.io/docs/); [github](https://github.com/mitchellh/packer)
 
 ## Command:
+```
 Usage: packer [--version] [--help] <command> [<args>]
+
 Available commands are:
     build       build image(s) from template
     fix         fixes templates from old versions of packer
@@ -15,6 +17,7 @@ Available commands are:
 Usage: packer build [options] TEMPLATE
   Will execute multiple builds in parallel as defined in the template.
   The various artifacts created by the template will be outputted.
+  
 Options:
   -color=false               Disable color output (on by default)
   -debug                     Debug mode enabled for builds
@@ -26,3 +29,4 @@ Options:
   -parallel=false            Disable parallelization (on by default)
   -var 'key=value'           Variable for templates, can be used multiple times.
   -var-file=path             JSON file containing user variables.
+```
