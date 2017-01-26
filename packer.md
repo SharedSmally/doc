@@ -13,7 +13,8 @@ Available commands are:
     push        push a template and supporting files to a Packer build service
     validate    check that a template is valid
     version     Prints the Packer version
-
+```
+```
 Usage: packer build [options] TEMPLATE
   Will execute multiple builds in parallel as defined in the template.
   The various artifacts created by the template will be outputted.
