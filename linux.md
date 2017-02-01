@@ -19,14 +19,12 @@
        #include <sys/inotify.h>
        int inotify_init(void);
        int inotify_init1(int flags);
-```
-     
+```     
    - [inotify_add_watch](http://man7.org/linux/man-pages/man2/inotify_add_watch.2.html)
 ```
        #include <sys/inotify.h>
        int inotify_add_watch(int fd, const char *pathname, uint32_t mask);   
-```
-   
+```   
    - [inotify_rm_watch] (http://man7.org/linux/man-pages/man2/inotify_rm_watch.2.html)
 ```
        #include <sys/inotify.h>
@@ -40,20 +38,17 @@
 ```
 
 - [epoll](http://man7.org/linux/man-pages/man7/epoll.7.html)
-
     - [epoll_create](http://man7.org/linux/man-pages/man2/epoll_create.2.html)
 ```
       #include <sys/epoll.h>
       int epoll_create(int size);
       int epoll_create1(int flags);
 ```
-
     - [epoll_ctl](http://man7.org/linux/man-pages/man2/epoll_ctl.2.html)
 ```
        #include <sys/epoll.h>
        int epoll_ctl(int epfd, int op, int fd, struct epoll_event *event);
 ```
-
     - [epoll_wait](http://man7.org/linux/man-pages/man2/epoll_wait.2.html)
 ```
        #include <sys/epoll.h>
