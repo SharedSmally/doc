@@ -30,12 +30,12 @@
        #include <sys/inotify.h>
        int inotify_rm_watch(int fd, int wd);
    ```
-- eventfd](http://man7.org/linux/man-pages/man2/eventfd.2.html)
+- [eventfd](http://man7.org/linux/man-pages/man2/eventfd.2.html)
 ```
        #include <sys/eventfd.h>
        int eventfd(unsigned int initval, int flags);
 ```
-- (epoll](http://man7.org/linux/man-pages/man7/epoll.7.html)
+- [epoll](http://man7.org/linux/man-pages/man7/epoll.7.html)
    - [epoll_create](http://man7.org/linux/man-pages/man2/epoll_create.2.html)
 ```
       #include <sys/epoll.h>
