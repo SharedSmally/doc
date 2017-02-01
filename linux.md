@@ -14,18 +14,18 @@
 
 ## Functions
 - [inotify](http://man7.org/linux/man-pages/man7/inotify.7.html)
-   - [inotify_init](http://man7.org/linux/man-pages/man2/inotify_init.2.html)
+   -[inotify_init](http://man7.org/linux/man-pages/man2/inotify_init.2.html)
 ```
        #include <sys/inotify.h>
        int inotify_init(void);
        int inotify_init1(int flags);
 ```     
-   - [inotify_add_watch](http://man7.org/linux/man-pages/man2/inotify_add_watch.2.html)
+   -[inotify_add_watch](http://man7.org/linux/man-pages/man2/inotify_add_watch.2.html)
 ```
        #include <sys/inotify.h>
        int inotify_add_watch(int fd, const char *pathname, uint32_t mask);   
 ```   
-   - [inotify_rm_watch] (http://man7.org/linux/man-pages/man2/inotify_rm_watch.2.html)
+   -[inotify_rm_watch](http://man7.org/linux/man-pages/man2/inotify_rm_watch.2.html)
 ```
        #include <sys/inotify.h>
        int inotify_rm_watch(int fd, int wd);
