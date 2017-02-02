@@ -20,10 +20,10 @@ The agent initially does not have any private keys. Keys are added using ssh-add
 - exec ssh-agent bash
 - ssh-add dlxs14_id_rsa
 
-### [ssh-agent command](https://linux.die.net/man/1/ssh-agent)
+### [ssh-agent](https://linux.die.net/man/1/ssh-agent) command:
 - ssh-agent [-c | -s] [-d] [-a bind_address] [-t life] [command [arg ...]]
 
-### [ssh-add command](https://linux.die.net/man/1/ssh-add): 
+### [ssh-add](https://linux.die.net/man/1/ssh-add) command: 
 Adds RSA or DSA identities to the authentication agent, ssh-agent(1)
 - ssh-add [-cDdLlXx] [-t life] [file ...]
 - ssh-add -s reader
