@@ -1,6 +1,6 @@
 # ssh 
 
-## (ssh manual](https://linux.die.net/man/1/ssh) 
+## [ssh manual](https://linux.die.net/man/1/ssh) 
 
 ## ssh command:   
 - ssh user@remote 'bash -s' < script.sh
