@@ -26,3 +26,14 @@
   - wcsub_match: sub_match for wide string literals (class )
   - ssub_match:  sub_match for strings (class )
   - wssub_match: sub_match for wide strings (class )
+
+### Regex Example
+- std::regex COMMENT("^\\s*#");  //starts with #
+- std::regex GROUP("^\\s*\\[\\s*([a-zA-Z0-9_]+)\\s*\\]\\s*$");  // [group]
+- std::regex NAME_VAL("^\\s*([a-zA-Z0-9_.]+)\\s*=\\s*([a-zA-Z0-9_.]+)\\s*$");  // name = value
+- std:regex NAME_VALUE("^\\s*([[:alnum:]._]+)\\s*=\\s*([[:alnum:]._]+)\\s*$"); // name = value
+-	std::regex whitespace("[\\s]+");			// Looks for one or more whitespace chars.
+-	std::regex leadingSpace("^(\\s+)");			// Looks for one or more leading spaces.
+-	std::regex semiColonNewLine("(\\s*;\\s*)");	// Looks for semicolons surrounded by zero or more spaces.
+-	line = std::regex_replace(line, whitespace, " ");			// Replaces 'line' with single whitespace.
+-	line = std::regex_replace(line, leadingSpace, "");			// Replaces 'line' in order to not have leading spaces.
