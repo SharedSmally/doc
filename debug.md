@@ -6,11 +6,11 @@
  -ltrace
  - ptrace
 
-lsof 
+## Tools 
+- lsof : list open files and libraries used for the process:  lsof -p process
 - ldd : print shared library dependencies
 - nm : list symbols from object files
 - pmap :  report memory map of a process
-- lsof : list open files
 
 ## tcpdump
 
