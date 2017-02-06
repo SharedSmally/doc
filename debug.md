@@ -25,5 +25,5 @@
 
 
 ## Connectivity
-- netstat -an | grep port | grep ESTABLISHED | awk '{print $5}' | sort | cut -d":" -f1 | uniq -c
+- Activity Connections: netstat -an | grep port | grep ESTABLISHED | awk '{print $5}' | sort | cut -d":" -f1 | uniq -c
 
