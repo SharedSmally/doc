@@ -14,7 +14,7 @@
    - wl -- wlan
    - ww -- wwan
  
- ## Ubuntu network config
+## Ubuntu network config
  - ifconfig
  - sudo vi /etc/network/interfaces
 ```   
@@ -27,3 +27,8 @@
    NAT port froward: Host:127.0.0.1; HostPort:xxx;  GuestIP:10.0.2.15; GuestPort:22 (SSH)    
    ssh user@127.0.0.1 -p HostPort
 ```   
+
+## Install package
+- sudo add-apt-repository ppa:ubuntu-toolchain-r/test
+- sudo apt-get update
+- sudo apt-get install g++
