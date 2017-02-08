@@ -19,11 +19,13 @@
  - sudo vi /etc/network/interfaces
    
    auto enp0sx
+   
    iface enp0sx inet dhcp
    
  - sudo ifup/ifdown enp0sx
  - NAT: ip=10.0.2.15
   
     NAT port froward: Host:127.0.0.1; HostPort:xxx;  GuestIP:10.0.2.15; GuestPort:22 (SSH) 
-    ssh user@127.0.0.1 -p HostPort
+   
+   ssh user@127.0.0.1 -p HostPort
    
