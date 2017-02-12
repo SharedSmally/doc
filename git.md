@@ -12,6 +12,7 @@ git
 ## Tips
 - Comment out * text=auto in .gitattributes
 - Setup Credential
+  - $ git config --global credential.helper "cache --timeout=3600"
   - $ git config credential.helper store
   - $ git push http://example.com/repo.git
   
