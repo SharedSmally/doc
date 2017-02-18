@@ -117,6 +117,7 @@ docker
     service   Manage Docker services:   dpcler service [create|inspect|ps|ls|rm|scale|update]
     node      Manage Docker Swarm nodes
     swarm     Manage Docker Swarm
+        
 ```
 - container operations:
 
@@ -135,8 +136,9 @@ docker
 - container interaction:
 
 **docker _run | exec_**
-docker run -t -i training/sinatra /bin/bash
+docker run -t -i training/sinatra /bin/bash : create a new container from image
 
+docker exec -it container_name bash:    login running container
 
 ## Docker File:  [Reference](https://docs.docker.com/engine/reference/builder/)
 
@@ -285,3 +287,20 @@ RUN echo moo > oink
 ```
 
 When the Docker container starts, only the **CMD** command is run. The only processes that will be running inside the container is the CMD command, and all processes that it spawns.
+
+## [Docker Compose](https://docs.docker.com/compose/overview/):
+Compose has commands for managing the whole lifecycle of your application:
+- Start, stop and rebuild services
+- View the status of running services
+- Stream the log output of running services
+- Run a one-off command on a service
+
+## [Compose Reference](https://docs.docker.com/compose/compose-file/)
+The Compose file is a YAML file defining services, networks and volumes. The default path for a Compose file is ./docker-compose.yml
+- Service configuration reference
+A service definition contains configuration applied to each container started for that service, much like passing command-line parameters to **docker run**.
+- Network configuration reference
+A network definition is analogous to **docker network create**.
+- Volume configuration reference
+A volume definition is analogous to **docker volume create**.
+- Variable substitution
