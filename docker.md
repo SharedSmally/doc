@@ -298,9 +298,31 @@ Compose has commands for managing the whole lifecycle of your application:
 ## [Compose Reference](https://docs.docker.com/compose/compose-file/)
 The Compose file is a YAML file defining services, networks and volumes. The default path for a Compose file is ./docker-compose.yml
 - Service configuration reference
+
 A service definition contains configuration applied to each container started for that service, much like passing command-line parameters to **docker run**.
+
 - Network configuration reference
+
 A network definition is analogous to **docker network create**.
+
 - Volume configuration reference
+
 A volume definition is analogous to **docker volume create**.
+
 - Variable substitution
+
+Both **$VARIABLE** and **${VARIABLE}** syntax are supported:
+- ${VARIABLE:-default} will evaluate to default if VARIABLE is unset or empty in the environment.
+- ${VARIABLE-default} will evaluate to default only if VARIABLE is unset in the environment.
+```
+web:
+  build: .
+  ports:
+    - "${EXTERNAL_PORT}:5000"
+
+$ unset EXTERNAL_PORT
+$ echo "EXTERNAL_PORT=6000" > .env
+$ docker-compose up          # EXTERNAL_PORT will be 6000
+$ export EXTERNAL_PORT=7000
+$ docker-compose up          # EXTERNAL_PORT will be 7000
+```
