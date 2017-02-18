@@ -298,22 +298,112 @@ Compose has commands for managing the whole lifecycle of your application:
 ## [Compose Reference](https://docs.docker.com/compose/compose-file/)
 The Compose file is a YAML file defining services, networks and volumes. The default path for a Compose file is ./docker-compose.yml
 - Service configuration reference
-
+```
+services:
+  proxy:
+    build: ./proxy
+    networks:
+      - outside
+      - default
+  app:
+    build: ./app
+    networks:
+      - default
+```
 A service definition contains configuration applied to each container started for that service, much like passing command-line parameters to **docker run**.
 
 - Network configuration reference
 
 A network definition is analogous to **docker network create**.
+```
+networks:
+  outside:
+    external: true
+```
 
+- driver: overlay  
+
+Specify which driver should be used for this network. It will be **bridge** on a single host and **overlay** on a Swarm
+
+- driver_opts: optional
+
+Specify a list of options as key-value pairs to pass to the driver for this network
+
+```
+  driver_opts:
+    foo: "bar"
+    baz: 1
+```
+
+- enable_ipv6:
+
+Enable IPv6 networking on this network.
+
+ - ipam
+ 
+Specify custom IPAM config. This is an object with several properties, each of which is optional:
+    - driver: Custom IPAM driver, instead of the default.
+    - config: A list with zero or more config blocks, each containing any of the following keys:
+         - subnet: Subnet in CIDR format that represents a network segment
+```
+ipam:
+  driver: default
+  config:
+    - subnet: 172.28.0.0/16
+```
+
+- internal
+
+By default, Docker also connects a bridge network to it to provide external connectivity. If you want to create an externally isolated overlay network, you can set this option to true.
+
+- external
+
+If set to true, specifies that this network has been created outside of Compose. docker-compose up will not attempt to create it, and will raise an error if it doesn’t exist.
+
+
+  
 - Volume configuration reference
 
 A volume definition is analogous to **docker volume create**.
+```
+volumes:
+  data:
+    external:
+      name: actual-name-of-volume
+```
 
+- driver: 
+
+Specify which volume driver should be used for this volume. Defaults to whatever driver the Docker Engine has been configured to use, which in most cases is local.
+
+
+- driver_opts: optional
+
+Specify a list of options as key-value pairs to pass to the driver for this network
+
+```
+  driver_opts:
+    foo: "bar"
+    baz: 1
+```
+
+- internal
+
+By default, Docker also connects a bridge network to it to provide external connectivity. If you want to create an externally isolated overlay network, you can set this option to true.
+
+- external
+
+If set to true, specifies that this network has been created outside of Compose. docker-compose up will not attempt to create it, and will raise an error if it doesn’t exist.
+
+      
 - Variable substitution
 
 Both **$VARIABLE** and **${VARIABLE}** syntax are supported:
 - ${VARIABLE:-default} will evaluate to default if VARIABLE is unset or empty in the environment.
 - ${VARIABLE-default} will evaluate to default only if VARIABLE is unset in the environment.
+
+The default values for environment variables can be set using a .env file, which Compose will automatically look for. You can use a **$$ (double-dollar sign)** when your configuration needs a literal dollar sign.
+
 ```
 web:
   build: .
