@@ -1,8 +1,18 @@
 ## SCM Tools Docker
 
 ### Repository Server
-- Nexus
+- [Nexus docker](https://hub.docker.com/r/sonatype/nexus/)
+   - Login admin@admin123
+   - Repositories: add ->Configuration: ID/Name=cxxReleases/Hosted/Maven2 -> url http://192.168.99.100:32770/nexus/content/repositories/cxxReleases
+   - Security: User -> Role
+
 - JFrog
+
+### Build-Server
+- Jenkins
+   - Manage Jenkins -> Configure System -> Deployment Dashboard: Repositories URI; git/gradle/grails/...
+   - Manage Jenkins -> Plugin Management -> Artifact Uploader
+   - New Item (Job) -> Freestyle Project (Configure):  SCM; Build:execute make/nexus artifact uploader: nexus URL; Repository(Nexus Repository ID); Artifacts: ArtifactID-version-classifer-type <= file (build file);  Post archive(archive in Jenkins) 
 
 ### SVC: [Software Version Control](https://en.wikipedia.org/wiki/Version_control)
 - [ git ] (https://git-scm.com/)
@@ -14,9 +24,6 @@
 - Bugzilla
 - Trac
 - Jira
-
-### Build-Server
-- Jenkins
 
 ### [Code Review ](https://en.wikipedia.org/wiki/List_of_tools_for_code_review)
 - GitLab
