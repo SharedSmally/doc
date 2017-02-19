@@ -2,9 +2,12 @@ docker
 ======
 
 ## [Docker Toolbox](https://www.docker.com/technologies/overview)
-Docker Toolbox includes docker engine, docker-machine(connect to dock hosts), and docker-compose. For each docker host, the related files are stored in ~/.docker/machine/machines/xxx, which has ssh key id_rsa, and NAT network: (127.0.0.1:55420=>guest:22). cp id_rsa to ~/.ssh; run **ssh docker@127.0.0.1 -p 55420** to login the docker host; and run **docker exec -it container_name bash** to login the docker container.
-
-Login as root: **docker exec -u 0 -it mycontainer bash**
+Docker Toolbox includes docker engine, docker-machine(connect to dock hosts), and docker-compose. For each docker host, the related files are stored in ~/.docker/machine/machines/xxx, which has ssh key id_rsa, and NAT network: (127.0.0.1:55420=>guest:22).
+- cp id_rsa to ~/.ssh; 
+- run **ssh docker@127.0.0.1 -p 55420** to login the docker host; 
+- run **docker exec -it container_name bash** to login the docker container.
+- Login as root: **docker exec -u 0 -it mycontainer bash**
+- Install pkg: **apt-get update; apt-get install xxx**
 
 ## Docker VM (hold docker container)
 - VM operations:
