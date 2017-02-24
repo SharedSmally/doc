@@ -17,3 +17,8 @@ Linux
 
 ## Device
 - /device/
+
+## Commands
+- [cut]():  cut -d';' -f9
+- [grep]():
+- [find]():
