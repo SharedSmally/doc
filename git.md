@@ -54,4 +54,10 @@ git
 
    git push
    
+- Add all modified/untracked
+
+   git add -u: all modified
+   
+   git add -A:  all untracked
+   
    
