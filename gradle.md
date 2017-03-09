@@ -35,3 +35,24 @@ Some core types in Gradle: [API JavaDoc](https://docs.gradle.org/current/javadoc
 |[gradle](https://docs.gradle.org/current/dsl/org.gradle.api.invocation.Gradle.html) | Represents an invocation of [Gradle](https://docs.gradle.org/current/dsl/org.gradle.api.invocation.Gradle.html). Obtain a Gradle instance by calling Project.getGradle().
 |[script](https://docs.gradle.org/current/dsl/org.gradle.api.Script.html) | This interface is implemented by all Gradle scripts to add in some Gradle-specific methods.
 
+## gradle
+- Use gradle daemon:
+```
+Add the following in ~/.gradle/gradle.properties:
+    org.gradle.daemon=true
+Stop gradle daemon:  gradle --stop
+```
+- Init a gradle project: using [init plugin](https://docs.gradle.org/current/userguide/build_init_plugin.html)
+
+gradle init --type xxx
+
+Supported types:
+   - pom: convert pom.xml to build.gradle
+   - java-application:
+   - java-library:  --test-framework testng|spock|junit
+   - scala-library
+   - groovy-library
+   - basic
+   
+   
+
