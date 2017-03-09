@@ -77,8 +77,10 @@ entity value: any character that is not an '&', '%' or ' " ', a parameter entity
 <!ENTITY % name PUBLIC "public_ID" "URI">
 %name;
 ```
+
          - URI: a URL where the external parameter entity can be found.
          - public_ID: Used by an XML processor to generate an alternate URI to find the external parameter entity. If it cannot be found at this URI, the XML processor must use the normal URI.
+         
 ```
 <?xml version="1.0" standalone="no"?>
 <!DOCTYPE student [
