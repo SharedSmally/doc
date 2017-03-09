@@ -18,8 +18,10 @@ entity value: any character that is not an '&', '%' or ' " ', a parameter entity
 <!ENTITY name SYSTEM "URI">
 <!ENTITY name PUBLIC "public_ID" "URI">
 ```
-  - URI: In practice, this is a URL where the external parsed entity can be found.
-  - public_ID: This may be used by an XML processor to generate an alternate URI where the external parsed entity can be found. If it cannot be found at this URI, the XML processor must use the normal URI.
+
+    - URI: In practice, this is a URL where the external parsed entity can be found.
+    - public_ID: This may be used by an XML processor to generate an alternate URI where the external parsed entity can be found. If it cannot be found at this URI, the XML processor must use the normal URI.
+
 ```
 <?xml version="1.0" standalone="no" ?>
 <!DOCTYPE copyright [
@@ -32,11 +34,15 @@ entity value: any character that is not an '&', '%' or ' " ', a parameter entity
 ]>
 <copyright>&c;</copyright>
 ```
+
 - EXTERNAL (UNPARSED) GENERAL ENTITY Declaration: generally reference non-XML data that an XML processor does not have to parse.
+
 ```
 <!ENTITY name SYSTEM "URI" NDATA name>
 <!ENTITY name PUBLIC "public_ID" "URI" NDATA name>
+```
 
+```
 <?xml version="1.0" standalone="no" ?>
 <!DOCTYPE img [
   <!ENTITY logo SYSTEM "http://www.xmlwriter.net/logo.gif" NDATA gif>
@@ -56,7 +62,9 @@ entity value: any character that is not an '&', '%' or ' " ', a parameter entity
 ```
 <!ENTITY % name "entity_value">
 ```
-   - entity_value: any character that is not an '&', '%' or ' " ', a parameter entity reference ('%Name;'), an entity reference ('&Name;') or a Unicodeglossary character reference.
+
+    - entity_value: any character that is not an '&', '%' or ' " ', a parameter entity reference ('%Name;'), an entity reference ('&Name;') or a Unicodeglossary character reference.
+
 ```
 <!--external DTD example-->
 <!ENTITY % p "(#PCDATA)">
@@ -69,8 +77,10 @@ entity value: any character that is not an '&', '%' or ' " ', a parameter entity
 ```
    
 - EXTERNAL (PARSED):   used to link external DTDs: may refer a list of entities defined in external files (included). 
-    - Private external entities: identified by the keyword SYSTEM, and are intended for use by a single author or group of authors.
-    - Public external entities: identified by the keyword PUBLIC and are intended for broad use.
+
+      - Private external entities: identified by the keyword SYSTEM, and are intended for use by a single author or group of authors.
+      - Public external entities: identified by the keyword PUBLIC and are intended for broad use.
+
 ```
 <!ENTITY % name SYSTEM "URI">
 %name;
@@ -88,7 +98,9 @@ entity value: any character that is not an '&', '%' or ' " ', a parameter entity
   %student;
 ]>
 ```
+
 The external entity files may have a list of entities used by &NAME;:
+
 ```
 <!ENTITY NAME "VALUE" >
 ```
