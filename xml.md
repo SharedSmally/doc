@@ -76,7 +76,7 @@ entity value: any character that is not an '&', '%' or ' " ', a parameter entity
 <!ELEMENT subject %p;>
 ```
    
-- EXTERNAL (PARSED):   used to link external DTDs: may refer a list of entities defined in external files (included). 
+- **EXTERNAL (PARSED)**:   used to link external DTDs: may refer a list of entities defined in external files (included). 
 
       - Private external entities: identified by the keyword SYSTEM, and are intended for use by a single author or group of authors.
       - Public external entities: identified by the keyword PUBLIC and are intended for broad use.
