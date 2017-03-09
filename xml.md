@@ -50,3 +50,43 @@ entity value: any character that is not an '&', '%' or ' " ', a parameter entity
 ]>
 <img src="logo"/>
 ```
+
+### The PARAMETER ENTITY Declaration:
+- INTERNAL (PARSED): declare entities existing only in the DTD.
+```
+<!ENTITY % name "entity_value">
+```
+   - entity_value: any character that is not an '&', '%' or ' " ', a parameter entity reference ('%Name;'), an entity reference ('&Name;') or a Unicodeglossary character reference.
+```
+<!--external DTD example-->
+<!ENTITY % p "(#PCDATA)">
+<!ELEMENT student (id,surname,firstname,dob,(subject)*)>
+<!ELEMENT id %p;>
+<!ELEMENT surname %p;>
+<!ELEMENT firstname %p;>
+<!ELEMENT dob %p;>
+<!ELEMENT subject %p;>
+```
+   
+- EXTERNAL (PARSED):   used to link external DTDs: may refer a list of entities defined in external files (included). 
+    - Private external entities: identified by the keyword SYSTEM, and are intended for use by a single author or group of authors.
+    - Public external entities: identified by the keyword PUBLIC and are intended for broad use.
+```
+<!ENTITY % name SYSTEM "URI">
+%name;
+<!ENTITY % name PUBLIC "public_ID" "URI">
+%name;
+```
+         - URI: a URL where the external parameter entity can be found.
+         - public_ID: Used by an XML processor to generate an alternate URI to find the external parameter entity. If it cannot be found at this URI, the XML processor must use the normal URI.
+```
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE student [
+  <!ENTITY % student SYSTEM "http://www.university.com/student.dtd">
+  %student;
+]>
+```
+The external entity files may have a list of entities used by &NAME;:
+```
+<!ENTITY NAME "VALUE" >
+```
