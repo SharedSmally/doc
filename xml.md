@@ -173,3 +173,11 @@ The external entity files may have a list of entities used by &NAME;:
     xmlns:xi   CDATA   #FIXED   "http://www.w3.org/2001/XInclude"
 >
 ```
+
+### xlink vs xinclude vs xpointer:
+XLink and XPointer are very similar to provide a way to reference other elements:
+
+   - with XLink you can reference other or the same xml documents
+   - with XPointer you can reference portions of the same xml document only
+
+XInclude is to combine different xml documents into one. The inclusion happens straight after parsing and before any other processing. The classic example is to imagine a book composed by several chapters and each chapter is a separate xml document
