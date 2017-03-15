@@ -161,3 +161,125 @@ package is ready for distribution: xxxxxx-1.0.tar.gz
 ```
 
 ## cxx simulating of [multi-index](http://www.codesynthesis.com/~boris/blog/2012/09/11/emulating-boost-multi-index-with-std-containers/)
+- multi-index
+```
+struct person
+{
+  person (const std::string& email_,
+          const std::string& name_,
+          unsigned short age_)
+     : email(email_),name(name_),age(age_)
+          {};
+
+  std::string email;
+  std::string name;
+  unsigned short age;
+};
+
+template <typename T>
+struct key
+{
+  mutable const T* p;
+
+  key (const T* v = 0): p (v) {}
+  bool operator< (const key& x) const {return *p < *x.p;}
+};
+
+template <typename I>
+struct map_iterator_adapter: I
+{
+  typedef const typename I::value_type::second_type value_type;
+  typedef value_type* pointer;
+  typedef value_type& reference;
+
+  map_iterator_adapter () {}
+  map_iterator_adapter (I i): I (i) {}
+
+  reference operator* () const {return I::operator* ().second;}
+  pointer operator-> () const {return &I::operator-> ()->second;}
+};
+
+struct person_set
+{
+  typedef std::map<key<std::string>, person> email_map;
+  typedef map_iterator_adapter<email_map::const_iterator> iterator;
+  typedef std::map<key<std::string>, iterator> name_map;
+
+
+  std::pair<iterator, bool>
+  insert (const person& v)
+  {
+    // First check that have any collisions in the secondary indexes.
+    {
+      auto i (name_map_.find (&v.name));
+      if (i != name_map_.end ())
+        return std::make_pair (i->second, false);
+    }
+
+    auto r (email_map_.insert (email_map::value_type (&v.email, v)));
+    iterator i (r.first);
+
+    if (r.second)
+    {
+      r.first->first.p = &i->email;
+      name_map_.insert (name_map::value_type (&i->name, i));
+    }
+
+    return std::make_pair (i, r.second);
+  }
+
+  iterator
+  find_email (const std::string& email) const
+  {
+    return email_map_.find (&email);
+  }
+
+  iterator
+  find_name (const std::string& name) const
+  {
+    auto i (name_map_.find (&name));
+    return i != name_map_.end () ? i->second : end ();
+  }
+
+  iterator begin () const {return email_map_.begin ();}
+  iterator end () const {return email_map_.end ();}
+
+private:
+  email_map email_map_;
+  name_map name_map_;
+};
+int main()
+{
+        person_set s;
+        s.insert (person ("john@doe.com", "John Doe", 29));
+        s.insert (person ("jane@doe.com", "Jane Doe", 27));
+        auto i (s.find_email ("john@doe.com"));
+        cout << "Find_by_email: email=" << i->email << "; name=" << i->name << "; age=" << i->age << endl;
+
+        auto j (s.find_name ("Jane Doe"));
+        cout << "Find_by_name: email=" << j->email << "; name=" << j->name << "; age=" << j->age << endl;
+}
+```
+
+- Use tuple as the composite key
+```
+#include <map>
+#include <tuple>
+#include <string>
+#include <iostream>
+typedef std::map<std::tuple<int, std::string>, double>  MyMap;
+int main()
+{
+        MyMap values;
+        values.insert( std::make_pair(std::make_tuple(2, "world"), 53.7 ));
+        values.insert( std::make_pair(std::make_tuple(1, "www"), 100.3 ));
+        values.insert( std::make_pair(std::make_tuple(1, "hello"), 13.3 ));
+
+        cout << "tuple size=" << std::tuple_size<MyMap::key_type>::value << endl;
+
+        for (auto it : values)
+        {
+                cout << "key1=" << std::get<0>(it.first) << "; key2=" << std::get<1>(it.first) << "; value=" << it.second << endl;
+        }
+}
+```
