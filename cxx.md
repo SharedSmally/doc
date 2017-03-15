@@ -159,3 +159,5 @@ package is ready for distribution: xxxxxx-1.0.tar.gz
      AC_CONFIG_FILES([file...])
      AC_OUTPUT
 ```
+
+## cxx simulating of [multi-index](http://www.codesynthesis.com/~boris/blog/2012/09/11/emulating-boost-multi-index-with-std-containers/)
