@@ -22,6 +22,12 @@ echo "variable:" $${usher}; \
 
 done
   ```
+ - foreach
+ ```
+dirs := a b c d
+files := $(foreach dir,$(dirs),$(wildcard $(dir)/*))
+$(foreach dir,$(shell ls),echo $(dir)))
+ ```
  - function
  
  Here is a simple Makefile with a custom function:
