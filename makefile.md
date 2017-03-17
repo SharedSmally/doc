@@ -17,11 +17,29 @@ make -qp | awk -F':' '/^[a-zA-Z0-9][^$#\/\t=]*:([^=]|$)/ {split($1,A,/ /);for(i 
  - for-loop
  ``` 
 for var in ${vars}; do \ 
-
-echo "variable:" $${usher}; \ 
-
+   echo "variable:" $${usher}; \ 
 done
+
+LIST = pre1 pre2 pre3 pre4 pre5 pre6 pre7 pre8 pre9 pre10
+START = 0
+input = somename
+file_name = whatever
+
+some_target:
+    for prefix in $(LIST); do \
+        if test "$(input)" = $$prefix; then \
+            START=1; \
+        fi; \
+        if test "$(START)" = 1; then \
+            if test -f  $$prefix$(file_name); then \
+                <do_A>; \
+            else \
+                <do_B>; \
+            fi; \
+        fi; \
+    done
   ```
+  
  - foreach
  ```
 dirs := a b c d
