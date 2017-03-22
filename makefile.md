@@ -96,11 +96,17 @@ INSTALLDIRS = $(DIRS:%=install-%)
 CLEANDIRS = $(DIRS:%=clean-%)
 TESTDIRS = $(DIRS:%=test-%)
 
-all: $(BUILDDIRS)
-$(DIRS): $(BUILDDIRS)
+all: subdirs
+
+.PHONY: subdirs $(DIRS)
+subdirs:$(DIRS)
+$(DIRS): 
+    $(MAKE) -C $@
+
+.PHONY: build $(BUILDDIRS)
+build:$(BUILDDIRS)
 $(BUILDDIRS):
-   $(MAKE) -C $(@:build-%=%)
-build-utils: build-dev
+   $(MAKE) -C $(@:build-%=%) build
 
 install: $(INSTALLDIRS) all
 $(INSTALLDIRS):
@@ -114,8 +120,6 @@ clean: $(CLEANDIRS)
 $(CLEANDIRS): 
 	  $(MAKE) -C $(@:clean-%=%) clean
 
-.PHONY: subdirs $(DIRS)
-.PHONY: subdirs $(BUILDDIRS)
 .PHONY: subdirs $(INSTALLDIRS)
 .PHONY: subdirs $(TESTDIRS)
 .PHONY: subdirs $(CLEANDIRS)
