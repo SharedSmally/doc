@@ -1,5 +1,9 @@
 # perl
 
+# Install Missing Module:
+- Linux: cpan install  module
+- Windows: ppm install module
+
 ##[XML DOM](http://www.cgi101.com/modules/XML.dom.html)
 ##[XML LibXML](http://search.cpan.org/~shlomif/XML-LibXML/LibXML.pod)
 ### [Document](http://search.cpan.org/dist/XML-LibXML/lib/XML/LibXML/Document.pod)
