@@ -28,6 +28,15 @@ Eclipse:
     
     - Generate server skeleton:   Right Click \*.wsdl file => Web Services => Generate Java Bean skeleton =>  Top Down Javabean Web Service -> Specify WSDL nnamespace to Package Name Mappings(Check and update: source folde) => Finish
     
+    - Start Server: Right Click on Project => RunAs => Sprint Boot App
 
+    - Test with SoapUI:
+     
+       - File -> New Soap Project -> Project Name; Initial WSDL (define endpoint, such as: http://localhost:9080/ThirdPartyCallService/services/ThirdPartyCall: (soap:address/location in \*.wsdl) PortTypes defines Operations)
+       
+       - For each operation; Add new Request -> Update Request Contents -> Submit Request to the specific endpoint
+       
+       
+       
 ## Style
 - Show whitespaces: Window>Preferences>General>Editors>Text Editors
