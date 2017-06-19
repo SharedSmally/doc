@@ -287,27 +287,31 @@ Sequence
 ```
 
 ### [XSLT functions](http://www.w3schools.com/xml/xsl_functions.asp)
- - Accessor Functions
+
+- Accessor Functions
         - fn:node\-name(node)	
         - fn:nilled(node)		
         - fn:data(item.item,...)	
         - fn:base\-uri()
         - fn:base\-uri(node)	
         - fn:document\-uri(node)	
- - Error and Trace Functions
+
+- Error and Trace Functions
         - fn:error()
         - fn:error(error)
         - fn:error(error,description)
         - fn:error(error,description,error\-object)	
         - fn:trace(value,label)	
- - Functions on Numeric Values
+
+- Functions on Numeric Values
         - fn:number(arg)	
         - fn:abs(num)	
         - fn:ceiling(num)	
         - fn:floor(num)	
         - fn:round(num)	
         - fn:round-half\-to\-even()	
- - Functions on Strings
+
+- Functions on Strings
         - fn:string(arg)	
         - fn:codepoints\-to\-string((int,int,...))
         - fn:string\-to\-codepoints(string)
@@ -336,12 +340,14 @@ Sequence
         - fn:replace(string,pattern,replace)	
         - fn:tokenize(string,pattern)
         - fn:resolve\-uri(relative,base)	 
- - Functions on Boolean Values
+
+- Functions on Boolean Values
         - fn:boolean(arg)	
         - fn:not(arg)	
         - fn:true()	
         - fn:false()	
- - Functions on Durations, Dates and Times
+
+- Functions on Durations, Dates and Times
         - fn:dateTime(date,time)	
         - fn:years\-from\-duration(datetimedur)	
         - fn:months\-from-duration(datetimedur)	
@@ -367,14 +373,16 @@ Sequence
         - fn:adjust\-dateTime\-to\-timezone(datetime,timezone)
         - fn:adjust\-date\-to\-timezone(date,timezone)	
         - fn:adjust\-time\-to\-timezone(time,timezone)	
- - Functions Related to QNames
+
+- Functions Related to QNames
         - fn:QName()	 
         - fn:local\-name\-from-QName()	 
         - fn:namespace\-uri\-from-QName()	 
         - fn:namespace\-uri\-for\-prefix()	 
         - fn:in\-scope\-prefixes()	 
         - fn:resolve\-QName()	 
- - Functions on Nodes
+
+- Functions on Nodes
         - fn:name()
         - fn:name(nodeset)	
         - fn:local\-name()
@@ -384,7 +392,8 @@ Sequence
         - fn:lang(lang)	
         - fn:root()
         - fn:root(node)	
- - Functions on Sequences
+
+- Functions on Sequences
         - fn:index\-of((item,item,...),searchitem)	
         - fn:remove((item,item,...),position)	
         - fn:empty(item,item,...)	
@@ -394,26 +403,31 @@ Sequence
         - fn:reverse((item,item,...))	
         - fn:subsequence((item,item,...),start,len)	
         - fn:unordered((item,item,...))	
- - Functions That Test the Cardinality of Sequences
+
+- Functions That Test the Cardinality of Sequences
         - fn:zero\-or\-one(item,item,...)
         - fn:one\-or\-more(item,item,...)
         - fn:exactly\-one(item,item,...)
- - Equals, Union, Intersection and Except
+
+- Equals, Union, Intersection and Except
         - fn:deep\-equal(param1,param2,collation)	
- - Aggregate Functions
+
+- Aggregate Functions
         - fn:count((item,item,...))	
         - fn:avg((arg,arg,...))	
         - fn:max((arg,arg,...))	
         - fn:min((arg,arg,...))	
         - fn:sum(arg,arg,...)	
- - Functions that Generate Sequences
+
+- Functions that Generate Sequences
         - fn:id((string,string,...),node)	
         - fn:idref((string,string,...),node)
         - fn:doc(URI)	 
         - fn:doc\-available(URI)	
         - fn:collection()
         - fn:collection(string)	 
- - Context Functions
+
+- Context Functions
         - fn:position()	
         - fn:last()	
         - fn:current\-dateTime()
@@ -422,7 +436,8 @@ Sequence
         - fn:implicit\-timezone()	
         - fn:default\-collation()	
         - fn:static\-base\-uri()	
- - XSLT Functions
+
+- XSLT Functions
         - current()	
         - document()	
         - element\-available()	
