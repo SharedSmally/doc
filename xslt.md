@@ -521,3 +521,13 @@ and then access the variable $x in any XPath expression.
 
 </xsl:stylesheet>
 ```
+
+## tips
+- get attribute value with a dynamic name
+```
+<xsl:value-of select="@*[name() = $attribute-name]"/>
+```
+
+- variable value:  {$variable_name} instead of ${variable_name}
+- test="$var='string'" instead of  test="$var=string"
+- value-of select="string" or select="$var" instead of  select="string"
