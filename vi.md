@@ -58,3 +58,10 @@
 - \>	Anchor - end of word
 - \(...\)	Grouping - usually used to group conditions
 - \n	Contents of nth grouping
+
+### tips
+- Turn on/off Highlighting all the search pattern matches:  
+   :set hlsearch     
+   :nohlsearch
+- Turn off auto-indent when pasting text
+   :set pastetoggle=<F3>
