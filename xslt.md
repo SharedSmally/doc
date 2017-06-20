@@ -45,6 +45,13 @@
 
     - importing a style sheet is the same as including it except that definitions and template rules in the importing style sheet take precedence over those in the imported style sheet.
 
+- Preserve/strip space for the specific elements
+```
+<xsl:preserve-space elements="list-of-element-names"/>
+<xsl:strip-space elements="list-of-element-names"/>
+<xsl:strip-space elements="*"/>
+```
+
 - template
 ```xml
 <xsl:template
@@ -72,7 +79,9 @@
   <!-- Content: (xsl:sort | xsl:with-param)* -->
 </xsl:apply-templates>
 ```
+
 - Control
+
        - if
 ```xml
 <xsl:if
