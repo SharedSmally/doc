@@ -473,9 +473,11 @@ Sequence
 
 ## Pass parameters from command line:
 At the top level of a (2.0) stylesheet
+
    <xsl:param name="x" as="xs:integer" required="yes"/>
 
 and then invoke Saxon as
+
    java -jar saxon8.jar source.xml style.xsl x=17
 
 and then access the variable $x in any XPath expression.
@@ -483,7 +485,10 @@ and then access the variable $x in any XPath expression.
 ## Sample
 ```
 <?xml version="1.0"?>
-<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+<xsl:stylesheet version="2.0" 
+   xmlns:xs="http://www.w3.org/2001/XMLSchema"
+   xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+   >
 
 <xsl:template match="/">
   <html>
