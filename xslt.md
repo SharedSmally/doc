@@ -470,6 +470,16 @@ Sequence
   - system\-property()	
   - unparsed\-entity\-uri()	
 
+
+## Pass parameters from command line:
+At the top level of a (2.0) stylesheet
+   <xsl:param name="x" as="xs:integer" required="yes"/>
+
+and then invoke Saxon as
+   java -jar saxon8.jar source.xml style.xsl x=17
+
+and then access the variable $x in any XPath expression.
+
 ## Sample
 ```
 <?xml version="1.0"?>
