@@ -7,16 +7,16 @@
 ## Data Types:
 
 - Basic Types:
- - BYTE	A single 8-bit byte.	1
- - BOOLEAN	As for UINT32, but only 0 and 1 are valid values.	4
- - INT16	16-bit signed integer in the message's byte order.	2
- - UINT16	16-bit unsigned integer in the message's byte order.	2
- - INT32	32-bit signed integer in the message's byte order.	4
- - UINT32	32-bit unsigned integer in the message's byte order.	4
- - INT64	64-bit signed integer in the message's byte order.	8
- - UINT64	64-bit unsigned integer in the message's byte order.	8
- - DOUBLE	64-bit IEEE 754 double in the message's byte order.	8
- - UNIX_FD	32-bit unsigned integer in the message's byte order. The actual file descriptors need to be transferred out-of-band via some platform specific mechanism. On the wire, values of this type store the index to the file descriptor in the array of file descriptors that accompany the message. 
+  - BYTE	A single 8-bit byte.	1
+  - BOOLEAN	As for UINT32, but only 0 and 1 are valid values.	4
+  - INT16	16-bit signed integer in the message's byte order.	2
+  - UINT16	16-bit unsigned integer in the message's byte order.	2
+  - INT32	32-bit signed integer in the message's byte order.	4
+  - UINT32	32-bit unsigned integer in the message's byte order.	4
+  - INT64	64-bit signed integer in the message's byte order.	8
+  - UINT64	64-bit unsigned integer in the message's byte order.	8
+  - DOUBLE	64-bit IEEE 754 double in the message's byte order.	8
+  - UNIX_FD	32-bit unsigned integer in the message's byte order. The actual file descriptors need to be transferred out-of-band via some platform specific mechanism. On the wire, values of this type store the index to the file descriptor in the array of file descriptors that accompany the message. 
 
 - String Types:
   - STRING	A UINT32 indicating the string's length in bytes excluding its terminating nul, followed by non-nul string data of the given length, followed by a terminating nul byte.	4 (for the length)
