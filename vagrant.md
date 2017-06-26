@@ -40,3 +40,7 @@ Common commands:
 ```
 
 ### Vagrant file: https://www.vagrantup.com/docs/vagrantfile/
+- k8s:  
+    - coreOS https://coreos.com/kubernetes/docs/latest/kubernetes-on-vagrant.html
+    - git:   git clone https://github.com/coreos/coreos-kubernetes.git
+
