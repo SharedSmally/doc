@@ -19,11 +19,11 @@ Common commands:
      resume          resume a suspended vagrant machine     
 
      box             manages boxes: installation, removal, etc.
+     package         packages a running vagrant environment into a box
      global-status   outputs status Vagrant environments for this user
 
      help            shows the help for a subcommand
      login           log in to HashiCorp's Atlas
-     package         packages a running vagrant environment into a box
      plugin          manages plugins: install, uninstall, update, etc.
      port            displays information about guest port mappings
      powershell      connects to machine via powershell remoting
@@ -46,12 +46,17 @@ Common commands:
 
 
 ### Vagrant Boxes
-- Build new Box: (https://blog.engineyard.com/2014/building-a-vagrant-box)
+- Build new Box: (https://blog.engineyard.com/2014/building-a-vagrant-box):  
+
      Vagrant Box is a tarred, gzip image file to create a new VM. For VBox provider, it contains:
      - Vagrantfile:  information that will be merged into local Vagrantfile created when run vagrant init boxname in a folder
      - box-disk.vmdk: the virtual hard disk drive
      - box.ovf: defines the virtual hardware for the box
      - metadata.json: tells vagrant what provider the box works with
+     
+     Build a box from a running VM:
+     - $ vagrant package --base vagrant-centos64
+     
 - centOS:  http://cloud.centos.org/centos/7/vagrant/x86_64/images/
 - ubuntu:  https://atlas.hashicorp.com/ubuntu
 - public Vagrant box catalog:: https://atlas.hashicorp.com/boxes/search
