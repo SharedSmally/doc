@@ -208,6 +208,11 @@ Vagrant provisions VM only once on the first run, any subsequent provisioning mu
 - coreOS + kubernetes: https://github.com/coreos/coreos-kubernetes
 - k8s + coreOS https://coreos.com/kubernetes/docs/latest/kubernetes-on-vagrant.html
 
+- Commands:
+     - vagrant package --base mybox --output /path/to/mybox.box
+     - vagrant box add mybox /path/to/mybox.box
+     - vagrant box list
+     
 ### Create a new VM in VirtualBox
 ```
 Name: vagrant-<distro><arch> i.e. vagrant-centos64
@@ -231,3 +236,5 @@ Guest IP:
 Guest Port: 22
 Mount the Linux distro ISO
 ```
+
+
