@@ -133,9 +133,11 @@ EOF
        s.path "provision/setup.sh"
    end
 end
+```
 
 ########################
 provision/setup.sh
+```
 #!/bin/bash
 
 # apt-get install pkg -y > /dev/null
@@ -155,9 +157,11 @@ cp /var/www/provision/config/nginx_vhost /etc/nginx/sites-available/nginx_vhost 
 ln -s /etc/nginx/sites-available/nginx_vhost /etc/nginx/sites-enabled/   
 rm -rf /etc/nginx/sites-available/default
 service nginx restart > /dev/null
-    
+```
+
 ########################
 provision/config/nginx_vhost:
+```
 server {
         listen 80;
         server_name localhost;
