@@ -62,3 +62,27 @@ Common commands:
 - public Vagrant box catalog:: https://atlas.hashicorp.com/boxes/search
 - coreOS: https://github.com/coreos/coreos-vagrant
 - coreOS + kubernetes: https://github.com/coreos/coreos-kubernetes
+
+### Create a new VM in VirtualBox
+```
+Name: vagrant-<distro><arch> i.e. vagrant-centos64
+Type: Linux
+Version: <distro> (64-bit)
+Memory Size: 1024MB*
+New Virtual Disk:
+Type: VMDK (Dynamically allocated)
+Max Size: 40GB
+Modify the VM’s settings:
+
+Disable audio
+Disable USB
+Ensure Network Adapter 1 is set to NAT
+Add a port forwarding rule as follows:
+Name: SSH
+Protocol: TCP
+Host IP:
+Host Port: 2222
+Guest IP:
+Guest Port: 22
+Mount the Linux distro ISO
+```
