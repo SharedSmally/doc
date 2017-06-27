@@ -44,3 +44,16 @@ Common commands:
     - coreOS https://coreos.com/kubernetes/docs/latest/kubernetes-on-vagrant.html
     - git:   git clone https://github.com/coreos/coreos-kubernetes.git
 
+
+### Vagrant Boxes
+- Build new Box: (https://blog.engineyard.com/2014/building-a-vagrant-box)
+     Vagrant Box is a tarred, gzip image file to create a new VM. For VBox provider, it contains:
+     - Vagrantfile:  information that will be merged into local Vagrantfile created when run vagrant init boxname in a folder
+     - box-disk.vmdk: the virtual hard disk drive
+     - box.ovf: defines the virtual hardware for the box
+     - metadata.json: tells vagrant what provider the box works with
+- centOS:  http://cloud.centos.org/centos/7/vagrant/x86_64/images/
+- ubuntu:  https://atlas.hashicorp.com/ubuntu
+- public Vagrant box catalog:: https://atlas.hashicorp.com/boxes/search
+- coreOS: https://github.com/coreos/coreos-vagrant
+- coreOS + kubernetes: https://github.com/coreos/coreos-kubernetes
