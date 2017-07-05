@@ -1,0 +1,9 @@
+## Fabric8:
+
+### setup:
+- Start K8scluster: ./minikube.exe start
+- start Fabric8: gofabric8  start --vm-driver=virtualbox
+- ERROR: Cannot connect to api server, retrying...
+    - The config file is not set properly:
+    - gofabric8 status:   find working envs
+    - cp config to the proper directory.
