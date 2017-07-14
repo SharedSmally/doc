@@ -1,0 +1,1052 @@
+<sockopts desc="Socket options">
+
+	<sockopt command="man -s socket">
+		<desc>
+<![CDATA[ 
+
+       The  socket  options  listed  below can be set by using setsockopt(2) and read with getsockopt(2) with the socket level set to SOL_SOCKET for all sockets.  Unless otherwise noted,
+       optval is a pointer to an int.
+]]>
+		</desc>
+
+		<opt name="SO_ACCEPTCONN">
+			<desc>
+<![CDATA[ 
+
+              Returns a value indicating whether or not this socket has been marked to accept connections with listen(2).  The value 0 indicates that this is not a listening socket,  the
+              value 1 indicates that this is a listening socket.  This socket option is read-only.
+]]>
+			</desc>
+		</opt>
+
+		<opt name="SO_BINDTODEVICE">
+			<desc>
+<![CDATA[ 
+
+              Bind  this  socket  to  a particular device like "eth0", as specified in the passed interface name.  If the name is an empty string or the option length is zero, the socket
+              device binding is removed.  The passed option is a variable-length null-terminated interface name string with the maximum size of IFNAMSIZ.  If a  socket  is  bound  to  an
+              interface, only packets received from that particular interface are processed by the socket.  Note that this works only for some socket types, particularly AF_INET sockets.
+              It is not supported for packet sockets (use normal bind(2) there).
+
+              Before Linux 3.8, this socket option could be set, but could not retrieved with getsockopt(2).  Since Linux 3.8, it is readable.  The optlen  argument  should  contain  the
+              buffer size available to receive the device name and is recommended to be IFNAMSZ bytes.  The real device name length is reported back in the optlen argument.
+]]>
+			</desc>
+		</opt>
+
+		<opt name="SO_BROADCAST">
+			<desc>
+<![CDATA[ 
+              Set or get the broadcast flag.  When enabled, datagram sockets are allowed to send packets to a broadcast address.  This option has no effect on stream-oriented sockets.
+]]>
+			</desc>
+		</opt>
+
+		<opt name="SO_BSDCOMPAT">
+			<desc>
+<![CDATA[ 
+              Enable  BSD bug-to-bug compatibility.  This is used by the UDP protocol module in Linux 2.0 and 2.2.  If enabled ICMP errors received for a UDP socket will not be passed to
+              the user program.  In later kernel versions, support for this option has been phased out: Linux 2.4 silently ignores it, and Linux 2.6 generates a kernel warning (printk())
+              if  a  program  uses this option.  Linux 2.0 also enabled BSD bug-to-bug compatibility options (random header changing, skipping of the broadcast flag) for raw sockets with
+              this option, but that was removed in Linux 2.2.
+]]>
+			</desc>
+		</opt>
+
+		<opt name="SO_DEBUG">
+			<desc>
+<![CDATA[ 
+              Enable socket debugging.  Only allowed for processes with the CAP_NET_ADMIN capability or an effective user ID of 0.
+
+</opt>
+
+<opt name="SO_DOMAIN" since="Linux 2.6.32)">
+   <desc>
+<![CDATA[ 
+              Retrieves the socket domain as an integer, returning a value such as AF_INET6.  See socket(2) for details.  This socket option is read-only.
+]]>
+			</desc>
+		</opt>
+
+		<opt name="SO_ERROR">
+			<desc>
+<![CDATA[ 
+              Get and clear the pending socket error.  This socket option is read-only.  Expects an integer.
+]]>
+			</desc>
+		</opt>
+
+		<opt name="SO_DONTROUTE">
+			<desc>
+<![CDATA[ 
+              Don't send via a gateway, send only to directly connected hosts.  The same effect can be achieved by setting the MSG_DONTROUTE flag on a socket send(2) operation.   Expects
+              an integer boolean flag.
+]]>
+			</desc>
+		</opt>
+
+		<opt name="SO_KEEPALIVE">
+			<desc>
+<![CDATA[ 
+              Enable sending of keep-alive messages on connection-oriented sockets.  Expects an integer boolean flag.
+]]>
+			</desc>
+		</opt>
+
+		<opt name="SO_LINGER">
+			<desc>
+<![CDATA[ 
+              Sets or gets the SO_LINGER option.  The argument is a linger structure.
+
+                  struct linger {
+                      int l_onoff;    /* linger active */
+                      int l_linger;   /* how many seconds to linger for */
+                  };
+
+              When enabled, a close(2) or shutdown(2) will not return until all queued messages for the socket have been successfully sent or the linger timeout has been reached.  Other-
+              wise, the call returns immediately and the closing is done in the background.  When the socket is closed as part of exit(2), it always lingers in the background.
+]]>
+			</desc>
+		</opt>
+
+		<opt name="SO_MARK" since="Linux 2.6.25)">
+			<desc>
+<![CDATA[ 
+              Set the mark for each packet sent through this socket (similar to the netfilter MARK target but socket-based).  Changing the mark can be used for mark-based routing without
+              netfilter or for packet filtering.  Setting this option requires the CAP_NET_ADMIN capability.
+]]>
+			</desc>
+		</opt>
+
+		<opt name="SO_OOBINLINE">
+			<desc>
+<![CDATA[ 
+              If  this option is enabled, out-of-band data is directly placed into the receive data stream.  Otherwise out-of-band data is passed only when the MSG_OOB flag is set during
+              receiving.
+]]>
+			</desc>
+		</opt>
+
+		<opt name="SO_PASSCRED">
+			<desc>
+<![CDATA[ 
+              Enable or disable the receiving of the SCM_CREDENTIALS control message.  For more information see unix(7).
+]]>
+			</desc>
+		</opt>
+
+		<opt name="SO_PEEK_OFF" since="Linux 3.4)">
+			<desc>
+<![CDATA[ 
+              This option, which is currently supported only for unix(7) sockets, sets the value of the "peek offset" for the recv(2) system call when used with MSG_PEEK flag.
+
+              When this option is set to a negative value (it is set to -1 for all new sockets), traditional behavior is provided: recv(2) with the MSG_PEEK flag will peek data from  the
+              front of the queue.
+
+              When  the  option  is  set  to  a value greater than or equal to zero, then the next peek at data queued in the socket will occur at the byte offset specified by the option
+              value.  At the same time, the "peek offset" will be incremented by the number of bytes that were peeked from the queue, so that a subsequent peek will return the next  data
+              in the queue.i
+
+              If  data  is  removed  from  the front of the queue via a call to recv(2) (or similar) without the MSG_PEEK flag, the "peek offset" will be decreased by the number of bytes
+              removed.  In other words, receiving data without the MSG_PEEK flag will cause the "peek offset" to be adjusted to maintain the correct relative position in the queued data,
+              so that a subsequent peek will retrieve the data that would have been retrieved had the data not been removed.
+
+              For datagram sockets, if the "peek offset" points to the middle of a packet, the data returned will be marked with the MSG_TRUNC flag.
+
+              The following example serves to illustrate the use of SO_PEEK_OFF.  Suppose a stream socket has the following queued input data:
+
+                  aabbccddeeff
+
+
+              The following sequence of recv(2) calls would have the effect noted in the comments:
+
+                  int ov = 4;                  // Set peek offset to 4
+                  setsockopt(fd, SOL_SOCKET, SO_PEEK_OFF, &ov, sizeof(ov));
+
+                  recv(fd, buf, 2, MSG_PEEK);  // Peeks "cc"; offset set to 6
+                  recv(fd, buf, 2, MSG_PEEK);  // Peeks "dd"; offset set to 8
+                  recv(fd, buf, 2, 0);         // Reads "aa"; offset set to 6
+                  recv(fd, buf, 2, MSG_PEEK);  // Peeks "ee"; offset set to 8
+]]>
+			</desc>
+		</opt>
+
+		<opt name="SO_PEERCRED">
+			<desc>
+<![CDATA[ 
+              Return  the  credentials of the foreign process connected to this socket.  This is possible only for connected AF_UNIX stream sockets and AF_UNIX stream and datagram socket
+              pairs created using socketpair(2); see unix(7).  The returned credentials are those that were in effect at the time of the call to connect(2) or socketpair(2).   The  argu-
+              ment is a ucred structure; define the GNU_SOURCE feature test macro to obtain the definition of that structure from <sys/socket.h>.  This socket option is read-only.
+]]>
+			</desc>
+		</opt>
+
+		<opt name="SO_PRIORITY">
+			<desc>
+<![CDATA[ 
+              Set  the  protocol-defined  priority for all packets to be sent on this socket.  Linux uses this value to order the networking queues: packets with a higher priority may be
+              processed first depending on the selected device queueing discipline.  For ip(7), this also sets the IP type-of-service (TOS) field for outgoing packets.  Setting a  prior-
+              ity outside the range 0 to 6 requires the CAP_NET_ADMIN capability.
+]]>
+			</desc>
+		</opt>
+
+		<opt name="SO_PROTOCOL" since="Linux 2.6.32)">
+			<desc>
+<![CDATA[ 
+              Retrieves the socket protocol as an integer, returning a value such as IPPROTO_SCTP.  See socket(2) for details.  This socket option is read-only.
+]]>
+			</desc>
+		</opt>
+
+		<opt name="SO_RCVBUF">
+			<desc>
+<![CDATA[ 
+              Sets  or  gets  the maximum socket receive buffer in bytes.  The kernel doubles this value (to allow space for bookkeeping overhead) when it is set using setsockopt(2), and
+              this doubled value is returned by getsockopt(2).  The default value is set by the /proc/sys/net/core/rmem_default file,  and  the  maximum  allowed  value  is  set  by  the
+              /proc/sys/net/core/rmem_max file.  The minimum (doubled) value for this option is 256.
+]]>
+			</desc>
+		</opt>
+
+		<opt name="SO_RCVBUFFORCE" since="Linux 2.6.14)">
+			<desc>
+<![CDATA[ 
+              Using this socket option, a privileged (CAP_NET_ADMIN) process can perform the same task as SO_RCVBUF, but the rmem_max limit can be overridden.
+]]>
+			</desc>
+		</opt>
+
+		<opt name="SO_RCVLOWAT and SO_SNDLOWAT">
+			<desc>
+<![CDATA[ 
+              Specify the minimum number of bytes in the buffer until the socket layer will pass the data to the protocol (SO_SNDLOWAT) or the user on receiving (SO_RCVLOWAT).  These two
+              values are initialized to 1.  SO_SNDLOWAT is not changeable on Linux (setsockopt(2) fails with the error ENOPROTOOPT).  SO_RCVLOWAT is changeable only since Linux 2.4.  The
+              select(2)  and  poll(2)  system calls currently do not respect the SO_RCVLOWAT setting on Linux, and mark a socket readable when even a single byte of data is available.  A
+              subsequent read from the socket will block until SO_RCVLOWAT bytes are available.
+]]>
+			</desc>
+		</opt>
+
+		<opt name="SO_RCVTIMEO and SO_SNDTIMEO">
+			<desc>
+<![CDATA[ 
+              Specify the receiving or sending timeouts until reporting an error.  The argument is a struct timeval.  If an input or output function blocks for this period of  time,  and
+              data  has  been sent or received, the return value of that function will be the amount of data transferred; if no data has been transferred and the timeout has been reached
+              then -1 is returned with errno set to EAGAIN or EWOULDBLOCK, or EINPROGRESS (for connect(2)) just as if the socket was specified to be nonblocking.  If the timeout  is  set
+              to  zero  (the  default)  then  the  operation  will never timeout.  Timeouts only have effect for system calls that perform socket I/O (e.g., read(2), recvmsg(2), send(2),
+              sendmsg(2)); timeouts have no effect for select(2), poll(2), epoll_wait(2), and so on.
+]]>
+			</desc>
+		</opt>
+
+		<opt name="SO_REUSEADDR">
+			<desc>
+<![CDATA[ 
+              Indicates that the rules used in validating addresses supplied in a bind(2) call should allow reuse of local addresses.  For AF_INET sockets this means that  a  socket  may
+              bind,  except  when there is an active listening socket bound to the address.  When the listening socket is bound to INADDR_ANY with a specific port then it is not possible
+              to bind to this port for any local address.  Argument is an integer boolean flag.
+]]>
+			</desc>
+		</opt>
+
+		<opt name="SO_REUSEPORT">
+			<desc>
+<![CDATA[ 
+              Permits multiple AF_INET or AF_INET6 sockets to be bound to an identical socket address.  This option must be set on each socket (including the first socket) prior to call-
+              ing  bind(2) on the socket.  To prevent port hijacking, all of the processes binding to the same address must have the same effective UID.  This option can be employed with
+              both TCP and UDP sockets.
+
+              For TCP sockets, this option allows accept(2) load distribution in a multi-threaded server to be improved by using a distinct listener socket for each  thread.   This  pro-
+              vides improved load distribution as compared to traditional techniques such using a single accept(2)ing thread that distributes connections, or having multiple threads that
+              compete to accept(2) from the same socket.
+
+              For UDP sockets, the use of this option can provide better distribution of incoming datagrams to multiple processes (or threads) as compared to the traditional technique of
+              having multiple processes compete to receive datagrams on the same socket.
+]]>
+			</desc>
+		</opt>
+
+		<opt name="SO_SNDBUF">
+			<desc>
+<![CDATA[ 
+              Sets  or gets the maximum socket send buffer in bytes.  The kernel doubles this value (to allow space for bookkeeping overhead) when it is set using setsockopt(2), and this
+              doubled value is returned by getsockopt(2).  The default value  is  set  by  the  /proc/sys/net/core/wmem_default  file  and  the  maximum  allowed  value  is  set  by  the
+              /proc/sys/net/core/wmem_max file.  The minimum (doubled) value for this option is 2048.
+]]>
+			</desc>
+		</opt>
+
+		<opt name="SO_SNDBUFFORCE" since="Linux 2.6.14)">
+			<desc>
+<![CDATA[ 
+              Using this socket option, a privileged (CAP_NET_ADMIN) process can perform the same task as SO_SNDBUF, but the wmem_max limit can be overridden.
+]]>
+			</desc>
+		</opt>
+
+		<opt name="SO_TIMESTAMP">
+			<desc>
+<![CDATA[ 
+              Enable  or  disable  the  receiving  of  the  SO_TIMESTAMP control message.  The timestamp control message is sent with level SOL_SOCKET and the cmsg_data field is a struct
+              timeval indicating the reception time of the last packet passed to the user in this call.  See cmsg(3) for details on control messages.
+]]>
+			</desc>
+		</opt>
+
+		<opt name="SO_TYPE">
+			<desc>
+<![CDATA[ 
+              Gets the socket type as an integer (e.g., SOCK_STREAM).  This socket option is read-only.
+]]>
+			</desc>
+		</opt>
+
+	</sockopt>
+
+	<ipopt command="man -s7 ip">
+		<desc>
+<![CDATA[ 
+   Socket options
+       IP supports some protocol-specific socket options that can be set with setsockopt(2) and read with getsockopt(2).  The socket option level for IP is IPPROTO_IP.  A boolean integer
+       flag is zero when it is false, otherwise true.
+]]>
+		</desc>
+		<opt name="IP_ADD_MEMBERSHIP" since="Linux 1.2">
+			<desc>
+<![CDATA[ 
+              Join a multicast group.  Argument is an ip_mreqn structure.
+
+                  struct ip_mreqn {
+                      struct in_addr imr_multiaddr; /* IP multicast group
+                                                       address */
+                      struct in_addr imr_address;   /* IP address of local
+                                                       interface */
+                      int            imr_ifindex;   /* interface index */
+                  };
+
+              imr_multiaddr contains the address of the multicast group the application wants to join or leave.  It must be a valid multicast address (or  setsockopt(2)  fails  with  the
+              error  EINVAL).  imr_address is the address of the local interface with which the system should join the multicast group; if it is equal to INADDR_ANY an appropriate inter-
+              face is chosen by the system.  imr_ifindex is the interface index of the interface that should join/leave the imr_multiaddr group, or 0 to indicate any interface.
+
+              The ip_mreqn structure is available only since Linux 2.2.  For compatibility, the old ip_mreq structure (present since Linux  1.2)  is  still  supported;  it  differs  from
+              ip_mreqn only by not including the imr_ifindex field.  Only valid as a setsockopt(2).
+]]>
+			</desc>
+		</opt>
+
+		<opt name="IP_ADD_SOURCE_MEMBERSHIP" since="Linux 2.4.22 / 2.5.68">
+			<desc>
+<![CDATA[ 
+              Join a multicast group and allow receiving data only from a specified source.  Argument is an ip_mreq_source structure.
+
+                  struct ip_mreq_source {
+                      struct in_addr imr_multiaddr;  /* IP multicast group
+                                                        address */
+                      struct in_addr imr_interface;  /* IP address of local
+                                                        interface */
+                      struct in_addr imr_sourceaddr; /* IP address of
+                                                        multicast source */
+                  };
+
+              The  ip_mreq_source  structure is similar to ip_mreqn described under IP_ADD_MEMBERSIP.  The imr_multiaddr field contains the address of the multicast group the application
+              wants to join or leave.  The imr_interface field is the address of the local interface with which the system should join the multicast group.  Finally,  the  imr_sourceaddr
+              field contains the address of the source the application wants to receive data from.
+
+              This option can be used multiple times to allow receiving data from more than one source.
+]]>
+			</desc>
+			<opt name="IP_BLOCK_SOURCE" since="Linux 2.4.22 / 2.5.68">
+				<desc>
+<![CDATA[ 
+              Stop  receiving  multicast  data  from  a  specific  source  in  a given group.  This is valid only after the application has subscribed to the multicast group using either
+              IP_ADD_MEMBERSHIP or IP_ADD_SOURCE_MEMBERSHIP.
+
+              Argument is an ip_mreq_source structure as described under IP_ADD_SOURCE_MEMBERSHIP.
+]]>
+				</desc>
+			</opt>
+			<opt name="IP_DROP_MEMBERSHIP" since="Linux 1.2">
+				<desc>
+<![CDATA[ 
+              Leave a multicast group.  Argument is an ip_mreqn or ip_mreq structure similar to IP_ADD_MEMBERSHIP.
+</opt>
+<opt name="IP_DROP_SOURCE_MEMBERSHIP" since="Linux 2.4.22 / 2.5.68">
+   <desc>
+<![CDATA[ 
+              Leave a source-specific group--that is, stop receiving data from a given multicast group that come from a given source.  If  the  application  has  subscribed  to  multiple
+              sources within the same group, data from the remaining sources will still be delivered.  To stop receiving data from all sources at once, use IP_LEAVE_GROUP.
+
+              Argument is an ip_mreq_source structure as described under IP_ADD_SOURCE_MEMBERSHIP.
+]]>
+				</desc>
+			</opt>
+			<opt name="IP_FREEBIND" since="Linux 2.4">
+				<desc>
+<![CDATA[ 
+              If  enabled, this boolean option allows binding to an IP address that is nonlocal or does not (yet) exist.  This permits listening on a socket, without requiring the under-
+              lying network interface or the specified dynamic IP address to be up at the time that the application is trying to bind to it.  This option is the per-socket equivalent  of
+              the ip_nonlocal_bind /proc interface described below.
+]]>
+				</desc>
+			</opt>
+			<opt name="IP_HDRINCL" since="Linux 2.0">
+				<desc>
+<![CDATA[ 
+              If  enabled,  the  user  supplies an IP header in front of the user data.  Only valid for SOCK_RAW sockets.  See raw(7) for more information.  When this flag is enabled the
+              values set by IP_OPTIONS, IP_TTL and IP_TOS are ignored.
+]]>
+				</desc>
+			</opt>
+			<opt name="IP_MSFILTER" since="Linux 2.4.22 / 2.5.68">
+				<desc>
+<![CDATA[ 
+              This option provides access to the advanced full-state filtering API.  Argument is an ip_msfilter structure.
+
+                  struct ip_msfilter {
+                      struct in_addr imsf_multiaddr; /* IP multicast group
+                                                        address */
+                      struct in_addr imsf_interface; /* IP address of local
+                                                        interface */
+                      uint32_t       imsf_fmode;     /* Filter-mode */
+
+                      uint32_t       imsf_numsrc;    /* Number of sources in
+                                                        the following array */
+                      struct in_addr imsf_slist[1];  /* Array of source
+                                                        addresses */
+                  };
+
+              There are two macros, MCAST_INCLUDE and MCAST_EXCLUDE, which can be used to specify the filtering mode.  Additionally, the IP_MSFILTER_SIZE(n) macro exists to determine how
+              much memory is needed to store ip_msfilter structure with n sources in the source list.
+
+              For the full description of multicast source filtering refer to RFC 3376.
+]]>
+				</desc>
+			</opt>
+			<opt name="IP_MTU" since="Linux 2.2">
+				<desc>
+<![CDATA[ 
+              Retrieve the current known path MTU of the current socket.  Valid only when the socket has been connected.  Returns an integer.  Only valid as a getsockopt(2).
+]]>
+				</desc>
+			</opt>
+			<opt name="IP_MTU_DISCOVER" since="Linux 2.2">
+				<desc>
+<![CDATA[ 
+              Set  or  receive  the Path MTU Discovery setting for a socket.  When enabled, Linux will perform Path MTU Discovery as defined in RFC 1191 on SOCK_STREAM sockets.  For non-
+              SOCK_STREAM sockets, IP_PMTUDISC_DO forces the don't-fragment flag to be set on all outgoing packets.  It is the user's responsibility to packetize the  data  in  MTU-sized
+              chunks  and to do the retransmits if necessary.  The kernel will reject (with EMSGSIZE) datagrams that are bigger than the known path MTU.  IP_PMTUDISC_WANT will fragment a
+              datagram if needed according to the path MTU, or will set the don't-fragment flag otherwise.
+
+              The  system-wide  default  can  be  toggled  between   IP_PMTUDISC_WANT   and   IP_PMTUDISC_DONT   by   writing   (respectively,   zero   and   nonzero   values)   to   the
+              /proc/sys/net/ipv4/ip_no_pmtu_disc file.
+
+              Path MTU discovery value   Meaning
+              IP_PMTUDISC_WANT           Use per-route settings.
+              IP_PMTUDISC_DONT           Never do Path MTU Discovery.
+              IP_PMTUDISC_DO             Always do Path MTU Discovery.
+              IP_PMTUDISC_PROBE          Set DF but ignore Path MTU.
+
+              When  PMTU  discovery  is  enabled, the kernel automatically keeps track of the path MTU per destination host.  When it is connected to a specific peer with connect(2), the
+              currently known path MTU can be retrieved conveniently using the IP_MTU socket option (e.g., after an EMSGSIZE error occurred).  The path MTU may  change  over  time.   For
+              connectionless  sockets with many destinations, the new MTU for a given destination can also be accessed using the error queue (see IP_RECVERR).  A new error will be queued
+              for every incoming MTU update.
+
+              While MTU discovery is in progress, initial packets from datagram sockets may be dropped.  Applications using UDP should be aware of this and not take it into  account  for
+              their packet retransmit strategy.
+
+              To  bootstrap  the  path  MTU discovery process on unconnected sockets, it is possible to start with a big datagram size (up to 64K-headers bytes long) and let it shrink by
+              updates of the path MTU.
+
+              To get an initial estimate of the path MTU, connect a datagram socket to the destination address using connect(2) and retrieve the MTU by  calling  getsockopt(2)  with  the
+              IP_MTU option.
+
+              It  is  possible to implement RFC 4821 MTU probing with SOCK_DGRAM or SOCK_RAW sockets by setting a value of IP_PMTUDISC_PROBE (available since Linux 2.6.22).  This is also
+              particularly useful for diagnostic tools such as tracepath(8) that wish to deliberately send probe packets larger than the observed Path MTU.
+]]>
+				</desc>
+			</opt>
+			<opt name="IP_MULTICAST_ALL" since="Linux 2.6.31">
+				<desc>
+<![CDATA[ 
+              This option can be used to modify the delivery policy of multicast messages to sockets bound to the  wildcard  INADDR_ANY  address.   The  argument  is  a  boolean  integer
+              (defaults to 1).  If set to 1, the socket will receive messages from all the groups that have been joined globally on the whole system.  Otherwise, it will deliver messages
+              only from the groups that have been explicitly joined (for example via the IP_ADD_MEMBERSHIP option) on this particular socket.
+]]>
+				</desc>
+			</opt>
+			<opt name="IP_MULTICAST_IF" since="Linux 1.2">
+				<desc>
+<![CDATA[ 
+              Set the local device for a multicast socket.  Argument is an ip_mreqn or ip_mreq structure similar to IP_ADD_MEMBERSHIP.
+
+              When an invalid socket option is passed, ENOPROTOOPT is returned.
+]]>
+				</desc>
+			</opt>
+			<opt name="IP_MULTICAST_LOOP" since="Linux 1.2">
+				<desc>
+<![CDATA[ 
+              Set or read a boolean integer argument that determines whether sent multicast packets should be looped back to the local sockets.
+]]>
+				</desc>
+			</opt>
+			<opt name="IP_MULTICAST_TTL" since="Linux 1.2">
+				<desc>
+<![CDATA[ 
+              Set or read the time-to-live value of outgoing multicast packets for this socket.  It is very important for multicast packets to set the smallest TTL possible.  The default
+              is 1 which means that multicast packets don't leave the local network unless the user program explicitly requests it.  Argument is an integer.
+]]>
+				</desc>
+				<opt name="IP_NODEFRAG" since="Linux 2.6.36">
+					<desc>
+<![CDATA[ 
+              If  enabled  (argument is nonzero), the reassembly of outgoing packets is disabled in the netfilter layer.  This option is valid only for SOCK_RAW sockets.  The argument is
+              an integer.
+]]>
+					</desc>
+				</opt>
+				<opt name="IP_OPTIONS" since="Linux 2.0">
+					<desc>
+<![CDATA[ 
+              Set or get the IP options to be sent with every packet from this socket.  The arguments are a pointer to a memory buffer containing the options and the option length.   The
+              setsockopt(2) call sets the IP options associated with a socket.  The maximum option size for IPv4 is 40 bytes.  See RFC 791 for the allowed options.  When the initial con-
+              nection request packet for a SOCK_STREAM socket contains IP options, the IP options will be set automatically to the options from the initial packet  with  routing  headers
+              reversed.   Incoming  packets  are  not allowed to change options after the connection is established.  The processing of all incoming source routing options is disabled by
+              default and can be enabled by using the accept_source_route /proc interface.  Other options like timestamps are still handled.  For datagram sockets, IP options can be only
+              set by the local user.  Calling getsockopt(2) with IP_OPTIONS puts the current IP options used for sending into the supplied buffer.
+]]>
+					</desc>
+				</opt>
+				<opt name="IP_PKTINFO" since="Linux 2.2">
+					<desc>
+<![CDATA[ 
+              Pass  an  IP_PKTINFO  ancillary  message  that contains a pktinfo structure that supplies some information about the incoming packet.  This only works for datagram oriented
+              sockets.  The argument is a flag that tells the socket whether the IP_PKTINFO message should be passed or not.  The message itself can only  be  sent/retrieved  as  control
+              message with a packet using recvmsg(2) or sendmsg(2).
+
+                  struct in_pktinfo {
+                      unsigned int   ipi_ifindex;  /* Interface index */
+                      struct in_addr ipi_spec_dst; /* Local address */
+                      struct in_addr ipi_addr;     /* Header Destination
+                                                      address */
+                  };
+
+              ipi_ifindex is the unique index of the interface the packet was received on.  ipi_spec_dst is the local address of the packet and ipi_addr is the destination address in the
+              packet header.  If IP_PKTINFO is passed to sendmsg(2) and ipi_spec_dst is not zero, then it is used as the local source address for the routing table lookup and for setting
+              up  IP  source route options.  When ipi_ifindex is not zero, the primary local address of the interface specified by the index overwrites ipi_spec_dst for the routing table
+              lookup.
+]]>
+					</desc>
+				</opt>
+				<opt name="IP_RECVERR" since="Linux 2.2">
+					<desc>
+<![CDATA[ 
+              Enable extended reliable error message passing.  When enabled on a datagram socket, all generated errors will be queued in a per-socket error queue.  When the user receives
+              an  error  from  a  socket operation, the errors can be received by calling recvmsg(2) with the MSG_ERRQUEUE flag set.  The sock_extended_err structure describing the error
+              will be passed in an ancillary message with the type IP_RECVERR and the level IPPROTO_IP.  This is useful for reliable error handling on unconnected sockets.  The  received
+              data portion of the error queue contains the error packet.
+
+              The IP_RECVERR control message contains a sock_extended_err structure:
+
+                  #define SO_EE_ORIGIN_NONE    0
+                  #define SO_EE_ORIGIN_LOCAL   1
+                  #define SO_EE_ORIGIN_ICMP    2
+                  #define SO_EE_ORIGIN_ICMP6   3
+
+                  struct sock_extended_err {
+                      uint32_t ee_errno;   /* error number */
+                      uint8_t  ee_origin;  /* where the error originated */
+                      uint8_t  ee_type;    /* type */
+                      uint8_t  ee_code;    /* code */
+                      uint8_t  ee_pad;
+                      uint32_t ee_info;    /* additional information */
+                      uint32_t ee_data;    /* other data */
+                      /* More data may follow */
+                  };
+
+                  struct sockaddr *SO_EE_OFFENDER(struct sock_extended_err *);
+
+              ee_errno  contains  the  errno  number of the queued error.  ee_origin is the origin code of where the error originated.  The other fields are protocol-specific.  The macro
+              SO_EE_OFFENDER returns a pointer to the address of the network object where the error originated from given a pointer to the ancillary message.   If  this  address  is  not
+              known, the sa_family member of the sockaddr contains AF_UNSPEC and the other fields of the sockaddr are undefined.
+
+              IP uses the sock_extended_err structure as follows: ee_origin is set to SO_EE_ORIGIN_ICMP for errors received as an ICMP packet, or SO_EE_ORIGIN_LOCAL for locally generated
+              errors.  Unknown values should be ignored.  ee_type and ee_code are set from the type and code fields of the ICMP header.  ee_info contains the discovered MTU for  EMSGSIZE
+              errors.   The  message  also  contains  the  sockaddr_in  of  the  node  caused the error, which can be accessed with the SO_EE_OFFENDER macro.  The sin_family field of the
+              SO_EE_OFFENDER address is AF_UNSPEC when the source was unknown.  When the error originated from the network, all IP options  (IP_OPTIONS,  IP_TTL,  etc.)  enabled  on  the
+              socket  and  contained in the error packet are passed as control messages.  The payload of the packet causing the error is returned as normal payload.  Note that TCP has no
+              error queue; MSG_ERRQUEUE is not permitted on SOCK_STREAM sockets.  IP_RECVERR is valid for TCP, but all errors are returned by socket function return or SO_ERROR only.
+
+              For raw sockets, IP_RECVERR enables passing of all received ICMP errors to the application, otherwise errors are only reported on connected sockets
+
+              It sets or retrieves an integer boolean flag.  IP_RECVERR defaults to off.
+]]>
+					</desc>
+				</opt>
+				<opt name="IP_RECVOPTS" since="Linux 2.2">
+					<desc>
+<![CDATA[ 
+              Pass all incoming IP options to the user in a IP_OPTIONS control message.  The routing header and other options are already filled in for the local host.  Not supported for
+              SOCK_STREAM sockets.
+]]>
+					</desc>
+				</opt>
+				<opt name="IP_RECVORIGDSTADDR" since="Linux 2.6.29">
+					<desc>
+<![CDATA[ 
+              This boolean option enables the IP_ORIGDSTADDR ancillary message in recvmsg(2), in which the kernel returns the original destination address of the datagram being received.
+              The ancillary message contains a struct sockaddr_in.
+]]>
+					</desc>
+				</opt>
+				<opt name="IP_RECVTOS" since="Linux 2.2">
+					<desc>
+<![CDATA[ 
+              If enabled the IP_TOS ancillary message is passed with incoming packets.  It contains a byte which specifies the Type of Service/Precedence  field  of  the  packet  header.
+              Expects a boolean integer flag.
+]]>
+					</desc>
+				</opt>
+				<opt name="IP_RECVTTL" since="Linux 2.2">
+					<desc>
+<![CDATA[ 
+              When this flag is set, pass a IP_TTL control message with the time to live field of the received packet as a byte.  Not supported for SOCK_STREAM sockets.
+]]>
+					</desc>
+				</opt>
+				<opt name="IP_RETOPTS" since="Linux 2.2">
+					<desc>
+<![CDATA[ 
+              Identical to IP_RECVOPTS, but returns raw unprocessed options with timestamp and route record options not filled in for this hop.
+]]>
+					</desc>
+				</opt>
+				<opt name="IP_ROUTER_ALERT" since="Linux 2.2">
+					<desc>
+<![CDATA[ 
+              Pass  all  to-be  forwarded packets with the IP Router Alert option set to this socket.  Only valid for raw sockets.  This is useful, for instance, for user-space RSVP dae-
+              mons.  The tapped packets are not forwarded by the kernel; it is the user's responsibility to send them out again.  Socket binding is ignored, such packets  are  only  fil-
+              tered by protocol.  Expects an integer flag.
+]]>
+					</desc>
+				</opt>
+				<opt name="IP_TOS" since="Linux 1.0">
+					<desc>
+<![CDATA[ 
+              Set  or  receive the Type-Of-Service (TOS) field that is sent with every IP packet originating from this socket.  It is used to prioritize packets on the network.  TOS is a
+              byte.  There are some standard TOS flags defined: IPTOS_LOWDELAY to minimize delays for interactive traffic, IPTOS_THROUGHPUT to optimize throughput,  IPTOS_RELIABILITY  to
+              optimize  for  reliability, IPTOS_MINCOST should be used for "filler data" where slow transmission doesn't matter.  At most one of these TOS values can be specified.  Other
+              bits are invalid and shall be cleared.  Linux sends IPTOS_LOWDELAY datagrams first by default, but the exact behavior depends on the configured queueing  discipline.   Some
+              high  priority  levels  may  require  superuser  privileges  (the CAP_NET_ADMIN capability).  The priority can also be set in a protocol independent way by the (SOL_SOCKET,
+              SO_PRIORITY) socket option (see socket(7)).
+]]>
+					</desc>
+				</opt>
+				<opt name="IP_TRANSPARENT" since="Linux 2.6.24">
+					<desc>
+<![CDATA[ 
+              Setting this boolean option enables transparent proxying on this socket.  This socket option allows the calling application to bind to a nonlocal  IP  address  and  operate
+              both as a client and a server with the foreign address as the local endpoint.  NOTE: this requires that routing be set up in a way that packets going to the foreign address
+              are routed through the TProxy box.  Enabling this socket option requires superuser privileges (the CAP_NET_ADMIN capability).
+
+              TProxy redirection with the iptables TPROXY target also requires that this option be set on the redirected socket.
+]]>
+					</desc>
+				</opt>
+				<opt name="IP_TTL" since="Linux 1.0">
+					<desc>
+<![CDATA[ 
+              Set or retrieve the current time-to-live field that is used in every packet sent from this socket.
+]]>
+					</desc>
+				</opt>
+				<opt name="IP_UNBLOCK_SOURCE" since="Linux 2.4.22 / 2.5.68">
+					<desc>
+<![CDATA[ 
+              Unblock previously blocked multicast source.  Returns EADDRNOTAVAIL when given source is not being blocked.
+
+              Argument is an ip_mreq_source structure as described under IP_ADD_SOURCE_MEMBERSHIP.
+]]>
+					</desc>
+				</opt>
+	</ipopt>
+
+
+	<!-- tcp -->
+	<tcpopt command="man -s7 tcp">
+		<desc>
+<![CDATA[ 
+   Socket options
+       To set or get a TCP socket option, call getsockopt(2) to read or setsockopt(2) to write the option with the option level argument set to IPPROTO_TCP.  Unless otherwise noted, opt-
+       val is a pointer to an int.  In addition, most IPPROTO_IP socket options are valid on TCP sockets.  For more information see ip(7).
+]]>
+		</desc>
+
+		<opt name="TCP_CONGESTION" since="Linux 2.6.13)">
+			<desc>
+<![CDATA[ 
+              Get or set the congestion-control algorithm for this socket.  The optval argument is a pointer to a character-string buffer.
+
+              For getsockopt() *optlen specifies the amount of space available in the buffer pointed to by optval, which should be at least 16 bytes (defined by the kernel-internal  con-
+              stant  TCP_CA_NAME_MAX).   On  return,  the  buffer pointed to by optval is set to a null-terminated string containing the name of the congestion-control algorithm for this
+              socket, and *optlen is set to the minimum of its original value and TCP_CA_NAME_MAX.  If the value passed in *optlen is too small, then the string returned  in  *optval  is
+              silently truncated, and no terminating null byte is added.  If an empty string is returned, then the socket is using the default congestion-control algorithm, determined as
+              described under tcp_congestion_control above.
+
+              For setsockopt() optlen specifies the length of the congestion-control algorithm name contained in the buffer pointed to by optval; this length need not include any  termi-
+              nating  null  byte.   The  algorithm  "reno"  is  always permitted; other algorithms may be available, depending on kernel configuration.  Possible errors from setsockopt()
+              include: algorithm not found/available (ENOENT); setting this algorithm requires the CAP_NET_ADMIN capability (EPERM); and failure getting kernel module (EBUSY).
+
+]]>
+			</desc>
+		</opt>
+
+		<opt name="TCP_CORK" since="Linux 2.2)">
+			<desc>
+<![CDATA[ 
+              If set, don't send out partial frames.  All queued partial frames are sent when the option is cleared again.  This is useful for prepending  headers  before  calling  send-
+              file(2),  or for throughput optimization.  As currently implemented, there is a 200 millisecond ceiling on the time for which output is corked by TCP_CORK.  If this ceiling
+              is reached, then queued data is automatically transmitted.  This option can be combined with TCP_NODELAY only since Linux 2.5.71.  This option should not be  used  in  code
+              intended to be portable.
+]]>
+			</desc>
+
+		</opt>
+
+		<opt name="TCP_DEFER_ACCEPT" since="Linux 2.4)">
+			<desc>
+<![CDATA[ 
+              Allow a listener to be awakened only when data arrives on the socket.  Takes an integer value (seconds), this can bound the maximum number of attempts TCP will make to com-
+              plete the connection.  This option should not be used in code intended to be portable.
+]]>
+			</desc>
+
+		</opt>
+
+		<opt name="TCP_INFO" since="Linux 2.4)">
+			<desc>
+<![CDATA[ 
+              Used to collect information about this socket.  The kernel returns a struct tcp_info as defined in the file /usr/include/linux/tcp.h.  This option should  not  be  used  in
+              code intended to be portable.
+]]>
+			</desc>
+
+		</opt>
+
+		<opt name="TCP_KEEPCNT" since="Linux 2.4)">
+			<desc>
+<![CDATA[ 
+              The maximum number of keepalive probes TCP should send before dropping the connection.  This option should not be used in code intended to be portable.
+]]>
+			</desc>
+
+		</opt>
+
+		<opt name="TCP_KEEPIDLE" since="Linux 2.4)">
+			<desc>
+<![CDATA[ 
+              The  time  (in seconds) the connection needs to remain idle before TCP starts sending keepalive probes, if the socket option SO_KEEPALIVE has been set on this socket.  This
+              option should not be used in code intended to be portable.
+]]>
+			</desc>
+
+		</opt>
+
+		<opt name="TCP_KEEPINTVL" since="Linux 2.4)">
+			<desc>
+<![CDATA[ 
+              The time (in seconds) between individual keepalive probes.  This option should not be used in code intended to be portable.
+]]>
+			</desc>
+
+		</opt>
+
+		<opt name="TCP_LINGER2" since="Linux 2.4)">
+			<desc>
+<![CDATA[ 
+              The lifetime of orphaned FIN_WAIT2 state sockets.  This option can be used to override the system-wide setting  in  the  file  /proc/sys/net/ipv4/tcp_fin_timeout  for  this
+              socket.  This is not to be confused with the socket(7) level option SO_LINGER.  This option should not be used in code intended to be portable.
+]]>
+			</desc>
+		</opt>
+
+		<opt name="TCP_MAXSEG">
+			<desc>
+<![CDATA[ 
+              The  maximum segment size for outgoing TCP packets.  In Linux 2.2 and earlier, and in Linux 2.6.28 and later, if this option is set before connection establishment, it also
+              changes the MSS value announced to the other end in the initial packet.  Values greater than the (eventual) interface MTU have no effect.  TCP will also impose its  minimum
+              and maximum bounds over the value provided.
+]]>
+			</desc>
+		</opt>
+
+		<opt name="TCP_NODELAY">
+			<desc>
+<![CDATA[ 
+              If  set,  disable  the  Nagle algorithm.  This means that segments are always sent as soon as possible, even if there is only a small amount of data.  When not set, data is
+              buffered until there is a sufficient amount to send out, thereby avoiding the frequent sending of small packets, which results in poor utilization  of  the  network.   This
+              option is overridden by TCP_CORK; however, setting this option forces an explicit flush of pending output, even if TCP_CORK is currently set.
+]]>
+			</desc>
+		</opt>
+
+		<opt name="TCP_QUICKACK" since="Linux 2.4.4)">
+			<desc>
+<![CDATA[ 
+              Enable  quickack  mode  if  set or disable quickack mode if cleared.  In quickack mode, acks are sent immediately, rather than delayed if needed in accordance to normal TCP
+              operation.  This flag is not permanent, it only enables a switch to or from quickack mode.  Subsequent operation of the TCP protocol will once  again  enter/leave  quickack
+              mode  depending on internal protocol processing and factors such as delayed ack timeouts occurring and data transfer.  This option should not be used in code intended to be
+              portable.
+]]>
+			</desc>
+		</opt>
+
+		<opt name="TCP_SYNCNT" since="Linux 2.4)">
+			<desc>
+<![CDATA[ 
+              Set the number of SYN retransmits that TCP should send before aborting the attempt to connect.  It cannot exceed 255.  This option should not be used in code intended to be
+              portable.
+]]>
+			</desc>
+		</opt>
+
+		<opt name="TCP_USER_TIMEOUT" since="Linux 2.6.37">
+			<desc>
+<![CDATA[ 
+              This  option  takes  an  unsigned  int  as an argument.  When the value is greater than 0, it specifies the maximum amount of time in milliseconds that transmitted data may
+              remain unacknowledged before TCP will forcibly close the corresponding connection and return ETIMEDOUT to the application.  If the option value is specified as 0, TCP  will
+              to use the system default.
+
+              Increasing  user timeouts allows a TCP connection to survive extended periods without end-to-end connectivity.  Decreasing user timeouts allows applications to "fail fast",
+              if so desired.  Otherwise, failure may take up to 20 minutes with the current system defaults in a normal WAN environment.
+
+              This option can be set during any state of a TCP connection, but is effective only during the synchronized states of  a  connection  (ESTABLISHED,  FIN-WAIT-1,  FIN-WAIT-2,
+              CLOSE-WAIT, CLOSING, and LAST-ACK).  Moreover, when used with the TCP keepalive (SO_KEEPALIVE) option, TCP_USER_TIMEOUT will override keepalive to determine when to close a
+              connection due to keepalive failure.
+
+              The option has no effect on when TCP retransmits a packet, nor when a keepalive probe is sent.
+
+              This option, like many others, will be inherited by the socket returned by accept(2), if it was set on the listening socket.
+
+              Further details on the user timeout feature can be found in RFC 793 and RFC 5482 ("TCP User Timeout Option").
+]]>
+			</desc>
+		</opt>
+
+		<opt name="TCP_WINDOW_CLAMP" since="Linux 2.4">
+			<desc>
+<![CDATA[ 
+              Bound the size of the advertised window to this value.  The kernel imposes a minimum size of SOCK_MIN_RCVBUF/2.  This option should not be used in code intended to be  por-
+              table.
+]]>
+			</desc>
+		</opt>
+
+	</tcpopt>
+
+	<!-- udp -->
+	<udpopt command="man -s7 udp">
+		<desc>
+<![CDATA[ 
+       To set or get a UDP socket option, call getsockopt(2) to read or setsockopt(2) to write the option with the option level argument set to IPPROTO_UDP.  Unless otherwise noted, opt-
+       val is a pointer to an int.
+<opt name="UDP_CORK" since="Linux 2.5.44">
+   <desc>
+<![CDATA[ 
+              If this option is enabled, then all data output on this socket is accumulated into a single datagram that is transmitted when the option is disabled.   This  option  should
+              not be used in code intended to be portable.
+]]>
+		</desc>
+	</opt>
+	</udpopt>
+
+	<!-- unix -->
+	<unixopt command="man -s7 unix">
+		<desc>
+<![CDATA[ 
+
+       For historical reasons these socket options are specified with a SOL_SOCKET type even though they are AF_UNIX specific.  They can be set with setsockopt(2) and read with  getsock-
+       opt(2) by specifying SOL_SOCKET as the socket family.
+]]>
+		</desc>
+		<opt name="SO_PASSCRED">
+			<desc>
+<![CDATA[ 
+              Enables  the  receiving of the credentials of the sending process in an ancillary message.  When this option is set and the socket is not yet connected a unique name in the
+              abstract namespace will be generated automatically.  Expects an integer boolean flag.
+]]>
+			</desc>
+		</opt>
+	</unixopt>
+
+
+	<!-- sctp -->
+	<sctpopt command="man -s7 sctp">
+		<desc>
+<![CDATA[ 
+
+       To set or get a SCTP socket option, call getsockopt(2) to read or setsockopt(2) to write the option with the option level argument set to SOL_SCTP.
+]]>
+		</desc>
+
+		<opt name="SCTP_RTOINFO">
+			<desc>
+<![CDATA[ 
+              This option is used to get or set the protocol  parameters  used  to  initialize  and  bound  retransmission  timout(RTO).  The  structure  sctp_rtoinfo  defined  in
+              /usr/include/netinet/sctp.h is used to access and modify these parameters.
+]]>
+			</desc>
+		</opt>
+
+		<opt name="SCTP_ASSOCINFO">
+			<desc>
+<![CDATA[ 
+              This  option  is  used  to both examine and set various association and endpoint parameters. The sturcture sctp_assocparams defined in /usr/include/netinet/sctp.h is
+              used to access and modify these parameters.
+]]>
+			</desc>
+		</opt>
+
+		<opt name="SCTP_INITMSG">
+			<desc>
+<![CDATA[ 
+              This  option  is  used  to  get  or  set  the  protocol  parameters  for  the  default  association   initialization.   The   structure   sctp_initmsg   defined   in
+              /usr/include/netinet/sctp.h is used to access and modify these parameters.
+
+              Setting  initialization  parameters  is  effective only on an unconnected socket (for one-to-many style sockets only future associations are effected by the change).
+              With one-to-one style sockets, this option is inherited by sockets derived from a listener socket.
+]]>
+			</desc>
+		</opt>
+
+		<opt name="SCTP_NODELAY">
+			<desc>
+<![CDATA[ 
+              Turn on/off any Nagle-like algorithm. This means that packets are generally sent as soon as possible and no unnecessary delays are introduced, at the  cost  of  more
+              packets in the network.  Expects an integer boolean flag.
+]]>
+			</desc>
+		</opt>
+
+		<opt name="SCTP_AUTOCLOSE">
+			<desc>
+<![CDATA[ 
+              This  socket  option is applicable to the one-to-many style socket only. When set it will cause associations that are idle for more than the specified number of sec-
+              onds to automatically close. An association being idle is defined an association that has NOT sent or received user data. The special value of 0  indicates  that  no
+              automatic close of any associations should be performed. The option expects an integer defining the number of seconds of idle time before an association is closed.
+]]>
+			</desc>
+		</opt>
+
+		<opt name="SCTP_SET_PEER_PRIMARY_ADDR">
+			<desc>
+<![CDATA[ 
+              Requests  that  the  peer  mark  the  enclosed address as the association primary. The enclosed address must be one of the association's locally bound addresses. The
+              structure sctp_setpeerprim defined in /usr/include/netinet/sctp.h is used to make a set peer primary request.
+]]>
+			</desc>
+		</opt>
+
+		<opt name="SCTP_PRIMARY_ADDR">
+			<desc>
+<![CDATA[ 
+              Requests that the local SCTP stack use the enclosed peer address as the association primary. The enclosed address must be one of the  association  peer's  addresses.
+              The structure sctp_prim defined in /usr/include/netinet/sctp.h is used to make a get/set primary request.
+]]>
+			</desc>
+		</opt>
+
+		<opt name="SCTP_DISABLE_FRAGMENTS">
+			<desc>
+<![CDATA[ 
+              This  option is a on/off flag and is passed an integer where a non-zero is on and a zero is off. If enabled no SCTP message fragmentation will be performed.  Instead
+              if a message being sent exceeds the current PMTU size, the message will NOT be sent and an error will be indicated to the user.
+]]>
+			</desc>
+		</opt>
+
+		<opt name="SCTP_PEER_ADDR_PARAMS">
+			<desc>
+<![CDATA[ 
+              Using this option, applications can enable or disable heartbeats for any peer address of an association, modify an address's heartbeat interval, force a heartbeat to
+              be  sent  immediately,  and  adjust  the address's maximum number of retransmissions sent before an address is considered unreachable. The structure sctp_paddrparams
+              defined in /usr/include/netinet/sctp.h is used to access and modify an address's parameters.
+]]>
+			</desc>
+		</opt>
+
+		<opt name="SCTP_DEFAULT_SEND_PARAM">
+			<desc>
+<![CDATA[ 
+              Applications that wish to use the sendto() system call may wish to specify a default set of parameters that would normally  be  supplied  through  the  inclusion  of
+              ancillary  data.  This  socket  option allows such an application to set the default sctp_sndrcvinfo structure. The application that wishes to use this socket option
+              simply passes in to this call the sctp_sndrcvinfo structure defined in /usr/include/netinet/sctp.h. The input parameters accepted by this call include  sinfo_stream,
+              sinfo_flags, sinfo_ppid, sinfo_context, sinfo_timetolive. The user must set the sinfo_assoc_id field to identify the
+               association to affect if the caller is using the one-to-many style.
+]]>
+			</desc>
+		</opt>
+
+		<opt name="SCTP_EVENTS">
+			<desc>
+<![CDATA[ 
+              This  socket  option  is  used  to  specify  various  notifications  and  ancillary  data  the  user wishes to receive. The structure sctp_event_subscribe defined in
+              /usr/include/netinet/sctp.h is used to access or modify the events of interest to the user.
+]]>
+			</desc>
+		</opt>
+
+		<opt name="SCTP_I_WANT_MAPPED_V4_ADDR">
+			<desc>
+<![CDATA[ 
+              This socket option is a boolean flag which turns on or off mapped V4 addresses. If this option is turned on and the socket is type PF_INET6, then IPv4 addresses will
+              be  mapped  to  V6  representation. If this option is turned off, then no mapping will be done of V4 addresses and a user will receive both PF_INET6 and PF_INET type
+              addresses on the socket.
+
+              By default this option is turned on and expects an integer to be passed where non-zero turns on the option and zero turns off the option.
+]]>
+			</desc>
+		</opt>
+
+		<opt name="SCTP_MAXSEG">
+			<desc>
+<![CDATA[ 
+              This socket option specifies the maximum size to put in any outgoing SCTP DATA chunk. If a message is larger than this size it will be fragmented by  SCTP  into  the
+              specified  size.  Note that the underlying SCTP implementation may fragment into smaller sized chunks when the PMTU of the underlying association is smaller than the
+              value set by the user. The option expects an integer.
+
+              The default value for this option is 0 which indicates the user is NOT limiting fragmentation and only the PMTU will effect SCTP's choice of DATA chunk size.
+]]>
+			</desc>
+		</opt>
+
+		<opt name="SCTP_STATUS">
+			<desc>
+<![CDATA[ 
+              Applications can retrieve current status information about an association, including association state, peer receiver window size, number of unacked data chunks, and
+              number  of  data  chunks  pending  receipt.   This information is read-only.  The structure sctp_status defined in /usr/include/netinet/sctp.h is used to access this
+              information.
+]]>
+			</desc>
+		</opt>
+
+		<opt name="SCTP_GET_PEER_ADDR_INFO">
+			<desc>
+<![CDATA[ 
+              Applications can retrieve information about a specific peer address of an association, including its reachability state, congestion window, and retransmission  timer
+              values.  This information is read-only. The structure sctp_paddr_info defined in /usr/include/netinet/sctp.h is used to access this information.
+]]>
+			</desc>
+		</opt>
+
+		<opt name="SCTP_GET_ASSOC_STATS">
+			<desc>
+<![CDATA[ 
+              Applications  can retrieve current statistics about an association, including SACKs sent and received, SCTP packets sent and received. The complete list can be found
+              in /usr/include/netinet/sctp.h in struct sctp_assoc_stats.
+]]>
+			</desc>
+		</opt>
+	</sctpopt>
+</sockopts>
