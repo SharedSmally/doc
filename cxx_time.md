@@ -9,9 +9,10 @@ A duration consists of a span of time, defined as some number of ticks of some t
 - Clocks (class)
 
 A clock consists of a starting point (or epoch) and a tick rate. For example, a clock may have an epoch of January 1, 1970 and tick every second. C++ defines three clock types:
-    -  system_clock: wall clock time from the system-wide realtime clock 
-    -  steady_clock: monotonic clock that will never be adjusted 
-    -  high_resolution_clock: the clock with the shortest tick period available 
+    
+     -  system_clock: wall clock time from the system-wide realtime clock 
+     -  steady_clock: monotonic clock that will never be adjusted 
+     -  high_resolution_clock: the clock with the shortest tick period available 
 
 - Time point (a point in time : class template)
 
