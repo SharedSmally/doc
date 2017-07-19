@@ -49,7 +49,7 @@ Options:
 A Build Lifecycle is Made Up of Phases. Each of these build lifecycles is defined by a different list of build phases, wherein a build phase represents a stage in the lifecycle.
 
 For example, the default lifecycle comprises of the following phases:
-
+- initialize - initialize the project
 - validate - validate the project is correct and all necessary information is available
 - compile - compile the source code of the project
 - test - test the compiled source code using a suitable unit testing framework. These tests should not require the code be packaged or deployed
@@ -66,4 +66,13 @@ A Build Phase is Made Up of Plugin Goals. A build phase is responsible for a spe
 A plugin goal represents a specific task (finer than a build phase) which contributes to the building and managing of a project. It may be bound to zero or more build phases. A goal not bound to any build phase could be executed outside of the build lifecycle by direct invocation. The order of execution depends on the order in which the goal(s) and the build phase(s) are invoked. For example, consider the command below. The clean and package arguments are build phases, while the dependency:copy-dependencies is a goal (of a plugin).
 ```
 mvn clean dependency:copy-dependencies package
+```
+
+### Init project
+ Execute the following the command to create the simplest of Maven projects, 
+```
+mvn -B archetype:generate \
+  -DarchetypeGroupId=org.apache.maven.archetypes \
+  -DgroupId=com.mycompany.app \
+  -DartifactId=my-app
 ```
