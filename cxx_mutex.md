@@ -35,13 +35,50 @@ std::unique_lock<std::shared_mutex> lock(mutex_);
 ```
 
 Scoped lockers:
-- lock_guard: implements a strictly scope-based mutex ownership wrapper 
-- unique_lock: implements movable mutex ownership wrapper: used with condition variables 
-- scoped_lock: C++17: deadlock-avoiding RAII wrapper for multiple mutexes 
-- shared_lock: C++14: implements movable shared mutex ownership wrapper 
+- [lock_guard](http://en.cppreference.com/w/cpp/thread/lock_guard): implements a strictly scope-based mutex ownership wrapper 
+- [unique_lock](http://en.cppreference.com/w/cpp/thread/unique_lock): implements movable mutex ownership wrapper: used with condition variables 
+- [scoped_lock](http://en.cppreference.com/w/cpp/thread/scoped_lock): C++17: deadlock-avoiding RAII wrapper for multiple mutexes 
+- shared_lock](http://en.cppreference.com/w/cpp/thread/shared_lock): C++14: implements movable shared mutex ownership wrapper 
 ```
    {
        std::lock_guard<std::mutex> lock(g_i_mutex);
        // g_i_mutex is automatically released when lock goes out of scope
    }    
+```
+
+Conditional Variables:
+- [condition_variable](http://en.cppreference.com/w/cpp/thread/condition_variable):  provides a condition variable associated with a std::unique_lock 
+   - wait/wait_for/wait_until
+   - notify_one/notify_all
+- [condition_variable_any](http://en.cppreference.com/w/cpp/thread/condition_variable_any): provides a condition variable associated with any lock type 
+   - wait/wait_for/wait_until
+   - notify_one/notify_all
+- [notify_all_at_thread_exit](): schedules a call to notify_all to be invoked when this thread is completely finished 
+  
+```
+std::mutex m;
+std::condition_variable cv;
+std::string data;
+bool ready = false;
+bool processed = false;
+
+void worker_thread()
+{
+    // Wait until main() sends data
+    std::unique_lock<std::mutex> lk(m);
+    cv.wait(lk, []{return ready;});
+ 
+    // after the wait, we own the lock.
+    std::cout << "Worker thread is processing data\n";
+    data += " after processing";
+ 
+    // Send data back to main()
+    processed = true;
+    std::cout << "Worker thread signals data processing completed\n";
+ 
+    // Manual unlocking is done before notifying, to avoid waking up
+    // the waiting thread only to block again (see notify_one for details)
+    lk.unlock();
+    cv.notify_one();
+}
 ```
