@@ -38,7 +38,7 @@ Scoped lockers:
 - [lock_guard](http://en.cppreference.com/w/cpp/thread/lock_guard): implements a strictly scope-based mutex ownership wrapper 
 - [unique_lock](http://en.cppreference.com/w/cpp/thread/unique_lock): implements movable mutex ownership wrapper: used with condition variables 
 - [scoped_lock](http://en.cppreference.com/w/cpp/thread/scoped_lock): C++17: deadlock-avoiding RAII wrapper for multiple mutexes 
-- shared_lock](http://en.cppreference.com/w/cpp/thread/shared_lock): C++14: implements movable shared mutex ownership wrapper 
+- [shared_lock](http://en.cppreference.com/w/cpp/thread/shared_lock): C++14: implements movable shared mutex ownership wrapper 
 ```
    {
        std::lock_guard<std::mutex> lock(g_i_mutex);
