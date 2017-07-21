@@ -9,7 +9,7 @@ C++11 has the following mutexes: (for: duration: until: time_point)
      - lock/try_lock/try_lock_for/try_lock_until/unlock
 - [std::recursive_timed_mutex](http://en.cppreference.com/w/cpp/thread/recursive_timed_mutex):
      - lock/try_lock/try_lock_for/try_lock_until/unlock
-- [std::shared_mutex](): c++17
+- [std::shared_mutex](http://en.cppreference.com/w/cpp/thread/shared_mutex): c++17
      - lock/try_lock/unlock; 
      - lock_shared/try_lock_shared/unlock_shared:   
 - [std::shared_timed_mutex](http://en.cppreference.com/w/cpp/thread/shared_timed_mutex): c++14
