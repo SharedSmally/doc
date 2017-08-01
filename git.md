@@ -61,3 +61,13 @@ git
    git add -A:  all untracked
    
    
+- Branch
+
+   git branch:  list current branch
+   
+   git branch -r : list active branches
+   
+   git checkout $branchName$:  switch to another branch   
+   
+   
+- Branch   
