@@ -14,4 +14,9 @@
 
 ## C++ template
 - virtual method cannot be a template. 
-–
+
+– To call a base template class function , need to use this:
+```
+this->f();
+B<T>::f(); //If f and g were both static:
+```
