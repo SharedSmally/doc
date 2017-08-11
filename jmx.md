@@ -18,8 +18,12 @@ Config:
 - JMX/RMI doesn't need to open all these ports. You can force them to be same :
 
 ```
-com.sun.management.jmxremote.port = 
-com.sun.management.jmxremote.rmi.port = 
+-Dcom.sun.management.jmxremote 
+-Dcom.sun.management.jmxremote.port = 
+-Dcom.sun.management.jmxremote.rmi.port = 
+-Dcom.sun.management.jmxremote.authenticate=false 
+-Dcom.sun.management.jmxremote.ssl=false  
+-Dcom.sun.management.jmxremote.local.only
 ```
 
 Explicitly setting these will stop RMI from picking random ports. Setting them to the same value will make sure it opens less ports to listen on.
