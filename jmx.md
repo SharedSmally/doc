@@ -28,6 +28,8 @@ Config:
 
 Explicitly setting these will stop RMI from picking random ports. Setting them to the same value will make sure it opens less ports to listen on.
 
+The third port is used by the Java Attach API. It is what JConsole uses for connecting to "Local Process".
+
 ### MBean
 
 An MXBean is a type of MBean that references only a predefined set of data types. The MBean is usable by any client, including remote clients, without any requirement that the client have access to model-specific classes representing the types of your MBeans. MXBeans provide a convenient way to bundle related values together, without requiring clients to be specially configured to handle the bundles.
