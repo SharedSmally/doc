@@ -2,7 +2,7 @@
 
 ##JMX Client:
 
-### javax.management.remote.JMXServiceURL: 
+### javax.management.remote.JMXServiceURL [https://stackoverflow.com/questions/2768087/explain-jmx-url]: 
 
 - JMXServiceURL url = new JMXServiceURL("service:jmx:rmi:///jndi/rmi://:9999/jmxrmi");
 
