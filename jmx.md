@@ -14,6 +14,16 @@
 service:jmx:rmi://<TARGET_MACHINE>:<JMX_RMI_SERVER_PORT>/jndi/rmi://<TARGET_MACHINE>:<RMI_REGISTRY_PORT>/jmxrmi
 ```
 
+Config:
+- JMX/RMI doesn't need to open all these ports. You can force them to be same :
+
+```
+com.sun.management.jmxremote.port = 
+com.sun.management.jmxremote.rmi.port = 
+```
+
+Explicitly setting these will stop RMI from picking random ports. Setting them to the same value will make sure it opens less ports to listen on.
+
 ### MBean
 
 An MXBean is a type of MBean that references only a predefined set of data types. The MBean is usable by any client, including remote clients, without any requirement that the client have access to model-specific classes representing the types of your MBeans. MXBeans provide a convenient way to bundle related values together, without requiring clients to be specially configured to handle the bundles.
