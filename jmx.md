@@ -24,6 +24,7 @@ Config:
 -Dcom.sun.management.jmxremote.authenticate=false 
 -Dcom.sun.management.jmxremote.ssl=false  
 -Dcom.sun.management.jmxremote.local.only
+-Djava.rmi.server.hostname=${DOCKER_HOST_IP}
 ```
 
 Explicitly setting these will stop RMI from picking random ports. Setting them to the same value will make sure it opens less ports to listen on.
