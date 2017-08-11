@@ -30,6 +30,17 @@ Explicitly setting these will stop RMI from picking random ports. Setting them t
 
 The third port is used by the Java Attach API. It is what JConsole uses for connecting to "Local Process".
 
+- Enable password
+```
+% java -Dcom.sun.management.jmxremote.port=3000 \
+     -Dcom.sun.management.jmxremote.password.file=password.properties \
+     -Dcom.sun.management.jmxremote.access.file=access.properties \
+     -Djavax.net.ssl.keyStore=keystore \
+     -Djavax.net.ssl.keyStorePassword=password \
+     com.example.MyApp
+```
+
+
 ### MBean
 
 An MXBean is a type of MBean that references only a predefined set of data types. The MBean is usable by any client, including remote clients, without any requirement that the client have access to model-specific classes representing the types of your MBeans. MXBeans provide a convenient way to bundle related values together, without requiring clients to be specially configured to handle the bundles.
