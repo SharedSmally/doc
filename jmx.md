@@ -54,6 +54,8 @@ Application class name must be the **last one**.
      com.example.MyApp
 ```
 
+- [Enable auth](http://www.journaldev.com/1359/java-jmx-client-example-authentication):
+
 
 ### MBean
 
