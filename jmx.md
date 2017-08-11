@@ -31,10 +31,16 @@ Explicitly setting these will stop RMI from picking random ports. Setting them t
 The third port is used by the Java Attach API. It is what JConsole uses for connecting to "Local Process".
 
 ```
-% java -cp  ./   -Dcom.sun.management.XXX=xxx  com.example.TreadMonitor
+%	java -cp ./  \
+	-Dcom.sun.management.jmxremote \
+	-Dcom.sun.management.jmxremote.port=9999 \
+	-Dcom.sun.management.jmxremote.rmi.port=9999 \
+	-Dcom.sun.management.jmxremote.authenticate=false \
+	-Dcom.sun.management.jmxremote.ssl=false  \
+	com.example.ThreadMonitor
 ```
 
-**Application class name must be the last one.**
+Application class name must be the **last one**.
 
 
 - Enable password
