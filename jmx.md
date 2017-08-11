@@ -1,6 +1,11 @@
 #JMX
+
 ##JMX Client:
-### javax.management.remote.JMXServiceURL:
+
+### javax.management.remote.JMXServiceURL: 
+
+- JMXServiceURL url = new JMXServiceURL("service:jmx:rmi:///jndi/rmi://:9999/jmxrmi");
+
 The address of a JMX API connector server. Instances of this class are immutable. The address is an Abstract Service URL for SLP, as defined in RFC 2609 and amended by RFC 3111. It must look like this:
 ```
 service:jmx:protocol:sap
