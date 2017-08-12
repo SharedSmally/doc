@@ -3,7 +3,12 @@
 Maven:
 ### [Predifined Varaibles](https://github.com/cko/predefined_maven_properties/blob/master/README.md)
 
-
+ - ${project.basedir} represents the directory containing pom.xml
+ - ${project.build.directory} results in the path to the "target" directory 
+ - ${project.build.outputDirectory} results in the path to the "target/classes" directory
+ - ${project.name} refers to the name of the project (deprecated: ${pom.name} ).
+ - ${project.version} refers to the version of the project (deprecated: ${pom.version}).
+ - ${project.build.finalName} refers to the final name of the file created when the built project is packaged
 
 ### Maven Command
 ```
