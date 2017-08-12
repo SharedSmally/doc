@@ -1,6 +1,9 @@
 ## [Maven](https://maven.apache.org/guides/introduction/introduction-to-the-lifecycle.html)
 
 Maven:
+### [Predifined Varaibles](https://github.com/cko/predefined_maven_properties/blob/master/README.md)
+
+
 
 ### Maven Command
 ```
