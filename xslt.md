@@ -319,6 +319,13 @@ xxx -param group groupName
 </xsl:template> 
 ```
 
+- Debug
+```
+      <xsl:message terminate="yes">
+        Error: Artist is an empty string!
+      </xsl:message>
+```
+
 ### [XSLT functions](http://www.w3schools.com/xml/xsl_functions.asp)
 
 - Accessor Functions
