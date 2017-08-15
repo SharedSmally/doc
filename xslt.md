@@ -216,6 +216,12 @@ Sequence
   <!-- Content: sequence-constructor -->
 </xsl:value-of>
 ```
+
+- Multiple Input Documents
+```
+<xsl:variable name="rootNode" select="document($xmlfile)"/>
+```
+
 - Multiple Document
 ```xml
 <xsl:result-document
@@ -249,6 +255,7 @@ Sequence
   <!-- Content: sequence-constructor -->
 </xsl:result-document>
 ```
+
 - Sort
 ```xml
 <xsl:sort
@@ -283,7 +290,17 @@ Sequence
 - methods:
    - method="xml"
    - method="html"
+
 - [xslt functions] (http://www.w3schools.com/xml/xsl_functions.asp)
+
+- Parameters pass from command line:
+```
+xxx -param group groupName
+
+<!-- Receives the group name. -->
+<xsl:param name="group" />
+```
+
 - Counter
 ```
 <xsl:for-each select="for $i in 1 to $length return $i">...</xsl:for-each>
