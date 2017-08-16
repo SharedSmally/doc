@@ -19,6 +19,9 @@
     <xsl:variable name='newline' select="'&#xA;'"/>
     <xsl:variable name='separator' select="' '"/>
     <xsl:variable name='sps' select="'    '"/>
+    <xsl:variable name='sps2' select="concat($sps,$sps)"/>
+    <xsl:variable name='sps3' select="concat($sps2,$sps)"/>
+    <xsl:variable name='sps4' select="concat($sps2,$sps2)"/>
 
     <!-- base namespace. -->
     <xsl:variable name="basens" select="'com.jpw.'" />
@@ -85,15 +88,34 @@
 
     <xsl:template match="enum">
         <xsl:variable name="name" select="jpw:ucfirst(./@name)" />
+        <xsl:variable name="base" select="jpw:getBase(.)"/>
 
-        <xsl:value-of select="concat('enum ', $name, $newline, '{', $newline)"/>
-        
+        <xsl:value-of select="concat('public enum ', $name, $newline, '{', $newline)"/>
+
         <xsl:variable name="items" select="./item"/>
         <xsl:for-each select="$items">
-            <xsl:value-of select="concat(' ', ./@name, ' = ', jpw:getEnumValue($items, position()), ';', $newline)"/>
+            <xsl:value-of select="concat($sps, ./@name, ' ( ', jpw:getEnumValue($items, position()), ' )')"/>
+            <xsl:choose>
+                <xsl:when test="position()=last()"><xsl:value-of select="';'"/> </xsl:when>
+                <xsl:otherwise><xsl:value-of select="','"/> </xsl:otherwise>
+            </xsl:choose>
+            <xsl:value-of select="$newline"/>
         </xsl:for-each>
         <!--   <xsl:apply-templates/>    -->
-        <xsl:value-of select="concat('}',$newline)"/>
+        
+        <xsl:value-of select="concat($newline, $sps, 'public ', $base, ' getValue()', $newline)"/>
+        <xsl:value-of select="concat($sps, '{', $newline)"/>
+        <xsl:value-of select="concat($sps2, 'return value_ ;', $newline)"/>
+        <xsl:value-of select="concat($sps, '}', $newline)"/>
+
+        <xsl:value-of select="concat($newline, $sps, 'private ', $base, ' value_;', $newline)"/>
+        
+        <xsl:value-of select="concat($newline, $sps, $name, '( ', $base, ' value )', $newline)"/>
+        <xsl:value-of select="concat($sps, '{', $newline)"/>
+        <xsl:value-of select="concat($sps2, 'value_ = value; ', $newline)"/>
+        <xsl:value-of select="concat($sps, '}', $newline)"/>
+        
+        <xsl:value-of select="concat('}', $newline)"/>
     </xsl:template>
     
     <!-- 
@@ -107,28 +129,64 @@
     <!-- struct -->
     <xsl:template match="class">
         <xsl:variable name="name" select="jpw:ucfirst(./@name)" />
-        <xsl:value-of select="concat('class ', $name, $newline, '{', $newline)"/>
-        <xsl:apply-templates/>
+        <xsl:value-of select="concat('public class ', $name, $newline, '{', $newline)"/>
+        <xsl:apply-templates  mode="class"/>
         <xsl:value-of select="concat('}',$newline)"/>
     </xsl:template>
 
     <xsl:template match="struct">
         <xsl:variable name="name" select="jpw:ucfirst(./@name)" />
-        <xsl:value-of select="concat('struct ', $name, $newline, '{', $newline)"/>
-        <xsl:apply-templates/>
+        <xsl:value-of select="concat('public class ', $name, $newline, '{', $newline)"/>
+        <xsl:apply-templates mode="struct"/>
         <xsl:value-of select="concat('}',$newline)"/>
     </xsl:template>
 
-    <xsl:template match="elem">
-        <xsl:variable name="name" select="jpw:ucfirst(@name)" />
-        <xsl:variable name="type" select="jpw:ucfirst(@type)" />
-        <xsl:value-of select="concat(' ', $type, ' ', $name, ';', $newline)"/>
+    <xsl:template match="elem" mode="class">
+        <xsl:variable name="name" select="@name" />
+        <xsl:variable name="type" select="@type" />
+        <xsl:variable name="size" select="@size" />
+        
+        <xsl:choose>
+            <xsl:when test="$size='*'">
+                <xsl:value-of select="jpw:listGetSet($name,$type)"/>
+            </xsl:when>
+            <xsl:when test="$size='0'">
+                <xsl:value-of select="jpw:optionalGetSet($name,$type)"/>
+            </xsl:when>
+            <xsl:when test="$size='1' or not($size)">
+                <xsl:value-of select="jpw:singleGetSet($name,$type)"/>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:value-of select="jpw:arrayGetSet($name,$type,$size)"/>
+            </xsl:otherwise>
+        </xsl:choose>
+        
+        <xsl:text>class {$name};</xsl:text>
     </xsl:template>
 
-    <xsl:template match="*">
+    
+    <xsl:template match="elem" mode="struct">
+        <xsl:variable name="name" select="jpw:ucfirst(@name)" />
+        <xsl:variable name="type" select="jpw:ucfirst(@type)" />
+        <xsl:value-of select="concat($sps, 'public ', $type, ' ', $name, ';', $newline)"/>
+    </xsl:template>
+
+    <xsl:template match="*" mode="class struct">
     </xsl:template>
 
 <!-- functions -->
+<xsl:function name = "jpw:getBase">
+    <xsl:param name="node" />
+    <xsl:choose>
+        <xsl:when test="$node/@base">
+            <xsl:value-of select="$node/@base"/>
+        </xsl:when>
+        <xsl:otherwise>
+            <xsl:value-of select="'int'"/>
+        </xsl:otherwise>
+    </xsl:choose>
+</xsl:function>
+
 <xsl:function name = "jpw:nspath">
     <xsl:param name="ns" />
     <xsl:variable name="nsdir" select="replace($ns,'\.','/')" />
@@ -192,18 +250,94 @@
     <xsl:value-of select="floor(number($val) + number(1))" />
 </xsl:function>
 
-<!-- 
-<xsl:variable name="counter" as="xs:integer" select="0" saxon:assignable="yes"/>
 
-<xsl:function name="jpw:incr" as="xs:integer">
-    <saxon:assign name="counter" select="$counter + 1"/>
-    <xsl:sequence select="$counter"/>
-</xsl:function>
+    <!--  optional:0; mandatory:1; fixedSize:n; variedSize:* -->
+    <xsl:function name="jpw:optionalGetSet">
+        <xsl:param name="name"/>
+        <xsl:param name="type"/>
+        <xsl:variable name="uname" select="jpw:ucfirst($name)" />
+        
+        <xsl:value-of select="concat($sps, 'protected ', $type, ' ', $name, ' = null;', $newline)"/>
+        
+        <xsl:value-of select="concat($newline, $sps,'public ', $type, ' get', $uname,'( )', $newline)"/>
+        <xsl:value-of select="concat($sps, '{', $newline)"/>
+        <xsl:value-of select="concat($sps2, 'return ',$name, ';', $newline)"/>
+        <xsl:value-of select="concat($sps, '}', $newline)"/>
 
-<xsl:function name="jpw:decr" as="xs:integer">
-    <saxon:assign name="counter" select="$counter - 1"/>
-     <xsl:sequence select="$counter"/>
-</xsl:function>
- -->
+        <xsl:value-of select="concat($newline, $sps, 'public void set', $uname,'( ', $type, ' value )', $newline)"/>
+        <xsl:value-of select="concat($sps, '{', $newline)"/>
+        <xsl:value-of select="concat($sps2, $name, ' = value; ', $newline)"/>
+        <xsl:value-of select="concat($sps, '}', $newline)"/>
+
+        <xsl:value-of select="concat($newline, $sps,'public boolean has', $uname,'( )', $newline)"/>
+        <xsl:value-of select="concat($sps, '{', $newline)"/>
+        <xsl:value-of select="concat($sps2, 'return ',$name, ' != null;', $newline)"/>
+        <xsl:value-of select="concat($sps, '}', $newline)"/>
+    </xsl:function>
+
+    <xsl:function name="jpw:singleGetSet">
+        <xsl:param name="name"/>
+        <xsl:param name="type"/>
+        <xsl:variable name="uname" select="jpw:ucfirst($name)" />
+        
+        <xsl:value-of select="concat($sps, 'protected ', $type, ' ', $name, ';', $newline)"/>
+        
+        <xsl:value-of select="concat($newline, $sps,'public ', $type, ' get', $uname,'( )', $newline)"/>
+        <xsl:value-of select="concat($sps, '{', $newline)"/>
+        <xsl:value-of select="concat($sps2, 'return ',$name, ';', $newline)"/>
+        <xsl:value-of select="concat($sps, '}', $newline)"/>
+
+        <xsl:value-of select="concat($newline, $sps, 'public void set', $uname,'( ', $type, ' value )', $newline)"/>
+        <xsl:value-of select="concat($sps, '{', $newline)"/>
+        <xsl:value-of select="concat($sps2, $name, ' = value; ', $newline)"/>
+        <xsl:value-of select="concat($sps, '}', $newline)"/>
+    </xsl:function>
+    <xsl:function name="jpw:arrayGetSet">
+        <xsl:param name="name"/>
+        <xsl:param name="type"/>
+        <xsl:param name="size"/>
+        <xsl:variable name="uname" select="jpw:ucfirst($name)" />
+        
+        <xsl:value-of select="concat($sps, 'protected ', $type, '[] ', $name, ' = new ', $type,'[',$size,'];', $newline)"/>
+
+        <xsl:value-of select="concat($newline, $sps,'public ', $type, '[] get', $uname,'( )', $newline)"/>
+        <xsl:value-of select="concat($sps, '{', $newline)"/>
+        <xsl:value-of select="concat($sps2, 'return ',$name, ';', $newline)"/>
+        <xsl:value-of select="concat($sps, '}', $newline)"/>
+
+        <xsl:value-of select="concat($newline, $sps,'public ', $type, ' get', $uname,'( int index )', $newline)"/>
+        <xsl:value-of select="concat($sps, '{', $newline)"/>
+        <xsl:value-of select="concat($sps2, 'return ',$name, '[ index ];', $newline)"/>
+        <xsl:value-of select="concat($sps, '}', $newline)"/>
+
+        <xsl:value-of select="concat($newline, $sps, 'public void set', $uname,'( ', $type, ' v, int index )', $newline)"/>
+        <xsl:value-of select="concat($sps, '{', $newline)"/>
+        <xsl:value-of select="concat($sps2, $name, '[ index ] = v; ', $newline)"/>
+        <xsl:value-of select="concat($sps, '}', $newline)"/>
+    </xsl:function>
+    
+    <xsl:function name="jpw:listGetSet">
+        <xsl:param name="name"/>
+        <xsl:param name="type"/>
+        <xsl:variable name="uname" select="jpw:ucfirst($name)" />
+        
+        <xsl:value-of select="concat($sps, 'protected List&lt;', $type, '&gt; ', $name, ' = new ArrayList&lt;',$type,'&gt;();', $newline)"/>
+        
+        <xsl:value-of select="concat($newline, $sps,'public List&lt;', $type, '&gt; get', $uname,'( )', $newline)"/>
+        <xsl:value-of select="concat($sps, '{', $newline)"/>
+        <xsl:value-of select="concat($sps2, 'return ',$name, ';', $newline)"/>
+        <xsl:value-of select="concat($sps, '}', $newline)"/>
+
+        <xsl:value-of select="concat($newline, $sps, 'public void clear', $uname,'( )', $newline)"/>
+        <xsl:value-of select="concat($sps, '{', $newline)"/>
+        <xsl:value-of select="concat($sps2, $name, '.clear(); ', $newline)"/>
+        <xsl:value-of select="concat($sps, '}', $newline)"/>
+
+        <xsl:value-of select="concat($newline, $sps, 'public void add', $uname,'( ', $type, ' v )', $newline)"/>
+        <xsl:value-of select="concat($sps, '{', $newline)"/>
+        <xsl:value-of select="concat($sps2, $name, '.add(v); ', $newline)"/>
+        <xsl:value-of select="concat($sps, '}', $newline)"/>
+
+    </xsl:function>
  
 </xsl:stylesheet>
