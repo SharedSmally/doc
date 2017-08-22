@@ -18,6 +18,9 @@ public class PersonTypeEditor extends PropertyEditorSupport  {
 ```
 2. PropertySource: register customized PropertySource: source->properties in Environment
 ```
+http://techieme.in/properties-propertysources-spring/
+In XML configuration, Spring allows you to configure a more complex object called PropertySourcesPlaceholderConfigurer. This is useful when you want to use placeholders for properties. 
+http://javapapers.com/spring/spring-properties-with-propertysource-annotation/
 https://gist.github.com/scottfrederick/2641169
 Use @Value(${val})
 get Properties via Environment:
