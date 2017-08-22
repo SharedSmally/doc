@@ -1,8 +1,8 @@
 1. JMX-Server
 2. JMX Bean
 3. JMX Exporter: (export JMX beans to JMX Server[ObjName<->JMX Bean])
-4. Server
-5. Client
-6. Assembler
+4. Assembler
+5. Server Connector
+6. Client Connector
 7. Proxy
-8. Notification-Publish
+8. Notification-Publisher
