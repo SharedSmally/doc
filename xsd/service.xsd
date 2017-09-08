@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema targetNamespace="http://www.cpw.com/app/service/" xmlns="http://www.w3.org/2001/XMLSchema"
+    xmlns:cpw="http://www.cpw.com/app/service/">
+
+    <element name="service" type="cpw:ServiceType"></element>
+    <element name="types" type="cpw:TypesType"></element>
+
+    <complexType name="ServiceType">
+        <all>
+            <element name="import" type="cpw:ImportType" maxOccurs="unbounded"
+                minOccurs="0" />
+            <element name="type" type="cpw:TypeDeclType" maxOccurs="unbounded"
+                minOccurs="0" />
+            <element name="enum" type="cpw:EnumType" maxOccurs="unbounded"
+                minOccurs="0" />
+            <element name="message" type="cpw:MessageType" maxOccurs="unbounded"
+                minOccurs="1" />
+            <element name="interface" type="cpw:InterfaceType" maxOccurs="unbounded"
+                minOccurs="0" />
+            <element name="configs" type="cpw:ConfigsType" maxOccurs="unbounded"
+                minOccurs="0" />
+            <element name="metrics" type="cpw:MetricsType" maxOccurs="unbounded"
+                minOccurs="0" />
+        </all>
+        <attribute name="id" type="ID"></attribute>
+        <attribute name="namespace" type="cpw:NSName"></attribute>
+    </complexType>
+
+    <complexType name="MessageType">
+        <complexContent>
+            <extension base="cpw:NamedType">
+                <all>
+                    <element name="import" type="cpw:ImportType" maxOccurs="unbounded"
+                        minOccurs="0">
+                    </element>
+                    <element name="idkey" type="cpw:ClassIdType" maxOccurs="1"
+                        minOccurs="0">
+                    </element>
+                    <element name="element" type="cpw:ElementType" maxOccurs="unbounded"
+                        minOccurs="1">
+                    </element>
+                </all>
+            </extension>
+        </complexContent>
+    </complexType>
+
+    <complexType name="InterfaceType">
+        <complexContent>
+            <extension base="cpw:NamedType">
+                <all>
+                    <element name="import" type="cpw:ImportType" maxOccurs="unbounded"
+                        minOccurs="0">
+                    </element>
+                    <element name="operation" type="cpw:OperationType"
+                        maxOccurs="unbounded" minOccurs="1">
+                    </element>
+                </all>
+            </extension>
+        </complexContent>
+    </complexType>
+
+    <complexType name="OperationType">
+        <complexContent>
+            <extension base="cpw:NamedType">
+                <sequence>
+                    <element name="input" type="cpw:ParameterType" maxOccurs="unbounded"
+                        minOccurs="0" />
+                    <element name="output" type="cpw:ParameterType" maxOccurs="unbounded"
+                        minOccurs="0" />
+                </sequence>
+            </extension>
+        </complexContent>
+    </complexType>
+
+    <complexType name="ImportType" mixed="true">
+        <attribute name="namespace" type="string"></attribute>
+    </complexType>
+
+    <complexType name="MetricsType">
+        <complexContent>
+            <extension base="cpw:NamedType">
+                <all>
+                    <element name="metric" type="cpw:MetricType" maxOccurs="unbounded"
+                        minOccurs="0" />
+                    <element name="count" type="cpw:CountType" maxOccurs="unbounded"
+                        minOccurs="0" />
+                    <element name="gauge" type="cpw:GaugeType" maxOccurs="unbounded"
+                        minOccurs="0" />
+                </all>
+            </extension>
+        </complexContent>
+    </complexType>
+
+    <complexType name="ConfigsType">
+        <complexContent>
+            <extension base="cpw:NamedType">
+                <all>
+                    <element name="config" type="cpw:ConfigType" maxOccurs="unbounded"
+                        minOccurs="0" />
+                    <element name="update" type="cpw:UpdateType" maxOccurs="unbounded" minOccurs="0" />
+                </all>
+            </extension>
+        </complexContent>
+    </complexType>
+
+    <complexType name="ConfigType">
+        <attribute name="name" type="string"></attribute>
+        <attribute name="type" type="string"></attribute>
+        <attribute name="default" type="string"></attribute>
+        <attribute name="size" type="int"></attribute>
+    </complexType>
+
+    <complexType name="UpdateType">
+        <attribute name="name" type="string"></attribute>
+        <attribute name="type" type="string"></attribute>
+        <attribute name="default" type="string"></attribute>
+        <attribute name="size" type="int"></attribute>
+    </complexType>
+
+    <complexType name="MetricType">
+        <attribute name="type" type="string"></attribute>
+        <attribute name="startTime" type="dateTime"></attribute>
+        <attribute name="endTime" type="dateTime"></attribute>
+        <attribute name="count" type="int"></attribute>
+        <attribute name="max" type="string"></attribute>
+        <attribute name="min" type="string"></attribute>
+        <attribute name="total" type="string"></attribute>
+    </complexType>
+
+    <complexType name="CountType">
+        <attribute name="type" type="string"></attribute>
+        <attribute name="startTime" type="dateTime"></attribute>
+        <attribute name="endTime" type="dateTime"></attribute>
+        <attribute name="count" type="int"></attribute>
+    </complexType>
+
+    <complexType name="ElementType">
+        <annotation>
+            <documentation>
+                >0: fixed size 0: optional -1:vector -2:list -3:set
+            </documentation>
+        </annotation>
+        <complexContent>
+            <extension base="cpw:NamedType">
+                <attribute name="size" type="int"></attribute>
+                <attribute name="abstract" type="boolean">
+                    <annotation>
+                        <documentation>true: as base type</documentation>
+                    </annotation></attribute>
+            </extension>
+        </complexContent>
+    </complexType>
+
+    <complexType name="EnumType">
+        <complexContent>
+            <extension base="cpw:NamedType">
+                <sequence>
+                    <element name="case" type="cpw:CaseType"
+                        maxOccurs="unbounded" minOccurs="1">
+                    </element>
+                </sequence>
+                <attribute name="type">
+                    <simpleType>
+                        <restriction base="string">
+                            <enumeration value="int8"></enumeration>
+                            <enumeration value="int16"></enumeration>
+                            <enumeration value="int32"></enumeration>
+                            <enumeration value="int64"></enumeration>
+                            <enumeration value="uint8"></enumeration>
+                            <enumeration value="uint16"></enumeration>
+                            <enumeration value="uint32"></enumeration>
+                            <enumeration value="uint64"></enumeration>
+                        </restriction>
+                    </simpleType>
+                </attribute>
+            </extension>
+        </complexContent>
+    </complexType>
+    
+    <complexType name="CaseType">
+        <complexContent>
+            <extension base="cpw:NamedType">
+                <attribute name="value" type="string" use="required"></attribute>
+            </extension>
+        </complexContent>
+    </complexType>
+
+    <complexType name="GaugeType"></complexType>
+
+    <complexType name="NamedType">
+        <sequence>
+            <element name="desc" type="string"></element>
+        </sequence>
+        <attribute name="name" type="cpw:Name" use="required"></attribute>
+        <attribute name="desc" type="string"></attribute>
+    </complexType>
+    
+    <complexType name="NSNamedType">
+        <sequence>
+            <element name="desc" type="string"></element>
+        </sequence>
+        <attribute name="name" type="cpw:NSName" use="required"></attribute>
+        <attribute name="desc" type="string"></attribute>
+    </complexType>
+    
+    <complexType name="ParameterType">
+        <complexContent>
+            <extension base="cpw:NamedType">
+                <attribute name="type" type="string"></attribute>
+                <attribute name="size" type="string"></attribute>
+            </extension>
+        </complexContent>
+    </complexType>
+
+    <complexType name="RefType">
+        <complexContent>
+            <extension base="cpw:NamedType">
+
+                <attribute name="type" type="string"></attribute>
+
+            </extension>
+        </complexContent>
+    </complexType>
+   
+    <complexType name="TypesType">
+        <sequence>
+            <element name="type" type="cpw:LangTypeType"
+                maxOccurs="unbounded" minOccurs="1">
+            </element>
+        </sequence>
+        <attribute name="lang">
+            <simpleType>
+                <restriction base="string">
+                    <enumeration value="c"></enumeration>
+                    <enumeration value="cxx"></enumeration>
+                    <enumeration value="java"></enumeration>
+                    <enumeration value="js"></enumeration>
+                    <enumeration value="cs"></enumeration>
+                </restriction>
+            </simpleType>
+        </attribute>
+    </complexType>
+
+    <complexType name="LangTypeType">
+        <attribute name="name" type="string"></attribute>
+        <attribute name="type" type="string"></attribute>
+        <attribute name="include" type="string"></attribute>
+    </complexType>
+
+    <simpleType name="NSName">
+        <restriction base="string">
+            <pattern value="([a-zA-Z][a-zA-Z0-9_]*.)*[a-zA-Z][a-zA-Z0-9_]*">
+                <annotation>
+                    <documentation xml:lang="en">
+                        Fully qualified name (e.g. "SomeNamespace.SomeName" ).
+                    </documentation>
+                </annotation>
+            </pattern>
+        </restriction>
+    </simpleType>
+
+    <simpleType name="Name">
+        <restriction base="string">
+            <pattern value="[a-zA-Z][a-zA-Z0-9_]*">
+                <annotation>
+                    <documentation xml:lang="en">
+                        base name (e.g. "SomeName").
+                    </documentation>
+                </annotation>
+            </pattern>
+        </restriction>
+    </simpleType>
+
+    <complexType name="TypeDeclType">
+        <complexContent>
+            <extension base="cpw:NamedType">
+                <attribute name="type" type="string" use="required"></attribute>
+                <attribute name="import" type="string" use="optional"></attribute>
+            </extension>
+        </complexContent>
+    </complexType>
+
+    <complexType name="ClassIdType"></complexType>
+</schema>
