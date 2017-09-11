@@ -68,3 +68,5 @@ An MXBean is a type of MBean that references only a predefined set of data types
 
 - See [MXBean returns Customized types implements *MBean](https://stackoverflow.com/questions/14939335/java-mxbean-custom-types)
 
+- ManagementFactory.getPlatformMBeanServer(); is used to access the MBeanServer in the same JVM( One JVM owns one PlatformMBeanServer; not shared by multiple JVM). While JMXConnectorFactory is for accessing remote MBeanServers (i.e. in a different JVM, and/or on a different host).
+
