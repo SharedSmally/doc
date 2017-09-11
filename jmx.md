@@ -58,7 +58,8 @@ Application class name must be the **last one**.
 
 
 ### MBean
-
+The "standard" set of JMX MBeans is Standard MBean, Dynamic MBean, Model MBean, Open MBean, and MXBean(simple Standard MBean). 
+ 
 An MXBean is a type of MBean that references only a predefined set of data types. The MBean is usable by any client, including remote clients, without any requirement that the client have access to model-specific classes representing the types of your MBeans. MXBeans provide a convenient way to bundle related values together, without requiring clients to be specially configured to handle the bundles.
 
 In the same way as for standard MBeans, an MXBean is defined by writing a Java interface called SomethingMXBean and a Java class that implements that interface. However, unlike standard MBeans, MXBeans do not require the Java class to be called Something. Every method in the interface defines either an attribute or an operation in the MXBean. The annotation @MXBean can be also used to annotate the Java interface, instead of requiring the interface's name to be followed by the MXBean suffix.
