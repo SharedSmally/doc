@@ -66,3 +66,5 @@ An MXBean is a type of MBean that references only a predefined set of data types
 
 - In the same way as for standard MBeans, an MXBean is defined by writing a Java interface called SomethingMXBean and a Java class that implements that interface. However, unlike standard MBeans, MXBeans do not require the Java class to be called Something. Every method in the interface defines either an attribute or an operation in the MXBean. The annotation @MXBean can be also used to annotate the Java interface, instead of requiring the interface's name to be followed by the MXBean suffix.
 
+- See [MXBean returns Customized types implements *MBean](https://stackoverflow.com/questions/14939335/java-mxbean-custom-types)
+
