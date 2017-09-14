@@ -556,7 +556,7 @@ and then access the variable $x in any XPath expression.
 - test="$var='string'" instead of  test="$var=string"
 - value-of select="string" or select="$var" instead of  select="string"
 
-- Find unique nodes base on attribute: using key in 1.0 and group in 2.0
+- Find unique nodes base on attribute: using key in 1.0 and group in 2.0. [see Notes](https://stackoverflow.com/questions/3404675/get-distinct-node-values-in-xml-with-xsl)
 ```
 <xsl:stylesheet version="2.0"
  xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
