@@ -555,3 +555,19 @@ and then access the variable $x in any XPath expression.
 - variable value:  {$variable_name} instead of ${variable_name}
 - test="$var='string'" instead of  test="$var=string"
 - value-of select="string" or select="$var" instead of  select="string"
+
+- Find unique nodes base on attribute: using key in 1.0 and group in 2.0
+```
+<xsl:stylesheet version="2.0"
+ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+ <xsl:output omit-xml-declaration="yes" indent="yes"/>  
+
+ <xsl:template match="/">
+  <t>
+   <xsl:for-each-group select="*/*/Name" group-by="./@attr">
+     <xsl:copy-of select="."/>
+   </xsl:for-each-group>
+  </t>
+ </xsl:template>
+</xsl:stylesheet>
+```
