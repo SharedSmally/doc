@@ -52,9 +52,16 @@ Options:
  -X,--debug                             Produce execution debug output
 ```
 
+### [LifeCycle](http://maven.apache.org/ref/3.5.0/maven-core/lifecycles.html)
+Maven defines 3 lifecycles in META-INF/plexus/components.xml:
+- [default](http://maven.apache.org/ref/3.5.0/maven-core/lifecycles.html#default_Lifecycle) Lifecycle
+- [clean](http://maven.apache.org/ref/3.5.0/maven-core/lifecycles.html#clean_Lifecycle) Lifecycle
+- [site](http://maven.apache.org/ref/3.5.0/maven-core/lifecycles.html#site_Lifecycle) Lifecycle
+
+
 ### Phases
 
-A Build Lifecycle is Made Up of Phases. Each of these build lifecycles is defined by a different list of build phases, wherein a build phase represents a stage in the lifecycle.
+A [Build Lifecycle]() is Made Up of Phases. Each of these build lifecycles is defined by a different list of build phases, wherein a build phase represents a stage in the lifecycle.
 
 For example, the default lifecycle comprises of the following phases:
 - initialize - initialize the project
