@@ -1,4 +1,7 @@
 
+### tips:
+when java app is stucked, the command _kill -3_ will show the stack of the java app.
+
 ### Java Type vs Class:
 - A type is either a class (including an enum constant), an interface, a primitive, or an array.
 - A class is a type with constructors, fields, methods, annotations,
