@@ -13,6 +13,6 @@
 - Each partition has one server which acts as the "leader" and zero or more servers which act as "followers". The leader handles all read and write requests for the partition while the followers passively replicate the leader. If the leader fails, one of the followers will automatically become the new leader. Each server acts as a leader for some of its partitions and a follower for others so load is well balanced within the cluster.
 
 ### Group
-Consumers label themselves with a consumer group name, and each record published to a topic is delivered to one consumer instance within each subscribing consumer group. Consumer instances can be in separate processes or on separate machines.
+Consumers label themselves with a consumer group name, and each record published to a topic is delivered to **one consumer instance** within each subscribing consumer group. Consumer instances can be in separate processes or on separate machines.
 - If all the consumer instances have the same consumer group, then the records will effectively be load balanced over the consumer instances.
 - If all the consumer instances have different consumer groups, then each record will be broadcast to all the consumer processes.
