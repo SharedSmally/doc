@@ -65,6 +65,8 @@ git
 
    git branch:  list current branch
    
+   git branch -a : list all branches
+   
    git branch -r : list active branches
    
    git checkout $branchName$:  switch to another branch   
