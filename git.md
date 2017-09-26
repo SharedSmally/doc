@@ -69,7 +69,7 @@ git
    
    git branch -r : list active branches
    
-   git checkout $branchName$:  switch to another branch   
+   git checkout -b $branchName$:  switch to another branch   
    
    git diff branch_1..branch_2: the diff between the tips of the two branches
    
