@@ -71,5 +71,8 @@ git
    
    git checkout $branchName$:  switch to another branch   
    
+   git diff branch_1..branch_2: the diff between the tips of the two branches
    
-- Branch   
+   git diff branch_1...branch_2:  the diff from the common ancestor to test
+
+
