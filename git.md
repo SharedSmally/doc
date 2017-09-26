@@ -85,7 +85,8 @@ git
    
    git status -sb
    
-   Check potential conflicts: make an alias:
+- Check potential conflicts: 
+   make an alias:
 
     git config --global alias.mergetest '!f(){ git merge --no-commit --no-ff "$1"; git merge --abort; echo "Merge aborted"; };f '
 
