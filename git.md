@@ -75,4 +75,21 @@ git
    
    git diff branch_1...branch_2:  the diff from the common ancestor to test
 
+- [Merge](https://git-scm.com/book/en/v2/Git-Tools-Advanced-Merging)
+
+   git merge $branchName$
+   
+   git merge  -Xignore-all-space or -Xignore-space-change  $branchName$ : ignore whitespace and multiple spaces 
+   
+   git merge --abort:   Abort merge
+   
+   git status -sb
+   
+   Check potential conflicts: make an alias:
+
+    git config --global alias.mergetest '!f(){ git merge --no-commit --no-ff "$1"; git merge --abort; echo "Merge aborted"; };f '
+
+   the call the following to find out if there are any conflicts.
+
+    git mergetest <branchname>
 
