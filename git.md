@@ -85,6 +85,10 @@ git
    
    git status -sb
    
+   git reset --hard origin/<your-branch-name>:  revert local commits
+   
+   git log -p -1: see latest commits
+   
 - Check potential conflicts: 
    make an alias:
 
