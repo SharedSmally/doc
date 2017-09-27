@@ -85,7 +85,12 @@ git
    
    git status -sb
    
-   git reset --hard origin/<your-branch-name>:  revert local commits
+   git reset --hard origin/<your-branch-name>:  discard local commits and everything in work tree(local files)
+   
+   git reset HEAD^: uncommit, See [Notes](https://stackoverflow.com/questions/2845731/how-to-uncommit-my-last-commit-in-git)
+      - git reset --soft HEAD^: undo the act of committing, leave everything else intact
+      - git reset HEAD^:  undo the act of committing and everything staged, but leave the work tree (files intact):
+      - git reset --hard HEAD^: completely undo it, throw away all uncommitted changes, and reset everything to the previous commit
    
    git log -p -1: see latest commits
    
