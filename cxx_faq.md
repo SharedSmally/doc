@@ -23,7 +23,7 @@ B<T>::f(); //If f and g were both static:
 
 ## C++ executors
 - [Executor Open STD] (http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2016/p0443r0.html)
-
+- [P0443 Rev 1 proposal](http://open-std.org/JTC1/SC22/WG21/docs/papers/2017/p0443r1.html)
 - [Exector proposal:C++14 ](https://github.com/chriskohlhoff/executors):A C++14 library for executors(Chris Kohlhoff's executor model for the Networking TS N4370)
 
 - [R6 Executors](https://github.com/ccmysen/executors_r6): Revision 6 of the C++ executor standards proposal follow-on to N4414(Google's executor model for interfacing with thread pool)
