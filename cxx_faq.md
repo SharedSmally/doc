@@ -20,3 +20,8 @@
 this->f();
 B<T>::f(); //If f and g were both static:
 ```
+
+## C++ executors
+- [A C++14 library for executors](https://github.com/chriskohlhoff/executors):
+
+- [R6 Executors](https://github.com/ccmysen/executors_r6): Revision 6 of the C++ executor standards proposal follow-on to N4414
