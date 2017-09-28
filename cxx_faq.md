@@ -22,6 +22,8 @@ B<T>::f(); //If f and g were both static:
 ```
 
 ## C++ executors
-- [A C++14 library for executors](https://github.com/chriskohlhoff/executors):
+- [Exector proposal:C++14 ](https://github.com/chriskohlhoff/executors):A C++14 library for executors
 
 - [R6 Executors](https://github.com/ccmysen/executors_r6): Revision 6 of the C++ executor standards proposal follow-on to N4414
+
+- [Executor proposal: 2016](https://github.com/executors/issaquah_2016): A proposal for a minimal executor model for the Issaquah 2016 ISO C++ committee meeting
