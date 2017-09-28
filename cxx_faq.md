@@ -30,4 +30,4 @@ B<T>::f(); //If f and g were both static:
 
 - [Executor proposal: 2016](https://github.com/executors/issaquah_2016): A proposal for a minimal executor model for the Issaquah 2016 ISO C++ committee meeting(NVIDIA's executor model for the Parallelism TS P0058.)
 
-## (C++ Operators](https://en.wikibooks.org/wiki/C%2B%2B_Programming/Operators/Operator_Overloading)
+## [C++ Operators](https://en.wikibooks.org/wiki/C%2B%2B_Programming/Operators/Operator_Overloading)
