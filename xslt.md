@@ -16,6 +16,25 @@
    java -cp ${SAXON_HOME}/saxon9-xqj.jar:${SAXON_HOME}/saxon9he.jar \
      net.sf.saxon.Transform -xsl:$1 -s:$2 -o:$3
 
+## Match Attribute
+By default, XSLT does not look for templates matching attribute nodes. Explicitly apply templates to all attributes in the input XML.
+```
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
+
+    <xsl:output method="text"/>
+    <xsl:strip-space elements="*"/>
+
+    <xsl:template match="/">
+        <xsl:apply-templates select="//@*"/>
+    </xsl:template>
+
+    <xsl:template match="@conref">
+        <xsl:value-of select="."/>
+    </xsl:template>
+
+</xsl:stylesheet>
+```
+
 ## Components:  [Reference](http://www.w3schools.com/xml/xsl_elementref.asp)
 - XSLT root
 ```xml
