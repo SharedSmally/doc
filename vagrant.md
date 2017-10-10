@@ -38,6 +38,8 @@ Common commands:
 
      vbguest
 ```
+vagrant home directory: ~/.vagrant.d, including box/, keys, data, gem, ...
+
 
 ### Vagrantfile: https://www.vagrantup.com/docs/vagrantfile/
 ```
