@@ -9,3 +9,11 @@ Bluetooth operates between 2402 and 2480 MHz (79 channels x 1MHz), or 2400 and 2
 ## Technology:
    -  Bluetooth BR/EDR 
    -  Bluetooth Low Energy (LE)
+   
+##  Physical range: 
+   - Typically less than 10 m (33 ft), up to 100 m (330 ft); Bluetooth 5.0: 40–400 m (100–1,000 ft)
+   - Class 1: 100mW	  20dBm  	~100m
+   - Class 2:	2.5mW	  4dBm	  ~10m
+   - Class 3:	1mW     0dBm	  ~1m
+   - Class 4: 0.5mW  -3dBm	 ~0.5m
+
