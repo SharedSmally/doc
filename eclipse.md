@@ -1,6 +1,23 @@
 Eclipse:
 =======
 
+## Make a directory as a eclipse project
+
+Add File Name: .project in the directory:
+
+```
+<?xml version="1.0" encoding="UTF-8"?>
+<projectDescription>
+    <name>Project-Name</name>
+    <comment></comment>
+    <projects>
+    </projects>
+    <buildSpec>
+    </buildSpec>
+    <natures>
+    </natures>
+</projectDescription>
+```
 ## Eclipse + Web Service
 - Install Server: Apache Tomcat or other Application Server
 
