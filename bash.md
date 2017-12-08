@@ -20,6 +20,25 @@ Bash
           - Files **/etc/profile** and **~/.profile** (--noprofile inhibit it) 
 
 ## Tips
+-  Environment Variable
+```
+export DEPLOY_ENV=dev
+
+if [[ ! -v DEPLOY_ENV ]]; then
+    echo "DEPLOY_ENV is not set"
+elif [[ -z "$DEPLOY_ENV" ]]; then
+    echo "DEPLOY_ENV is set to the empty string"
+else
+    echo "DEPLOY_ENV has the value: $DEPLOY_ENV"
+fi
+
+# use a short-hand version
+[[ -z "${DEPLOY_ENV}" ]] && MyVar='default' || MyVar="${DEPLOY_ENV}"
+
+# shorter use
+MyVar="${DEPLOY_ENV:-default_value}"
+```
+
 - Command-line arguments: See [reference](http://wiki.bash-hackers.org/scripting/posparams).
 ```
 #!/bin/sh
@@ -79,6 +98,122 @@ do
 	  ;;
     esac
 done
+```
+
+- Array
+```
+  arr=(Hello World)
+  # set value
+  arr[0]=Hello
+  arr[1]=World
+  
+  # access
+  echo ${arr[0]} ${arr[1]}
+  ${arr[*]}         # All of the items in the array
+  ${!arr[*]}        # All of the indexes in the array
+  ${#arr[*]}        # Number of items in the array
+  ${#arr[0]}        # Length of item zero
+
+array=(one two three four [5]=five)
+echo "Array size: ${#array[*]}"
+
+echo "Array items:"
+for item in ${array[*]}
+do
+    printf "   %s\n" $item
+done
+
+echo "Array indexes:"
+for index in ${!array[*]}
+do
+    printf "   %d\n" $index
+done
+
+echo "Array items and indexes:"
+for index in ${!array[*]}
+do
+    printf "%4d: %s\n" $index ${array[$index]}
+done
+```
+
+- [test](http://man7.org/linux/man-pages/man1/test.1.html)
+```
+file=./file
+if [ -e "$file" ]; then
+    echo "File exists"
+else 
+    echo "File does not exist"
+fi 
+
+if [ ! -f "$file" ]; then
+    echo "$file"
+fi
+
+test -f "$file" || echo "$file"
+
+[ -f "$file" ] || echo "$file"
+
+$ [ -f "/$DIR/$FILE" ] || echo "$FILE NOT FOUND"
+
+$ [ -f "/$DIR/$FILE" ] && echo "$FILE FOUND"
+
+$  [ -f "/$DIR/$FILE" ] || { echo "$FILE NOT FOUND" ; exit 1 ;}
+```
+
+```
+-b filename - Block special file
+-c filename - Special character file
+-G filename - Check if file exists and is owned by effective group ID
+-O filename - True if file exists and is owned by the effective user id
+-G filename set-group-id - True if file exists and is set-group-id
+-k filename - Sticky bit
+-L filename - Symbolic link
+-S filename - Check if file is socket
+-u filename - Check if file set-user-id bit is set
+
+To test file existence, the parameter can be any one of the following
+-e: Returns true if file exists (regular file, directory, or symlink)
+-f: Returns true if file exists and is a regular file
+-d: Returns true if file exists and is a directory
+-h: Returns true if file exists and is a symlink
+
+All the tests below apply to regular files, directories, and symlinks:
+-r: Returns true if file exists and is readable
+-w: Returns true if file exists and is writable
+-x: Returns true if file exists and is executable
+-s: Returns true if file exists and has a size > 0
+```
+
+- Commonly used Commands
+```
+#current working dir:  
+echo "current working dir: fulldir=$PWD; dir=${PWD##*/}"
+
+#without find: for f in *; do [[ -d "$f" ]] && { dir=$f; break; }; done
+subdirs=$(find $PWD -mindepth 1 -maxdepth 1 -type d) # full path name
+subdirs=$(find . -mindepth 1 -maxdepth 1 -type d)    # only current path name
+echo "${subdirs}"
+for dir in "${subdirs[@]}"
+do
+    echo "dir=$dir"
+done
+
+# inplace replacement 
+# https://askubuntu.com/questions/20414/find-and-replace-text-within-a-file-using-commands
+sed -i 's/original/new/g' file.txt
+sed -i 's/\s\+/,/g' filename.txt
+ 
+#parse file line-by-line
+#http://www.thegeekstuff.com/2013/06/cut-command-examples
+cut -c2 test.txt    # Column of Characters
+cut -c1-3 test.txt  # Column of Characters with range
+cut -c3- test.txt
+cut -c-8 test.txt
+cut -d : -f 1 /etc/passwd  #Select a Specific Field
+cut -d':' -f1,6 /etc/passwd  #Select multiple Fields
+cut -d':' -f1-4,6,7 /etc/passwd
+grep "/bin/bash" /etc/passwd | cut -d':' --complement -s -f7  #except fields
+
 ```
 
 ## Customized .bashrc
