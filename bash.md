@@ -19,6 +19,61 @@ Bash
      - As an interactive login shell, or a non-interactive shell with --login:
           - Files **/etc/profile** and **~/.profile** (--noprofile inhibit it) 
 
+## Tips
+- Command-line arguments
+```
+fullname=$0   # full name of the command: first arg
+echo " full name = " $numargs
+
+numargs=$#
+echo " args number = " $numargs
+
+for arg
+do
+    echo "$arg"
+done
+```
+
+- Parse Command Line Arguments: ** COMMAND ** *[options] <params> *
+```
+#!/bin/sh
+
+while :
+do
+    case "$1" in
+      -f | --file)
+	  file="$2"   # check validity of $2
+	  shift 2
+	  ;;
+      -h | --help)
+	  display_help  # Call your function
+	  # no shifting needed here, we're done.
+	  exit 0
+	  ;;
+      -u | --user)
+	  username="$2" # check validity of $2
+	  shift 2
+	  ;;
+      -v | --verbose)
+          #  It's better to assign a string rather than a number, and use
+	  #    if [ "verbose" ] ...
+	  verbose="verbose"
+	  shift
+	  ;;
+      --) # End of all options
+	  shift
+	  break;
+      -*)
+	  echo "Error: Unknown option: $1" >&2
+	  exit 1
+	  ;;
+      *)  # No more options
+	  break
+	  ;;
+    esac
+done
+```
+
 ## Customized .bashrc
  See [LDP](http://www.tldp.org/LDP/abs/html/sample-bashrc.html) for the customized .bashrc and .bash_profile
  
