@@ -237,6 +237,34 @@ cut -d':' -f1,6 /etc/passwd  #Select multiple Fields
 cut -d':' -f1-4,6,7 /etc/passwd
 grep "/bin/bash" /etc/passwd | cut -d':' --complement -s -f7  #except fields
 
+grep --color -E '^|pattern1|pattern2' file_name  
+command_here | grep --color -E '^|pattern1|pattern2'  # match all lines and highlight the patterns.
+cat readme.txt | grep --color=always -z 'xxx'
+grep --color -E 'pattern|$' file
+grep --color 'pattern\|$' file
+egrep --color 'pattern|$' file
+alias highlight "grep --color -E $1|\$"
+
+alias grey-grep="GREP_COLOR='1;30' grep --color=always"
+alias red-grep="GREP_COLOR='1;31' grep --color=always"
+alias green-grep="GREP_COLOR='1;32' grep --color=always"
+alias yellow-grep="GREP_COLOR='1;33' grep --color=always"
+alias blue-grep="GREP_COLOR='1;34' grep --color=always"
+alias magenta-grep="GREP_COLOR='1;35' grep --color=always"
+alias cyan-grep="GREP_COLOR='1;36' grep --color=always"
+alias white-grep="GREP_COLOR='1;37' grep --color=always"
+
+export GREP_COLOR='1;32'  # Default color to highlight pattern
+The color should be encoded using [ANSI color codes](https://gist.github.com/chrisopedia/8754917), such as
+Black       0;30     Dark Gray     1;30
+Blue        0;34     Light Blue    1;34
+Green       0;32     Light Green   1;32
+Cyan        0;36     Light Cyan    1;36
+Red         0;31     Light Red     1;31
+Purple      0;35     Light Purple  1;35
+Brown       0;33     Yellow        1;33
+Light Gray  0;37     White         1;37
+
 uname [OPTION]...   #Displays system information
 -a 	Prints all information
 -s	Print the kernel name.
