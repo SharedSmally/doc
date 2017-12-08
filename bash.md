@@ -1,10 +1,28 @@
 Bash
 ======
 
+## [Manual](https://linux.die.net/man/1/bash) and [Reference](https://www.gnu.org/software/bash/manual/bash.html)
+
+## BASH Startup and Shutdown
+-  As an interactive login shell, or as a non-interactive shell with the --login option
+     - Reads and executes commands from the file /etc/profile
+     - Looks for ~/.bash_profile, ~/.bash_login, and ~/.profile in the order, Reads and executes commands from the first one that exists and is readable. T
+     - --noprofile can be used to inhibit this behavior.
+     - When exits, reads and executes commands from the files ~/.bash_logout and /etc/bash.bash_logout.
+
+ - As an interactive shell that is not a login shell:
+     - Reads and executes commands from ~/.bashrc
+     - May be inhibited by using the --norc option. The --rcfile file option force bash to read and execute commands from the given file instead of ~/.bashrc.
+    
+  - As a non-interactive shell:
+     - Look for the variable BASH_ENV in the environment, expands its value if it appears there, and uses the expanded value as the name of a file to read and execute.
+     
+  - Invoked with the name *sh* (POSIX standard)
+     - As an interactive login shell, or a non-interactive shell with the --login option: first try to read and execute commands from /etc/profile and ~/.profile, in that order. The --noprofile option may be used to inhibit this behavior. 
+
 ## Customized .bashrc
  See [LDP](http://www.tldp.org/LDP/abs/html/sample-bashrc.html) for the customized .bashrc and .bash_profile
-  
-## [Reference](https://www.gnu.org/software/bash/manual/bash.html)
+ 
 #### Pipeline
  a sequence of one or more commands separated by one of the control operators **|** or **|&**:
 ```bash
