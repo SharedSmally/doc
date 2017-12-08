@@ -35,7 +35,9 @@ done
 ```
 
 - Parse Command Line Arguments or use getopts 
+
 ** COMMAND ** *[options] <params> *
+
 ```
 #!/bin/sh
 
