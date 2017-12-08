@@ -51,8 +51,7 @@ echo "command fullname=$fullname; path=$path; name=$name"
 numargs=$#
 echo " args number = " $numargs
 
-for arg
-do
+for arg; do
     echo "$arg"
 done
 ```
@@ -131,6 +130,22 @@ echo "Array items and indexes:"
 for index in ${!array[*]}; do
     printf "%4d: %s\n" $index ${array[$index]}
 done
+
+# split string by new line
+function print_with_line_numbers {
+    local IFS=$'\n'
+    local lines=($1)
+    local i
+    for (( i=0; i<${#lines[@]}; i++ )) ; do
+        echo "$i: ${lines[$i]}"
+    done
+}
+
+names="Netgear
+Hon Hai Precision Ind. Co.
+Apple"
+
+print_with_line_numbers "$names"
 ```
 
 - [test](http://man7.org/linux/man-pages/man1/test.1.html)
