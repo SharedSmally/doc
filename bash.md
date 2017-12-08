@@ -118,20 +118,17 @@ array=(one two three four [5]=five)
 echo "Array size: ${#array[*]}"
 
 echo "Array items:"
-for item in ${array[*]}
-do
+for item in ${array[*]};  do
     printf "   %s\n" $item
 done
 
 echo "Array indexes:"
-for index in ${!array[*]}
-do
+for index in ${!array[*]}; do
     printf "   %d\n" $index
 done
 
 echo "Array items and indexes:"
-for index in ${!array[*]}
-do
+for index in ${!array[*]}; do
     printf "%4d: %s\n" $index ${array[$index]}
 done
 ```
@@ -193,8 +190,7 @@ echo "current working dir: fulldir=$PWD; dir=${PWD##*/}"
 subdirs=$(find $PWD -mindepth 1 -maxdepth 1 -type d) # full path name
 subdirs=$(find . -mindepth 1 -maxdepth 1 -type d)    # only current path name
 echo "${subdirs}"
-for dir in "${subdirs[@]}"
-do
+for dir in "${subdirs[@]}"; do
     echo "dir=$dir"
 done
 
@@ -246,8 +242,8 @@ esac
 #### Loop: until; while; for;select
   - until
 ```
- until test-commands; \
-    do consequent-commands; \
+ until test-commands; 
+    do consequent-commands; 
  done
 ```
   - while
