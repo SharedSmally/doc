@@ -5,19 +5,19 @@ Bash
 
 ## BASH Startup and Shutdown (Reads and executes commands)
 -  As an interactive login shell, or as a non-interactive shell with --login
-     - File /etc/profile, then first readable one from ~/.bash_profile, ~/.bash_login, and ~/.profile (--noprofile inhibit it)
-     - Files ~/.bash_logout and /etc/bash.bash_logout when exit.
+     - File **/etc/profile**, then first readable one from **~/.bash_profile**, **~/.bash_login**, and **~/.profile** (--noprofile inhibit it)
+     - Files **~/.bash_logout** and **/etc/bash.bash_logout** when exit.
 
  - As an interactive non-login shell:
-     - File ~/.bashrc (inhibited by --norc)
-     - File specified by --rcfile file option instead of ~/.bashrc
+     - File **~/.bashrc** (inhibited by --norc)
+     - File specified by **--rcfile** *file* option instead of ~/.bashrc
     
   - As a non-interactive shell:
-     - File from the variable BASH_ENV in the environment. Simlar to ```if [ -n "$BASH_ENV" ]; then . "$BASH_ENV"; fi```
+     - File from the variable **BASH_ENV** in the environment. Simlar to ```if [ -n "$BASH_ENV" ]; then . "$BASH_ENV"; fi```
      
   - Invoked with the name *sh* (POSIX standard)
      - As an interactive login shell, or a non-interactive shell with --login:
-          - Files /etc/profile and ~/.profile (--noprofile inhibit it) 
+          - Files **/etc/profile** and **~/.profile** (--noprofile inhibit it) 
 
 ## Customized .bashrc
  See [LDP](http://www.tldp.org/LDP/abs/html/sample-bashrc.html) for the customized .bashrc and .bash_profile
