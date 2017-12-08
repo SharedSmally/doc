@@ -147,7 +147,19 @@ Apple"
 
 print_with_line_numbers "$names"
 ```
+- alias
+```
+#alias alias_name="command_to_run"
+alias debug="set -o nounset; set -o xtrace"
+alias ll="ls -lhA"
+alias df="df -Tha --total"
+alias du="du -ach | sort -h"
+alias ps="ps auxf"
+alias psg="ps aux | grep -v grep | grep -i -e VSZ -e"
 
+unalias ll
+#alias: command to list all alias.
+```
 - [test](http://man7.org/linux/man-pages/man1/test.1.html)
 ```
 file=./file
@@ -225,6 +237,17 @@ cut -d':' -f1,6 /etc/passwd  #Select multiple Fields
 cut -d':' -f1-4,6,7 /etc/passwd
 grep "/bin/bash" /etc/passwd | cut -d':' --complement -s -f7  #except fields
 
+uname [OPTION]...   #Displays system information
+-a 	Prints all information
+-s	Print the kernel name.
+-n	Print the network node hostname.
+-r	Print the kernel release.
+-v	Print the kernel version.
+-m	Print the machine hardware name.
+-p	Print the processor type, or "unknown".
+-i	Print the hardware platform, or "unknown".
+-o	Print the operating system.
+arch [OPTION]...  Display the architecture of the current host. Same as uname -m
 ```
 
 ## Customized .bashrc
@@ -566,17 +589,23 @@ bind [-m keymap] keyseq:readline-command
 #### [Job Control](https://www.gnu.org/software/bash/manual/bash.html#Job-Control-Builtins)
 #### [Functions](http://tldp.org/HOWTO/Bash-Prog-Intro-HOWTO-8.html)
 ```bash
+function function_name {
+    command1
+    command2
+}
+function_name () { command1; command2; }
+
  #!/bin/bash 
-                function quit {
-                   exit
-                }  
-                function e {   # with parameter: $1, ...$9; $@
-                    echo $1 
-                }  
-                e Hello
-                e World
-                quit
-                echo foo 
+function quit {
+     exit
+}  
+function e {   # with parameter: $1, ...$9; $@
+       echo $1 
+}  
+e Hello
+e World
+quit
+echo foo 
 ```
 
 ## Tips
