@@ -13,7 +13,7 @@ Bash
      - File specified by --rcfile file option instead of ~/.bashrc
     
   - As a non-interactive shell:
-     - File from the variable BASH_ENV in the environment
+     - File from the variable BASH_ENV in the environment. Simlar to ```if [ -n "$BASH_ENV" ]; then . "$BASH_ENV"; fi```
      
   - Invoked with the name *sh* (POSIX standard)
      - As an interactive login shell, or a non-interactive shell with --login:
