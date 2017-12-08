@@ -32,7 +32,7 @@ sequence of one or more pipelines separated by one of the operators **;**, **&**
 
 #### Condition: if-elif-else; case
   - if
-```bash
+```
 if test-commands; then
   consequent-commands;
 [elif more-test-commands; then
@@ -41,40 +41,52 @@ if test-commands; then
 fi
 ```
   - case 
-```bash
-case word in [ [(] pattern [| pattern]…) command-list ;;]… esac
+```
+case word in [ [(] pattern [| pattern]…) command-list ;;]
+… 
+esac
 ```
 #### Loop: until; while; for;select
   - until
-```bash
- until test-commands; do consequent-commands; done
+```
+ until test-commands; \
+    do consequent-commands; \
+ done
 ```
   - while
-```bash
- while test-commands; do consequent-commands; done
+```
+ while test-commands; 
+    do consequent-commands; 
+ done
 ```
   - for
-```bash
- for name [ [in [words …] ] ; ] do commands; done
+```
+ for name [ [in [words …] ] ; ] 
+    do commands; 
+ done
  
- for (( expr1 ; expr2 ; expr3 )) ; do commands ; done
+ for (( expr1 ; expr2 ; expr3 )) ; 
+     do commands ; 
+ done
 ```
   - select
 ```bash
-select name [in words …]; do commands; done
+select name [in words …]; 
+    do commands; 
+done
 ```
 
 #### Expression
   - ((…)): The arithmetic expression is evaluated according to the rules. If the value of the expression is non-zero, the return status is 0; otherwise the return status is 1
-```bash  
+```
 (( expression ))
 ```
   - [[…]]: Return a status of 0 or 1 depending on the evaluation of the conditional expression expression.
-```bash  
+```  
  [[ expression ]]
 ```
   - combined expressions:
-```bash  
+```  
 ( expression )
 ! expression
 expression1 && expression2
