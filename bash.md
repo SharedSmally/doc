@@ -20,10 +20,14 @@ Bash
           - Files **/etc/profile** and **~/.profile** (--noprofile inhibit it) 
 
 ## Tips
-- Command-line arguments
+- Command-line arguments: See [reference](http://wiki.bash-hackers.org/scripting/posparams).
 ```
-fullname=$0   # full name of the command: first arg
-echo " full name = " $numargs
+#!/bin/sh
+
+fullname=$0   # fullname
+path=`dirname $0`
+name=`basename $0`
+echo "command fullname=$fullname; path=$path; name=$name"
 
 numargs=$#
 echo " args number = " $numargs
