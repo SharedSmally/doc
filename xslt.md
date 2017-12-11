@@ -590,3 +590,33 @@ and then access the variable $x in any XPath expression.
  </xsl:template>
 </xsl:stylesheet>
 ```
+
+- substring from last
+```
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    
+<xsl:function name="cpw:substring-before-last">
+    <xsl:param name="input" as="xs:string"/>
+    <xsl:param name="substr" as="xs:string"/>
+    <xsl:sequence 
+       select="if ($substr) 
+               then 
+                  if (contains($input, $substr)) then 
+                  string-join(tokenize($input, $substr)
+                    [position( ) ne last( )],$substr) 
+                  else ''
+               else $input"/>
+</xsl:function>
+
+<xsl:function name="cpw:substring-after-last">
+    <xsl:param name="input" as="xs:string"/>
+    <xsl:param name="substr" as="xs:string"/>
+    <xsl:sequence 
+    select="if ($substr) 
+            then
+               if (contains($input, $substr))
+               then tokenize($input, $substr)[last( )] 
+               else '' 
+            else $input"/>
+</xsl:function>
+```
