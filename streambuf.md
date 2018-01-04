@@ -9,7 +9,6 @@ void stream_copy(std::ostream & dst, std::istream & src)
     dst << src.rdbuf();
 }
 ```
-
     - Load
 ```
 // Return a named file's contents as a string
@@ -21,7 +20,6 @@ std::string load_file(char const * filepath)
     return buf.str();
 }
 ```
-
     - Redirect
 ```
 #include <fstream>
@@ -51,9 +49,7 @@ int main()
     hello_world();
     return 0;
 }
-
 ```
-
     - Tee    
 ```
 #include <iostream>
@@ -70,27 +66,21 @@ public:
                  std::basic_streambuf<char_type, traits> * sb2)
       : sb1(sb1)
       , sb2(sb2)
-    {
-    }
+    { }
     
 private:    
-    virtual int sync()
-    {
+    virtual int sync() {
         int const r1 = sb1->pubsync();
         int const r2 = sb2->pubsync();
         return r1 == 0 && r2 == 0 ? 0 : -1;
     }
     
-    virtual int_type overflow(int_type c)
-    {
+    virtual int_type overflow(int_type c)    {
         int_type const eof = traits::eof();
         
-        if (traits::eq_int_type(c, eof))
-        {
+        if (traits::eq_int_type(c, eof)) {
             return traits::not_eof(c);
-        }
-        else
-        {
+        } else {
             char_type const ch = traits::to_char_type(c);
             int_type const r1 = sb1->sputc(ch);
             int_type const r2 = sb2->sputc(ch);
