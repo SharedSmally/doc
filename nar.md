@@ -109,10 +109,9 @@
                         </build>
                 </profile>
         </profiles>
-
 ```
 
-- Generated files:
+- Generated files by command: mvn package or mvn install
    - xxx-${VERSION}-amd64-Linux-gcc-shared.nar: include lib/amd64-Linux-gcc/shared/libxxx-${VERSION}.so and history.xml
    - xxx-${VERSION}-noarch.nar: include header files in include/:
    - Only has META-INF/maven/xxx with  pom.properties and pom.xml; and  META-INF/nar/xxx/nar.properties
