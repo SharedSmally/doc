@@ -1,4 +1,6 @@
-# nar : maven plugin to generate shared library from c++:
+# nar plugin
+maven plugin to generate shared library from c++. See http://maven-nar.github.io/plugin-info.html for more info.
+
 ## nar project layout:
 - pom.xml; src/main/cpp/*.cpp; src/main/include/*.h
 ```
