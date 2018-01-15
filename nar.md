@@ -115,3 +115,10 @@
    - xxx-${VERSION}-amd64-Linux-gcc-shared.nar: include lib/amd64-Linux-gcc/shared/libxxx-${VERSION}.so and history.xml
    - xxx-${VERSION}-noarch.nar: include header files in include/:
    - Only has META-INF/maven/xxx with  pom.properties and pom.xml; and  META-INF/nar/xxx/nar.properties
+   
+ - The NAR plugin sets several properties that can be helpful in configuring other plugins.
+    - nar.arch: The architecture (e.g. x86_64).
+    - nar.os: The operating system (e.g. MacOSX).
+    - nar.linker: The linker (e.g. gpp).
+    - nar.aol: The full AOL string. This is helpful when setting java.library.path; with a default configuration, this would be target/nar/${project.artifactId}-${project.version}-${nar.aol}/lib/${nar.aol}/jni
+    - nar.aol.key: The AOL string with the '-' characters replaced by '.' characters.
