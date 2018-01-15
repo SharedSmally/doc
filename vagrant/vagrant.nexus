@@ -1,0 +1,11 @@
+   
+  config.vm.box = "cent7"
+
+  config.vm.network "forwarded_port", guest: 8081, host: 30001
+
+  config.vm.provision "shell", inline: <<-SHELL
+     yum update -y
+     yum install -y java-1.8.0-openjdk.x86_64
+     yum install -y wget
+  SHELL
+  config.vm.provision "shell", path: "nexus.sh"
