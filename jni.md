@@ -1,12 +1,15 @@
-** JNI :  Java <-> C/C++
+# JNI :  Java <-> C/C++
 
-** Swig
+## JNI:
+The JNI does not enforce class, field, and method access control restrictions that can be expressed at the Java programming language level through the use of modifiers such as private and final. It is possible to write native code to access or modify fields of an object even though doing so at the Java programming language level would lead to an IllegalAccessException. #This means JNI can call JAVA any methods/fiels, including protected and private methods/fields#.
+
+## Swig
  Generate Java, xxx from C/C++ impl. Command:
  ```
  swig -java|xxx [-cxx] interface.i
  ```
 
-*** JNIEnv
+### JNIEnv
 JNI interface pointer (JNIEnv \*) is only valid in the current thread. Within synchronous calls using JNI from Java to C++ the "environment" has already been setup by the JVM, but it may not have been from an arbitrary C++ thread.
 
 To call Java method from C++:
