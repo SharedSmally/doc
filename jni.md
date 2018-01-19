@@ -5,11 +5,96 @@
  ```
  swig -java|xxx [-cxx] interface.i
  ```
+####  Swig interface file (could )
+- Can use c/c++ comments: /* */ and  //
+- %{  ... %} will go to the wrapper code
+
+```
+%module moduleName
+
+%{
+/* Includes the headers in the wrapper code */
+#include <string>
+#include <TestException.h>
+%}
+
+/* The functions and classes that need to be wrapped:
+ * Generated the corresponding C code; and then warp in java.
+ * 
+ */
  
+```
+
+## Tips:
+#### C++ string to Java byte array
+See https://stackoverflow.com/questions/12192624/swig-convert-return-type-stdstringbinary-to-java-byte
+    and http://yangyingchao.github.io/Swig-%E6%9D%82%E8%AE%B0/.
+    - C++: std::string GetString(); =>  Java:  public byte[] GetString()
+    ```    
+    %include <std_string.i>
+    %typemap(jstype) std::string GetString "byte[]";
+    %typemap(jtype) std::string GetString "byte[]";
+    %typemap(jni) std::string GetString "jbyteArray";
+    %typemap(out) std::string GetString
+    {
+        if ($1.empty()) {
+           return NULL;
+        }
+        $result = JCALL1(NewByteArray, jenv, $1.size());
+        JCALL4(SetByteArrayRegion, jenv, $result, 0, $1.size(), (const jbyte*)$1.c_str());
+    }    
+    ```
+    - C++ bool GetString(std::string &out); => Java  public void GetString(byte[] out) 
+    ```
+     %include <std_string.i>  
+     %typemap(jstype) std::string& out "byte[]";
+     %typemap(jtype) std::string& out "byte[]";
+     %typemap(jni) std::string& out "jbyteArray";
+     %typemap(argout) std::string& out
+     {
+        if (!$result || $1.empty())
+        {
+            return NULL;
+        }  
+        $result = JCALL1(NewByteArray, jenv, $1.size());
+        JCALL4(SetByteArrayRegion, jenv, $result, 0, $1.size(), (const jbyte*)$1.c_str());
+     }
+    ```
+
+#### Pass C++ object to Java Directly
+ The getCPtr() in the generated Java classes is the pointer points to real C++ 
+ object. It can be considered as void \*, and can be convert to C++ object directly.
+```
+    # create swig generated proxy Java Object from C++ object directly
+    CxxCallback cb;  # c++ object
+    jclass cls = env->FindClass( "CxxCallback");
+    jmethodID constructor = env->GetMethodID(cls, "<init>", "(JZ)V" );
+    # The C++ object is not owned by JVM, cMemoryOwn = false
+    jobject obj = env->NewObject(cls,constructor, (long) &cb, false); 
+    
+    # create swig generated proxy Java Object; and get its C++ object directly
+    jmethodID jvmconstructor = env->GetMethodID(cls, "<init>", "()V" );
+    # The C++ object is owned by JVM
+    jobject cbobject = env->NewObject(cls,jvmconstructor); 
+    CxxCallback * ptr ;
+```
+
+#### Get Java method Signature
+Using command javap for the specific Java class:
+```
+javap -s CxxCallback.class
+```
+
+#### Java call C++ interface
+See https://stackoverflow.com/questions/8168517/generating-java-interface-with-swig
+C++ defines the interface, and Java impl inherits from it and be called via C++.
+
+
+
 ## JNI:
 The JNI does not enforce class, field, and method access control restrictions that can be expressed at the Java programming language level through the use of modifiers such as private and final. It is possible to write native code to access or modify fields of an object even though doing so at the Java programming language level would lead to an IllegalAccessException. *This means JNI can call JAVA any methods/fiels, including protected and private methods/fields*.
 
-#### interface
+####  Swig interface file (could )
 - Can use c/c++ comments: /* */ and  //
 - %{  ... %} will go to the wrapper code
 
@@ -227,17 +312,6 @@ $2 = (int)    JCALL1(GetArrayLength,       jenv, $input);
 
 %include <TestException.h> # The classes to be wrapped
 
-```
-#### C++ string to Java byte array
-See https://stackoverflow.com/questions/12192624/swig-convert-return-type-stdstringbinary-to-java-byte
-
-#### Pass C++ object to Java Directly
-C++ code:
-```
-    CxxCallback cb;  # c++ object
-    jclass cbcls = env->FindClass( "CxxCallback");
-    jmethodID cbconstructor = env->GetMethodID(cbcls, "<init>", "(JZ)V" );
-    jobject cbobject = env->NewObject(cbcls,cbconstructor, (long) &cb, false);  # create swig generated proxy Java Object
 ```
 
 ### JNIEnv
