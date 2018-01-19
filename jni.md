@@ -228,7 +228,8 @@ $2 = (int)    JCALL1(GetArrayLength,       jenv, $input);
 %include <TestException.h> # The classes to be wrapped
 
 ```
-#### Pass C++ object to Java Directly
+#### C++ string to Java byte array
+See https://stackoverflow.com/questions/12192624/swig-convert-return-type-stdstringbinary-to-java-byte
 
 #### Pass C++ object to Java Directly
 C++ code:
@@ -280,4 +281,18 @@ void callback(int val) {
     - C++ variants:
 ```
 env->FindClass(...)
+```
+    - memory management:
+```
+    jclass tmpcls = env->FindClass(clsName.c_str());
+
+    if (tmpcls != NULL)
+    {
+        cls = (jclass)env->NewGlobalRef(tmpcls);
+
+        constructor = env->GetMethodID(cls, "<init>", "()V");
+        getCPtr = env->GetStaticMethodID(cls, "getCPtr", sigName.c_str());
+
+        env->DeleteLocalRef(tmpcls);
+    }
 ```
