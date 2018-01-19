@@ -29,7 +29,8 @@
 #### C++ string to Java byte array
 See https://stackoverflow.com/questions/12192624/swig-convert-return-type-stdstringbinary-to-java-byte
     and http://yangyingchao.github.io/Swig-%E6%9D%82%E8%AE%B0/.
-    - C++: std::string GetString(); =>  Java:  public byte[] GetString()
+    
+    -  C++: std::string GetString(); =>  Java:  public byte[] GetString()
     ```    
     %include <std_string.i>
     %typemap(jstype) std::string GetString "byte[]";
@@ -44,7 +45,8 @@ See https://stackoverflow.com/questions/12192624/swig-convert-return-type-stdstr
         JCALL4(SetByteArrayRegion, jenv, $result, 0, $1.size(), (const jbyte*)$1.c_str());
     }    
     ```
-    - C++ bool GetString(std::string &out); => Java  public void GetString(byte[] out) 
+    
+    -  C++ bool GetString(std::string &out); => Java  public void GetString(byte[] out) 
     ```
      %include <std_string.i>  
      %typemap(jstype) std::string& out "byte[]";
