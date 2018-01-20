@@ -115,3 +115,26 @@ Create an Executable Jar:
 $ mvn package
 $ java -jar target/myproject-0.0.1-SNAPSHOT.jar
 ```
+
+## Application
+```
+public static void main(String[] args) {
+	SpringApplication app = new SpringApplication(MySpringConfiguration.class);
+	app.setBannerMode(Banner.Mode.OFF);
+	app.run(args);
+}
+new SpringApplicationBuilder()
+		.sources(Parent.class)
+		.child(Application.class)
+		.bannerMode(Banner.Mode.OFF)
+		.run(args);
+```
+Application events are sent in the following order:
+- An ApplicationStartingEvent is sent at the start of a run but before any processing except the registration of listeners and initializers.
+- An ApplicationEnvironmentPreparedEvent is sent when the Environment to be used in the context is known but before the context is created.
+- An ApplicationPreparedEvent is sent just before the refresh is started but after bean definitions have been loaded.
+- An ApplicationReadyEvent is sent after the refresh and any related callbacks have been processed, to indicate that the application is ready to service requests.
+- An ApplicationFailedEvent is sent if there is an exception on startup.
+
+Some events are triggered before the ApplicationContext is created, cannot register a listener on those as a @Bean. You can register them with the SpringApplication.addListeners(...) or SpringApplicationBuilder.listeners(...) methods.
+
