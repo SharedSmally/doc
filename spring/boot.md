@@ -116,7 +116,7 @@ $ mvn package
 $ java -jar target/myproject-0.0.1-SNAPSHOT.jar
 ```
 
-## Application
+### Application
 ```
 public static void main(String[] args) {
 	SpringApplication app = new SpringApplication(MySpringConfiguration.class);
@@ -138,7 +138,7 @@ Application events are sent in the following order:
 
 Some events are triggered before the ApplicationContext is created, cannot register a listener on those as a @Bean. You can register them with the SpringApplication.addListeners(...) or SpringApplicationBuilder.listeners(...) methods.
 
-###Application Configurations
+### Application Configurations
 Spring Boot Properties are considered in the following order:
 - Devtools global settings properties on your home directory (~/.spring-boot-devtools.properties when devtools is active).
 - @TestPropertySource annotations on your tests.
