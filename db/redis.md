@@ -6,9 +6,13 @@
 ## [Documents](https://redis.io/documentation)
 ### [Full Commands](https://redis.io/commands)
 ### [CLI Commands](https://redis.io/topics/rediscli):
+- Server: redis-server
 - Connect: redis-cli [-a xxxx] [-h redis15.localnet.org] [-p 6390] ping
 
+
 ### Config
+- Config file:  redis.conf
+
 - docker: 
   - access:
   - password:
