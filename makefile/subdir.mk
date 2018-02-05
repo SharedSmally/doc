@@ -34,6 +34,11 @@ clean: $(CLEANDIRS)
 $(CLEANDIRS): 
 	$(MAKE) -C $(@:clean-%=%) clean
 
+.INIT::
+        @ echo Entering dir `pwd`
+
+.DONE::
+        @ echo Leaving dir `pwd`
 
 .PHONY: subdirs $(DIRS)
 .PHONY: subdirs $(BUILDDIRS)
