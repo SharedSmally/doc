@@ -45,10 +45,10 @@ SslContext	build()
 ```
       - SslContext:     
 ```
-abstract javax.net.ssl.SSLEngine	newEngine(ByteBufAllocator alloc)
-abstract javax.net.ssl.SSLEngine	newEngine(ByteBufAllocator alloc, java.lang.String peerHost, int peerPort)
-SslHandler	newHandler(ByteBufAllocator alloc)
-SslHandler	newHandler(ByteBufAllocator alloc, java.lang.String peerHost, int peerPort)
+abstract javax.net.ssl.SSLEngine newEngine(ByteBufAllocator alloc)
+abstract javax.net.ssl.SSLEngine newEngine(ByteBufAllocator alloc, String peerHost, int peerPort)
+SslHandler newHandler(ByteBufAllocator alloc)
+SslHandler newHandler(ByteBufAllocator alloc, String peerHost, int peerPort)
 ```
 
 ### Server Side 
