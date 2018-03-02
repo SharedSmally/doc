@@ -36,18 +36,14 @@ keytool –list –keystore tomcat.keystore
 - Use SslContext to create SslEngine
 - Use SslEngine to create SslHandler
 - For netty, use SslContextBuilder to build SslContext, and use SslContext to create SslHandler directly
-
-      - SslContextBuilder:
-      
+      - SslContextBuilder:     
 ```
 static SslContextBuilder forClient()
 static SslContextBuilder forServer(File keyCertChainFile, File keyFile) ...
 SslContextBuilder setXXX(xxx)
 SslContext	build()
 ```
-
-      - SslContext:
-      
+      - SslContext:     
 ```
 abstract javax.net.ssl.SSLEngine	newEngine(ByteBufAllocator alloc)
 abstract javax.net.ssl.SSLEngine	newEngine(ByteBufAllocator alloc, java.lang.String peerHost, int peerPort)
