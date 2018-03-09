@@ -2,6 +2,7 @@
 - private key
 - certificate: public key with the subject information and the signature. The signature is the hash(encrypt(information) using issuer's private key)
 - [ openssl tool](https://www.digitalocean.com/community/tutorials/openssl-essentials-working-with-ssl-certificates-private-keys-and-csrs)
+- [Openssl CA](https://jamielinux.com/docs/openssl-certificate-authority/create-the-root-pair.html)
 
 ### Private Key
 - Create a Private Key: a password-protected, 2048-bit private key (domain.key):
