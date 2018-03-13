@@ -1,7 +1,7 @@
 [OSGi](https://www.osgi.org/)
 ========
 
-== [OSGi Spec] (https://www.osgi.org/developer/specifications/)
+### [OSGi Spec] (https://www.osgi.org/developer/specifications/)
  - Latest: Release 6
     - [R6 javadoc](https://www.osgi.org/osgi-release-6-javadoc/)
     - [R6 Schema](https://www.osgi.org/osgi-release-6-xml-schemas/)
@@ -13,7 +13,7 @@
     - Bundle-NativeCode: OS/Processor Values
     - Bundle-Category: Recommended Categories
  
-== [Impl ] (http://felix.apache.org/)
+### [Impl ] (http://felix.apache.org/)
   - [Felix and Subprojects](http://felix.apache.org/)
       - [Framework & core](http://felix.apache.org/downloads.cgi)
       - [Enterprise Impl: aries](http://aries.apache.org/)
@@ -45,9 +45,10 @@
       - full JPA support via [Apache OpenJPA](http://openjpa.apache.org/)
       - XA transaction management via JTA, JDBC, JNDI via [Apache Aries](http://aries.apache.org/)
    
-   == [Dev]
-    - [Bnd] (http://bnd.bndtools.org/)
-    - [BndTools] (http://bndtools.org/)
-    - [Amdatu] (https://amdatu.org/generaltop/overview/)
-    - [Amdatu wiki] (https://amdatu.atlassian.net/wiki/spaces/AMDATUDEV/pages/26836997/Amdatu+Configurator)
+  ### [OSGi Development] 
+      - Interface base Service
+      - [Bnd] (http://bnd.bndtools.org/)
+      - [BndTools] (http://bndtools.org/)
+      - [Amdatu] (https://amdatu.org/generaltop/overview/)
+      - [Amdatu wiki] (https://amdatu.atlassian.net/wiki/spaces/AMDATUDEV/pages/26836997/Amdatu+Configurator)
    
