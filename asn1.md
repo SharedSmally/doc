@@ -84,8 +84,10 @@ ULP {
    }
 }
 
+bitstring: 5bits: 10101 (bit0->bit4) => 0xA8-0xAF
+// 1010,1000 => 1010,1xxx (bit0:1; bit1:0; bit2:1; bit3:0; bit4:1 )
             gnssIds.numbits = 5;
-            gnssIds.data[0]=0xA8;   // 1010,1000 => 1000,1xxx (bit0:1; bit1:0; bit2:1; bit3:0; bit4:1 )
+            gnssIds.data[0]=0xA8;   
             gnssIds.data[1]=0;
             
 ```
