@@ -45,3 +45,9 @@
       - full JPA support via [Apache OpenJPA](http://openjpa.apache.org/)
       - XA transaction management via JTA, JDBC, JNDI via [Apache Aries](http://aries.apache.org/)
    
+   == [Dev]
+    - [Bnd] (http://bnd.bndtools.org/)
+    - [BndTools] (http://bndtools.org/)
+    - [Amdatu] (https://amdatu.org/generaltop/overview/)
+    - [Amdatu wiki] (https://amdatu.atlassian.net/wiki/spaces/AMDATUDEV/pages/26836997/Amdatu+Configurator)
+   
