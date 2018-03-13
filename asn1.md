@@ -83,5 +83,10 @@ ULP {
       }
    }
 }
+
+            gnssIds.numbits = 5;
+            gnssIds.data[0]=0xA8;   // 1010,1000 => 1000,1xxx (bit0:1; bit1:0; bit2:1; bit3:0; bit4:1 )
+            gnssIds.data[1]=0;
+            
 ```
 
