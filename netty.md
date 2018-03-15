@@ -2,7 +2,7 @@
 
 ## Tutorial
 - [Timer Server/Client sample](http://shengwangi.blogspot.com/2016/03/netty-tutorial-hello-world-example.html)
-- [Sample](https://netty.io/4.1/xref/io/netty/example/http2/helloworld/server/Http2Server.html)
+- [Http2 Sample](https://netty.io/4.1/xref/io/netty/example/http2/helloworld/server/package-summary.html)
 
 ## SSL Setup
 ### Server Side Keystore
