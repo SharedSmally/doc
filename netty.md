@@ -4,6 +4,12 @@
 - [Timer Server/Client sample](http://shengwangi.blogspot.com/2016/03/netty-tutorial-hello-world-example.html)
 - [Http2 Sample](https://netty.io/4.1/xref/io/netty/example/http2/helloworld/server/package-summary.html)
 
+## Http2
+HTTP/2 (Based on SPDY) is comprised of two specifications:
+ - Hypertext Transfer Protocol version 2 - RFC7540
+ - HPACK - Header Compression for HTTP/2 - RFC7541
+ - WebSocket: RFC 6455
+
 ## SSL Setup
 ### Server Side Keystore
 - Create a Keystore:
