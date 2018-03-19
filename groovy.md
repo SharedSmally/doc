@@ -22,9 +22,12 @@ output.writeTo(writer);
 
 ### Builder with Closures
 - Use pre-defined builders like the JsonBuilder or MarkupBuilder to create data or text structures
+
 - Simple Builders with Closures
      - A node in the builder is a method and use a closure as the argument of the method to create a new level in the builder hierarchy.
-     - use pre-defined method names in our builder syntax, but can also use dynamic or unkown method names by implementing the methodMissing method. The same goes for properties we can implement with real property methods or by implementing the propertyMissing method.
+     - Use pre-defined method names in the builder syntax
+     - Use dynamic or unkown method names by implementing the methodMissing method.
+     - The same goes for properties with real property methods or by implementing the propertyMissing method.
 ```
 // Builder syntax to create a reservation with passengers,
 // departing and destination airport and make it a 2-way flight.
