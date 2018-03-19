@@ -1,7 +1,69 @@
 # groovy
 ### Template engine + MarkupBuilder
 Developping a template engine relying on the Groovy MarkupBuilder. 
-
+- [Example](http://mrhaki.blogspot.com/2014/08/groovy-goodness-use-custom-template.html)
+    - Define Template inherits from [BaseTemplate](http://docs.groovy-lang.org/2.4.10/html/api/groovy/text/markup/BaseTemplate.html)
+```
+import groovy.text.markup.*
+import groovy.text.*
+ 
+abstract class FontAwesomeTemplate extends BaseTemplate { 
+    FontAwesomeTemplate(final MarkupTemplateEngine templateEngine,
+        final Map model, final Map<String,String> modelTypes,
+        final TemplateConfiguration configuration) {
+        super(templateEngine, model, modelTypes, configuration)
+    }
+ 
+    String icon(final String icon, final String[] attributes = []) {
+        // Prefix attribute names with fa-.
+        final faAttributes = attributes.collect { "fa-$it" }
+ 
+        // Create markup.
+        $/<span class="fa fa-${icon} ${faAttributes.join(' ')}"></span>/$
+    }
+ 
+}
+```
+    - Use the new Defined Template
+```
+import groovy.text.*
+import groovy.text.markup.*
+ 
+// Create configuration and set base template class to FontAwesomeTemplate.
+TemplateConfiguration config = new TemplateConfiguration(
+    baseTemplateClass: FontAwesomeTemplate
+)
+ 
+// Create engine with configuration.
+MarkupTemplateEngine engine = new MarkupTemplateEngine(config)    
+ 
+// Create template with text using the icon method.
+Template template = engine.createTemplate('''
+    ul {
+        // Use the name of the icon as argument for the icon method.
+        li icon('cloud')
+ 
+        // Any extra arguments are assumed to be FontAwesome attributes.
+        li icon('pencil', 'large', 'rotate-90')
+    }
+ 
+    // If we want to use the icon method in between text we must use the ${stringOf notation}.
+    p "This is a ${stringOf {icon('home')}} home icon."
+ 
+    // Or use yieldUnescaped method.
+    p {
+        yield "This is a "
+        yieldUnescaped icon('cog')
+        yield " settings icon."
+    }
+''')   
+ 
+// Render output for template.
+Writer writer = new StringWriter()                         
+Writable output = template.make([:]) 
+output.writeTo(writer)  
+String result = writer.toString()
+```
 
 ### [Template Engine](http://docs.groovy-lang.org/docs/next/html/documentation/template-engines.html)
 The template framework consists of a [TemplateEngine](http://docs.groovy-lang.org/2.4.10/html/api/groovy/text/TemplateEngine.html) abstract base class that engines must implement and a [Template](http://docs.groovy-lang.org/2.4.10/html/api/groovy/text/Template.html) interface that the resulting templates they generate must implement.
