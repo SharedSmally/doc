@@ -1,4 +1,6 @@
 # groovy
+### Template engine + MarkupBuilder
+Developping a template engine relying on the Groovy MarkupBuilder. 
 
 
 ### [Template Engine](http://docs.groovy-lang.org/docs/next/html/documentation/template-engines.html)
@@ -21,7 +23,7 @@ output.writeTo(writer);
 ```
 
 ### Builder with Closures
-- Use pre-defined builders like the [JsonBuilder](http://docs.groovy-lang.org/2.4.10/html/api/groovy/json/JsonBuilder.html) or MarkupBuilder to create data or text structures
+- Use pre-defined builders like the [JsonBuilder](http://docs.groovy-lang.org/2.4.10/html/api/groovy/json/JsonBuilder.html) or [MarkupBuilder](http://docs.groovy-lang.org/2.4.10/html/api/groovy/xml/MarkupBuilder.html) to create data or text structures
    - JsonBuilder
 ```
        def builder = new groovy.json.JsonBuilder()
@@ -55,6 +57,28 @@ def message = new MessageBuilder()
 
 def builder = new groovy.json.JsonBuilder(message)
 print "message json="+builder.toString()
+```
+   - create XML string using [DomBuilder](http://docs.groovy-lang.org/2.4.10/html/api/groovy/xml/DOMBuilder.html) and [DocumentBuilder](https://docs.oracle.com/javase/8/docs/api/javax/xml/parsers/DocumentBuilder.html)
+   
+   - create XML string using [SAXBuilder](http://docs.groovy-lang.org/2.4.10/html/api/groovy/xml/SAXBuilder.html)
+   
+   - create XML/HTML string using [MarkupBuilder](http://docs.groovy-lang.org/2.4.10/html/api/groovy/xml/MarkupBuilder.html)
+```
+new MarkupBuilder().root {
+   a( a1:'one' ) {
+     b { mkp.yield( '3 < 5' ) }
+     c( a2:'two', 'blah' )
+   }
+ }
+ ``` 
+Will print the following to System.out:
+```
+<root>
+   <a a1='one'>
+     <b>3 &lt; 5</b>
+     <c a2='two'>blah</c>
+   </a>
+ </root>
 ```
 
 - Simple Builders with Closures
