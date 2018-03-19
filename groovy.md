@@ -1,7 +1,7 @@
 # groovy
-=====
 
-## [Template Engine](http://docs.groovy-lang.org/docs/next/html/documentation/template-engines.html)
+
+### [Template Engine](http://docs.groovy-lang.org/docs/next/html/documentation/template-engines.html)
 The template framework consists of a [TemplateEngine](http://docs.groovy-lang.org/2.4.10/html/api/groovy/text/TemplateEngine.html) abstract base class that engines must implement and a [Template](http://docs.groovy-lang.org/2.4.10/html/api/groovy/text/Template.html) interface that the resulting templates they generate must implement.
 
 Included with Groovy are several template engines:
@@ -18,4 +18,56 @@ Template template = engine.createTemplate(String|File|URL);
 Map<String, Object> model = new HashMap<>();              
 Writable output = template.make(model);                             
 output.writeTo(writer);                       
+```
+
+### builder
+
+### Builder for Fluent API
+- [Builder](http://docs.groovy-lang.org/2.4.10/html/api/groovy/transform/builder/Builder.html)
+```
+import groovy.transform.builder.Builder
+import groovy.transform.builder.ExternalStrategy
+ 
+// We don't want to change the definition
+// of this class to get a fluent API.
+class Message {
+    String from, to, subject, body
+}
+ 
+// New builder class for the Message class.
+@Builder(builderStrategy = ExternalStrategy, forClass = Message)
+class MessageBuilder {}
+ 
+def message = new MessageBuilder()  // Create new instance.
+        .from('mrhaki@mrhaki.com')
+        .to('mail@host.nl')
+        .subject('Groovy 2.3 is released')
+        .body('Groovy rocks!')
+        .build()  // Return filled Message instance.
+ 
+assert message.body == 'Groovy rocks!'
+assert message.from == 'mrhaki@mrhaki.com'
+assert message.subject == 'Groovy 2.3 is released'
+```
+
+```
+import groovy.transform.builder.Builder
+import groovy.transform.builder.ExternalStrategy
+ 
+class Message {
+    String from, to, subject, body
+}
+ 
+@Builder(builderStrategy = ExternalStrategy, forClass = Message,
+        prefix = 'assign', buildMethodName = 'create',
+        includes = 'from,subject')
+class MessageBuilder {}
+ 
+def message = new MessageBuilder()
+        .assignFrom('mrhaki@mrhaki.com')
+        .assignSubject('Groovy 2.3 is released')
+        .create()
+ 
+assert message.from == 'mrhaki@mrhaki.com'
+assert message.subject == 'Groovy 2.3 is released'
 ```
