@@ -22,8 +22,9 @@ output.writeTo(writer);
 
 ### builder
 
-### Builder for Fluent API
+### Builder to create Fluent API
 - [Builder](http://docs.groovy-lang.org/2.4.10/html/api/groovy/transform/builder/Builder.html)
+- Simple Form
 ```
 import groovy.transform.builder.Builder
 import groovy.transform.builder.ExternalStrategy
@@ -49,7 +50,7 @@ assert message.body == 'Groovy rocks!'
 assert message.from == 'mrhaki@mrhaki.com'
 assert message.subject == 'Groovy 2.3 is released'
 ```
-
+- Customized Form
 ```
 import groovy.transform.builder.Builder
 import groovy.transform.builder.ExternalStrategy
