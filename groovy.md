@@ -21,7 +21,41 @@ output.writeTo(writer);
 ```
 
 ### Builder with Closures
-- Use pre-defined builders like the JsonBuilder or MarkupBuilder to create data or text structures
+- Use pre-defined builders like the [JsonBuilder](http://docs.groovy-lang.org/2.4.10/html/api/groovy/json/JsonBuilder.html) or MarkupBuilder to create data or text structures
+   - JsonBuilder
+```
+       def builder = new groovy.json.JsonBuilder()
+       def root = builder.people {
+           person {
+               firstName 'Guillame'
+               lastName 'Laforge'
+               // Named arguments are valid values for objects too
+               address(
+                       city: 'Paris',
+                       country: 'France',
+                       zip: 12345,
+               )
+               married true
+               // a list of values
+               conferences 'JavaOne', 'Gr8conf'
+           }
+       }
+
+       // creates a data structure made of maps (Json object) and lists (Json array)
+       assert root instanceof Map
+
+       assert builder.toString() == '{"people":{"person":{"firstName":"Guillame","lastName":"Laforge","address":{"city":"Paris","country":"France","zip":12345},"married":true,"conferences":["JavaOne","Gr8conf"]}}}'
+```
+   - create JSON string using JsonBuilder
+```
+def message = new MessageBuilder()
+        .assignFrom('mrhaki@mrhaki.com')
+        .assignSubject('Groovy 2.3 is released')
+        .create()
+
+def builder = new groovy.json.JsonBuilder(message)
+print "message json="+builder.toString()
+```
 
 - Simple Builders with Closures
      - A node in the builder is a method and use a closure as the argument of the method to create a new level in the builder hierarchy.
