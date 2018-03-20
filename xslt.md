@@ -620,3 +620,52 @@ and then access the variable $x in any XPath expression.
             else $input"/>
 </xsl:function>
 ```
+
+- Group: use key(generic) or for-each-group(simple)
+
+Group can organise a set of XML elements into groups, such that elements with the same key are placed in the same group, and elements with different keys are placed in different groups
+
+Within a for-each-group element, the functions current-grouping-key and current-group can be used to gain access to the current value of the key and the set of nodes that correspond to that key.
+
+       - The <xsl:key> element is a top-level element which declares a named key that can be used in the style sheet with the key() function. Using key() to find the selected node. 
+```
+<xsl:key name="name" match="pattern" use="expression"/>
+
+<xsl:for-each select="key('preg','050676')">
+```
+
+```
+<xsl:stylesheet version="2.0"
+ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+ <xsl:output omit-xml-declaration="yes" indent="yes"/>
+ <xsl:strip-space elements="*"/>
+
+ <xsl:key name="kmailByNameAndAge" match="mail"
+  use="concat(../../name, '+', ../../age)"/>
+
+ <xsl:template match="node()|@*">
+  <xsl:copy>
+   <xsl:apply-templates select="node()|@*"/>
+  </xsl:copy>
+ </xsl:template>
+
+ <xsl:template match="/*">
+  <persons>
+   <xsl:for-each-group select="person" group-by="concat(name, '+', age)">
+     <xsl:apply-templates select="."/>
+   </xsl:for-each-group>
+  </persons>
+ </xsl:template>
+
+ <xsl:template match="mails">
+  <mails>
+   <xsl:for-each-group select=
+    "key('kmailByNameAndAge', concat(../name, '+', ../age))"
+    group-by="concat(../../name, '+', ../../age, '+', .)"
+    >
+     <xsl:apply-templates select="."/>
+   </xsl:for-each-group>
+  </mails>
+ </xsl:template>
+</xsl:stylesheet>
+```
