@@ -627,6 +627,8 @@ Group can organise a set of XML elements into groups, such that elements with th
 
 Within a for-each-group element, the functions current-grouping-key and current-group can be used to gain access to the current value of the key and the set of nodes that correspond to that key.
 
+Inside a for-each-group statement in XSLT2 the focus changes to a set of representative elements, one from each group. This means that, for example, last() returns the number of groups (because that equals the number of representative elements, and hence the "size" of the focus). Position() returns (essentially) the group number because it is the position of the representative element for the group under discussion within the sequence of representative elements, etc.
+
        - The <xsl:key> element is a top-level element which declares a named key that can be used in the style sheet with the key() function. Using key() to find the selected node. 
 ```
 <xsl:key name="name" match="pattern" use="expression"/>
