@@ -52,6 +52,66 @@ class SampleScript2 {
     }
 }
 ```
+### Groovy Builder on BuilderSupport
+```
+import groovy.util.BuilderSupport;
+
+// First define our class to hold our created 'Emp' objects
+@groovy.transform.Canonical
+class Emp {
+  String id
+  String value
+  List<Emp> children = []
+}
+
+class EmpBuilder0 extends BuilderSupport {
+  def children = []
+  protected void setParent(Object parent, Object child){
+    parent.children << child
+  }
+  protected Object createNode(Object name){
+    if( name == 'root' ) {
+      this
+    }
+    else {
+      null
+    }
+  }
+  protected Object createNode(Object name, Object value){
+    null
+  }
+  protected Object createNode(Object name, Map attributes){
+    if( name == 'emp' ) {
+      new Emp( attributes )
+    }
+    else {
+      null
+    }
+  }
+  protected Object createNode(Object name, Map attributes, Object value){
+    null
+  }
+  protected void nodeCompleted(Object parent, Object node) {
+  }
+  Iterator iterator() { children.iterator() }
+}
+
+def b = new EmpBuilder0().root() {
+  emp(id: '3', value: '1')
+
+  emp(id:'24') {
+    emp(id: '1', value: '2')
+    emp(id: '6', value: '7')
+    emp(id: '7', value: '1')
+  }
+
+  emp(id: '25') {
+    emp(id: '1', value: '1')
+    emp(id: '6', value: '7')
+  }
+}
+b.each { println it }
+```
 ### Basic Java+Groovy Integration: use GroovyShell
 ```
 // call groovy expressions from Java code
