@@ -1,5 +1,6 @@
 ## [Groovy Closure](http://groovy-lang.org/closures.html)
-
+ A closure in Groovy is an open, anonymous, block of code that can take arguments, return a value and be assigned to a variable. A closure may reference variables declared in its surrounding scope. In opposition to the formal definition of a closure, Closure in the Groovy language can also contain free variables which are defined outside of its surrounding scope.
+ 
 ### Syntax
 ```
 { [closureParameters -> ] statements }
@@ -76,10 +77,73 @@ cl.delegate = p
 assert cl() == 'IGOR'                           
 ```
 name is not referencing a variable in the lexical scope of the closure.  we can change the delegate of the closure to be an instance of Person and the method call will succeed
-The name property will be resolved transparently on the delegate object! This is a very powerful way to resolve properties or method calls inside closures. There’s no need to set an explicit delegate. receiver: the call will be made because the default delegation strategy of the closure makes it so. A closure actually defines multiple resolution strategies that you can choose:
+The name property will be resolved transparently on the delegate object! This is a very powerful way to resolve properties or method calls inside closures. There’s no need to set an explicit delegate. receiver: the call will be made because the default delegation strategy of the closure makes it so. 
+
+A closure defines multiple resolution strategies to resolve the methods and properties for the object:
 - Closure.OWNER_FIRST is the default strategy. If a property/method exists on the owner, then it will be called on the owner. If not, then the delegate is used.
 - Closure.DELEGATE_FIRST reverses the logic: the delegate is used first, then the owner
 - Closure.OWNER_ONLY will only resolve the property/method lookup on the owner: the delegate will be ignored.
 - Closure.DELEGATE_ONLY will only resolve the property/method lookup on the delegate: the owner will be ignored.
 - Closure.TO_SELF can be used by developers who need advanced meta-programming techniques and wish to implement a custom resolution strategy: the resolution will not be made on the owner or the delegate but only on the closure class itself. It makes only sense to use this if you implement your own subclass of Closure.
+
+### Currying
+In Groovy, currying refers to the concept of partial application. Currying in Groovy will let you set the value of one parameter of a closure, and it will return a new closure accepting one less argument.
+
+- Left curring
+```
+def nCopies = { int n, String str -> str*n }    
+def twice = nCopies.curry(2)                    
+assert twice('bla') == 'blabla'                 
+assert twice('bla') == nCopies(2, 'bla') 
+```
+- Right curring
+```
+def nCopies = { int n, String str -> str*n }    
+def blah = nCopies.rcurry('bla')                
+assert blah(2) == 'blabla'                      
+assert blah(2) == nCopies(2, 'bla')   
+```
+- Index based currying
+In case a closure accepts more than 2 parameters, it is possible to set an arbitrary parameter using ncurry:
+```
+def volume = { double l, double w, double h -> l*w*h }      
+def fixedWidthVolume = volume.ncurry(1, 2d)                 
+assert volume(3d, 2d, 4d) == fixedWidthVolume(3d, 4d)       
+def fixedWidthAndHeight = volume.ncurry(1, 2d, 4d)          
+assert volume(3d, 2d, 4d) == fixedWidthAndHeight(3d)  
+```
+
+### Additionals
+- Memoization
+Memoization allows the result of the call of a closure to be cached.
+```
+def fib
+fib = { long n -> n<2?n:fib(n-1)+fib(n-2) }
+assert fib(15) == 610 // slow!
+fib = { long n -> n<2?n:fib(n-1)+fib(n-2) }.memoize()
+assert fib(25) == 75025 // fast! 
+```
+The behavior of the cache can be tweaked using alternate methods:
+     - memoizeAtMost will generate a new closure which caches at most n values
+     - memoizeAtLeast will generate a new closure which caches at least n values
+     - memoizeBetween will generate a new closure which caches at least n values and at most n values
+The cache used in all memoize variants is a LRU cache.
+
+- Composition
+Closure composition corresponds to the concept of function composition, that is to say creating a new function by composing two or more functions (chaining calls).
+```
+def plus2  = { it + 2 }
+def times3 = { it * 3 }
+
+def times3plus2 = plus2 << times3
+assert times3plus2(3) == 11
+assert times3plus2(4) == plus2(times3(4))
+
+def plus2times3 = times3 << plus2
+assert plus2times3(3) == 15
+assert plus2times3(5) == times3(plus2(5))
+
+// reverse composition
+assert times3plus2(3) == (times3 >> plus2)(3)
+```
 
