@@ -52,6 +52,17 @@ class SampleScript2 {
     }
 }
 ```
+### Basic Java+Groovy Integration: use GroovyShell
+```
+// call groovy expressions from Java code
+Binding binding = new Binding();
+binding.setVariable("foo", new Integer(2));
+GroovyShell shell = new GroovyShell(binding);
+
+Object value = shell.evaluate(groovyScript);
+```
+See [examples](https://github.com/framis/exec-groovy-in-java/blob/master/src/test/java/ExecGroovyTest.java) to run script expression, script file, data binding, etc. 
+
 ### Template engine + MarkupBuilder
 Developping a template engine relying on the Groovy MarkupBuilder. 
 - [Example](http://mrhaki.blogspot.com/2014/08/groovy-goodness-use-custom-template.html)
