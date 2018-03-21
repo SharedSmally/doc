@@ -11,6 +11,22 @@ The parameters look similar to a method parameter list, and these parameters may
 When a parameter list is specified, the -> character is required and serves to separate the arguments from the closure body. 
 The statements portion consists of 0, 1, or many Groovy statements
 
+### Method Call
+Groovy allows to omit the parentheses for top-level expressions, like with the println command:
+```
+println "Hello"
+method a, b
+
+println("Hello")
+method(a, b)
+```
+When a closure is the last parameter of a method call, like when using Groovy’s each{} iteration mechanism, you can put the closure outside the closing parentheses, and even omit the parentheses:
+```
+list.each( { println it } )
+list.each(){ println it }
+list.each  { println it }
+```
+
 ### [Closure Object](http://docs.groovy-lang.org/latest/html/api/groovy/lang/Closure.html)
 - A closure is an instance of the groovy.lang.Closure class, making it assignable to a variable or a field as any other 
 variable, despite being a block of code:
