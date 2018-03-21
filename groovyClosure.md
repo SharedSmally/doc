@@ -19,6 +19,11 @@ method a, b
 
 println("Hello")
 method(a, b)
+
+def people = [
+    new Person(first: 'Johnny', last: 'Depp', born: 1963),
+    new Person(first: 'Keira', last: 'Knightley', born: 1985)
+]
 ```
 When a closure is the last parameter of a method call, like when using Groovy’s each{} iteration mechanism, you can put the closure outside the closing parentheses, and even omit the parentheses:
 ```
