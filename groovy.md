@@ -1,4 +1,49 @@
 # groovy
+### Call Groovy from Java
+- src/main/java/xxx/Obj.java:
+```
+package com.jpw.jgroovy;
+public class Obj {
+    public int num;
+
+    public Obj(int num) {
+        this.num = num;
+    }
+}
+```
+- src/main/java/xxx/App.java
+```
+package com.jpw.jgroovy;
+
+import groovy.lang.GroovyClassLoader;
+import groovy.lang.GroovyObject;
+
+import java.io.File;
+import java.io.IOException;
+
+public class App {
+    static final GroovyClassLoader classLoader = new GroovyClassLoader();
+    public static void main(String[] args) throws IllegalAccessException, IOException, InstantiationException {
+    	String path  = classLoader.getResource("SampleScript2.groovy").getPath();
+        Class groovy = classLoader.parseClass(new File(path));
+        GroovyObject groovyObj = (GroovyObject) groovy.newInstance();
+        String output = (String) groovyObj.invokeMethod("process", new Object[] { new Obj(10)});
+        System.out.println(output);
+    }
+}
+```
+- src/main/resources/SampleScript2.groovy
+```
+import com.jpw.jgroovy.Obj;
+class SampleScript2 {
+    String process(Obj obj) {
+        if(obj.num ==10)
+            return "equal";
+        else
+            return "not-equal"
+    }
+}
+```
 ### Template engine + MarkupBuilder
 Developping a template engine relying on the Groovy MarkupBuilder. 
 - [Example](http://mrhaki.blogspot.com/2014/08/groovy-goodness-use-custom-template.html)
