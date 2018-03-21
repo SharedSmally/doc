@@ -1,5 +1,13 @@
 # groovy
 ### Call Groovy from Java
+- add groovy dependency
+```
+	<dependency>
+    	<groupId>org.codehaus.groovy</groupId>
+    	<artifactId>groovy-all</artifactId>
+    	<version>2.4.14</version>
+	</dependency>
+```
 - src/main/java/xxx/Obj.java:
 ```
 package com.jpw.jgroovy;
@@ -11,7 +19,7 @@ public class Obj {
     }
 }
 ```
-- src/main/java/xxx/App.java
+- src/main/java/xxx/App.java: use GroovyClassLoader/GroovyObject
 ```
 package com.jpw.jgroovy;
 
@@ -25,7 +33,7 @@ public class App {
     static final GroovyClassLoader classLoader = new GroovyClassLoader();
     public static void main(String[] args) throws IllegalAccessException, IOException, InstantiationException {
     	String path  = classLoader.getResource("SampleScript2.groovy").getPath();
-        Class groovy = classLoader.parseClass(new File(path));
+        Class<?> groovy = classLoader.parseClass(new File(path));
         GroovyObject groovyObj = (GroovyObject) groovy.newInstance();
         String output = (String) groovyObj.invokeMethod("process", new Object[] { new Obj(10)});
         System.out.println(output);
