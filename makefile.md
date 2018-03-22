@@ -88,14 +88,15 @@ files := $(shell echo *.c)
 Its only effect is that these files will not be deleted if Make is killed or interrupted.
 
 - [target-specific variable values ](https://www.gnu.org/software/make/manual/html_node/Target_002dspecific.html)
+
 Variable values are usually global except automatic variables and target-specific variable values. The latter feature allows you to define different values for the same variable, based on the target that make is currently building:
 
 ```
 target … : variable-assignment
 ```
-   - Target-specific variable assignments can be prefixed with any or all of the special keywords *export, override, or private*.
-   - Multiple target values create a target-specific variable value for each member of the target list individually.
-   - The variable-assignment can be any valid form of assignment; recursive (‘=’), simple (‘:=’ or ‘::=’), appending (‘+=’), or conditional (‘?=’).
+       -  Target-specific variable assignments can be prefixed with any or all of the special keywords *export, override, or private*.
+       -  Multiple target values create a target-specific variable value for each member of the target list individually.
+       -  The variable-assignment can be any valid form of assignment; recursive (‘=’), simple (‘:=’ or ‘::=’), appending (‘+=’), or conditional (‘?=’).
 
 ## Recursive call makefile
 ```
