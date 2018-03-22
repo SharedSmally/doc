@@ -1,4 +1,7 @@
 # groovy
+### Groovy-Eclipse Plugin:
+[groovy-eclipse plugin](https://github.com/groovy/groovy-eclipse/wiki) - http://dist.springsource.org/release/GRECLIPSE/e4.7
+
 ### Call Groovy from Java
 - add groovy dependency
 ```
