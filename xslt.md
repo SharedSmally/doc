@@ -16,6 +16,21 @@
    java -cp ${SAXON_HOME}/saxon9-xqj.jar:${SAXON_HOME}/saxon9he.jar \
      net.sf.saxon.Transform -xsl:$1 -s:$2 -o:$3
 
+- Pass in saxon command line parameters for use in xsl file:
+
+Declare
+```
+<xsl:param name="x" as="xs:integer" required="yes"/>
+```
+
+at the top level of a (2.0) stylesheet. And then invoke Saxon as
+
+```
+java -jar saxon8.jar source.xml style.xsl x=17
+```
+
+and then access the variable $x in any XPath expression.
+
 ## Match Attribute
 By default, XSLT does not look for templates matching attribute nodes. Explicitly apply templates to all attributes in the input XML.
 ```
