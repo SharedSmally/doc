@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.example.org/message" xmlns:tns="http://www.example.org/message" elementFormDefault="qualified">
+
+    <element name="message" type="tns:messageType"></element>
+    
+    <complexType name="messageType"></complexType>
+    
+    <!-- struct type: 
+         attrs: name, base, id
+         children: id?, field*; array*; optional*; bitset*
+    -->
+    <complexType name="structType"></complexType>
+    
+    <complexType name="interfaceType"></complexType>
+
+    <complexType name="idType"></complexType>
+    
+    <complexType name="fieldType"></complexType>
+        
+    <complexType name="enumType"></complexType>
+    <complexType name="enumItemType"></complexType>
+    
+    <complexType name="arrayType"></complexType>
+    
+    <complexType name="optionalType"></complexType>
+
+    <complexType name="bitsetType"></complexType>
+    <complexType name="bitsetItemType"></complexType>
+
+</schema>
