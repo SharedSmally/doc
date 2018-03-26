@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 
+   Index: 
+   OMA Mobile Location Service (MLS)
+      http://www.openmobilealliance.org/release/MLS/
+      V1.4*
+      V1.3
+      V1.2
+      V1.1
+      V1.0()
+   OMA Mobile Location Protocol:
+      V3.1:  http://www.openmobilealliance.org/release/MLP/  
+-->
+<xoma category="mls">
+    <project name="mls" url="http://www.openmobilealliance.org/release/MLS/">
+       <module version="1.0.0" 
+            url="http://www.openmobilealliance.org/release/MLS/V1_0-20110719-A/OMA-ERP-MLS-V1_0-20110719-A.zip">
+             <module name="mlp" version="3.2.1"/>
+             <module name="rlp" version="1.0.1"/>
+       </module>
+       
+       <module name="1.1.0" 
+             url="http://www.openmobilealliance.org/release/MLS/V1_1-20110719-A/OMA-ERP-MLS-V1_1-20110719-A.zip">             
+             <module name="mlp" version="3.2.1"/>
+             <module name="rlp" version="1.0.1"/>
+             <module name="pcp" version="1.0.0"/>
+       </module>
+       <module name="1.2.0"
+             url="http://www.openmobilealliance.org/release/MLS/V1_2-20110719-A/OMA-ERP-MLS-V1_2-20110719-A.zip">
+             <module name="mlp" version="3.3.0"/>
+             <module name="rlp" version="1.1.0"/>
+       </module>
+       <module name="1.2.1"
+             url="http://www.openmobilealliance.org/release/MLS/V1_2_1-20111117-A/OMA-ERP-MLS-V1_2_1-20111117-A.zip">
+             <module name="mlp" version="3.3.1"/>
+             <module name="rlp" version="1.1.1"/>
+       </module>
+       <module name="1.3.0"
+            url="http://www.openmobilealliance.org/release/MLS/V1_3-20131217-A/OMA-ERP-MLS-V1_3-20131217-A.zip">
+             <module name="mlp" version="3.4.0"/>
+             <module name="rlp" version="1.2.0"/>
+       </module>
+       <module name="1.3.1"
+             url="http://www.openmobilealliance.org/release/MLS/V1_3-20150512-A/OMA-ERP-MLS-V1_3-20150512-A.zip">
+             <module name="mlp" version="3.4.1"/>
+             <module name="rlp" version="1.2.1"/>
+       </module>
+       <module name="1.4.0"
+            url="http://www.openmobilealliance.org/release/MLS/V1_4-20150224-C/OMA-ERP-MLS-V1_4-20150224-C.zip">
+            <module name="mlp" version="3.5.0"/>
+       </module>
+    </project>
+    
+    <project name="mlp">
+       <module version="3.1.0">
+             <zip version="3.1.0" url="http://www.openmobilealliance.org/release/MLP/OMA-ERP-LIF-MLP-v3_1-20040316-C.zip"/>
+       </module>
+
+       <module version="3.2.0">
+            <file 
+             	url="http://www.openmobilealliance.org/release/MLS/V1_0-20110719-A/OMA-SUP-DTD_MLP_320-V1_0-20110719-A.zip"/>
+       </module>
+       
+       <module name="3.2.1">
+            <file 
+                url="http://www.openmobilealliance.org/release/MLS/V1_1-20110719-A/OMA-SUP-DTD_MLP_320-V1_0-20110719-A.zip"/>
+       </module>
+       
+       <module version="3.3.0">
+             <file type="dtd" 
+                 url="http://www.openmobilealliance.org/release/MLS/V1_2-20110719-A/OMA-SUP-DTD_MLP-V3_3-20110719-A.txt"/>
+             <file type="dtd" 
+                 url="http://www.openmobilealliance.org/release/MLS/V1_2-20110719-A/OMA-SUP-DTD_MLP_ID_QOP_RES_SHAPE-V3_3-20110719-A.txt"/>
+       </module>
+       
+       <module version="3.3.1">
+             <file 
+                  url="http://www.openmobilealliance.org/release/MLS/V1_2_1-20111117-A/MLP_ID_QOP_RES_SHAPE_v3_3.dtd"/>
+             <file 
+                  url="http://www.openmobilealliance.org/release/MLS/V1_2_1-20111117-A/MLP_v3_3_1.dtd"/>
+             <!-- 
+             <file name="mlp" version="3.3.1" url="http://www.openmobilealliance.org/release/MLS/V1_2_1-20111117-A/OMA-SUP-DTD_MLP-V3_3_1-20111117-A.txt"/>
+             <file name="mlp" version="3.3.1" url="http://www.openmobilealliance.org/release/MLS/V1_2_1-20111117-A/OMA-SUP-DTD_MLP_ID_QOP_RES_SHAPE-V3_3-20110719-A.txt"/>
+             -->
+       </module>
+       <module version="3.4.0" >
+             <file type="dtd"
+                url="http://www.openmobilealliance.org/release/MLS/V1_3-20131217-A/OMA-SUP-DTD_MLP-V3_4-20131217-A.txt"/>
+             <file type="dtd"
+                url="http://www.openmobilealliance.org/release/MLS/V1_3-20131217-A/OMA-SUP-DTD_MLP_ID_QOP_RES_SHAPE-V3_4-20131217-A.txt"/>       
+       </module>
+          
+       <module version="3.4.1">
+             <file type="dtd"
+                url="http://www.openmobilealliance.org/release/MLS/V1_3-20150512-A/OMA-SUP-DTD_MLP_V3_4-20150512-A.txt"/>
+             <file type="dtd"
+                url="http://www.openmobilealliance.org/release/MLS/V1_3-20150512-A/OMA-SUP-DTD_MLP_ID_QOP_RES_SHAPE-V3_4-20150512-A.txt"/>
+       </module>
+       
+        <module version="3.5.0">   
+	         <file type="dtd"
+	              url="http://www.openmobilealliance.org/release/MLS/V1_4-20150224-C/OMA-SUP-DTD_MLP-V3_5-20150224-C.txt"/>
+             <file type="dtd"
+                  url="http://www.openmobilealliance.org/release/MLS/V1_4-20150224-C/OMA-SUP-DTD_MLP_ID_QOP_RES_SHAPE-V3_5-20150224-C.txt"/>
+        </module>
+    </project>
+    
+    <project name="rlp">
+        <module version="1.0.0"> 
+               <file
+                 url="http://www.openmobilealliance.org/release/MLS/V1_0-20110719-A/OMA-SUP-DTD_RLP_100-V1_0-20110719-A.zip"/>
+        </module>
+
+        <module version="1.0.1">
+             <file 
+                url="http://www.openmobilealliance.org/release/MLS/V1_1-20110719-A/OMA-SUP-DTD_RLP_100-V1_0-20110719-A.zip"/>
+       </module>
+
+        <module version="1.1.0">
+             <file type="dtd"
+                 url="http://www.openmobilealliance.org/release/MLS/V1_2-20110719-A/OMA-SUP-DTD_RLP-V1_1-20110719-A.txt"/>        
+        </module>
+        <module version="1.1.1">
+             <file 
+                 url="http://www.openmobilealliance.org/release/MLS/V1_2_1-20111117-A/RLP_v1_1_1.dtd"/>
+        </module>
+        <module version="1.2.0">
+             <file type="dtd" 
+                url="http://www.openmobilealliance.org/release/MLS/V1_3-20131217-A/OMA-SUP-DTD_RLP-V1_2-20131217-A.txt"/>        
+        </module>
+        
+        <module version="1.2.1">
+            <file type="dtd" 
+               url="http://www.openmobilealliance.org/release/MLS/V1_3-20150512-A/OMA-SUP-DTD_RLP-V1_2-20150512-A.txt"/>
+        </module>
+    </project>
+
+    <project name="pcp">
+        <module version="1.0.0">
+             <file 
+                 url="http://www.openmobilealliance.org/release/MLS/V1_1-20110719-A/OMA-TS-PCP-V1_0-20110719-A.pdf"/>        
+        </module>
+    </project>
+
+</xoma>
