@@ -1,5 +1,6 @@
 <xsl:stylesheet 
-    xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
+    xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+    xmlns:jpw="http://www/jpw.com/xslt" 
     version="2.0">
 
     <xsl:output method="text"/>
@@ -25,9 +26,7 @@
              </xsl:result-document>
         </xsl:for-each-group> 
 
-
         <xsl:apply-templates/>
-
     </xsl:template>
 
     <xsl:template match="/x3gpp">
@@ -44,6 +43,8 @@
 
     <xsl:template match="/x3gpp/group/series/spec">
         <xsl:variable name="fname" select="concat('x3g/',../@category, '/', ./@name, '/makefile')"/>
+        <xsl:variable name="projmk" select="concat('project/',../@category, '/', ./@name, '/makefile')"/>
+         <xsl:variable name="coding" select="jpw:getCoding(.)"/>
         <xsl:result-document method="text" href="{$fname}">
 NAME=<xsl:value-of select="@name"/>
 SERIES_NUM=<xsl:value-of select="../@number"/>
@@ -52,15 +53,19 @@ SPEC_NUM=<xsl:value-of select="@number"/>
 
 -include <xsl:value-of select="@name"/>.cfg
 
-main: cfg
+main: pom
 
-cfg:<xsl:value-of select="@name"/>.xml
+pom: latest.xml
+	xsl ${X3GPP_HOME}/meta/x3pom.xsl ${X3GPP_HOME}/<xsl:value-of select="$projmk"/> $&lt;
+
+<xsl:value-of select="concat('latest.xml :',@name, '.xml')"/>
+	xsl ${X3GPP_HOME}/meta/x3latest.xsl $@ $&lt;
 
 <xsl:value-of select="concat(@name, '.xml : download/',@name, '.xml')"/>
-	xsl ../../../meta/x3cfg.xsl $&lt; $@ 
+	xsl ${X3GPP_HOME}/meta/x3cfg.xsl $@ $&lt;
 
 <xsl:value-of select="concat('download/', @name, '.xml : download/',@name, '.xhtml')"/>
-	xsl ../../../meta/x3xml.xsl $&lt; $@ name=<xsl:value-of select="concat(@name, $newline2)"/>
+	xsl ${X3GPP_HOME}/meta/x3xml.xsl $@ $&lt; coding=<xsl:value-of select="$coding"/> name=<xsl:value-of select="concat(@name,$newline2)"/>  
 
 <xsl:value-of select="concat('download/', @name, '.xhtml : download/',@name, '.html' )"/>
 	cp $&lt; $@
@@ -75,6 +80,7 @@ cfg:<xsl:value-of select="@name"/>.xml
 
 clean:
 	${RM} -rf <xsl:value-of select="concat(@name,'.xml')"/>
+	${RM} -rf <xsl:value-of select="'latest.xml'"/>
 	
 cleanall:clean
 	${RM} -rf <xsl:value-of select="concat('download/', @name,'.*')"/>
@@ -90,12 +96,34 @@ cleanall:clean
 
     <xsl:template match="*"/>
     
+    <xsl:function name="jpw:getCoding">
+        <xsl:param name="node"/>
+        <xsl:choose>
+           <xsl:when test="$node/@coding">
+               <xsl:value-of select="$node/@coding"/>
+           </xsl:when>
+           <xsl:when test="$node/../@coding">
+               <xsl:value-of select="$node/../@coding"/>
+           </xsl:when>
+           <xsl:when test="$node/../../@coding">
+               <xsl:value-of select="$node/../../@coding"/>
+           </xsl:when>
+           <xsl:otherwise>
+               <xsl:value-of select="'PER'"/>
+           </xsl:otherwise>
+        </xsl:choose>
+    </xsl:function>
+    
     <xsl:template name="subdirMakefile">
-SUBDIRS=`ls -d`
+SUBDIRS = `ls -d */`
 
-<xsl:for-each select="tokenize($targets, ' ')">
-<xsl:value-of select="."/>:
-	
+<xsl:for-each select="tokenize($targets,' ')">
+<xsl:variable name="target" select="."/>
+<xsl:value-of select="$target"/>:
+	for p in ${SUBDIRS}; do \
+		cd $$p &amp;&amp; make <xsl:value-of select="$target"/> &amp;&amp; cd ../;  \
+	done
+
 </xsl:for-each>
     </xsl:template>
     
