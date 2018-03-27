@@ -15,14 +15,16 @@
     </xsl:template>
 
     <xsl:template match="/x3gpp">
-        <x3gpp name="{@name}">
-            <xsl:attribute name="site" select="@site"/>
-            <xsl:attribute name="ftp" select="@ftp"/>
+        <x3gpp name="{@name}" coding="{@coding}" site="{@site}" ftp="{@ftp}">
             <xsl:for-each-group select="spec" group-by="@year">
                 <xsl:sort select="@year" order="descending"/>
-                <xsl:for-each-group select="current-group()" group-by="@major">
-                    <xsl:apply-templates/>
+                <release year="{@year}">
+                <xsl:for-each-group select="current-group()" group-by="concat(@major,'|',@minor)">
+                    <xsl:sort select="concat(@major,'|',@minor)" order="descending"/>
+                    <spec name="{@name}" ver="{@ver}" major="{@major}" minor="{@minor}" patch="{@patch}"
+                        url="{@href}" month="{@month}" day="{@day}"/>
                 </xsl:for-each-group>
+                </release>
              </xsl:for-each-group>
         </x3gpp>
     </xsl:template>
@@ -32,7 +34,10 @@
        </spc>
     </xsl:template>
 
-    <xsl:template match="*"/>
+    <xsl:template match="spec" mode="dep">
+       <spc name="dep">
+       </spc>
+    </xsl:template>
 
 <xsl:function name="jpw:substring-before-last">
     <xsl:param name="input" as="xs:string"/>
