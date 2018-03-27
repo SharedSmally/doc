@@ -1,147 +1,130 @@
-<?xml version="1.0" encoding="UTF-8"?>
- 
-<x3gpp url="http://www.3gpp.org/ftp/Specs" 
-       x3gdir="${HOME}/x3gpp"
-       >
-    <!--  lang: -c -c++ -c++11 java xsd -->
-    <!--  encoding: ber cer der oer mder per -uper -xer -xml -json -3gl3 -->
-    <!--  -I: import file dir: -o: output dir; -pdu type; -print -shortnames -->
-    <!--  c++: compare; copy; cppNs namespace; -prtToStrm  -oh -->
-    <!--  java: compare; copy; pkgname name  -->
-    <options target="asn1">
-        <cxx> -compare -copy -print -prtToStrm -genPrtToStr -genPrtToStrm -shortnames -json -xml</cxx>
-        <java>-compare -copy -print</java>
-    </options>
+<xsl:stylesheet 
+    xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+    xmlns:jpw="http://www/jpw.com/xslt" 
+    version="2.0">
+
+    <xsl:output method="text"/>
+    <xsl:strip-space elements="*"/>
+
+    <xsl:variable name='newline'><xsl:text>
+</xsl:text></xsl:variable>
+    <xsl:variable name='newline2'><xsl:text>
+
+</xsl:text></xsl:variable>
+    <xsl:variable name='tbl'><xsl:text>&#x9;</xsl:text></xsl:variable>
+    <xsl:variable name='sps' select="'     '"/>
+    <xsl:variable name='targets' select="'main gen package deploy clean cleanall'"/>
+
+    <xsl:variable name="asn1cxx" select="/x3gpp/options[@target='asn1']/cxx/text()"/>
+    <xsl:variable name="asn1java" select="/x3gpp/options[@target='asn1']/java/text()"/>
     
-    <!--  required 3rd party: -->
-    <!-- 
-    rose; tcap; inap
-     -->
-    <!--  defined in ASN1 -->
-    <group category="asn1" coding="PER" > 
+    <xsl:template match="/">
+        <xsl:for-each-group  select="/x3gpp/group/series" group-by="@category"> 
+             <xsl:variable name="fname" select="concat('x3g/',@category, '/makefile')"/>
+             <xsl:result-document method="text" href="{$fname}">
+                 <xsl:call-template name="subdirMakefile"/>
+             </xsl:result-document>
+        </xsl:for-each-group> 
 
-        <series number="29"  category="intra"
-            desc="Stage 3 intra-fixed-network Signalling protocols"
-            url="http://www.3gpp.org/DynaReport/29-series.htm">
-            <spec name="map" number="002" coding="BER"/>
-            <!-- 
-            <spec name="cap" number="078"/>
-            <spec name="ss7sg" number="204"/>
-            <spec name="imscap" number="278"/>
-            -->
-        </series>
+        <xsl:apply-templates/>
+    </xsl:template>
 
-
-        <!--  lte: lpp; lppa; m2ap; m3ap; rrc; s1ap,; slmap; x2ap; xwap -->
-        <series number="36" category="lte" 
-            desc="LTE" 
-            url="http://www.3gpp.org/DynaReport/36-series.htm">
-            <!--
-            <spec name="rrc" number="331"/> 
-            <spec name="s1ap" number="413"/>
-            <spec name="x2ap" number="423"/>
-            -->
-            
-            <spec name="lpp" number="355"/> 
-            <!--
-            <spec name="lppa" number="455"/>
-
-            <spec name="m2ap" number="443"/>
-            <spec name="m3ap" number="444"/>
-
-            <spec name="slmap" number="459"/>
-            
-            <spec name="xwap" number="463"/>
-             -->
-        </series>
-
-
-        <!-- umts: hnbap; nbap; ranap; rnsap; sabp;  pcap; pua;  rna;  rrc; rua; -->
-        <series number="25" category="umts" 
-            url="http://www.3gpp.org/DynaReport/25-series.htm">
-            <spec name="rrc"   number="331" desc="Radio Resource Control Protocol"/>
-            <!-- 
-            <spec name="ranap" number="413" desc="Radio Access Network Application Part signalling"/>
-            <spec name="sabp"  number="419" desc="Service Area Broadcast Protocol"/>
-            <spec name="rnsap" number="423" desc="Radio Network Subsystem Application Part signalling"/>
-            <spec name="bnap"  number="433" desc="Node B Application Part signalling"/>
-            <spec name="pcap"  number="453" desc="Positioning Calculation Application Part signalling"/>
-            <spec name="rua"   number="468" desc="RANAP User Adaption signalling"/>
-            <spec name="hnbap" number="469" desc="Home Node B Application Part signalling"/>
-            <spec name="pua"   number="470" desc="PCAP User Adaption signalling"/>
-            <spec name="rna"   number="471" desc="RNSAP User Adaption signalling"/>
-             -->
-        </series>
-
-        <!--  gsm: map; lcs; llp; rrclu; rrlp; smlcpp  -->
-        <series number="44" category="gsm"
-            desc="UE Signalling protocols"
-            url="http://www.3gpp.org/DynaReport/44-series.htm">
-            <spec name="rrlp" number="031"/> 
-            <!-- 
-            <spec name="lcs" number="071"/>
-            <spec name="rrclu" number="118"/>
-            
-            <spec name="smlcpp" number="031" series="48"/>
-             -->
-        </series>
-    </group>
-
-    <!--  defined in diameter:TS 29.230 Diameter applications; 3GPP specific codes and identifiers -->
-    <group category="diameter"> 
-        <series number="29" category="dia" desc="LTE diameter" >
-            <spec name="s6t" number="336"/> 
-        </series>
-    </group>
-
-    <!--  defined in wsdl, such as parlayX -->
-    <group category="wsdl"> 
-        <!-- ParlayX(WSDL)[6.0.0-9.0.0] is replaced by OneAPI(REST-JSON) -->
-        <series number="29" category="wsdl" desc="LTE" >
-            <spec name="parlayX" number="199-01"/>
-            <!--  199-01 to 199-22
-            <spec name="parlayX" number="199-02"/>
-             -->
-        </series>
-    </group>
+    <xsl:template match="/x3gpp">
+        <xsl:apply-templates/>
+    </xsl:template>
     
-    <!--  defined in xsd
-    <group category="xsd"> 
-        <series number="29" desc="LTE" >
-            <spec name="parlayX" number="199-01"/>
-        </series>
-    </group>
-     -->
-</x3gpp>
+    <xsl:template match="/x3gpp/group">
+        <xsl:apply-templates/>
+    </xsl:template>
 
+    <xsl:template match="/x3gpp/group/series">
+        <xsl:apply-templates/>
+    </xsl:template>
 
-<!--
-3GPP Specs FTP sites:http://www.3gpp.org/ftp/Specs
+    <xsl:template match="/x3gpp/group/series/spec">
+        <xsl:variable name="fname" select="concat('x3g/',../@category, '/', ./@name, '/makefile')"/>
+        <xsl:variable name="projmk" select="concat('project/',../@category, '/', ./@name, '/makefile')"/>
+         <xsl:variable name="coding" select="jpw:getCoding(.)"/>
+        <xsl:result-document method="text" href="{$fname}">
+NAME=<xsl:value-of select="@name"/>
+SERIES_NUM=<xsl:value-of select="../@number"/>
+SPEC_NUM=<xsl:value-of select="@number"/>
+<xsl:value-of select="concat($newline, 'URL=http://www.3gpp.org/ftp/Specs/archive/',../@number,'_series/',../@number,'.',@number)"/>
 
-Years:
-    http://www.3gpp.org/ftp/Specs/yyyy-mm/Rel-x/ss_series/sszzz-xvv.zip
-  For example:
-    http://www.3gpp.org/ftp/Specs/2011-12/Rel-12/22_series/22173-c00.zip
+-include <xsl:value-of select="@name"/>.cfg
+
+main: pom
+
+pom: latest.xml
+	xsl ${X3GPP_HOME}/meta/x3pom.xsl ${X3GPP_HOME}/<xsl:value-of select="$projmk"/> $&lt;
+
+<xsl:value-of select="concat('latest.xml :',@name, '.xml')"/>
+	xsl ${X3GPP_HOME}/meta/x3latest.xsl $@ $&lt;
+
+<xsl:value-of select="concat(@name, '.xml : download/',@name, '.xml')"/>
+	xsl ${X3GPP_HOME}/meta/x3cfg.xsl $@ $&lt;
+
+<xsl:value-of select="concat('download/', @name, '.xml : download/',@name, '.xhtml')"/>
+	xsl ${X3GPP_HOME}/meta/x3xml.xsl $@ $&lt; coding=<xsl:value-of select="$coding"/> name=<xsl:value-of select="concat(@name,$newline2)"/>  
+
+<xsl:value-of select="concat('download/', @name, '.xhtml : download/',@name, '.html' )"/>
+	cp $&lt; $@
+	@sed -i 's/&lt;br&gt;/&lt;\/br&gt;&lt;br&gt;/g' $@
+	@sed -i 's/&lt;hr&gt;/&lt;hr\/&gt;/g' $@
+	@sed -i 's/&lt;pre&gt;/&lt;pre&gt;&lt;br&gt;/g' $@
+	@sed -i 's/&lt;\/pre&gt;/&lt;\/br&gt;&lt;\/pre&gt;/g' $@
+
+<xsl:value-of select="concat('download/', @name, '.html:')"/>
+	mkdir -p download/
+	wget ${URL} -q -O $@
+
+clean:
+	${RM} -rf <xsl:value-of select="concat(@name,'.xml')"/>
+	${RM} -rf <xsl:value-of select="'latest.xml'"/>
+	
+cleanall:clean
+	${RM} -rf <xsl:value-of select="concat('download/', @name,'.*')"/>
+
+        </xsl:result-document>
+        
+        <xsl:variable name="cfgname" select="concat('x3g/',../@category, '/', ./@name, '/', @name,'.cfg')"/>
+        <xsl:result-document method="text" href="{$cfgname}">
+<xsl:value-of select="concat('CXX_OPTIONS=', $asn1cxx, $newline2)"/>
+<xsl:value-of select="concat('JAVA_OPTIONS=', $asn1java, $newline2)"/>
+        </xsl:result-document>
+    </xsl:template>
+
+    <xsl:template match="*"/>
     
-Latest:
-    http://www.3gpp.org/ftp/Specs/latest/Rel-x/ss_series/sszzz-xvv.zip
-  For example
-    http://www.3gpp.org/ftp/Specs/latest/Rel-15/44_series/44018-f00.zip
-      
-Archive:
-    http://www.3gpp.org/ftp/Specs/archive/ss_series/xx.zzz/*.zip
- For example:
-    http://www.3gpp.org/ftp/Specs/archive/48_series/48.004/48004-e00.zip
+    <xsl:function name="jpw:getCoding">
+        <xsl:param name="node"/>
+        <xsl:choose>
+           <xsl:when test="$node/@coding">
+               <xsl:value-of select="$node/@coding"/>
+           </xsl:when>
+           <xsl:when test="$node/../@coding">
+               <xsl:value-of select="$node/../@coding"/>
+           </xsl:when>
+           <xsl:when test="$node/../../@coding">
+               <xsl:value-of select="$node/../../@coding"/>
+           </xsl:when>
+           <xsl:otherwise>
+               <xsl:value-of select="'PER'"/>
+           </xsl:otherwise>
+        </xsl:choose>
+    </xsl:function>
+    
+    <xsl:template name="subdirMakefile">
+SUBDIRS = `ls -d */`
 
-NOTES:
-    yyyy: year [1999-20xx; only after 2011-12]
-    mm: month[03; 06; 09; 12]
-    Rel-x: Release[ 1999, 4-xx; current xx=16(2017)]
-    ss_series: ss=series number 
-         Series 01-20: GSM only before Rel-4
-         Series 41-55: GSM only after Rel-4
-         Series 21-39: Beyond GSM (after Rel-4)
-    sszzz-xvv.zip: zip file
-         zzz: spec number
-         vv:version with major-minor-patch: major=Release_Number[4-9,a-z]
- -->
+<xsl:for-each select="tokenize($targets,' ')">
+<xsl:variable name="target" select="."/>
+<xsl:value-of select="$target"/>:
+	for p in ${SUBDIRS}; do \
+		cd $$p &amp;&amp; make <xsl:value-of select="$target"/> &amp;&amp; cd ../;  \
+	done
+
+</xsl:for-each>
+    </xsl:template>
+    
+</xsl:stylesheet>
