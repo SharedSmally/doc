@@ -10,15 +10,9 @@ main: init cfg
 init:
 
 cfg:
-	xsl meta/x3gpp.xsl x3gpp.xml x3gpp.cfg
+	xsl meta/x3gpp.xsl x3gpp.cfg x3gpp.xml
 #################################################
 
-#################################################
-cleanall:
-	${RM} -rf ${SUBDIRS}
-	
-cleanfull: cleanall
-	${RM} -rf ${X3GDIR}
 #################################################
 
 	
