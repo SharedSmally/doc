@@ -11,7 +11,8 @@
 </xsl:text></xsl:variable>
      <xsl:param name="name" required="yes"/>
      <xsl:param name="coding" required="yes"/>
-        
+     <xsl:param name="version" required="yes"/>
+   
     <!-- Convert Series html tp xml, such as from  http://www.3gpp.org/ftp/Specs/archive/44_series/44.031/ -->
     <xsl:template match="/">
         <xsl:apply-templates/>
@@ -19,7 +20,7 @@
 
     <xsl:template match="html">
         <xsl:variable name="t1" select="tokenize(head/title/text(), '-')"/>
-        <x3gpp name="{$name}"  coding="{$coding}" >
+        <x3gpp name="{$name}">
             <xsl:attribute name="site" select="normalize-space($t1[1])"/>
             <xsl:attribute name="ftp" select="normalize-space($t1[2])"/>
             <xsl:apply-templates select="body/pre/br"/>
@@ -39,7 +40,6 @@
             
             <xsl:if test="ends-with($name, '.zip')">
                 <spec>
-                    <xsl:attribute name="ver" select="substring($name,7,3)"/>
                     <xsl:attribute name="size" select="$size"/>
                     <xsl:attribute name="name" select="$name"/>
                     <xsl:attribute name="href" select="$href"/>
