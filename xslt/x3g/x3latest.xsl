@@ -15,7 +15,7 @@
     </xsl:template>
 
     <xsl:template match="x3gpp">
-        <x3gpp name="{@name}" coding="{@coding}" site="{@site}" ftp="{@ftp}">
+        <x3gpp name="{@name}" coding="{@coding}" version="{@version}" category="{@category}" site="{@site}" ftp="{@ftp}">
             <xsl:apply-templates/>
         </x3gpp>
     </xsl:template>
