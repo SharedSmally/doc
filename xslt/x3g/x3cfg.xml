@@ -15,14 +15,16 @@
     </xsl:template>
 
     <xsl:template match="/x3gpp">
-        <x3gpp name="{@name}" coding="{@coding}" version="{@version}" category="{@category}" site="{@site}" ftp="{@ftp}">
+        <x3gpp name="{@name}" coding="{@coding}" version="{@version}" 
+               category="{@category}" site="{@site}" ftp="{@ftp}">
             <xsl:for-each-group select="spec" group-by="@year">
                 <xsl:sort select="@year" order="descending"/>
                 <release year="{@year}">
                 <xsl:for-each-group select="current-group()" group-by="concat(@major,'|',@minor)">
                     <xsl:sort select="concat(@major,'|',@minor)" order="descending"/>
-                    <spec name="{@name}" ver="{@ver}" major="{@major}" minor="{@minor}" patch="{@patch}"
-                        url="{@href}" month="{@month}" day="{@day}"/>
+                    <spec name="{@name}" ver="{@ver}" major="{@major}" 
+                          minor="{@minor}" patch="{@patch}"
+                          url="{@href}" month="{@month}" day="{@day}"/>
                 </xsl:for-each-group>
                 </release>
              </xsl:for-each-group>
