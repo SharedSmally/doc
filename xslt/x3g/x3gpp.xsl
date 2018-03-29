@@ -13,9 +13,9 @@
     <xsl:variable name='tbl'><xsl:text>&#x9;</xsl:text></xsl:variable>
     <xsl:variable name='sps' select="'     '"/>
     <xsl:variable name='targets' select="'main gen package deploy clean cleanall'"/>
+    <xsl:variable name='subTargets' select="'main gen package deploy clean cleanall'"/>
 
-    <xsl:variable name="asn1cxx" select="/x3gpp/options[@target='asn1']/cxx/text()"/>
-    <xsl:variable name="asn1java" select="/x3gpp/options[@target='asn1']/java/text()"/>
+    <xsl:variable name="asn1ver" select="/x3gpp/options[@target='asn1']/@version"/>
     
     <!--   match /  -->
     <xsl:template match="/">
@@ -51,7 +51,7 @@ SUBDIRS = \
     </xsl:template>
 
     <xsl:template match="/x3gpp/options/*">
-        <xsl:value-of select="concat(upper-case(name()),'_', upper-case(../@target), '_OPTIONS=', text(), $newline)"/>
+        <xsl:value-of select="concat(upper-case(../@target),'_',upper-case(name()),'_OPTIONS=', text(), $newline)"/>
     </xsl:template>
 
     <!--   match /x3gpp/group  -->
@@ -76,17 +76,20 @@ SERIES_NUM=<xsl:value-of select="../@number"/>
 SPEC_NUM=<xsl:value-of select="@number"/>
 <xsl:value-of select="concat($newline, 'URL=http://www.3gpp.org/ftp/Specs/archive/',../@number,'_series/',../@number,'.',@number)"/>
 
+SUBDIRS = `ls -d v*/`
+SUBDIRS_YEAR = `ls -d y*/`
+
 include ../../x3gpp.cfg
 -include <xsl:value-of select="@name"/>.cfg
 
 WK_DIR=${X3G_ZIP_DIR}/<xsl:value-of select="@name"/>
 
-main: cfg
-
-cfg: latest.xml
+#main:
 
 pom: latest.xml
 	xsl ../../meta/x3pom.xsl $&lt; $@
+
+cfg: latest.xml
 
 latest.xml:<xsl:value-of select="@name"/>.xml
 	xsl ../../meta/x3latest.xsl $&lt; $@
@@ -95,7 +98,7 @@ latest.xml:<xsl:value-of select="@name"/>.xml
 	xsl ../../meta/x3cfg.xsl $&lt; $@ 
 
 <xsl:value-of select="concat('${WK_DIR}/', @name, '.xml : ${WK_DIR}/',@name, '.xhtml')"/>
-	xsl ../../meta/x3xml.xsl $&lt; $@ name=<xsl:value-of select="@name"/> coding=<xsl:value-of select="../../@coding"/> version=<xsl:value-of select="concat($asn1ver, $newline2)"/>
+	xsl ../../meta/x3xml.xsl $&lt; $@ name=<xsl:value-of select="@name"/> category=<xsl:value-of select="../../@category"/> coding=<xsl:value-of select="../../@coding"/> version=<xsl:value-of select="concat($asn1ver, $newline2)"/>
 
 <xsl:value-of select="concat('${WK_DIR}/', @name, '.xhtml : ${WK_DIR}/',@name, '.html' )"/>
 	cp $&lt; $@
@@ -108,19 +111,18 @@ latest.xml:<xsl:value-of select="@name"/>.xml
 	@mkdir -p ${WK_DIR}
 	wget ${URL} -q -O $@
 
-clean:
+cleanDep:
 	${RM} -rf latest.xml <xsl:value-of select="concat(@name,'.xml')"/>
 	
-cleanall:clean
-	${RM} -rf <xsl:value-of select="concat('${X3G_ZIP_DIR}/', @name,'.*')"/>
+cleanallDep:cleanDep
+	${RM} -rf <xsl:value-of select="concat('${X3G_ZIP_DIR}/', @name, '/', @name,'.*')"/>
+ 
+ <xsl:value-of select="$newline2"/>
+
+<xsl:call-template name="subdirVMakefile"/>
 
         </xsl:result-document>
-        
-        <xsl:variable name="cfgname" select="concat(../@category, '/', ./@name, '/', @name,'.cfg')"/>
-        <xsl:result-document method="text" href="{$cfgname}">
-<xsl:value-of select="concat('CXX_OPTIONS=', $asn1cxx, $newline2)"/>
-<xsl:value-of select="concat('JAVA_OPTIONS=', $asn1java, $newline2)"/>
-        </xsl:result-document>
+
     </xsl:template>
 
     <xsl:template match="*"/>
@@ -137,5 +139,16 @@ SUBDIRS = `ls -d */`
 
 </xsl:for-each>
     </xsl:template>
-    
+
+    <xsl:template name="subdirVMakefile">
+
+<xsl:for-each select="tokenize($subTargets,' ')">
+<xsl:variable name="target" select="."/>
+<xsl:value-of select="$target"/>:
+	for p in ${SUBDIRS}; do \
+		cd $$p &amp;&amp; make <xsl:value-of select="$target"/> &amp;&amp; cd ../;  \
+	done
+
+</xsl:for-each>
+    </xsl:template>    
 </xsl:stylesheet>
