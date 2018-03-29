@@ -20,6 +20,10 @@
     
     <xsl:variable name="minVer" select="'4'"/>
     <xsl:variable name="site" select="'http://www.3gpp.org/'"/>
+    <xsl:variable name="category" select="/x3gpp/@category"/>
+    <xsl:variable name="coding" select="/x3gpp/@coding"/>
+    <xsl:variable name="pkgname" select="concat('com.jpw.x3gpp.',$name)"/>
+    <xsl:variable name="pkgdir" select="replace($pkgname,'.','/')"/>
     
     <xsl:template match="/">
         <xsl:apply-templates/>
@@ -36,25 +40,84 @@
     </xsl:template>
 
     <xsl:template match="spec" mode="makefile">
-       <xsl:if test="number(@major) &gt; number($minVer)">
-        <xsl:variable name="mkfile" select="concat($ppdir,'/v',@version,'/makefile')"/>
+      <xsl:if test="number(@major) &gt; number($minVer)">
+        <xsl:variable name="mkfile" 
+              select="concat($ppdir,'/v',@version,'/makefile')"/>
+        <xsl:variable name="docfile" select="replace(@name, '.zip', '.doc')"/> 
+        <xsl:variable name="docdir" select="concat('${X3G_DOC_DIR}/', $name, '/v', @version,'/')"/>
+        <xsl:variable name="zipfile" select="concat('${X3G_ZIP_DIR}/', $name, '/', @name)"/>
+        
         <xsl:result-document method="text" href="{$mkfile}">
-ZIPDIR=${X3G_HOME}/xzip
-DOCDIR=${X3G_HOME}/xdoc
+include ../../../x3gpp.cfg
 
 main: init gen
 	
 init:
 	@mkdir -p meta
+
+<xsl:choose>
+<xsl:when test="$category = 'asn1'">
+gen:meta/<xsl:value-of select="$name"/>.asn1
+	${ASN1_COMPILER_OPTIONS} java -p <xsl:value-of select="$pkgname"/> ${ASN1_JAVA_OPTIONS}
+	${ASN1_COMPILER_OPTIONS} c++ -p <xsl:value-of select="$pkgname"/> ${ASN1_CXX_OPTIONS}
+	${ASN1_XSDCOMPILER_OPTIONS} xsd -p <xsl:value-of select="$pkgname"/> ${ASN1_XSD_OPTIONS}
 	
-gen:meta/<xsl_value-of select="$name"/>.asn1
+<xsl:value-of select="concat('meta/',$name,'.asn1 : ', $docdir, $docfile)"/>
+	@mkdir -p meta/
+	cp $&lt; $@
+	#../../../bin/asn1.pl $&lt; $@
+	
+</xsl:when>
 
-<xsl_value-of select="concat($name,'.asn1 : ${DOC/DIR}/', $name, '/v', @version,'/',@file,'.doc',$newline"/>
+<xsl:when test="$category = 'xsd'">
+gen:meta/<xsl:value-of select="$name"/>.xsd
+	
+<xsl:value-of select="concat('meta/',$name,'.xsd : ', $docdir, $docfile)"/>
+	@mkdir -p meta/
+	cp $&lt; $@
+</xsl:when>
 
-<xsl_value-of select="concat('${DOC/DIR}/', $name, '/v', @version,'/',@file,'.doc : ${ZIPDIR}/',$name,'/', $newline"/>
+<xsl:when test="$category = 'wsdl'">
+gen:meta/<xsl:value-of select="$name"/>.wsdl
+		
+<xsl:value-of select="concat('meta/',$name,'.wsdl : ', $docdir, $docfile)"/>
+	@mkdir -p meta/
+	cp $&lt; $@
+	#../../../bin/asn1.pl $&lt; $@
+</xsl:when>
+
+<xsl:when test="$category = 'diameter'">
+gen:meta/<xsl:value-of select="$name"/>.asn1
+	
+<xsl:value-of select="concat('meta/',$name,'.asn1 : ', $docdir, $docfile)"/>
+	@mkdir -p meta/
+	cp $&lt; $@
+	#../../../bin/asn1.pl $&lt; $@
+</xsl:when>
+
+</xsl:choose>
+
+<xsl:value-of select="concat( $docdir, $docfile, ' : ', $zipfile)"/>
+	@mkdir -p <xsl:value-of select="$docdir"/> 
+	unzip $&lt; -d <xsl:value-of select="concat($docdir,$newline,$newline)"/>
+	
+<xsl:value-of select="$zipfile"/>:
+	wget <xsl:value-of select="concat($site,@url)"/> -q -O $@
+
+package:
+	mvn package
+	
+deploy:package
+	mvn deploy
+	
+clean:
+	mvn clean
+	
+cleanall:clean
+	${RM} -rf meta/
 
         </xsl:result-document>
-        </xsl:if>
+      </xsl:if>
     </xsl:template>
 
     <xsl:template match="spec" mode="pomXml">
