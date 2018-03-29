@@ -1,17 +1,8 @@
-<xsl:stylesheet 
-    xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
-    xmlns:xs="http://www.w3.org/2001/XMLSchema"
-    xmlns:jpw="http://www.jpw.com/product/app"
-    version="2.0">
-
-    <xsl:output method="xml" indent="yes"/>
-    <xsl:strip-space elements="*"/>
-
-    <xsl:variable name="newline"><xsl:text>
 </xsl:text></xsl:variable>
      <xsl:param name="name" required="yes"/>
      <xsl:param name="coding" required="yes"/>
      <xsl:param name="version" required="yes"/>
+     <xsl:param name="category" required="yes"/>
    
     <!-- Convert Series html tp xml, such as from  http://www.3gpp.org/ftp/Specs/archive/44_series/44.031/ -->
     <xsl:template match="/">
@@ -20,7 +11,8 @@
 
     <xsl:template match="html">
         <xsl:variable name="t1" select="tokenize(head/title/text(), '-')"/>
-        <x3gpp name="{$name}">
+        <x3gpp name="{$name}" coding="{$coding}"
+               version="{$version}" category="{$category}">
             <xsl:attribute name="site" select="normalize-space($t1[1])"/>
             <xsl:attribute name="ftp" select="normalize-space($t1[2])"/>
             <xsl:apply-templates select="body/pre/br"/>
