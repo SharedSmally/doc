@@ -1,0 +1,6 @@
+<asn1 src="${HOME}/TSDK/asn1c-7.05/java/" 
+      version="7.0.5" base="com.objsys.asn1">
+    <jar name="asn1rt" file="asn1rt.jar"/>
+    <jar name="ber" file="asn1rt-jme-ber.jar"/>
+    <jar name="per" file="asn1rt-jme-per.jar"/>
+</asn1>
