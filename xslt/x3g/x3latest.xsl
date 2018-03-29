@@ -15,7 +15,8 @@
     </xsl:template>
 
     <xsl:template match="x3gpp">
-        <x3gpp name="{@name}" coding="{@coding}" version="{@version}" category="{@category}" site="{@site}" ftp="{@ftp}">
+        <x3gpp name="{@name}" coding="{@coding}" version="{@version}" 
+               category="{@category}" site="{@site}" ftp="{@ftp}">
             <xsl:apply-templates/>
         </x3gpp>
     </xsl:template>
@@ -25,7 +26,8 @@
             <xsl:for-each-group select="spec" group-by="@major">
                 <xsl:sort select="@ver" order="descending"/>
                 <xsl:variable name="version" select="concat(@major,'.',@minor,'.', @patch)"/>
-                <spec name="{@name}" major="{@major}" version="{$version}" url="{@url}"/>
+                <spec name="{@name}" major="{@major}"
+                      version="{$version}" url="{@url}"/>
             </xsl:for-each-group>
         </release>
     </xsl:template>
