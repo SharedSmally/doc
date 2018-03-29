@@ -1,10 +1,12 @@
+NAME=asn1
+
 main: cfg
 
--include xjar.cfg
+-include ${NAME}.cfg
 
-cfg: xjar.cfg
+cfg: ${NAME}.cfg
 
-xjar.cfg:xjar.xml
+${NAME}.cfg:${NAME}.xml
 	xsl ./xjar.xsl $< $@
 
 clean:
