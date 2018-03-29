@@ -6,8 +6,10 @@
 ### Groovy-Eclipse Plugin:
 [groovy-eclipse plugin](https://github.com/groovy/groovy-eclipse/wiki) - http://dist.springsource.org/release/GRECLIPSE/e4.7
 
-### Script
-The class name should not be the same as the script file name.
+### [Script](http://docs.groovy-lang.org/latest/html/api/groovy/lang/Script.html)/[ScriptEngine](http://docs.groovy-lang.org/latest/html/api/groovy/util/GroovyScriptEngine.html) & [Shell](http://docs.groovy-lang.org/latest/html/api/groovy/lang/GroovyShell.html)
+- The class name should not be the same as the script file name.
+
+The groovy.util.GroovyScriptEngine class provides a flexible foundation for applications which rely on script reloading and script dependencies. While GroovyShell focuses on standalone Script's and GroovyClassLoader handles dynamic compilation and loading of any Groovy class, the GroovyScriptEngine will add a layer on top of GroovyClassLoader to handle both script dependencies and reloading.
 
 ### Syntax
 #### Properties
