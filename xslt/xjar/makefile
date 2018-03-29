@@ -1,6 +1,6 @@
 NAME=asn1
 
-main: cfg
+main: cfg deploy
 
 -include ${NAME}.cfg
 
