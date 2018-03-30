@@ -17,8 +17,9 @@
     </xsl:template>
 
     <xsl:template match="w:tbl">
-       <xsl:variable name="title" select=""/>
-       <table name="" desc="">
+       <xsl:variable name="preTitle" select="jpw:getText(preceding-sibling::*[1])"/>
+        <xsl:variable name="postTitle" select="jpw:getText(following-sibling::*[1])"/>
+       <table name="{$preTitle}" desc="{$postTitle}">
            <xsl:apply-templates select=".//w:tr"/>
        </table>
     </xsl:template>
@@ -42,4 +43,8 @@
     
     <xsl:template match="*"/>
     
+    <xsl:function name="jpw:getText">
+       <xsl:param name="node"/>
+       <xsl:value-of select="'text'"/>
+    </xsl:function>
 </xsl:stylesheet>
