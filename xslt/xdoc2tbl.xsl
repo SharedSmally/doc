@@ -18,8 +18,11 @@
 
     <xsl:template match="w:tbl">
        <xsl:variable name="preTitle" select="jpw:getText(preceding-sibling::*[1])"/>
-        <xsl:variable name="postTitle" select="jpw:getText(following-sibling::*[1])"/>
-       <table name="{$preTitle}" desc="{$postTitle}">
+       <xsl:variable name="postTitle" select="jpw:getText(following-sibling::*[1])"/>
+       <xsl:variable name="title" select="jpw:getTableTitle($preTitle,$postTitle)"/>
+       <xsl:variable name="desc" select="jpw:getTableDesc($preTitle,$postTitle)"/>
+
+       <table name="{$title}" desc="{$desc}">
            <xsl:apply-templates select=".//w:tr"/>
        </table>
     </xsl:template>
@@ -45,6 +48,53 @@
     
     <xsl:function name="jpw:getText">
        <xsl:param name="node"/>
-       <xsl:value-of select="'text'"/>
+       <xsl:variable name="txt" select="jpw:getAllText($node)"/>
+       <xsl:value-of select="$txt"/>
     </xsl:function>
+
+    <xsl:function name="jpw:getAllText">
+       <xsl:param name="node"/>
+       <xsl:for-each select="$node//w:t">
+           <xsl:value-of select="concat(normalize-space(text()), ' ')"/>
+       </xsl:for-each>
+    </xsl:function>
+        
+    <xsl:function name="jpw:getTableTitle">
+       <xsl:param name="t1"/>
+       <xsl:param name="t2"/>
+       <xsl:choose>
+           <xsl:when test="contains(upper-case($t1), 'TABLE ')">
+               <xsl:value-of select="$t1"/>
+           </xsl:when>
+           <xsl:when test="contains(upper-case($t2), 'TABLE ')">
+               <xsl:value-of select="$t2"/>
+           </xsl:when>
+           <xsl:when test="string-length($t1) = 0">
+               <xsl:value-of select="$t2"/>
+           </xsl:when>
+           <xsl:otherwise>
+               <xsl:value-of select="$t1"/>
+           </xsl:otherwise>
+       </xsl:choose>
+    </xsl:function>
+    
+    <xsl:function name="jpw:getTableDesc">
+       <xsl:param name="t1"/>
+       <xsl:param name="t2"/>
+       <xsl:choose>
+           <xsl:when test="contains(upper-case($t1), 'TABLE ')">
+               <xsl:value-of select="$t2"/>
+           </xsl:when>
+           <xsl:when test="contains(upper-case($t2), 'TABLE ')">
+               <xsl:value-of select="$t1"/>
+           </xsl:when>
+           <xsl:when test="string-length($t1) = 0">
+               <xsl:value-of select="$t1"/>
+           </xsl:when>
+           <xsl:otherwise>
+               <xsl:value-of select="$t2"/>
+           </xsl:otherwise>
+       </xsl:choose>
+    </xsl:function>
+</xsl:stylesheet>
 </xsl:stylesheet>
