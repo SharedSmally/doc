@@ -63,6 +63,12 @@
        <xsl:param name="t1"/>
        <xsl:param name="t2"/>
        <xsl:choose>
+           <xsl:when test="starts-with(upper-case($t1), 'TABLE ')">
+               <xsl:value-of select="$t1"/>
+           </xsl:when>
+           <xsl:when test="starts-with(upper-case($t2), 'TABLE ')">
+               <xsl:value-of select="$t2"/>
+           </xsl:when>
            <xsl:when test="contains(upper-case($t1), 'TABLE ')">
                <xsl:value-of select="$t1"/>
            </xsl:when>
@@ -82,6 +88,12 @@
        <xsl:param name="t1"/>
        <xsl:param name="t2"/>
        <xsl:choose>
+           <xsl:when test="starts-with(upper-case($t1), 'TABLE ')">
+               <xsl:value-of select="$t2"/>
+           </xsl:when>
+           <xsl:when test="starts-with(upper-case($t2), 'TABLE ')">
+               <xsl:value-of select="$t1"/>
+           </xsl:when>
            <xsl:when test="contains(upper-case($t1), 'TABLE ')">
                <xsl:value-of select="$t2"/>
            </xsl:when>
@@ -96,5 +108,4 @@
            </xsl:otherwise>
        </xsl:choose>
     </xsl:function>
-</xsl:stylesheet>
 </xsl:stylesheet>
