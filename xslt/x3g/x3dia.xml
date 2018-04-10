@@ -1,0 +1,2090 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<x3dia xmlns:xs="http://www.w3.org/2001/XMLSchema" version="15.2.0">
+   <table name="Table 4.1"
+          desc="3GPP specific application identifiers"
+          type="AppID">
+      <application id="16777216" name="Cx_Px" ts="29.228 29.229"/>
+      <application id="16777217" name="Sh_Ph" ts="29.328 29.329"/>
+      <application id="16777218" name="Re" ts="32.296"/>
+      <application id="16777219" name="Wx" ts="29.234"/>
+      <application id="16777220" name="Zn" ts="29.109"/>
+      <application id="16777221" name="Zh" ts="29.109"/>
+      <application id="16777222" name="Gq" ts="29.209"/>
+      <application id="16777223" name="Gmb" ts="29.061"/>
+      <application id="16777224" name="Gx" ts="29.210"/>
+      <application id="16777225" name="GxoverGy" ts="29.210"/>
+      <application id="16777226" name="MM10" ts="29.140"/>
+      <application id="16777229" name="Rx" ts="29.211"/>
+      <application id="16777230" name="Pr" ts="29.234"/>
+      <application id="16777236" name="Rx" ts="29.214"/>
+      <application id="16777238" name="Gx" ts="29.212"/>
+      <application id="16777250" name="STa" ts="29.273"/>
+      <application id="16777251" name="S6a" ts="29.2 7 2"/>
+      <application id="16777252" name="S13_S13’" ts="29.2 7 2"/>
+      <application id="16777255" name="SLg" ts="29.172"/>
+      <application id="16777264" name="SWm" ts="29.273"/>
+      <application id="16777265" name="SWx" ts="29.273"/>
+      <application id="16777266" name="Gxx" ts="29.212"/>
+      <application id="16777267" name="S9" ts="29.215"/>
+      <application id="16777268" name="Zpn" ts="29.109"/>
+      <application id="16777272" name="S6b" ts="29.273"/>
+      <application id="16777291" name="SLh" ts="29.173"/>
+      <application id="16777292" name="SGmb" ts="29.061"/>
+      <application id="16777302" name="Sy" ts="29.219"/>
+      <application id="16777303" name="Sd" ts="29.212"/>
+      <application id="16777308" name="S7a" ts="29.2 7 2"/>
+      <application id="16777309" name="Tsp" ts="29.368"/>
+      <application id="16777310" name="S6m" ts="29.336"/>
+      <application id="16777311" name="T4" ts="29.337"/>
+      <application id="16777312" name="S6c" ts="29.338"/>
+      <application id="16777313" name="SGd" ts="29.338"/>
+      <application id="16777318" name="S15" ts="29.212"/>
+      <application id="16777319" name="S9a" ts="29.215"/>
+      <application id="16777320" name="S9a*" ts="29.215"/>
+      <application id="16777335" name="MB2C" ts="29.468"/>
+      <application id="16777336" name="PC4a" ts="29.344"/>
+      <application id="16777337" name="PC2" ts="29.343"/>
+      <application id="16777340" name="PC6_PC7" ts="29.345"/>
+      <application id="16777342" name="Np" ts="29.217"/>
+      <application id="16777345" name="S6t" ts="29.336"/>
+      <application id="16777346" name="T6a_T6b" ts="29.128"/>
+      <application id="16777347" name="Ns" ts="29.153"/>
+      <application id="16777348" name="Nt" ts="29.154"/>
+      <application id="16777349" name="St" ts="29.212"/>
+      <application id="16777350" name="PC2" ts="29.343"/>
+      <application id="16777351" name="DiameterDataManagement" ts="29. 283"/>
+      <application id="16777355" name="V4" ts="29.388"/>
+      <application id="16777356" name="V6" ts="29.389"/>
+   </table>
+   <table name="Table 5.1 /1"
+          desc="Command code value s allocated for 3GPP"
+          type="CmdCode">
+      <command code="300"
+               name="User-Authorization-Request/-Answer"
+               sname="UAR/UAA"
+               ts="29.229"/>
+      <command code="301" name="Server-Assignment-Request/-Answer" sname="SAR/SAA"/>
+      <command code="302" name="Location-Info-Request/-Answer" sname="LIR/LIA"/>
+      <command code="303" name="Multimedia-Auth-Request/-Answer" sname="MAR/MAA"/>
+      <command code="304"
+               name="Registration-Termination-Request/-Answer"
+               sname="RTR/RTA"/>
+      <command code="305" name="Push-Profile-Request/-Answer" sname="PPR/PPA"/>
+      <command code="306"
+               name="User-Data-Request/-Answer"
+               sname="UDR/UDA"
+               ts="29.329"/>
+      <command code="307" name="Profile-Update-Request/-Answer" sname="PUR/PUA"/>
+      <command code="308"
+               name="Subscribe-Notifications-Request/-Answer"
+               sname="SNR/SNA"/>
+      <command code="309" name="Push-Notification-Request/-Answer" sname="PNR/PNA"/>
+      <command code="310"
+               name="Boostrapping-Info-Request/Answer"
+               sname="BIR/BIA"
+               ts="29.109"/>
+      <command code="311"
+               name="Message-Process-Request/Answer"
+               sname="MPR/MPA"
+               ts="29.140"/>
+      <command code="312"
+               name="GBAPush-Info-Request/Answer"
+               sname="GPR/GPI"
+               ts="29.109"/>
+   </table>
+   <table name="Table 5.1/2"
+          desc="Command codes allocated for 3GPP"
+          type="CmdCode">
+      <command code="313" name="" sname=""/>
+   </table>
+   <table name="Table 5.1/ 3"
+          desc="SAE related Standard Command code values s allocated for 3GPP"
+          type="CmdCode">
+      <command code="316"
+               name="Update-Location-Request/Answer"
+               sname="ULR/ULA"
+               ts="29. 272"/>
+      <command code="317" name="Cancel-Location-Request/Answer" sname="CLR/CLA"/>
+      <command code="318"
+               name="Authentication-Information-Request/Answer"
+               sname="AIR/AIA"/>
+      <command code="319"
+               name="InsertSubscriberData-Request/Answer"
+               sname="IDR/IDA"/>
+      <command code="320"
+               name="Delete-Subscriber-Data-Request/Answer"
+               sname="DSR/DSA"/>
+      <command code="321" name="Purge-UE-Request/Answer" sname="PUR/PUA"/>
+      <command code="322" name="Reset-Request/Answer" sname="RSR/RSA"/>
+      <command code="323" name="Notify-Request/Answer" sname="NOR/NOA"/>
+      <command code="324" name="ME-Identity-Check-Request/Answer" sname="ECR/ECA"/>
+   </table>
+   <table name="Table 5.1/ 4"
+          desc="Vendor-specific c ommand codes allocated for 3GPP"
+          type="CmdCode">
+      <command code="8388620"
+               name="Provide-Location-Request/Answer"
+               sname="PLR/PLA"
+               ts="29. 1 72"/>
+      <command code="8388621"
+               name="Location-Report-Request/Answer"
+               sname="LRR/LRA"/>
+      <command code="8388622"
+               name="LCS-Routing-Info-Request/Answer"
+               sname="RIR/RIA"
+               ts="29.173"/>
+      <command code="8388635"
+               name="Spending-Limit-Request/Answer"
+               sname="SLR/SLA"
+               ts="29.219"/>
+      <command code="8388636"
+               name="Spending-Status-Notification-Request/Answer"
+               sname="SNR/SNA"/>
+      <command code="8388637"
+               name="TDF-Session-Request/Answer"
+               sname="TSR/TSA"
+               ts="29.212"/>
+      <command code="8388731"
+               name="TSSF-Notification-Request/Answer"
+               sname="TNR/TNA"/>
+      <command code="8388638"
+               name="Update-VCSG-Location-Request/Answer"
+               sname="UVR/UVA"
+               ts="29. 272"/>
+      <command code="8388642"
+               name="Cancel-VCSG-Location-Request/Answer"
+               sname="CVR/CVA"/>
+      <command code="8388639"
+               name="Device-Action-Request/Answer"
+               sname="DAR/DAA"
+               ts="29.368"/>
+      <command code="8388640"
+               name="Device-Notification-Request/Answer"
+               sname="DNR/DNA"/>
+      <command code="8388641"
+               name="Subscriber-Information-Request/Answer"
+               sname="SIR/SIA"
+               ts="29.336"/>
+      <command code="8388718"
+               name="Configuration-Information-Request/Answer"
+               sname="CIR/CIA"
+               ts="29.336"/>
+      <command code="8388719"
+               name="Reporting-Information-Request/Answer"
+               sname="RIR/RIA"/>
+      <command code="8388726"
+               name="NIDD-Information-Request/Answer"
+               sname="NIR/NIA"/>
+      <command code="8388643"
+               name="Device-Trigger-Request/Answer"
+               sname="DTR/DTA"
+               ts="29. 337"/>
+      <command code="8388644"
+               name="Delivery-Report-Request/Answer"
+               sname="DRR/DRA"/>
+      <command code="8388645"
+               name="MO-Forward-Short-MessageRequest/Answer"
+               sname="OFR/OFA"
+               ts="29.338"/>
+      <command code="8388646"
+               name="MT-Forward-Short-MessageRequest/Answer"
+               sname="TFR/TFA"/>
+      <command code="8388647"
+               name="Send-Routing-Info-for-SM-Request/Answer"
+               sname="SRR/SRA"/>
+      <command code="8388648"
+               name="Alert-Service-Centre-Request/Answer"
+               sname="ALR/ALA"/>
+      <command code="8388649"
+               name="Report-SM-Delivery-Status-Request/Answer"
+               sname="RDR/RDA"/>
+      <command code="8388656"
+               name="Trigger-Establishment-Request/Answer"
+               sname="TER/TEA"
+               ts="29.215"/>
+      <command code="8388662"
+               name="GCS-Action-Request/Answer"
+               sname="GAR/GAA"
+               ts="29.468"/>
+      <command code="8388663"
+               name="GCS-Notification-Request/Answer"
+               sname="GNR/GNA"/>
+      <command code="8388664"
+               name="ProSe-Subscriber-Information-Request/Answer"
+               sname="PIR/PIA"
+               ts="29.344"/>
+      <command code="8388665"
+               name="Update-ProSe-Subscriber-Data-Request/Answer"
+               sname="UPR/UPA"/>
+      <command code="8388666" name="ProSe-Notify-Request/Answer" sname="PNR/PNA"/>
+      <command code="8388713"
+               name="ProSe-Initial-Location-Information-Request/Answer"
+               sname="PSR/PSA"/>
+      <command code="8388668"
+               name="ProSe-Authorization-Request/Answer"
+               sname="PAR/PAA"
+               ts="29.345"/>
+      <command code="8388669"
+               name="ProSe-Discovery-Request/Answer"
+               sname="PDR/PDA"/>
+      <command code="8388670" name="ProSe-Match-Request/Answer" sname="PMR/PMA"/>
+      <command code="8388671"
+               name="ProSe-Match-Report-Info-Request/Answer"
+               sname="PIR/PIA"/>
+      <command code="8388672"
+               name="ProSe-Proximity-Request/Answer"
+               sname="PRR/PRA"/>
+      <command code="8388673"
+               name="ProSe-Location-Update-Request/Answer"
+               sname="PLR/PLA"/>
+      <command code="8388674" name="ProSe-Alert-Request/Answer" sname="ALR/ALA"/>
+      <command code="8388675"
+               name="ProSe-Cancellation-Request/Answer"
+               sname="RPR/RPA"/>
+      <command code="8388676"
+               name="ProXimity-Action-Request/Answer"
+               sname="PXR/PXA"
+               ts="29.343"/>
+      <command code="8388727"
+               name="ProXimity-Application-Request/Answer"
+               sname="XAR/XAA"/>
+      <command code="8388720"
+               name="Non-Aggregated-RUCI-Report-Request/Answer"
+               sname="NRR/NRA"
+               ts="29.217"/>
+      <command code="8388721"
+               name="Aggregated-RUCI-Report-Request/Answer"
+               sname="ARR/ARA"/>
+      <command code="8388722"
+               name="Modify-Uecontext-Request/Answer"
+               sname="MUR/MUA"/>
+      <command code="8388724"
+               name="Network-Status-Request/Answer"
+               sname="NSR/NSA"
+               ts="29.153"/>
+      <command code="8388725"
+               name="Network-Status-Continuous-Report-Request/Answer"
+               sname="NCR/NCA"/>
+      <command code="8388723"
+               name="Background-Data-Transfer-Request/Answer"
+               sname="BTR/BTA"
+               ts="29.154"/>
+      <command code="8388728"
+               name="Data-Pull-Request/Answer"
+               sname="DPR/DPA"
+               ts="29. 28 3"/>
+      <command code="8388729" name="Data-Update-Request/Answer" sname="DUR/DUA"/>
+      <command code="8388730"
+               name="Notification-Data-Request/Answer"
+               sname="NDR/NDA"/>
+      <command code="8388732"
+               name="Connection-Management-Request/Answer"
+               sname="CMR/CMA"
+               ts="29.128 "/>
+      <command code="8388733" name="MO-Data-Request/Answer" sname="ODR/ODA"/>
+      <command code="8388734" name="MT-Data-Request/Answer" sname="TDR/TDA"/>
+   </table>
+   <table name="Table 7.1" desc="3GPP specific AVP codes" type="AvpCode">
+      <avp code="100" name="3GPP-WLAN-APN-Id" type="OctetString"/>
+      <avp code="101" name="3GPP-WLAN-QoS-Filter-Rule" type="UTF8String"/>
+      <avp code="102" name="3GPP-WLAN-QoS-Filter-Support" type="OctetString"/>
+      <avp code="300" name="Authentication-Method" type="Enumerated"/>
+      <avp code="301" name="Authentication-Information-SIM" type="OctetString"/>
+      <avp code="302" name="Authorization-Information-SIM" type="OctetString"/>
+      <avp code="303" name="WLAN-User-Data" type="Grouped"/>
+      <avp code="304" name="Charging-Data" type="Grouped"/>
+      <avp code="305" name="WLAN-Access" type="Enumerated"/>
+      <avp code="306" name="WLAN-3GPP-IP-Access" type="Enumerated"/>
+      <avp code="307" name="APN-Authorized" type="Grouped"/>
+      <avp code="308" name="APN-Id" type=""/>
+      <avp code="309" name="APN-Barring-Type" type="Enumerated"/>
+      <avp code="310" name="WLAN-Direct-IP-Access" type="Enumerated"/>
+      <avp code="311" name="Session-Request-Type" type="Enumerated"/>
+      <avp code="312" name="Routing-Policy" type="IPFilterRule"/>
+      <avp code="313" name="Max-Requested-Bandwidth" type="OctetString"/>
+      <avp code="314" name="Charging-Characteristics" type="Integer"/>
+      <avp code="315" name="Charging-Nodes" type="Grouped"/>
+      <avp code="316"
+           name="Primary-OCS-Charging-Function-Name"
+           type="DiameterIdentity"/>
+      <avp code="317"
+           name="Secondary-OCS-Charging-Function-Name"
+           type="DiameterIdentity"/>
+      <avp code="318" name="3GPP-AAA-Server-Name" type="DiameterIdentity"/>
+      <avp code="319" name="Maximum-Number-Accesses" type="Unsigned32"/>
+      <avp code="400" name="GBA-UserSecSettings" type="OctetString"/>
+      <avp code="401" name="Transaction-Identifier" type="OctetString"/>
+      <avp code="402" name="NAF-Hostname" type="OctetString"/>
+      <avp code="403" name="GAA-Service-Identifier" type="OctetString"/>
+      <avp code="404" name="Key-ExpiryTime" type="Time"/>
+      <avp code="405" name="ME-Key-Material" type="OctetString"/>
+      <avp code="406" name="UICC-Key-Material" type="OctetString"/>
+      <avp code="407" name="GBA_U-Awareness-Indicator" type="Enumerated"/>
+      <avp code="408" name="BootstrapInfoCreationTime" type="Time"/>
+      <avp code="409" name="GUSS-Timestamp" type="Time"/>
+      <avp code="410" name="GBA-Type" type="Enumerated"/>
+      <avp code="411" name="UE-Id" type="OctetString"/>
+      <avp code="412" name="UE-Id-Type" type="Enumerated"/>
+      <avp code="413" name="UICC-App-Label" type="OctetString"/>
+      <avp code="414" name="UICC-ME" type="Enumerated"/>
+      <avp code="415" name="Requested-Key-Lifetime" type="Time"/>
+      <avp code="416" name="Private-Identity-Request" type="Enumerated"/>
+      <avp code="417" name="GBA-Push-Info" type="OctetString"/>
+      <avp code="418" name="NAF-SA-Identifier" type="OctetString"/>
+      <avp code="419" name="Security-Feature-Request" type="OctetString"/>
+      <avp code="420" name="Security-Feature-Response" type="OctetString"/>
+      <avp code="500" name="Abort-Cause" type="Enumerated"/>
+      <avp code="501" name="Access-Network-Charging-Address" type="Address"/>
+      <avp code="502" name="Access-Network-Charging-Identifier" type="Grouped"/>
+      <avp code="503"
+           name="Access-Network-Charging-Identifier-Value"
+           type="OctetString"/>
+      <avp code="504" name="AF-Application-Identifier" type="OctetString"/>
+      <avp code="505" name="AF-Charging-Identifier" type="OctetString"/>
+      <avp code="506" name="Authorization-Token" type="OctetString"/>
+      <avp code="507" name="Flow-Description" type="IPFilterRule"/>
+      <avp code="508" name="Flow-Grouping" type="Grouped"/>
+      <avp code="509" name="Flow-Number" type="Unsigned32"/>
+      <avp code="510" name="Flows" type="Grouped"/>
+      <avp code="511" name="Flow-Status" type="Enumerated"/>
+      <avp code="512" name="Flow-Usage" type="Enumerated"/>
+      <avp code="513" name="Specific-Action" type="Enumerated"/>
+      <avp code="514" name="Max-Requested-Bandwidth" type="Unsigned32"/>
+      <avp code="515" name="Max-Requested-Bandwidth-DL" type="Unsigned32"/>
+      <avp code="516" name="Max-Requested-Bandwidth-UL" type="Unsigned32"/>
+      <avp code="517" name="Media-Component-Description" type="Grouped"/>
+      <avp code="518" name="Media-Component-Number" type="Unsigned32"/>
+      <avp code="519" name="Media-Sub-ComponentAVP" type="Grouped"/>
+      <avp code="520" name="Media-Type" type="Enumerated"/>
+      <avp code="521" name="RR-Bandwidth" type="Unsigned32"/>
+      <avp code="522" name="RS-Bandwidth" type="Unsigned32"/>
+      <avp code="523" name="SIP-Forking-Indication" type="Enumerated"/>
+      <avp code="524" name="Codec-Data" type="OctetString"/>
+      <avp code="525" name="Service-URN" type="OctetString"/>
+      <avp code="526" name="Acceptable-Service-Info" type="Grouped"/>
+      <avp code="527" name="Service-Info-Status" type="Enumerated"/>
+      <avp code="528" name="MPS-Identifier" type="OctetString"/>
+      <avp code="529" name="AF-Signalling-Protocol" type="Enumerated"/>
+      <avp code="530" name="Sponsored-Connectivity-Data" type="Grouped"/>
+      <avp code="531" name="Sponsor-Identity" type="OctetString"/>
+      <avp code="532"
+           name="Application-Service-Provider-Identity"
+           type="OctetString"/>
+      <avp code="533" name="Rx-Request-Type" type="Enumerated"/>
+      <avp code="534" name="Min-Requested-Bandwidth-DL" type="Unsigned32"/>
+      <avp code="535" name="Min-Requested-Bandwidth-UL" type="Unsigned32"/>
+      <avp code="536" name="Required-Access-Info" type="Enumerated"/>
+      <avp code="537" name="IP-Domain-Id" type="OctetString"/>
+      <avp code="538" name="GCS-Identifier" type="OctetString"/>
+      <avp code="539" name="Sharing-Key-DL" type="Unsigned32"/>
+      <avp code="540" name="Sharing-Key-UL" type="Unsigned32"/>
+      <avp code="541" name="Retry-Interval" type="Unsigned32"/>
+      <avp code="542" name="Sponsoring-Action" type="Enumerated"/>
+      <avp code="543" name="Max-Supported-Bandwidth-DL" type="Unsigned32"/>
+      <avp code="544" name="Max-Supported-Bandwidth-UL" type="Unsigned32"/>
+      <avp code="545" name="Min-Desired-Bandwidth-DL" type="Unsigned32"/>
+      <avp code="546" name="Min-Desired-Bandwidth-UL" type="Unsigned32"/>
+      <avp code="547" name="MCPTT-Identifier" type="OctetString"/>
+      <avp code="548" name="Service-Authorization-Info" type="Unsigned32"/>
+      <avp code="549" name="Media-Component-Status" type="Unsigned32"/>
+      <avp code="550" name="Priority-Sharing-Indicator" type="Enumerated"/>
+      <avp code="551" name="AF-Requested-Data" type="Unsigned32"/>
+      <avp code="552" name="Content-Version" type="Unsigned64"/>
+      <avp code="553" name="Pre-emption-Control-Info" type="Unsigned32"/>
+      <avp code="554" name="Extended-Max-Requested-BW-DL" type="Unsigned32"/>
+      <avp code="555" name="Extended-Max-Requested-BW-UL" type="Unsigned32"/>
+      <avp code="556" name="Extended-Max-Supported-BW-DL" type="Unsigned32"/>
+      <avp code="557" name="Extended-Max-Supported-BW-UL" type="Unsigned32"/>
+      <avp code="558" name="Extended-Min-Desired-BW-DL" type="Unsigned32"/>
+      <avp code="559" name="Extended-Min-Desired-BW-UL" type="Unsigned32"/>
+      <avp code="560" name="Extended-Min-Requested-BW-DL" type="Unsigned32"/>
+      <avp code="561" name="Extended-Min-Requested-BW-UL" type="Unsigned32"/>
+      <avp code="600" name="Visited-Network-Identifier" type="OctetString"/>
+      <avp code="601" name="Public-Identity" type="UTF8String"/>
+      <avp code="602" name="Server-Name" type="UTF8String"/>
+      <avp code="603" name="Server-Capabilities" type="Grouped"/>
+      <avp code="604" name="Mandatory-Capability" type="Unsigned32"/>
+      <avp code="605" name="Optional-Capability" type="Unsigned32"/>
+      <avp code="606" name="User-Data" type="OctetString"/>
+      <avp code="607" name="SIP-Number-Auth-Items" type="Unsigned32"/>
+      <avp code="608" name="SIP-Authentication-Scheme" type="UTF8String"/>
+      <avp code="609" name="SIP-Authenticate" type="OctetString"/>
+      <avp code="610" name="SIP-Authorization" type="OctetString"/>
+      <avp code="611" name="SIP-Authentication-Context" type="OctetString"/>
+      <avp code="612" name="SIP-Auth-Data-Item" type="Grouped"/>
+      <avp code="613" name="SIP-Item-Number" type="Unsigned32"/>
+      <avp code="614" name="Server-Assignment-Type" type="Enumerated"/>
+      <avp code="615" name="Deregistration-Reason" type="Grouped"/>
+      <avp code="616" name="Reason-Code" type="Enumerated"/>
+      <avp code="617" name="Reason-Info" type="UTF8String"/>
+      <avp code="618" name="Charging-Information" type="Grouped"/>
+      <avp code="619"
+           name="Primary-Event-Charging-Function-Name"
+           type="DiameterURI"/>
+      <avp code="620"
+           name="Secondary-Event-Charging-Function-Name"
+           type="DiameterURI"/>
+      <avp code="621"
+           name="Primary-Charging-Collection-Function-Name"
+           type="DiameterURI"/>
+      <avp code="622"
+           name="Secondary-Charging-Collection-Function-Name"
+           type="DiameterURI"/>
+      <avp code="623" name="User-Authorization-Type" type="Enumerated"/>
+      <avp code="624" name="User-Data-Already-Available" type="Enumerated"/>
+      <avp code="625" name="Confidentiality-Key" type="OctetString"/>
+      <avp code="626" name="Integrity-Key" type="OctetString"/>
+      <avp code="627" name="User-Data-Request-Type" type="Enumerated"/>
+      <avp code="628" name="Supported-Features" type="Grouped"/>
+      <avp code="629" name="Feature-List-ID" type="Unsigned32"/>
+      <avp code="630" name="Feature-List" type="Unsigned32"/>
+      <avp code="631" name="Supported-Applications" type="Grouped"/>
+      <avp code="632" name="Associated-Identities" type="Grouped"/>
+      <avp code="633" name="Originating-Request" type="Enumerated"/>
+      <avp code="634" name="Wildcarded-Public-Identity" type="UTF8String"/>
+      <avp code="635" name="SIP-Digest-Authenticate" type="Grouped"/>
+      <avp code="636" name="Wildcarded-IMPU" type="UTF8String"/>
+      <avp code="637" name="UAR-Flags" type="Unsigned32"/>
+      <avp code="638" name="Loose-Route-Indication" type="Enumerated"/>
+      <avp code="639" name="SCSCF-Restoration-Info" type="Grouped"/>
+      <avp code="640" name="Path" type="OctetString"/>
+      <avp code="641" name="Contact" type="OctetString"/>
+      <avp code="642" name="Subscription-Info" type="Grouped"/>
+      <avp code="643" name="Call-ID-SIP-Header" type="OctetString"/>
+      <avp code="644" name="From-SIP-Header" type="OctetString"/>
+      <avp code="645" name="To-SIP-Header" type="OctetString"/>
+      <avp code="646" name="Record-Route" type="OctetString"/>
+      <avp code="647" name="Associated-Registered-Identities" type="Grouped"/>
+      <avp code="648"
+           name="Multiple-Registration-Indication"
+           type="Enumerated"/>
+      <avp code="649" name="Restoration-Info" type="Grouped"/>
+      <avp code="650" name="Session-Priority" type="Enumerated"/>
+      <avp code="651"
+           name="Identity-with-Emergency-Registration"
+           type="Grouped"/>
+      <avp code="652" name="Priviledged-Sender-Indication" type="Enumerated"/>
+      <avp code="653" name="LIA-Flags" type="Unsigned32"/>
+      <avp code="654" name="Initial-CSeq-Sequence-Number" type="Unsigned32"/>
+      <avp code="655" name="SAR-Flags" type="Unsigned32"/>
+      <avp code="656" name="Allowed-WAF-WWSF-Identities" type="Grouped"/>
+      <avp code="657"
+           name="WebRTC-Authentication-Function-Name"
+           type="UTF8String"/>
+      <avp code="658" name="WebRTC-Web-Server-Function-Name" type="UTF8String"/>
+      <avp code="700" name="User-Identity" type="Grouped"/>
+      <avp code="701" name="MSISDN" type="OctetString"/>
+      <avp code="702" name="User-Data" type="OctetString"/>
+      <avp code="703" name="Data-Reference" type="Enumerated"/>
+      <avp code="704" name="Service-Indication" type="OctetString"/>
+      <avp code="705" name="Subs-Req-Type" type="Enumerated"/>
+      <avp code="706" name="Requested-Domain" type="Enumerated"/>
+      <avp code="707" name="Current-Location" type="Enumerated"/>
+      <avp code="708" name="Identity-Set" type="Enumerated"/>
+      <avp code="709" name="Expiry-Time" type="Time"/>
+      <avp code="710" name="Send-Data-Indication" type="Enumerated"/>
+      <avp code="711" name="DSAI-Tag" type="OctetString"/>
+      <avp code="712" name="One-Time-Notification" type="Enumerated"/>
+      <avp code="713" name="Requested-Nodes" type="Unsigned32"/>
+      <avp code="714" name="Serving-Node-Indication" type="Enumerated"/>
+      <avp code="715" name="Repository-Data-ID" type="Grouped"/>
+      <avp code="716" name="Sequence-Number" type="Unsigned32"/>
+      <avp code="717" name="Pre-paging-Supported" type="Enumerated"/>
+      <avp code="718" name="Local-Time-Zone-Indication" type="Enumerated"/>
+      <avp code="719" name="UDR-Flags" type="Unsigned32"/>
+      <avp code="720" name="Call-Reference-Info" type="Grouped"/>
+      <avp code="721" name="Call-Reference-Number" type="OctetString"/>
+      <avp code="722" name="AS-Number" type="OctetString"/>
+      <avp code="823" name="Event-Type" type="Grouped"/>
+      <avp code="824" name="SIP-Method" type="UTF8String"/>
+      <avp code="825" name="Event" type="UTF8String"/>
+      <avp code="826" name="Content-Type" type="UTF8String"/>
+      <avp code="827" name="Content-Length" type="Unsigned32"/>
+      <avp code="828" name="Content-Disposition" type="UTF8String"/>
+      <avp code="829" name="Role-of-Node" type="Enumerated"/>
+      <avp code="830" name="User-Session-Id" type="UTF8String"/>
+      <avp code="831" name="Calling-Party-Address" type="UTF8String"/>
+      <avp code="832" name="Called-Party-Address" type="UTF8String"/>
+      <avp code="833" name="Time-Stamps" type="Grouped"/>
+      <avp code="834" name="SIP-Request-Timestamp" type="Time"/>
+      <avp code="835" name="SIP-Response-Timestamp" type="Time"/>
+      <avp code="836" name="Application-Server" type="UTF8String"/>
+      <avp code="837"
+           name="Application-provided-called-party-address"
+           type="UTF8String"/>
+      <avp code="838" name="Inter-Operator-Identifier" type="Grouped"/>
+      <avp code="839" name="Originating-IOI" type="UTF8String"/>
+      <avp code="840" name="Terminating-IOI" type="UTF8String"/>
+      <avp code="841" name="IMS-Charging-Identifier" type="UTF8String"/>
+      <avp code="842" name="SDP-Session-Description" type="UTF8String"/>
+      <avp code="843" name="SDP-Media-Component" type="Grouped"/>
+      <avp code="844" name="SDP-Media-Name" type="UTF8String"/>
+      <avp code="845" name="SDP-Media-Description" type="UTF8String"/>
+      <avp code="846" name="CG-Address" type="Address"/>
+      <avp code="847" name="GGSN-Address" type="Address"/>
+      <avp code="848" name="Served-Party-IP-Address" type="Address"/>
+      <avp code="849" name="Authorized-QoS" type="UTF8String"/>
+      <avp code="850" name="Application-Server-Information" type="Grouped"/>
+      <avp code="851" name="Trunk-Group-Id" type="Grouped"/>
+      <avp code="852" name="Incoming-Trunk-Group-Id" type="UTF8String"/>
+      <avp code="853" name="Outgoing-Trunk-Group-Id" type="UTF8String"/>
+      <avp code="854" name="Bearer-Service" type="OctetString"/>
+      <avp code="855" name="Service-Id" type="UTF8String"/>
+      <avp code="856" name="Associated-URI" type="UTF8String"/>
+      <avp code="857" name="Charged-Party" type="UTF8String"/>
+      <avp code="858" name="PoC-Controlling-Address" type="UTF8String"/>
+      <avp code="859" name="PoC-Group-Name" type="UTF8String"/>
+      <avp code="860" name="Cause" type="Grouped"/>
+      <avp code="861" name="Cause-Code" type="Integer32"/>
+      <avp code="862" name="Node-Functionality" type="Enumerated"/>
+      <avp code="863" name="Service-Specific-Data" type="UTF8String"/>
+      <avp code="864" name="Originator" type="Enumerated"/>
+      <avp code="865" name="PS-Furnish-Charging-Information" type="Grouped"/>
+      <avp code="866" name="PS-Free-Format-Data" type="OctetString"/>
+      <avp code="867" name="PS-Append-Free-Format-Data" type="Enumerated"/>
+      <avp code="868" name="Time-Quota-Threshold" type="Unsigned32"/>
+      <avp code="869" name="Volume-Quota-Threshold" type="Unsigned32"/>
+      <avp code="870" name="Trigger-Type" type="Enumerated"/>
+      <avp code="871" name="Quota-Holding-Time" type="Unsigned32"/>
+      <avp code="872" name="Reporting-Reason" type="Enumerated"/>
+      <avp code="873" name="Service-Information" type="Grouped"/>
+      <avp code="874" name="PS-Information" type="Grouped"/>
+      <avp code="875" name="Reserved" type="-"/>
+      <avp code="876" name="IMS-Information" type="Grouped"/>
+      <avp code="877" name="MMS-Information" type="Grouped"/>
+      <avp code="878" name="LCS-Information" type="Grouped"/>
+      <avp code="879" name="PoC-Information" type="Grouped"/>
+      <avp code="880" name="MBMS-Information" type="Grouped"/>
+      <avp code="881" name="Quota-Consumption-Time" type="Unsigned32"/>
+      <avp code="882" name="Media-Initiator-Flag" type="Enumerated"/>
+      <avp code="883" name="PoC-Server-Role" type="Enumerated"/>
+      <avp code="884" name="PoC-Session-Type" type="Enumerated"/>
+      <avp code="885" name="Number-Of-Participants" type="Unsigned32"/>
+      <avp code="886" name="Originator-Address" type="Grouped"/>
+      <avp code="887" name="Participants-Involved" type="UTF8String"/>
+      <avp code="888" name="Expires" type="Unsigned32"/>
+      <avp code="889" name="Message-Body" type="Grouped"/>
+      <avp code="890" name="Reserved" type="-"/>
+      <avp code="891" name="Reserved" type="-"/>
+      <avp code="892" name="Reserved" type="-"/>
+      <avp code="893" name="Reserved" type="-"/>
+      <avp code="894" name="Reserved" type="-"/>
+      <avp code="895" name="Reserved" type="-"/>
+      <avp code="896" name="Reserved" type="-"/>
+      <avp code="897" name="Address-Data" type="UTF8String"/>
+      <avp code="898" name="Address-Domain" type="Grouped"/>
+      <avp code="899" name="Address-Type" type="Enumerated"/>
+      <avp code="" name="" type=""/>
+      <avp code="900" name="TMGI" type="OctectString"/>
+      <avp code="901"
+           name="Required-MBMS-Bearer-Capabilities"
+           type="UTF8String"/>
+      <avp code="902" name="MBMS-StartStop-Indication" type="Enumerated"/>
+      <avp code="903" name="MBMS-Service-Area" type="OctectString"/>
+      <avp code="904" name="MBMS-Session-Duration" type="Unsigned32"/>
+      <avp code="905" name="Alternative-APN" type="UTF8String"/>
+      <avp code="906" name="MBMS-Service-Type" type="Enumerated"/>
+      <avp code="907" name="MBMS-2G-3G-Indicator" type="Enumerated"/>
+      <avp code="908" name="MBMS-Session-Identity" type="OctetString"/>
+      <avp code="909" name="RAI" type="UTF8String"/>
+      <avp code="910" name="Additional-MBMS-Trace-Info" type="OctetString"/>
+      <avp code="911" name="MBMS-Time-To-Data-Transfer" type="Unsigned32"/>
+      <avp code="912"
+           name="MBMS-Session-Identity-Repetition-Number"
+           type="Unsigned32"/>
+      <avp code="913" name="MBMS-Required-QoS" type="UTF8String"/>
+      <avp code="914" name="MBMS-Counting-Information" type="Enumerated"/>
+      <avp code="915" name="MBMS-User-Data-Mode-Indication" type="Enumerated"/>
+      <avp code="916" name="MBMS-GGSN-Address" type="UTF8String"/>
+      <avp code="917" name="MBMS-GGSN-IPv6-Address" type="UTF8String"/>
+      <avp code="918" name="MBMS-BMSC-SSM-IP-Address" type="UTF8String"/>
+      <avp code="919" name="MBMS-BMSC-SSM-IPv6-Address" type="UTF8String"/>
+      <avp code="920" name="MBMS-Flow-Identifier" type="OctetString"/>
+      <avp code="921" name="CN-IP-Multicast-Distribution" type="Enumerated"/>
+      <avp code="922" name="MBMS-HC-Indicator" type="Enumerated"/>
+      <avp code="923" name="MBMS-Access-Indicator" type="Enumerated"/>
+      <avp code="924" name="MBMS-GW-SSM-IP-Address" type="OctetString"/>
+      <avp code="925" name="MBMS-GW-SSM-IPv6-Address" type="OctetString"/>
+      <avp code="926" name="MBMS-BMSC-SSM-UDP-Port" type="OctetString"/>
+      <avp code="927" name="MBMS-GW-UDP-Port" type="OctetString"/>
+      <avp code="928" name="MBMS-GW-UDP-Port-Indicator" type="Enumerated"/>
+      <avp code="929" name="MBMS-Data-Transfer-Start" type="Unsigned64"/>
+      <avp code="930" name="MBMS-Data-Transfer-Stop" type="Unsigned64"/>
+      <avp code="931" name="MBMS-Flags" type="Unsigned32"/>
+      <avp code="932" name="Restart-Counter" type="Unsigned32"/>
+      <avp code="933" name="Diagnostic-Info" type="Unsigned32"/>
+      <avp code="934" name="MBMS-Cell-List" type="OctetString"/>
+      <avp code="1000" name="Bearer-Usage" type="Enumerated"/>
+      <avp code="1001" name="Charging-Rule-Install" type="Grouped"/>
+      <avp code="1002" name="Charging-Rule-Remove" type="Grouped"/>
+      <avp code="1003" name="Charging-Rule-Definition" type="Grouped"/>
+      <avp code="1004" name="Charging-Rule-Base-Name" type="UTF8String"/>
+      <avp code="1005" name="Charging-Rule-Name" type="OctetString"/>
+      <avp code="1006" name="Event-Trigger" type="Enumerated"/>
+      <avp code="1007" name="Metering-Method" type="Enumerated"/>
+      <avp code="1008" name="Offline" type="Enumerated"/>
+      <avp code="1009" name="Online" type="Enumerated"/>
+      <avp code="1010" name="Precedence" type="Unsigned32"/>
+      <avp code="1011" name="Reporting-Level" type="Enumerated"/>
+      <avp code="1012" name="TFT-Filter" type="IPFilterRule"/>
+      <avp code="1013" name="TFT-Packet-Filter-Information" type="Grouped"/>
+      <avp code="1014" name="ToS-Traffic-Class" type="OctetString"/>
+      <avp code="1016" name="QoS-Information" type="Grouped"/>
+      <avp code="1018" name="Charging-Rule-Report" type="Grouped"/>
+      <avp code="1019" name="PCC-Rule-Status" type="Enumerated"/>
+      <avp code="1020" name="Bearer-Identifier" type="OctetString"/>
+      <avp code="1021" name="Bearer-Operation" type="Enumerated"/>
+      <avp code="1022"
+           name="Access-Network-Charging-Identifier-Gx"
+           type="Grouped"/>
+      <avp code="1023" name="Bearer-Control-Mode" type="Enumerated"/>
+      <avp code="1024" name="Network-Request-Support" type="Enumerated"/>
+      <avp code="1025" name="Guaranteed-Bitrate-DL" type="Unsigned32"/>
+      <avp code="1026" name="Guaranteed-Bitrate-UL" type="Unsigned32"/>
+      <avp code="1027" name="IP-CAN-Type" type="Enumerated"/>
+      <avp code="1028" name="QoS-Class-Identifier" type="Enumerated"/>
+      <avp code="1029" name="QoS-Negotiation" type="Enumerated"/>
+      <avp code="1030" name="QoS-Upgrade" type="Enumerated"/>
+      <avp code="1031" name="Rule-Failure-Code" type="Enumerated"/>
+      <avp code="1032" name="RAT-Type" type="Enumerated"/>
+      <avp code="1033" name="Event-Report-Indication" type="Grouped"/>
+      <avp code="1034" name="Allocation-Retention-Priority" type="Grouped"/>
+      <avp code="1035" name="CoA-IP-Address" type="Address"/>
+      <avp code="1036" name="Tunnel-Header-Filter" type="IPFilterRule"/>
+      <avp code="1037" name="Tunnel-Header-Length" type="Unsigned32"/>
+      <avp code="1038" name="Tunnel-Information" type="Grouped"/>
+      <avp code="1039" name="CoA-Information" type="Grouped"/>
+      <avp code="1040" name="APN-Aggregate-Max-Bitrate-DL" type="Unsigned32"/>
+      <avp code="1041" name="APN-Aggregate-Max-Bitrate-UL" type="Unsigned32"/>
+      <avp code="1042" name="Revalidation-Time" type="Time"/>
+      <avp code="1043" name="Rule-Activation-Time" type="Time"/>
+      <avp code="1044" name="Rule-DeActivation-Time" type="Time"/>
+      <avp code="1045" name="Session-Release-Cause" type="Enumerated"/>
+      <avp code="1046" name="Priority-Level" type="Unsigned32"/>
+      <avp code="1047" name="Pre-emption-Capability" type="Enumerated"/>
+      <avp code="1048" name="Pre-emption-Vulnerability" type="Enumerated"/>
+      <avp code="1049" name="Default-EPS-Bearer-QoS" type="Grouped"/>
+      <avp code="1050" name="AN-GW-Address" type="Address"/>
+      <avp code="1051" name="QoS-Rule-Install" type="Grouped"/>
+      <avp code="1052" name="QoS-Rule-Remove" type="Grouped"/>
+      <avp code="1053" name="QoS-Rule-Definition" type="Grouped"/>
+      <avp code="1054" name="QoS-Rule-Name" type="OctetString"/>
+      <avp code="1055" name="QoS-Rule-Report" type="Grouped"/>
+      <avp code="1056" name="Security-Parameter-Index" type="OctetString"/>
+      <avp code="1057" name="Flow-Label" type="OctetString"/>
+      <avp code="1058" name="Flow-Information" type="Grouped"/>
+      <avp code="1059" name="Packet-Filter-Content" type="IPFilterRule"/>
+      <avp code="1060" name="Packet-Filter-Identifier" type="OctetString"/>
+      <avp code="1061" name="Packet-Filter-Information" type="Grouped"/>
+      <avp code="1062" name="Packet-Filter-Operation" type="Enumerated"/>
+      <avp code="1063"
+           name="Resource-Allocation-Notification"
+           type="Enumerated"/>
+      <avp code="1064" name="Session-Linking-Indicator" type="Enumerated"/>
+      <avp code="1065" name="PDN-Connection-ID" type="OctetString"/>
+      <avp code="1066" name="Monitoring-Key" type="OctetString"/>
+      <avp code="1067" name="Usage-Monitoring-Information" type="Grouped"/>
+      <avp code="1068" name="Usage-Monitoring-Level" type="Enumerated"/>
+      <avp code="1069" name="Usage-Monitoring-Report" type="Enumerated"/>
+      <avp code="1070" name="Usage-Monitoring-Support" type="Enumerated"/>
+      <avp code="1071" name="CSG-Information-Reporting" type="Enumerated"/>
+      <avp code="1072" name="Packet-Filter-Usage" type="Enumerated"/>
+      <avp code="1073" name="Charging-Correlation-Indicator" type="Enumerated"/>
+      <avp code="1074" name="QoS-Rule-Base-Name" type="UTF8String"/>
+      <avp code="1075" name="Routing-Rule-Remove" type="Grouped"/>
+      <avp code="1076" name="Routing-Rule-Definition" type="Grouped"/>
+      <avp code="1077" name="Routing-Rule-Identifier" type="OctetString"/>
+      <avp code="1078" name="Routing-Filter" type="Grouped"/>
+      <avp code="1079" name="Routing-IP-Address" type="Address"/>
+      <avp code="1080" name="Flow-Direction" type="Enumerated"/>
+      <avp code="1081" name="Routing-Rule-Install" type="Grouped"/>
+      <avp code="1082" name="Credit-Management-Status" type="Unsigned32"/>
+      <avp code="1085" name="Redirect-Information" type="Grouped"/>
+      <avp code="1086" name="Redirect-Support" type="Enumerated"/>
+      <avp code="1087" name="TDF-Information" type="Grouped"/>
+      <avp code="1088" name="TDF-Application-Identifier" type="OctetString"/>
+      <avp code="1089" name="TDF-Destination-Host" type="DiameterIdentity"/>
+      <avp code="1090" name="TDF-Destination-Realm" type="DiameterIdentity"/>
+      <avp code="1091" name="TDF-IP-address" type="Address"/>
+      <avp code="1092" name="ADC-Rule-Install" type="Grouped"/>
+      <avp code="1093" name="ADC-Rule-Remove" type="Grouped"/>
+      <avp code="1094" name="ADC-Rule-Definition" type="Grouped"/>
+      <avp code="1095" name="ADC-Rule-Base-Name" type="UTF8String"/>
+      <avp code="1096" name="ADC-Rule-Name" type="OctetString"/>
+      <avp code="1097" name="ADC-Rule-Report" type="Grouped"/>
+      <avp code="1098" name="Application-Detection-Information" type="Grouped"/>
+      <avp code="1099" name="PS-to-CS-Session-Continuity" type="Enumerated"/>
+      <avp code="1100" name="Served-User-Identity" type="Groupe"/>
+      <avp code="1101" name="VASP-ID" type="UTF8Str"/>
+      <avp code="1102" name="VAS-ID" type="UTF8String"/>
+      <avp code="1103" name="Trigger-Event" type="Enumerated"/>
+      <avp code="1104" name="Sender-Address" type="UTF8String"/>
+      <avp code="1105" name="Initial-Recipient-Address" type="Grouped"/>
+      <avp code="1106" name="Result-Recipient-Address" type="Grouped"/>
+      <avp code="1107" name="Sequence-Number" type="Unsigned32"/>
+      <avp code="1108" name="Recipient-Address" type="UTF8String"/>
+      <avp code="1109" name="Routeing-Address" type="UTF8String"/>
+      <avp code="1110" name="Originating-Interface" type="Enumerated"/>
+      <avp code="1111" name="Delivery-Report" type="Enumerated"/>
+      <avp code="1112" name="Read-Reply" type="Enumerated"/>
+      <avp code="1113" name="Sender-Visibility" type="Enumerated"/>
+      <avp code="1114" name="Service-Key" type="UTF8String"/>
+      <avp code="1115" name="Billing-Information" type="UTF8String"/>
+      <avp code="1116" name="Status" type="Grouped"/>
+      <avp code="1117" name="Status-Code" type="UTF8String"/>
+      <avp code="1118" name="Status-Text" type="UTF8String"/>
+      <avp code="1200" name="Domain-Name" type="UTF8String"/>
+      <avp code="1201" name="Recipient-Address" type="Grouped"/>
+      <avp code="1202" name="Submission-Time" type="Time"/>
+      <avp code="1203" name="MM-Content-Type" type="Grouped"/>
+      <avp code="1204" name="Type-Number" type="Enumerated"/>
+      <avp code="1205" name="Additional-Type-Information" type="UTF8String"/>
+      <avp code="1206" name="Content-Size" type="Unsigned32"/>
+      <avp code="1207" name="Additional-Content-Information" type="Grouped"/>
+      <avp code="1208" name="Addressee-Type" type="Enumerated"/>
+      <avp code="1209" name="Priority" type="Enumerated"/>
+      <avp code="1210" name="Message-ID" type="UTF8String"/>
+      <avp code="1211" name="Message-Type" type="Enumerated"/>
+      <avp code="1212" name="Message-Size" type="Unsigned32"/>
+      <avp code="1213" name="Message-Class" type="Grouped"/>
+      <avp code="1214" name="Class-Identifier" type="Enumerated"/>
+      <avp code="1215" name="Token-Text" type="UTF8String"/>
+      <avp code="1216" name="Delivery-Report-Requested" type="Enumerated"/>
+      <avp code="1217" name="Adaptations" type="Enumerated"/>
+      <avp code="1218" name="Applic-ID" type="UTF8String"/>
+      <avp code="1219" name="Aux-Applic-Info" type="UTF8String"/>
+      <avp code="1220" name="Content-Class" type="Enumerated"/>
+      <avp code="1221" name="DRM-Content" type="Enumerated"/>
+      <avp code="1222" name="Read-Reply-Report-Requested" type="Enumerated"/>
+      <avp code="1223" name="Reply-Applic-ID" type="UTF8String"/>
+      <avp code="1224" name="File-Repair-Supported" type="Enumerated"/>
+      <avp code="1225" name="MBMS-User-Service-Type" type="Enumerated"/>
+      <avp code="1226" name="Unit-Quota-Threshold" type="Unsigned32"/>
+      <avp code="1227" name="PDP-Address" type="Address"/>
+      <avp code="1228" name="SGSN-Address" type="Address"/>
+      <avp code="1229" name="PoC-Session-Id" type="UTF8String"/>
+      <avp code="1230" name="Deferred-Location-Even-Type" type="UTF8String"/>
+      <avp code="1231" name="LCS-APN" type="UTF8String"/>
+      <avp code="1232" name="LCS-Client-Id" type="Grouped"/>
+      <avp code="1233" name="LCS-Client-Dialed-By-MS" type="UTF8String"/>
+      <avp code="1234" name="LCS-Client-External-ID" type="UTF8String"/>
+      <avp code="1235" name="LCS-Client-Name" type="Grouped"/>
+      <avp code="1236" name="LCS-Data-Coding-Scheme" type="UTF8String"/>
+      <avp code="1237" name="LCS-Format-Indicator" type="Enumerated"/>
+      <avp code="1238" name="LCS-Name-String" type="UTF8String"/>
+      <avp code="1239" name="LCS-Requestor-Id" type="Grouped"/>
+      <avp code="1240" name="LCS-Requestor-Id-String" type="UTF8String"/>
+      <avp code="1241" name="LCS-Client-Type" type="Enumerated"/>
+      <avp code="1242" name="Location-Estimate" type="OctetString"/>
+      <avp code="1243" name="Location-Estimate-Type" type="Enumerated"/>
+      <avp code="1244" name="Location-Type" type="Grouped"/>
+      <avp code="1245" name="Positioning-Data" type="UTF8String"/>
+      <avp code="1246" name="Reserved" type="-"/>
+      <avp code="1247" name="PDP-Context-Type" type="Enumerated"/>
+      <avp code="1248" name="MMBox-Storage-Requested" type="Enumerated"/>
+      <avp code="1249" name="Service-Specific-Info" type="Grouped"/>
+      <avp code="1250" name="Called-Asserted-Identity" type="UTF8String"/>
+      <avp code="1251" name="Requested-Party-Address" type="UTF8String"/>
+      <avp code="1252" name="PoC-User-Role" type="Grouped"/>
+      <avp code="1253" name="PoC-User-Role-IDs" type="UTF8String"/>
+      <avp code="1254" name="PoC-User-Role-info-Units" type="Enumerated"/>
+      <avp code="1255" name="Talk-Burst-Exchange" type="Grouped"/>
+      <avp code="1256" name="Service-Generic-Information" type="Grouped"/>
+      <avp code="1257" name="Service-Specific-Type" type="Unsigned32"/>
+      <avp code="1258" name="Event-Charging-TimeStamp" type="Time"/>
+      <avp code="1259" name="Participant-Access-Priority" type="Enumerated"/>
+      <avp code="1260" name="Participant-Group" type="Grouped"/>
+      <avp code="1261" name="PoC-Change-Conditions" type="Enumerated"/>
+      <avp code="1262" name="PoC-Change-Time" type="Time"/>
+      <avp code="1263" name="Access-Network-Information" type="OctetString"/>
+      <avp code="1264" name="Trigger" type="Grouped"/>
+      <avp code="1265" name="Base-Time-Interval" type="Unsigned32"/>
+      <avp code="1266" name="Envelope" type="Grouped"/>
+      <avp code="1267" name="Envelope-End-Time" type="Time"/>
+      <avp code="1268" name="Envelope-Reporting" type="Enumerated"/>
+      <avp code="1269" name="Envelope-Start-Time" type="Time"/>
+      <avp code="1270" name="Time-Quota-Mechanism" type="Grouped"/>
+      <avp code="1271" name="Time-Quota-Type" type="Enumerated"/>
+      <avp code="1272" name="Early-Media-Description" type="Grouped"/>
+      <avp code="1273" name="SDP-TimeStamps" type="Grouped"/>
+      <avp code="1274" name="SDP-Offer-Timestamp" type="Time"/>
+      <avp code="1275" name="SDP-Answer-Timestamp" type="Time"/>
+      <avp code="1276" name="AF-Correlation-Information" type="Grouped"/>
+      <avp code="1277" name="PoC-Session-Initiation-type" type="Enumerated"/>
+      <avp code="1278" name="Offline-Charging" type="Grouped"/>
+      <avp code="1279" name="User-Participating-Type" type="Enumerated"/>
+      <avp code="1280"
+           name="Alternate-Charged-Party-Address"
+           type="UTF8String"/>
+      <avp code="1281"
+           name="IMS-Communication-Service-Identifier"
+           type="UTF8String"/>
+      <avp code="1282" name="Number-Of-Received-Talk-Bursts" type="Unsigned32"/>
+      <avp code="1283" name="Number-Of-Talk-Bursts" type="Unsigned32"/>
+      <avp code="1284" name="Received-Talk-Burst-Time" type="Unsigned32"/>
+      <avp code="1285" name="Received-Talk-Burst-Volume" type="Unsigned32"/>
+      <avp code="1286" name="Talk-Burst-Time" type="Unsigned32"/>
+      <avp code="1287" name="Talk-Burst-Volume" type="Unsigned32"/>
+      <avp code="1288" name="Media-Initiator-Party" type="UTF8String"/>
+      <avp code="1300" name="PC5-Radio-Technology" type="Enumerated"/>
+      <avp code="1301" name="RAN-End-Time" type="Time"/>
+      <avp code="1302" name="RAN-Secondary-RAT-Usage-Report" type="Grouped"/>
+      <avp code="1303" name="RAN-Start-Time" type="Time"/>
+      <avp code="1304" name="Secondary-RAT-Type" type="OctetString"/>
+      <avp code="1400" name="Subscription-Data" type="Grouped"/>
+      <avp code="1401" name="Terminal-Information" type="Grouped"/>
+      <avp code="1402" name="IMEI" type="UTF8String"/>
+      <avp code="1403" name="Software-Version" type="UTF8String"/>
+      <avp code="1404" name="QoS-Subscribed" type="UTF8String"/>
+      <avp code="1405" name="ULR-Flags" type="Unsigned32"/>
+      <avp code="1406" name="ULA-Flags" type="Unsigned32"/>
+      <avp code="1407" name="VisitedPLMNId" type="OctetString"/>
+      <avp code="1408"
+           name="Requested-EUTRAN-Authentication-Info"
+           type="Grouped"/>
+      <avp code="1409"
+           name="Requested-UTRAN-GERAN-Authentication-Info"
+           type="Grouped"/>
+      <avp code="1410" name="Number-Of-Requested-Vectors" type="Unsigned32"/>
+      <avp code="1411" name="Re-Synchronization-Info" type="OctetString"/>
+      <avp code="1412" name="Immediate-Response-Preferred" type="Unsigned32"/>
+      <avp code="1413" name="Authentication-Info" type="Grouped"/>
+      <avp code="1414" name="E-UTRAN-Vector" type="Grouped"/>
+      <avp code="1415" name="UTRAN-Vector" type="Grouped"/>
+      <avp code="1416" name="GERAN-Vector" type="Grouped"/>
+      <avp code="1417" name="Network-Access-Mode" type="Enumerated"/>
+      <avp code="1418" name="HPLMN-ODB" type="Enumerated"/>
+      <avp code="1419" name="Item-Number" type="Unsigned32"/>
+      <avp code="1420" name="Cancellation-Type" type="Enumerated"/>
+      <avp code="1421" name="DSR-Flags" type="Unsigned32"/>
+      <avp code="1422" name="DSA-Flags" type="Unsigned32"/>
+      <avp code="1423" name="Context-Identifier" type="Unsigned32"/>
+      <avp code="1424" name="Subscriber-Status" type="Enumerated"/>
+      <avp code="1425" name="Operator-Determined-Barring" type="Unsigned32"/>
+      <avp code="1426" name="Access-Restriction-Data" type="UTF8String"/>
+      <avp code="1427" name="APN-OI-Replacement" type="UTF8String"/>
+      <avp code="1428"
+           name="All-APN-Configurations-Included-Indicator"
+           type="Enumerated"/>
+      <avp code="1429" name="APN-Configuration-Profile" type="Grouped"/>
+      <avp code="1430" name="APN-Configuration" type="Grouped"/>
+      <avp code="1431" name="EPS-Subscribed-QoS-Profile" type="Grouped"/>
+      <avp code="1432" name="VPLMN-Dynamic-Address-Allowed" type="Enumerated"/>
+      <avp code="1433" name="STN-SR" type="OctetString"/>
+      <avp code="1434" name="Alert-Reason" type="Enumerated"/>
+      <avp code="1435" name="AMBR" type="Grouped"/>
+      <avp code="1436" name="CSG-Subscription-Data" type="Grouped"/>
+      <avp code="1437" name="CSG-Id" type="Unsigned32"/>
+      <avp code="1438" name="PDN-GW-Allocation-Type" type="Enumerated"/>
+      <avp code="1439" name="Expiration-Date" type="Time"/>
+      <avp code="1440"
+           name="RAT-Frequency-Selection-Priority-ID"
+           type="Unsigned32"/>
+      <avp code="1441" name="IDA-Flags" type="Unsigned32"/>
+      <avp code="1442" name="PUA-Flags" type="Unsigned32"/>
+      <avp code="1443" name="NOR-Flags" type="Unsigned32"/>
+      <avp code="1444" name="User-Id" type="UTF8String"/>
+      <avp code="1445" name="Equipment-Status" type="Enumerated"/>
+      <avp code="1446"
+           name="Regional-Subscription-Zone-Code"
+           type="OctetString"/>
+      <avp code="1447" name="RAND" type="OctetString"/>
+      <avp code="1448" name="XRES" type="OctetString"/>
+      <avp code="1449" name="AUTN" type="OctetString"/>
+      <avp code="1450" name="KASME" type="OctetString"/>
+      <avp code="1451" name="Reserved" type="-"/>
+      <avp code="1452" name="Trace-Collection-Entity" type="Address"/>
+      <avp code="1453" name="Kc" type="OctetString"/>
+      <avp code="1454" name="SRES" type="OctetString"/>
+      <avp code="1455" name="Reserved" type="-"/>
+      <avp code="1456" name="PDN-Type" type="Enumerated"/>
+      <avp code="1457"
+           name="Roaming-Restricted-Due-To-Unsupported-Feature"
+           type="Enumerated"/>
+      <avp code="1458" name="Trace-Data" type="Grouped"/>
+      <avp code="1459" name="Trace-Reference" type="OctetString"/>
+      <avp code="1460" name="Reserved" type="-"/>
+      <avp code="1461" name="Reserved" type="-"/>
+      <avp code="1462" name="Trace-Depth" type="Enumerated"/>
+      <avp code="1463" name="Trace-NE-Type-List" type="OctetString"/>
+      <avp code="1464" name="Trace-Interface-List" type="OctetString"/>
+      <avp code="1465" name="Trace-Event-List" type="OctetString"/>
+      <avp code="1466" name="OMC-Id" type="OctetString"/>
+      <avp code="1467" name="GPRS-Subscription-Data" type="Grouped"/>
+      <avp code="1468"
+           name="Complete-Data-List-Included-Indicator"
+           type="Enumerated"/>
+      <avp code="1469" name="PDP-Context" type="Grouped"/>
+      <avp code="1470" name="PDP-Type" type="OctetString"/>
+      <avp code="1471" name="3GPP2-MEID" type="OctetString"/>
+      <avp code="1472" name="Specific-APN-Info" type="Grouped"/>
+      <avp code="1473" name="LCS-Info" type="Grouped"/>
+      <avp code="1474" name="GMLC-Number" type="OctetString"/>
+      <avp code="1475" name="LCS-PrivacyException" type="Grouped"/>
+      <avp code="1476" name="SS-Code" type="OctetString"/>
+      <avp code="1477" name="SS-Status" type="OctetString"/>
+      <avp code="1478" name="Notification-To-UE-User" type="Enumerated"/>
+      <avp code="1479" name="External-Client" type="Grouped"/>
+      <avp code="1480" name="Client-Identity" type="OctetString"/>
+      <avp code="1481" name="GMLC-Restriction" type="Enumerated"/>
+      <avp code="1482" name="PLMN-Client" type="Enumerated"/>
+      <avp code="1483" name="Service-Type" type="Grouped"/>
+      <avp code="1484" name="ServiceTypeIdentity" type="Unsigned32"/>
+      <avp code="1485" name="MO-LR" type="Grouped"/>
+      <avp code="1486" name="Teleservice-List" type="Grouped"/>
+      <avp code="1487" name="TS-Code" type="Enumerated"/>
+      <avp code="1488" name="Call-Barring-Info" type="Grouped"/>
+      <avp code="1489" name="SGSN-Number" type="OctetString"/>
+      <avp code="1490" name="IDR-Flags" type="Unsigned32"/>
+      <avp code="1491" name="ICS-Indicator" type="Enumerated"/>
+      <avp code="1492"
+           name="IMS-Voice-Over-PS-Sessions-Supported"
+           type="Enumerated"/>
+      <avp code="1493"
+           name="Homogeneous-Support-of-IMS-Voice-Over-PS-Sessions"
+           type="Enumerated"/>
+      <avp code="1494" name="Last-UE-Activity-Time" type="Time"/>
+      <avp code="1495" name="EPS-User-State" type="Grouped"/>
+      <avp code="1496" name="EPS-Location-Information" type="Grouped"/>
+      <avp code="1497" name="MME-User-State" type="Grouped"/>
+      <avp code="1498" name="SGSN-User-State" type="Grouped"/>
+      <avp code="1499" name="User-State" type="Enumerated"/>
+      <avp code="" name="" type=""/>
+      <avp code="1500" name="Non-3GPP-User-Data" type="Grouped"/>
+      <avp code="1501" name="Non-3GPP-IP-Access" type="Enumerated"/>
+      <avp code="1502" name="Non-3GPP-IP-Access-APN" type="Enumerated"/>
+      <avp code="1503" name="AN-Trusted" type="Enumerated"/>
+      <avp code="1504" name="ANID" type="UTF8String"/>
+      <avp code="1505" name="Trace-Info" type="Grouped"/>
+      <avp code="1506" name="MIP-FA-RK" type="OctetString"/>
+      <avp code="1507" name="MIP-FA-RK-SPI" type="Unsigned32"/>
+      <avp code="1508" name="PPR-Flags" type="Unsigned32"/>
+      <avp code="1509" name="WLAN-Identifier" type="Grouped"/>
+      <avp code="1510" name="TWAN-Access-Info" type="Grouped"/>
+      <avp code="1511" name="Access-Authorization-Flags" type="Unsigned32"/>
+      <avp code="1512" name="TWAN-Default-APN-Context-Id" type="Unsigned32"/>
+      <avp code="1513" name="Reserved" type="-"/>
+      <avp code="1514" name="Reserved" type="-"/>
+      <avp code="1515" name="Reserved" type="-"/>
+      <avp code="1516" name="Full-Network-Name" type="OctetString"/>
+      <avp code="1517" name="Short-Network-Name" type="OctetString"/>
+      <avp code="1518" name="AAA-Failure-Indication" type="Unsigned32"/>
+      <avp code="1519" name="Transport-Access-Type" type="Enumerated"/>
+      <avp code="1520" name="DER-Flags" type="Unsigned32"/>
+      <avp code="1521" name="DEA-Flags" type="Unsigned32"/>
+      <avp code="1522" name="RAR-Flags" type="Unsigned32"/>
+      <avp code="1523" name="DER-S6b-Flags" type="Unsigned32"/>
+      <avp code="1524" name="SSID" type="UTF8String"/>
+      <avp code="1525" name="HESSID" type="UTF8String"/>
+      <avp code="1526" name="Access-Network-Info" type="Grouped"/>
+      <avp code="1527" name="TWAN-Connection-Mode" type="Unsigned32"/>
+      <avp code="1528" name="TWAN-Connectivity-Parameters" type="Grouped"/>
+      <avp code="1529" name="Connectivity-Flags" type="Unsigned32"/>
+      <avp code="1530" name="TWAN-PCO" type="OctetString"/>
+      <avp code="1531" name="TWAG-CP-Address" type="Address"/>
+      <avp code="1532" name="TWAG-UP-Address" type="UTF8String"/>
+      <avp code="1533" name="TWAN-S2a-Failure-Cause" type="Unsigned32"/>
+      <avp code="1534" name="SM-Back-Off-Timer" type="Unsigned32"/>
+      <avp code="1535" name="WLCP-Key" type="OctetString"/>
+      <avp code="318" name="3GPP-AAA-Server-Name" type="DiameterIdentity"/>
+      <avp code="1536" name="Origination-Time-Stamp" type="Unsigned64"/>
+      <avp code="1537" name="Maximum-Wait-Time" type="Unsigned32"/>
+      <avp code="1538" name="Emergency-Services" type="Unsigned32"/>
+      <avp code="1539" name="AAR-Flags" type="Unsigned32"/>
+      <avp code="1540" name="IMEI-Check-In-VPLMN-Result" type="Unsigned32"/>
+      <avp code="1541" name="ERP-Authorization" type="Unsigned32"/>
+      <avp code="1600" name="MME-Location-Information" type="Grouped"/>
+      <avp code="1601" name="SGSN-Location-Information" type="Grouped"/>
+      <avp code="1602" name="E-UTRAN-Cell-Global-Identity" type="OctetString"/>
+      <avp code="1603" name="Tracking-Area-Identity" type="OctetString"/>
+      <avp code="1604" name="Cell-Global-Identity" type="OctetString"/>
+      <avp code="1605" name="Routing-Area-Identity" type="OctetString"/>
+      <avp code="1606" name="Location-Area-Identity" type="OctetString"/>
+      <avp code="1607" name="Service-Area-Identity" type="OctetString"/>
+      <avp code="1608" name="Geographical-Information" type="OctetString"/>
+      <avp code="1609" name="Geodetic-Information" type="OctetString"/>
+      <avp code="1610" name="Current-Location-Retrieved" type="Enumerated"/>
+      <avp code="1611" name="Age-Of-Location-Information" type="Unsigned32"/>
+      <avp code="1612" name="Active-APN" type="Grouped"/>
+      <avp code="1613" name="SIPTO-Permission" type="Enumerated"/>
+      <avp code="1614" name="Error-Diagnostic" type="Enumerated"/>
+      <avp code="1615" name="UE-SRVCC-Capability" type="Enumerated"/>
+      <avp code="1616" name="MPS-Priority" type="Unsigned32"/>
+      <avp code="1617" name="VPLMN-LIPA-Allowed" type="Enumerated"/>
+      <avp code="1618" name="LIPA-Permission" type="Enumerated"/>
+      <avp code="1619"
+           name="Subscribed-Periodic-RAU-TAU-Timer"
+           type="Unsigned32"/>
+      <avp code="1620" name="Ext-PDP-Type" type="OctetString"/>
+      <avp code="1621" name="Ext-PDP-Address" type="Address"/>
+      <avp code="1622" name="MDT-Configuration" type="Grouped"/>
+      <avp code="1623" name="Job-Type" type="Enumerated"/>
+      <avp code="1624" name="Area-Scope" type="Grouped"/>
+      <avp code="1625" name="List-Of-Measurements" type="Unsigned32"/>
+      <avp code="1626" name="Reporting-Trigger" type="Unsigned32"/>
+      <avp code="1627" name="Report-Interval" type="Enumerated"/>
+      <avp code="1628" name="Report-Amount" type="Enumerated"/>
+      <avp code="1629" name="Event-ThresholdRSRP" type="Unsigned32"/>
+      <avp code="1630" name="Event-ThresholdRSRQ" type="Unsigned32"/>
+      <avp code="1631" name="Logging-Interval" type="Enumerated"/>
+      <avp code="1632" name="Logging-Duration" type="Enumerated"/>
+      <avp code="1633" name="Relay-Node-Indicator" type="Enumerated"/>
+      <avp code="1634" name="MDT-User-Consent" type="Enumerated"/>
+      <avp code="1635" name="PUR-Flags" type="Unsigned32"/>
+      <avp code="1636" name="Subscribed-VSRVCC" type="Enumerated"/>
+      <avp code="1637" name="Equivalent-PLMN-List" type="Grouped"/>
+      <avp code="1638" name="CLR-Flags" type="Unsigned32"/>
+      <avp code="1639" name="UVR-Flags" type="Unsigned32"/>
+      <avp code="1640" name="UVA-Flags" type="Unsigned32"/>
+      <avp code="1641" name="VPLMN-CSG-Subscription-Data" type="Grouped"/>
+      <avp code="1642" name="Time-Zone" type="UTF8String"/>
+      <avp code="1643" name="A-MSISDN" type="OctetString"/>
+      <avp code="1644" name="Reserved" type="-"/>
+      <avp code="1645" name="MME-Number-for-MT-SMS" type="OctetString"/>
+      <avp code="1646" name="Reserved" type="-"/>
+      <avp code="1647" name="Reserved" type="-"/>
+      <avp code="1648" name="SMS-Register-Request" type="Enumerated"/>
+      <avp code="1649" name="Local-Time-Zone" type="Grouped"/>
+      <avp code="1650" name="Daylight-Saving-Time" type="Enumerated"/>
+      <avp code="1651" name="GMLC-Info" type="Grouped"/>
+      <avp code="1652" name="GMLC-Name" type="DiameterIdentity"/>
+      <avp code="1653" name="GMLC-Realm" type="DiameterIdentity"/>
+      <avp code="1654" name="Subscription-Data-Flags" type="Unsigned32"/>
+      <avp code="1655" name="Measurement-Period-LTE" type="Enumerated"/>
+      <avp code="1656" name="Measurement-Period-UMTS" type="Enumerated"/>
+      <avp code="1657" name="Collection-Period-RRM-LTE" type="Enumerated"/>
+      <avp code="1658" name="Collection-Period-RRM-UMTS" type="Enumerated"/>
+      <avp code="1659" name="Positioning-Method" type="OctetString"/>
+      <avp code="1660" name="Measurement-Quantity" type="OctetString"/>
+      <avp code="1661" name="Event-Threshold-Event-1F" type="Integer32"/>
+      <avp code="1662" name="Event-Threshold-Event-1I" type="Integer32"/>
+      <avp code="1663" name="Restoration-Priority" type="Unsigned32"/>
+      <avp code="1664" name="SGs-MME-Identity" type="UTF8String"/>
+      <avp code="1665" name="SIPTO-Local-Network-Permission" type="Unsigned32"/>
+      <avp code="1666" name="Coupled-Node-Diameter-ID" type="DiameterIdentity"/>
+      <avp code="1667" name="WLAN-offloadability" type="Grouped"/>
+      <avp code="1668" name="WLAN-offloadability-EUTRAN" type="Unsigned32"/>
+      <avp code="1669" name="WLAN-offloadability-UTRAN" type="Unsigned32"/>
+      <avp code="1670" name="Reset-ID" type="OctetString"/>
+      <avp code="1671" name="MDT-Allowed-PLMN-Id" type="OctetString"/>
+      <avp code="1672" name="Adjacent-PLMNs" type="Grouped"/>
+      <avp code="1673" name="Adjacent-Access-Restriction-Data" type="Grouped"/>
+      <avp code="1674"
+           name="DL-Buffering-Suggested-Packet-Count"
+           type="Integer32"/>
+      <avp code="1675" name="IMSI-Group-Id" type="Grouped"/>
+      <avp code="1676" name="Group-Service-Id" type="Unsigned32"/>
+      <avp code="1677" name="Group-PLMN-Id" type="OctetString"/>
+      <avp code="1678" name="Local-Group-Id" type="OctetString"/>
+      <avp code="1679" name="AIR-Flags" type="Unsigned32"/>
+      <avp code="1680" name="UE-Usage-Type" type="Unsigned32"/>
+      <avp code="1681" name="Non-IP-PDN-Type-Indicator" type="Enumerated"/>
+      <avp code="1682" name="Non-IP-Data-Delivery-Mechanism" type="Unsigned32"/>
+      <avp code="1683" name="Additional-Context-Identifier" type="Unsigned32"/>
+      <avp code="1684" name="SCEF-Realm" type="DiameterIdentity"/>
+      <avp code="1685" name="Subscription-Data-Deletion" type="Grouped"/>
+      <avp code="1686" name="Preferred-Data-Mode" type="Unsigned32"/>
+      <avp code="1687" name="Emergency-Info" type="Grouped"/>
+      <avp code="1688" name="V2X-Subscription-Data" type="Grouped"/>
+      <avp code="1689" name="V2X-Permission" type="Unsigned32"/>
+      <avp code="1690" name="PDN-Connection-Continuity" type="Unsigned32"/>
+      <avp code="1691" name="eDRX-Cycle-Length" type="Grouped"/>
+      <avp code="1692" name="eDRX-Cycle-Length-Value" type="OctetString"/>
+      <avp code="1693" name="UE-PC5-AMBR" type="Unsigned32"/>
+      <avp code="1694" name="MBSFN-Area" type="Grouped"/>
+      <avp code="1695" name="MBSFN-Area-ID" type="Unsigned32"/>
+      <avp code="1696" name="Carrier-Frequency" type="Unsigned32"/>
+      <avp code="1697" name="RDS-Indicator" type="Enumerated"/>
+      <avp code="1698" name="Service-Gap-Time" type="Unsigned32"/>
+      <avp code="2000" name="SMS-Information" type="Grouped"/>
+      <avp code="2001" name="Data-Coding-Scheme" type="Integer32"/>
+      <avp code="2002" name="Destination-Interface" type="Grouped"/>
+      <avp code="2003" name="Interface-Id" type="UTF8String"/>
+      <avp code="2004" name="Interface-Port" type="UTF8String"/>
+      <avp code="2005" name="Interface-Text" type="UTF8String"/>
+      <avp code="2006" name="Interface-Type" type="Enumerated"/>
+      <avp code="2007" name="SM-Message-Type" type="Enumerated"/>
+      <avp code="2008" name="Originating-SCCP-Address" type="Address"/>
+      <avp code="2009" name="Originator-Interface" type="Grouped"/>
+      <avp code="2010" name="Recipient-SCCP-Address" type="Address"/>
+      <avp code="2011" name="Reply-Path-Requested" type="Enumerated"/>
+      <avp code="2012" name="SM-Discharge-Time" type="Time"/>
+      <avp code="2013" name="SM-Protocol-ID" type="OctetString"/>
+      <avp code="2014" name="SM-Status" type="OctetString"/>
+      <avp code="2015" name="SM-User-Data-Header" type="OctetString"/>
+      <avp code="2016" name="SMS-Node" type="Enumerated"/>
+      <avp code="2017" name="SMSC-Address" type="Address"/>
+      <avp code="2018" name="Client-Address" type="Address"/>
+      <avp code="2019" name="Number-of-Messages-Sent" type="Unsigned32"/>
+      <avp code="2020" name="Low-Balance-Indication" type="Enumerated"/>
+      <avp code="2021" name="Remaining-Balance" type="Grouped"/>
+      <avp code="2022" name="Refund-Information" type="OctetString"/>
+      <avp code="2023"
+           name="Carrier-Select-Routing-Information"
+           type="UTF8String"/>
+      <avp code="2024"
+           name="Number-Portability-Routing-Information"
+           type="UTF8String"/>
+      <avp code="2025" name="PoC-Event-Type" type="Enumerated"/>
+      <avp code="2026" name="Recipient-Info" type="Grouped"/>
+      <avp code="2027" name="Originator-Received-Address" type="Grouped"/>
+      <avp code="2028" name="Recipient-Received-Address" type="Grouped"/>
+      <avp code="2029" name="SM-Service-Type" type="Enumerated"/>
+      <avp code="2030" name="MMTel-Information" type="Grouped"/>
+      <avp code="2031" name="MMTel-Sservice-Type" type="Unsigned32"/>
+      <avp code="2032" name="Service-Mode" type="Unsigned32"/>
+      <avp code="2033" name="Subscriber-Role" type="Enumerated"/>
+      <avp code="2034" name="Number-Of-Diversions" type="Unsigned32"/>
+      <avp code="2035" name="Associated-Party-Address" type="UTF8String"/>
+      <avp code="2036" name="SDP-Type" type="Enumerated"/>
+      <avp code="2037" name="Change-Condition" type="Integer32"/>
+      <avp code="2038" name="Change-Time" type="Time"/>
+      <avp code="2039" name="Diagnostics" type="Integer32"/>
+      <avp code="2040" name="Service-Data-Container" type="Grouped"/>
+      <avp code="2041" name="Start-Time" type="Time"/>
+      <avp code="2042" name="Stop-Time" type="Time"/>
+      <avp code="2043" name="Time-First-Usage" type="Time"/>
+      <avp code="2044" name="Time-Last-Usage" type="Time"/>
+      <avp code="2045" name="Time-Usage" type="Unsigned32"/>
+      <avp code="2046" name="Traffic-Data-Volumes" type="Grouped"/>
+      <avp code="2047" name="Serving-Node-Type" type="Enumerated"/>
+      <avp code="2048" name="Supplementary-Service" type="Grouped"/>
+      <avp code="2049" name="Participant-Action-Type" type="Enumerated"/>
+      <avp code="2050" name="PDN-Connection-Charging-ID" type="Unsigned32"/>
+      <avp code="2051" name="Dynamic-Address-Flag" type="Enumerated"/>
+      <avp code="2052" name="Accumulated-Cost" type="Grouped"/>
+      <avp code="2053" name="AoC-Cost-Information" type="Grouped"/>
+      <avp code="2054" name="AoC-Information" type="Grouped"/>
+      <avp code="2055" name="AoC-Request-Type" type="Enumerated"/>
+      <avp code="2056" name="Current-Tariff" type="Grouped"/>
+      <avp code="2057" name="Next-Tariff" type="Grouped"/>
+      <avp code="2058" name="Rate-Element" type="Grouped"/>
+      <avp code="2059" name="Scale-Factor" type="Grouped"/>
+      <avp code="2060" name="Tariff-Information" type="Grouped"/>
+      <avp code="2061" name="Unit-Cost" type="Grouped"/>
+      <avp code="2062" name="Incremental-Cost" type="Grouped"/>
+      <avp code="2063" name="Local-Sequence-Number" type="Unsigned32"/>
+      <avp code="2064" name="Node-Id" type="UTF8String"/>
+      <avp code="2065" name="SGW-Change" type="Enumerated"/>
+      <avp code="2066"
+           name="Charging-Characteristic-Selection-Mode"
+           type="Enumerated"/>
+      <avp code="2067" name="SGW-Address" type="Address"/>
+      <avp code="2068" name="Dynamic-Address-Flag-Extension" type="Enumerated"/>
+      <avp code="2100" name="reserved" type="-"/>
+      <avp code="2101" name="Application-Server-ID" type="UTF8String"/>
+      <avp code="2102" name="Application-Service-Type" type="Enumerated"/>
+      <avp code="2103" name="Application-Session-ID" type="Unsigned32"/>
+      <avp code="2104" name="Delivery-Status" type="UTF8String"/>
+      <avp code="2105" name="reserved" type="-"/>
+      <avp code="2106" name="reserved" type="-"/>
+      <avp code="2107" name="reserved" type="-"/>
+      <avp code="2108" name="reserved" type="-"/>
+      <avp code="2109" name="reserved" type="-"/>
+      <avp code="2110" name="IM-Information" type="Grouped"/>
+      <avp code="2111"
+           name="Number-Of-Messages-Successfully-Exploded"
+           type="Unsigned32"/>
+      <avp code="2112"
+           name="Number-Of-Messages-Successfully-Sent"
+           type="Unsigned32"/>
+      <avp code="2113"
+           name="Total-Number-Of-Messages-Exploded"
+           type="Unsigned32"/>
+      <avp code="2114" name="Total-Number-Of-Messages-Sent" type="Unsigned32"/>
+      <avp code="2115" name="DCD-Information" type="Grouped"/>
+      <avp code="2116" name="Content-ID" type="UTF8String"/>
+      <avp code="2117" name="Content-provider-ID" type="UTF8String"/>
+      <avp code="2118" name="Charge-Reason-Code" type="Enumerated"/>
+      <avp code="2200" name="Subsession-Decision-Info" type="Grouped"/>
+      <avp code="2201" name="Subsession-Enforcement-Info" type="Grouped"/>
+      <avp code="2202" name="Subsession-Id" type="Unsigned32"/>
+      <avp code="2203" name="Subsession-Operation" type="Enumerated"/>
+      <avp code="2204" name="Multiple-BBERF-Action" type="Enumerated"/>
+      <avp code="2205" name="UE-Local-IPv6-Prefix" type="OctetString"/>
+      <avp code="2206" name="DRA-Deployment" type="Enumerated"/>
+      <avp code="2207" name="PCRF-Address" type="DiameterIdentity"/>
+      <avp code="2208" name="DRA-Binding" type="Enumerated"/>
+      <avp code="2300" name="reserved" type="-"/>
+      <avp code="2301" name="SIP-Request-Timestamp-Fraction" type="Unsigned32"/>
+      <avp code="2302"
+           name="SIP-Response-Timestamp-Fraction"
+           type="Unsigned32"/>
+      <avp code="2303" name="Online-Charging-Flag" type="Enumerated"/>
+      <avp code="2304" name="CUG-Information" type="OctetString"/>
+      <avp code="2305" name="Real-Time-Tariff-Information" type="Grouped"/>
+      <avp code="2306" name="Tariff-XML" type="UTF8String"/>
+      <avp code="2307" name="MBMSGW-Address" type="Address"/>
+      <avp code="2308" name="IMSI-Unauthenticated-Flag" type="Enumerated"/>
+      <avp code="2309" name="Account-Expiration" type="Time"/>
+      <avp code="2310" name="AoC-Format" type="Enumerated"/>
+      <avp code="2311" name="AoC-Service" type="Enumerated"/>
+      <avp code="2312" name="AoC-Service-Obligatory-Type" type="Grouped"/>
+      <avp code="2313" name="AoC-Service-Type" type="Enumerated"/>
+      <avp code="2314" name="AoC-Subscription-Information" type="Grouped"/>
+      <avp code="2315" name="Preferred-AoC-Currency" type="Unsigned32"/>
+      <avp code="2316" name="Reserved" type="-"/>
+      <avp code="2317" name="CSG-Access-Mode" type="Enumerated"/>
+      <avp code="2318" name="CSG-Membership-Indication" type="Enumerated"/>
+      <avp code="2319" name="User-CSG-Information" type="Grouped"/>
+      <avp code="2320" name="Outgoing-Session-Id" type="UTF8String"/>
+      <avp code="2321"
+           name="Initial-IMS-Charging-Identifier"
+           type="UTF8String"/>
+      <avp code="2322" name="IMS-Emergency-Indicator" type="Enumerated"/>
+      <avp code="2323" name="MBMS-Charged-Party" type="Enumerated"/>
+      <avp code="2400" name="LMSI" type="OctetString"/>
+      <avp code="2401" name="Serving-Node" type="Grouped"/>
+      <avp code="2402" name="MME-Name" type="DiameterIdentity"/>
+      <avp code="2403" name="MSC-Number" type="OctetString"/>
+      <avp code="2404" name="LCS-Capabilities-Sets" type="Unsigned32"/>
+      <avp code="2405" name="GMLC-Address" type="Address"/>
+      <avp code="2406" name="Additional-Serving-Node" type="Grouped"/>
+      <avp code="2407" name="PPR-Address" type="Address"/>
+      <avp code="2408" name="MME-Realm" type="DiameterIdentity"/>
+      <avp code="2409" name="SGSN-Name" type="DiameterIdentity"/>
+      <avp code="2410" name="SGSN-Realm" type="DiameterIdentity"/>
+      <avp code="2411" name="RIA-Flags" type="Unsigned32"/>
+      <avp code="2500" name="SLg-Location-Type" type="Enumerated"/>
+      <avp code="2501" name="LCS-EPS-Client-Name" type="Grouped"/>
+      <avp code="2502" name="LCS-Requestor-Name" type="Grouped"/>
+      <avp code="2503" name="LCS-Priority" type="Unsigned32"/>
+      <avp code="2504" name="LCS-QoS" type="Grouped"/>
+      <avp code="2505" name="Horizontal-Accuracy" type="Unsigned32"/>
+      <avp code="2506" name="Vertical-Accuracy" type="Unsigned32"/>
+      <avp code="2507" name="Vertical-Requested" type="Enumerated"/>
+      <avp code="2508" name="Velocity-Requested" type="Enumerated"/>
+      <avp code="2509" name="Response-Time" type="Enumerated"/>
+      <avp code="2510" name="Supported-GAD-Shapes" type="Unsigned32"/>
+      <avp code="2511" name="LCS-Codeword" type="UTF8String"/>
+      <avp code="2512" name="LCS-Privacy-Check" type="Enumerated"/>
+      <avp code="2513" name="Accuracy-Fulfilment-Indicator" type="Enumerated"/>
+      <avp code="2514" name="Age-Of-Location-Estimate" type="Unsigned32"/>
+      <avp code="2515" name="Velocity-Estimate" type="OctetString"/>
+      <avp code="2516" name="EUTRAN-Positioning-Data" type="OctetString"/>
+      <avp code="2517" name="ECGI" type="OctetString"/>
+      <avp code="2518" name="Location-Event" type="Enumerated"/>
+      <avp code="2519" name="Pseudonym-Indicator" type="Enumerated"/>
+      <avp code="2520" name="LCS-Service-Type-ID" type="Unsigned32"/>
+      <avp code="2521" name="LCS-Privacy-Check-Non-Session" type="Grouped"/>
+      <avp code="2522" name="LCS-Privacy-Check-Session" type="Grouped"/>
+      <avp code="2523" name="LCS-QoS-Class" type="Enumerated"/>
+      <avp code="2524" name="GERAN-Positioning-Info" type="Grouped"/>
+      <avp code="2525" name="GERAN-Positioning-Data" type="OctetString"/>
+      <avp code="2526" name="GERAN-GANSS-Positioning-Data" type="OctetString"/>
+      <avp code="2527" name="UTRAN-Positioning-Info" type="Grouped"/>
+      <avp code="2528" name="UTRAN-Positioning-Data" type="OctetString"/>
+      <avp code="2529" name="UTRAN-GANSS-Positioning-Data" type="OctetString"/>
+      <avp code="2530" name="LRR-Flags" type="Unsigned32"/>
+      <avp code="2531" name="LCS-Reference-Number" type="OctetString"/>
+      <avp code="2532" name="Deferred-Location-Type" type="Unsigned32"/>
+      <avp code="2533" name="Area-Event-Info" type="Grouped"/>
+      <avp code="2534" name="Area-Definition" type="Grouped"/>
+      <avp code="2535" name="Area" type="Grouped"/>
+      <avp code="2536" name="Area-Type" type="Unsigned32"/>
+      <avp code="2537" name="Area-Identification" type="Grouped"/>
+      <avp code="2538" name="Occurrence-Info" type="Enumerated"/>
+      <avp code="2539" name="Interval-Time" type="Unsigned32"/>
+      <avp code="2540" name="Periodic-LDR-Information" type="Grouped"/>
+      <avp code="2541" name="Reporting-Amount" type="Unsigned32"/>
+      <avp code="2542" name="Reporting-Interval" type="Unsigned32"/>
+      <avp code="2543" name="Reporting-PLMN-List" type="Grouped"/>
+      <avp code="2544" name="PLMN-ID-List" type="Grouped"/>
+      <avp code="2545" name="PLR-Flags" type="Unsigned32"/>
+      <avp code="2546" name="PLA-Flags" type="Unsigned32"/>
+      <avp code="2547" name="Deferred-MT-LR-Data" type="Grouped"/>
+      <avp code="2548" name="Termination-Cause" type="Unsigned32"/>
+      <avp code="2549" name="LRA-Flags" type="Unsigned32"/>
+      <avp code="2550"
+           name="Periodic-Location-Support-Indicator"
+           type="Enumerated"/>
+      <avp code="2551" name="Prioritized-List-Indicator" type="Enumerated"/>
+      <avp code="2552" name="ESMLC-Cell-Info" type="Grouped"/>
+      <avp code="2553" name="Cell-Portion-ID" type="Unsigned32"/>
+      <avp code="2554" name="1xRTT-RCID" type="OctetString"/>
+      <avp code="2555" name="Delayed-Location-Reporting-Data" type="Grouped"/>
+      <avp code="2556" name="Civic-Address" type="UTF8String"/>
+      <avp code="2557" name="Barometric-Pressure" type="Unsigned32"/>
+      <avp code="2558"
+           name="UTRAN-Additional-Positioning-Data"
+           type="OctetString"/>
+      <avp code="2559" name="Motion-Event-Info" type="Grouped"/>
+      <avp code="2560" name="Linear-Distance" type="Unsigned32"/>
+      <avp code="2561" name="Maximum-Interval" type="Unsigned32"/>
+      <avp code="2562" name="Sampling-Interval" type="Unsigned32"/>
+      <avp code="2563" name="Reporting-Duration" type="Unsigned32"/>
+      <avp code="2564"
+           name="Reporting-Location-Requirements"
+           type="Unsigned32"/>
+      <avp code="2565" name="Additional-Area" type="Grouped"/>
+      <avp code="2600" name="reserved" type="-"/>
+      <avp code="2601"
+           name="IMS-Application-Reference-Identifier"
+           type="UTF8String"/>
+      <avp code="2602" name="Low-Priority-Indicator" type="Enumerated"/>
+      <avp code="2603" name="IP-Realm-Default-Indicator" type="Enumerated"/>
+      <avp code="2604" name="Local-GW-Inserted-Indicator" type="Enumerated"/>
+      <avp code="2605" name="Transcoder-Inserted-Indicator" type="Enumerated"/>
+      <avp code="2606" name="PDP-Address-Prefix-Length" type="Unsigned32"/>
+      <avp code="2700" name="Reserved" type="-"/>
+      <avp code="2701" name="Transit-IOI-List" type="UTF8String"/>
+      <avp code="2702" name="Status-AS-Code" type="Enumerated"/>
+      <avp code="2703" name="NNI-Information" type="Grouped"/>
+      <avp code="2704" name="NNI-Type" type="Enumerated"/>
+      <avp code="2705" name="Neighbour-Node-Address" type="Address"/>
+      <avp code="2706" name="Relationship-Mode" type="Enumerated"/>
+      <avp code="2707" name="Session-Direction" type="Enumerated"/>
+      <avp code="2708" name="From-Address" type="UTF8String"/>
+      <avp code="2709" name="Access-Transfer-Information" type="Grouped"/>
+      <avp code="2710" name="Access-Transfer-Type" type="Enumerated"/>
+      <avp code="2711"
+           name="Related-IMS-Charging-Identifier"
+           type="UTF8String"/>
+      <avp code="2712"
+           name="Related-IMS-Charging-Identifier-Node"
+           type="Address"/>
+      <avp code="2713" name="IMS-Visited-Network-Identifier" type="UTF8String"/>
+      <avp code="2714" name="TWAN-User-Location-Info" type="Grouped"/>
+      <avp code="2715" name="Reserved" type="-"/>
+      <avp code="2716" name="BSSID" type="UTF8String"/>
+      <avp code="2717" name="TAD-Identifier" type="Enumerated"/>
+      <avp code="2800" name="Reserved" type="-"/>
+      <avp code="2801" name="ADC-Revalidation-Time" type="Time"/>
+      <avp code="2802"
+           name="TDF-Application-Instance-Identifier"
+           type="OctetString"/>
+      <avp code="2803" name="HeNB-BBF-FQDN" type="UTF8String"/>
+      <avp code="2804" name="HeNB-Local-IP-Address" type="Address"/>
+      <avp code="2805" name="UE-Local-IP-Address" type="Address"/>
+      <avp code="2806" name="UDP-Source-Port" type="Unsigned32"/>
+      <avp code="2807"
+           name="CS-Service-Qos-Request-Identifier"
+           type="OctetString"/>
+      <avp code="2808"
+           name="CS-Service-QoS-Request-Operation"
+           type="Enumerated"/>
+      <avp code="2809" name="Mute-Notification" type="Enumerated"/>
+      <avp code="2810" name="Monitoring-Time" type="Time"/>
+      <avp code="2811" name="AN-GW-Status" type="Enumerated"/>
+      <avp code="2812" name="User-Location-Info-Time" type="Grouped"/>
+      <avp code="2813" name="CS-Service-Resource-Report" type="Time"/>
+      <avp code="2814"
+           name="CS-Service-Resource-Failure-Cause"
+           type="Enumerated"/>
+      <avp code="2815"
+           name="CS-Service-Resource-Result-Operation"
+           type="Enumerated"/>
+      <avp code="2816" name="Default-QoS-Information" type="Grouped"/>
+      <avp code="2817" name="Default-QoS-Name" type="UTF8String"/>
+      <avp code="2818"
+           name="Conditional-APN-Aggregate-Max-Bitrate"
+           type="Grouped"/>
+      <avp code="2819" name="RAN-NAS-Release-Cause" type="OctetString"/>
+      <avp code="2820"
+           name="Presence-Reporting-Area-Elements-List"
+           type="OctetString"/>
+      <avp code="2821"
+           name="Presence-Reporting-Area-Identifier"
+           type="OctetString"/>
+      <avp code="2822"
+           name="Presence-Reporting-Area-Information"
+           type="Grouped"/>
+      <avp code="2823" name="Presence-Reporting-Area-Status" type="Unsigned32"/>
+      <avp code="2824" name="NetLoc-Access-Support" type="Unsigned32"/>
+      <avp code="2825" name="Fixed-User-Location-Info" type="Grouped"/>
+      <avp code="2826" name="PCSCF-Restoration-Indication" type="Unsigned32"/>
+      <avp code="2827" name="IP-CAN-Session-Charging-Scope" type="Enumerated"/>
+      <avp code="2828" name="Monitoring-Flags" type="Unsigned32"/>
+      <avp code="2829" name="Default-Access" type="Enumerated"/>
+      <avp code="2830" name="NBIFOM-Mode" type="Enumerated"/>
+      <avp code="2831" name="NBIFOM-Support" type="Enumerated"/>
+      <avp code="2832" name="RAN-Rule-Support" type="Unsigned32"/>
+      <avp code="2833"
+           name="Access-Availability-Change-Reason"
+           type="Unsigned32"/>
+      <avp code="2834" name="Routing-Rule-Failure-Code" type="Unsigned32"/>
+      <avp code="2835" name="Routing-Rule-Report" type="Grouped"/>
+      <avp code="2836"
+           name="Traffic-Steering-Policy-Identifier-DL"
+           type="OctetString"/>
+      <avp code="2837"
+           name="Traffic-Steering-Policy-Identifier-UL"
+           type="OctetString"/>
+      <avp code="2838" name="Request-Type" type="Unsigned32"/>
+      <avp code="2839" name="Execution-Time" type="Time"/>
+      <avp code="2840" name="Conditional-Policy-Information" type="Grouped"/>
+      <avp code="2841" name="Resource-Release-Notification" type="Enumerated"/>
+      <avp code="2842" name="Removal-Of-Access" type="Enumerated"/>
+      <avp code="2843" name="TCP-Source-Port" type="Unsigned32"/>
+      <avp code="2844" name="Default-Bearer-Indication" type="Enumerated"/>
+      <avp code="2845" name="PRA-Install" type="Grouped"/>
+      <avp code="2846" name="PRA-Remove" type="Grouped"/>
+      <avp code="2847" name="3GPP-PS-Data-Off-Status" type="Enumerated"/>
+      <avp code="2848" name="Extended-APN-AMBR-DL" type="Unsigned32"/>
+      <avp code="2849" name="Extended-APN-AMBR-UL" type="Unsigned32"/>
+      <avp code="2850" name="Extended-GBR-DL" type="Unsigned32"/>
+      <avp code="2851" name="Extended-GBR-UL" type="Unsigned32"/>
+      <avp code="2900" name="reserved" type="-"/>
+      <avp code="2901" name="Policy-Counter-Identifier" type="Grouped"/>
+      <avp code="2902" name="Policy-Counter-Status" type="UTF8String"/>
+      <avp code="2903" name="Policy-Counter-Status-Report" type="Grouped"/>
+      <avp code="2904" name="SL-Request-Type" type="Enumerated"/>
+      <avp code="2905"
+           name="Pending-Policy-Counter-Information"
+           type="Grouped"/>
+      <avp code="2906" name="Pending-Policy-Counter-Change-Time" type="Time"/>
+      <avp code="2907" name="SN-Request-Type" type="Unsigned32"/>
+      <avp code="3000" name="reserved" type="-"/>
+      <avp code="3001" name="Device-Action" type="Grouped"/>
+      <avp code="3002" name="Device-Notification" type="Grouped"/>
+      <avp code="3003" name="Trigger-Data" type="Grouped"/>
+      <avp code="3004" name="Payload" type="OctetString"/>
+      <avp code="3005" name="Action-Type" type="Enumerated"/>
+      <avp code="3006" name="Priority-Indication" type="Enumerated"/>
+      <avp code="3007" name="Reference-Number" type="Unsigned32"/>
+      <avp code="3008" name="Request-Status" type="Enumerated"/>
+      <avp code="3009" name="Delivery-Outcome" type="Enumerated"/>
+      <avp code="3010" name="Application-Port-Identifier" type="Unsigned32"/>
+      <avp code="3011" name="Old-Reference-Number" type="Unsigned32"/>
+      <avp code="3012"
+           name="Feature-Supported-In-Final-Target"
+           type="Unsigned32"/>
+      <avp code="3100" name="IP-SM-GW-Number" type="OctetString"/>
+      <avp code="3101" name="IP-SM-GW-Name" type="DiameterIdentity"/>
+      <avp code="3102" name="User-Identifier" type="Grouped"/>
+      <avp code="3103" name="Service-ID" type="Enumerated"/>
+      <avp code="3104" name="SCS-Identity" type="OctetString"/>
+      <avp code="3105" name="Service-Parameters" type="Grouped"/>
+      <avp code="3106" name="T4-Parameters" type="Grouped"/>
+      <avp code="3107" name="Service-Data" type="Grouped"/>
+      <avp code="3108" name="T4-Data" type="Grouped"/>
+      <avp code="3109" name="HSS-Cause" type="Unsigned32"/>
+      <avp code="3110" name="SIR-Flags" type="Unsigned32"/>
+      <avp code="3111" name="External-Identifier" type="UTF8String"/>
+      <avp code="3112" name="IP-SM-GW-Realm" type="DiameterIdentity"/>
+      <avp code="3113" name="AESE-Communication-Pattern" type="Grouped"/>
+      <avp code="3114" name="Communication-Pattern-Set" type="Grouped"/>
+      <avp code="3115"
+           name="Periodic-Communication-Indicator"
+           type="Unsigned32"/>
+      <avp code="3116" name="Communication-Duration-Time" type="Unsigned32"/>
+      <avp code="3117" name="Periodic-Time" type="Unsigned32"/>
+      <avp code="3118" name="Scheduled-Communication-Time" type="Grouped"/>
+      <avp code="3119" name="Stationary-Indication" type="Unsigned32"/>
+      <avp code="3120"
+           name="AESE-Communication-Pattern-Config-Status"
+           type="Grouped"/>
+      <avp code="3121" name="AESE-Error-Report" type="Grouped"/>
+      <avp code="3122" name="Monitoring-Event-Configuration" type="Grouped"/>
+      <avp code="3123" name="Monitoring-Event-Report" type="Grouped"/>
+      <avp code="3124" name="SCEF-Reference-ID" type="Unsigned32"/>
+      <avp code="3125" name="SCEF-ID" type="DiameterIdentity"/>
+      <avp code="3126" name="SCEF-Reference-ID-for-Deletion" type="Unsigned32"/>
+      <avp code="3127" name="Monitoring-Type" type="Unsigned32"/>
+      <avp code="3128" name="Maximum-Number-of-Reports" type="Unsigned32"/>
+      <avp code="3129" name="UE-Reachability-Configuration" type="Grouped"/>
+      <avp code="3130" name="Monitoring-Duration" type="Time"/>
+      <avp code="3131" name="Maximum-Detection-Time" type="Unsigned32"/>
+      <avp code="3132" name="Reachability-Type" type="Unsigned32"/>
+      <avp code="3133" name="Maximum-Latency" type="Unsigned32"/>
+      <avp code="3134" name="Maximum-Response-Time" type="Unsigned32"/>
+      <avp code="3135"
+           name="Location-Information-Configuration"
+           type="Grouped"/>
+      <avp code="3136" name="MONTE-Location-Type" type="Unsigned32"/>
+      <avp code="3137" name="Accuracy" type="Unsigned32"/>
+      <avp code="3138" name="Association-Type" type="Unsigned32"/>
+      <avp code="3139" name="Roaming-Information" type="Unsigned32"/>
+      <avp code="3140" name="Reachability-Information" type="Unsigned32"/>
+      <avp code="3141" name="IMEI-Change" type="Unsigned32"/>
+      <avp code="3142" name="Monitoring-Event-Config-Status" type="Grouped"/>
+      <avp code="3143" name="Supported-Service-Masks" type="Grouped"/>
+      <avp code="3144"
+           name="Supported-Monitoring-Event-Mask"
+           type="Unsigned64"/>
+      <avp code="3145" name="CIR-Flags" type="Unsigned32"/>
+      <avp code="3146" name="Service-Result" type="Grouped"/>
+      <avp code="3147" name="Service-Result-Code" type="Unsigned32"/>
+      <avp code="3148" name="Reference-ID-Validity-Time" type="Time"/>
+      <avp code="3149" name="Event-handling" type="Unsigned32"/>
+      <avp code="3150" name="NIDD-Authorization-Request" type="Grouped"/>
+      <avp code="3151" name="NIDD-Authorization-Response" type="Grouped"/>
+      <avp code="3152" name="Service-Report" type="Grouped"/>
+      <avp code="3153" name="Node-Type" type="Unsigned32"/>
+      <avp code="3154" name="S6t-HSS-Cause" type="Unsigned32"/>
+      <avp code="3155" name="Enhanced-Coverage-Restriction" type="Grouped"/>
+      <avp code="3156"
+           name="Enhanced-Coverage-Restriction-Data"
+           type="Grouped"/>
+      <avp code="3157" name="Restricted-PLMN-List" type="Grouped"/>
+      <avp code="3158" name="Allowed-PLMN-List" type="Grouped"/>
+      <avp code="3159" name="Requested-Validity-Time" type="Time"/>
+      <avp code="3160" name="Granted-Validity-Time" type="Time"/>
+      <avp code="3161" name="NIDD-Authorization-Update" type="Grouped"/>
+      <avp code="3162" name="Loss-Of-Connectivity-Reason" type="Unsigned32"/>
+      <avp code="3163" name="Group-Reporting-Guard-Timer" type="Unsigned32"/>
+      <avp code="3164" name="CIA-Flags" type="Unsigned32"/>
+      <avp code="3165" name="Group-Monitoring-Event-Report" type="Grouped"/>
+      <avp code="3166"
+           name="Group-Monitoring-Event-Report-Item"
+           type="Grouped"/>
+      <avp code="3167" name="RIR-Flags" type="Unsigned32"/>
+      <avp code="3168" name="Type-Of-External-Identifier" type="Unsigned32"/>
+      <avp code="3169" name="APN-Validity-Time" type="Grouped"/>
+      <avp code="3170" name="Suggested-Network-Configuration" type="Grouped"/>
+      <avp code="3171" name="Monitoring-Event-Report-Status" type="Grouped"/>
+      <avp code="3172" name="PLMN-ID-Requested" type="Enumerated"/>
+      <avp code="3173" name="AdditionalIdentifiers" type="Grouped"/>
+      <avp code="3200" name="SM-Delivery-Outcome-T4" type="Enumerated"/>
+      <avp code="3201"
+           name="Absent-Subscriber-Diagnostic-T4"
+           type="Enumerated"/>
+      <avp code="3202" name="Trigger-Action" type="Unsigned32"/>
+      <avp code="3203" name="MTC-Error-Diagnostic" type="Unsigned32"/>
+      <avp code="3300" name="SC-Address" type="OctetString"/>
+      <avp code="3301" name="SM-RP-UI" type="OctetString"/>
+      <avp code="3302" name="TFR-Flags" type="Unsigned32"/>
+      <avp code="3303" name="SM-Delivery-Failure-Cause" type="Grouped"/>
+      <avp code="3304"
+           name="SM-Enumerated-Delivery-Failure-Cause"
+           type="Enumerated"/>
+      <avp code="3305" name="SM-Diagnostic-Info" type="OctetString"/>
+      <avp code="3306" name="SM-Delivery-Timer" type="Unsigned32"/>
+      <avp code="3307" name="SM-Delivery-Start-Time" type="Time"/>
+      <avp code="3308" name="SM-RP-MTI" type="Enumerated"/>
+      <avp code="3309" name="SM-RP-SMEA" type="OctetString"/>
+      <avp code="3310" name="SRR-Flags" type="Unsigned32"/>
+      <avp code="3311" name="SM-Delivery-Not-Intended" type="Enumerated"/>
+      <avp code="3312" name="MWD-Status" type="Unsigned32"/>
+      <avp code="3313"
+           name="MME-Absent-User-Subscriber-Diagnostic-SM"
+           type="Unsigned32"/>
+      <avp code="3314"
+           name="MSC-Absent-User-Subscriber-Diagnostic-SM"
+           type="Unsigned32"/>
+      <avp code="3315"
+           name="SGSN-Absent-User-Subscriber-DiagnosticSM"
+           type="Unsigned32"/>
+      <avp code="3316" name="SM-Delivery-Outcome" type="Grouped"/>
+      <avp code="3317" name="MME-SM-Delivery-Outcome" type="Grouped"/>
+      <avp code="3318" name="MSC-SM-Delivery-Outcome" type="Grouped"/>
+      <avp code="3319" name="SGSN-SM-Delivery-Outcome" type="Grouped"/>
+      <avp code="3320" name="IP-SM-GW-SM-Delivery-Outcome" type="Grouped"/>
+      <avp code="3321" name="SM-Delivery-Cause" type="Enumerated"/>
+      <avp code="3322" name="Absent-User-Diagnostic-SM" type="Unsigned32"/>
+      <avp code="3323" name="RDR-Flags" type="Unsigned32"/>
+      <avp code="3324" name="SMSMI-Correlation-ID" type="Unsigned32"/>
+      <avp code="3325" name="HSS-ID" type="UTF8String"/>
+      <avp code="3326" name="Originating-SIP-URI" type="UTF8String"/>
+      <avp code="3327" name="Destination-SIP-URI" type="UTF8String"/>
+      <avp code="3328" name="OFR-Flags" type="Unsigned32"/>
+      <avp code="3329" name="Maximum-UE-Availability-Time" type="Time"/>
+      <avp code="3330" name="Maximum-Retransmission-Time" type="Time"/>
+      <avp code="3331" name="Requested-Retransmission-Time" type="Time"/>
+      <avp code="3332" name="SMS-GMSC-Address" type="OctetString"/>
+      <avp code="3333" name="SMS-GMSC-Alert-Event" type="Unsigned32"/>
+      <avp code="3400" name="reserved" type="-"/>
+      <avp code="3401" name="Reason-Header" type="UTF8String"/>
+      <avp code="3402" name="Instance-Id" type="UTF8String"/>
+      <avp code="3403" name="Route-Header-Received" type="UTF8String"/>
+      <avp code="3404" name="Route-Header-Transmitted" type="UTF8String"/>
+      <avp code="3405" name="SM-Device-Trigger-Information" type="Grouped"/>
+      <avp code="3406" name="MTC-IWF-Address" type="Address"/>
+      <avp code="3407" name="SM-Device-Trigger-Indicator" type="Enumerated"/>
+      <avp code="3408" name="SM-Sequence-Number" type="Unsigned32"/>
+      <avp code="3409" name="SMS-Result" type="Unsigned32"/>
+      <avp code="3410" name="VCS-Information" type="Grouped"/>
+      <avp code="3411" name="Basic-Service-Code" type="Grouped"/>
+      <avp code="3412" name="Bearer-Capability" type="OctetString"/>
+      <avp code="3413" name="Teleservice" type="OctetString"/>
+      <avp code="3414" name="ISUP-Location-Number" type="OctetString"/>
+      <avp code="3415" name="Forwarding-Pending" type="Enumerated"/>
+      <avp code="3416" name="ISUP-Release-Cause" type="Unsigned32"/>
+      <avp code="3417" name="MSC-Address" type="OctetString"/>
+      <avp code="3418" name="Network-Call-Reference-Number" type="OctetString"/>
+      <avp code="3419" name="Start-of-Charging" type="Time"/>
+      <avp code="3420" name="VLR-Number" type="OctetString"/>
+      <avp code="3421" name="CN-Operator-Selection-Entity" type="Enumerated"/>
+      <avp code="3422" name="ISUP-Cause-Diagnostics" type="OctetString"/>
+      <avp code="3423" name="ISUP-Cause-Location" type="Unsigned32"/>
+      <avp code="3424" name="ISUP-Cause-Value" type="Unsigned32"/>
+      <avp code="3425" name="EPDG-Address" type="Address"/>
+      <avp code="3426" name="Announcing-UE-HPLMN-Identifier" type="UTF8String"/>
+      <avp code="3427" name="Announcing-UE-VPLMN-Identifier" type="UTF8String"/>
+      <avp code="3428" name="Coverage-Status" type="Enumerated"/>
+      <avp code="3429" name="Layer-2-Group-ID" type="OctetString"/>
+      <avp code="3430" name="Monitored-PLMN-Identifier" type="UTF8String"/>
+      <avp code="3431" name="Monitoring-UE-HPLMN-Identifier" type="UTF8String"/>
+      <avp code="3432" name="Monitoring-UE-Identifier" type="UTF8String"/>
+      <avp code="3433" name="Monitoring-UE-VPLMN-Identifier" type="UTF8String"/>
+      <avp code="3434"
+           name="ProSe-PC3-Control-Protocol-Cause"
+           type="Integer32"/>
+      <avp code="3435"
+           name="ProSe-PC3-EPC-Control-Protocol-Cause"
+           type="Integer32"/>
+      <avp code="3436" name="Requested-PLMN-Identifier" type="UTF8String"/>
+      <avp code="3437" name="Requestor-PLMN-Identifier" type="UTF8String"/>
+      <avp code="3438" name="Role-Of-ProSe-Function" type="Enumerated"/>
+      <avp code="3439"
+           name="Usage-Information-Report-Sequence-Number"
+           type="Integer32"/>
+      <avp code="3440" name="ProSe-3rd-Party-Application-ID" type="UTF8String"/>
+      <avp code="3441"
+           name="ProSe-Direct-Communication-Transmission-Data-Container"
+           type="Grouped"/>
+      <avp code="3442" name="ProSe-Direct-Discovery-Model" type="Enumerated"/>
+      <avp code="3443" name="ProSe-Event-Type" type="Enumerated"/>
+      <avp code="3444" name="ProSe-Function-IP-Address" type="Address"/>
+      <avp code="3445" name="ProSe-Functionality" type="Enumerated"/>
+      <avp code="3446"
+           name="ProSe-Group-IP-Multicast-Addresses"
+           type="Address"/>
+      <avp code="3447" name="ProSe-Information" type="Grouped"/>
+      <avp code="3448" name="ProSe-Range-Class" type="Enumerated"/>
+      <avp code="3449" name="ProSe-Reason-For-Cancellation" type="Enumerated"/>
+      <avp code="3450" name="ProSe-Request-Timestamp" type="Time"/>
+      <avp code="3451" name="ProSe-Role-Of-UE" type="Enumerated"/>
+      <avp code="3452" name="ProSe-Source-IP-Address" type="Address"/>
+      <avp code="3453" name="ProSe-UE-ID" type="OctetString"/>
+      <avp code="3454" name="Proximity-Alert-Indication" type="Enumerated"/>
+      <avp code="3455" name="Proximity-Alert-Timestamp" type="Time"/>
+      <avp code="3456" name="Proximity-Cancellation-Timestamp" type="Time"/>
+      <avp code="3457" name="ProSe-Function-PLMN-Identifier" type="UTF8String"/>
+      <avp code="3458" name="Application-Specific-Data" type="OctetString"/>
+      <avp code="3459" name="Coverage-Info" type="Grouped"/>
+      <avp code="3460" name="Location-Info" type="Grouped"/>
+      <avp code="3461"
+           name="ProSe-Direct-Communication-Reception-Data-Container"
+           type="Grouped"/>
+      <avp code="3462" name="Radio-Frequency" type="OctetString"/>
+      <avp code="3463" name="Radio-Parameter-Set-Info" type="Grouped"/>
+      <avp code="3464" name="Radio-Parameter-Set-Values" type="OctetString"/>
+      <avp code="3465" name="Radio-Resources-Indicator" type="Integer32"/>
+      <avp code="3466" name="Time-First-Reception" type="Time"/>
+      <avp code="3467" name="Time-First-Transmission" type="Time"/>
+      <avp code="3468" name="Transmitter-Info" type="Grouped"/>
+      <avp code="3500" name="BMSCAddress" type="Address"/>
+      <avp code="3501" name="BMSCPort" type="Unsigned32"/>
+      <avp code="3502" name="MBMSBearerEvent" type="Unsigned32"/>
+      <avp code="3503" name="MBMSBearerEventNotification" type="Grouped"/>
+      <avp code="3504" name="MBMSBearerRequest" type="Grouped"/>
+      <avp code="3505" name="MBMSBearerResponse" type="Grouped"/>
+      <avp code="3506" name="MBMSBearerResult" type="Unsigned32"/>
+      <avp code="3507" name="MBMSStartTime" type="Time"/>
+      <avp code="3508" name="RadioFrequency" type="Unsigned32"/>
+      <avp code="3509" name="TMGIAllocationRequest" type="Grouped"/>
+      <avp code="3510" name="TMGIAllocationResponse" type="Grouped"/>
+      <avp code="3511" name="TMGIAllocationResult" type="Unsigned32"/>
+      <avp code="3512" name="TMGIDeallocationRequest" type="Grouped"/>
+      <avp code="3513" name="TMGIDeallocationResponse" type="Grouped"/>
+      <avp code="3514" name="TMGIDeallocationResult" type="Unsigned32"/>
+      <avp code="3515" name="TMGIExpiry" type="Grouped"/>
+      <avp code="3516" name="TMGINumber" type="Unsigned32"/>
+      <avp code="3517" name="MB2USecurity" type="Unsigned32"/>
+      <avp code="3518" name="Local-M1-Information" type="Grouped"/>
+      <avp code="3519" name="Local-MB2-U-Information" type="Grouped"/>
+      <avp code="3520" name="MBMS-eNB-IP-Multicast-Address" type="Address"/>
+      <avp code="3521" name="MBMS-eNB-IPv6-Multicast-Address" type="Address"/>
+      <avp code="3522" name="MBMS-GW-SSM-IP-Address" type="Address"/>
+      <avp code="3523" name="MBMS-GW-SSM-IPv6-Address" type="Address"/>
+      <avp code="3524"
+           name="Common-Tunnel-Endpoint-Identifier"
+           type="OctetString"/>
+      <avp code="3600" name="Origin-App-Layer-User-Id" type="UTF8String"/>
+      <avp code="3601" name="Target-App-Layer-User-Id" type="UTF8String"/>
+      <avp code="3602" name="ProSe-Function-ID" type="OctetString"/>
+      <avp code="3603" name="ProSe-Request-Type" type="Unsigned32"/>
+      <avp code="3604" name="PDUID" type="OctetString"/>
+      <avp code="3605" name="Application-Data" type="UTF8String"/>
+      <avp code="3606" name="Allowed-Suffixes-Number" type="Unsigned32"/>
+      <avp code="3607" name="Monitor-Target" type="Grouped"/>
+      <avp code="3608" name="ProSe-Code-Suffix-Mask" type="Grouped"/>
+      <avp code="3609" name="Suffix-Code" type="OctetString"/>
+      <avp code="3610" name="Suffix-Mask" type="OctetString"/>
+      <avp code="3611" name="Banned-User-Target" type="Grouped"/>
+      <avp code="3612" name="Metadata-Indicator" type="Unsigned32"/>
+      <avp code="3701" name="ProSe-Subscription-Data" type="Grouped"/>
+      <avp code="3702" name="ProSe-Permission" type="Unsigned32"/>
+      <avp code="3703" name="ProSe-Allowed-PLMN" type="Grouped"/>
+      <avp code="3704" name="ProSe-Direct-Allowed" type="Unsigned32"/>
+      <avp code="3705" name="UPR-Flags" type="Unsigned32"/>
+      <avp code="3706" name="PNR-Flags" type="Unsigned32"/>
+      <avp code="3707"
+           name="ProSe-Initial-Location-Information"
+           type="Grouped"/>
+      <avp code="3708" name="Authorized-Discovery-Range" type="Unsigned32"/>
+      <avp code="3800" name="Reserved" type=""/>
+      <avp code="3801" name="App-Layer-User-Id" type="UTF8String"/>
+      <avp code="3802" name="Assistance-info" type="Grouped"/>
+      <avp code="3803" name="Assistance-Info-Validity-Timer" type="Unsigned32"/>
+      <avp code="3804" name="Discovery-Type" type="Unsigned32"/>
+      <avp code="3805" name="Filter-Id" type="OctetString"/>
+      <avp code="3806" name="MAC-Address" type="UTF8String"/>
+      <avp code="3807" name="Match-Report" type="Grouped"/>
+      <avp code="3808" name="Operating-Channel" type="Unsigned32"/>
+      <avp code="3809" name="P2P-Features" type="Unsigned32"/>
+      <avp code="3810" name="ProSe-App-Code" type="UTF8String"/>
+      <avp code="3811" name="ProSe-App-Id" type="UTF8String"/>
+      <avp code="3812" name="ProSe-App-Mask" type="UTF8String"/>
+      <avp code="3813" name="ProSe-Discovery-Filter" type="Grouped"/>
+      <avp code="3814" name="PRR-Flags" type="Unsigned32"/>
+      <avp code="3815" name="ProSe-Validity-Timer" type="Unsigned32"/>
+      <avp code="3816" name="Requesting-EPUID" type="UTF8String"/>
+      <avp code="3817" name="Targeted-EPUID" type="UTF8String"/>
+      <avp code="3818" name="Time-Window" type="Unsigned32"/>
+      <avp code="3819" name="WiFi-P2P-Assistance-Info" type="Grouped"/>
+      <avp code="3820" name="WLAN-Assistance-Info" type="Grouped"/>
+      <avp code="3821" name="WLAN-Link-Layer-Id" type="OctetString"/>
+      <avp code="3822" name="WLAN-Link-Layer-Id-List" type="Grouped"/>
+      <avp code="3823" name="Location-Update-Trigger" type="Grouped"/>
+      <avp code="3824" name="Location-Update-Event-Type" type="Unsigned32"/>
+      <avp code="3825" name="Change-Of-Area-Type" type="Grouped"/>
+      <avp code="3826" name="Location-Update-Event-Trigger" type="Unsigned32"/>
+      <avp code="3827" name="Report-Cardinality" type="Enumerated"/>
+      <avp code="3828" name="Minimum-Interval-Time" type="Unsigned32"/>
+      <avp code="3829" name="Periodic-Location-Type" type="Grouped"/>
+      <avp code="3830" name="Location-Report-Interval-Time" type="Unsigned32"/>
+      <avp code="3831" name="Total-Number-Of-Reports" type="Unsigned32"/>
+      <avp code="3832" name="Validity-Time-Announce" type="Unsigned32"/>
+      <avp code="3833" name="Validity-Time-Monitor" type="Unsigned32"/>
+      <avp code="3834" name="Validity-Time-Communication" type="Unsigned32"/>
+      <avp code="3835" name="ProSe-App-Code-Info" type="Grouped"/>
+      <avp code="3836" name="MIC" type="OctetString"/>
+      <avp code="3837" name="UTC-based-Counter" type="Unsigned32"/>
+      <avp code="3838" name="ProSe-Match-Refresh-Timer" type="Unsigned32"/>
+      <avp code="3839" name="ProSe-Metadata-Index-Mask" type="OctetString"/>
+      <avp code="3840" name="App-Identifier" type="Grouped"/>
+      <avp code="3841" name="OS-ID" type="OctetString"/>
+      <avp code="3842" name="OS-App-ID" type="UTF8String"/>
+      <avp code="3843" name="Requesting-RPAUID" type="UTF8String"/>
+      <avp code="3844" name="Target-RPAUID" type="UTF8String"/>
+      <avp code="3845" name="Target-PDUID" type="OctetString"/>
+      <avp code="3846" name="ProSe-Restricted-Code" type="OctetString"/>
+      <avp code="3847"
+           name="ProSe-Restricted-Code-Suffix-Range"
+           type="OctetString"/>
+      <avp code="3848" name="Beginning-Suffix" type="OctetString"/>
+      <avp code="3849" name="Ending-Suffix" type="OctetString"/>
+      <avp code="3850" name="Discovery-Entry-ID" type="Unsigned32"/>
+      <avp code="3851" name="Match-Timestamp" type="Time"/>
+      <avp code="3852" name="PMR-Flags" type="Unsigned32"/>
+      <avp code="3853" name="ProSe-Application-Metadata" type="UTF8String"/>
+      <avp code="3854" name="Discovery-Auth-Request" type="Grouped"/>
+      <avp code="3855" name="Discovery-Auth-Response" type="Grouped"/>
+      <avp code="3856" name="Match-Request" type="Grouped"/>
+      <avp code="3857" name="Match-Report-Info" type="Grouped"/>
+      <avp code="3858" name="Banned-RPAUID" type="UTF8String"/>
+      <avp code="3859" name="Banned-PDUID" type="OctetString"/>
+      <avp code="3860" name="Code-Receiving-Security-Material" type="Grouped"/>
+      <avp code="3861" name="Code-Sending-Security-Material" type="Grouped"/>
+      <avp code="3862" name="DUSK" type="OctetString"/>
+      <avp code="3863" name="DUIK" type="OctetString"/>
+      <avp code="3864" name="DUCK" type="OctetString"/>
+      <avp code="3865" name="MIC-Check-indicator" type="Unsigned32"/>
+      <avp code="3866" name="Encrypted-Bitmask" type="OctetString"/>
+      <avp code="3867" name="ProSe-App-Code-Suffix-Range" type="OctetString"/>
+      <avp code="3868" name="PC5-tech" type="OctetString"/>
+      <avp code="3900" name="Reserved" type=""/>
+      <avp code="3901" name="Enhanced-Diagnostics" type="Grouped"/>
+      <avp code="3902" name="Inter-UE-Transfer" type="Enumerated"/>
+      <avp code="3903" name="TWAG-Address" type="Address"/>
+      <avp code="3904" name="Announcement-Information" type="Grouped"/>
+      <avp code="3905" name="Announcement-Identifier" type="Unsigned32"/>
+      <avp code="3906" name="Announcement-Order" type="Unsigned32"/>
+      <avp code="3907" name="Variable-Part" type="Grouped"/>
+      <avp code="3908" name="Variable-Part-Order" type="Unsigned32"/>
+      <avp code="3909" name="Variable-Part-Type" type="Unsigned32"/>
+      <avp code="3910" name="Variable-Part-Value" type="UTF8String"/>
+      <avp code="3911" name="Time-Indicator" type="Unsigned32"/>
+      <avp code="3912" name="Quota-Indicator" type="Enumerated"/>
+      <avp code="3913" name="Play-Alternative" type="Enumerated"/>
+      <avp code="3914" name="Language" type="UTF8String"/>
+      <avp code="3915" name="Privacy-Indicator" type="Enumerated"/>
+      <avp code="3916" name="Called-Identity" type="UTF8String"/>
+      <avp code="3917" name="Called-Identity-Change" type="Grouped"/>
+      <avp code="3918" name="UWAN-User-Location-Info" type="Grouped"/>
+      <avp code="3919"
+           name="Monitoring-Event-Configuration-Activity"
+           type="Integer32"/>
+      <avp code="3920" name="Monitoring-Event-Report-Data" type="Grouped"/>
+      <avp code="3921" name="Monitoring-Event-Information" type="Grouped"/>
+      <avp code="3922" name="Monitoring-Event-Functionality" type="Integer32"/>
+      <avp code="3923" name="Monitoring-Event-Report-Number" type="Unsigned32"/>
+      <avp code="3924" name="Cellular-Network-Information" type="OctetString"/>
+      <avp code="3925"
+           name="Related-Change-Condition-Information"
+           type="Grouped"/>
+      <avp code="3926" name="Related-Trigger" type="Grouped"/>
+      <avp code="3927" name="CPDT-Information" type="Grouped"/>
+      <avp code="3928" name="NIDD-Submission" type="Grouped"/>
+      <avp code="3929" name="Serving-Node-Identity" type="DiameterIdentity"/>
+      <avp code="3930"
+           name="CP-CIoT-EPS-Optimisation-Indicator"
+           type="Enumerated"/>
+      <avp code="3931" name="SGi-PtP-Tunnelling-Method" type="Enumerated"/>
+      <avp code="3932" name="UNI-PDU-CP-Only-Flag" type="Enumerated"/>
+      <avp code="3933" name="APN-Rate-Control" type="Grouped"/>
+      <avp code="3934" name="APN-Rate-Control-Downlink" type="Grouped"/>
+      <avp code="3935" name="APN-Rate-Control-Uplink" type="Grouped"/>
+      <avp code="3936" name="Additional-Exception-Reports" type="Enumerated"/>
+      <avp code="3937" name="Rate-Control-Max-Message-Size" type="Unsigned32"/>
+      <avp code="3938" name="Rate-Control-Max-Rate" type="Unsigned32"/>
+      <avp code="3939" name="Rate-Control-Time-Unit" type="Unsigned32"/>
+      <avp code="3940" name="SCS-AS-Address" type="Grouped"/>
+      <avp code="3941" name="SCS-Address" type="Address"/>
+      <avp code="3942" name="SCS-Realm" type="DiameterIdentity"/>
+      <avp code="4000" name="Aggregated-Congestion-Info" type="Grouped"/>
+      <avp code="4001" name="Aggregated-RUCI-Report" type="Grouped"/>
+      <avp code="4002" name="Congestion-Level-Definition" type="Grouped"/>
+      <avp code="4003" name="Congestion-Level-Range" type="Unsigned32"/>
+      <avp code="4004" name="Congestion-Level-Set-Id" type="Unsigned32"/>
+      <avp code="4005" name="Congestion-Level-Value" type="Unsigned32"/>
+      <avp code="4006" name="Congestion-Location-Id" type="Grouped"/>
+      <avp code="4007" name="Conditional-Restriction" type="Unsigned32"/>
+      <avp code="4008" name="eNodeB-Id" type="OctetString"/>
+      <avp code="4009" name="IMSI-List" type="OctetString"/>
+      <avp code="4010" name="RCAF-Id" type="DiameterIdentity"/>
+      <avp code="4011" name="Reporting-Restriction" type="Unsigned32"/>
+      <avp code="4012" name="RUCI-Action" type="Unsigned32"/>
+      <avp code="4013" name="Extended-eNodeB-ID" type="OctetString"/>
+      <avp code="4101" name="Network-Congestion-Area-Report" type="Grouped"/>
+      <avp code="4102" name="Ns-Request-Type" type="Unsigned32"/>
+      <avp code="4201" name="Network-Area-Info-List" type="OctetString"/>
+      <avp code="4202" name="Reference-Id" type="OctetString"/>
+      <avp code="4203" name="Transfer-Request-Type" type="Unsigned32"/>
+      <avp code="4204" name="Time-Window" type="Grouped"/>
+      <avp code="4205" name="Transfer-End-Time" type="Time"/>
+      <avp code="4206" name="Transfer-Start-Time" type="Time"/>
+      <avp code="4207" name="Transfer-Policy" type="Grouped"/>
+      <avp code="4208" name="Transfer-Policy-Id" type="Unsigned32"/>
+      <avp code="4209" name="Number-Of-UEs" type="Unsigned32"/>
+      <avp code="4300" name="Communication-Failure-Information" type="Grouped"/>
+      <avp code="4301" name="Cause-Type" type="Unsigned32"/>
+      <avp code="4302" name="S1AP-Cause" type="Unsigned32"/>
+      <avp code="4303" name="RANAP-Cause" type="Unsigned32"/>
+      <avp code="4304" name="GMM-Cause" type="Unsigned32"/>
+      <avp code="4305" name="SM-Cause" type="Unsigned32"/>
+      <avp code="4306"
+           name="Number-of-UE-Per-Location-Configuration"
+           type="Grouped"/>
+      <avp code="4307" name="Number-of-UE-Per-Location-Report" type="Grouped"/>
+      <avp code="4308" name="UE-Count" type="Unsigned32"/>
+      <avp code="4309" name="BSSGP-Cause" type="Unsigned32"/>
+      <avp code="4310" name="Serving-PLMN-Rate-Control" type="Grouped"/>
+      <avp code="4311" name="Uplink-Rate-Limit" type="Unsigned32"/>
+      <avp code="4312" name="Downlink-Rate-Limit" type="Unsigned32"/>
+      <avp code="4313" name="Extended-PCO" type="OctetString"/>
+      <avp code="4314" name="Connection-Action" type="Unsigned32"/>
+      <avp code="4315" name="Non-IP-Data" type="OctetString"/>
+      <avp code="4316" name="SCEF-Wait-Time" type="Time"/>
+      <avp code="4317" name="CMR-Flags" type="Unsigned32"/>
+      <avp code="4318" name="RRC-Cause-Counter" type="Grouped"/>
+      <avp code="4319" name="Counter-Value" type="Unsigned32"/>
+      <avp code="4320" name="RRC-Counter-Timestamp" type="Time"/>
+      <avp code="4321" name="TDA-Flags" type="Unsigned32"/>
+      <avp code="4322" name="Idle-Status-Indication" type="Grouped"/>
+      <avp code="4323" name="Idle-Status-Timestamp" type="Time"/>
+      <avp code="4324" name="Active-Time" type="Unsigned32"/>
+      <avp code="4400"
+           name="Charging-Per-IP-CAN-Session-Indicator"
+           type="Enumerated"/>
+      <avp code="4401" name="Access-Network-Info-Change" type="Enumerated"/>
+      <avp code="4402" name="Discoveree-UE-HPLMN-Identifier" type="UTF8String"/>
+      <avp code="4403" name="Discoveree-UE-VPLMN-Identifier" type="UTF8String"/>
+      <avp code="4404" name="Discoverer-UE-HPLMN-Identifier" type="UTF8String"/>
+      <avp code="4405" name="Discoverer-UE-VPLMN-Identifier" type="UTF8String"/>
+      <avp code="4406" name="3GPP-PS-Data-Off-Status" type="Enumerated"/>
+      <avp code="4407" name="Unused-Quota-Timer" type="Unsigned32"/>
+      <avp code="4408" name="Announcing-PLMN-ID" type="UTF8String"/>
+      <avp code="4409"
+           name="ProSe-UE-to-Network-Relay-UE-ID"
+           type="OctetString"/>
+      <avp code="4410" name="ProSe-Target-Layer-2-ID" type="OctetString"/>
+      <avp code="4411" name="Relay-IP-address" type="Address"/>
+      <avp code="4412" name="Target-IP-Address" type="Address"/>
+      <avp code="4413" name="FE-Identifier-List" type="UTF8String"/>
+      <avp code="4500" name="MCPTT-ID" type="UTF8String"/>
+      <avp code="4501" name="Data-Identification" type="Grouped"/>
+      <avp code="4502" name="Data-Identification-Prefix" type="Unsigned32"/>
+      <avp code="4503" name="Data-Identification-Flags" type="Unsigned64"/>
+      <avp code="4504" name="DPR-Flags" type="Unsigned32"/>
+      <avp code="4505" name="DPA-Flags" type="Unsigned32"/>
+      <avp code="4506" name="DUR-Flags" type="Unsigned32"/>
+      <avp code="4507" name="DUA-Flags" type="Unsigned32"/>
+      <avp code="4508" name="NDR-Flags" type="Unsigned32"/>
+      <avp code="4509" name="NDA-Flags" type="Unsigned32"/>
+      <avp code="4510" name="User-Data-Id" type="Unsigned32"/>
+      <avp code="4511" name="MC-Service-User-Profile-Data" type="Grouped"/>
+      <avp code="4512" name="Sequence-Number" type="Unsigned32"/>
+      <avp code="4513" name="MCVideo-ID" type="UTF8String"/>
+      <avp code="4514" name="MC-Data-ID" type="UTF8String"/>
+      <avp code="4600" name="V2X-PC5-Allowed-PLMN" type="Grouped"/>
+      <avp code="4601" name="V2X-Update-Flags" type="Unsigned32"/>
+      <avp code="4602" name="V2X-Notify-Flags" type="Unsigned32"/>
+      <avp code="4700" name="V2X-Authorization-Data" type="Grouped"/>
+      <avp code="4701" name="V2X-Permission-in-VPLMN" type="Unsigned32"/>
+      <avp code="4702" name="V2X-Application-Server" type="Grouped"/>
+   </table>
+   <table name="Table 8.1.2"
+          desc="3GPP specific Success result codes"
+          type="ResCode">
+      <result code="2001" text="DIAMETER_FIRST_REGISTRATION"/>
+      <result code="2002" text="DIAMETER_SUBSEQUENT_REGISTRATION"/>
+      <result code="2003" text="DIAMETER_UNREGISTERED_SERVICE"/>
+      <result code="2004" text="DIAMETER_SUCCESS_SERVER_NAME_NOT_STORED"/>
+      <result code="2005" text="Deprecatedvalue"/>
+      <result code="2021" text="DIAMETER_PDP_CONTEXT_DELETION_INDICATION"/>
+      <result code="" text=""/>
+   </table>
+   <table name="Table 8.1.3"
+          desc="3GPP specific Transient Failure result codes"
+          type="ResCode">
+      <result code="4100" text="DIAMETER_USER_DATA_NOT_AVAILABLE"/>
+      <result code="4101" text="DIAMETER_PRIOR_UPDATE_IN_PROGRESS"/>
+      <result code="4121" text="DIAMETER_ERROR_OUT_OF_RESOURCES"/>
+      <result code="4141" text="DIAMETER_PCC_BEARER_EVENT"/>
+      <result code="4142" text="DIAMETER_BEARER_EVENT"/>
+      <result code="4143" text="DIAMETER_AN_GW_FAILED"/>
+      <result code="4144" text="DIAMETER_PENDING_TRANSACTION"/>
+      <result code="" text=""/>
+      <result code="4181" text="DIAMETER_AUTHENTICATION_DATA_UNAVAILABLE"/>
+      <result code="4182" text="DIAMETER_ERROR_CAMEL_SUBSCRIPTION_PRESENT"/>
+      <result code="4201" text="DIAMETER_ERROR_ABSENT_USER"/>
+      <result code="4221" text="DIAMETER_ERROR_UNREACHABLE_USER"/>
+      <result code="4222" text="DIAMETER_ERROR_SUSPENDED_USER"/>
+      <result code="4223" text="DIAMETER_ERROR_DETACHED_USER"/>
+      <result code="4224" text="DIAMETER_ERROR_POSITIONING_DENIED"/>
+      <result code="4225" text="DIAMETER_ERROR_POSITIONING_FAILED"/>
+      <result code="4226" text="DIAMETER_ERROR_UNKNOWN_UNREACHABLELCS_CLIENT"/>
+      <result code="4241" text="DIAMETER_ERROR_NO_AVAILABLE_POLICY_COUNTERS"/>
+      <result code="4261" text="REQUESTED_SERVICE_TEMPORARILY_NOT_AUTHORIZED"/>
+   </table>
+   <table name="Table 8.1.4"
+          desc="3GPP specific Permanent Failure result codes"
+          type="ResCode">
+      <result code="5001" text="DIAMETER_ERROR_USER_UNKNOWN"/>
+      <result code="5002" text="DIAMETER_ERROR_IDENTITIES_DONT_MATCH"/>
+      <result code="5003" text="DIAMETER_ERROR_IDENTITY_NOT_REGISTERED"/>
+      <result code="5004" text="DIAMETER_ERROR_ROAMING_NOT_ALLOWED"/>
+      <result code="5005" text="DIAMETER_ERROR_IDENTITY_ALREADY_REGISTERED"/>
+      <result code="5006" text="DIAMETER_ERROR_AUTH_SCHEME_NOT_SUPPORTED"/>
+      <result code="5007" text="DIAMETER_ERROR_IN_ASSIGNMENT_TYPE"/>
+      <result code="5008" text="DIAMETER_ERROR_TOO_MUCH_DATA"/>
+      <result code="5009" text="DIAMETER_ERROR_NOT_SUPPORTED_USER_DATA"/>
+      <result code="5010" text="unassigned"/>
+      <result code="5011" text="DIAMETER_ERROR_FEATURE_UNSUPPORTED"/>
+      <result code="5012" text="DIAMETER_ERROR_SERVING_NODE_FEATURE_UNSUPPORTED"/>
+      <result code="" text=""/>
+      <result code="5041" text="DIAMETER_ERROR_USER_NO_WLAN_SUBSCRIPTION"/>
+      <result code="5042" text="DIAMETER_ERROR_W-APN_UNUSED_BY_USER"/>
+      <result code="5043" text="DIAMETER_ERROR_NO_ACCESS_INDEPENDENT_SUBSCRIPTION"/>
+      <result code="5044" text="DIAMETER_ERROR_USER_NO_W-APN_SUBSCRIPTION"/>
+      <result code="5045" text="DIAMETER_ERROR_UNSUITABLE_NETWORK"/>
+      <result code="5061" text="INVALID_SERVICE_INFORMATION"/>
+      <result code="5062" text="FILTER_RESTRICTIONS"/>
+      <result code="5063" text="REQUESTED_SERVICE_NOT_AUTHORIZED"/>
+      <result code="5064" text="DUPLICATED_AF_SESSION"/>
+      <result code="5065" text="IP-CAN_SESSION_NOT_AVAILABLE"/>
+      <result code="5066" text="UNAUTHORIZED_NON_EMERGENCY_SESSION"/>
+      <result code="5067" text="UNAUTHORIZED_SPONSORED_DATA_CONNECTIVITY"/>
+      <result code="5068" text="TEMPORARY_NETWORK_FAILURE"/>
+      <result code="5100" text="DIAMETER_ERROR_USER_DATA_NOT_RECOGNIZED"/>
+      <result code="5101" text="DIAMETER_ERROR_OPERATION_NOT_ALLOWED"/>
+      <result code="5102" text="DIAMETER_ERROR_USER_DATA_CANNOT_BE_READ"/>
+      <result code="5103" text="DIAMETER_ERROR_USER_DATA_CANNOT_BE_MODIFIED"/>
+      <result code="5104" text="DIAMETER_ERROR_USER_DATA_CANNOT_BE_NOTIFIED"/>
+      <result code="5105" text="DIAMETER_ERROR_TRANSPARENT_DATAOUT_OF_SYNC"/>
+      <result code="5106" text="DIAMETER_ERROR_SUBS_DATA_ABSENT"/>
+      <result code="5107" text="DIAMETER_ERROR_NO_SUBSCRIPTION_TO_DATA"/>
+      <result code="5108" text="DIAMETER_ERROR_DSAI_NOT_AVAILABLE"/>
+      <result code="5120" text="DIAMETER_ERROR_START_INDICATION"/>
+      <result code="5121" text="DIAMETER_ERROR_STOP_INDICATION"/>
+      <result code="5122" text="DIAMETER_ERROR_UNKNOWN_MBMS_BEARER_SERVICE"/>
+      <result code="5123" text="DIAMETER_ERROR_SERVICE_AREA"/>
+      <result code="5140" text="DIAMETER_ERROR_INITIAL_PARAMETERS"/>
+      <result code="5141" text="DIAMETER_ERROR_TRIGGER_EVENT"/>
+      <result code="5142" text="DIAMETER_PCC_RULE_EVENT"/>
+      <result code="5143" text="DIAMETER_ERROR_BEARER_NOT_AUTHORIZED"/>
+      <result code="5144" text="DIAMETER_ERROR_TRAFFIC_MAPPING_INFO_REJECTED"/>
+      <result code="5145" text="DIAMETER_QOS_RULE_EVENT"/>
+      <result code="5146" text="reserved"/>
+      <result code="5147" text="DIAMETER_ERROR_CONFLICTING_REQUEST"/>
+      <result code="5148" text="DIAMETER_ADC_RULE_EVENT"/>
+      <result code="5149" text="DIAMETER_ERROR_NBIFOM_NOT_AUTHORIZED"/>
+      <result code="5401" text="DIAMETER_ERROR_IMPI_UNKNOWN"/>
+      <result code="5402" text="DIAMETER_ERROR_NOT_AUTHORIZED"/>
+      <result code="5403" text="DIAMETER_ERROR_TRANSACTION_IDENTIFIER_INVALID"/>
+      <result code="5420" text="DIAMETER_ERROR_UNKNOWN_EPS_SUBSCRIPTION"/>
+      <result code="5421" text="DIAMETER_ERROR_RAT_NOT_ALLOWED"/>
+      <result code="5422" text="DIAMETER_ERROR_EQUIPMENT_UNKNOWN"/>
+      <result code="5423" text="DIAMETER_ERROR_UNKNOWN_SERVING_NODE"/>
+      <result code="5450" text="DIAMETER_ERROR_USER_NO_NON_3GPP_SUBSCRIPTION"/>
+      <result code="5451" text="DIAMETER_ERROR_USER_NO_APN_SUBSCRIPTION"/>
+      <result code="5452" text="DIAMETER_ERROR_RAT_TYPE_NOT_ALLOWED"/>
+      <result code="5453" text="DIAMETER_ERROR_LATE_OVERLAPPING_REQUEST"/>
+      <result code="5454" text="DIAMETER_ERROR_TIMED_OUT_REQUEST"/>
+      <result code="5470" text="DIAMETER_ERROR_SUBSESSION"/>
+      <result code="5471" text="DIAMETER_ERROR_ONGOING_SESSION_ESTABLISHMENT"/>
+      <result code="5490" text="DIAMETER_ERROR_UNAUTHORIZED_REQUESTING_NETWORK"/>
+      <result code="5510" text="DIAMETER_ERROR_UNAUTHORIZED_REQUESTING_ENTITY"/>
+      <result code="5511" text="DIAMETER_ERROR_UNAUTHORIZED_SERVICE"/>
+      <result code="5512" text="DIAMETER_ERROR_REQUESTED_RANGE_IS_NOTALLOWED"/>
+      <result code="5513"
+              text="DIAMETER_ERROR_CONFIGURATION_EVENT_STORAGE_NOT_SUCCESSFUL"/>
+      <result code="5514" text="DIAMETER_ERROR_CONFIGURATION_EVENT_NON_EXISTANT"/>
+      <result code="5515" text="DIAMETER_ERROR_SCEF_REFERENCE_ID_UNKNOWN"/>
+      <result code="5530" text="DIAMETER_ERROR_INVALID_SME_ADDRESS"/>
+      <result code="5531" text="DIAMETER_ERROR_SC_CONGESTION"/>
+      <result code="5532" text="DIAMETER_ERROR_SM_PROTOCOL"/>
+      <result code="5533" text="DIAMETER_ERROR_TRIGGER_REPLACE_FAILURE"/>
+      <result code="5534" text="DIAMETER_ERROR_TRIGGER_RECALL_FAILURE"/>
+      <result code="5535" text="DIAMETER_ERROR_ORIGINAL_MESSAGE_NOT_PENDING"/>
+      <result code="5550" text="DIAMETER_ERROR_ABSENT_USER"/>
+      <result code="5551" text="DIAMETER_ERROR_USER_BUSY_FOR_MT_SMS"/>
+      <result code="5552" text="DIAMETER_ERROR_FACILITY_NOT_SUPPORTED"/>
+      <result code="5553" text="DIAMETER_ERROR_ILLEGAL_USER"/>
+      <result code="5554" text="DIAMETER_ERROR_ILLEGAL_EQUIPMENT"/>
+      <result code="5555" text="DIAMETER_ERROR_SM_DELIVERY_FAILURE"/>
+      <result code="5556" text="DIAMETER_ERROR_SERVICE_NOT_SUBSCRIBED"/>
+      <result code="5557" text="DIAMETER_ERROR_SERVICE_BARRED"/>
+      <result code="5558" text="DIAMETER_ERROR_MWD_LIST_FULL"/>
+      <result code="5570" text="DIAMETER_ERROR_UNKNOWN_POLICY_COUNTERS"/>
+      <result code="5590" text="DIAMETER_ERROR_ORIGIN_ALUID_UNKNOWN"/>
+      <result code="5591" text="DIAMETER_ERROR_TARGET_ALUID_UNKNOWN"/>
+      <result code="5592" text="DIAMETER_ERROR_PFID_UNKNOWN"/>
+      <result code="5593" text="DIAMETER_ERROR_APP_REGISTER_REJECT"/>
+      <result code="5594" text="DIAMETER_ERROR_PROSE_MAP_REQUEST_DISALLOWED"/>
+      <result code="5595" text="DIAMETER_ERROR_MAP_REQUEST_REJECT"/>
+      <result code="5596" text="DIAMETER_ERROR_REQUESTING_RPAUID_UNKNOWN"/>
+      <result code="5597" text="DIAMETER_ERROR_UNKNOWN_OR_INVALID_TARGET_SET"/>
+      <result code="5598" text="DIAMETER_ERROR_MISSING_APPLICATION_DATA"/>
+      <result code="5599" text="DIAMETER_ERROR_AUTHORIZATION_REJECT"/>
+      <result code="5600" text="DIAMETER_ERROR_DISCOVERY_NOT_PERMITTED"/>
+      <result code="5601" text="DIAMETER_ERROR_TARGET_RPAUID_UNKNOWN"/>
+      <result code="5602" text="DIAMETER_ERROR_INVALID_APPLICATION_DATA"/>
+      <result code="5610" text="DIAMETER_ERROR_UNKNOWN_PROSE_SUBSCRIPTION"/>
+      <result code="5611" text="DIAMETER_ERROR_PROSE_NOT_ALLOWED"/>
+      <result code="5612" text="DIAMETER_ERROR_UE_LOCATION_UNKNOWN"/>
+      <result code="5630" text="DIAMETER_ERROR_NO_ASSOCIATED_DISCOVERY_FILTER"/>
+      <result code="5631" text="DIAMETER_ERROR_ANNOUNCING_UNAUTHORIZED_IN_PLMN"/>
+      <result code="5632" text="DIAMETER_ERROR_INVALID_APPLICATION_CODE"/>
+      <result code="5633" text="DIAMETER_ERROR_PROXIMITY_UNAUTHORIZED"/>
+      <result code="5634" text="DIAMETER_ERROR_PROXIMITY_REJECTED"/>
+      <result code="5635" text="DIAMETER_ERROR_NO_PROXIMITY_REQUEST"/>
+      <result code="5636" text="DIAMETER_ERROR_UNAUTHORIZED_SERVICE_IN_THIS_PLMN"/>
+      <result code="5637" text="DIAMETER_ERROR_PROXIMITY_CANCELLED"/>
+      <result code="5638" text="DIAMETER_ERROR_INVALID_TARGET_PDUID"/>
+      <result code="5639" text="DIAMETER_ERROR_INVALID_TARGET_RPAUID"/>
+      <result code="5640" text="DIAMETER_ERROR_NO_ASSOCIATED_RESTRICTED_CODE"/>
+      <result code="5641" text="DIAMETER_ERROR_INVALID_DISCOVERY_TYPE"/>
+      <result code="5650" text="DIAMETER_ERROR_REQUESTED_LOCATION_NOT_SERVED"/>
+      <result code="5651" text="DIAMETER_ERROR_INVALID_EPS_BEARER"/>
+      <result code="5652" text="DIAMETER_ERROR_NIDD_CONFIGURATION_NOT_AVAILABLE"/>
+      <result code="5653" text="DIAMETER_ERROR_USER_TEMPORARILY_UNREACHABLE"/>
+      <result code="5670" text="DIAMETER_ERROR_UNKNKOWN_DATA"/>
+      <result code="5671" text="DIAMETER_ERROR_REQUIRED_KEY_NOT_PROVIDED"/>
+      <result code="5690" text="DIAMETER_ERROR_UNKNOWN_V2X_SUBSCRIPTION"/>
+      <result code="5691" text="DIAMETER_ERROR_V2X_NOT_ALLOWED"/>
+   </table>
+</x3dia>
