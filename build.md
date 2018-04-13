@@ -6,20 +6,21 @@
 - Groovy:  gant and gradle (Groovy script)
     - Groovy closure definition of targets, tasks and their dependencies (relationship).
 
+### Gradle (very powerful)
+Plugin architecture.
+
 ### Make
 
 ### Ant
 
 ### Maven
 
-### gant 
+### Gant 
 Groovy wrapper of ant.
 
-### gint
+### Gint
 Based on gant
 
-### gradle (very powerful)
-Plugin architecture.
 
 
 
