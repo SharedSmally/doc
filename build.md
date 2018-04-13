@@ -13,12 +13,13 @@
 ### Maven
 
 ### gant 
+Groovy wrapper of ant.
 
 ### gint
 Based on gant
 
-### gradle
-
+### gradle (very powerful)
+Plugin architecture.
 
 
 
