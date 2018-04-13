@@ -11,6 +11,8 @@ There is a one-to-one relationship between a [Project](https://docs.gradle.org/c
 | Settings script  | [Settings](https://docs.gradle.org/current/dsl/org.gradle.api.initialization.Settings.html)     |
 
 
+A build script is made up of zero or more statements and script blocks. Statements can include method calls, property assignments, and local variable definitions. A script block is a method call which takes a closure as a parameter. The closure is treated as a configuration closure which configures some delegate object as it executes.
+
 The top level script blocks in **build.gradle**: 
 
 |     Block     	  | Description  |
