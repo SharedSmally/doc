@@ -9,6 +9,9 @@ Docker Toolbox includes docker engine, docker-machine(connect to dock hosts), an
 - Login as root: **docker exec -u 0 -it mycontainer bash**
 - Install pkg: **apt-get update; apt-get install xxx**
 
+## [Kitematic](https://kitematic.com/)
+Kitematic is the GUI for dockers. It can be installed from Docker Toolbox.
+
 ## Docker VM (hold docker container)
 - VM operations:
 
