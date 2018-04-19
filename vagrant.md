@@ -239,4 +239,17 @@ Guest Port: 22
 Mount the Linux distro ISO
 ```
 
-
+In order to share folders, virtualbox needs to support "vboxsf" (Install Guest Additions in centos)[https://www.megajason.com/2017/06/10/install-virtualbox-guest-additions-on-centos-7/]:
+```
+1. Download the VBoxGuestAdditions_[version].iso from http://download.virtualbox.org/virtualbox/.
+2. In the VirtualBox VM manager, load this iso into the optical drive of the CentOS VM. (external)
+3. Update VM. For CenbtOS, run as root:
+     yum update
+     yum groupinstall "Development Tools"
+     yum install kernel-devel
+     yum install epel-release
+     yum install dkms
+     mkdir /mnt/VBoxLinuxAdditions
+     mount /dev/cdrom /mnt/VBoxLinuxAdditions
+     sh /mnt/VBoxLinuxAdditions.run
+```
