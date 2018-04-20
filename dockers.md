@@ -4,6 +4,9 @@
 ```
 $ ln -s  "/cygdrive/c/Program Files/Docker/Docker/resources/bin/docker.exe" bin/docker
 $ docker container ls
+$ docker ps
+
+$ docker run -it --rm ubuntu:14.04 /bin/bash
 
 Run in PowerShell:
 $ docker run -it --link mysql:mysql --rm mysql sh -c 'exec mysql -h"$MYSQL_PORT_3306_TCP_ADDR" -P"$MYSQL_PORT_3306_TCP_PORT" -uroot -p"$MYSQL_ENV_MYSQL_ROOT_PASSWORD"'
