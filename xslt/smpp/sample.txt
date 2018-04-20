@@ -1,0 +1,140 @@
+"BIND_TRX": {
+        "Data": {
+            "AddrNPI": 0,
+            "AddrTON": 0,
+            "AddressRange": "",
+            "InterfaceVersion": 52,
+            "Pswd": "passwrd1",
+            "SystemID": "smscsystemid1",
+            "SystemType": "authsystype1"
+        },
+        "Header": {
+            "Id": 9,
+            "Length": 0,
+            "Number": 1,
+            "Status": 0
+        }
+    }
+}
+BIND_TRX -> 10.32.86.29:5134
+00000038000000090000000000000001736D736373797374656D696431007061737377726431006175746873797374797065310034000000
+
+"BIND_TRX_RESP": {
+       "Data": {
+            "SystemID": ""
+        },
+        "Header": {
+            "Id": 2147483657,
+            "Length": 0,
+            "Number": 1,
+            "Status": 0
+        }
+    }
+}
+BIND_TRX_RESP -> 10.32.86.29:51412
+0000001180000009000000000000000100
+
+
+"ENQUIRE_LINK": {
+    "Header": {
+            "Id": 21,
+            "Length": 0,
+            "Number": 2,
+            "Status": 0
+        }
+    }
+}
+ENQUIRE_LINK -> 10.32.86.29:5134
+00000010000000150000000000000002
+
+"ENQUIRE_LINK_RESP": {
+        "Header": {
+            "Id": 2147483669,
+            "Length": 0,
+            "Number": 2,
+            "Status": 0
+        }
+    }
+}
+ENQUIRE_LINK_RESP -> 10.32.86.29:51412
+00000010800000150000000000000002
+
+"ENQUIRE_LINK": {
+        "Header": {
+            "Id": 21,
+            "Length": 0,
+            "Number": 4,
+            "Status": 0
+        }
+    }
+}
+******************
+ENQUIRE_LINK -> 10.32.86.29:5134
+00000010000000150000000000000004
+******************
+
+"ENQUIRE_LINK_RESP": {
+    "Header": {
+            "Id": 2147483669,
+            "Length": 0,
+            "Number": 4,
+            "Status": 0
+        }
+    }
+}
+ENQUIRE_LINK_RESP <-- 10.32.86.29:5134
+00000010800000150000000000000004
+******************
+
+
+
+
+"SUBMIT_SM": {
+        "Data": {
+            "AlertOnMessageDelivery": 0,
+            "Coding": 4,
+            "DefaultMessageID": 0,
+            "DestinationAddress": "4250000000",
+            "DestinationAddressNPI": 2,
+            "DestinationAddressTON": 2,
+            "ESMClass": 66,
+            "PriorityFlag": 3,
+            "ProtocolID": 0,
+            "RegisteredDelivery": 0,
+            "ReplaceIfPresent": 0,
+            "SMLength": 48,
+            "ScheduleDeliveryTime": "",
+            "ServiceType": "SUPL",
+            "ShortMessage": "0605040B8423F0002902000050000000485102B0E9A8A000000000000000000000680000C98708500831112080040000",
+            "SouceAddress": "7875",
+            "SouceAddressNPI": 9,
+            "SourceAddressTON": 2,
+            "ValidityPeriod": "000000000009000R"
+        },
+        "Header": {
+            "Id": 4,
+            "Length": 0,
+            "Number": 0,
+            "Status": 0
+        }
+    }
+}
+SUBMIT_SM -> 10.32.86.29:5134
+000000730000000400000000000000035355504C00020937383735000202343235303030303030300042000300303030303030303030303039303030520000000400300605040B8423F0002902000050000000485102B0E9A
+8A000000000000000000000680000C98708500831112080040000
+
+
+SUBMIT_SM_RESP <-- 10.32.86.29:5134
+000000168000000400000000000000034D73675F3300
+"SUBMIT_SM_RESP": {
+        "Data": {
+            "MessageID": "Msg_3"
+        },
+        "Header": {
+            "Id": 2147483652,
+            "Length": 22,
+            "Number": 3,
+            "Status": 0
+        }
+    }
+}
