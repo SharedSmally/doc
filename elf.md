@@ -5,6 +5,13 @@ Each ELF file is made up of one ELF header, followed by file data. The data can 
 - Program header table, describing zero or more memory segments
 - Section header table, describing zero or more sections
 - Data referred to by entries in the program header table or section header table
+
+A program header table, if present, tells the system how to create a process image. Files used to build a process
+image (execute a program) must have a program header table; relocatable files do not need one. A
+section header table contains information describing the file’s sections. Every section has an entry in the
+table; each entry gives information such as the section name, the section size, etc. Files used during linking
+must have a section header table; other object files may or may not have one.
+
 ```
 $hexdump -n 64 -C  test
 00000000  7f 45 4c 46 02 01 01 00  00 00 00 00 00 00 00 00  |.ELF............|
@@ -67,7 +74,9 @@ Program Headers:
   Segment Sections...
    00
    01     .interp
-   02     .interp .note.ABI-tag .hash .dynsym .dynstr .gnu.version .gnu.version_r .rela.dyn .rela.plt .init .plt .text .fini .rodata .eh_frame_hdr .eh_frame .gcc_except_table
+   02     .interp .note.ABI-tag .hash .dynsym .dynstr .gnu.version .gnu.version_r 
+          .rela.dyn .rela.plt .init .plt .text .fini .rodata .eh_frame_hdr
+          .eh_frame .gcc_except_table
    03     .init_array .fini_array .jcr .data.rel.ro .dynamic .got .got.plt .data .bss
    04     .dynamic
    05     .note.ABI-tag
