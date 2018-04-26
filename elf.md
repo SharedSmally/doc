@@ -100,4 +100,9 @@ Key to Flags:
   W (write), A (alloc), X (execute), M (merge), S (strings), l (large)
   I (info), L (link order), G (group), T (TLS), E (exclude), x (unknown)
   O (extra OS processing required) o (OS specific), p (processor specific)
+ 
+section table is in the end of the ELF file.
+test: totalsize = 11623880
+section-headers offset: 11621512  
+section-table size:  11623880-11621512 = 2368 = 64(section table size) * 37(section entry number)
 ```
