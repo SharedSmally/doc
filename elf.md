@@ -5,7 +5,7 @@ Each ELF file is made up of one ELF header, followed by file data. The data can 
 - Program header table, describing zero or more memory segments
 - Section header table, describing zero or more sections
 - Data referred to by entries in the program header table or section header table
-
+```
 $hexdump -n 64 -C  test
 00000000  7f 45 4c 46 02 01 01 00  00 00 00 00 00 00 00 00  |.ELF............|
 00000010  02 00 3e 00 01 00 00 00  e0 2a 48 00 00 00 00 00  |..>......*H.....|
@@ -91,3 +91,4 @@ Key to Flags:
   W (write), A (alloc), X (execute), M (merge), S (strings), l (large)
   I (info), L (link order), G (group), T (TLS), E (exclude), x (unknown)
   O (extra OS processing required) o (OS specific), p (processor specific)
+```
