@@ -14,6 +14,11 @@ The global top level message unit that contains all of the data that can be sent
 
 ### [ASN1 Wiki](https://en.wikipedia.org/wiki/Abstract_Syntax_Notation_One)
 
+### Asn1 parser: (asn1ate)[https://github.com/kimgr/asn1ate]
+```
+$ python .../asn1ate/pyasn1gen.py source.asn1
+```
+
 ### ObjSys Asn1 Compiler
 -  ASN1T_xxx: Contains Data
 -  ASN1C_xxx: Manipulate the ASN1T_xxx data object, such as for add/remove ops for List/Array
