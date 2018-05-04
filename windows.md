@@ -20,3 +20,29 @@ End Sub
 ```
 .\word2xml.bat .\*.doc
 ```
+### makefile to convert
+```
+LOCAL=.
+HOST=xxx@yyyy
+REMOTE=${HOST}:~/workspace/xdia/meta
+DOC2XML="/cygdrive/c/Program Files (x86)/Microsoft Office/root/Office16/WINWORD.EXE"
+
+main:init pull
+
+init:
+	mkdir -p doc/
+	mkdir -p docx/
+	
+pull:
+	scp ${REMOTE}/doc/*.doc ${LOCAL}/doc
+
+test:
+	${DOC2XML} doc/29061-e40.doc /mSaveAsXml
+
+convert:
+	for f in `ls doc/*.doc`; do ${DOC2XML} $$f /mSaveAsXml;  done
+	mv doc/*.xml docx/
+
+push:
+	for f in `ls docx/*.xml`; do scp $$f ${REMOTE}/docx; done
+```
