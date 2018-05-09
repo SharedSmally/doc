@@ -16,3 +16,8 @@ configure: error: error verifying int64_t uses long long:  Need to install gcc-c
 ```
      yum install -y gcc-c++
 ```
+
+## Final Opts
+```
+GCC_OPTS=--enable-languages=c,c++  --disable-multilib --enable-threads=posix 
+```
