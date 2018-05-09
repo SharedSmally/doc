@@ -36,7 +36,9 @@ config.vm.provision "shell", inline: <<-SHELL
 SHELL
   
 ###########################
-## cd /opt && tar -xzf /myspace/src/jdk-10.0.1_linux-x64_bin.tar.gz && ln -s jdk-10.0.1 jdk
+#sudo passwd root
+#
+# cd /opt && tar -xzf /myspace/src/jdk-10.0.1_linux-x64_bin.tar.gz && ln -s jdk-10.0.1 jdk
 # /etc/bashrc
 # /etc/profile.d
 #
