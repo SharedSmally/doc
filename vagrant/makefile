@@ -24,6 +24,17 @@ clean:
 # vi Vagrantfile
 #config.vm.synced_folder "C:\\MySpace", "/myspace"
 
+# For debian
+config.vm.provision "shell", inline: <<-SHELL
+   apt-get update
+   apt-get install -y apache2
+SHELL
+# For Redhat
+config.vm.provision "shell", inline: <<-SHELL
+   yum update
+   yum install -y git
+SHELL
+  
 ###########################
 ## cd /opt && tar -xzf /myspace/src/jdk-10.0.1_linux-x64_bin.tar.gz && ln -s jdk-10.0.1 jdk
 # /etc/bashrc
