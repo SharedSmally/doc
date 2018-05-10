@@ -12,7 +12,20 @@ make -qp | awk -F':' '/^[a-zA-Z0-9][^$#\/\t=]*:([^=]|$)/ {split($1,A,/ /);for(i 
  ```
    if [ ! -f $file ]; then \ 
       echo "file ", $file, " not exists"; \ 
-   fi   
+   fi 
+   
+   @if [ "$(REL) " = " " ] ; then \
+	echo error:: REL not specified, aborting ; exit 1 ; \
+   fi
+   
+ifeq ($(TARGET_CPU),x86)
+  TARGET_CPU_IS_X86 := 1
+else ifeq ($(TARGET_CPU),x86_64)
+  TARGET_CPU_IS_X86 := 1
+else
+  TARGET_CPU_IS_X86 := 0
+endif
+
 ```   
  - for-loop
  ``` 
