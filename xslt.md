@@ -73,6 +73,8 @@ By default, XSLT does not look for templates matching attribute nodes. Explicitl
 <xsl:import  href = uri />
 <xsl:include  href = uri />
 ```
+    - xsl:include: insert the whole stylesheet into the file; xs:import is similar to xs:include except the content can be overridden.
+    
     - xsl:include: include the referenced xsl document (b.xsl) within the referencing document (a.xsl).  Cannot have two templates with the same matching signature: name, or (match and/or mode).
 
     - xsl:importans: if b.xsl "imports" a.xsl then b.xsl is--in effect--sub-classing a.xsl. If a.xsl has a template named "X" and b.xsl has a template named "X", then xslt processor will use the call the "X" template from the b.xsl document.  
