@@ -94,3 +94,8 @@
 <xsl:message>Query namespace <xsl:value-of select="$ns"/>; node:<xsl:value-of select="serialize($dep)"/></xsl:message> 
 <xsl:message>Query namespace <xsl:value-of select="$ns"/>; node:<xsl:value-of select="string($dep)"/></xsl:message> 
 ```
+- Label/Trace
+```
+    <xsl:message> Handle package at line: <xsl:number/> </xsl:message>
+    <xsl:message> Handle package at line: <xsl:value-of select="trace(.,'test package')"/> </xsl:message>
+```
