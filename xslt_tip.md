@@ -52,6 +52,11 @@
     <xsl:text> group: </xsl:text> <xsl:value-of select="avg(current-group()/@size)"/>
   </xsl:for-each-group>
 ```
+```
+  <xsl:for-each select="states/state">
+     <xsl:sort select="name" />
+  </xsl:for-each>
+```
 
 - [XSLT regrex](https://www.xml.com/pub/a/2003/06/04/tr.html)
 ```
@@ -70,4 +75,13 @@
   </xsl:analyze-string>
 
 </xsl:template>
+```
+
+- [Sorting](https://www.xml.com/pub/a/2002/07/03/transform.html)
+To sort the output, simply add an <xsl:sort> element inside the <xsl:for-each>:
+```
+    <xsl:for-each select="catalog/cd">
+      <xsl:sort select="artist"/>
+   </xsl:for-each>
+
 ```
