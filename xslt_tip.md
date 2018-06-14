@@ -27,6 +27,15 @@
 ```
 - [XSLT group](https://www.xml.com/pub/a/2003/11/05/tr.html)
 ```
+  <xsl:for-each-group select="" group-by="">
+     <xsl:variable name="key" select="current-grouping-key()"/>
+     <xsl:for-each select="current-group()">
+
+     </xsl:for-each>
+
+  </xsl:for-each-group>
+```
+```
     <xsl:for-each-group select="file" group-by="@project">
       <xsl:value-of select="current-grouping-key()"/>
       <xsl:text>xxx</xsl:text>
