@@ -16,16 +16,16 @@
 - password: A single-line text field whose value is obscured. Use the maxlength and minlength attributes to specify the maximum length of the value that can be entered.
 
 ### HTML5 inputs:
--search: A single-line text field for entering search strings. Line-breaks are automatically removed from the input value.
--email:  A field for editing an e-mail address.
--tel:  A control for entering a telephone number.
--url:  A field for entering a URL.
--number: A control for entering a number.
--range:  A control for entering a number whose exact value is not important.
--color:  A control for specifying a color. A color picker's UI has no required features other than accepting simple colors as text (more info).
--date:   A control for entering a date (year, month, and day, with no time).
--time:   A control for entering a time value with no time zone.
--datetime-local:  A control for entering a date and time, with no time zone.
--month:  A control for entering a month and year, with no time zone.
--week:   A control for entering a date consisting of a week-year number and a week number with no time zone.
--datetime*: Obsoleted. A control for entering a date and time (hour, minute, second, and fraction of a second) based on UTC time zone. This feature has been removed from WHATWG HTML.  
+- search: A single-line text field for entering search strings. Line-breaks are automatically removed from the input value.
+- email:  A field for editing an e-mail address.
+- tel:  A control for entering a telephone number.
+- url:  A field for entering a URL.
+- number: A control for entering a number.
+- range:  A control for entering a number whose exact value is not important.
+- color:  A control for specifying a color. A color picker's UI has no required features other than accepting simple colors as text.
+- date:   A control for entering a date (year, month, and day, with no time).
+- time:   A control for entering a time value with no time zone.
+- datetime-local:  A control for entering a date and time, with no time zone.
+- month:  A control for entering a month and year, with no time zone.
+- week:   A control for entering a date consisting of a week-year number and a week number with no time zone.
+- datetime*: Obsoleted. A control for entering a date and time (hour, minute, second, and fraction of a second) based on UTC time zone. This feature has been removed from WHATWG HTML.  
