@@ -74,3 +74,28 @@ Used to group several controls as well as labels (<label>) within a web form.
 - month:  A control for entering a month and year, with no time zone.
 - week:   A control for entering a date consisting of a week-year number and a week number with no time zone.
 - datetime*: Obsoleted. A control for entering a date and time (hour, minute, second, and fraction of a second) based on UTC time zone. This feature has been removed from WHATWG HTML.  
+
+```
+type=button: link, menuitem, menuitemcheckbox, menuitemradio, radio, switch, tab
+type=checkbox: button, menuitemcheckbox, option, switch
+type=image: link, menuitem, menuitemcheckbox, menuitemradio, radio, switch
+type=radio: menuitemradio
+type=color|date|datetime|datetime-local|email|file: None
+type=hidden|month|number|password|range|reset: None
+type=search|submit|tel|text|url|week: None
+
+search:  <input type="search" name="search">
+email:   <input type="email" name="email" required>
+url:     <input type="url" name="url" required>
+tel:     <input type="tel" name="tel" id="tel" required>
+number:  <input type="text" pattern="[0-9]*" name="shoe-size">
+    <input type="number" min="5" max="18" step="0.5" value="9" name="shoe-size">
+range:   <input id="skill" type="range" min="1" max="100" value="0">
+date:    <input id="startdate" name="startdate" min="2012-01-01" max="2013-01-01" type="date">
+month:   <input id="expiry" name="expiry" type="month" required>
+week:    <input id="vacation" name="vacation" type="week">
+time:    <input id="exit-time" name="exit-time" type="time">
+datetime: <input id="entry-day-time" name="entry-day-time" type="datetime">
+datetime-local:  <input id="arrival-time" name="arrival-time " type="datetime-local">
+color:    <input id="color" name="color" type="color">
+```
