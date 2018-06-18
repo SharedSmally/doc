@@ -15,7 +15,7 @@
 - hidden: A control that is not displayed but whose value is submitted to the server.
 - password: A single-line text field whose value is obscured. Use the maxlength and minlength attributes to specify the maximum length of the value that can be entered.
 
-HTML5 inputs:
+### HTML5 inputs:
 -search: A single-line text field for entering search strings. Line-breaks are automatically removed from the input value.
 -email:  A field for editing an e-mail address.
 -tel:  A control for entering a telephone number.
