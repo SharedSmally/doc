@@ -1,4 +1,49 @@
 
+## [Form](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form)
+```
+<form action="" method="post">
+  <label for="POST-name">Name:</label>
+  <input id="POST-name" type="text" name="name">
+  <input type="submit" value="Save">
+</form>
+```
+
+## [select](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select)
+```
+<select name="text"> <!--Supplement an id here instead of using 'text'-->
+  <option value="first">First Value</option> 
+  <option value="second" selected>Second Value</option>
+  <option value="third">Third Value</option>
+</select>
+```
+
+## [fieldset](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/fieldset)
+Used to group several controls as well as labels (<label>) within a web form.
+```
+<form action="test.php" method="post">
+  <fieldset>
+    <legend>Title</legend>
+    <input type="radio" id="radio">
+    <label for="radio">Click me</label>
+  </fieldset>
+</form>
+```
+  
+##[datalist](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/datalist)
+ contains a set of <option> elements that represent the values available for other controls.
+```
+<label for="myBrowser">Choose a browser from this list:</label>
+<input list="browsers" id="myBrowser" name="myBrowser" />
+<datalist id="browsers">
+  <option value="Chrome">
+  <option value="Firefox">
+  <option value="Internet Explorer">
+  <option value="Opera">
+  <option value="Safari">
+  <option value="Microsoft Edge">
+</datalist>
+```
+
 ## [input types](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input)
 ```
 <input id="input1" type="text">
