@@ -56,15 +56,19 @@ North American (ANSI) SSNs
 A global title (GT) is an address used in the SCCP protocol for routing signaling messages on telecommunications networks.The GT structure is officially defined in ITU-T Recommendation [Q.713](), and further extended in the supporting numbering plan standards
 
 - Global title format
+
 A global title can be in a variety of formats, most of which are each defined in separate standards. The format parameter indicates which of the available formats are in use. Each format can include any of the subsequent parameters.
 
 - Numbering plan indicator
+
 The numbering plan indicator (NPI) describes which numbering plan will be used for the global title. The chosen numbering plan will aid the routing system in determining the correct network system to direct the message.
 
 - Type of number
+
 The type of number (TON) or Nature of Address Indicator (NAI) parameter, which is of relevance to E.164 (regular telephone) numbers for example, indicates the scope of the address value, such as whether it is an international number (i.e. including the country code), a "national" or domestic number (i.e. without country code), and other formats such as "local" format (e.g. in the U.S., without an area code).
 
 - Translation type
+
 The translation type (TT) parameter is used in a network to indicate the preferred method of global title analysis (see below). Normally in European networks, this parameter is set to 0 (the default) value. In North American mobile networks, different translation types are used for analysis of the IMSI and for messages between telephone systems. This parameter is valuable in complex routing problems, where the same number has to be routed differently depending on the circumstances, such as those introduced by number portability resolution.
 
 ## SCCP Address()
