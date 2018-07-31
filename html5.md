@@ -99,3 +99,23 @@ datetime: <input id="entry-day-time" name="entry-day-time" type="datetime">
 datetime-local:  <input id="arrival-time" name="arrival-time " type="datetime-local">
 color:    <input id="color" name="color" type="color">
 ```
+
+## [SpringBoot + Bootstrap + jQuery](https://dzone.com/articles/spring-boot-integrating-with-bootstrap-and-jquery)
+- (Webjar)[https://www.webjars.org/]
+```
+<dependency>
+    <groupId>org.webjars</groupId>
+    <artifactId>bootstrap</artifactId>
+    <version>4.1.2</version>
+</dependency>
+<dependency>
+    <groupId>org.webjars</groupId>
+    <artifactId>bootstrap-datepicker</artifactId>
+    <version>1.0.1</version>
+</dependency>
+<dependency>
+    <groupId>org.webjars</groupId>
+    <artifactId>jquery</artifactId>
+    <version>3.3.1-1</version>
+</dependency>
+```
