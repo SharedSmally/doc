@@ -61,7 +61,9 @@ public class PartTimeEmployee extends Employee {
 - Non-entity superclasses may not be used in EntityManager or Query operations. 
 - Any mapping or relationship annotations in non-entity superclasses are ignored.
 
-### Entity Inheritance Mapping Strategies[ decorating the root class of the hierarchy with javax.persistence.Inheritance]
+### Entity Inheritance Mapping Strategies
+Decorating the root class of the hierarchy with javax.persistence.Inheritance.
+
 The Entity inheritance mapping strategies:
 - A single table per class hierarchy. Needs @DiscriminatorColumn containing a value to identify the subclass
 - A table per concrete entity class
