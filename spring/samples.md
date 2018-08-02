@@ -17,7 +17,8 @@
  - Contains: <ref type="typename" size="1..n">names</ref>: no ownership
    - A refs B:
    - A refs Bs:
-   
+ - [Use Converter for Entity](https://www.thoughts-on-java.org/how-to-use-jpa-type-converter-to/)  
+ 
 ## [J2EE Entity XSD](http://www.oracle.com/webfolder/technetwork/jsc/xml/ns/persistence/index.html)
 - [orm 2.2](http://www.oracle.com/webfolder/technetwork/jsc/xml/ns/persistence/orm_2_2.xsd)
 - [persistence 2.2](http://www.oracle.com/webfolder/technetwork/jsc/xml/ns/persistence/persistence_2_2.xsd)
