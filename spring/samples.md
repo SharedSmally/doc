@@ -8,7 +8,16 @@
 - Web Application:
 
 ## [J2EE Entity](https://docs.oracle.com/javaee/6/tutorial/doc/bnbpz.html)
-
+ Relationship: Join column
+ - Own: <field type="typename" size="1..n">names</field>: prevent the case of a.b(a owns b) and b.a(b owns a)/(cycle-own:dead)
+   - A owns B:  OneToOne
+      - A: B getB(); void setB(B); 
+      - B: 
+   - A owns Bs: OneToMany
+ - Contains: <ref type="typename" size="1..n">names</ref>: no ownership
+   - A refs B:
+   - A refs Bs:
+ 
 ## [Entity Inheritance](https://docs.oracle.com/javaee/6/tutorial/doc/bnbqn.html)
 Entities support class inheritance, polymorphic associations, and polymorphic queries. Entity classes can extend non-entity classes, and non-entity classes can extend entity classes. Entity classes can be both abstract and concrete.
 ### Abstract Entities
