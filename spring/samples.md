@@ -7,7 +7,7 @@
 - Controller: the back-end of the web application, may use service for the work to provide model for the viewer that will be shown.
 - Web Application:
 
-## [J2EE Entity](https://docs.oracle.com/javaee/6/tutorial/doc/bnbpz.html)
+## [J2EE Entity](https://docs.oracle.com/javaee/6/tutorial/doc/bnbpz.html):
  Relationship: Join column
  - Own: <field type="typename" size="1..n">names</field>: prevent the case of a.b(a owns b) and b.a(b owns a)/(cycle-own:dead)
    - A owns B:  OneToOne
@@ -17,7 +17,15 @@
  - Contains: <ref type="typename" size="1..n">names</ref>: no ownership
    - A refs B:
    - A refs Bs:
- 
+   
+## [J2EE Entity XSD](http://www.oracle.com/webfolder/technetwork/jsc/xml/ns/persistence/index.html)
+- [orm 2.2](http://www.oracle.com/webfolder/technetwork/jsc/xml/ns/persistence/orm_2_2.xsd)
+- [persistence 2.2](http://www.oracle.com/webfolder/technetwork/jsc/xml/ns/persistence/persistence_2_2.xsd)
+- [orm 2.1](http://www.oracle.com/webfolder/technetwork/jsc/xml/ns/persistence/orm_2_1.xsd)
+- [persistence 2.1](http://www.oracle.com/webfolder/technetwork/jsc/xml/ns/persistence/persistence_2_1.xsd)
+- [orm 2.0](http://www.oracle.com/webfolder/technetwork/jsc/xml/ns/persistence/orm_2_0.xsd)
+- [persistence 2.0](http://www.oracle.com/webfolder/technetwork/jsc/xml/ns/persistence/persistence_2_0.xsd)
+
 ## [Entity Inheritance](https://docs.oracle.com/javaee/6/tutorial/doc/bnbqn.html)
 Entities support class inheritance, polymorphic associations, and polymorphic queries. Entity classes can extend non-entity classes, and non-entity classes can extend entity classes. Entity classes can be both abstract and concrete.
 ### Abstract Entities
