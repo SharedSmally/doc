@@ -44,7 +44,21 @@ node test.js
 
 - Open a browser: http://192.168.109.11:3000/
 
+### ORM:
+- [TypeORM](https://github.com/typeorm/typeorm)
+- [Waterline](http://waterlinejs.org/)
+- [Sequelize](http://docs.sequelizejs.com/)
 
+### UI
+- [Angular2]()
+- [PrimeNG]()
+```
+            'bootstrap',
+            'bootstrap/dist/css/bootstrap.css',
+            'font-awesome/css/font-awesome.css',
+            'primeng/resources/primeng.css',
+            'primeng/resources/themes/bootstrap/theme.css',
+```
 ### C++ Addons: https://nodejs.org/api/addons.html
 Node.js Addons are dynamically-linked shared objects written in C++. They can be loaded into Node.js using the require() function, and used just as if they were an ordinary Node.js module. They are used primarily to provide an interface between JavaScript running in Node.js and C/C++ libraries.
 
