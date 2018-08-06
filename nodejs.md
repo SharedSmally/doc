@@ -59,10 +59,10 @@ node test.js
 - [PrimeNG](https://www.primefaces.org/primeng/#/): based on Angular; more UI components
 - [NVD3](http://nvd3.org/index.html)
 - [Font awesone](https://fontawesome.com)
-   - Solid	  Free	fas	<i class="fas fa-stroopwafel"></i>	
-   - Regular  Pro 	far	<i class="far fa-stroopwafel"></i>	
-   - Light	  Pro 	fal	<i class="fal fa-stroopwafel"></i>	
-   - Brands	  Free	fab	<i class="fab fa-font-awesome"></i>
+   - Solid	  Free	fas	```<i class="fas fa-stroopwafel"></i>```	
+   - Regular  Pro 	far	```<i class="far fa-stroopwafel"></i>```	
+   - Light	  Pro 	fal	```<i class="fal fa-stroopwafel"></i>```	
+   - Brands	  Free	fab	```<i class="fab fa-font-awesome"></i>```
 ```
 <i class="fas fa-stroopwafel"></i> <!-- this icon's 1) style prefix == fas and 2) icon name == stroopwafel -->
 <i class="fas fa-stroopwafel"></i> <!-- using an <i> element to reference the icon -->
