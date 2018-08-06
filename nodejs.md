@@ -51,13 +51,37 @@ node test.js
 
 ### UI:  PrimeNG + Angular is the best.
 - [jQuery](https://jquery.com/)
-    - [jQuery API] (https://api.jquery.com/)
+    - [jQuery API](https://api.jquery.com/)
     - [jQueryUI](https://jqueryui.com/): Based on jQuery
     - [jQuery Theme Roller](https://jqueryui.com/themeroller/)
 - [Bootstrap](https://getbootstrap.com/): UI based on jQuery
 - [Angular](https://angular.io/): component uses service to access data, based on css and html template[could be bootstrap] to generate UI, and ts file to take action on UI [Module=>Component;Service;].
 - [PrimeNG](https://www.primefaces.org/primeng/#/): based on Angular; more UI components
 - [NVD3](http://nvd3.org/index.html)
+- [Font awesone](https://fontawesome.com)
+   - Solid	  Free	fas	<i class="fas fa-stroopwafel"></i>	
+   - Regular  Pro 	far	<i class="far fa-stroopwafel"></i>	
+   - Light	  Pro 	fal	<i class="fal fa-stroopwafel"></i>	
+   - Brands	  Free	fab	<i class="fab fa-font-awesome"></i>
+```
+<i class="fas fa-stroopwafel"></i> <!-- this icon's 1) style prefix == fas and 2) icon name == stroopwafel -->
+<i class="fas fa-stroopwafel"></i> <!-- using an <i> element to reference the icon -->
+<span class="fas fa-stroopwafel"></span> <!-- using a <span> element to reference the icon -->
+
+<span style="font-size: 3em; color: Tomato;">
+  <i class="fas fa-stroopwafel"></i>
+</span>
+
+<span style="font-size: 48px; color: Dodgerblue;">
+  <i class="fas fa-stroopwafel"></i>
+</span>
+
+<span style="font-size: 3rem;">
+  <span style="color: Mediumslateblue;">
+  <i class="fas fa-stroopwafel"></i>
+  </span>
+</span>
+```
 
 ### C++ Addons: https://nodejs.org/api/addons.html
 Node.js Addons are dynamically-linked shared objects written in C++. They can be loaded into Node.js using the require() function, and used just as if they were an ordinary Node.js module. They are used primarily to provide an interface between JavaScript running in Node.js and C/C++ libraries.
