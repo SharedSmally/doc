@@ -49,16 +49,16 @@ node test.js
 - [Waterline](http://waterlinejs.org/)
 - [Sequelize](http://docs.sequelizejs.com/)
 
-### UI
-- [Angular2]()
-- [PrimeNG]()
-```
-            'bootstrap',
-            'bootstrap/dist/css/bootstrap.css',
-            'font-awesome/css/font-awesome.css',
-            'primeng/resources/primeng.css',
-            'primeng/resources/themes/bootstrap/theme.css',
-```
+### UI:  PrimeNG + Angular is the best.
+- [jQuery](https://jquery.com/)
+    - [jQuery API] (https://api.jquery.com/)
+    - [jQueryUI](https://jqueryui.com/): Based on jQuery
+    - [jQuery Theme Roller](https://jqueryui.com/themeroller/)
+- [Bootstrap](https://getbootstrap.com/): UI based on jQuery
+- [Angular](https://angular.io/): component uses service to access data, based on css and html template[could be bootstrap] to generate UI, and ts file to take action on UI [Module=>Component;Service;].
+- [PrimeNG](https://www.primefaces.org/primeng/#/): based on Angular; more UI components
+- [NVD3](http://nvd3.org/index.html)
+
 ### C++ Addons: https://nodejs.org/api/addons.html
 Node.js Addons are dynamically-linked shared objects written in C++. They can be loaded into Node.js using the require() function, and used just as if they were an ordinary Node.js module. They are used primarily to provide an interface between JavaScript running in Node.js and C/C++ libraries.
 
