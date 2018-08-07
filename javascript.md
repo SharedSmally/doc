@@ -1,6 +1,10 @@
 # Javascript
 =======
 
+## Javascript Tutorial
+- [Mozilla](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/A_re-introduction_to_JavaScript)
+
+
 ## ES6
 - [Type script](https://www.typescriptlang.org/)
     - [Typescript Deep Dive] (https://basarat.gitbooks.io/typescript/content/docs/getting-started.html)
