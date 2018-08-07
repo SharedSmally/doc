@@ -41,8 +41,8 @@ console.log('Server running at port 3000');
 ```
 node test.js
 ```
-
 - Open a browser: http://192.168.109.11:3000/
+- npm: nodejs package manager(under /usr/lib/node_modules/npm)
 
 ### ORM:
 - [TypeORM](https://github.com/typeorm/typeorm)
