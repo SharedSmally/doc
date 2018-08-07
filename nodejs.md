@@ -7,6 +7,13 @@ makes it lightweight and efficient, andnpm for package management.
 - Document Site:  https://nodejs.org/en/docs/
     - NodeJS API:  https://nodejs.org/api/
 - Install:   sudo apt-get install nodejs
+```
+For centos:
+curl -sL https://rpm.nodesource.com/setup_8.x | sudo bash -
+sudo yum remove -y nodejs npm
+sudo yum install -y nodejs
+npm i npm@latest -g
+```
 - Usage:
 ```
 node [options] [v8 options] [script.js | -e "script" | - ] [arguments]
