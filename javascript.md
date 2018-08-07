@@ -3,7 +3,7 @@
 
 ## Javascript Tutorial
 - [EN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/A_re-introduction_to_JavaScript)
-- [CN]https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/A_re-introduction_to_JavaScript)
+- [CN](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/A_re-introduction_to_JavaScript)
 - [JS 2015 new features](https://babeljs.io/docs/en/learn/)
 - [Type script](https://www.typescriptlang.org/)
 
