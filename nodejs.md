@@ -56,7 +56,11 @@ node test.js
     - [jQuery Theme Roller](https://jqueryui.com/themeroller/)
 - [Bootstrap](https://getbootstrap.com/): UI based on jQuery
 - [Angular](https://angular.io/): component uses service to access data, based on css and html template[could be bootstrap] to generate UI, and ts file to take action on UI [Module=>Component;Service;].
-- [PrimeNG](https://www.primefaces.org/primeng/#/): based on Angular; more UI components
+- [Angular CLI](https://cli.angular.io/): [wiki](https://github.com/angular/angular-cli/wiki); npm install -g @angular/cli
+- [Karma](http://karma-runner.github.io/): Angular testing; npm install karma --save-dev
+- [PrimeNG](https://www.primefaces.org/primeng/#/): based on Angular; more UI components: 
+       - npm install primeng --save; 
+       - npm install primeicons --save
 - [NVD3](http://nvd3.org/index.html)
 - [Font awesone](https://fontawesome.com)
    - Solid	  Free	fas	```<i class="fas fa-stroopwafel"></i>```	
