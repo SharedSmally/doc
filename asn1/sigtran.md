@@ -6,13 +6,19 @@
 -	Q.774: Transaction capabilities procedures
 -	Q.775: Guidelines for using transaction capabilities
 
-## Signalling connection control part (SCCP): 711-715
+## [Signalling connection control part (SCCP)](https://en.wikipedia.org/wiki/Signalling_Connection_Control_Part):
+ITU SCCP defined in 711-715:
 -	Q.711: Functional description of the signalling connection control part
 -	Q.712: Definition and function of Signalling connection control part messages
 -	Q.713: Signalling connection control part formats and codes: ASN1
 -	Q.714: Signalling connection control part procedures
 -	Q.715: Signalling connection control part user guide
 -	Q.716: Signalling System No. 7 – Signalling connection control part (SCCP) performance
+
+## Other SCCP
+- ETSI EN 300 009-1
+— ANSI T1.112/2002
+- OpenSS7
 
 ## M3UA
 - [RFC 4666](https://tools.ietf.org/rfc/rfc4666.txt) Signaling System 7 (SS7) Message Transfer Part 3 (MTP3) - User Adaptation Layer (M3UA)
