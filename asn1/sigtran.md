@@ -1,4 +1,4 @@
-[SIGTRAN protocols](https://en.wikipedia.org/wiki/SIGTRAN)
+#[SIGTRAN protocols](https://en.wikipedia.org/wiki/SIGTRAN)
 ## [TCAP](https://www.itu.int/ITU-T/recommendations/index.aspx?ser=Q): 771-775
 - Q.771: Functional description of transaction capabilities
 -	Q.772: Transaction capabilities information element definitions
@@ -19,3 +19,15 @@
 - [RFC 3332](https://tools.ietf.org/rfc/rfc3332.txt): Obsolted by 4666
 - [M2UA RFC 3331](https://tools.ietf.org/rfc/rfc3331.txt))
 - [M2PA RFC 4165](https://tools.ietf.org/rfc/rfc4165.txt))
+
+## SCCP Address
+
+## [PC (PointCode)](https://en.wikipedia.org/wiki/Point_code)
+An SS7 point code is similar to an IP address in an IP network. It is a unique address for a node (Signaling Point, or SP), used in MTP layer 3 to identify the destination of a message signal unit (MSU):
+- OPC (Originating Point Code) 
+- DPC (Destination Point Code)
+- ISPC International Signaling Point Code
+
+Depending on the network, a point code can be 24 bits (North America, China), 16 bits (Japan), or 14 bits (ITU standard, International SS7 network and most countries) in length:
+- ANSI point codes use 24 bits, mostly in 8-8-8 format
+- ITU point codes use 14 bits and are written in 3-8-3 format
