@@ -22,6 +22,19 @@
 
 ## SCCP Address
 
+## [GT (Global Title)](https://en.wikipedia.org/wiki/Global_title)
+- Global title format
+The format parameter indicates the available formats are in use. Each format can include any of the subsequent parameters. A variety of formats are defined in separate standards. 
+
+- Numbering plan indicator
+The numbering plan indicator (NPI) describes which numbering plan will be used for the global title. The chosen numbering plan will aid the routing system in determining the correct network system to direct the message.
+
+- Type of number
+The type of number (TON) or Nature of Address Indicator (NAI) indicates the scope of the address value, such as whether it is an international number (i.e. including the country code), a "national" or domestic number (i.e. without country code), and other formats such as "local" format (e.g. in the U.S., without an area code). It could be relevance to E.164 (regular telephone) numbers. 
+
+- Translation type
+The translation type (TT) is used in a network to indicate the preferred method of global title analysis. Normally in European networks, this parameter is set to 0 (the default) value. In North American mobile networks, different translation types are used for analysis of the IMSI and for messages between telephone systems. This parameter is valuable in complex routing problems, where the same number has to be routed differently depending on the circumstances.
+
 ## [PC (PointCode)](https://en.wikipedia.org/wiki/Point_code)
 An SS7 point code is similar to an IP address in an IP network. It is a unique address for a node (Signaling Point, or SP), used in MTP layer 3 to identify the destination of a message signal unit (MSU):
 - OPC (Originating Point Code) 
