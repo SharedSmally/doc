@@ -17,8 +17,8 @@ ITU SCCP defined in 711-715:
 
 ## Other SCCP
 - ETSI EN 300 009-1
-— ANSI T1.112/2002
-- OpenSS7
+- ANSI T1.112/2002
+- OpenSource Impl:[OpenSS7](http://www.openss7.org/)
 
 ## M3UA
 - [RFC 4666](https://tools.ietf.org/rfc/rfc4666.txt) Signaling System 7 (SS7) Message Transfer Part 3 (MTP3) - User Adaptation Layer (M3UA)
