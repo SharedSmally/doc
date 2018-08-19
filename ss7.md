@@ -51,7 +51,14 @@ North American (ANSI) SSNs
  248  800 number translation (AIN0.1)
  254  800 number translation (TCAP)
 ```
-
+## Network Indicator (NI)
+The NI indicates whether the message is for a national or international network. A national network can also discriminate between different Point Code structures used by different countries and invoke the appropriate version of the message handling functions accordingly.
+```
+0	= International
+1	= International Spare
+2	= National
+3	= National Spare
+```
 ## [GT](https://en.wikipedia.org/wiki/Global_title) (Global Title)
 A global title (GT) is an address used in the SCCP protocol for routing signaling messages on telecommunications networks.The GT structure is officially defined in ITU-T Recommendation [Q.713](), and further extended in the supporting numbering plan standards
 
