@@ -1,6 +1,5 @@
-#[SS7](https://en.wikipedia.org/wiki/Signalling_System_No._7)
-- ITU Q700 - Q799]
-- Architecture
+# [SS7](https://en.wikipedia.org/wiki/Signalling_System_No._7)
+- ITU [Q.700 - Q.799]
 - [Tutorial](https://www.cs.rutgers.edu/~rmartin/teaching/fall04/cs552/readings/ss7.pdf)
 
 ## SS7 Network Elements
@@ -11,6 +10,7 @@ The SCPs and STPs are deployed in pairs. The elements of a pair are not generatl
 
 ## SS7 [Links]
 ![SS7 Links](http://www.althos.com/Sample_Diagrams/ag_SS7_Signaling_Link_Types_low_res.jpg)
+
 Signaling links are logically organized by link type ("A" through "F") according to their use in the SS7 signaling network: 
 - The "A" (access) links connect the signaling end points (e.g., an SCP or SSP) to the STPs. Only messages originating from or destined to the signaling end point are transmitted on an "A" link.
 - The "B" (bridge) links connect the STP to another STP. 
