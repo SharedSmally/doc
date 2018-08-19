@@ -1,3 +1,24 @@
+#[SS7](https://en.wikipedia.org/wiki/Signalling_System_No._7)
+- ITU Q700 - Q799]
+- Architecture
+- [Tutorial](https://www.cs.rutgers.edu/~rmartin/teaching/fall04/cs552/readings/ss7.pdf)
+
+## SS7 Network Elements
+The SCPs and STPs are deployed in pairs. The elements of a pair are not generatl co-lateted, they work reduntdantly to perform the samne logical function.
+- [SSP](https://en.wikipedia.org/wiki/Service_switching_point): Signal Switching Point
+- [SCP](https://en.wikipedia.org/wiki/Service_control_point): Signal Control Point
+- [STP](https://en.wikipedia.org/wiki/Signal_Transfer_Point): Signal Transfer Point
+
+## SS7 [Links]
+![SS7 Links](http://www.althos.com/Sample_Diagrams/ag_SS7_Signaling_Link_Types_low_res.jpg)
+Signaling links are logically organized by link type ("A" through "F") according to their use in the SS7 signaling network: 
+- The "A" (access) links connect the signaling end points (e.g., an SCP or SSP) to the STPs. Only messages originating from or destined to the signaling end point are transmitted on an "A" link.
+- The "B" (bridge) links connect the STP to another STP. 
+- The "C" (cross) link connects STPs performing identical functions into a mated pair. 
+- The "D" (diagonal) links connect the secondary (e.g., local or regional) STP pair to a primary (e.g., inter-network gateway) STP pair in a quad-link configuration. 
+- The "E" (extended) links connect the SSP to an alternate STP.
+- The "F" (fully associated) link is connected between two signaling end points (i.e., SSPs and SCPs).
+
 ## PC (Point Code)
 - An SS7 point code is similar to an IP address in an IP network. It is a unique address for a node (Signaling Point, or SP), used in MTP layer 3 to identify the destination of a message signal unit (MSU).
 - An OPC (Originating Point Code) and a DPC (Destination Point Code) is in the message, sometime they are refered as ISPC (International Signaling Point Code). 
