@@ -34,7 +34,7 @@ server.listen(port, hostname, () => {
   console.log(`Server running at http://${hostname}:${port}/`);
 });
 ```
-
+or
 ```
 http = require('http');
 http.createServer(function (req, res) {
@@ -50,6 +50,32 @@ node test.js
 ```
 - Open a browser: http://192.168.109.11:3000/
 - npm: nodejs package manager(under /usr/lib/node_modules/npm)
+
+###
+- http/https/https: create Http server/clent
+- [net](https://gist.github.com/tedmiston/5935757): net.createServer for TCP server and net.Socket/createConnection for TCP client
+```
+const net = require('net');
+var server = net.createServer(function(socket) {
+	socket.write('Echo server\r\n');
+	socket.pipe(socket);
+});
+server.on('eventName', function(){
+    ........
+});
+server.listen(1337, '127.0.0.1');
+
+var client = new net.Socket(); //or createConnection
+client.connect(1337, '127.0.0.1', function() {// Connected
+	client.write('Hello, server! Love, Client.');
+});
+client.on('data', function(data) { // Received data;
+	client.destroy(); // kill client after server's response
+});
+client.on('close', function() { // Connection closed
+});
+```
+- [udp]
 
 ### ORM:
 - [TypeORM](https://github.com/typeorm/typeorm)
