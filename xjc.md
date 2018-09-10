@@ -1,6 +1,7 @@
 ## xjc
 
 ### catalog file: -catalog *catalogfile*
+- catalog files may includes the imported files from the direct imported files.
 - needs for importing files (solve the import files): mapping shcemaLocation(http://xxx) for systemId, or namespace for publicId, to the local file (uri; refer to catalog file).  See [Articles](https://dzone.com/articles/jaxb-xjc-imported-schemas-and)
 ```
 <import namespace="urn:ietf:params:xml:ns:iris1" />
@@ -51,6 +52,8 @@ This import requires a public mapping based on the namespace URI:
 </catalog>
 ```
 ### Generate epsiode files: episode epsFile
+- Generated episode file can be used as jaxb as -b epsFile
+- Generated episode file define the mapping bwtween xml nodes and class names. The mapping for the imported files may be redefined if not related episode files provided in -b.
 - Generated and reused by xjc for the classes mapping; Also need to solve the import files via catalog. If the imported files are solved, the related classes will not be generated if epsiode files is used. 
 
 ### Use binding files: -b bindFile
