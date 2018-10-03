@@ -2,6 +2,26 @@
 XSD
 ======
 
+###
+- xsd:all : child elements can appear in any order and each child element can occur zero or one time (ie, maxOccurs can be 0 or 1). 'all' is only available as a child of a group or complex type.
+- xsd:sequence : child elements must appear in a sequence. Each child element can occur from 0 to any number of times (ie, maxOccurs can be 0 or any number or 'unbounded')
+- xs:choice : allows only one of the elements contained in the declaration to be present within the containing element.
+- Sample that child1, child2 or child3 can appear in any order, any number of times
+```
+<xsd:element name="bar">
+  <xsd:complexType>
+    <xsd:sequence>
+      <!--  Permit any of these tags in any order in any number     -->
+      <xsd:choice minOccurs="0" maxOccurs="unbounded">
+        <xsd:element name="child1" type="xsd:string" />
+        <xsd:element name="child2" type="xsd:string" />
+        <xsd:element name="child3" type="xsd:string" />
+      </xsd:choice>
+    </xsd:sequence>
+  </xsd:complexType>
+</xsd:element>
+```
+
 ### XSD String Data Types
 - xsd:anySimpleType
     - **xsd:QName**:  _[prefix_NCName : ]_local_NCName
