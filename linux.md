@@ -35,6 +35,7 @@
 ```
        #include <sys/eventfd.h>
        int eventfd(unsigned int initval, int flags);
+       flags = EFD_CLOEXEC | EFD_NONBLOCK | EFD_SEMAPHORE
 ```
 
 - [epoll](http://man7.org/linux/man-pages/man7/epoll.7.html)
@@ -48,6 +49,19 @@
 ```
        #include <sys/epoll.h>
        int epoll_ctl(int epfd, int op, int fd, struct epoll_event *event);
+       
+       The struct epoll_event is defined as:
+           typedef union epoll_data {
+               void        *ptr;
+               int          fd;
+               uint32_t     u32;
+               uint64_t     u64;
+           } epoll_data_t;
+
+           struct epoll_event {
+               uint32_t     events;      /* Epoll events */
+               epoll_data_t data;        /* User data variable */
+           };
 ```
     - [epoll_wait](http://man7.org/linux/man-pages/man2/epoll_wait.2.html)
 ```
