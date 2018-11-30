@@ -3,6 +3,21 @@
 - The Beans from [@Configuration](https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/context/annotation/Configuration.html) class are put in the IoC
 - Using interfaces instead of implementation classes for @AutoWired. The real
 
+## Configuration
+```
+ import org.springframework.context.annotation.Bean;
+ import org.springframework.context.annotation.Configuration;
+  
+ @Configuration
+ public class AppConfig {
+
+     @Bean
+     public MyBean myBean() {
+         // instantiate, configure and return bean ...
+     }
+ }
+```
+
 ## Annotations
 Package [org.springframework.context.annotation](https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/context/annotation/package-summary.html):
 - **Bean**: Indicates that a method produces a bean to be managed by the Spring container.
@@ -90,19 +105,6 @@ Package [org.springframework.cache.annotation](https://docs.spring.io/spring-fra
 - **EnableCaching**: Enables Spring's annotation-driven cache management capability, similar to the support found in Spring's <cache:*> XML namespace.
 
 
-## Configuration
-```
- import org.springframework.context.annotation.Bean;
- import org.springframework.context.annotation.Configuration;
-  
- @Configuration
- public class AppConfig {
 
-     @Bean
-     public MyBean myBean() {
-         // instantiate, configure and return bean ...
-     }
- }
-```
 
 ##
