@@ -146,7 +146,8 @@ Transaction information in spring is stored in ThreadLocal variables. These vari
 
 
 ## 4. [Scheduling](https://spring.io/guides/gs/scheduling-tasks/)
-Using Spring’s @Scheduled annotation.
+- Use [TaskScheduler](https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/scheduling/TaskScheduler.html) with a variety of methods for scheduling tasks to run at some point in the future. 
+- Use Spring’s [@Scheduled](https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/scheduling/annotation/Scheduled.html) annotation.
 ### Create Schduled Task
 ```
 import java.text.SimpleDateFormat;
