@@ -1,6 +1,6 @@
 # Executor
 
-## Task Executor
+## 1. Task Executor
 
 Spring provides the [TaskExecutor](https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/core/task/TaskExecutor.html) as an abstraction in [core.task](https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/core/task/package-summary.html) for dealing with executors.
 
@@ -74,7 +74,7 @@ public class AppService {
 ```
 
 
-## Async
+## 2. Async
 Execute function in another thread, just to annotate the functions with the @Async annotation:
 
 #### Mode 1: fire and forget mode: a method returns a void type
@@ -141,7 +141,7 @@ public void runFromAnotherThreadPool() {
 }
 ```
 
-## [Transactions](https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/transaction/annotation/Transactional.html)
+## 3. [Transactions](https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/transaction/annotation/Transactional.html)
 Transaction information in spring is stored in ThreadLocal variables. These variables are specific for an ongoing transaction on a single thread. The transactions cannot be passed from thread to thread. In case of a @Transactional  annotated service spawns a thread, the transaction will not be propagated from the @Transactional service to the newly created thread. The result will be an error indicating that the transaction is missing. Therefore by annotating a method with the @Transactional, a new transaction will be created and will be propagated to the other services called from our thread. Make sure that your @Async and @Transactional functions are public and go though the proxy that will make the necessary actions before being invoked.
 
 
