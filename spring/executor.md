@@ -1,4 +1,4 @@
-# Executor/Schduling
+# Executor/Scheduling
 
 ## 1. Task Executor
 
