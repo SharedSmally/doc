@@ -1,6 +1,6 @@
 # Executor
 
-Spring provides the TaskExecutor as an abstraction for dealing with executors.
+Spring provides the [TaskExecutor](https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/core/task/TaskExecutor.html) as an abstraction in [core.task](https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/core/task/package-summary.html) for dealing with executors.
 
 ## Define TaskExecutor bean
 ```
