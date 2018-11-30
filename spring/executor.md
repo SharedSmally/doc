@@ -3,6 +3,7 @@
 Spring provides the TaskExecutor as an abstraction for dealing with executors.
 
 ## Define TaskExecutor bean
+```
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.task.TaskExecutor;
@@ -21,8 +22,9 @@ public class ThreadConfig {
         return executor;
     }
 }
-
+```
 ## Define Task
+```
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Scope;
@@ -38,8 +40,10 @@ public class MyTask implements Runnable {
         LOGGER.info("Called for MyTask");
     }
 }
+```
 
 ## Use TaskExecutor
+```
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.core.task.TaskExecutor;
@@ -65,4 +69,4 @@ public class AppService {
         taskExecutor.execute(
     }
 }
-
+```
