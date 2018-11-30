@@ -1,4 +1,4 @@
-# Executor
+# Executor/Schduling
 
 ## 1. Task Executor
 
@@ -145,3 +145,41 @@ public void runFromAnotherThreadPool() {
 Transaction information in spring is stored in ThreadLocal variables. These variables are specific for an ongoing transaction on a single thread. The transactions cannot be passed from thread to thread. In case of a @Transactional  annotated service spawns a thread, the transaction will not be propagated from the @Transactional service to the newly created thread. The result will be an error indicating that the transaction is missing. Therefore by annotating a method with the @Transactional, a new transaction will be created and will be propagated to the other services called from our thread. Make sure that your @Async and @Transactional functions are public and go though the proxy that will make the necessary actions before being invoked.
 
 
+## 4. [Scheduling](https://spring.io/guides/gs/scheduling-tasks/)
+Using Spring’s @Scheduled annotation.
+### Create Schduled Task
+```
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.stereotype.Component;
+
+@Component
+public class ScheduledTasks {
+    private static final Logger log = LoggerFactory.getLogger(ScheduledTasks.class);
+    private static final SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
+
+    @Scheduled(fixedRate = 5000)
+    public void reportCurrentTime() {
+        log.info("The time is now {}", dateFormat.format(new Date()));
+    }
+}
+```
+
+### Enable Schduling
+```
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.scheduling.annotation.EnableScheduling;
+
+@SpringBootApplication
+@EnableScheduling
+public class Application {
+    public static void main(String[] args) {
+        SpringApplication.run(Application.class);
+    }
+}
+```
