@@ -74,3 +74,83 @@ ORDER BY table_schema,table_name;
 ```
 
 ### Commands
+
+### Install Postgres
+- Install Postgres server from the CentOS Repositories
+```
+sudo yum install postgresql-server postgresql-contrib 
+sudo postgresql-setup initdb     #initialize database
+sudo systemctl start postgresql  #start postggres
+sudo systemctl enable postgresql  #start on boot, optional
+```
+
+- Install Postgres Client (psql) only:
+```
+sudo yum install postgresql postgresql-contrib 
+```
+Both postgresql-server and postgresql depend on postgresql-libs package. 
+
+By default, when PostgreSQL is installed, a postgres user is also added:
+```cat /etc/passwd```
+The postgres user is shown as:
+```postgres:x:26:26:PostgreSQL Server:/var/lib/pgsql:/bin/bash```
+The default authentication mode for PostgreSQL is set to ident in the following file:
+```cat /var/lib/pgsql/data/pg_hba.conf```
+The ident authentication method works by taking the OS username operating as, and comparing it with the allowed database username(s). There is optional username mapping.
+
+This means that in order to connect to PostgreSQL you must be logged in as the correct OS user. If logged into the server as root and try to connect to PostgreSQL:
+```psql```
+The following error will be shown:
+```psql: FATAL: role "root" does not exist```
+When become the default PostgreSQL user, postgres:
+```su – postgres or sudo su - postgres```
+then attempt a connection to PostgreSQL:
+```psql```
+will get the correct, valid response!
+```
+psql (9.3.9)
+Type "help" for help.
+
+postgres=#
+```
+
+Postgres runs with the default port 5432, and data stored in /var/lib/pgsql/data:
+```/usr/bin/postgres -D /var/lib/pgsql/data -p 5432```
+Local IP:
+ ```ipaddr=$(hostname -I)```
+
+#### PostgreSQL Config for TCP/IP:
+ - Added the below line in pg_hba.conf to enable password authentication from 10.32.86.*
+```host    all             all             10.10.29.0/24          password```
+- stop pgsql server :
+  ```
+  sudo su - postgres
+  /bin/pg_ctl stop -D /var/lib/pgsql/data
+  ```
+- start pgsql server :
+  ```
+  sudo su - postgres
+  /bin/pg_ctl start -D  /var/lib/pgsql/data
+  ```
+- Restart postgres server
+```
+# /etc/init.d/postgresql restart
+  sudo service postgresql restart
+```
+- Allow TCP/IP socket:
+Open PostgreSQL configuration file /var/lib/pgsql/data/postgresql.conf:
+```
+# vi /etc/postgresql/8.2/main/postgresql.conf
+```
+Find configuration line that read as follows:
+```
+listen_addresses='localhost'
+```
+Next set IP address(es) to listen on; you can use comma-separated list of addresses; defaults to ‘localhost’, and ‘*’ is all ip address:
+```
+listen_addresses='*'
+```
+Or just bind to 202.54.1.2 and 202.54.1.3 IP address
+```
+listen_addresses='202.54.1.2 202.54.1.3'
+```
