@@ -1,4 +1,5 @@
 # map with multiple keys, keys must be of different types.
+# compile: g++ -o test1 testkeysmap.cc -std=c++11
 
 #include <map>
 #include <string>
