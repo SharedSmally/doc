@@ -2,6 +2,7 @@
 - AppContext as the IoC container to get the @Bean. Existing beans are: ApplicationContext, 
 - The Beans from [@Configuration](https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/context/annotation/Configuration.html) class are put in the IoC
 - Using interfaces instead of implementation classes for @AutoWired. The real
+- [Tutorial](https://www.tutorialspoint.com/spring/spring_java_based_configuration.htm)
 
 ## Configuration
 ```
