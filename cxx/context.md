@@ -1,6 +1,8 @@
 ## Context
-Similar to IoC in Java Spring with the following interface:
+Similar to IoC in Java Spring with the following interface and parent-children hierarchy relationship:
 ```
+Context & parent()
+
 bool registerFactory<T>(Factory<T> factory);
 
 bool contains(string name);
