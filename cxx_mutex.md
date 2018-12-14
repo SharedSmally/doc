@@ -27,7 +27,7 @@ if (mutex.try_lock_until(now + std::chrono::seconds(10))){};
 
 mutable std::shared_mutex mutex_;
 
-//Multiple threads/readers can read the shared object at the same time: 
+//Multiple threads/readers can read the shared object at the same time, but only one for write: 
 std::shared_lock<std::shared_mutex> lock(mutex_);
 
 //Only one thread/writer can write the shared objet at the same time:   
@@ -36,9 +36,18 @@ std::unique_lock<std::shared_mutex> lock(mutex_);
 
 Scoped lockers:
 - [lock_guard](http://en.cppreference.com/w/cpp/thread/lock_guard): implements a strictly scope-based mutex ownership wrapper 
-- [unique_lock](http://en.cppreference.com/w/cpp/thread/unique_lock): implements movable mutex ownership wrapper: used with condition variables 
+- [unique_lock](http://en.cppreference.com/w/cpp/thread/unique_lock): implements movable mutex ownership wrapper: used for multiple mutexs and with condition variables 
 - [scoped_lock](http://en.cppreference.com/w/cpp/thread/scoped_lock): C++17: deadlock-avoiding RAII wrapper for multiple mutexes 
 - [shared_lock](http://en.cppreference.com/w/cpp/thread/shared_lock): C++14: implements movable shared mutex ownership wrapper 
+
+C++ 11 Locking strategy
+- [locking tag type](https://en.cppreference.com/w/cpp/thread/lock_tag_t):defer_lock_t/- try_to_lock_t/ adopt_lock_t
+- [locking tag constants](https://en.cppreference.com/w/cpp/thread/lock_tag): defer_lock, try_to_lock, adopt_lock
+
+Generic locking algorithms (c++11 functions)
+- [try_lock](https://en.cppreference.com/w/cpp/thread/try_lock)    attempts to obtain ownership of mutexes via repeated calls to try_lock 
+- [lock](https://en.cppreference.com/w/cpp/thread/lock)        locks specified mutexes, blocks if any are unavailable 
+
 ```
    {
        std::lock_guard<std::mutex> lock(g_i_mutex);
