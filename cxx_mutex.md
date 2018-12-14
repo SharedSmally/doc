@@ -44,6 +44,11 @@ C++ 11 Locking strategy
 - [locking tag type](https://en.cppreference.com/w/cpp/thread/lock_tag_t):defer_lock_t/- try_to_lock_t/ adopt_lock_t
 - [locking tag constants](https://en.cppreference.com/w/cpp/thread/lock_tag): defer_lock, try_to_lock, adopt_lock
 
+Locking Type &	Effect(s)
+- defer_lock_t: do not acquire ownership of the mutex
+- try_to_lock_t: try to acquire ownership of the mutex without blocking
+- adopt_lock_t: assume the calling thread already has ownership of the mutex
+
 Generic locking algorithms (c++11 functions)
 - [try_lock](https://en.cppreference.com/w/cpp/thread/try_lock)    attempts to obtain ownership of mutexes via repeated calls to try_lock 
 - [lock](https://en.cppreference.com/w/cpp/thread/lock)        locks specified mutexes, blocks if any are unavailable 
