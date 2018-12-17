@@ -2,7 +2,7 @@
 #define LOCKABLE_H
 
 #include <mutex>
-// #include <shared_mutex>
+#include  <shared_mutex>
 
 /*
 mutex types: (C++11)
@@ -46,12 +46,95 @@ enum MutexType
 	READ_WRITE_MUTEXT0
 };
 
-template <typename MutexType = MUTEX >
+template < MutexType E >
+struct MutexTraits
+{
+	typedef std::mutex mutex_type;
+};
+template < >
+struct MutexTraits <MUTEXT0>
+{
+	typedef std::timed_mutex mutex_type;
+};
+
+template < >
+struct MutexTraits < RECURSIVE_MUTEX >
+{
+	typedef std::recursive_mutex mutex_type;
+};
+template < >
+struct MutexTraits < RECURSIVE_MUTEXT0 >
+{
+	typedef std::recursive_timed_mutex mutex_type;
+};
+
+template < >
+struct MutexTraits < READ_WRITE_MUTEX >
+{
+#ifdef CXX_17
+	typedef std::shared_mutex mutex_type;
+#else
+	typedef std::mutex mutex_type;
+#endif
+};
+template < >
+struct MutexTraits < READ_WRITE_MUTEXT0 >
+{
+	typedef std::shared_timed_mutex mutex_type;
+};
+
+enum LockingType
+{
+	DEFER_LOCKING,
+	TRY_LOCKING,
+	ADOPT_LOCKING
+};
+
+template < LockingType E >
+struct LockingTraits
+{
+	typedef std::defer_lock_t locking_type;
+	static locking_type locking_;
+};
+template < >
+struct LockingTraits<DEFER_LOCKING>
+{
+	typedef std::defer_lock_t locking_type;
+	static locking_type locking_;
+};
+template < >
+struct LockingTraits<TRY_LOCKING>
+{
+	typedef std::try_to_lock_t locking_type;
+	static locking_type locking_;
+};
+template <  >
+struct LockingTraits<ADOPT_LOCKING>
+{
+	typedef std:: adopt_lock_t locking_type;
+	static locking_type locking_;
+};
+
+#ifdef CXX_17
+//template <MutexType E = MUTEX, LockingType L = DEFER_LOCKING >
+#else
+template <MutexType E = MUTEX
+#endif
 class Lockable
 {
 public:
-	typedef std::mutex mutex_type;
+	typedef MutexTraits<E> mutex_type;
+	typedef LockingTraits<L> locking_type;
+
 	typedef std::lock_guard<mutex_type> locker_type;
+#ifdef CXX_17
+	typedef std::scoped_lock<mutex_type, locking_type> scoped_locker;
+#else
+	typedef std::lock_guard<mutex_type> scoped_locker;
+#endif
+
+	typedef std::unique_lock<mutex_type> unique_locker;
+	typedef std::shared_lock<mutex_type> shared_locker;
 
 	Lockable()
 	{}
@@ -61,25 +144,7 @@ public:
 	mutex_type & mutex() { return mutex_; }
 
 protected:
-	mutex_type mutex_;
-};
-
-template <>
-class Lockable<MUTEXT0>
-{
-public:
-	typedef std::timed_mutex mutex_type;
-	typedef std::lock_guard<mutex_type> locker_type;
-
-	Lockable()
-	{}
-	virtual ~Lockable()
-	{}
-
-	mutex_type & mutex() { return mutex_; }
-
-protected:
-	mutex_type mutex_;
+	mutable mutex_type mutex_;
 };
 
 #endif
