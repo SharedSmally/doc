@@ -51,6 +51,12 @@ struct MutexTraits
 {
 	typedef std::mutex mutex_type;
 };
+
+template < >
+struct MutexTraits <MUTEX>
+{
+	typedef std::mutex mutex_type;
+};
 template < >
 struct MutexTraits <MUTEXT0>
 {
@@ -94,37 +100,34 @@ template < LockingType E >
 struct LockingTraits
 {
 	typedef std::defer_lock_t locking_type;
-	static locking_type locking_;
+	static const locking_type & locking_;
 };
 template < >
 struct LockingTraits<DEFER_LOCKING>
 {
 	typedef std::defer_lock_t locking_type;
-	static locking_type locking_;
+	static const locking_type & locking_;
 };
 template < >
 struct LockingTraits<TRY_LOCKING>
 {
 	typedef std::try_to_lock_t locking_type;
-	static locking_type locking_;
+	static const locking_type & locking_;
 };
 template <  >
 struct LockingTraits<ADOPT_LOCKING>
 {
 	typedef std:: adopt_lock_t locking_type;
-	static locking_type locking_;
+	static const locking_type & locking_;
 };
 
-#ifdef CXX_17
-//template <MutexType E = MUTEX, LockingType L = DEFER_LOCKING >
-#else
-template <MutexType E = MUTEX
-#endif
+
+template <MutexType E = MUTEX, LockingType L = DEFER_LOCKING >
 class Lockable
 {
 public:
-	typedef MutexTraits<E> mutex_type;
-	typedef LockingTraits<L> locking_type;
+	typedef typename MutexTraits<E>::mutex_type mutex_type;
+	typedef typename LockingTraits<L>::locking_type locking_type;
 
 	typedef std::lock_guard<mutex_type> locker_type;
 #ifdef CXX_17
@@ -147,4 +150,13 @@ protected:
 	mutable mutex_type mutex_;
 };
 
+#ifndef SLOCKER
+#define SLOCKER locker_type slocker(mutex());
 #endif
+
+#ifndef LOCKER
+#define LOCKER(obj)  (obj)::locker_type locker((obj).mutex());
+#endif
+
+#endif
+
