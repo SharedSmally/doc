@@ -1,20 +1,28 @@
+SOURCES_CC = $(wildcard *.cc)
+
 TESTS_CC = $(wildcard test*.cc)
-TESTS = $(basename ${TESTS_CC})
+TESTS = $(basename ${TESTS_CC}) 
 
-CPP_FLAGS += -std=c++11
-CXX_FLAGS +=
-LD_FLAGS  += -lpthread
+OBJECTS_CC=$(filter-out $(TESTS_CC),$(SOURCES_CC))
+OBJECTS=$(patsubst %.cc,%.o,$(OBJECTS_CC))
 
-make: test
+CPPFLAGS += -I./ -std=c++11 -std=c++1y
+CXXFLAGS +=
+LDFLAGS  += -lpthread
+
+make: ${OBJECTS} test
 
 test:${TESTS}
 
 test%:test%.cc
-        g++ -o $@ $< ${CPP_FLAGS} ${CXX_FLAGS} ${LD_FLAGS}
+	g++ -o $@ $< ${CPPFLAGS} ${CXXFLAGS} ${LDFLAGS} 
 
 clean:
-        ${RM} ${TESTS}
+	${RM} ${TESTS}
 
+cleanall: clean
+	${RM} ${OBJECTS}
+	
 print:
-        @echo "Test Sources: " ${TESTS_CC}
-        @echo "Test targets: " ${TESTS}
+	@echo "Test Sources: " ${TESTS_CC}
+	@echo "Test targets: " ${TESTS}
