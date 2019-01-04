@@ -1,39 +1,73 @@
 #ifndef CONTEXT_H
 #define CONTEXT_H
 
-#include <memory>
+#include <vector>
+#include <string>
+
+#include <Lockable.h>
 
 class MObject {
 public:
 	virtual ~MObject()
 	{}
 
-	virtual size_t hashcode() const = 0;
+	virtual size_t hashcode() const {
+		return (size_t)(this);
+	}
 };
 typedef std::shared<MObject> MObjectPtr;
 
 class Context
 {
 public:
-	typedef std::shared<Context> ptr_type;
+	typedef std::vector<Context *> subcontext_container_type;
+	typedef std::vector<MObjectPtr>  content_container_type;
+	typedef std::vector<std::string> name_container_type;
+	
+	Context() : parent(nullptr);
+	~Context() {}
 
-	Context(const std::string & name);
-	virtual ~Context() {}
+	//parent
+	Context * parent() { return parent_; }
+	const Context * parent() const { return parent_; }
+	bool isRoot() const { return nullptr=parent; }
+	
+	// subcontexs
+	Context * getSubContext(const std::string & name, bool create=true);
+        bool destroySubContext(const std::string & name);
+	
+	bool hasSubContext(const std::string & name);
+	void subContextNames(std::vector<std::string> & names);
+	std::vector<Context *> & subContexts() { return subContexts_;}
+	std::vector<Context *> & subContexts() const { return subContexts_;}	
 
-	virtual ptr_type parent() = 0;
-	virtual bool hasChild(const std::string & name);
-	virtual Context & child(const std::string & name);
+	// contents: consumer portion
+	bool contains(const std::string & name);
+	MObjectPtr get(const std::string & name);
+	void names(std::vector<std::string> & names);
 
-	virtual std::vector<std::string> childNames();
-	virtual void childNames(std::vector<std::string> & names);
+	// contents: producer portion
+	template <typename T >
+	bool bind(const std::string & name);
+	bool bind(const std::string & name, MObjectPtr obj);
+	bool unbind(const std::string & name);
 
-	virtual const std::string & name();
-
-	virtual bool contains(const std::string & name);
-	virtual MObjectPtr get(const std::string & name);
+	// bind factory with interface and implementation, maybe in
+	template <typename I, typename IMPL >
+	bool bind(const std::string & name);	
+	template <typename I >
+	std::unique_ptr<I> create<I>();
+	
+protected:
+	Context(Context * parent) : parent_(parent)();
+	
+protected:
+	Context * parent_;
+	subcontext_container_type subContexts_;
+	content_container_type contents_;
 };
 
-Context & context();
+Context & appContext();
 
 typedef std::shared<Context> ContextPtr;
 
