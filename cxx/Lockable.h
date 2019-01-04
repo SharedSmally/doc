@@ -2,7 +2,14 @@
 #define LOCKABLE_H
 
 #include <mutex>
-#include  <shared_mutex>
+
+#ifdef CXX_17
+    #include  <shared_mutex>
+#else
+    #ifdef CXX_14
+        #include  <shared_mutex>
+    #endif
+#endif
 
 /*
 mutex types: (C++11)
@@ -22,7 +29,7 @@ Generic mutex management: All are class template
    shared_lock:implements movable shared mutex ownership wrapper (C++14)
 
 locking strategy for lock_guard, scoped_lock, unique_lock, and shared_lock.
-   defer_lock_t: 	do not acquire ownership of the mutex (defer_lock)
+   defer_lock_t:     do not acquire ownership of the mutex (defer_lock)
    try_to_lock_t:  try to acquire ownership of the mutex without blocking ( (try_to_lock))
    adopt_lock_t:   assume the calling thread already has ownership of the mutex (adopt_lock)
 
@@ -38,87 +45,83 @@ Conditional variables
 
 enum MutexType
 {
-	MUTEX,
-	MUTEXT0,
-	RECURSIVE_MUTEX,
-	RECURSIVE_MUTEXT0,
-	READ_WRITE_MUTEX,
-	READ_WRITE_MUTEXT0
+    MUTEX,
+    MUTEXT0,
+    RECURSIVE_MUTEX,
+    RECURSIVE_MUTEXT0,
+    SHARED_MUTEX,
+    SHARED_MUTEXT0
 };
 
 template < MutexType E >
 struct MutexTraits
 {
-	typedef std::mutex mutex_type;
+    typedef std::mutex mutex_type;
 };
 
 template < >
-struct MutexTraits <MUTEX>
-{
-	typedef std::mutex mutex_type;
-};
-template < >
 struct MutexTraits <MUTEXT0>
 {
-	typedef std::timed_mutex mutex_type;
+    typedef std::timed_mutex mutex_type;
 };
 
 template < >
 struct MutexTraits < RECURSIVE_MUTEX >
 {
-	typedef std::recursive_mutex mutex_type;
+    typedef std::recursive_mutex mutex_type;
 };
 template < >
 struct MutexTraits < RECURSIVE_MUTEXT0 >
 {
-	typedef std::recursive_timed_mutex mutex_type;
+    typedef std::recursive_timed_mutex mutex_type;
 };
 
+#ifdef CXX_14
 template < >
-struct MutexTraits < READ_WRITE_MUTEX >
+struct MutexTraits < SHARED_MUTEXT0 >
 {
-#ifdef CXX_17
-	typedef std::shared_mutex mutex_type;
-#else
-	typedef std::mutex mutex_type;
+    typedef std::shared_timed_mutex mutex_type;
+};
 #endif
-};
+
+#ifdef CXX_17
 template < >
-struct MutexTraits < READ_WRITE_MUTEXT0 >
+struct MutexTraits < SHARED_MUTEX >
 {
-	typedef std::shared_timed_mutex mutex_type;
+    typedef std::shared_mutex mutex_type;
 };
+#endif
 
 enum LockingType
 {
-	DEFER_LOCKING,
-	TRY_LOCKING,
-	ADOPT_LOCKING
+    DEFER_LOCKING,
+    TRY_LOCKING,
+    ADOPT_LOCKING
 };
 
 template < LockingType E >
 struct LockingTraits
 {
-	typedef std::defer_lock_t locking_type;
-	static const locking_type & locking_;
+    typedef std::defer_lock_t locking_type;
+    static const locking_type & locking_;
 };
 template < >
 struct LockingTraits<DEFER_LOCKING>
 {
-	typedef std::defer_lock_t locking_type;
-	static const locking_type & locking_;
+    typedef std::defer_lock_t locking_type;
+    static const locking_type & locking_;
 };
 template < >
 struct LockingTraits<TRY_LOCKING>
 {
-	typedef std::try_to_lock_t locking_type;
-	static const locking_type & locking_;
+    typedef std::try_to_lock_t locking_type;
+    static const locking_type & locking_;
 };
 template <  >
 struct LockingTraits<ADOPT_LOCKING>
 {
-	typedef std:: adopt_lock_t locking_type;
-	static const locking_type & locking_;
+    typedef std::adopt_lock_t locking_type;
+    static const locking_type & locking_;
 };
 
 
@@ -126,36 +129,57 @@ template <MutexType E = MUTEX, LockingType L = DEFER_LOCKING >
 class Lockable
 {
 public:
-	typedef typename MutexTraits<E>::mutex_type mutex_type;
-	typedef typename LockingTraits<L>::locking_type locking_type;
+    typedef typename MutexTraits<E>::mutex_type mutex_type;
+    typedef typename LockingTraits<L>::locking_type locking_type;
 
-	typedef std::lock_guard<mutex_type> locker_type;
+    typedef std::lock_guard<mutex_type> locker_type;
+    typedef std::unique_lock<mutex_type> unique_locker;
+
 #ifdef CXX_17
-	typedef std::scoped_lock<mutex_type, locking_type> scoped_locker;
+    typedef std::scoped_lock<mutex_type, locking_type> scoped_locker;
 #else
-	typedef std::lock_guard<mutex_type> scoped_locker;
+    typedef std::unique_lock<mutex_type> scoped_locker;
 #endif
 
-	typedef std::unique_lock<mutex_type> unique_locker;
-	typedef std::shared_lock<mutex_type> shared_locker;
+#ifdef CXX_17
+    typedef std::shared_lock<mutex_type> shared_locker;
+#else
+    #ifdef CXX_14
+        typedef std::shared_lock<mutex_type> shared_locker;
+    #else
+        typedef std::unique_lock<mutex_type> shared_locker;
+    #endif
+#endif
 
-	Lockable()
-	{}
-	virtual ~Lockable()
-	{}
+    Lockable()
+    {}
+    virtual ~Lockable()
+    {}
 
-	mutex_type & mutex() { return mutex_; }
+    mutex_type & mutex() { return mutex_; }
+    const mutex_type & mutex() const { return mutex_; }
 
 protected:
-	mutable mutex_type mutex_;
+    mutable mutex_type mutex_;
 };
+typedef Lockable<> DefaultLockable;
+
+typedef Lockable<MUTEX>   MLockable;
+typedef Lockable<MUTEXT0> M0Lockable;
+
+typedef Lockable<RECURSIVE_MUTEX>   RLockable;
+typedef Lockable<RECURSIVE_MUTEXT0> R0Lockable;
+
+typedef Lockable<SHARED_MUTEX>   SLockable;
+typedef Lockable<SHARED_MUTEXT0> S0Lockable;
+
 
 #ifndef SLOCKER
 #define SLOCKER locker_type slocker(mutex());
 #endif
 
 #ifndef LOCKER
-#define LOCKER(obj)  (obj)::locker_type locker((obj).mutex());
+#define LOCKER(T,obj)  T::locker_type locker((obj).mutex());
 #endif
 
 #endif
