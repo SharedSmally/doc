@@ -162,6 +162,16 @@ public:
 protected:
     mutable mutex_type mutex_;
 };
+
+template <typename T, MutexType E = MUTEX, LockingType L = DEFER_LOCKING >
+class LockableObject : public T, virtual public Lockable<E, L>
+{
+public:
+	LockableObject(){}
+	virtual ~LockableObject(){};
+};
+
+///////////////////////////////////////////
 typedef Lockable<> DefaultLockable;
 
 typedef Lockable<MUTEX>   MLockable;
