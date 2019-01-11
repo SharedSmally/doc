@@ -5,6 +5,10 @@
 - XSL Formatting Objects (XSL-FO): [v1.1](https://www.w3.org/Style/XSL/https://www.w3.org/Style/XSL/)
 
 ## XSL-FO
+The <fo:root> object is the root (top) node for XSL-FO documents.
+
+The children of the <fo:root> object are a single <fo:layout-master-set> object that holds all masters used in the document, an optional <fo:declarations> object, and one or more <fo:page-sequence> objects.
+
 ```
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <fo:root xmlns:fo="http://www.w3.org/1999/XSL/Format">
