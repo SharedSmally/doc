@@ -4,10 +4,25 @@
 - XML Query Langyage (XQuery)
 - XSL Formatting Objects (XSL-FO): [v1.1](https://www.w3.org/Style/XSL/https://www.w3.org/Style/XSL/)
 
-## XSL-FO
-The <fo:root> object is the root (top) node for XSL-FO documents.
+## Tutorial
+- [fop in w3school](http://w3schools.sinsixx.com/xslfo/default.asp.htm)
+- [fop samples]
 
-The children of the <fo:root> object are a single <fo:layout-master-set> object that holds all masters used in the document, an optional <fo:declarations> object, and one or more <fo:page-sequence> objects.
+## [Apache FOP](https://xmlgraphics.apache.org/fop/)
+- Command: 
+```
+fop -xml name.xml -xsl name2fo.xsl -pdf name.pdf
+```
+- XSLT 2.0:
+Specify the processor implementation used by FOP by adding a VM parameter to the start script where org.apache.fop.cli.Main is called. Example for Saxon:
+```
+-Djavax.xml.transform.TransformerFactory=net.sf.saxon.TransformerFactoryImpl
+```
+
+## XSL-FO
+The *<fo:root>* object is the root (top) node for XSL-FO documents.
+
+The children of the *<fo:root>* object are a single *<fo:layout-master-set>* object that holds all masters used in the document, an optional *<fo:declarations>* object, and one or more *<fo:page-sequence>* objects.
 
 ```
 <?xml version="1.0" encoding="ISO-8859-1"?>
@@ -193,21 +208,7 @@ There are four XSL-FO objects used to create lists:
 </fo:list-item>
 </fo:list-block>
 ```
-## Tutorial
-- [fop in w3school](http://w3schools.sinsixx.com/xslfo/default.asp.htm)
-- [fop samples]
 
-
-## [Apache FOP](https://xmlgraphics.apache.org/fop/)
-- Command: 
-```
-fop -xml name.xml -xsl name2fo.xsl -pdf name.pdf
-```
-- XSLT 2.0:
-Specify the processor implementation used by FOP by adding a VM parameter to the start script where org.apache.fop.cli.Main is called. Example for Saxon:
-```
--Djavax.xml.transform.TransformerFactory=net.sf.saxon.TransformerFactoryImpl
-```
 
 ### FOP XSLT
 ```
@@ -236,4 +237,197 @@ Specify the processor implementation used by FOP by adding a VM parameter to the
     </fo:root>
   </xsl:template>
 </xsl:stylesheet>
+```
+
+## [XSL-FO nodes](http://w3schools.sinsixx.com/xslfo/xslfo_reference.asp.htm)
+```
+<fo:root>
+  	Contents:layout-master-set,declarations?,	page-sequence+
+ </fo:root>
+```
+### Layout
+```
+<fo:layout-master-set>
+	Contents:(simple-page-master|page-sequence-master)+
+</fo:layout-master-set>
+
+<fo:simple-page-master>
+	Contents:(region-body,region-before?,	region-after?,region-start?,region-end?)
+</fo:simple-page-master>
+
+<fo:page-sequence-master>
+	Contents:(single-page-master-reference|	repeatable-page-master-reference|	repeatable-page-master-alternatives)+
+</fo:page-sequence-master>
+
+<fo:single-page-master-reference master-reference=""/>
+<fo:repeatable-page-master-reference master-reference="" maximum-repeats=""/>
+<fo:repeatable-page-master-alternatives maximum-repeats="">
+	Contents:(conditional-page-master-reference+)
+</fo:repeatable-page-master-alternatives>
+<fo:conditional-page-master-reference blank-or-not-blank="" master-reference="" odd-or-even="" page-postion=""/>
+```
+### Page
+```
+<fo:page-sequence>
+	Contents:title?,static-content*,flow
+</fo:page-sequence>
+
+<fo:title>
+	Contents:(#PCDATA|bidi-override|character|external-graphic| instream-foreign-object|inline|inline-container|leader|page-number|page-number-citation|basic-link| multi-toggle)*
+</fo:title>
+
+<fo:static-content flow-name="">
+  Contents:(block|block-container|	table-and-caption|table|list-block)+
+</fo:static-content>
+
+<fo:flow flow-name="">
+	Contents:(block|block-container|table-and-caption|table|list-block)+
+</fo:flow>
+```
+### Block
+```
+<fo:block-container>
+	Contents:(block|block-container|table-and-caption|table|list-block)+
+</fo:block-container>
+
+<fo:block>
+	Contents:(#PCDATA|bidi-override|character|external-graphic|instream-foreign-object|inline|inline-container|leader|page-number|
+	page-number-citation|basic-link|multi-toggle|	block|block-container|table-and-caption|table|list-block)*
+</fo:block>
+```
+
+### Table
+```
+<fo:table-and-caption>
+	Contents:(table-caption?,table)  
+</fo:table-and-caption>
+
+<fo:table>
+	Contents:(table-column*,table-header?,	table-footer?,table-body+)
+</fo:table>
+
+<fo:table-caption>
+	Contents:(block|block-container|list-block)+
+</fo:table-caption>
+
+<fo:table-header>
+	Contents:(table-row+|table-cell+)
+</fo:table-header>
+
+<fo:table-footer>
+	Contents:(table-row+|table-cell+)
+</fo:table-footer>
+
+<fo:table-body>
+	Contents:(table-row+|table-cell+)
+</fo:table-body>
+
+<fo:table-row>
+	Contents:(table-cell+)
+</fo:table-row>
+
+<fo:table-cell>
+	Contents:(block|block-container|table-and-caption|table|list-block)+
+</fo:table-cell>
+
+<fo:table-column/>
+```
+### list
+```
+<fo:list-block>
+	Contents:(list-item+)
+</fo:list-block>
+
+<fo:list-item>
+  Contents:(list-item-label,list-item-body)
+</fo:list-item>
+
+<fo:list-item-label>
+	Contents:(block|block-container| table-and-caption|table|list-block| list-item)+
+</fo:list-item-label>
+
+<fo:list-item-body>
+	Contents:(block|block-container| table-and-caption|table|list-block| list-item)+
+</fo:list-item-body>
+```
+
+### inline
+```
+<fo:inline-container>
+	Contents:(block|block-container|table-and-caption|table|list-block)+
+</fo:inline-container>
+
+<fo:inline>
+	Contents:(#PCDATA|bidi-override|character|external-graphic|instream-foreign-object|inline|inline-container|leader|page-number|page-number-citation|basic-link|multi-toggle|	block|block-container|table-and-caption|table|list-block)*
+</fo:inline>
+```
+### Multi
+```
+<fo:multi-switch auto-restore="" id="" role="" source-document="">
+	Contents:(multi-case+)
+</fo:multi-switch>
+
+<fo:multi-case>
+	Contents:(#PCDATA|bidi-override|character|external-graphic|instream-foreign-object|inline|inline-container|leader|page-number|page-number-citation|basic-link|multi-toggle|block|block-container|table-and-caption|table|list-block)*
+</fo:multi-case>
+
+<fo:multi-toggle id="" role="" source-document="" switch-to="">
+	Contents:(#PCDATA|bidi-override|character|external-graphic|instream-foreign-object|	inline|inline-container|leader|page-number|	page-number-citation|basic-link|multi-toggle|	block|block-container|table-and-caption| table|list-block)*
+</fo:multi-toggle>
+
+<fo:multi-properties>
+	Contents:(multi-property-set+,wrapper)
+</fo:multi-properties>
+
+<fo:multi-property-set active-state="" id=""/>
+
+<fo:wrapper id="">
+	Contents:(#PCDATA|bidi-override|character|external-graphic|instream-foreign-object|inline|inline-container|leader|page-number|page-number-citation|basic-link|multi-toggle|block|block-container|table-and-caption|table|list-block)*
+</fo:wrapper>
+```
+
+### Misc
+```
+<fo:page-number attrs=""/>
+<fo:page-number-citation attrs=""/>
+
+<fo:character attrs=""/>
+<fo:initial-property-set attrs=""/>
+<fo:external-graphic attrs=""/>
+<fo:instream-foreign-object attrs="">
+	 Contents:(non-XSL namespace (a common format is SVG))
+</fo:instream-foreign-object>
+
+<fo:float float="" clear="">
+	Contents:(block|block-container|table-and-caption|table|list-block)+
+</fo:float>
+
+<fo:declarations>
+	Contents:(color-profile)+
+</fo:declarations>
+<fo:color-profile color-profile-name="" rendering-intent="" src=""/>
+
+<fo:marker>
+	Contents:(#PCDATA|bidi-override| character|external-graphic| instream-foreign-object|inline| inline-container|leader|page-number|page-number-citation|basic-link|	multi-toggle|block|block-container|	table-and-caption|table|list-block)*
+</fo:marker>
+<fo:retrieve-marker retrieve-boundary="" retrieve-class-name="" retrieve-position="">
+
+<fo:leader>
+	Contents:(#PCDATA|bidi-override|character|external-graphic|instream-foreign-object|inline|page-number|page-number-citation|basic-link|multi-toggle)*
+</fo:leader>
+
+<fo:footnote>
+	Contents:(inline|footnote-body)
+</fo:footnote>
+<fo:footnote-body>
+	Contents:(block|block-container|table-and-caption|table|list-block)+
+</fo:footnote-body>
+
+<fo:basic-link>
+	Contents:(#PCDATA|bidi-override|character|external-graphic|instream-foreign-object|inline|page-number|page-number-citation|	basic-link|multi-toggle|block|block-container|table-and-caption|table|list-block)*
+</fo:basic-link>
+
+<fo:bidi-override>
+	Contents:(#PCDATA|bidi-override|character|external-graphic|instream-foreign-object|inline|inline-container|leader|page-number|page-number-citation|basic-link|multi-toggle|block|block-container|table-and-caption|table|list-block)*
+</fo:bidi-override>
 ```
