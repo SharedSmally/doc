@@ -5,6 +5,22 @@
 - XSL Formatting Objects (XSL-FO): [v1.1](https://www.w3.org/Style/XSL/https://www.w3.org/Style/XSL/)
 
 ## XSL-FO
+```
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<fo:root xmlns:fo="http://www.w3.org/1999/XSL/Format">
+
+<fo:layout-master-set>
+  <fo:simple-page-master master-name="A4">
+    <!-- Page template goes here -->
+  </fo:simple-page-master>
+</fo:layout-master-set>
+
+<fo:page-sequence master-reference="A4">
+  <!-- Page content goes here -->
+</fo:page-sequence>
+</fo:root>
+```
+
 - Page templates
 XSL-FO uses page templates called "Page Masters" to define the layout of pages. Each template must have a unique name:
 ```
@@ -30,11 +46,12 @@ XSL-FO uses page templates called "Page Masters" to define the layout of pages. 
 </fo:simple-page-master>
 ```
 
-    - XSL-FO Page Size
+
+   - XSL-FO Page Size
          - page-width defines the width of a page
          - page-height defines the height of a page
 
-    - XSL-FO Page Margins
+   - XSL-FO Page Margins
          - margin-top defines the top margin
          - margin-bottom defines the bottom margin
          - margin-left defines the left margin
@@ -151,10 +168,10 @@ The <fo:table> element contains optional <fo:table-column> elements, an optional
 
 - List
 There are four XSL-FO objects used to create lists:
-  - fo:list-block (contains the whole list)
-  - fo:list-item (contains each item in the list)
-  - fo:list-item-label (contains the label for the list-item - typically an <fo:block> containing a number, character, etc.)
-  - fo:list-item-body (contains the content/body of the list-item - typically one or more <fo:block> objects)
+  - fo:list-block: the whole list
+  - fo:list-item: each item in the list
+  - fo:list-item-label: the label for the list-item - typically an <fo:block> containing a number, character, etc.
+  - fo:list-item-body: the content/body of the list-item - typically one or more <fo:block> objects
 ```
 <fo:list-block>
 <fo:list-item>
