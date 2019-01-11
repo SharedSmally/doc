@@ -242,7 +242,7 @@ There are four XSL-FO objects used to create lists:
 ## [XSL-FO nodes](http://w3schools.sinsixx.com/xslfo/xslfo_reference.asp.htm)
 ```
 <fo:root>
-  	Contents:layout-master-set,declarations?,	page-sequence+
+  	Contents:layout-master-set,declarations?, page-sequence+
  </fo:root>
 ```
 ### Layout
@@ -252,11 +252,11 @@ There are four XSL-FO objects used to create lists:
 </fo:layout-master-set>
 
 <fo:simple-page-master>
-	Contents:(region-body,region-before?,	region-after?,region-start?,region-end?)
+	Contents:(region-body,region-before?, region-after?,region-start?,region-end?)
 </fo:simple-page-master>
 
 <fo:page-sequence-master>
-	Contents:(single-page-master-reference|	repeatable-page-master-reference|	repeatable-page-master-alternatives)+
+	Contents:(single-page-master-reference|	repeatable-page-master-reference| repeatable-page-master-alternatives)+
 </fo:page-sequence-master>
 
 <fo:single-page-master-reference master-reference=""/>
@@ -277,7 +277,7 @@ There are four XSL-FO objects used to create lists:
 </fo:title>
 
 <fo:static-content flow-name="">
-  Contents:(block|block-container|	table-and-caption|table|list-block)+
+  Contents:(block|block-container| table-and-caption|table|list-block)+
 </fo:static-content>
 
 <fo:flow flow-name="">
@@ -292,7 +292,7 @@ There are four XSL-FO objects used to create lists:
 
 <fo:block>
 	Contents:(#PCDATA|bidi-override|character|external-graphic|instream-foreign-object|inline|inline-container|leader|page-number|
-	page-number-citation|basic-link|multi-toggle|	block|block-container|table-and-caption|table|list-block)*
+	page-number-citation|basic-link|multi-toggle| block|block-container|table-and-caption|table|list-block)*
 </fo:block>
 ```
 
@@ -303,7 +303,7 @@ There are four XSL-FO objects used to create lists:
 </fo:table-and-caption>
 
 <fo:table>
-	Contents:(table-column*,table-header?,	table-footer?,table-body+)
+	Contents:(table-column*,table-header?, table-footer?,table-body+)
 </fo:table>
 
 <fo:table-caption>
@@ -358,7 +358,7 @@ There are four XSL-FO objects used to create lists:
 </fo:inline-container>
 
 <fo:inline>
-	Contents:(#PCDATA|bidi-override|character|external-graphic|instream-foreign-object|inline|inline-container|leader|page-number|page-number-citation|basic-link|multi-toggle|	block|block-container|table-and-caption|table|list-block)*
+	Contents:(#PCDATA|bidi-override|character|external-graphic|instream-foreign-object|inline|inline-container|leader|page-number|page-number-citation|basic-link|multi-toggle|block|block-container|table-and-caption|table|list-block)*
 </fo:inline>
 ```
 ### Multi
@@ -372,7 +372,7 @@ There are four XSL-FO objects used to create lists:
 </fo:multi-case>
 
 <fo:multi-toggle id="" role="" source-document="" switch-to="">
-	Contents:(#PCDATA|bidi-override|character|external-graphic|instream-foreign-object|	inline|inline-container|leader|page-number|	page-number-citation|basic-link|multi-toggle|	block|block-container|table-and-caption| table|list-block)*
+	Contents:(#PCDATA|bidi-override|character|external-graphic|instream-foreign-object|inline|inline-container|leader|page-number|	page-number-citation|basic-link|multi-toggle|block|block-container|table-and-caption| table|list-block)*
 </fo:multi-toggle>
 
 <fo:multi-properties>
@@ -408,7 +408,7 @@ There are four XSL-FO objects used to create lists:
 <fo:color-profile color-profile-name="" rendering-intent="" src=""/>
 
 <fo:marker>
-	Contents:(#PCDATA|bidi-override| character|external-graphic| instream-foreign-object|inline| inline-container|leader|page-number|page-number-citation|basic-link|	multi-toggle|block|block-container|	table-and-caption|table|list-block)*
+	Contents:(#PCDATA|bidi-override| character|external-graphic| instream-foreign-object|inline| inline-container|leader|page-number|page-number-citation|basic-link|multi-toggle|block|block-container|table-and-caption|table|list-block)*
 </fo:marker>
 <fo:retrieve-marker retrieve-boundary="" retrieve-class-name="" retrieve-position="">
 
