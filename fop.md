@@ -148,12 +148,13 @@ The <fo:table> element contains optional <fo:table-column> elements, an optional
 </fo:table>
 </fo:table-and-caption>
 ```
+
 - List
 There are four XSL-FO objects used to create lists:
-- fo:list-block (contains the whole list)
-- fo:list-item (contains each item in the list)
-- fo:list-item-label (contains the label for the list-item - typically an <fo:block> containing a number, character, etc.)
-- fo:list-item-body (contains the content/body of the list-item - typically one or more <fo:block> objects)
+  - fo:list-block (contains the whole list)
+  - fo:list-item (contains each item in the list)
+  - fo:list-item-label (contains the label for the list-item - typically an <fo:block> containing a number, character, etc.)
+  - fo:list-item-body (contains the content/body of the list-item - typically one or more <fo:block> objects)
 ```
 <fo:list-block>
 <fo:list-item>
