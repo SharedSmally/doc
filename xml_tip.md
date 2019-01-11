@@ -13,8 +13,7 @@ logfile.xml:
 ```
 <?xml version="1.0"?>
 <!DOCTYPE logfile [
-<!ENTITY events    
- SYSTEM "events.txt">
+<!ENTITY events SYSTEM "events.txt">
 ]>
 <logfile>
 &events;
