@@ -45,19 +45,15 @@ XSL-FO uses page templates called "Page Masters" to define the layout of pages. 
   <fo:region-end    extent="2cm"/>
 </fo:simple-page-master>
 ```
-
-
-   - XSL-FO Page Size
+    - XSL-FO Page Size
          - page-width defines the width of a page
          - page-height defines the height of a page
-
-   - XSL-FO Page Margins
+    - XSL-FO Page Margins
          - margin-top defines the top margin
          - margin-bottom defines the bottom margin
          - margin-left defines the left margin
          - margin-right defines the right margin
          - margin defines all four margins
-
     - XSL-FO Page Regions
          - region-body defines the body region
          - region-before defines the top region (header)
