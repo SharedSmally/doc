@@ -6,7 +6,8 @@
 
 ## Tutorial
 - [fop in w3school](http://w3schools.sinsixx.com/xslfo/default.asp.htm)
-- [fop samples]
+- [xml to fop samples](https://www.antennahouse.com/xml-to-xsl-fo-stylesheets/)
+     - [html2fo](https://www.antennahouse.com/XSLsample/sample-xsl-xhtml2fo/xhtml2fo.xsl)
 
 ## [Apache FOP](https://xmlgraphics.apache.org/fop/)
 - Command: 
