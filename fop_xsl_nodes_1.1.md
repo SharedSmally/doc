@@ -1,15 +1,15 @@
-#fo nodes
-##fo:root
+# fo nodes
+## fo:root
 ```
 (layout-master-set,declarations?,bookmark-tree?,(page-sequence|page-sequence-wrapper)+)
 ```
 
-#fo attributes
-##Common Accessibility Properties
+# fo attributes
+## Common Accessibility Properties
 - source-document: <uri-specification> [<uri-specification>]* | none | inherit
 - role: <string> | <uri-specification> | none | inherit
 
-##Common Absolute Position Properties
+## Common Absolute Position Properties
 - absolute-position: auto | absolute | fixed | inherit
 - top,bottom,left,right: <length> | <percentage> | auto | inherit
 
@@ -53,7 +53,7 @@
 - font-variant: normal | small-caps | inherit
 - font-weight: 	normal | bold | bolder | lighter | 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900 | inherit
 
-##Common Hyphenation Properties
+## Common Hyphenation Properties
 - country: none | <country> | inherit
 - language: none | <language> | inherit
 - script: none | auto | <script> | inherit
@@ -69,7 +69,7 @@
 - top|bottom|right|left: 
 - relative-position: static | relative | inherit
 
-##Area Alignment Properties
+## Area Alignment Properties
 alphabetic | ideographic | hanging | mathematical | central | middle | text-before|after-edge | before|after-edge
 - alignment-adjust|alignment-baseline: auto | baseline | before-edge | text-before-edge | middle | central | after-edge | text-after-edge | ideographic | alphabetic | hanging | mathematical | <percentage> | <length> | inherit
 - baseline-shift:	baseline | sub | super | <percentage> | <length> | inherit
@@ -77,7 +77,7 @@ alphabetic | ideographic | hanging | mathematical | central | middle | text-befo
 - dominant-baseline:	auto | use-script | no-change | reset-size | ideographic | alphabetic | hanging | mathematical | central | middle | text-after-edge | text-before-edge | inherit
 - relative-align:	before | baseline | inherit
 
-##Area Dimension Properties
+## Area Dimension Properties
 - allowed-height|width-scale: [ any | <percentage> ]* | inherit
 - block-progression-dimension:	auto | <length> | <percentage> | <length-range> | inherit
 - content-height|width: 	auto | scale-to-fit | scale-down-to-fit | scale-up-to-fit | <length> | <percentage> | inherit
@@ -88,7 +88,7 @@ alphabetic | ideographic | hanging | mathematical | central | middle | text-befo
 - scaling: uniform | non-uniform | inherit
 - scaling-method: auto | integer-pixels | resample-any-method | inherit
 
-##Block and Line-related Properties
+## Block and Line-related Properties
 - hyphenation-keep: auto | column | page | inherit
 - last-line-end-indent:  <length> | <percentage> | inherit
 - line-height: normal | <length> | <number> | <percentage> | <space> | inherit
@@ -102,7 +102,7 @@ alphabetic | ideographic | hanging | mathematical | central | middle | text-befo
 - white-space-collapse:	false | true | inherit
 - wrap-option: no-wrap | wrap | inherit
 
-##Character Properties
+## Character Properties
 - character: <character>
 - letter-spacing: normal | <length> | <space> | inherit
 - suppress-at-line-break: auto | suppress | retain | inherit
@@ -112,30 +112,30 @@ alphabetic | ideographic | hanging | mathematical | central | middle | text-befo
 - treat-as-word-space:	auto | true | false | inherit
 - word-spacing: 	normal | <length> | <space> | inherit
 
-##Color-related Properties
+## Color-related Properties
 - color: 	<color> | inherit
 - color-profile-name: <name> | inherit
 - rendering-intent:	auto | perceptual | relative-colorimetric | saturation | absolute-colorimetric | inherit
 
-##Float-related Properties
+## Float-related Properties
 - clear:	start | end | left | right | inside | outside | both | none | inherit
 - float:	before | start | end | left | right | inside | outside | none | inherit
 - intrusion-displace:	auto | none | line | indent | block | inherit
 
-##Keeps and Breaks Properties
+## Keeps and Breaks Properties
 - break-after|before:	auto | column | page | even-page | odd-page | inherit
 - keep-together:	<keep> | inherit (.within-line=auto, .within-column=auto, .within-page=auto)
 - keep-with-next|previous: <keep> | inherit
 - orphans: <integer> | inherit
 - widows: <integer> | inherit
 
-##Layout-related Properties
+## Layout-related Properties
 - clip: <shape> | auto | inherit
 - overflow: visible | hidden | scroll | error-if-overflow | repeat | auto | inherit
 - reference-orientation: 0 | 90 | 180 | 270 | -90 | -180 | -270 | inherit
 - span:	none | all | inherit
 
-##Leader and Rule Properties
+## Leader and Rule Properties
 - leader-alignment: none | reference-area | page | inherit
 - leader-pattern:	space | rule | dots | use-content | inherit
 - leader-pattern-width:	use-font-metrics | <length> | <percentage> | inherit
@@ -143,7 +143,7 @@ alphabetic | ideographic | hanging | mathematical | central | middle | text-befo
 - rule-style: none | dotted | dashed | solid | double | groove | ridge | inherit
 - rule-thickness: <length>
 
-##Properties for Dynamic Effects Formatting Objects
+## Properties for Dynamic Effects Formatting Objects
 - active-state: link | visited | active | hover | focus
 - auto-restore:	true | false
 - case-name: <name>
@@ -159,7 +159,7 @@ alphabetic | ideographic | hanging | mathematical | central | middle | text-befo
 - target-processing-context:	document-root | <uri-specification>
 - target-stylesheet: use-normal-stylesheet | <uri-specification>
 
-##Properties for Indexing
+## Properties for Indexing
 - index-class: <string>
 - index-key:	<string>
 - page-number-treatment: link | no-link
@@ -168,7 +168,7 @@ alphabetic | ideographic | hanging | mathematical | central | middle | text-befo
 - merge-pages-across-index-key-references: merge | leave-separate
 - ref-index-key:<string>
 
-7.25 Marker Properties
+## Marker Properties
 - marker-class-name:	<name>
 - retrieve-boundary-within-table: table | table-fragment | page
 - retrieve-class-name:	<name>
@@ -176,13 +176,13 @@ alphabetic | ideographic | hanging | mathematical | central | middle | text-befo
 - retrieve-boundary: page | page-sequence | document
 - retrieve-position-within-table:	first-starting | first-including-carryover | last-starting | last-ending
 
-##Properties for Number to String Conversion
+## Properties for Number to String Conversion
 - format: <string>
 - grouping-separator: <character>
 - grouping-size: <number>
 - letter-value: auto | alphabetic | traditional
 
-##Pagination and Layout Properties
+## Pagination and Layout Properties
 - blank-or-not-blank:	blank | not-blank | any | inherit
 - column-count: <number> | inherit
 - column-gap: <length> | <percentage> | inherit
@@ -205,7 +205,7 @@ alphabetic | ideographic | hanging | mathematical | central | middle | text-befo
 - flow-name-reference: <name>
 - region-name-reference:	<name>
 
-7.28 Table Properties
+## Table Properties
 - border-after-precedence: force | <integer> | inherit
 - border-before-precedence:	force | <integer> | inherit
 - border-collapse:	collapse | collapse-with-precedence | separate | inherit
@@ -225,7 +225,7 @@ alphabetic | ideographic | hanging | mathematical | central | middle | text-befo
 - table-omit-footer-at-break: true | false
 - table-omit-header-at-break: true | false
 
-##Writing-mode-related Properties
+## Writing-mode-related Properties
 - direction:	ltr | rtl | inherit
 - glyph-orientation-horizontal:	<angle> | inherit
 - glyph-orientation-vertical:	auto | <angle> | inherit
@@ -234,7 +234,7 @@ alphabetic | ideographic | hanging | mathematical | central | middle | text-befo
 - unicode-bidi:	normal | embed | bidi-override | inherit
 - writing-mode:	lr-tb | rl-tb | tb-rl | tb-lr | bt-lr | bt-rl | lr-bt | rl-bt | lr-alternating-rl-bt | lr-alternating-rl-tb | lr-inverting-rl-bt | lr-inverting-rl-tb | tb-lr-in-lr-pairs | lr | rl | tb | inherit
 
-##Miscellaneous Properties
+## Miscellaneous Properties
 - change-bar-class:	<name>
 - change-bar-color: <color>
 - change-bar-offset: <length>
