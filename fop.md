@@ -5,6 +5,8 @@
 - XSL Formatting Objects (XSL-FO): [v1.1](https://www.w3.org/Style/XSL/https://www.w3.org/Style/XSL/)
 
 ## Tutorial
+- [Apache FOP Quick Start](https://xmlgraphics.apache.org/fop/quickstartguide.html)
+- [Tidy](http://www.html-tidy.org/): convert html to xhtml
 - [fop in w3school](http://w3schools.sinsixx.com/xslfo/default.asp.htm)
 - [xml to fop samples](https://www.antennahouse.com/xml-to-xsl-fo-stylesheets/)
      - [html2fo](https://www.antennahouse.com/XSLsample/sample-xsl-xhtml2fo/xhtml2fo.xsl)
