@@ -66,3 +66,13 @@ To override this behaviour you need to add force-page-count="no-force" to the fi
     </fo:page-sequence>
 </fo:root>
 ```
+
+## Rotate text
+Rotates the at 90 degree but counterclockwise:
+```
+<fo:block-container reference-orientation="90" space-before="20pt">
+<fo:block text-align="right"> 
+Some text
+</fo:block>
+</fo:block-container>
+```
