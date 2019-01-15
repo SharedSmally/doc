@@ -66,6 +66,34 @@ To override this behaviour you need to add force-page-count="no-force" to the fi
     </fo:page-sequence>
 </fo:root>
 ```
+## Marker
+Markers are used to produce running headers or footers and dynamic table headers or footers. There are two XSL-FO elements used to create markers:
+- <fo:marker>
+- <fo:retreive-marker>
+The <fo:marker> is used first to undicate the element. It can be used with block- or inline-level formatting objects and should be placed inside <fo:flow> only. The <fo:marker> should also be the initial child of its parent element. The <fo:marker> has only one attribute - marker-class-name - used as an identifier when retrieving an element.
+- The <fo:retreive-marker> is used as a descendant of an <fo:static-content> element to match an <fo:marker> found in the <fo:flow>.
+- The <fo:retreive-table-marker> has the same functionality as the <fo:retreive-marker>. The only difference is that it is used for tables.
+
+```
+   <fo:static-content flow-name="header">
+     <fo:block text-align="right">
+       <fo:retrieve-marker retrieve-class-name="chapter"/>
+     </fo:block>
+   </fo:static-content>
+   <fo:flow flow-name="contents" font-family="Calibri" font-size="12pt">
+     <fo:block>
+       <fo:marker marker-class-name="chapter">
+         Chapter 1.
+       </fo:marker>
+       <fo:block font-weight="bold">
+         Chapter 1.
+       </fo:block>
+       <fo:block>
+         This chapter containt the information about...
+       </fo:block>
+     </fo:block>
+   </fo:flow>
+  ``` 
 
 ## Rotate text
 Rotates the at 90 degree but counterclockwise:
@@ -75,4 +103,60 @@ Rotates the at 90 degree but counterclockwise:
 Some text
 </fo:block>
 </fo:block-container>
+```
+## Add watermark
+You can add an image to the page background by using background-image= on <region-body>. XSL-FO does not support rendering text as a background.
+
+or Using SVG
+```
+<fo:block-container z-index="-1" position="absolute" left="5pt" top="5pt" width="100%" height="100%">
+   <fo:block>
+       <fo:instream-foreign-object>
+           <svg xmlns="http://www.w3.org/2000/svg" width="680" height="920">
+               <text font-family="Arial Black" font-size="55pt" style="fill:rgb(255,192,192)" x="-10" y="300" width="680" text-anchor="middle" transform="rotate(-54, 340, 15)">Watermark Sample Here</text>
+           </svg>
+        </fo:instream-foreign-object>
+    </fo:block>
+</fo:block-container>
+```
+
+## Add Table: Apach not support table-and-caption
+```
+        <fo:flow flow-name="xsl-region-body">
+            <fo:block>         
+<fo:table>
+<fo:table-column column-width="25mm"/>
+<fo:table-column column-width="25mm"/>
+<fo:table-header>
+  <fo:table-row>
+    <fo:table-cell>
+      <fo:block font-weight="bold">Car</fo:block>
+    </fo:table-cell>
+    <fo:table-cell>
+      <fo:block font-weight="bold">Price</fo:block>
+    </fo:table-cell>
+  </fo:table-row>
+</fo:table-header>
+
+<fo:table-body>
+  <fo:table-row>
+    <fo:table-cell>
+      <fo:block>Volvo</fo:block>
+    </fo:table-cell>
+    <fo:table-cell>
+      <fo:block>$50000</fo:block>
+    </fo:table-cell>
+  </fo:table-row>
+  <fo:table-row>
+    <fo:table-cell>
+      <fo:block>SAAB</fo:block>
+    </fo:table-cell>
+    <fo:table-cell>
+      <fo:block>$48000</fo:block>
+    </fo:table-cell>
+  </fo:table-row>
+</fo:table-body>
+</fo:table>
+            </fo:block>
+
 ```
