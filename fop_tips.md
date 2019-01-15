@@ -159,4 +159,34 @@ or Using SVG
 </fo:table>
             </fo:block>
 
+   <fo:table>
+     <fo:table-column column-width="20%"/>
+     <fo:table-column column-width="80%"/>
+     <fo:table-body>
+       <fo:table-row>
+         <fo:table-cell>
+           <fo:block margin="12pt" font-weight="bold" font-size="8pt">
+		     Serif 8pt:
+           </fo:block>
+         </fo:table-cell>
+         <fo:table-cell>
+           <fo:block margin="12pt" font-size="8pt">
+		     The quick brown fox jumps over the lazy dog!
+           </fo:block>
+         </fo:table-cell>
+       </fo:table-row>
+       <fo:table-row>
+         <fo:table-cell>
+           <fo:block margin="12pt" font-weight="bold" font-size="8pt">
+		     Serif 36pt:
+           </fo:block>
+         </fo:table-cell>
+         <fo:table-cell>
+           <fo:block margin="12pt" font-size="36pt">
+		     The quick brown fox jumps over the lazy dog!
+           </fo:block>
+         </fo:table-cell>
+       </fo:table-row>
+     </fo:table-body>
+   </fo:table>
 ```
