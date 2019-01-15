@@ -1,6 +1,7 @@
 
-# XSLFO
-## 	Page numbers and its references in XSL-FO
+# XSLFO:
+## [Tutorial](https://www.alt-soft.com/tutorial/)
+## Page numbers and its references in XSL-FO
 To incert the current page number the <fo:page-number> is used. See a simple example below:
 ```
    <fo:static-content flow-name="xsl-region-after">
