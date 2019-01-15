@@ -190,3 +190,50 @@ or Using SVG
      </fo:table-body>
    </fo:table>
 ```
+```
+<fo:block margin-top="12pt">Table with row borders:</fo:block>
+<fo:table>
+ <fo:table-body>
+  <fo:table-row border-width="4px" border-style="solid">
+   <fo:table-cell background-color="#ffccff" padding="8pt">
+    <fo:block>?</fo:block></fo:table-cell>
+   <fo:table-cell background-color="#ffccff" padding="8pt">
+    <fo:block>U+2602</fo:block></fo:table-cell>
+   <fo:table-cell background-color="#ffccff" padding="8pt">
+    <fo:block>Umbrella</fo:block></fo:table-cell>
+  </fo:table-row>
+  <fo:table-row border-width="4px" border-style="solid">
+   <fo:table-cell background-color="#ffccff" padding="8pt">
+    <fo:block>?</fo:block></fo:table-cell>
+   <fo:table-cell background-color="#ffccff" padding="8pt">
+    <fo:block>U+260E</fo:block></fo:table-cell>
+   <fo:table-cell background-color="#ffccff" padding="8pt">
+    <fo:block>Telephone</fo:block></fo:table-cell>
+  </fo:table-row>
+ </fo:table-body>
+</fo:table>
+<fo:block margin-top="12pt">Table with column borders:</fo:block>
+<fo:table>
+ <fo:table-column border-width="4px" border-style="solid"/>
+ <fo:table-column border-width="4px" border-style="solid"/>
+ <fo:table-column border-width="4px" border-style="solid"/>
+ <fo:table-body>
+  <fo:table-row>
+   <fo:table-cell 
+    padding="8pt"><fo:block>?</fo:block></fo:table-cell>
+   <fo:table-cell 
+    padding="8pt"><fo:block>U+262E</fo:block></fo:table-cell>
+   <fo:table-cell 
+    padding="8pt"><fo:block>Peace</fo:block></fo:table-cell>
+  </fo:table-row>
+  <fo:table-row>
+   <fo:table-cell 
+    padding="8pt"><fo:block>?</fo:block></fo:table-cell>
+   <fo:table-cell 
+    padding="8pt"><fo:block>U+262F</fo:block></fo:table-cell>
+   <fo:table-cell 
+    padding="8pt"><fo:block>Yin Yang</fo:block></fo:table-cell>
+  </fo:table-row>
+ </fo:table-body>
+</fo:table> 
+```
