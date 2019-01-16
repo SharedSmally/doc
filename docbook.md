@@ -1,5 +1,5 @@
-# Docbook (https://docbook.org/)
-## [Docbook xml] (https://docbook.org/)
+# Docbook
+## [Docbook xml](https://docbook.org/)
 The root element is [article](https://docbook.org/schemas/sdocbook/elements/article.html):
 ```
 ((title,subtitle?,titleabbrev?)?,
@@ -14,7 +14,7 @@ The root element is [article](https://docbook.org/schemas/sdocbook/elements/arti
 ```
 ## stqandard [v5.0](https://www.oasis-open.org/standards#dbv5.0)
 
-## [Docbook xsl] (https://cdn.docbook.org/)
+## [Docbook xsl](https://cdn.docbook.org/)
 
 ## [pandoc](http://pandoc.org/index.html): convert docbook xml to other format
 ```
