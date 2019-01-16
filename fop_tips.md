@@ -1,6 +1,38 @@
 
 # XSLFO:
 ## [Tutorial](https://www.alt-soft.com/tutorial/)
+## bookmark
+```
+  <fo:root xmlns:fo="http://www.w3.org/1999/XSL/Format"> 
+   ...
+   <fo:bookmark-tree>
+     <fo:bookmark internal-destination="s-1" starting-state="show">
+       <fo:bookmark-title>Typical Xml2PDF workflow</fo:bookmark-title>
+       <fo:bookmark internal-destination="ss-1_0">
+         <fo:bookmark-title>Contents</fo:bookmark-title>
+       </fo:bookmark>
+       <fo:bookmark internal-destination="ss-1_1">
+         <fo:bookmark-title>Why XML</fo:bookmark-title>
+       </fo:bookmark>
+       <fo:bookmark internal-destination="ss-1_2">
+         <fo:bookmark-title>Why PDF</fo:bookmark-title>
+       </fo:bookmark>
+     </fo:bookmark>
+   </fo:bookmark-tree>
+  </fo:root>
+
+  <fo:page-sequence master-reference="all-pages">
+     ...
+     <fo:flow flow-name="xsl-region-body">
+       <fo:block id="s-1">Typical Xml2PDF workflow </fo:block>
+       <fo:block id="ss-1_0">Table of Contents</fo:block>
+       <fo:block id="ss-1_1">Why XML</fo:block>
+       <fo:block>Extensible Markup Language (XML) is a simple and very flexible... </fo:block>
+       <fo:block id="ss-1_2"> Why PDF </fo:block>
+       <fo:block> Free Adobe Reader guarantees that PDF will be viewed identically.. </fo:block>
+  </fo:page-sequence>
+```
+
 ## Page numbers and its references in XSL-FO
 To incert the current page number the <fo:page-number> is used. See a simple example below:
 ```
