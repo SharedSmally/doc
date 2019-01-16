@@ -1,7 +1,7 @@
 
 # XSLFO:
 ## [Tutorial](https://www.alt-soft.com/tutorial/)
-## bookmark
+## bookmark-tree
 ```
   <fo:root xmlns:fo="http://www.w3.org/1999/XSL/Format"> 
    ...
@@ -33,6 +33,53 @@
   </fo:page-sequence>
 ```
 
+## link
+```
+   <fo:page-sequence master-reference="simple">
+        <fo:flow flow-name="xsl-region-body">
+			<fo:block space-after="10pt">
+				Beatles
+			</fo:block>
+			<fo:list-block start-indent="20pt">
+				<fo:list-item>
+					<fo:list-item-label end-indent="label-end()">
+						<fo:block font-weight="bold">
+							<fo:character character="&#x2022;" />
+						</fo:block>
+					</fo:list-item-label>
+					<fo:list-item-body start-indent="body-start()">
+						<fo:block>
+							<fo:basic-link 	external-destination="url('http://www.paulmccartney.com')" 
+								color="blue" text-decoration="underline">
+									Paul McCartney
+							</fo:basic-link>
+						</fo:block>
+					</fo:list-item-body>
+				</fo:list-item>
+				<fo:list-item>
+					<fo:list-item-label end-indent="label-end()">
+						<fo:block font-weight="bold">
+							<fo:character character="&#x2022;" />
+						</fo:block>
+					</fo:list-item-label>
+					<fo:list-item-body start-indent="body-start()">
+						<fo:block>
+							<fo:basic-link 
+								internal-destination="ss-1_1"   # block with id="ss-1_1" 
+								color="blue" text-decoration="underline">
+									John Lennon
+							</fo:basic-link>
+						</fo:block>
+					</fo:list-item-body>
+				</fo:list-item>
+			</fo:list-block>
+			
+			<fo:block space-after="10pt">
+				<fo:external-graphic src="url('Images/beatles.jpg')" width="340px" height="238px"/>
+		        </fo:block>
+             </fo:flow>
+	</fo:page-sequence>
+```
 ## Page numbers and its references in XSL-FO
 To incert the current page number the <fo:page-number> is used. See a simple example below:
 ```
