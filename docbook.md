@@ -17,4 +17,12 @@ The root element is [article](https://docbook.org/schemas/sdocbook/elements/arti
 ## [Docbook xsl] (https://cdn.docbook.org/)
 
 ## [pandoc](http://pandoc.org/index.html): convert docbook xml to other format
+```
+$ pandoc --from docbook --to epub3 --output myDocbook.epub myDocbook.xml
 
+$ pandoc --from docbook --to markdown --output myDocbook.md myDocbook.xml
+
+$ pandoc --from docbook --to html --output myDocbook.html myDocbook.xml
+
+$ pandoc --from docbook --to latex --output myDocbook.pdf myDocbook.xml
+```
