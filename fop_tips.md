@@ -2,6 +2,25 @@
 # XSLFO:
 ## [Tutorial](https://www.alt-soft.com/tutorial/)
 ## [Page Layout](https://www.webucator.com/tutorial/learn-xsl-fo/page-layout.cfm)
+## Region: fo:region-body, fo:region-before, fo:region-after, fo:region-start, and fo:region-end
+XSL-FO uses the following elements to define the regions of a page:
+- <fo:region-body> defines the body region
+- <fo:region-before> defines the top region (header)
+- <fo:region-after> defines the bottom region (footer)
+- <fo:region-start> defines the left region (left sidebar)
+- <fo:region-end> defines the right region (right sidebar)
+
+The four other region tags take all the same attributes as <fo:region-body> except for the margin attributes. These regions do not have margins. They always sit on the edge of the simple-page-master rectangle. In addition, these region tags take two other attributes: extent and precedence.
+
+- The extent attribute specifies the width of region-start and region-end and the height of region-before and region-after (assuming a portrait layout).
+- region-before, region-after, region-start, and region-end is a part of the region-body. To avoid text in the region-body to overwrite text in the other regions, the region-body must have margins at least the size of these regions.
+- The precedence attribute specifies which regions should sit on top. As you can see from the examples we have looked at thus far, by default region-start and region-end take precedence over region-before and region-after. The following code sample shows how to change this.
+
+- The margin specified in the <fo:region-body> tag forces the region-body edges in one inch from the simple-page-master rectangle.
+- The padding specified in the <fo:region-body> tag creates space between the content of the region-body and the edges of the region-body.
+
+
+
 ## bookmark-tree
 ```
   <fo:root xmlns:fo="http://www.w3.org/1999/XSL/Format"> 
