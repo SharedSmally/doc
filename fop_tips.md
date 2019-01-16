@@ -2,7 +2,8 @@
 # XSLFO:
 ## [Tutorial](https://www.alt-soft.com/tutorial/)
 ## [Page Layout](https://www.webucator.com/tutorial/learn-xsl-fo/page-layout.cfm)
-## Region: fo:region-body, fo:region-before, fo:region-after, fo:region-start, and fo:region-end
+
+## Region:
 XSL-FO uses the following elements to define the regions of a page:
 - <fo:region-body> defines the body region
 - <fo:region-before> defines the top region (header)
