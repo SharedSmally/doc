@@ -82,6 +82,51 @@ The root element is [article](https://docbook.org/schemas/sdocbook/elements/arti
 ```
 ## standard [v5.0](https://www.oasis-open.org/standards#dbv5.0)
 
+## Examples
+### keycombo-keysym
+```
+<para>
+   You can exit from GNU Emacs with<menuchoice>
+   <shortcut><keycombo><keysym>C-x</keysym><keysym>C-c</keysym></keycombo></shortcut>
+   <guimenu>Files</guimenu><guimenuitem>Exit Emacs</guimenuitem></menuchoice>.
+</para>
+<para>
+   The <keycap>F1</keycap> key on an IBM PC keyboard generates the
+   scan code <keycode>0x3B</keycode> when pressed.  This value
+   is defined as <keysym>KEY_F1</keysym> in 
+   <filename class="headerfile">keyboard.h</filename>.
+</para>
+```
+### guimeniitem
+```
+<para os="windows">You can exit most Windows applications by selecting
+   <guimenuitem><accel>Q</accel>uit</guimenuitem> or
+   <guimenuitem>E<accel>x</accel>it</guimenuitem> from
+   the <guimenu><accel>F</accel>ile</guimenu> menu.
+</para>
+```
+
+### mouse
+```
+<para>
+   Select a region of text by dragging the mouse pointer with the
+   <mousebutton>left</mousebutton> mouse button depressed.  Copy the
+   selected text to a new location by placing the mouse pointer at the
+   desired position and pressing the <mousebutton>middle</mousebutton>
+   button.
+</para>
+```
+
+### footnote
+```
+<para>An annual percentage rate (<abbrev>APR</abbrev>) of 13.9%<footnote>
+   <para>The prime rate, as published in the <citetitle>Wall Street
+   Journal</citetitle> on the first business day of the month,
+   plus 7.0%.</para></footnote>
+   will be charged on all balances carried forward.
+</para>
+```
+
 ## [Docbook xsl](https://cdn.docbook.org/): 
 Goto https://github.com/docbook/xslt10-stylesheets/releases; and download docbook-xsl-snapshot.tar.gz
 
