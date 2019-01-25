@@ -137,6 +137,22 @@ The root element is [article](https://docbook.org/schemas/sdocbook/elements/arti
 </para>
 ```
 
+### [Cover Page](http://doccookbook.sourceforge.net/html/en/dbc.fo.cover.html)
+##### Recto (Right) Page
+This is the main page and the content appears in the following order:
+    - the book title, from /book/title or /book/info/title
+    - the book subtitle, from /book/subtitle or /book/info/subtitle
+    - the book's author, from /book/info/author
+    - the edition, from /book/info/edition
+
+##### Verso (Left) Page
+This usually holds the imprint and the content appears in the following order:
+    - the book's title and subtitle in a smaller font size
+    - the author, from /book/info/author
+    - the edition, from /book/info/edition
+    - some legal text (copyright), from /book/info/legalnotice
+    - the ISBN, from /book/info/biblioid with class and the value isbn
+
 ### footnote
 ```
 <para>An annual percentage rate (<abbrev>APR</abbrev>) of 13.9%<footnote>
