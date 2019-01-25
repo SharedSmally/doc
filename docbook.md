@@ -137,7 +137,7 @@ The root element is [article](https://docbook.org/schemas/sdocbook/elements/arti
 </para>
 ```
 
-### [Cover Page](http://doccookbook.sourceforge.net/html/en/dbc.fo.cover.html)
+### [Cover Page](http://doccookbook.sourceforge.net/html/en/dbc.fo.cover.html) from titlepage.templates.xml
 ##### Recto (Right) Page
 This is the main page and the content appears in the following order:
     - the book title, from /book/title or /book/info/title
