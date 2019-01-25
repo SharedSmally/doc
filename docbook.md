@@ -2,26 +2,46 @@
 - [asciidoc](http://asciidoc.org/): converts an AsciiDoc text file to HTML or DocBook 
     a2x : A toolchain manager for AsciiDoc (converts Asciidoc text files to other file formats) 
 - [DocBook] to pdf:
+- [cover page design](http://doccookbook.sourceforge.net/html/en/dbc.fo.cover.html)
+
 A makefile sample:
 ```
-STYLESHEETS_DIR = /usr/share/xml/docbook/stylesheet
+# targets
+TARGETS = book article page
 
-all: html pdf
+# From https://xmlgraphics.apache.org/fop/
+FOP=~/app/fop-2.3/fop/fop
+# From https://cdn.docbook.org/
+FOP_XSL=~/app/docbook-xsl-snapshot/fo/docbook.xsl
+XHTML_XSL=~/app/docbook-xsl-snapshot/xhtml/docbook.xsl
 
-book:
-    ${FOP} -xml $@.xml -xsl ${DOCBOOK_XSL} -pdf $@.pdf
+# docbook spec: https://docbook.org/specs/
+# docbook reference:https://tdg.docbook.org/ 
+#   http://docbook.sourceforge.net/release/xsl/current/doc/
+# http://sagehill.net/book-description.html
+DOC_ARGS = -param header.rule 0 \
+           -param footer.rule 0 \
+	   -param suppress.footer.navigation 1 \
+	   -param double.sided 1  \
 
-html:
-    xsltproc -o manual.html $(STYLESHEETS_DIR)/xhtml/docbook.xsl manual.xml
+PDF_TARGETS = $(addsuffix .pdf, ${TARGETS})
+HTML_TARGETS = $(addsuffix .html, ${TARGETS})
+#################################################
+main: 
 
-fo:
-    xsltproc -o manual.fo $(STYLESHEETS_DIR)/fo/docbook.xsl manual.xml
+pdf: ${PDF_TARGETS}
 
-pdf: fo
-   ${FOP} -pdf manual.pdf -fo manual.fo
+html: ${HTML_TARGETS}
+
+%.pdf:%.xml 
+	${FOP} -xml $< -xsl ${FOP_XSL} -pdf $@ \
+	${DOC_ARGS}
+
+%.html:%.xml 
+    xsltproc -o $@ ${XHTML_XSL} $<
 
 clean:
-    rm -rf manual.html manual.fo manual.pdf
+    rm -rf *.html *.pdf
 ```
 
 Book sample
