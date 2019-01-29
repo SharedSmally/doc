@@ -22,3 +22,43 @@
   </body>
 </html>
 ```
+## [ Web Jars ](https://www.webjars.org/)
+In pom.xml, add bootstrap, jQuery, Pepper web jars:
+```
+<dependency>
+    <groupId>org.webjars</groupId>
+    <artifactId>jquery</artifactId>
+    <version>3.3.1-1</version>
+</dependency>
+<dependency>
+    <groupId>org.webjars</groupId>
+    <artifactId>bootstrap</artifactId>
+    <version>4.2.1</version>
+</dependency>
+<dependency>
+    <groupId>org.webjars</groupId>
+    <artifactId>popper.js</artifactId>
+    <version>1.14.6</version>
+</dependency>
+
+<link rel='stylesheet' href='/webjars/bootstrap/4.2.1/css/bootstrap.min.css'>
+
+<script src="/webjars/jquery/3.1.1/jquery.min.js"></script>
+<script src="/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js"></script>
+```
+For SpringBoot>1.3.0, it can automatically detect the webjars-locator library on the classpath and use it to automatically resolve the version of any WebJar assets. Need to add:
+```
+<dependencies>
+    <dependency>
+        <groupId>org.webjars</groupId>
+        <artifactId>webjars-locator</artifactId>
+        <version>0.30</version>
+    </dependency>
+</dependencies>
+
+<link rel='stylesheet' href='/webjars/bootstrap/css/bootstrap.min.css'>
+
+<script src="/webjars/jquery/jquery.min.js"></script>
+<script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+
+```
