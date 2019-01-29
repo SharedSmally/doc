@@ -14,6 +14,8 @@ CSS
   - [Selector](https://www.w3.org/TR/css3-selectors/)
     - [Git cheatsheet](https://gist.github.com/smutnyleszek/809a69dd05e1d5f12d01)
     - [pdf cheatsheet](https://www.smashingmagazine.com/wp-content/uploads/images/css3-cheat-sheet/css3-cheat-sheet.pdf)
+  - Media:
+  The ‘print’ and ‘screen’ media types are defined in HTML4. The complete list of media types in HTML4 is: ‘aural’, ‘braille’, ‘handheld’, ‘print’, ‘projection’, ‘screen’, ‘tty’, ‘tv’. CSS2 defines the same list, deprecates ‘aural’ and adds ‘embossed’ and ‘speech’. Also, ‘all’ is used to indicate that the style sheet applies to all media types.
   
 ### Tutorial  
   - [Introduction](http://www.w3schools.com/css/default.asp)
