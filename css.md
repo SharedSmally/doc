@@ -2,6 +2,7 @@ CSS
 ======
 
 ### Standard
+- [CSS 2018](https://www.w3.org/TR/css-2018/)
 - [CSS Wiki](https://en.wikipedia.org/wiki/Cascading_Style_Sheets)
 - [All Specs](https://www.w3.org/Style/CSS/specs.en.html)
 - [CSS 1](https://www.w3.org/TR/1999/REC-CSS1-19990111)
