@@ -3,9 +3,9 @@
 - [Prepare kvm env](https://docs.okd.io/latest/minishift/getting-started/setting-up-virtualization-environment.html)
 - [Install minishift release](https://github.com/minishift/minishift/releases)
    - minishift start [--vm-driver virtualbox/kvm ]
+   - minishift ssh/oc-env/docker-env/ip/console/image/addons
+   - minishift status/update/stop/delete
    
-   - minishift stop
-   - minishift delete
 - Web Console to start project/deploy applications
 
 ## [Container Image ISO](https://docs.okd.io/latest/minishift/using/choosing-iso-image.html)
