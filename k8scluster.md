@@ -6,6 +6,7 @@ Using [ coreos-vagrant repo ](https://github.com/coreos/coreos-vagrant). See [Se
   Run k
   
 ### [ Helm ](https://helm.sh/): k8s package manager
+- [ Binary Release ](https://github.com/helm/helm/releases/)
 - Helm has two parts: a client (helm) and a server (tiller)
 - Tiller runs inside of your Kubernetes cluster, and manages releases (installations) of your charts.
 - Helm runs on your laptop, CI/CD, or wherever you want it to run.
