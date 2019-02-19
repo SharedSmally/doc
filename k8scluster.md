@@ -1,5 +1,10 @@
 ## setup K8S cluster.
-Using [ coreos-vagrant repo ](https://github.com/coreos/coreos-vagrant). See [Seyup K8S cluster](https://stackoverflow.com/questions/49605297/coreos-cluster-with-vagrant-does-not-start-configure-etcd-correctly?rq=1)
+Using [ coreos-vagrant repo ](https://github.com/coreos/coreos-vagrant). See [Seyup K8S cluster](https://stackoverflow.com/questions/49605297/coreos-cluster-with-vagrant-does-not-start-configure-etcd-correctly?rq=1). Then login node and start etcd service (defined in etcd-member.service) that knows how to fetch and run etcd v3 in a Linux container. No etcd v3-series binary is directly included in the Container Linux filesystem
+```
+core@core-03 /etc $ sudo systemctl start etcd-member         
+core@core-03 /etc $ etcdctl member list
+8e9e05c52164694d: name=62cc90c281644510b86c6140c2446494 peerURLs=http://localhost:2380 clientURLs=http://localhost:2379 isLeader=true
+```
 - Master Nodes (server)
   Run api-server, controller and scheduler. Share data using etcd
 - Working Nodes (client)
