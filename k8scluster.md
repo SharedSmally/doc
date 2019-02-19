@@ -1,5 +1,5 @@
 ## setup K8S cluster.
-Using coreos-vagrant repo. See [Seyup K8S cluster](https://stackoverflow.com/questions/49605297/coreos-cluster-with-vagrant-does-not-start-configure-etcd-correctly?rq=1)
+Using [ coreos-vagrant repo ](https://github.com/coreos/coreos-vagrant). See [Seyup K8S cluster](https://stackoverflow.com/questions/49605297/coreos-cluster-with-vagrant-does-not-start-configure-etcd-correctly?rq=1)
 - Master Nodes (server)
   Run api-server, controller and scheduler. Share data using etcd
 - Working Nodes (client)
