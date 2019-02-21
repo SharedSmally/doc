@@ -266,6 +266,42 @@ Nexus needs to disable strict content validation to deploy the generated \*.nar 
                         <run>true</run>
                     </library>
                 </libraries>
+		
+		<!--
+	<cpp>
+		<options>
+			<!-- <option>...</option> -->
+		</options>
+		<testOptions>
+			<!-- testOptions are added to regular options for test compilation -->
+			<!-- <option>...</option> -->
+		</testOptions>
+	</cpp>
+	
+	<tests>
+		<test>
+			<name>test1</name>
+			<link>static</link>
+			<run>true</run>
+		</test>
+		<test>
+			<name>test2</name>
+			<link>static</link>
+			<run>true</run>
+			<args>
+				<arg>10</arg>
+			</args>
+		</test>
+		<test>
+			<name>test2</name>
+			<link>static</link>
+			<run>true</run>
+			<args>
+				<arg>20</arg>
+			</args>
+		</test>
+	</tests>
+		-->
             </configuration>
         </plugin>
      </plugins>
@@ -279,7 +315,6 @@ Nexus needs to disable strict content validation to deploy the generated \*.nar 
       </repository>
    </distributionManagement>
 </project>
-
 ```
 The following archetypes are available for the nar plugin:
 - maven-archetype-nar-jni, a project with a native file, its java jni class and a java test class
@@ -293,3 +328,63 @@ The NAR plugin sets several properties that can be helpful in configuring other 
 - nar.aol: The full [ AOL ](http://maven-nar.github.io/aol.html) string. This is helpful when setting java.library.path; with a default configuration, this would be target/nar/${project.artifactId}-${project.version}-${nar.aol}/lib/${nar.aol}/jni
 - nar.aol.key: The AOL string with the '-' characters replaced by '.' characters.
 
+#### tar.gz binary files
+- Deploy to remote repository
+```
+   mvn deploy:deploy-file -DgroupId=${groupid} -DartifactId=${artifactID} -Dversion=${version} -Dpackaging=tar.gz \
+        -DrepositoryId=${repoID} -Durl=${repos_url} \
+	-Dfile=xxx-${version}.tar.gz
+```
+- Download the file: Add dependency in pom.xml: 
+```
+  <dependencies>
+    <dependency>
+       <groupId>com.github.maven-nar</groupId>
+       <artifactId>nar-maven-plugin</artifactId>
+       <version>3.6.0</version>
+    </dependency>
+    <dependency>
+      <groupId>${groupid}</groupId>
+      <artifactId>${artifactID}</artifactId>
+      <version>${version}</version>
+      <type>tar.gz</type>
+    </dependency>
+  </dependencies>
+```
+and run
+```
+mvn nar:nar-download
+```
+
+Alternative method: add in pom.xml
+```
+<build>
+<plugins>
+  <plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-dependency-plugin</artifactId>
+    <version>3.0.0</version>
+    <executions>
+      <execution>
+        <id>copy-dependencies</id>
+        <phase>package</phase>
+        <goals>
+          <goal>copy-dependencies</goal>
+        </goals>
+        <configuration>
+          <outputDirectory>${project.build.directory}/alternateLocation</outputDirectory>
+          <overWriteReleases>false</overWriteReleases>
+          <overWriteSnapshots>false</overWriteSnapshots>
+          <overWriteIfNewer>true</overWriteIfNewer>
+        </configuration>
+      </execution>
+    </executions>
+  </plugin>
+</plugins>
+</build>
+```
+and run
+```
+mvn dependency:copy-dependencies
+```
+to the folder target/dependency (all dependencies, including jars).
