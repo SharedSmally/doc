@@ -189,3 +189,106 @@ mvn -B archetype:generate \
 ```
    mvn clean install
 ```
+
+### maven for c++: [ maven-nar-plugin ] (http://maven-nar.github.io/index.html)
+- [ Usage/Example ] (http://maven-nar.github.io/usage.html)
+- [ nar configurations ] (http://maven-nar.github.io/configuration.html)
+- standard layout
+```
+/${project}
+   /src
+      /main
+            /java
+            /resources
+            /include
+            /c++
+            /c
+            /fortran
+      /test
+            /java
+            /resources
+            /include
+            /c++
+            /c
+            /fortran                        
+```
+- sample pom.xml
+```
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.cpw.app</groupId>
+  <artifactId>cpw</artifactId>
+  <packaging>nar</packaging>
+  <version>1.0-SNAPSHOT</version>
+  <name>cxx app</name>
+  <url>http://maven.apache.org</url>
+
+  <dependencies>
+    <dependency>
+      <groupId>cppunit</groupId>
+      <artifactId>cppunit</artifactId>
+      <version>3.8.1</version>
+      <scope>test</scope>
+      <type>nar</type>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+        <plugin>
+  	        <groupId>com.github.maven-nar</groupId>
+		         <artifactId>nar-maven-plugin</artifactId>
+		         <version>3.6.0</version>
+		         <extensions>true</extensions>
+           <configuration>
+               <libraries>
+                    <library>
+                        <type>executable</type>
+                        <run>true</run>
+                    </library>
+               </libraries>
+
+                <!-- Here is the config for the custom source dir and includes -->
+                <cpp>
+                    <sourceDirectory>
+                        ${basedir}/src/main/c++/
+                    </sourceDirectory>
+                    <includes>
+                        <include>${basedir}/src/main/c++/include/*.h</include>
+                    </includes>
+                </cpp>
+                
+                <libraries>
+                    <library>
+                        <type>executable</type>
+                        <run>true</run>
+                    </library>
+                </libraries>
+            </configuration>
+        </plugin>
+     </plugins>
+   </build>
+
+   <distributionManagement>
+      <repository>
+        <id>release-snapshoot</id>
+        <name>jpw snapshoot</name>
+        <url>${url}</url>
+      </repository>
+   </distributionManagement>
+</project>
+
+```
+The following archetypes are available for the nar plugin:
+- maven-archetype-nar-jni, a project with a native file, its java jni class and a java test class
+- maven-archetype-nar-lib, a project with a native library, its header file and a c test program
+- maven-archetype-nar-exec, a project with a native file which compiles into an executable
+    
+The NAR plugin sets several properties that can be helpful in configuring other plugins.
+- nar.arch: The architecture (e.g. x86_64).
+- nar.os: The operating system (e.g. MacOSX).
+- nar.linker: The linker (e.g. gpp).
+- nar.aol: The full [ AOL ](http://maven-nar.github.io/aol.html) string. This is helpful when setting java.library.path; with a default configuration, this would be target/nar/${project.artifactId}-${project.version}-${nar.aol}/lib/${nar.aol}/jni
+- nar.aol.key: The AOL string with the '-' characters replaced by '.' characters.
+
