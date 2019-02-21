@@ -91,3 +91,101 @@ mvn -B archetype:generate \
   -DgroupId=com.mycompany.app \
   -DartifactId=my-app
 ```
+
+### Setup  ~/.m2/settings.xml:
+```
+<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0
+                      https://maven.apache.org/xsd/settings-1.0.0.xsd">
+  <localRepository>${user.home}/.m2/repository</localRepository>
+  <interactiveMode>true</interactiveMode>
+  <offline>false</offline>
+ 
+  <servers>
+    <server>
+      <id>{server/repo-id}</id>
+      <username>{username}</username>
+      <password>{password}</password>
+      <privateKey>${user.home}/.ssh/id_dsa</privateKey>
+      <passphrase>some_passphrase</passphrase>
+      <filePermissions>664</filePermissions>
+      <directoryPermissions>775</directoryPermissions>
+      <configuration></configuration>
+    </server>
+  </servers>
+
+  <mirrors>
+    <mirror>
+      <id>maven-central</id>
+      <name>maven central</name>
+      <url>http://{hostname}/repository/maven-central/</url>
+      <mirrorOf>central</mirrorOf>
+    </mirror>
+  </mirrors>
+
+  <profiles>
+    <profile>
+      <id>{profile-id}</id>
+      <repositories>
+        <repository>
+          <id>env-test</id>
+          <name>Codehaus Snapshots</name>
+          <releases>
+            <enabled>false</enabled>
+            <updatePolicy>always</updatePolicy>
+            <checksumPolicy>warn</checksumPolicy>
+          </releases>
+          
+          <snapshots>
+            <enabled>true</enabled>
+            <updatePolicy>never</updatePolicy>
+            <checksumPolicy>fail</checksumPolicy>
+          </snapshots>
+          <url>http://snapshots.maven.codehaus.org/maven2</url>
+          <layout>default</layout>
+        </repository>
+      </repositories>
+
+      <pluginRepositories>
+        ...
+      </pluginRepositories>
+    </profile>
+  </profiles>
+
+  <activeProfiles>
+    <activeProfile>{profile-id}</activeProfile>
+  </activeProfiles> 
+</settings>
+```
+
+### Upload maven file to repos
+- Add server in ~/.m2/settings.xml:
+```
+   <server>
+      <id>{repo-id}</id>
+      <username>{repo-username}</username>
+      <password>{password/encrypted password}</password>
+    </server>
+```
+- Add remote (artifactory) repository in pom.xml: 2 repo-id should match
+```
+    <distributionManagement>
+      <repository>
+        <id>{repo-id}</id>
+        <name>{repo-name}</name>
+        <url>(http://integ/){repo-host-name}/artifactory/{repo-url}</url>
+      </repository>
+    </distributionManagement>
+```
+- Deploy maven jar to remote repos
+```
+   mvn clean deploy
+```
+- Deploy maven jar to local repos[defined in ~/.m2/settings.xml. Default is ~/.m2/repository]:
+```
+<localRepository>${user.home}/.m2/repository</localRepository>
+```
+```
+   mvn clean install
+```
