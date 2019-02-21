@@ -158,6 +158,7 @@ mvn -B archetype:generate \
   </activeProfiles> 
 </settings>
 ```
+Nexus needs to disable strict content validation to deploy the generated \*.nar file.
 
 ### Upload maven file to repos
 - Add server in ~/.m2/settings.xml:
