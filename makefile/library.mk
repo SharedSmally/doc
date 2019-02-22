@@ -10,18 +10,14 @@ LIB_CC_SRCS=$(filter-out ${CC_TEST_SRCS},${CC_SRCS})
 
 LIB_OBJS=$(patsubst %.cc,%.o,${LIB_CC_SRCS})
 
-CPP_FLAGS+= -Wall -Werror -fpic
+CPPFLAGS+= -Wall -Werror -fpic
 
 #main:tasks
 
 tasks: ${LIB_FULLNAME} ${NAME}
 
-
 ${LIB_FULLNAME}:${LIB_OBJS}
         ${CXX} -shared -o $@ $<
-
-%.o:%.cc
-        ${CXX} ${CPP_FLAGS} -c -o $@  $<
 
 clean:
         ${RM} -rf *.o *~
@@ -40,3 +36,4 @@ print:
         @echo "cc test sources:" ${CC_TEST_SRCS}
         @echo "lib cc sources:" ${LIB_CC_SRCS}
         @echo "lib cc objs:" ${LIB_OBJS}
+
