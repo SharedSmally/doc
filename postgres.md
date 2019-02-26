@@ -60,7 +60,12 @@ postgres=# SELECT * FROM playground;
 postgres=#\q   # exit from postgreSQL shell
 
 ```
-
+- Setup database and user in sql file
+```
+CREATE DATABASE yourdbname;
+CREATE USER youruser WITH ENCRYPTED PASSWORD 'yourpass';
+GRANT ALL PRIVILEGES ON DATABASE yourdbname TO youruser;
+```
 - Lists databases:
 ```
 SELECT datname FROM pg_database
