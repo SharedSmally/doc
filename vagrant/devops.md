@@ -12,7 +12,7 @@
 
 - [gitlab]()
    - [gitlab omnius release](https://about.gitlab.com/install/):
-   - [gitlab vagrant installer](https://github.com/tuminoid/gitlab-installer)
+   - [gitlab vagrant installer](https://github.com/tuminoid/gitlab-installer): URL: https://127.0.0.1:8443/;  user: root
 
 ## Repository
 - [Nexus OSS]()
