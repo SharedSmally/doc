@@ -12,7 +12,7 @@
 
 - [gitlab]()
    - [gitlab omnius release](https://about.gitlab.com/install/):
-   - [gitlab vagrant installer](tps://github.com/tuminoid/gitlab-installer)
+   - [gitlab vagrant installer](https://github.com/tuminoid/gitlab-installer)
 
 ## Repository
 - [Nexus OSS]()
