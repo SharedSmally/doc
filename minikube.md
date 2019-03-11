@@ -37,4 +37,12 @@ Available Commands:
   update-context Verify the IP address of the running cluster in kubeconfig.
   version        Print the version of minikube
 ```
+
 ## [Docker Components](http://alexander.holbreich.org/docker-components-explained/)
+- /usr/bin/docker: cli that is only responsible for user friendly communication with docker
+- /usr/bin/dockerd: listens for Docker API requests and manages host's Container life-cycles by utilizing contanerd
+- /usr/bin/docker-containerd: took main responsibilty of managing containers life-cycle and more
+- /usr/bin/docker-runc runc (OCI runtime), component of containerd,  the cli client for running applications packaged according to 
+the OCI format and is a compliant implementation of the OCI spec.
+- /usr/bin/docker-containerd-ctr:  barebone CLI (ctr) for development and debugging purpose for direct communication with containerd. 
+- /usr/bin/docker-containerd-shim: allows for daemonless containers
