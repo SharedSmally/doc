@@ -1,4 +1,4 @@
-#MiniKube
+# MiniKube
 ## MiniKube Setup
 - Download Minikube: https://github.com/kubernetes/minikube
 - Copy minikube-windows-amd64.exe to minikube.exe
@@ -37,3 +37,4 @@ Available Commands:
   update-context Verify the IP address of the running cluster in kubeconfig.
   version        Print the version of minikube
 ```
+## [Docker Components](http://alexander.holbreich.org/docker-components-explained/)
