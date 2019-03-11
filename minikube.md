@@ -3,12 +3,12 @@
 - Download Minikube: https://github.com/kubernetes/minikube
 - Copy minikube-windows-amd64.exe to minikube.exe
 - Start MiniKube cluster: (VBox: CPUs=2, Memory=2048MB, Disk=20000MB;IP= 192.168.99.100)
-'''
+```
 minikube start
 pods:  apiserver proxy etcd scheduler controller addon-manager dns
 Images:kubernetes; kubeadm
-'''
-- [minikube tutorial] https://kubernetes.io/docs/tutorials/hello-minikube/
+```
+- [minikube tutorial](https://kubernetes.io/docs/tutorials/hello-minikube/)
 
 ## Mini commands
 ```
