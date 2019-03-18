@@ -99,6 +99,13 @@
     <xsl:choose>
        <xsl:when test="@class='panel-body'"></xsl:when>
        <xsl:when test="@class='panel-heading'"></xsl:when>
+       <xsl:when test="contains(text()[1],'Appears In:')">
+          <xsl:variable name="name" select="preceding-sibling::*[local-name()='H1' or local-name()='H3'][1]/text()"/>
+          <appear name="{$name}">
+             <xsl:value-of select="string-join(UL/LI/a/text(),'; ')"/>
+          </appear>
+       </xsl:when>  <!-- Appears in -->
+       <xsl:when test="count(a)>0"></xsl:when><!--  Other API versions of this object exist: -->
        <xsl:otherwise><xsl:apply-templates/></xsl:otherwise>
     </xsl:choose>
 </xsl:template>
@@ -106,7 +113,7 @@
 <xsl:template match="H1">
     <xsl:choose>
         <xsl:when test="count(STRONG)=1">
-            <h1res name="{STRING[1]/text()}"/>
+            <h1res name="{STRONG[1]/text()}" strong="true"/>
         </xsl:when>
         <xsl:otherwise>
             <h1res name="{text()}"/>
@@ -114,55 +121,162 @@
     </xsl:choose>
 </xsl:template>
 <xsl:template match="H2">
+    <xsl:variable name="h2next" select="following-sibling::*[1]"/>
+    <!-- P: desc -->
     <xsl:choose>
         <xsl:when test="count(STRONG)=1">
-            <h2res name="{STRING[1]/text()}"/>
+            <h2res name="{STRONG[1]/text()}" strong="true">
+            <xsl:call-template name="getInfo">
+              <xsl:with-param name="node" select = "$h2next" />
+            </xsl:call-template>
+            </h2res>
+        </xsl:when>
+        <xsl:when test="@id">
+            <h2res name="{text()}" id="{@id}">
+            <xsl:call-template name="getInfo">
+              <xsl:with-param name="node" select = "$h2next" />
+            </xsl:call-template>
+            </h2res>
         </xsl:when>
         <xsl:otherwise>
-            <h2res name="{text()}"/>
-        </xsl:otherwise>
-    </xsl:choose>
-</xsl:template>
-<xsl:template match="H3">
-    <xsl:choose>
-        <xsl:when test="count(STRONG)=1">
-            <h3res name="{STRING[1]/text()}"/>
-        </xsl:when>
-        <xsl:otherwise>
-            <h3res name="{text()}"/>
+            <h2res name="{text()}">
+            <xsl:call-template name="getInfo">
+              <xsl:with-param name="node" select = "$h2next" />
+            </xsl:call-template>
+            </h2res>
         </xsl:otherwise>
     </xsl:choose>
 </xsl:template>
 
-<xsl:template match="TABLE">  <!--  siblining H1/H3 -->
-    <xsl:variable name="name" select="preceding-sibling::H1[1]/text()"/>
+<xsl:template match="H3">
+    <xsl:variable name="h3next" select="following-sibling::*[1]"/>
+    <!-- CODE:request format  --> 
     <xsl:choose>
-        <xsl:when test="count(THEAD/TR/TH)=2">  <!--  Field:Description: parameters -->
-            <resourceid name="{$name}">
-               <xsl:apply-templates select="TBODY/TR" mode="arg"/>
-            </resourceid>
+        <xsl:when test="count(STRONG)=1">
+            <h3res name="{STRONG[1]/text()}" strong="true">
+            <xsl:call-template name="getInfo">
+              <xsl:with-param name="node" select = "$h3next" />
+            </xsl:call-template>
+            </h3res>
         </xsl:when>
-        <xsl:when test="count(THEAD/TR/TH)=3">  <!--  Group:Version:Kind -->
+        <xsl:when test="@id">
+            <h3res name="{text()}" id="{@id}">
+            <xsl:call-template name="getInfo">
+              <xsl:with-param name="node" select = "$h3next" />
+            </xsl:call-template>
+            </h3res>
+        </xsl:when>
+        <xsl:otherwise>
+            <h3res name="{text()}">
+            <xsl:call-template name="getInfo">
+              <xsl:with-param name="node" select = "$h3next" />
+            </xsl:call-template>
+            </h3res>
+        </xsl:otherwise>
+    </xsl:choose>
+</xsl:template>
+
+<xsl:template match="TABLE">  <!--  siblining of H1/H3 for Group/Version/Kind or Field/Desc  or Parameter/Desc -->
+    <xsl:variable name="name" select="preceding-sibling::*[local-name()='H1' or local-name()='H3'][1]/text()"/>
+    <xsl:choose>
+        <xsl:when test="count(THEAD/TR/TH)=2 and THEAD/TR/TH[1]/text()='Field'">  <!--  Field:Description -->
             <resource name="{$name}">
-               <xsl:apply-templates select="TBODY/TR" mode="res"/>
+               <xsl:apply-templates select="TBODY/TR" mode="arg"/>
             </resource>
         </xsl:when>
+
+        <xsl:when test="count(THEAD/TR/TH)=2 and THEAD/TR/TH[1]/text()='Parameter'" >  <!--  Http Request: Parameter/Description -->
+            <request name="{$name}">
+               <xsl:apply-templates select="TBODY/TR" mode="request"/>
+            </request>
+        </xsl:when>
+
+        <xsl:when test="count(THEAD/TR/TH)=2 and THEAD/TR/TH[1]/text()='Code'">  <!--  Http Response: Code/Description -->
+            <response name="{$name}">
+               <xsl:apply-templates select="TBODY/TR" mode="response"/>
+            </response>
+        </xsl:when>
+        
+        <xsl:when test="count(THEAD/TR/TH)=3">  <!-- Type: Group/Version/Kind -->
+            <resourceid name="{$name}">
+               <xsl:apply-templates select="TBODY/TR" mode="resid"/>
+            </resourceid>
+        </xsl:when>
+        
+        <xsl:otherwise>
+            <xsl:message>Unknown table format</xsl:message>
+        </xsl:otherwise>
     </xsl:choose>
 </xsl:template>
 
 <xsl:template match="TR" mode="arg">
-    <arg name="{TD[1]/CODE[1]/text()}" type="{TD[1]/I[1]/text()}">
+    <arg name="{TD[1]/CODE[1]/text()}" >
+       <xsl:choose>
+          <xsl:when test="count(TD[1]/I[1]/a)=1">
+             <xsl:attribute name="type" select="TD[1]/I[1]/a[1]/text()"/>
+             <xsl:attribute name="ref" select="TD[1]/I[1]/a[1]/@href"/>
+          </xsl:when>
+          <xsl:otherwise>
+             <xsl:attribute name="type" select="TD[1]/I[1]/text()"/>
+          </xsl:otherwise>
+       </xsl:choose>
        <desc><xsl:value-of select="TD[2]/text()"/></desc>
     </arg>
 </xsl:template>
 
-<xsl:template match="TR" mode="res">
+
+<xsl:template match="TR" mode="request">
+    <param name="{TD[1]/CODE[1]/text()}" >
+       <xsl:choose>
+          <xsl:when test="count(TD[1]/I[1]/a)=1">
+             <xsl:attribute name="type" select="TD[1]/I[1]/a[1]/text()"/>
+             <xsl:attribute name="ref" select="TD[1]/I[1]/a[1]/@href"/>
+          </xsl:when>
+          <xsl:otherwise>
+             <xsl:attribute name="type" select="TD[1]/I[1]/text()"/>
+          </xsl:otherwise>
+       </xsl:choose>
+       <desc><xsl:value-of select="TD[2]/text()"/></desc>
+    </param>
+</xsl:template>
+
+<xsl:template match="TR" mode="response">
+    <code value="{TD[1]/text()}" >
+       <xsl:choose>
+          <xsl:when test="count(TD[1]/I[1]/a)=1">
+             <xsl:attribute name="type" select="TD[1]/I[1]/a[1]/text()"/>
+             <xsl:attribute name="ref" select="TD[1]/I[1]/a[1]/@href"/>
+          </xsl:when>
+          <xsl:otherwise>
+             <xsl:attribute name="type" select="TD[1]/I[1]/text()"/>
+          </xsl:otherwise>
+       </xsl:choose>
+       <desc><xsl:value-of select="TD[2]/text()"/></desc>
+    </code>
+</xsl:template>
+
+<xsl:template match="TR" mode="resid">
     <type group="{TD[1]/CODE[1]/text()}" version="{TD[2]/CODE[1]/text()}" kind="{TD[3]/CODE[1]/text()}"/>
 </xsl:template>
+
+
+
 
 <!-- <H2 id="create-secret-v1-core">Create</H2>: operations -->
 
 <xsl:template match="*">
+</xsl:template>
+
+<xsl:template name="getInfo">
+    <xsl:param name="node"/>
+    <xsl:choose>
+        <xsl:when test="local-name($node)='P'">  <!--  <P>create a CronJob</P>    -->
+            <desc><xsl:value-of select="$node/text()"/></desc>
+        </xsl:when>  
+        <xsl:when test="local-name($node)='CODE'"> <!--  <CODE>POST /apis/batch/v1beta1/namespaces/{namespace}/cronjobs</CODE>  -->
+            <format><xsl:value-of select="$node/text()"/></format>
+        </xsl:when>
+    </xsl:choose>
 </xsl:template>
 
 <xsl:function name="cpw:getName">
