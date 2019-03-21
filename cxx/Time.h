@@ -39,8 +39,10 @@ inline StDuration stDuration(const StTime & t0 ) { return StClock::now() - t0; }
 inline std::ostream & operator<<(std::ostream & oss, const Time & t0)
 {
   std::time_t t = Clock::to_time_t(t0);
-  oss << std::ctime(&t);  // output: Thu Mar 21 05:55:51 2019\r
+  //oss << std::ctime(&t);  // output: Thu Mar 21 05:55:51 2019\n
+  oss << std::put_time(std::localtime(&t), "%F %T"); //2019-03-21 06:09:34 ISO 8601 Date(%Y-%m-%d) Time(%H:%M:%S) format
   return oss;
 }
+
 
 #endif
