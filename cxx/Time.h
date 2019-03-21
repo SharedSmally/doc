@@ -18,21 +18,22 @@ local_t (C++20) pseudo-clock representing local time
 */
 typedef std::chrono::system_clock Clock;
 typedef std::chrono::steady_clock StClock;
-typedef std::chrono::high_resolution_clock HrClock;
+typedef std::chrono::high_resolution_clock HrClock; // maybe the same as Clock
 
-typedef Clock::duration Duration;
+typedef Clock::duration Duration; // in units of ns
 typedef StClock::duration StDuration;
-typedef StClock::duration HrDuration;
+typedef HrClock::duration HrDuration; 
 
 typedef Clock::time_point Time;
 typedef StClock::time_point StTime;
 typedef HrClock::time_point HrTime;
 
-/*
-typedef std::chrono::time_point< Clock > Time;
-typedef std::chrono::time_point< StClock > StTime;
-typedef std::chrono::time_point< HrClock > HrTime;
-*/
+inline Time now() { return Clock::now(); }
+inline StTime stNow() { return StClock::now(); }
+inline HrTime hrNow() { return HrClock::now(); }
 
+inline Duration duration(const Time & t0 ) { return Clock::now() - t0; }
+inline StDuration stDuration(const StTime & t0 ) { return StClock::now() - t0; }
+inline HrDuration hrDuration(const HrTime & t0 ) { return HrClock::now() - t0; }
 
 #endif
