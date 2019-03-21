@@ -34,6 +34,13 @@ inline HrTime hrNow() { return HrClock::now(); }
 
 inline Duration duration(const Time & t0 ) { return Clock::now() - t0; }
 inline StDuration stDuration(const StTime & t0 ) { return StClock::now() - t0; }
-inline HrDuration hrDuration(const HrTime & t0 ) { return HrClock::now() - t0; }
+//inline HrDuration hrDuration(const HrTime & t0 ) { return HrClock::now() - t0; }
+
+inline std::ostream & operator<<(std::ostream & oss, const Time & t0)
+{
+  std::time_t t = Clock::to_time_t(t0);
+  oss << std::ctime(&t);  // output: Thu Mar 21 05:55:51 2019\r
+  return oss;
+}
 
 #endif
