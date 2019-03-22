@@ -12,6 +12,7 @@
 - make; autoconfig; automake
 - mvn
 - gradle
+- git
 
 # C++ Dev & 3rd Party packages
 - g++
