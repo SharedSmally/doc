@@ -1,4 +1,5 @@
 # DevOps
+- OS: CentOS + JDK
 
 ## Configuration Tools
 - [Terraform](https://www.terraform.io/):  a tool for building, changing, and versioning infrastructure safely and efficiently.
@@ -27,8 +28,27 @@
 
 ## Cluster Managerment
 - zookeeper
-
 - kafka
+
+## Build System
+- make (automake; autoconfig; cmake)
+- mvn
+- gradle
 
 ## Openssl Keys
 - [Sample keys] (https://github.com/OpenVPN/openvpn/tree/master/sample/sample-keys)
+
+## CXX DEV (cxxdev) 3dr party packages
+- OpenSSL
+- UnixODBC
+- cppunit 
+- openldap
+- netsnmp
+- libcurl
+- JSON
+- xml
+
+## Tools
+- protocol buffer
+- xslt 
+- ASN1 Compiler
