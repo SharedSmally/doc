@@ -10,3 +10,9 @@ for file in $files; do
 done
 ```
 
+- Generate executable including all libraries: use -static or -Wl,-Bstatic:
+ link libapplejuice statically, but not liborangejuice:
+ ```
+gcc object1.o object2.o -Wl,-Bstatic -lapplejuice -Wl,-Bdynamic -lorangejuice -o binar
+```
+
