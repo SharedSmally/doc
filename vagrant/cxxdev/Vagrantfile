@@ -1,0 +1,29 @@
+Vagrant.configure("2") do |config|
+  config.vm.box = "centos/7"
+  config.vm.hostname = "cxxdev"
+
+  config.vm.network "private_network", ip: "192.168.250.12"
+
+  config.vm.synced_folder "C:\\MySpace", "/myspace"
+
+  #config.vm.provision "shell", path: "centos.sh"
+  #config.vm.provision "shell", path: "gcc.sh", privileged: false
+  #config.vm.provision "shell", path: "protobuf.sh", privileged: false
+  #config.vm.provision "shell", path: "openssl.sh", privileged: false
+  #config.vm.provision "shell", path: "unixodbc.sh", privileged: false
+  #config.vm.provision "shell", path: "xerces.sh", privileged: false
+  #config.vm.provision "shell", path: "xalan.sh", privileged: false
+  #config.vm.provision "shell", path: "expat.sh", privileged: false
+  #config.vm.provision "shell", path: "libxml2.sh", privileged: false
+  #config.vm.provision "shell", path: "json.sh", privileged: false
+  #config.vm.provision "shell", path: "pcre.sh", privileged: false
+  #config.vm.provision "shell", path: "pcre2.sh", privileged: false
+  #config.vm.provision "shell", path: "libcurl.sh", privileged: false
+  #config.vm.provision "shell", path: "openldap.sh", privileged: false
+  #config.vm.provision "shell", path: "libssh2.sh", privileged: false
+  #config.vm.provision "shell", path: "cppunit.sh", privileged: false
+  #config.vm.provision "shell", path: "googletest.sh", privileged: false
+
+  #config.vm.provision "shell", path: "openssh.sh", privileged: false
+  #config.vm.provision "shell", path: "kafka.sh", privileged: false
+end
