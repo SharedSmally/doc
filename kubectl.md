@@ -7,7 +7,7 @@ Common commands:create, get, describe, delete, patch/replace, run/exec, expose
 Types: pods, replicateset, service, deployments,
 ```
 
-## config & context: kubectl config
+## config & context: [kubectl config](https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/)
 Kubernetes uses a YAML file called kubeconfig to store cluster authentication information for kubectl. kubeconfig contains a list of contexts to which kubectl refers when running commands. By default, the file is saved at $HOME/.kube/config.
 
 A context is a group of access parameters. Each context contains a Kubernetes cluster, a user, and a namespace. The current context is the cluster that is currently the default for kubectl: all kubectl commands run against that cluster.
@@ -50,6 +50,11 @@ Config:
   Users
      User
 ```
+## [Tectonic Components](https://coreos.com/docs/)
+- Dashboard:
+- Quay:	A comprehensive container registry for building, storing, and distributing containers to the servers.
+- Clair:	Clair provides static analysis of vulnerabilities in appc and docker containers.
+- flannel:	flannel is a virtual network that gives a subnet to each host for use with container runtimes.
 
 ## Commands
 ### Basic Commands (Beginner):
