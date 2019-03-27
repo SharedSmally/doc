@@ -12,7 +12,10 @@ Kubernetes uses a YAML file called kubeconfig to store cluster authentication in
 
 A context is a group of access parameters. Each context contains a Kubernetes cluster, a user, and a namespace. The current context is the cluster that is currently the default for kubectl: all kubectl commands run against that cluster.
 ```
-Available Commands:
+Usage:
+  kubectl config SUBCOMMAND [options]
+  
+Available Sub-Commands:
   current-context Displays the current-context
   delete-cluster  Delete the specified cluster from the kubeconfig
   delete-context  Delete the specified context from the kubeconfig
@@ -26,11 +29,27 @@ Available Commands:
   unset           Unsets an individual value in a kubeconfig file
   use-context     Sets the current-context in a kubeconfig file
   view            Display merged kubeconfig settings or a specified kubeconfig file
-
-Usage:
-  kubectl config SUBCOMMAND [options]
 ```
+Examples:
+```
+kubectl config view
+kubectl config current-context
+kubectl config use-context
 
+kubectl config get-clusters
+kubectl config get-contexts
+
+kubectl config [set|delete]-cluster
+kubectl config [set|delete]-context
+
+Config:
+  Clusters:
+     Cluster
+  Contexts:
+     Context
+  Users
+     User
+```
 
 ## Commands
 ### Basic Commands (Beginner):
