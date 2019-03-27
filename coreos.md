@@ -5,29 +5,6 @@
 - master: apiserver; controller-manager; scheduler; proxy (hyperkube)
 - nodes: kubelet; proxy
 
-## [hypecube](https://github.com/kubernetes/kubernetes/tree/master/cluster/images/hyperkube)
-Kubernetes is a set of daemons/binaries:
-- kube-apiproxy (AKA the master),
-- kube-scheduler (resources manager)
-- kube-controller-manager (monitor RC, and maintain the desired state)
-- kubelet (start/stop containers, sync conf.),
-- kube-proxy (expose services on each node)
-
-The hyperkube binary is an all in one binary (in a way similar to busybox), combining all the previously separate binaries.
-The following command:
-```
-hyperkube kubelet \
-  --api-servers=http://localhost:8080 \
-  --v=2 \
-  --address=0.0.0.0 \
-  --enable-server \
-  --hostname-override=127.0.0.1 \
-  --config=/etc/kubernetes/manifests-multi \
-  --cluster-dns=10.0.0.10 \
-  --cluster-domain=cluster.local
-```
-runs the daemon kubelet. So hyperkube in a nutshell is the core for all services and the sole purpose of this hyperkube is to manage all the services inside the Kubernetes cluster so kinda simplify the deployment.
-
 ## coreos vagrant
 k8s-coreos cluster: build with Vagrant at https://github.com/pires/kubernetes-vagrant-coreos-cluster
 - Run in Linux; Need to install nfs server and client packages:
@@ -67,3 +44,26 @@ sudo dpkg -i vagrant_2.2.3_x86_64.deb
  vagrant ssh core-01
  core-01 $ etcdctl member list
 ```
+
+## [hypecube](https://github.com/kubernetes/kubernetes/tree/master/cluster/images/hyperkube)
+Kubernetes is a set of daemons/binaries:
+- kube-apiproxy (AKA the master),
+- kube-scheduler (resources manager)
+- kube-controller-manager (monitor RC, and maintain the desired state)
+- kubelet (start/stop containers, sync conf.),
+- kube-proxy (expose services on each node)
+
+The hyperkube binary is an all in one binary (in a way similar to busybox), combining all the previously separate binaries.
+The following command:
+```
+hyperkube kubelet \
+  --api-servers=http://localhost:8080 \
+  --v=2 \
+  --address=0.0.0.0 \
+  --enable-server \
+  --hostname-override=127.0.0.1 \
+  --config=/etc/kubernetes/manifests-multi \
+  --cluster-dns=10.0.0.10 \
+  --cluster-domain=cluster.local
+```
+runs the daemon kubelet. So hyperkube in a nutshell is the core for all services and the sole purpose of this hyperkube is to manage all the services inside the Kubernetes cluster so kinda simplify the deployment.
