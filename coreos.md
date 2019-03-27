@@ -12,6 +12,7 @@ Kubernetes is a set of daemons/binaries:
 - kube-controller-manager (monitor RC, and maintain the desired state)
 - kubelet (start/stop containers, sync conf.),
 - kube-proxy (expose services on each node)
+
 The hyperkube binary is an all in one binary (in a way similar to busybox), combining all the previously separate binaries.
 The following command:
 ```
