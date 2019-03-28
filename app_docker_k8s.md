@@ -43,5 +43,8 @@ docker pause|unpause|wait|rename
 docker cp
 docker port
 ```
-
+- Login a container:
+```
+docker run -i -t centos:7 /bin/bash
+```
 # k8s
