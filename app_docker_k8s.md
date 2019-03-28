@@ -13,14 +13,35 @@ sudo systemctl enable docker
 ```
 sudo groupadd docker
 sudo usermod -aG docker $(whoami)
-#relogin and run docker info for system info.
-#docker related data are stored in /var/lib/docker, 
+#relogin;  docker related data are stored in /var/lib/docker, 
 # containers  image  network  overlay2  plugins  swarm  tmp  trust  volumes
 ```
-- Start a docker container
+- docker info
 ```
+docker info  # system info
+docker stats|logs|diff|events|inspect # container stats
+```
+- docker image
+```
+docker images
+docker history
+docker pull/push _image_  (from remote repository)
+docker build/commit (from Dockerfile or a container )
+docker export/import (from running container as tar file)
+docker save/load (from image tar file)
+docker tag|rmi 
+docker login/logout|search
+```
+- docker container
+```
+docker ps | top 
+docker exec command
 docker run hello-world
-docker ps -a
+docker create|kill|attach
+docker start|stop|restart|rm
+docker pause|unpause|wait|rename
+docker cp
+docker port
 ```
 
 # k8s
