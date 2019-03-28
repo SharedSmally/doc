@@ -1,3 +1,3 @@
 
-#Docker image for centos:
-- [centos](https://hub.docker.com/_/centos): https://hub.docker.com/_/centos
+# Docker image:
+- For [centos](https://hub.docker.com/_/centos): https://hub.docker.com/_/centos
