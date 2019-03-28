@@ -9,10 +9,10 @@ docker run [OPTIONS] IMAGE [COMMAND] [ARG...]
 docker run --name ubuntu_bash --rm -i -t ubuntu bash
 ```
 Some options:
-- _ --name_ assigns a name to the container, in this case ubuntu_bash
-- _ --rm _ like the bash command rm it removes the container, but when it exits
-- _ -i _ short for -interactive, this ensures STDIN is kept open even if not attached to the running container
-- _ -t _, which can also be referenced with -tty , starts an interactive bash shell in the container
+- _--name_ assigns a name to the container, in this case ubuntu_bash
+- _--rm_ like the bash command rm it removes the container, but when it exits
+- _-i_ short for -interactive, this ensures STDIN is kept open even if not attached to the running container
+- _-t_, which can also be referenced with -tty , starts an interactive bash shell in the container
 - The image for the container follows the options, here it is the image ubuntu
 - The last part that follows the image, is the command you want to run: bash
 
@@ -23,7 +23,7 @@ and want to change it or obtain something from it:
 docker exec [OPTIONS] CONTAINER COMMAND [ARG...]
 docker exec -d -w /temp ubuntu_bash touch my_file.sh
 ```
-- -w followed by the directory or file path allows you to state which working directory you want to run the command in.
-- -d or -detached means that the container will run in detached mode, so you can still continue to use your terminal session with the container running in the background. Don’t use this if you want to see what the container sends to STDOUT.
+- _-w_ followed by the directory or file path allows you to state which working directory you want to run the command in.
+- _-d_ or _-detached_ means that the container will run in detached mode, so you can still continue to use your terminal session with the container running in the background. Don’t use this if you want to see what the container sends to STDOUT.
 - The command is touch used to create the file with the name my_file.sh inside the /temp directory of the running container ubuntu_bash
 
