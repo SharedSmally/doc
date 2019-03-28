@@ -1,7 +1,7 @@
-## Docker
+## [Docker](https://docs.docker.com/engine/reference/commandline/docker/)
 Both Docker *run* and *exec* execute commands in a Docker container.
 
-## run
+## [run](https://docs.docker.com/engine/reference/commandline/run/)
 Use this to run a command in a new container. It is used when there is no container running, 
 and need to create one, start it and then run a process on it.
 ```
@@ -16,7 +16,7 @@ Some options:
 - The image for the container follows the options, here it is the image ubuntu
 - The last part that follows the image, is the command you want to run: bash
 
-## exec
+## [exec](https://docs.docker.com/engine/reference/commandline/exec/)
 This is used to run a command in an existing container. There already has a container running 
 and want to change it or obtain something from it:
 ```
