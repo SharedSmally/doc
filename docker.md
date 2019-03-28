@@ -428,3 +428,9 @@ $ docker-compose up          # EXTERNAL_PORT will be 6000
 $ export EXTERNAL_PORT=7000
 $ docker-compose up          # EXTERNAL_PORT will be 7000
 ```
+
+## tips: 
+### RUN vs CMD vs ENTRYPOINT in dockfile
+- RUN executes command(s) in a new layer and creates a new image. E.g., it is often used for installing software packages.
+- CMD sets default command and/or parameters, which can be overwritten from command line when docker container runs.
+- ENTRYPOINT configures a container that will run as an executable.
