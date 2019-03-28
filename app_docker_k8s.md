@@ -49,6 +49,7 @@ Start a container, and let it running (both are the same):
 docker run -dt centos:7
 docker run -dt centos:7 /bin/bash
 ```
+
 Using the following command to exec the command in the container:
     - Use *docker ps* to get the name of the existing container
     - Use *docker exec -it \<container name\> /bin/bash* to get a bash shell in the container
