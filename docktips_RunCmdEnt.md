@@ -19,7 +19,7 @@ When instruction is executed in shell form it calls _/bin/sh -c <command>_ and n
 docker run -it <image>
 ```
 
-###Exec form
+### Exec form
 This is the preferred form for CMD and ENTRYPOINT instructions.
 ```
 <instruction> ["executable", "param1", "param2", ...]
