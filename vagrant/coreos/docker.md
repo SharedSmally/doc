@@ -14,6 +14,7 @@ $ curl -u admin:admin123 http://localhost:8081/service/metrics/ping
 Default credentials are: *admin / admin123*.
 
 - [Jenkins](https://hub.docker.com/_/jenkins):
+
 Store the workspace in /var/jenkins_home or /var/jenkins_home is mapped to /your/home:
 ```
 docker run -p 8080:8080 -p 50000:50000 jenkins
