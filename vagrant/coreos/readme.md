@@ -1,4 +1,13 @@
 ## [coreos](https://coreos.com/)
+### commands
+- Memory size
+```
+$ awk '/MemTotal/ {print $2}' /proc/meminfo
+```
+- Number of cpu size
+```
+$ grep -c ^processor /proc/cpuinfo
+```
 
 ### Vagrantfile: https://github.com/coreos/coreos-vagrant
 ```
@@ -17,9 +26,17 @@ Vagrant.configure("2") do |config|
   config.vm.box = "coreos-stable"
   config.vm.box_url = "https://stable.release.core-os.net/amd64-usr/current/coreos_production_vagrant_virtualbox.json"
 
-  #
+  # private network
   config.vm.network "private_network", ip: "192.168.33.11"
 
+  #
+  config.vm.provider :virtualbox do |vb|
+        #vb.gui = vm_gui
+        vb.memory = 1024
+        vb.cpus = 1
+        #vb.customize ["modifyvm", :id, "--cpuexecutioncap", "#{$vb_cpuexecutioncap}"]
+        #config.ignition.config_obj = vb
+  end
 end
 
 ```
