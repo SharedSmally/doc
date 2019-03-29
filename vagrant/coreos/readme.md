@@ -1,6 +1,6 @@
 ## [coreos](https://coreos.com/)
 
-### Vagrantfile
+### Vagrantfile: https://github.com/coreos/coreos-vagrant
 ```
 Vagrant.configure("2") do |config|
   config.vm.hostname = "coreos"
