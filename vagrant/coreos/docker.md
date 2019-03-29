@@ -1,6 +1,8 @@
 ## run docker in centos:
 - dockers: https://hub.docker.com/
-
+```
+$ docker logs nexus
+```
 - [Nexus OSS 3](https://hub.docker.com/r/sonatype/nexus3):
 
 To run, binding the exposed port 8081 to the host.
