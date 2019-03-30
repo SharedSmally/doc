@@ -20,3 +20,11 @@ systemctl status jenkins
 
 # enable the Jenkins service to start on system boot.
 sudo systemctl enable jenkins
+
+# adjust the Firewall if is protected by a firewall you need to port 8080.
+# sudo firewall-cmd --permanent --zone=public --add-port=8080/tcp
+# sudo firewall-cmd --reload
+
+# set up new Jenkins installation, open browser and type your domain or IP address by port 8080:
+# http://your_ip_or_domain:8080
+# sudo cat /var/lib/jenkins/secrets/initialAdminPassword
