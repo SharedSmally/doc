@@ -10,13 +10,13 @@ export JRE_HOME=/usr/lib/jvm/jre
 source /etc/profile
 
 cd ~
-wget http://www-us.apache.org/dist/kafka/0.9.0.1/kafka_2.11-0.9.0.1.tgz
+http://www-us.apache.org/dist/kafka/2.2.0/kafka_2.12-2.2.0.tgz
 
-tar -xvf kafka_2.11-0.9.0.1.tgz
-sudo mv kafka_2.11-0.9.0.1 /op
+tar -xvf kafka_2.12-2.2.0.tgz
+sudo mv kafka_2.12-2.2.0 /opt
 
 # Get into the Kafka directory
-cd /opt/kafka_2.11-0.9.0.1
+cd /opt/kafka_2.12-2.2.0
 
 # Start the Zookeeper server
 bin/zookeeper-server-start.sh -daemon config/zookeeper.properties
@@ -29,15 +29,16 @@ vi bin/kafka-server-start.sh
 bin/kafka-server-start.sh config/server.properties
 
 # create test topic
-cd /opt/kafka_2.11-0.9.0.1
+cd /opt/kafka_2.12-2.2.0
 bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic test
 bin/kafka-topics.sh --list --zookeeper localhost:2181
 
 # Produce messages using the topic "test"
+cd /opt/kafka_2.12-2.2.0
 bin/kafka-console-producer.sh --broker-list localhost:9092 --topic test
 
 # Display messages
-cd /opt/kafka_2.11-0.9.0.1
+cd /opt/kafka_2.12-2.2.0
 bin/kafka-console-consumer.sh --zookeeper localhost:2181 --topic test --from-beginning
 
 
