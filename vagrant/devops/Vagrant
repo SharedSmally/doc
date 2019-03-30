@@ -3,9 +3,10 @@ Vagrant.configure("2") do |config|
   config.vm.hostname = "devops"
 
   config.vm.network "private_network", ip: "192.168.250.10"
+  config.vm.synced_folder "../data", "/data"
   
   #install nexus oss3, jenkins, gitlab; zookeeper, kafka; postgres; openldap
   config.vm.provision "shell", path: "devops.sh"
-  config.vm.provision "shell", path: "postgres.sh"
-  config.vm.provision "file", source: "postgresDB.sql", destination: "postgresDB.sql"
+  #config.vm.provision "shell", path: "postgres.sh"
+  #config.vm.provision "file", source: "postgresDB.sql", destination: "postgresDB.sql"
 end
