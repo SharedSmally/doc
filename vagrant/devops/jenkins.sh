@@ -17,3 +17,6 @@ sudo systemctl start jenkins
 
 # check whether it started successfully run:
 systemctl status jenkins
+
+# enable the Jenkins service to start on system boot.
+sudo systemctl enable jenkins
