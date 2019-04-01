@@ -12,6 +12,18 @@ sudo systemctl start postgresql
 #Optional: Configure PostgreSQL to start on boot:
 sudo systemctl enable postgresql
 
+#Access the PostgreSQL Shell as the postgres Linux user
+# login postgres
+sudo su - postgres
+# access postgresql shell
+psql postgres
+postgres=#\d
+postgres=#\q
+# update configuration in /var/lib/pgsql/data:
+cd data
+
+
+#################################################
 # Configure PostgreSQLPermalink
 # Secure the Postgres UsersPermalink
 # By default, PostgreSQL will create a Linux user named
