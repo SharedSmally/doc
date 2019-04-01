@@ -9,14 +9,58 @@ export JAVA_HOME=/usr/lib/jvm/jre-1.8.0-openjdk
 export JRE_HOME=/usr/lib/jvm/jre
 source /etc/profile
 
-cd ~
-http://www-us.apache.org/dist/kafka/2.2.0/kafka_2.12-2.2.0.tgz
+# create kafka user
+sudo adduser kafka
+sudo chown -R kafka:kafka /opt/kafka
 
-tar -xvf kafka_2.12-2.2.0.tgz
-sudo mv kafka_2.12-2.2.0 /opt
+#sudo useradd kafka -m
+#sudo passwd kafka
+#sudo usermod -aG wheel kafka
+
+# download kafka
+cd ~
+wget http://www-us.apache.org/dist/kafka/2.2.0/kafka_2.12-2.2.0.tgz
+
+sudp tar -xvf kafka_2.12-2.2.0.tgz -C /opt
+sudo ln -s /opt/kafka_2.12-2.2.0/ /opt/kafka
+
+# run zookeeper as a service
+sudo vi /etc/systemd/system/zookeeper.service
+```
+[Unit]
+Requires=network.target remote-fs.target
+After=network.target remote-fs.target
+
+[Service]
+Type=simple
+User=kafka
+ExecStart=/opt/kafka/kafka/bin/zookeeper-server-start.sh /opt/kafka/kafka/config/zookeeper.properties
+ExecStop=/opt/kafka/kafka/bin/zookeeper-server-stop.sh
+Restart=on-abnormal
+
+[Install]
+WantedBy=multi-user.target
+```
+#
+sudo vi /etc/systemd/system/kafka.service
+```
+[Unit]
+Requires=zookeeper.service
+After=zookeeper.service
+
+[Service]
+Type=simple
+User=kafka
+ExecStart=/bin/sh -c '/opt/kafka/kafka/bin/kafka-server-start.sh /opt/kafka/kafka/config/server.properties > /opt/kafka/kafka/kafka.log 2>&1'
+ExecStop=/opt/kafka/kafka/bin/kafka-server-stop.sh
+Restart=on-abnormal
+
+[Install]
+WantedBy=multi-user.target
+```
 
 # Get into the Kafka directory
-cd /opt/kafka_2.12-2.2.0
+cd /opt/kafka
 
 # Start the Zookeeper server
 bin/zookeeper-server-start.sh -daemon config/zookeeper.properties
