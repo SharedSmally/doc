@@ -12,33 +12,35 @@ LDIF  entry records are used to represent directory entries.  The basic form of 
             <attrdesc>:< <URL>
             ...
 ```
+
        The value may be specified as UTF-8 text or as base64 encoded data,  or
        a URI may be provided to the location of the attribute value.
 
        A  line  may be continued by starting the next line with a single space or tab, e.g.,
-
+```
             dn: cn=Barbara J Jensen,dc=exam
              ple,dc=com
-
+```
        Lines beginning with a sharp sign ('#') are ignored.
 
        Multiple attribute values are specified on separate lines, e.g.,
-
+```
             cn: Barbara J Jensen
             cn: Babs Jensen
-
+```
        If an value contains a non-printing character, or begins with  a  space
        or  a  colon  ':', the <attrtype> is followed by a double colon and the
        value is encoded in base 64 notation. e.g., the value " begins  with  a
        space" would be encoded like this:
-
+```
             cn:: IGJlZ2lucyB3aXRoIGEgc3BhY2U=
-
+```
        If the attribute value is located in a file, the <attrtype> is followed
        by a ':<' and a file: URI.  e.g.,  the  value  contained  in  the  file
        /tmp/value would be listed like this:
-
+```
             cn:< file:///tmp/value
+```            
        Other URI schemes (ftp,http) may be supported as well.
 
        Multiple  entries  within  the  same  LDIF  file are separated by blank lines.
@@ -76,55 +78,55 @@ CHANGE RECORDS
        LDIF change records are used to represent  directory  change  requests.
        Each  change  record starts with line indicating the distinguished name
        of the entry being changed:
-
+```
             dn: <distinguishedname>
 
             changetype: <[modify|add|delete|modrdn]>
-
+```
        Finally, the change information itself is given, the  format  of  which
        depends  on  what kind of change was specified above.  For a changetype
        of modify, the format is one or more of the following:
-
+```
             add: <attributetype>
             <attrdesc>: <value1>
             <attrdesc>: <value2>
             ...
             -
-
+```
        Or, for a replace modification:
-
+```
             replace: <attributetype>
             <attrdesc>: <value1>
             <attrdesc>: <value2>
             ...
             -
-
+```
        If no attributetype lines are given to replace, the entire attribute is to be deleted (if present).
 
        Or, for a delete modification:
-
+```
             delete: <attributetype>
             <attrdesc>: <value1>
             <attrdesc>: <value2>
             ...
             -
-
+```
        If  no attributetype lines are given to delete, the entire attribute is   to be deleted.
 
        For a changetype of add, the format is:
-
+```
             <attrdesc1>: <value1>
             <attrdesc1>: <value2>
             ...
             <attrdescN>: <value1>
             <attrdescN>: <value2>
-
+```
        For a changetype of modrdn or moddn, the format is:
-
+```
             newrdn: <newrdn>
             deleteoldrdn: 0 | 1
             newsuperior: <DN>
-
+```
        where a value of 1 for deleteoldrdn means to delete the values  forming
        the  old rdn from the entry, and a value of 0 means to leave the values
        as non-distinguished attributes in the entry.  The newsuperior line  is
@@ -140,7 +142,7 @@ CHANGE RECORDS
 
 CHANGE RECORD EXAMPLE
        The following sample LDIF file contains a change record of each type of change.
-
+```
             dn: cn=Babs Jensen,dc=example,dc=com
             changetype: add
             objectclass: person
@@ -170,7 +172,7 @@ CHANGE RECORD EXAMPLE
 
             dn: cn=Barbara J Jensen,ou=People,dc=example,dc=com
             changetype: delete
-
+```
 INCLUDE STATEMENT
        The LDIF parser has been extended to support an include  statement  for
        referencing  other LDIF files.  The include statement must be separated
@@ -178,7 +180,7 @@ INCLUDE STATEMENT
        using  a  file: URI and all of its contents are incorporated as if they
        were part of the original LDIF file. As above, other URI schemes may be
        supported. For example:
-
+```
             dn: dc=example,dc=com
             objectclass: domain
             dc: example
@@ -188,6 +190,7 @@ INCLUDE STATEMENT
             dn: dc=example,dc=org
             objectclass: domain
             dc: example
+```
        This  feature  is not part of the LDIF specification in RFC 2849 but is
        expected to appear in a future revision of this spec. It  is  supported
        by the ldapadd(1), ldapmodify(1), and slapadd(8) commands.
