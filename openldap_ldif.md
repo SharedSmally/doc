@@ -141,7 +141,9 @@ CHANGE RECORDS
        in the manner described for entry records as well.
 
 CHANGE RECORD EXAMPLE
+
        The following sample LDIF file contains a change record of each type of change.
+       
 ```
             dn: cn=Babs Jensen,dc=example,dc=com
             changetype: add
@@ -173,13 +175,16 @@ CHANGE RECORD EXAMPLE
             dn: cn=Barbara J Jensen,ou=People,dc=example,dc=com
             changetype: delete
 ```
+
 INCLUDE STATEMENT
+
        The LDIF parser has been extended to support an include  statement  for
        referencing  other LDIF files.  The include statement must be separated
        from other records by a blank line.  The referenced file  is  specified
        using  a  file: URI and all of its contents are incorporated as if they
        were part of the original LDIF file. As above, other URI schemes may be
        supported. For example:
+       
 ```
             dn: dc=example,dc=com
             objectclass: domain
@@ -191,6 +196,7 @@ INCLUDE STATEMENT
             objectclass: domain
             dc: example
 ```
+
        This  feature  is not part of the LDIF specification in RFC 2849 but is
        expected to appear in a future revision of this spec. It  is  supported
        by the ldapadd(1), ldapmodify(1), and slapadd(8) commands.
