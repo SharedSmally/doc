@@ -22,8 +22,13 @@ sudo systemctl enable nexus
 # Executing /sbin/chkconfig nexus on
 
 #Starting nexus
+#sudo chown -r nexus:nexus /opt/sonatype-work/
 sudo systemctl start nexus
-
+#
+# sudo systemctl status nexus
+# sudo journalctl -xe
+# more /opt/sonatype-work/nexus3/log
+#
 # To check, point your browser to http://localhost:8081. 
 # Default username is admin with password admin123.
 # Running behind reverse proxy
