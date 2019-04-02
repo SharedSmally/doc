@@ -6,6 +6,11 @@ CRUD: create/read/update/delete
    update(string & key, Object & object): update object by key (object serialized to string)
    Object read(string & key): get object from key (value deserialize to Object)
    delete(string & key): delete object by key 
+   
+OR
+   put:  create or update
+   get:  query
+   remove: delete
 
    
    
