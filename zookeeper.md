@@ -13,9 +13,11 @@ The znode will be ephemeral, persistent, or sequential. By default, all znodes a
 - If no flags are specified, then the znode is considered as persistent.
 - ZooKeeper ensemble will add sequence number along with 10 digit padding to the znode path. For example, the znode path /myapp will be converted to /myapp0000000001 and the next sequence number will be /myapp0000000002. 
 
-## Zookeeper web
+## Zookeeper web-UI
 - [zk-web](https://github.com/qiuxiafei/zk-web):
 - [zkui](https://github.com/DeemOpen/zkui):
+- [EasyUI](http://www.jeasyui.com/): based on jQuery/Angular/React
+- [etcd-UI](https://github.com/evildecay/etcdkeeper)
 
 ## [ZooKeeper CLI](): zkCli.sh or zookeeper-shell.sh
 - Create znodes
