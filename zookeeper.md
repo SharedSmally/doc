@@ -18,6 +18,7 @@ The znode will be ephemeral, persistent, or sequential. By default, all znodes a
 - [zkui](https://github.com/DeemOpen/zkui):
 - [EasyUI](http://www.jeasyui.com/): based on jQuery/Angular/React
 - [etcd-UI](https://github.com/evildecay/etcdkeeper)
+- [Kafka Manager](https://github.com/yahoo/kafka-manager.git)
 
 ## [ZooKeeper CLI](): zkCli.sh or zookeeper-shell.sh
 - Create znodes
