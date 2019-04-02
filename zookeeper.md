@@ -31,18 +31,21 @@ set /path /data
 set /SecondZnode Data-updated
 ```
 - Create Children / Sub-znode
+
 Creating children is similar to creating new znodes. The only difference is that the path of the child znode will have the parent path as well.
 ```
 create /parent/path/subnode/path /data
 create /FirstZnode/Child1 firstchildren
 ```
 - List children of a zn
-list and display the children of a znode.
+
+List and display the children of a znode.
 ```
 ls /path
 ls /MyFirstZnode
 ```
 - Remove / Delete a znode
+
 Removes a specified znode and recursively all its children. This would happen only if such a znode is available.
 ```
 rmr /path
@@ -51,12 +54,14 @@ rmr /FirstZnode
 Delete (delete /path) command is similar to remove command, except the fact that it works only on znodes with no children.
 
 - Check Status
+
 Describes the metadata of a specified znode. It contains details such as Timestamp, Version number, ACL, Data length, and Children znode.
 ```
 stat /path
 stat /FirstZnode
 ```
 - Watch znode for changes
+
 Watches show a notification when the specified znode or znode’s children data changes. You can set a watch only in get command.
 ```
 get /path [watch] 1
