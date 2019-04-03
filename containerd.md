@@ -10,9 +10,9 @@
 
 ## docker Architecture:
 Prior to the version 1.11, Docker engine was used to manage volumes, networks, containers, images etc.. Now, the Docker architecture is broken into four components: 
-- Docker engine
-- containerd
-- containerd-shm 
+- Docker engine(dockerd): listens for Docker API requests and manages host's Container life-cycles by utilizing contanerd
+- containerd: take main responsibilty of managing containers life-cycle
+- containerd-shm: 
 - runC
 
 The binaries are respectively called docker, docker-containerd, docker-containerd-shim, and docker-runc.
