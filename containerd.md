@@ -5,4 +5,4 @@
 - [grpc](https://grpc.io/) used for communication between containerd and docker-engine.
 - [OCI](https://www.opencontainers.org/) maintains the OCI specification for runtime and images. The current docker versions support OCI image and runtime specs.
 ## Architecture:
-![architecture]( https://i.stack.imgur.com/5aXF6.png
+![architecture](https://i.stack.imgur.com/5aXF6.png)
