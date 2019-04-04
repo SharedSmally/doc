@@ -28,8 +28,10 @@ This represents by default the src/test/java folder.
 
 You can use further properties like the following:
 - ${project.build.finalName}
+
 This is by default defined as ${project.artifactId}-${project.version}.
 - ${project.version}
+
 This can be used at locations where you have to write a literal version otherwise, in particular if you are in a multi-modules build for inter modules dependencies.
 
  - ${project.basedir} represents the directory containing pom.xml
