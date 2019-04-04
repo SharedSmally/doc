@@ -3,6 +3,28 @@
 Maven:
 ### [Predifined Varaibles](https://github.com/cko/predefined_maven_properties/blob/master/README.md)
 
+This page extracts a few classical values:
+- ${project.basedir} 
+This references to the root folder of the module/project (the location where the current pom.xml file is located)
+
+POM properties referencing useful build locations, with default values defined in the Super POM:
+- ${project.build.directory}
+This represents by default the target folder.
+- ${project.build.outputDirectory}
+This represents by default the target/classes folder.
+- ${project.build.testOutputDirectory}
+This represents by default the target/test-classes folder.
+- ${project.build.sourceDirectory}
+This represents by default the src/main/java folder.
+- ${project.build.testSourceDirectory}
+This represents by default the src/test/java folder.
+
+You can use further properties like the following:
+- ${project.build.finalName}
+This is by default defined as ${project.artifactId}-${project.version}.
+- ${project.version}
+This can be used at locations where you have to write a literal version otherwise, in particular if you are in a multi-modules build for inter modules dependencies.
+
  - ${project.basedir} represents the directory containing pom.xml
  - ${project.build.directory} results in the path to the "target" directory 
  - ${project.build.outputDirectory} results in the path to the "target/classes" directory
