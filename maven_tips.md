@@ -5,7 +5,8 @@
 - Goal: a specific task (unit of work) that may be executed as a standalone goal or along with other goals as part of a large build. Goals are configured via configuration properties for customize behavoir (-D).
 - [Build Lifecycle](https://maven.apache.org/guides/introduction/introduction-to-the-lifecycle.html): A ordered sequence of phases involved in building a project. See the [reference](https://maven.apache.org/guides/introduction/introduction-to-the-lifecycle.html#Lifecycle_Reference).
 - Phase: Executing a phase will execute all the phase preceding in order, ending with the phase specified in the command line. [The packaging](https://maven.apache.org/guides/introduction/introduction-to-the-lifecycle.html#Packaging) binds a set of standards plugin goals  to the default lifecycle.
-- Maven Coordinaes:*groupId:artifactId:version:packaging*
+- Maven Coordinaes:*groupId:artifactId:version:packaging*. The package is named as: *groupId/artifactId/version/groupId-artifactId-version-[classfier].packaging*
+- Dependencies: Specified in pom.xml. scope of _provided_ means it is needed for compiling, but should not be bundled in the output of the build. _test_ is only used for testing purpose.
 
 Plugin goals can be attached to a lifecyle phase. Maven moves through the phases in a lifecycle, execute the goals attched to each particular phase. Each phase may have zero or more goals bound to it.
 
@@ -30,9 +31,17 @@ Use Maven Archetype plugin with goal *create* to create project layout. B=batchM
 ```
 mvn archetype:generate -B -DgroupId=com.jpw -DarctifactId=common -DpackageName=com.jpw.common -Dversion=1.0.0
 ```
+Can use -DarchetypeArtifactID=maven-archetype-webapp for web layoout.
+
+    - src/main/java/: java source code
+    - src/main/resources: resources, such as the property files
+    - src/test/java/: test source code
+    - src/test/resources/: test sources
+
 - Install to local repository(~/.m2/repository)
 ```
 mvn install
+mvn install -x
 ```
 - Deploy to remote repository(SCM reposotory server)
 ```
@@ -42,6 +51,15 @@ mvn deploy
 ```
 mvn install@install-artifacts
 mvn antrun:run@install-artifacts   #run a task defined as id=install-artifacts in goal=run with antrun plugin.
+```
+- Site generation and reporting: execute the site lifecycle phase to generate documentation for *src/site amd target/site* configured by pom.xml.
+```
+mvn site
+```
+- Dependencies
+```
+mvn dependency:resolve
+mvn dependency:tree
 ```
 The sample pom.xml:
 ```
