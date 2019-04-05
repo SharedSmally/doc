@@ -1,5 +1,14 @@
 # maven
 
+## Concepts
+- [Plugin](https://maven.apache.org/guides/introduction/introduction-to-plugins.html): Collection of one or more goals(Mojo)
+- Goal: a specific task (unit of work) that may be executed as a standalone goal or along with other goals as part of a large build. Goals are configured via configuration properties for customize behavoir (-D).
+- [Build Lifecycle](https://maven.apache.org/guides/introduction/introduction-to-the-lifecycle.html): A ordered sequence of phases involved in building a project. See the [reference](https://maven.apache.org/guides/introduction/introduction-to-the-lifecycle.html#Lifecycle_Reference).
+- Phase: Executing a phase will execute all the phase preceding in order, ending with the phase specified in the command line. [The packaging](https://maven.apache.org/guides/introduction/introduction-to-the-lifecycle.html#Packaging) binds a set of standards plugin goals  to the default lifecycle.
+- Maven Coordinaes:*groupId:artifactId:version:packaging*
+
+Plugin goals can be attached to a lifecyle phase. Maven moves through the phases in a lifecycle, execute the goals attched to each particular phase. Each phase may have zero or more goals bound to it.
+
 ## envs
 - ~/.m2/settings.xml: user-specific configurration for authentication, repositories and other customized info
 - ~/.m2/repository: local maven repository. Store dependencies and packages by mvn install
