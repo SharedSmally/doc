@@ -61,6 +61,10 @@ mvn site
 mvn dependency:resolve
 mvn dependency:tree
 ```
+
+## pom.xml
+- moved shared dependencies with version to parent pom.xml within *<dependencyManagement><depenndencies><depdenency/><depenndencies><dependencyManagement>*, then the children doesn't need to specify the version in the dependencies
+	
 The sample pom.xml:
 ```
   <build>
