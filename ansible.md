@@ -19,8 +19,23 @@ In YAML:
       ansible_port: 5555
       ansible_host: 192.0.2.50
 ```
+
 - Group:
- 
+
+## Ansible Configuration Settings
+Ansible supports a few ways of providing configuration variables, mainly through environment variables, 
+command line switches and an ini file named ansible.cfg.
+
+Starting at Ansible 2.4 the ansible-config utility allows users to see all the configuration settings available, their defaults, how to set them and where their current value comes from.
+
+Changes can be made and used in a configuration file which will be searched for in the following order:
+- ANSIBLE_CONFIG (environment variable if set)
+- ansible.cfg (in the current directory)
+- ~/.ansible.cfg (in the home directory)
+- /etc/ansible/ansible.cfg
+
+Ansible will process the above list and use the first file found, all others are ignored.
+
  ## [Variable](http://docs.ansible.com/ansible/latest/user_guide/playbooks_variables.html)
  - 
  
