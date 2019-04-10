@@ -41,11 +41,12 @@ Ansible will process the above list and use the first file found, all others are
  
  ## [Template jinja2](http://docs.ansible.com/ansible/latest/user_guide/playbooks_templating.html)
  
- ## [Conditionas]()
+ - [Conditionas](https://docs.ansible.com/ansible/latest/user_guide/playbooks_conditionals.html)
  
- ## [Loop]()
+ - [Loop](https://docs.ansible.com/ansible/latest/user_guide/playbooks_loops.html)
  
- ## [Roles]()
+ ## [Roles](https://docs.ansible.com/ansible/latest/user_guide/playbooks_reuse_roles.html)
+ 
  
  ## [Modules](http://docs.ansible.com/ansible/latest/user_guide/modules.html)
  - In command line, using *-m* for module, *-a* for module arguments
