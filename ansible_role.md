@@ -32,9 +32,15 @@ Roles are not playbooks. Roles are small functionality which can be independentl
 
 Top-level playbooks are the bridge holding the hosts from your inventory file to roles that should be applied to those hosts.
 
+- Top-level playbook: vivek_orchestrate.yml
 ```
 --- 
 - hosts: tomcat-node 
+
+vars_file:
+   - config.yml       # yml file as  name: value
+   - site-config.yml
+
 roles: 
    - {role: install-tomcat} 
    - {role: start-tomcat} 
