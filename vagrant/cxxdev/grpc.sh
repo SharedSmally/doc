@@ -9,6 +9,8 @@ SRC_FILE=v1.19.1.tar.gz
 # from https://c-ares.haxx.se/download/c-ares-1.15.0.tar.gz
 # export CPPFLAGS=-I~/sdk/include:${CPPFLAGS}
 # export LDFLAGS=-L~/sdk/lib:${LDFLAGS}
+#
+# Needs gperftools from https://github.com/couchbase/gperftools
 
 cd src
 if [ ! -f $FILE ]; then
