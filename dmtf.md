@@ -1,6 +1,8 @@
 ## Distributed Management Task Force [(DMTF)](https://en.wikipedia.org/wiki/Distributed_Management_Task_Force)
 - [All DMTF Standard Publications](https://web.archive.org/web/20190331205141/https://www.dmtf.org/standards/published_documents)
+
 Categories:
+
 - Cloud Auditing Data Federation CADF
 - Common Diagnostic Model CDM
 - Cloud Management Initiative CLOUD
