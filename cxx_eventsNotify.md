@@ -16,14 +16,20 @@ be used to refer to the eventfd object.
 
 The following values may be bitwise ORed in flags to change the behavior of eventfd():
 - EFD_CLOEXEC (since Linux 2.6.27)
+
   Set the close-on-exec (FD_CLOEXEC) flag on the new file descriptor.
+  
 - EFD_NONBLOCK (since Linux 2.6.27)
+
   Set the O_NONBLOCK file status flag on the open file description 
+  
 - EFD_SEMAPHORE (since Linux 2.6.30)
+
   Provide semaphore-like semantics for reads from the new file descriptor.
   
 Operations:
 - read
+
 Each successful read returns an 8-byte integer in host byte order. The operation
 depends on whether the eventfd counter currently has a nonzero value and whether
 the EFD_SEMAPHORE flag was specified when creating the eventfd file descriptor:
@@ -38,6 +44,7 @@ the EFD_SEMAPHORE flag was specified when creating the eventfd file descriptor:
        error EAGAIN if the file descriptor has been made nonblocking.
 
 - write
+
 A write call adds the 8-byte integer value supplied in its buffer to the counter.
 The maximum value that may be stored in the counter is the largest unsigned 
 64-bit value minus 1 (i.e., 0xfffffffffffffffe). If the addition would cause 
