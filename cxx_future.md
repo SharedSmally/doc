@@ -1,7 +1,7 @@
 ## [ future<T> ](https://en.cppreference.com/w/cpp/thread/future)
 Provides a mechanism to access the result of asynchronous operations.  std::future references shared state that is not shared with any other asynchronous return objects (as opposed to std::shared_future)
 
-### object: Not support copy constructor
+- object: Not support copy constructor
 ```
 Defined in header <future>
 
@@ -22,10 +22,8 @@ std::future<R> std::packaged_task get_future();
 
 template< class R > 
 std::future<R>  promise<R>::get_future();
-
 ```
-
-### operation
+### operations
 ```
 future& operator=( future&& other ) noexcept;
 std::shared_future<T> share() noexcept;
