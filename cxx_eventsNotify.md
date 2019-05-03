@@ -1,5 +1,5 @@
 # [eventfd](http://man7.org/linux/man-pages/man2/eventfd.2.html)
-eventfd - create a file descriptor for event notification (Producer/ConsumerThread)
+eventfd - create a file descriptor for event notification. May be used for pattern: ProducerThreads + ConsumerThreads => SharedBlockingQueue )
 ```
   #include <sys/eventfd.h>
   int eventfd(unsigned int initval, int flags);
