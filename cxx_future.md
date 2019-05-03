@@ -1,4 +1,4 @@
-## [ future<T> ](https://en.cppreference.com/w/cpp/thread/future)
+## [ future template class ](https://en.cppreference.com/w/cpp/thread/future)
 Provides a mechanism to access the result of asynchronous operations.  std::future references shared state that is not shared with any other asynchronous return objects (as opposed to std::shared_future)
 
 - object: Not support copy constructor
@@ -23,7 +23,7 @@ std::future<R> std::packaged_task get_future();
 template< class R > 
 std::future<R>  promise<R>::get_future();
 ```
-### operations
+- operations
 ```
 future& operator=( future&& other ) noexcept;
 std::shared_future<T> share() noexcept;
@@ -39,7 +39,7 @@ std::future_status wait_for( const std::chrono::duration<Rep,Period>& timeout_du
 template< class Clock, class Duration >
 std::future_status wait_until( const std::chrono::time_point<Clock,Duration>& timeout_time )
 ```
-## [shared_future](https://en.cppreference.com/w/cpp/thread/shared_future)
+## [shared_future template class](https://en.cppreference.com/w/cpp/thread/shared_future)
 The same operations except supporting copy constructor:
 ```
 shared_future() noexcept;
@@ -89,7 +89,7 @@ void make_ready_at_thread_exit( ArgTypes... args );
 void reset();
 ```
 
-## promise
+## [promise template class](https://en.cppreference.com/w/cpp/thread/promise)
 Provides a facility to store a value or an exception that is later acquired asynchronously via a std::future object created by the std::promise object. std::promise object is meant to be used only once.
 
 - constructor
@@ -124,7 +124,7 @@ void set_exception( std::exception_ptr p );
 void set_exception_at_thread_exit( std::exception_ptr p );
 ```
 
-## async
+## [async template function](https://en.cppreference.com/w/cpp/thread/async)
 The template function async runs the function f asynchronously (potentially in a separate thread which may be part of a thread pool) and returns a std::future that will eventually hold the result of that function call
 ```
 template< class Function, class... Args>
