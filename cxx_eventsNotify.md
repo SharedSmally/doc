@@ -33,12 +33,15 @@ Operations:
 Each successful read returns an 8-byte integer in host byte order. The operation
 depends on whether the eventfd counter currently has a nonzero value and whether
 the EFD_SEMAPHORE flag was specified when creating the eventfd file descriptor:
+
      -  If EFD_SEMAPHORE was not specified and the eventfd counter has a nonzero 
         value, then a read returns 8 bytes containing that value, and the 
         counter's value is reset to zero.
+        
      - If EFD_SEMAPHORE was specified and the eventfd counter has a nonzero value,
        then a read returns 8 bytes containing the value 1, and the counter's 
        value is decremented by 1.
+       
      - If the eventfd counter is zero at the time of the call to read, then the 
        call either blocks until the counter becomes nonzero or fails with the 
        error EAGAIN if the file descriptor has been made nonblocking.
