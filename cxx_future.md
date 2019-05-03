@@ -1,10 +1,10 @@
 ## [ future<T> ](https://en.cppreference.com/w/cpp/thread/future)
 Provides a mechanism to access the result of asynchronous operations.  std::future references shared state that is not shared with any other asynchronous return objects (as opposed to std::shared_future)
 
-Defined in header <future>
-
 ### object: Not support copy constructor
 ```
+Defined in header <future>
+
 future() noexcept;
 
 future( future&& other ) noexcept;
