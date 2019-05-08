@@ -3,8 +3,6 @@
 
 #include <memory>
 
-#include <Time.h>
-
 #ifdef TEST
 #include <iostream>
 #endif
@@ -17,34 +15,49 @@ public:
 };
 typedef std::shared_ptr< Runnable > RunnablePtr;
 
-
-class Timer
+class Cancellable : public Runnable
 {
 public:
-	Timer(const Time & time)
-      : expireTime_(time)
-    {}
-	Timer(const Duration & delay)
-      : expireTime_(Clock::now() + delay)
-    {}
-    virtual ~Timer()
-    {}
-    const Time & expireTime() const
+	enum State {
+		READY,
+		RUNNING,
+		CANCELLED,
+		FINISHED
+	};
+
+	Cancellable() : state_(READY) { }
+	virtual ~Cancellable() {}
+    virtual void run()
     {
-        return expireTime_;
+    	if (state_ != READY) return;
+    	state_ = RUNNING;
+    	_run();
+    	state_ = FINISHED;
     }
-    void expireTime(const Time & time)
+    bool cancel()
     {
-        expireTime_ = time;
+    	if (state_ == READY)
+    	{
+    		state_ = CANCELLED;
+    		return true;
+    	}
+    	else
+    	{
+    		return false;
+    	}
     }
-    virtual void run() = 0;
+    State state()
+    {
+    	return state_;
+    }
 
 protected:
-    Time expireTime_;
+    virtual void _run() = 0;
+
+protected:
+    State state_;
+    //std::mutex mtx_;
 };
-typedef std::shared_ptr< Timer> TimerPtr;
-
-
 
 
 template <typename T >
@@ -108,3 +121,4 @@ protected:
 };
 
 #endif
+
