@@ -29,7 +29,7 @@ std::string toMsString( const Time & time) {
     ts.resize(ts.size()-1);
     std::ostringstream oss;
     //oss << std::setfill ('0') << std::setw(3);
-    oss << ts.substring(1, 15) << "." << std::setfill ('0') << std::setw(3) << fms;
+    oss << ts.substr(0, 19) << "." << std::setfill ('0') << std::setw(3) << fms << ts.substr(19);
     return oss.str();
 
 	//date::format("%F %T\n", time_point_cast<milliseconds>(system_clock::now()))
@@ -255,3 +255,26 @@ protected:
 };
 
 #endif
+
+#include <Scheduler.h>
+
+#include <iostream>
+using namespace std;
+
+int main()
+{
+	ThreadExecutor executor;
+	SchedulerThread scheduler(executor);
+
+	scheduler.schedule( std::make_shared<Timer>( Duration(2000) ) );
+	scheduler.schedule( std::make_shared<Timer>( Duration(1000) ) );
+	scheduler.schedule( std::make_shared<Timer>( Duration(200)  ) );
+
+	/*
+	scheduler.schedule( std::make_shared<Timer>( Duration(500)  ) );
+	scheduler.schedule( std::make_shared<Timer>( Duration(5000) ) );
+   */
+
+    std::this_thread::sleep_for (std::chrono::seconds(10));
+}
+
