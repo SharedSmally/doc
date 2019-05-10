@@ -1,15 +1,17 @@
-#include <App.h>
-
+#include <signal.h>
+#include <unistd.h>
 #include <cstdlib>
 #include <string.h>
+
+#include <App.h>
 
 #include <iostream>
 using namespace std;
 
 static App * app_ = nullptr;
 
-void setApp(App & app) {
-	app_ = &app;
+void setApp(App * app) {
+	app_ = app;
 }
 App * getApp() {
 	return app_;
@@ -23,44 +25,99 @@ App * getApp() {
 static void sighandler (int sig)
 {
     cout << "App Received signal " << sig << "\n";
+    App * app = getApp();
+    if (app == nullptr)
+    {
+    	cout << "App is null \n";
+    	return;
+    }
 
     switch (sig)
     {
     case SIGUSR1:
     case SIGUSR2:
-    {
-        App * app = getApp();
-        if (app != nullptr)
-        {
-            app->setReturnCode( EXIT_SUCCESS ); //EXIT_FAILURE
-        }
-    }
-    break;
+       app->setCode( EXIT_SUCCESS );
+       break;
 
     default:
-    break;
+       app->setCode( EXIT_FAILURE );
+       break;
     }
 }
 
 static void signalhandler(int signum, siginfo_t *info, void *ptr)
 {
-    cout << "Received signal " << signum << "\n";
-    cout << "Signal originates from process " <<  (unsigned long)info->si_pid << "\n";
+    cout << "Received signal " << signum << " from process " <<  (unsigned long)info->si_pid << "\n";
+    sighandler(signum);
 }
 
-App::App()
-   : retCodeProm_(), retCodeFut_(retCodeProm_.get_future())
+std::string App::getEnv( std::string const & key )
 {
+    char * val = getenv( key.c_str() );
+    return val == nullptr ? std::string("") : std::string(val);
 }
 
-void App::_init()
+///////////////////  App
+App::App(int argc, char ** argv, char ** env)
+: argc_(argc), argv_(argv),
+  envc_(0), env_(env),
+  retCode_(EXIT_SUCCESS)
 {
-    // register signal handler
+    if (env_ != nullptr)
+    {
+        char ** ptr = env_;
+        while ( *ptr != nullptr ) {
+                ++ptr; ++ envc_;
+        }
+    }
+}
+
+const char * App::name() const
+{
+    return argv_[0];
+}
+
+void App::print() const
+{
+    if (argc_==0) return;
+
+    cout << "App name: " << argv_[0];
+    for(int i=0; i<argc_; i++)
+       cout << "\nargv[" << i << "]:" << argv_[i];
+    cout << endl;
+
+    for(int i=0; i<envc_; i++)
+       cout << "\nenv[" << i << "]:" << env_[i];
+    cout << endl;
+}
+
+///////////////////  CApp
+CApp::CApp(int argc, char **argv, char ** env)
+   : App(argc, argv, env),
+	 retCodeProm_(),
+	 retCodeFut_(retCodeProm_.get_future())
+{
+	::close(STDIN_FILENO); //close Standard input
+	// 0	Standard input	STDIN_FILENO	stdin
+	// 1	Standard output	STDOUT_FILENO	stdout
+	// 2	Standard error	STDERR_FILENO	stderr
+
+	_signal();
+}
+
+void CApp::_signal()
+{
+    ::setApp(this);
+
+	// register signal handler: 1-31
+	struct sigaction act_;
 	memset(&act_, 0, sizeof(act_));
 
+	//act.sa_handler = SIG_IGN; ignore
 	act_.sa_flags = SA_SIGINFO;
 	act_.sa_sigaction = signalhandler;
 
+	// 9(SIGKILL) and 19(SIGSTOP) cannot be caught or ignored
 	sigaddset(&act_.sa_mask, SIGUSR1);
 	sigaddset(&act_.sa_mask, SIGUSR2);
 
@@ -70,22 +127,8 @@ void App::_init()
 	// Install a signal handler
 	//signal(SIGUSR1, sighandler);
 }
-/*
-void App::print() const
-{
-	args_.print();
-}
-*/
-void App::run()
-{
 
-}
-
-int App::getReturnCode()
-{
-	return retCodeFut_.get();
-}
-void App::setReturnCode(int code)
+void CApp::setCode(int code)
 {
 	return retCodeProm_.set_value(code);
 }
@@ -121,3 +164,4 @@ int sigaddset(sigset_t *, int signum) – to set bit that represents certain sig
 int sigdelset(sigset_t *, int signum) – to clear bit that represents certain signal.
 int sigismember(sigset_t *, int signum) – to check status of certain signal in a mask.
  */
+
