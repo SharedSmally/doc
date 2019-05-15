@@ -3,6 +3,7 @@
 #include <sys/epoll.h>
 
 int fd = eventfd(0, EFD_NONBLOCK | EFD_CLOEXEC);
+eevent.events   = EPOLLIN | EPOLLONESHOT;
 
 int epoll_create(int size);
 int epoll_create1(int flags);
