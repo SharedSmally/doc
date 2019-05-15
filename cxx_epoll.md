@@ -2,6 +2,8 @@
 ```
 #include <sys/epoll.h>
 
+int fd = eventfd(0, EFD_NONBLOCK | EFD_CLOEXEC);
+
 int epoll_create(int size);
 int epoll_create1(int flags);
 int epoll_ctl(int epfd, int op, int fd, struct epoll_event *event);
