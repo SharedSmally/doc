@@ -10,9 +10,9 @@
 #define MAX_BATCH_SIZE 256
 
 EpollMux::EpollMux()
-: epollfd_( epoll_create(10))
+: epollfd_( epoll_create(1))
 {
-
+	//start(numIO, numMonitor);
 }
 
 EpollMux::~EpollMux()
@@ -135,8 +135,10 @@ void EpollMux::ioTask()
 	}
 }
 
-void EpollMux::notify()
+
+bool EpollMux::notify()
 {
+/*
     int notifyfd_ = eventfd(0, EFD_NONBLOCK | EFD_CLOEXEC);
 
     epoll_event event;
@@ -147,8 +149,24 @@ void EpollMux::notify()
     int rc = epoll_ctl(epollfd_, EPOLL_CTL_ADD, notifyfd_, &event);
     //uint64_t tmp = 1;
     //rc = write(wakeupfd_, &tmp, sizeof(tmp));
+*/
+	uint64_t tmp = 1;
+	int rc = write(notifyfd_, &tmp, sizeof(tmp));
+	return rc == sizeof(tmp);
 }
 
+bool EpollMux::addNotify(bool addit)
+{
+    epoll_event event;
+    event.events   = EPOLLIN; // no EPOLLONESHOT: broadcast to all threads
+    event.data.u64  = 0;
+    event.data.u32  = notifyfd_;
+
+    int rc = addit ? epoll_ctl(epollfd_, EPOLL_CTL_ADD, notifyfd_, &event)
+    		: epoll_ctl(epollfd_, EPOLL_CTL_MOD, notifyfd_, &event);
+
+    return (rc==0);
+}
 
 void EpollMux::setEvent(epoll_event & event, FdObjPtr & ptr)
 {
