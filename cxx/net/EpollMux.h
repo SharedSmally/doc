@@ -21,8 +21,10 @@ protected:
     void setEvent(epoll_event & event, FdObjPtr & );
     uint32_t getEvents(uint32_t revents);
 
+    virtual bool notify(); //notify new set of fds to be minitored
+    virtual bool addNotify(bool addit=false);
+
     bool monitor(FdObjPtr & ptr);
-    void notify();
 
 private:
     int epollfd_;
