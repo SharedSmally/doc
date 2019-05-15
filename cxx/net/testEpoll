@@ -1,0 +1,18 @@
+#include <EpollMux.h>
+
+#include <chrono>
+#include <iostream>
+using namespace std;
+
+int main()
+{
+	EpollMux mux;
+	cout << "start EPollMux"<< endl;
+	mux.start();
+
+    std::this_thread::sleep_for (std::chrono::seconds(2));
+    cout << "stop EPollMux"<< endl;
+    mux.stop();
+    std::this_thread::sleep_for (std::chrono::seconds(5));
+    cout << "complete EPollMux"<< endl;
+}
