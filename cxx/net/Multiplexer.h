@@ -3,45 +3,76 @@
 
 #include <vector>
 #include <deque>
+#include <thread>
+#include <mutex>
+#include <condition_variable>
 
 #include <FdObj.h>
 
+#ifndef INFO
+//#define INFO(msg) std::cout << msg << std::endl;
+#define INFO(msg)
+#endif
 
-class IOTask
-{
-public:
-	virtual void read(FdObjPtr & obj) = 0;
-	virtual void write(FdObjPtr & obj) = 0;
-};
-typedef std::shared_ptr<IOTask> IOTaskPtr;
+#ifndef INFO1
+#define INFO1(msg) std::cout << msg << std::endl;
+//#define INFO(msg)
+#endif
 
 class Multiplexer {
+
 public:
+    typedef std::mutex mutex_type;
+    typedef std::lock_guard<mutex_type> locker_type; // cannot unlock
+    typedef std::unique_lock<mutex_type> unilocker_type; // can unlock
+    //typedefstd::scoped_lock<mutex_type> locker_type; // multi-mutexs
+
+    enum State {
+        INIT,
+        RUNNING,
+        STOPPING,
+        STOPPED
+    };
+
+    const static int numCPUS;
     Multiplexer();
-    ~Multiplexer();
+    virtual ~Multiplexer();
+
+    void start(int numMonitor = numCPUS, int numIO = numCPUS);
+    void stop();
 
     virtual bool add(FdObjPtr & ptr) = 0;
     virtual bool remove(FdObjPtr & ptr) = 0;
+    virtual IOEventsHandler & getHandler() = 0;
 
 protected:
     //dissociate/associate from monitoring;
-    //bool associate(FdObjPtr & ptr);
-    //bool unassociate(FdObjPtr & ptr);
-    void notify(); //notify new set of fds to be minitored
+    virtual bool notify() = 0; //notify new set of fds to be minitored
+    virtual bool addNotify(bool addit=false) = 0;
+    virtual bool monitor(FdObjPtr & ptr) = 0;
 
     virtual void monitorTask() = 0; // one or more threads to monitor fds
-    virtual void ioTask() = 0;  // one or more threads to read/write
+    virtual void ioTask();  // one or more threads to read/write
 
 protected:
     bool running_;
+    int notifyfd_;
+    mutex_type mtx_;
+    std::condition_variable cv_;
 
-    typedef std::vector<FdObjPtr> container_type;
+    State state_;
+
+    std::vector<std::thread> ioThreads_;
+    std::vector<std::thread> monitorThreads_;
+
     //fds includes one notify fd, such as eventfd, pipe,...
     //to indicate that contents of fds_ changed
+    typedef std::vector<FdObjPtr> container_type;
     container_type container_;  // fd=>fdObj; managed fdObj
 
-    typedef std::deque<IOTaskPtr> iotasks_type;
+    typedef std::deque<FdObjPtr> iotasks_type;
     iotasks_type iotasks_;
 };
 
 #endif /* end of MULTIPLEXER_H */
+
