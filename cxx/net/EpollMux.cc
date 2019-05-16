@@ -5,19 +5,25 @@
 #include <sys/epoll.h>
 #include <sys/eventfd.h>
 
+#include <iostream>
+using namespace std;
+
 //epoll_create
 //epoll_wait()
 #define MAX_BATCH_SIZE 256
+#define INCR_BIT_NUMBER 2
 
 EpollMux::EpollMux()
 : epollfd_( epoll_create(1))
 {
-	//start(numIO, numMonitor);
+    //start(numIO, numMonitor);
+    addNotify(true);
+    //notify(); //not needed
 }
 
 EpollMux::~EpollMux()
 {
-	::close(epollfd_);
+    ::close(epollfd_);
 }
 
 bool EpollMux::add(FdObjPtr & ptr)
@@ -26,32 +32,37 @@ bool EpollMux::add(FdObjPtr & ptr)
     setEvent(event, ptr);
 
     {
-    	//autolock
-    	if (ptr->fd()>container_.size()) // expansion
-    	{
-    		auto size = container_.size();
-    		auto mysize = ptr->fd() + 1;
-    		mysize >>= 10; mysize++; mysize <<= 10; // incremented by 1k
+        //autolock
+        locker_type lock(mtx_);
+        if (ptr->fd()>container_.size()) // expansion
+        {
+            auto size = container_.size();
+            auto mysize = ptr->fd() + 1;
 
-    		FdObjPtr tmp(nullptr);
-    		container_.reserve(mysize);
-    		container_.insert(container_.end(), mysize-size,tmp);
-    	}
+            // incremented by step of 2**INCR_BIT_NUMBER
+            mysize >>= INCR_BIT_NUMBER;
+            mysize++;
+            mysize <<= INCR_BIT_NUMBER;
 
-    	if ( epoll_ctl(epollfd_, EPOLL_CTL_ADD, ptr->fd(), &event) == 0 )
-    	{
-    		//FdObjPtr tmp = ptr->fd(); //handle to old one??
-    		container_[ptr->fd()] = ptr;
-    		notify();
-    		return true;
-    	}
+            FdObjPtr tmp(nullptr);
+            container_.reserve(mysize);
+            container_.insert(container_.end(), mysize-size,tmp);
+        }
 
-    	// error
-    	int err = errno;
-    	if (err == EEXIST) // existing one
-    	{
+        if ( epoll_ctl(epollfd_, EPOLL_CTL_ADD, ptr->fd(), &event) == 0 )
+        {
+            //FdObjPtr tmp = ptr->fd(); //handle to old one??
+            container_[ptr->fd()] = ptr;
+            notify();
+            return true;
+        }
 
-    	}
+        // error
+        int err = errno;
+        if (err == EEXIST) // existing one
+        {
+            INFO( "error:" << err );
+        }
     }
 
     //ptr->onError(err);
@@ -61,11 +72,11 @@ bool EpollMux::add(FdObjPtr & ptr)
 bool EpollMux::remove(FdObjPtr & ptr)
 {
     {
-    	//autolock
-    	epoll_ctl(epollfd_, EPOLL_CTL_DEL, ptr->fd(), 0);
+        locker_type lock(mtx_);
+        epoll_ctl(epollfd_, EPOLL_CTL_DEL, ptr->fd(), 0);
 
-    	container_[ptr->fd()] = nullptr;
-    	notify();
+        container_[ptr->fd()] = nullptr;
+        notify();
     }
 }
 
@@ -74,17 +85,18 @@ bool EpollMux::monitor(FdObjPtr & ptr)
     epoll_event event;
     setEvent(event, ptr);
 
-	if (epoll_ctl(epollfd_, EPOLL_CTL_MOD, ptr->fd(), &event) == 0)
-	{
-		notify();
-		return true;
-	}
+    locker_type lock(mtx_);
+    if (epoll_ctl(epollfd_, EPOLL_CTL_MOD, ptr->fd(), &event) == 0)
+    {
+        notify();
+        return true;
+    }
 
-	//error
-	{
-		//error; err=errno;
-	}
-	return false;
+    //error
+    {
+        //error; err=errno;
+    }
+    return false;
 }
 
 void EpollMux::monitorTask()
@@ -94,65 +106,75 @@ void EpollMux::monitorTask()
 
     memset(events, 0, sizeof(events));
     memset(iotasks, 0, sizeof(iotasks));
+    INFO( "enter monitorTask for epoll_create" )
 
     while (running_) {
+        INFO( "waiting for epoll_wait:" )
         int32_t num = epoll_wait(epollfd_, events, MAX_BATCH_SIZE, -1);
+        INFO( "return from epoll_create: num=" << num )
         if (num==-1) { //error
-        	int err = errno;
-        	if ( (err!= ETIME) && (err!= EINTR) ) {
-        		// error
-        	}
-        	continue;
+            int err = errno;
+            if ( (err!= ETIME) && (err!= EINTR) ) {
+                // error
+            }
+            INFO( "return from epoll_create: error=" << err )
+            continue;
         }
 
         if (!running_) break;
 
         //get the io events
         {
-            //AutoLock;
-        	for (int i=0; i<num; ++i) {
-        		iotasks[i] = container_[events[i].data.u32];
-        		iotasks[i]->setRetEvents( getEvents(events[i].events) );
-        	}
+            locker_type lock(mtx_);
+            INFO( "get events from epoll_create: num=" << num )
+            for (int i=0; i<num; ++i) {
+                if (events[i].data.u32 == notifyfd_)
+                {
+                    INFO1( "get events from eventfd: fd=" << notifyfd_ )
+                    uint64_t tmp(0);
+                    int rc = read(notifyfd_, &tmp, sizeof(tmp));
+                    INFO1( "get events from eventfd: tmp=" << tmp <<"; size=" << rc )
+                    //addNotify(false);  // no need to reassociate it.
+                }
+                else
+                {
+                    iotasks[i] = container_[events[i].data.u32];
+                    if (iotasks[i])
+                        iotasks[i]->setRetEvents( getEvents(events[i].events) );
+                }
+            }
         }
 
         //execute the io events
+        INFO( "execute events from epoll_create: size=" << num )
+        bool cvnotif(false);
         for (int i=0; i<num; ++i) {
             // run task to read/write data
 
             // reconfig to be monitored again.
-            if (iotasks[i]->getEvents() != 0)
+            if (iotasks[i] && iotasks[i]->getRetEvents() != 0)
+            {
                 monitor(iotasks[i]);
+                cvnotif = true;
+            }
         }
+
+        if (cvnotif)
+            cv_.notify_all();
     }
 }
 
-void EpollMux::ioTask()
+bool EpollMux::onEvents(FdObjPtr & obj)
 {
-	while (running_) {
-		//
-		FdObjPtr obj; // from queue
-	}
+    return true;
 }
-
 
 bool EpollMux::notify()
 {
-/*
-    int notifyfd_ = eventfd(0, EFD_NONBLOCK | EFD_CLOEXEC);
-
-    epoll_event event;
-    event.events   = EPOLLIN; // no EPOLLONESHOT: broadcast to all threads
-    event.data.u64  = 0;
-    event.data.u32  = notifyfd_;
-
-    int rc = epoll_ctl(epollfd_, EPOLL_CTL_ADD, notifyfd_, &event);
-    //uint64_t tmp = 1;
-    //rc = write(wakeupfd_, &tmp, sizeof(tmp));
-*/
-	uint64_t tmp = 1;
-	int rc = write(notifyfd_, &tmp, sizeof(tmp));
-	return rc == sizeof(tmp);
+    uint64_t tmp = 1;
+    int rc = write(notifyfd_, &tmp, sizeof(tmp));
+    INFO1( "write to notifyfd: rc=" << rc )
+    return rc == sizeof(tmp);
 }
 
 bool EpollMux::addNotify(bool addit)
@@ -163,8 +185,8 @@ bool EpollMux::addNotify(bool addit)
     event.data.u32  = notifyfd_;
 
     int rc = addit ? epoll_ctl(epollfd_, EPOLL_CTL_ADD, notifyfd_, &event)
-    		: epoll_ctl(epollfd_, EPOLL_CTL_MOD, notifyfd_, &event);
-
+            : epoll_ctl(epollfd_, EPOLL_CTL_MOD, notifyfd_, &event);
+    INFO1( "add notifyfd to be managed: rc=" << rc )
     return (rc==0);
 }
 
@@ -172,47 +194,37 @@ void EpollMux::setEvent(epoll_event & event, FdObjPtr & ptr)
 {
     event.events  = EPOLLONESHOT; //dissociated after epoll_wait()
     if(ptr->getEvents() & FdEvents::READ)
-    {
         event.events |= EPOLLIN;
-    }
+
     if(ptr->getEvents() & FdEvents::WRITE)
-    {
         event.events |= EPOLLOUT;
-    }
+
     if(ptr->getEvents() & FdEvents::READ_PRIO)
-    {
         event.events |= EPOLLPRI;
-    }
 
     event.data.u64  = 0; // force init
-    event.data.u32  = ptr->fd(); // | 0x80000000;
+    event.data.u32  = ptr->fd(); // ind | 0x80000000;
 }
 
 
 uint32_t EpollMux::getEvents(uint32_t revents)
 {
-	uint32_t rtn(0);
+    uint32_t rtn(0);
 
     if(revents & EPOLLPRI)
-    {
         rtn |= FdEvents::READ_PRIO;
-    }
+
     if(revents & EPOLLIN)
-    {
         rtn |= FdEvents::READ;
-    }
+
     if(revents & EPOLLOUT)
-    {
         rtn |= FdEvents::WRITE;
-    }
+
     if(revents & EPOLLHUP)
-    {
         rtn |= FdEvents::HUP;
-    }
+
     if(revents & EPOLLERR)
-    {
         rtn |= FdEvents::ERR;
-    }
 
     return rtn;
 }
