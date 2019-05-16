@@ -7,11 +7,11 @@
 #include <deque>
 
 enum FdEvents {
-	READ,
-	READ_PRIO,
-	WRITE,
-	HUP,
-	ERR
+    READ,
+    READ_PRIO,
+    WRITE,
+    HUP,
+    ERR
 };
 
 /*
@@ -47,6 +47,7 @@ public:
 
 protected:
     int fd_;
+    uint32_t id_;
     uint32_t events_;
     uint32_t retevents_;
     std::deque<iovec> outgoing_;
@@ -54,14 +55,23 @@ protected:
 
 typedef std::shared_ptr<FdObj> FdObjPtr;
 
+class IOEventsHandler
+{
+public:
+    virtual bool onEvents(FdObjPtr & obj) = 0;
+};
+
 class FdObjListener
 {
 public:
-	virtual ~FdObjListener();
-	virtual void onRead(FdObjPtr & ptr) = 0;
-	virtual void onWrite(FdObjPtr & ptr) = 0;
-	virtual void onHangup(FdObjPtr & ptr) = 0;
-	virtual void onError(FdObjPtr & ptr, int err) = 0;
+    virtual ~FdObjListener();
+    virtual bool onEvents(FdObjPtr & obj);
+
+protected:
+    virtual void onRead(FdObjPtr & ptr) = 0;
+    virtual void onWrite(FdObjPtr & ptr) = 0;
+    virtual void onHangup(FdObjPtr & ptr) = 0;
+    virtual void onError(FdObjPtr & ptr, int err) = 0;
 };
 
 #endif /* end of FDOBJ_H */
