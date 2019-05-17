@@ -10,11 +10,14 @@ public:
     Address(){};
     virtual ~Address(){}
 
-    int domain() const { return addr().sa_family; }
-    virtual struct sockaddr & addr() = 0;
-    virtual const struct sockaddr & addr() const = 0;
+    int domain() const { return addr()->sa_family; }
+    virtual struct sockaddr * addr() = 0;
+    virtual const struct sockaddr * addr() const = 0;
     virtual socklen_t addrlen() const = 0;
     virtual const std::string toString() = 0;
+
+    bool operator==(const Address & addr) const;
+    bool operator<(const Address & addr) const;
 
 protected:
     void _init();
@@ -35,8 +38,8 @@ public:
 	IpAddress(const IpAddress & addr);
 	virtual ~IpAddress(){}
 
-    virtual struct sockaddr & addr() { return (struct sockaddr &)addr_; }
-	virtual const struct sockaddr & addr() const { return (const struct sockaddr &)addr_; }
+    virtual struct sockaddr * addr() { return (struct sockaddr *) (&addr_); }
+    virtual const struct sockaddr * addr() const { return (const struct sockaddr *)(&addr_); }
     virtual socklen_t addrlen() const { return sizeof(sockaddr_storage); }
     virtual const std::string toString();
 
@@ -63,8 +66,8 @@ public:
 	Ipv4Address(const Ipv4Address & addr);
 	virtual ~Ipv4Address() {}
 
-    virtual const struct sockaddr & addr() const { return (const struct sockaddr &)addr_; }
-    virtual struct sockaddr & addr() { return (struct sockaddr &)addr_; }
+    virtual struct sockaddr * addr() { return (struct sockaddr *) (&addr_); }
+    virtual const struct sockaddr * addr() const { return (const struct sockaddr *)(&addr_); }
     virtual socklen_t addrlen() const { return sizeof(sockaddr_in); }
     virtual const std::string toString();
 
@@ -92,8 +95,8 @@ public:
 	Ipv6Address(const Ipv6Address & addr);
 	virtual ~Ipv6Address() {}
 
-    virtual const struct sockaddr & addr() const { return (const struct sockaddr &) addr_; }
-    virtual struct sockaddr & addr() { return (struct sockaddr &)addr_; }
+    virtual struct sockaddr * addr() { return (struct sockaddr *) (&addr_); }
+    virtual const struct sockaddr * addr() const { return (const struct sockaddr *)(&addr_); }
     virtual socklen_t addrlen() const { return sizeof(sockaddr_in6); }
     virtual const std::string toString();
 
@@ -122,8 +125,8 @@ public:
 	UnixAddress(const UnixAddress & addr);
 	virtual ~UnixAddress(){}
 
-    virtual const struct sockaddr & addr() const { return (const struct sockaddr &)addr_; }
-    virtual struct sockaddr & addr() { return (struct sockaddr &)addr_; }
+    virtual struct sockaddr * addr() { return (struct sockaddr *) (&addr_); }
+    virtual const struct sockaddr * addr() const { return (const struct sockaddr *)(&addr_); }
     virtual socklen_t addrlen() const { return sizeof(sockaddr_un); }
     socklen_t maxlen() const { return sizeof(addr_.sun_path)-1; }
     virtual const std::string toString();
