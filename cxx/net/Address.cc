@@ -1,3 +1,4 @@
+
 #include "Address.h"
 
 #include <utility>
@@ -10,7 +11,20 @@
 
 void Address::_init()
 {
-	memset(&addr(), '\0', addrlen());
+	memset(addr(), '\0', addrlen());
+}
+
+bool Address::operator==(const Address & addr) const
+{
+	if (this==&addr) return true;
+	if (addrlen() != addr.addrlen()) return false;
+	return memcmp(this->addr(), addr.addr(), addrlen()) == 0;
+}
+bool Address::operator<(const Address & addr) const
+{
+	if (this==&addr) return true;
+	if (addrlen() != addr.addrlen()) return addrlen() < addr.addrlen();
+	return memcmp(this->addr(), addr.addr(), addrlen()) < 0;
 }
 
 IpAddress::IpAddress(uint16_t port, bool v4)
