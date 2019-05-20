@@ -20,19 +20,21 @@ struct ip_mreq_source {
 };
 ```
 
-- Scope	TTL	Adress range   Description
-Node	0					The datagram is restricted to the local host. It will not reach any of the network interfaces.
-Link	1	224.0.0.0 - 224.0.0.255	The datagram will be restricted to the sender host subnet, and will not progress beyond any router.
-Department	< 32	239.255.0.0 - 239.255.255.255	Restricted to one department of the organization.
-Organization	< 64	239.192.0.0 - 239.195.255.255	Restricted for a specific organization.
-Global	< 255	224.0.1.0 - 238.255.255.255	No restriction, global application.
+- Multicast Address
+| Scope |	TTL |	Adress range |   Description |
+| Node |	0	|	 |			The datagram is restricted to the local host. It will not reach any of the network interfaces. |
+| Link |	1	| 224.0.0.0 - 224.0.0.255	| The datagram will be restricted to the sender host subnet, and will not progress beyond any router. |
+| Department   |	< 32  | 239.255.0.0 - 239.255.255.255 |	Restricted to one department of the organization. |
+| Organization |	< 64	| 239.192.0.0 - 239.195.255.255 | Restricted for a specific organization. |
+| Global	      | < 255  | 224.0.1.0 - 238.255.255.255	  | No restriction, global application. |
 
-- IPv4 Option	Data type	Description
-IP_ADD_MEMBERSHIP	struct ip_mreq	Join the multicast group. No port is needed.
-IP_DROP_MEMBERSHIP	struct ip_mreq	Resign from the multicast group.
-IP_MULTICAST_IF	struct ip_mreq	Specify an interface for submission of multicast messages.
-IP_MULTICAST_TTL	u_char	Specify a TTL for submission of multicast messages.
-IP_MULTICAST_LOOP	u_char	Activate or deactivate the multicast messages loopback.
+- Multicast Socket Options
+| IPv4 Option	| Data type |	Description |
+| IP_ADD_MEMBERSHIP | struct ip_mreq |	Join the multicast group. No port is needed. |
+| IP_DROP_MEMBERSHIP | struct ip_mreq | Resign from the multicast group. |
+| IP_MULTICAST_IF	| struct ip_mreq | Specify an interface for submission of multicast messages. |
+| IP_MULTICAST_TTL | u_char |	Specify a TTL for submission of multicast messages. |
+| IP_MULTICAST_LOOP | u_char |	Activate or deactivate the multicast messages loopback. |
 
 needs to join the group and bind the local address if want to receive the message.
 Only need to open socket of group addr if want to send the message.
