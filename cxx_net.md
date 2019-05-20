@@ -31,6 +31,14 @@ struct ip_mreq_source {
 | Content Cell  | Content Cell  | Content Cell  | Content Cell  |
 
 
+
+| Scope   | TTL | Address range  | Description |
+| ------------- | ------------- | ------------- | ------------- |
+| Content Cell  | Content Cell  | Content Cell  | Content Cell  |
+| Content Cell  | Content Cell  | Content Cell  | Content Cell  |
+
+
+
 | Scope         |	TTL    |	Adress range                   |   Description                                                                                                |
 | Node          |	0	    |	                               |			The datagram is restricted to the local host. It will not reach any of the network interfaces.          |
 | Link          |	1	    | 224.0.0.0 - 224.0.0.255	       |  The datagram will be restricted to the sender host subnet, and will not progress beyond any router.      |
