@@ -92,11 +92,12 @@ int main(void) {
    perror("socket");
    return 1;
   }
-  /* Disable Loop-back */
+  /* Disable Loop-back: localhost (app in the same machine) will not receive multicast message: 
   if (setsockopt(send_s, IPPROTO_IP, IP_MULTICAST_LOOP, &no, sizeof(no)) < 0) {
       perror ("loop setsockopt");
       return 1;
   }
+ */
  
   while (fgets(buf, MAXBUF, stdin)) {
     if (sendto(s, buf, strlen(buf), 0,
