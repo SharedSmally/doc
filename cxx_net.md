@@ -77,6 +77,7 @@ local address:
 
 int main(void) {
   int s;
+  int no = 0;
   struct sockaddr_in srv;
   char buf[MAXBUF];
 
@@ -91,7 +92,12 @@ int main(void) {
    perror("socket");
    return 1;
   }
-
+  /* Disable Loop-back */
+  if (setsockopt(send_s, IPPROTO_IP, IP_MULTICAST_LOOP, &no, sizeof(no)) < 0) {
+      perror ("loop setsockopt");
+      return 1;
+  }
+ 
   while (fgets(buf, MAXBUF, stdin)) {
     if (sendto(s, buf, strlen(buf), 0,
               (struct sockaddr *)&srv, sizeof(srv)) < 0) {
