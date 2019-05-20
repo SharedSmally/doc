@@ -21,6 +21,7 @@ struct ip_mreq_source {
 ```
 
 - Multicast Address
+
 | Scope |	TTL |	Adress range |   Description |
 | Node |	0	|	 |			The datagram is restricted to the local host. It will not reach any of the network interfaces. |
 | Link |	1	| 224.0.0.0 - 224.0.0.255	| The datagram will be restricted to the sender host subnet, and will not progress beyond any router. |
@@ -29,6 +30,7 @@ struct ip_mreq_source {
 | Global	      | < 255  | 224.0.1.0 - 238.255.255.255	  | No restriction, global application. |
 
 - Multicast Socket Options
+
 | IPv4 Option	| Data type |	Description |
 | IP_ADD_MEMBERSHIP | struct ip_mreq |	Join the multicast group. No port is needed. |
 | IP_DROP_MEMBERSHIP | struct ip_mreq | Resign from the multicast group. |
