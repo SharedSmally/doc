@@ -2,10 +2,6 @@
 ## Multicast
 [Multicast Tutorial](http://www.linuxfocus.org/English/January2001/article144.meta.shtml)
 
-| First Header  | Second Header |
-| ------------- | ------------- |
-| Content Cell  | Content Cell  |
-| Content Cell  | Content Cell  |
 
 ```
 struct ip_mreq {
@@ -27,6 +23,12 @@ struct ip_mreq_source {
 ```
 
 - Multicast Address
+
+
+| First Header  | Second Header |
+| ------------- | ------------- |
+| Content Cell  | Content Cell  |
+| Content Cell  | Content Cell  |
 
 
 | Scope        |	TTL   |	Adress range                 |   Description                                                                                                  |
