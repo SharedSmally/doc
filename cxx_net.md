@@ -22,7 +22,9 @@ struct ip_mreq_source {
 
 - Multicast Address
 
+
 | Scope        |	TTL   |	Adress range                 |   Description                                                                                                  |
+| ------------ | ------ |
 | Node         |	0	   |	                             |			The datagram is restricted to the local host. It will not reach any of the network interfaces.          |
 | Link         |	1	   | 224.0.0.0 - 224.0.0.255	     | The datagram will be restricted to the sender host subnet, and will not progress beyond any router.      |
 | Department   |	< 32  | 239.255.0.0 - 239.255.255.255 |	Restricted to one department of the organization.                                                            |
