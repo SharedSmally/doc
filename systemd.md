@@ -11,7 +11,7 @@
 
 The main executable for systemd, /lib/systemd/systemd. performs all calls that originally were present in scripts. systemd creates all sockets first and then spawns all processes in parallel.
 
-systemd introduce the new concepts of units and targets. A target is analogous to a runlevel, and is composed of several units. systemd will execute units to reach a target. The instructions for each unit reside in the */lib/systemd/system/* directory (*.target, *.service, *.socket,*.slice, *.mount, *.target.wants/*.service) . These files use a declarative format. The most common type of these units is the service unit, which is used to start a service.
+systemd introduce the new concepts of units and targets. A target is analogous to a runlevel, and is composed of several units. systemd will execute units to reach a target. The instructions for each unit reside in the */lib/systemd/system/* directory (\*.target, \*.service, \*.socket, \*.slice, \*.mount, \*.target.wants/\*.service) . These files use a declarative format. The most common type of these units is the service unit, which is used to start a service. Units are defined using Unit Files with namng convention is name.unit_type.
 
 sshd.service:
 ```
@@ -42,8 +42,6 @@ Requires=basic.target
 Conflicts=rescue.service rescue.target
 After=basic.target rescue.service rescue.target
 AllowIsolate=yes
-```
-
 ```
 
 basic.target
