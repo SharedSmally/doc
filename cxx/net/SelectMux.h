@@ -4,16 +4,21 @@
 #include <Multiplexer.h>
 
 class SelectMux
-  : public Multiplexer
+  : public Multiplexer, public IOEventsHandler
 {
 public:
     SelectMux();
     ~SelectMux();
 
+    virtual bool add(FdObjPtr & ptr);
+    virtual bool remove(FdObjPtr & ptr);
+    virtual bool onEvents(FdObjPtr & obj);
+
+    virtual IOEventsHandler & getHandler() { return *this; }
+
 protected:
-
-private:
-
+    virtual void monitorTask();
+    bool monitor(FdObjPtr & ptr);
 };
 
 #endif /* end of SELECTMUX_H */
