@@ -54,6 +54,22 @@ void Multiplexer::stop()
     cv_.notify_all();
 }
 
+bool Multiplexer::notify()
+{
+    uint64_t tmp = 1;
+    int rc = write(notifyfd_, &tmp, sizeof(tmp));
+    INFO1( "write to notifyfd: rc=" << rc )
+    return rc == sizeof(tmp);
+}
+bool Multiplexer::wakeup()
+{
+    //INFO1( "get events from eventfd: fd=" << notifyfd_ )
+    uint64_t tmp(0);
+    int rc = read(notifyfd_, &tmp, sizeof(tmp));
+    INFO1( "get events from eventfd: tmp=" << tmp <<"; size=" << rc )
+    return rc == sizeof(tmp);
+}
+
 void Multiplexer::ioTask()
 {
     INFO( "enter ioTask thread" )
@@ -73,8 +89,12 @@ void Multiplexer::ioTask()
 
         if (task) {
             INFO( "run ioTask" )
-            if (getHandler().onEvents(task))
+            bool ret = task->onEvents();
+            if (!ret)
+            	ret = getHandler().onEvents(task);
+            if (ret)
             {
+                task->setRetEvents(0);
                 monitor(task);
             }
             else
@@ -86,3 +106,4 @@ void Multiplexer::ioTask()
 
     state_ = STOPPED;
 }
+
