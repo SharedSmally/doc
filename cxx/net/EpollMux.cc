@@ -76,8 +76,10 @@ bool EpollMux::remove(FdObjPtr & ptr)
         epoll_ctl(epollfd_, EPOLL_CTL_DEL, ptr->fd(), 0);
 
         container_[ptr->fd()] = nullptr;
+        INFO1( "remove FdObjPtr: fd=" << ptr->fd() )
         notify();
     }
+    return true;
 }
 
 bool EpollMux::monitor(FdObjPtr & ptr)
@@ -88,7 +90,9 @@ bool EpollMux::monitor(FdObjPtr & ptr)
     locker_type lock(mtx_);
     if (epoll_ctl(epollfd_, EPOLL_CTL_MOD, ptr->fd(), &event) == 0)
     {
-        notify();
+    	INFO1( "monitor FdObjPtr: fd=" << ptr->fd() )
+    	if (ptr->fd() != notifyfd_ )
+    		notify();
         return true;
     }
 
@@ -130,7 +134,7 @@ void EpollMux::monitorTask()
             for (int i=0; i<num; ++i) {
                 if (events[i].data.u32 == notifyfd_)
                 {
-                    INFO1( "get events from eventfd: fd=" << notifyfd_ )
+                    //INFO1( "get events from eventfd: fd=" << notifyfd_ )
                     uint64_t tmp(0);
                     int rc = read(notifyfd_, &tmp, sizeof(tmp));
                     INFO1( "get events from eventfd: tmp=" << tmp <<"; size=" << rc )
@@ -166,15 +170,8 @@ void EpollMux::monitorTask()
 
 bool EpollMux::onEvents(FdObjPtr & obj)
 {
-    return true;
-}
-
-bool EpollMux::notify()
-{
-    uint64_t tmp = 1;
-    int rc = write(notifyfd_, &tmp, sizeof(tmp));
-    INFO1( "write to notifyfd: rc=" << rc )
-    return rc == sizeof(tmp);
+    //INFO1( "call FdObj onEvents: " << obj->getRetEvents() );
+	return true;
 }
 
 bool EpollMux::addNotify(bool addit)
