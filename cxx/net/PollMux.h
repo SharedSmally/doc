@@ -4,16 +4,25 @@
 #include <Multiplexer.h>
 
 class PollMux
-  : public Multiplexer
+  : public Multiplexer, public IOEventsHandler
 {
 public:
     PollMux();
     ~PollMux();
 
-protected:
+    virtual bool add(FdObjPtr & ptr);
+    virtual bool remove(FdObjPtr & ptr);
+    virtual bool onEvents(FdObjPtr & obj);
 
-private:
+    virtual IOEventsHandler & getHandler() { return *this; }
+
+protected:
+    virtual void monitorTask();
+    bool monitor(FdObjPtr & ptr);
+
+protected:
 
 };
 
 #endif /* end of POLLMUX_H */
+
