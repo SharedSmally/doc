@@ -19,8 +19,6 @@ public:
 
 protected:
     virtual void monitorTask();
-
-    virtual bool notify(); //notify new set of fds to be minitored
     virtual bool addNotify(bool addit=false);
 
     bool monitor(FdObjPtr & ptr);
