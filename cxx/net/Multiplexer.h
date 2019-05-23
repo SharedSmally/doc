@@ -38,7 +38,7 @@ public:
     Multiplexer();
     virtual ~Multiplexer();
 
-    void start(int numMonitor = numCPUS, int numIO = numCPUS);
+    virtual void start(int numMonitor = numCPUS, int numIO = numCPUS);
     void stop();
 
     virtual bool add(FdObjPtr & ptr) = 0;
@@ -47,7 +47,9 @@ public:
 
 protected:
     //dissociate/associate from monitoring;
-    virtual bool notify() = 0; //notify new set of fds to be minitored
+    bool notify(); //notify new set of fds to be minitored
+    bool wakeup();
+
     virtual bool addNotify(bool addit=false) = 0;
     virtual bool monitor(FdObjPtr & ptr) = 0;
 
