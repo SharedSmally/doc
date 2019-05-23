@@ -42,7 +42,14 @@ int shmget(key_t key, size_t size, int shmflg);
 iqnt shmctl(int shmid, int cmd, struct shmid_ds *buf);
 int shmdt(const void *shmaddr);
 ```
-
+- Futex: 
+fast user-space locking, provides a method for waiting until a certain condition becomes true. 
+```
+#include <linux/futex.h>
+int futex(int *uaddr, int op, int val, const struct timespec *timeout, int *uaddr2, int val3);
+uaddr could be shared memory.
+```
 - Socket
 
 - SocketPair (only for PF-UNIX)
+
