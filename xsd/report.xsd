@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema targetNamespace="http://www.cpw.com/report/" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:report="http://www.cpw.com/report/">
+    <element name="report" type="report:Report">
+        <annotation>
+            <documentation>config file to generate csv report file in format of </documentation>
+        </annotation></element>
+    
+    <complexType name="Report">
+        <complexContent>
+            <extension base="report:Reportable">
+                <sequence>
+                    <element name="group" type="report:Group"
+                        maxOccurs="unbounded" minOccurs="1">
+                        <annotation>
+                            <documentation>Logical group of metrics(total,success,failure), counts(increment by 1 only) and gauges(increment/decrement by n) to be reported.</documentation>
+                        </annotation>
+                    </element>
+                </sequence>
+                <attribute name="type" type="string">
+                    <annotation>
+                        <documentation>
+                            type of report: OM,STSTUS,...
+                        </documentation>
+                    </annotation>
+                </attribute>
+                <attribute name="interval" type="string">
+                    <annotation>
+                        <documentation>
+                            report interval in mins.
+                        </documentation>
+                    </annotation>
+                </attribute>
+                <attribute name="fileSuffix" type="string">
+                    <annotation>
+                        <documentation>generated report file suffix. Default is csv.</documentation>
+                    </annotation></attribute>
+                <attribute name="filePattern" type="string">
+                    <annotation>
+                        <documentation>
+                            the generated report file pattern: default
+                            is ${NAME}_{yyyy-MM-dd}_{HHmmss}.${suffix}.
+                        </documentation>
+                    </annotation>
+                </attribute>
+                <attribute name="location" type="string">
+                    <annotation>
+                        <documentation>
+                            location to store the generated report file.
+                        </documentation>
+                    </annotation>
+                </attribute>
+                <attribute name="delimiter" type="string">
+                    <annotation>
+                        <documentation>delimiter to separate the field. Default is comma(,).</documentation>
+                    </annotation></attribute>
+            </extension>
+        </complexContent>
+    </complexType>
+
+    <complexType name="Group">
+        <complexContent>
+            <extension base="report:Reportable">
+        <sequence>
+            <element name="metric" type="report:Metric"
+                maxOccurs="unbounded" minOccurs="0">
+            </element>
+            <element name="count" type="report:Count" maxOccurs="unbounded"
+                minOccurs="0">
+            </element>
+            <element name="gauge" type="report:Gauge" maxOccurs="unbounded"
+                minOccurs="0">
+            </element>
+        </sequence>
+            </extension>
+        </complexContent>
+    
+    </complexType>
+
+    <complexType name="Metric">
+        <complexContent>
+            <extension base="report:Reportable"></extension>
+        </complexContent>
+    </complexType>
+    
+    <complexType name="Count">
+        <complexContent>
+            <extension base="report:Reportable"></extension>
+        </complexContent>
+    </complexType>
+
+    <complexType name="Gauge">
+        <complexContent>
+            <extension base="report:Reportable"></extension>
+        </complexContent>
+    </complexType>
+
+    <complexType name="Reportable">
+        <sequence>
+            <element name="desc" type="string"></element>
+        </sequence>
+        <attribute name="name" type="string"></attribute>
+        <attribute name="desc" type="string"></attribute>
+    </complexType>
+</schema>
