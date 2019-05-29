@@ -21,6 +21,10 @@ basic components for c++ application
     Socket: CSocket; DSocket; Connection  : SocketOptions
     TcpSocket-SslSocket; UdpSocket; McastSocket; SctpSocket; DsctpSocket; RawSocket
     Server; Client; Proxy
+-ssl
+    
+-crypto
+    
 - regex
 - logger
   Logger; FileLogger; CerrorLogger; CoutLogger; SyslogLogger; UdpLogger; KafkaLogger
