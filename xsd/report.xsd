@@ -53,6 +53,9 @@
                     <annotation>
                         <documentation>delimiter to separate the field. Default is comma(,).</documentation>
                     </annotation></attribute>
+                <attribute name="aggregate" type="boolean"><annotation>
+                        <documentation>whether tp aggregate from multiple nodes.</documentation>
+                    </annotation></attribute>
             </extension>
         </complexContent>
     </complexType>
