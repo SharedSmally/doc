@@ -1,9 +1,17 @@
 ## Kubernetes Cluster Nodes
 - Master(s): apiServer, scheduler, controllers
-- Slave(s): kubelet, proxy
+   - kube-apiproxy (the master)
+   - kube-scheduler (resources manager)
+   - kube-controller-manager (monitor RC, and maintain the desired state)
+- Worker(s): kubelet, proxy
+   - kubelet (start/stop containers, sync conf.),
+   - kube-proxy (expose services on each node)
+kubernetes may need to run etcd, docker and kubelet as the services. Others can be running as a POD.
+
+The hyperkube binary is an all in one binary (in a way similar to busybox), combining all the binaries.
 
 ## Kubernetes
-- Container: Docker Container
+- Container: Docker Container, or some others, such as rtk, etc.
 
 - Pod:
    - Tightly coupled a group of containers & volumes
@@ -26,6 +34,21 @@
        - watches all services
        - updates iptables when backends change
        - default implementation - can be replaced!
+
+
+The following command:
+```
+hyperkube kubelet \
+  --api-servers=http://localhost:8080 \
+  --v=2 \
+  --address=0.0.0.0 \
+  --enable-server \
+  --hostname-override=127.0.0.1 \
+  --config=/etc/kubernetes/manifests-multi \
+  --cluster-dns=10.0.0.10 \
+  --cluster-domain=cluster.local
+```
+runs the daemon kubelet.
 
 ## kubectl: communicate with K8s master nodes for k8s operations
 ```
