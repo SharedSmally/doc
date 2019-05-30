@@ -10,7 +10,12 @@ kubernetes may need to run etcd, docker and kubelet as the services. Others can 
 
 The hyperkube binary is an all in one binary (in a way similar to busybox), combining all the binaries.
 
-## Kubernetes
+## [Kubernetes Download](https://kubernetes.io/docs/setup/release/notes/)
+- server: hyperkube; kube-apiserver; kube-scheduler; kube-controller-manager; cloud-controller-manager; apiextensions-apiserver + node components
+- node: kubeadm; kubectl; kubelet; kube-proxy
+- client: kubectl
+
+## Kubernetes Concepts
 - Container: Docker Container, or some others, such as rtk, etc.
 
 - Pod:
