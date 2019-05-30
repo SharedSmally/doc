@@ -109,6 +109,9 @@ level1:
    name1: value1   # ref as {{ level1.name1 }}
    name2: value2   # ref as {{ level1.name2 }}
 
+xxConfig: true
+yyConfig: true
+
 ```
 
 ## roles: under roles/
