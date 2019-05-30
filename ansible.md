@@ -87,7 +87,10 @@ ansible <host-pattern> [options]
 ```
 ansible-playbook [options] playbook.yml [playbook2 ...]
 options:
--i: specify inventory host path
+-i: 
+    specify inventory host path
+-e, --extra-vars
+    set additional variables as key=value or YAML/JSON, if filename prepend with @
 ```
 - ansible-inventory
 - ansible-config
@@ -96,3 +99,32 @@ options:
 - ansible-galaxy 
 - ansible-pull 
 - ansible-vault
+
+
+## variable files (.yml): can be ref in \*.yml and \*.j2 template files as {{ name }}
+```
+name: value      # ref as {{ name }}
+
+level1:
+   name1: value1   # ref as {{ level1.name1 }}
+   name2: value2   # ref as {{ level1.name2 }}
+
+```
+
+## roles: under roles/
+```
+roles/${role1}/defaults/main.yml
+roles/${role1}/tasks/main.yml
+#tasks for ${role}
+- name:   desc
+  template:
+     src: "{{ item }}"
+     desc: "destfile"
+     owner: "{{ owner }}"
+     group: "{{ group }}"
+     mode: 0644
+  with_filelog:
+     - "../template/*.cfg.j2"
+     - "../template/profile*.j2"
+  when xxxConfigs == true     
+```
