@@ -17,6 +17,13 @@ Consumers label themselves with a consumer group name, and each record published
 - If all the consumer instances have the same consumer group, then the records will effectively be load balanced over the consumer instances.
 - If all the consumer instances have different consumer groups, then each record will be broadcast to all the consumer processes.
 
+ ### Consumer Group Experience
+In Apache Kafka, the consumer group concept is a way of achieving two things:
+- Having consumers as part of the same consumer group means providing the“competing consumers” pattern with whom the messages from topic partitions are spread across the members of the group. Each consumer receives messages from one or more partitions (“automatically” assigned to it) and the same messages won’t be received by the other consumers (assigned to different partitions). In this way, we can scale the number of the consumers up to the number of the partitions (having one consumer reading only one partition); in this case, a new consumer joining the group will be in an idle state without being assigned to any partition.
+- Having consumers as part of different consumer groups means providing the “publish/subscribe” pattern where the messages from topic partitions are sent to all the consumers across the different groups. It means that inside the same consumer group, we’ll have the rules explained above, but across different groups, the consumers will receive the same messages. It’s useful when the messages inside a topic are of interest for different applications that will process them in different ways. We want all the interested applications to receive all the same messages from the topic.
+
+Another great advantage of consumers grouping is the rebalancing feature. When a consumer joins a group, if there are still enough partitions available (i.e. we haven’t reached the limit of one consumer per partition), a re-balancing starts and the partitions will be reassigned to the current consumers, plus the new one. In the same way, if a consumer leaves a group, the partitions will be reassigned to the remaining consumers.
+
 ### Topics
 Each topic is partitioned into several partitions, and one of the service is the leader of the partition, and the rest kafka services are the followers. The message is sent to the leader service, while the followers get the replicated messages from the leader. When the leader service is down, the followers will select a new leader, that may needs about several seconds. During that selection periodid, the message sending to the first follower will throw Exception: This server is not the leader for that topic-partition. Adding the config may solve the issue:
 ```
