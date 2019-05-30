@@ -88,7 +88,7 @@ ansible <host-pattern> [options]
 ansible-playbook [options] playbook.yml [playbook2 ...]
 options:
 -i: 
-    specify inventory host path
+    specify inventory host path (could use *.ini format)
 -e, --extra-vars
     set additional variables as key=value or YAML/JSON, if filename prepend with @
 ```
