@@ -127,4 +127,11 @@ roles/${role1}/tasks/main.yml
      - "../template/*.cfg.j2"
      - "../template/profile*.j2"
   when xxxConfigs == true     
+
+- name: Remove  files
+  file: path="{{ item }}" state=absent
+  with_items:
+    - "{{ my_dir }}/cfg/etc/file1.xml"
+    - "{{ my_dir }}/cfg/etc/file2.xml"
+  when: yyConfig == true
 ```
