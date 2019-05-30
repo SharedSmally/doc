@@ -77,3 +77,22 @@ ansible webservers -m command -a "/sbin/reboot -t now"
  ansible-doc -l
  ansible-doc yum
  ```
+
+## Commands
+- ansible
+```
+ansible <host-pattern> [options]
+```
+- ansible-playbook
+```
+ansible-playbook [options] playbook.yml [playbook2 ...]
+options:
+-i: specify inventory host path
+```
+- ansible-inventory
+- ansible-config
+- ansible-console 
+- ansible-doc 
+- ansible-galaxy 
+- ansible-pull 
+- ansible-vault
