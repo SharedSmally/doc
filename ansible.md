@@ -9,7 +9,9 @@ Ansible works against multiple systems in your infrastructure at the same time. 
 - Hosts:  
 In INI:
 ```
-jumper ansible_port=5555 ansible_host=192.0.2.50
+[jumper] 
+ansible_port=5555
+ansible_host=192.0.2.50
 ```
 In YAML:
 ```
