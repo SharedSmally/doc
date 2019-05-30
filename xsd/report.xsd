@@ -9,10 +9,17 @@
         <complexContent>
             <extension base="report:Reportable">
                 <sequence>
+                    <element name="file" type="report:ReportFile"></element>
                     <element name="group" type="report:Group"
                         maxOccurs="unbounded" minOccurs="1">
                         <annotation>
-                            <documentation>Logical group of metrics(total,success,failure), counts(increment by 1 only) and gauges(increment/decrement by n) to be reported.</documentation>
+                            <documentation>
+                                Logical group of
+                                metrics(total,success,failure),
+                                counts(increment by 1 only) and
+                                gauges(increment/decrement by n) to be
+                                reported.
+                            </documentation>
                         </annotation>
                     </element>
                 </sequence>
@@ -23,39 +30,25 @@
                         </documentation>
                     </annotation>
                 </attribute>
-                <attribute name="interval" type="string">
+                <attribute name="interval" type="unsignedInt">
                     <annotation>
                         <documentation>
                             report interval in mins.
                         </documentation>
                     </annotation>
                 </attribute>
-                <attribute name="fileSuffix" type="string">
-                    <annotation>
-                        <documentation>generated report file suffix. Default is csv.</documentation>
-                    </annotation></attribute>
-                <attribute name="filePattern" type="string">
-                    <annotation>
-                        <documentation>
-                            the generated report file pattern: default
-                            is ${NAME}_{yyyy-MM-dd}_{HHmmss}.${suffix}.
-                        </documentation>
-                    </annotation>
-                </attribute>
-                <attribute name="location" type="string">
-                    <annotation>
-                        <documentation>
-                            location to store the generated report file.
-                        </documentation>
-                    </annotation>
-                </attribute>
+
+
+
                 <attribute name="delimiter" type="string">
                     <annotation>
-                        <documentation>delimiter to separate the field. Default is comma(,).</documentation>
-                    </annotation></attribute>
-                <attribute name="aggregate" type="boolean"><annotation>
-                        <documentation>whether tp aggregate from multiple nodes.</documentation>
-                    </annotation></attribute>
+                        <documentation>
+                            delimiter to separate the field. Default is
+                            comma(,).
+                        </documentation>
+                    </annotation>
+                </attribute>
+                <attribute name="aggregate" type="boolean"></attribute>
             </extension>
         </complexContent>
     </complexType>
@@ -81,10 +74,14 @@
 
     <complexType name="Metric">
         <complexContent>
-            <extension base="report:Reportable"></extension>
+            <extension base="report:Reportable">
+                <sequence>
+                    <element name="errors" type="report:MetricErrors"></element>
+                </sequence>
+            </extension>
         </complexContent>
     </complexType>
-    
+
     <complexType name="Count">
         <complexContent>
             <extension base="report:Reportable"></extension>
@@ -103,5 +100,26 @@
         </sequence>
         <attribute name="name" type="string"></attribute>
         <attribute name="desc" type="string"></attribute>
+    </complexType>
+
+    <complexType name="MetricErrors">
+        <sequence>
+            <element name="error" type="report:MetricError" maxOccurs="unbounded" minOccurs="1"></element>
+        </sequence>
+    </complexType>
+
+    <complexType name="MetricError">
+        <complexContent>
+            <extension base="report:Reportable">
+                <attribute name="alias" type="string"></attribute>
+                <attribute name="value" type="string"></attribute>
+            </extension>
+        </complexContent>
+    </complexType>
+
+    <complexType name="ReportFile">
+        <attribute name="pattern" type="string"></attribute>
+        <attribute name="suffix" type="string"></attribute>
+        <attribute name="location" type="string"></attribute>
     </complexType>
 </schema>
