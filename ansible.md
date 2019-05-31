@@ -25,7 +25,7 @@ In YAML:
 - Group:
 
 ## Reusable Playbooks
-There are 3 ways to reuse files and organize things: **includes**, **imports**, and **roles**.
+There are 3 ways to reuse files and organize things: [**includes**, **imports**](https://docs.ansible.com/ansible/latest/user_guide/playbooks_reuse_includes.html), and [**roles**](https://docs.ansible.com/ansible/latest/user_guide/playbooks_reuse_roles.html).
 - any **import\*** Tasks (import_playbook, import_tasks, etc.) are static: Ansible pre-processes all static imports during Playbook parsing time.
 - any **include\*** Tasks (include_tasks, include_role, etc.) are dynamic: Dynamic includes are processed during runtime at the point in which that task is encountered
 
