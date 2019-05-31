@@ -24,6 +24,15 @@ In YAML:
 
 - Group:
 
+## Reusable Playbooks
+There are 3 ways to reuse files and organize things: **includes**, **imports**, and **roles**.
+- any **import\*** Tasks (import_playbook, import_tasks, etc.) are static: Ansible pre-processes all static imports during Playbook parsing time.
+- any **include\*** Tasks (include_tasks, include_role, etc.) are dynamic: Dynamic includes are processed during runtime at the point in which that task is encountered
+
+When it comes to Ansible task options like tags and conditional statements (when:):
+- For **static imports**, the parent task options will be copied to all child tasks contained within the import.
+- For **dynamic includes**, the task options will only apply to the dynamic task as it is evaluated, and will not be copied to child tasks.
+
 ## Ansible Configuration Settings
 Ansible supports a few ways of providing configuration variables, mainly through environment variables, 
 command line switches and an ini file named ansible.cfg.
