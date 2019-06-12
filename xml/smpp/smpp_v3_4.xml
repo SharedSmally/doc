@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<smpp version="3.4">
+   <message name="">
+       <request>
+       </request>
+       <response>
+       </response>      
+   </message>      
+</smpp>
