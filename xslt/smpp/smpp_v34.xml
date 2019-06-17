@@ -1,0 +1,1252 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<smpp xmlns:xs="http://www.w3.org/2001/XMLSchema" version="3.4.0">
+   <summary label="Table 2-1:" name="Summary">
+      <desc>lists the SMPP PDU set and the context in which each PDU may be used: </desc>
+      <pduname name="bind_transmitter">
+         <state state="OPEN" esme="Yes" smsc="No"/>
+      </pduname>
+      <pduname name="bind_transmitter_resp">
+         <state state="OPEN" esme="No" smsc="Yes"/>
+      </pduname>
+      <pduname name="bind_receiver">
+         <state state="OPEN" esme="Yes" smsc="No"/>
+      </pduname>
+      <pduname name="bind_receiver_resp">
+         <state state="OPEN" esme="No" smsc="Yes"/>
+      </pduname>
+      <pduname name="bind_transceiver">
+         <state state="OPEN" esme="Yes" smsc="No"/>
+      </pduname>
+      <pduname name="bind_transceiver_resp">
+         <state state="OPEN" esme="No" smsc="Yes"/>
+      </pduname>
+      <pduname name="outbind">
+         <state state="OPEN" esme="No" smsc="Yes"/>
+      </pduname>
+      <pduname name="unbind">
+         <state state="BOUND_TX" esme="Yes" smsc="Yes"/>
+         <state state="BOUND_RX" esme="Yes" smsc="Yes"/>
+         <state state="BOUND_TRX" esme="Yes" smsc="Yes"/>
+      </pduname>
+      <pduname name="unbind_resp">
+         <state state="BOUND_TX" esme="Yes" smsc="Yes"/>
+         <state state="BOUND_RX" esme="Yes" smsc="Yes"/>
+         <state state="BOUND_TRX" esme="Yes" smsc="Yes"/>
+      </pduname>
+      <pduname name="submit_sm">
+         <state state="BOUND_TX" esme="Yes" smsc="No"/>
+         <state state="BOUND_TRX" esme="Yes" smsc="No"/>
+      </pduname>
+      <pduname name="submit_sm_resp">
+         <state state="BOUND_TX" esme="No" smsc="Yes"/>
+         <state state="BOUND_TRX" esme="No" smsc="Yes"/>
+      </pduname>
+      <pduname name="submit_sm_multi">
+         <state state="BOUND_TX" esme="Yes" smsc="No"/>
+         <state state="BOUND_TRX" esme="Yes" smsc="No"/>
+      </pduname>
+      <pduname name="submit_sm_multi_resp">
+         <state state="BOUND_TX" esme="No" smsc="Yes"/>
+         <state state="BOUND_TRX" esme="No" smsc="Yes"/>
+      </pduname>
+      <pduname name="data_sm">
+         <state state="BOUND_TX" esme="Yes" smsc="Yes"/>
+         <state state="BOUND_RX" esme="Yes" smsc="Yes"/>
+         <state state="BOUND_TRX" esme="Yes" smsc="Yes"/>
+      </pduname>
+      <pduname name="data_sm_resp">
+         <state state="BOUND_TX" esme="Yes" smsc="Yes"/>
+         <state state="BOUND_RX" esme="Yes" smsc="Yes"/>
+         <state state="BOUND_TRX" esme="Yes" smsc="Yes"/>
+      </pduname>
+      <pduname name="deliver_sm">
+         <state state="BOUND_RX" esme="No" smsc="Yes"/>
+         <state state="BOUND_TRX" esme="No" smsc="Yes"/>
+      </pduname>
+      <pduname name="deliver_sm_resp">
+         <state state="BOUND_RX" esme="Yes" smsc="No"/>
+         <state state="BOUND_TRX" esme="Yes" smsc="No"/>
+      </pduname>
+      <pduname name="query_sm">
+         <state state="BOUND_TX" esme="Yes" smsc="No"/>
+         <state state="BOUND_TRX" esme="Yes" smsc="No"/>
+      </pduname>
+      <pduname name="query_sm_resp">
+         <state state="BOUND_TX" esme="No" smsc="Yes"/>
+         <state state="BOUND_TRX" esme="No" smsc="Yes"/>
+      </pduname>
+      <pduname name="cancel_sm">
+         <state state="BOUND_TX" esme="Yes" smsc="No"/>
+         <state state="BOUND_TRX" esme="Yes" smsc="No"/>
+      </pduname>
+      <pduname name="cancel_sm_resp">
+         <state state="BOUND_TX" esme="No" smsc="Yes"/>
+         <state state="BOUND_TRX" esme="No" smsc="Yes"/>
+      </pduname>
+      <pduname name="replace_sm">
+         <state state="BOUND_TX" esme="Yes" smsc="No"/>
+      </pduname>
+      <pduname name="replace_sm_resp">
+         <state state="BOUND_TX" esme="No" smsc="Yes"/>
+      </pduname>
+      <pduname name="enquire_link">
+         <state state="BOUND_TX" esme="Yes" smsc="Yes"/>
+         <state state="BOUND_RX" esme="Yes" smsc="Yes"/>
+         <state state="BOUND_TRX" esme="Yes" smsc="Yes"/>
+      </pduname>
+      <pduname name="enquire_link_resp">
+         <state state="BOUND_TX" esme="Yes" smsc="Yes"/>
+         <state state="BOUND_RX" esme="Yes" smsc="Yes"/>
+         <state state="BOUND_TRX" esme="Yes" smsc="Yes"/>
+      </pduname>
+      <pduname name="alert_notification">
+         <state state="BOUND_RX" esme="No" smsc="Yes"/>
+         <state state="BOUND_TRX" esme="No" smsc="Yes"/>
+      </pduname>
+      <pduname name="generic_nack">
+         <state state="BOUND_TX" esme="Yes" smsc="Yes"/>
+         <state state="BOUND_RX" esme="Yes" smsc="Yes"/>
+         <state state="BOUND_TRX" esme="Yes" smsc="Yes"/>
+      </pduname>
+   </summary>
+
+   <pdu label="Table 4-1:" name="bind_transmitter">
+      <desc>The format of the SMPP bind_transmitter PDU is defined in the following table. </desc>
+      <field name="command_length" size="4" type="Integer" ref="5.1.1">Defines the overall length of the bind_transmitter PDU.</field>
+      <field name="command_id" size="4" type="Integer" ref="5.1.2">Value corresponding to bind_transmitter request.</field>
+      <field name="command_status" size="4" type="Integer" ref="5.1.3">Not used in bind_transmitter PDU. Must be set to NULL.</field>
+      <field name="sequence_number a" size="4" type="Integer" ref="5.1.4">Set to a unique sequence number. The associated bind_transmitter_resp PDU will echo the same sequence number.</field>
+      <field name="system_id b"
+             size="Var. max 16"
+             type="C- Octet String"
+             ref="5.2.1">Identifies the ESME system requesting to bind as a transmitter with the SMSC.</field>
+      <field name="password c"
+             size="Var. max 9"
+             type="C- Octet String"
+             ref="5.2.2">The password may be used by the SMSC to authenticate the ESME requesting to bind.</field>
+      <field name="system_type d"
+             size="Var. 13"
+             type="C- Octet String"
+             ref="5.2.3">Identifies the type of ESME system requesting to bind as a transmitter with the SMSC.</field>
+      <field name="interface_version" size="1" type="Integer" ref="5.2.4">Indicates the version of the SMPP protocol supported by the ESME.</field>
+      <field name="addr_ton" size="1" type="Integer" ref="5.2.5">Indicates Type of Number of the ESME address. If not known set to NULL</field>
+      <field name="addr_npi" size="1" type="Integer" ref="5.2.6">Numbering Plan Indicator for ESME address. If not known set to NULL.</field>
+      <field name="address_range"
+             size="Var. max 41"
+             type="C- Octet String"
+             ref="5.2.7">The ESME address. If not known set to NULL.</field>
+   </pdu>
+   
+   <pdu label="Table 4-2:" name="bind_transmitter_resp">
+      <desc>The SMPP bind_transmitter_resp PDU is used to reply to a bind_transmitter request</desc>
+      <field name="command_length" size="4" type="Integer" ref="5.1.1">Defines the overall length of the bind_transmitter_resp PDU.</field>
+      <field name="command_id" size="4" type="Integer" ref="5.1.2">Value corresponding to bind_transmitter_resp .</field>
+      <field name="command_status" size="4" type="Integer" ref="5.1.3">Indicates status (success or error code) of original bind_transmitter request.</field>
+      <field name="sequence_number" size="4" type="Integer" ref="5.1.4">Set to sequence number of original bind_transmitter request.</field>
+      <field name="system_id"
+             size="Var. max 16"
+             type="C- Octet String"
+             ref="5.2.1">SMSC identifier. Identifies the SMSC to the ESME.</field>
+      <field name="sc_interface_version" type="TLV" ref="5.3.2.25">SMPP version supported by SMSC</field>
+   </pdu>
+   
+   <pdu label="Table 4-3:" name="bind_receiver">
+      <desc>The format of the SMPP bind_receiver PDU is defined in the following table . </desc>
+      <field name="command_length" size="4" type="Integer" ref="5.1.1">Defines the overall length of the PDU in octets.</field>
+      <field name="command_id" size="4" type="Integer" ref="5.1.2">Value corresponding to bind_receiver request.</field>
+      <field name="command_status" size="4" type="Integer" ref="5.1.3">Not used in bind_receiver PDU. Set to NULL.</field>
+      <field name="sequence_number a" size="4" type="Integer" ref="5.1.4">Set to a unique sequence number. The associated bind_receiver_resp PDU will echo the same sequence number.</field>
+      <field name="system_id b"
+             size="Var. max 16"
+             type="C- Octet String"
+             ref="5.2.1">Identifies the ESME system requesting to bind as a receiver with the SMSC.</field>
+      <field name="password c"
+             size="Var. max 9"
+             type="C- Octet String"
+             ref="5.2.2">The password may be used by the SMSC for security reasons to authenticate the ESME requesting to bind.</field>
+      <field name="system_type d"
+             size="Var. max 13"
+             type="C- Octet String"
+             ref="5.2.3">Identifies the type of ESME system requesting to bind as a receiver with the SMSC.</field>
+      <field name="interface_version" size="1" type="Integer" ref="5.2.4">Identifies the version of the SMPP protocol supported by the ESME.</field>
+      <field name="addr_ton e" size="1" type="Integer" ref="5.2.5">Type of Number (TON) for ESME address(es) served via this SMPP receiver session. Set to NULL if not known.</field>
+      <field name="addr_npi e" size="1" type="Integer" ref="5.2.6">Numbering Plan Indicator (NPI) for ESME address(es) served via this SMPP receiver session. Set to NULL if not known.</field>
+      <field name="address_range e"
+             size="Var. max 41"
+             type="C- Octet String"
+             ref="5.2.7">A single ESME address or a range of ESME addresses served via this SMPP receiver session. The parameter value is represented in UNIX regular expression format (see Appendix A). Set to NULL if not known.</field>
+   </pdu>
+   
+   <pdu label="Table 4-4:" name="bind_receiver_resp">
+      <desc> </desc>
+      <field name="command_length" size="4" type="Integer" ref="5.1.1">Defines the overall length of the PDU.</field>
+      <field name="command_id" size="4" type="Integer" ref="5.1.2">Value corresponding to bind_receiver_resp.</field>
+      <field name="command_status" size="4" type="Integer" ref="5.1.3">Indicates status (success or error code) of original bind_receiver request.</field>
+      <field name="sequence_number" size="4" type="Integer" ref="5.1.4">Set to sequence number of original bind_receiver request.</field>
+      <field name="system_id"
+             size="Var. max 16"
+             type="C- Octet String"
+             ref="5.2.1">SMSC identifier. Identifies the SMSC to the ESME.</field>
+      <optional name="sc_interface_version TLV" ref="5.3.2.25">SMPP version supported by SMSC</optional>
+   </pdu>
+   
+   <pdu label="Table 4-5:" name="bind_transceiver">
+      <desc>The format of the SMPP bind_transceiver PDU is defined in the following table . </desc>
+      <field name="command_length" size="4" type="Integer" ref="5.1.1">Defines the overall length of the PDU.</field>
+      <field name="command_id" size="4" type="Integer" ref="5.1.2">Value corresponding to bind_transceiver request.</field>
+      <field name="command_status" size="4" type="Integer" ref="5.1.3">Not used in bind_transceiver PDU. Set to NULL .</field>
+      <field name="sequence_number a" size="4" type="Integer" ref="5.1.4">Set to a unique sequence number. The associated bind_transceiver_resp PDU will echo the same sequence number.</field>
+      <field name="system_id b"
+             size="Var. max 16"
+             type="C- Octet String"
+             ref="5.2.1">Identifies the ESME system requesting to bind as a transceiver with the SMSC.</field>
+      <field name="password c"
+             size="Var. max 9"
+             type="C- Octet String"
+             ref="5.2.2">The password may be used by the SMSC to authenticate the ESME requesting to bind.</field>
+      <field name="system_type d"
+             size="Var. max 13"
+             type="C- Octet String"
+             ref="5.2.3">Identifies the type of ESME system requesting to bind as a transceiver with the SMSC.</field>
+      <field name="interface_version" size="1" type="Integer" ref="5.2.4">Identifies the version of the SMPP protocol supported by the ESME.</field>
+      <field name="addr_ton e" size="1" type="Integer" ref="5.2.5">Type of Number (TON) for ESME address(es) served via this SMPP transceiver session. Set to NULL (Unknown) if not known.</field>
+      <field name="addr_npi e" size="1" type="Integer" ref="5.2.6">Numbering Plan Indicator (NPI) for ESME address(es) served via this SMPP transceiver session. Set to NULL (Unknown) if not known.</field>
+      <field name="address_range e"
+             size="Var. max 41"
+             type="C- Octet String"
+             ref="5.2.7">A single ESME address or a range of ESME addresses served via this SMPP transceiver session. This field may be used by the SMSC for authentication, verification or routing purposes. Set to NULL if not known.</field>
+   </pdu>
+   
+   <pdu label="Table 4-6:" name="bind_transceiver_resp">
+      <desc> </desc>
+      <field name="command_length" size="4" type="Integer" ref="5.1.1">Defines the overall length of the PDU.</field>
+      <field name="command_id" size="4" type="Integer" ref="5.1.2">Value corresponding to bind_transceiver_resp.</field>
+      <field name="command_status" size="4" type="Integer" ref="5.1.3">Indicates status (success or error code) of original bind_transceiver request.</field>
+      <field name="sequence_number" size="4" type="Integer" ref="5.1.4">Set to sequence number of original bind_transceiver request.</field>
+      <field name="system_id"
+             size="Var. max 16"
+             type="C- Octet String"
+             ref="5.2.1">SMSC identifier. Identifies the SMSC to the ESME.</field>
+      <optional name="sc_interface_version TLV" ref="5.3.2.25">SMPP version supported by SMSC</optional>
+   </pdu>
+
+   <pdu label="Table 4.1.7.1:" name="outbind">
+      <desc>The format of the SMPP outbind PDU is defined in the following table . </desc>
+      <field name="command_length" size="4" type="Integer" ref="5.1.1">Defines the overall length of the PDU.</field>
+      <field name="command_id" size="4" type="Integer" ref="5.1.2">Value corresponding to bind_transceiver request.</field>
+      <field name="command_status" size="4" type="Integer" ref="5.1.3">Not used in bind_transceiver PDU. Set to NULL .</field>
+      <field name="sequence_number a" size="4" type="Integer" ref="5.1.4">Set to a unique sequence number. The associated bind_transceiver_resp PDU will echo the same sequence number.</field>
+      <field name="system_id b"
+             size="Var. max 16"
+             type="C- Octet String"
+             ref="5.2.1">Identifies the ESME system requesting to bind as a transceiver with the SMSC.</field>
+      <field name="password c"
+             size="Var. max 9"
+             type="C- Octet String"
+             ref="5.2.2">The password may be used by the SMSC to authenticate the ESME requesting to bind.</field>
+   </pdu>
+             
+   <pdu label="Table 4-7:" name="unbind">
+      <desc>The format of the SMPP unbind PDU is defined in the following table . The command_id field must include the Command ID value corresponding to the unbind operation. </desc>
+      <field name="command_length" size="4" type="Integer" ref="5.1.1">Defines the overall length of the PDU.</field>
+      <field name="command_id" size="4" type="Integer" ref="5.1.2">Value corresponding to unbind request.</field>
+      <field name="command_status" size="4" type="Integer" ref="5.1.3">Not used. Set to NULL.</field>
+      <field name="sequence_number" size="4" type="Integer" ref="5.1.4">Set to a unique sequence number. The associated unbind_resp PDU will echo the same sequence number.</field>
+   </pdu>
+   
+   <pdu label="Table 4-8:" name="unbind_resp">
+      <desc>The format of the SMPP unbind_resp PDU is defined in the following table.  The command_id field must include the Command ID value corresponding to the unbind_resp operation. </desc>
+      <field name="command_length" size="4" type="Integer" ref="5.1.1">Defines the overall length of the PDU.</field>
+      <field name="command_id" size="4" type="Integer" ref="5.1.2">Value corresponding to unbind_resp PDU.</field>
+      <field name="command_status" size="4" type="Integer" ref="5.1.3">Indicates outcome of original unbind request.</field>
+      <field name="sequence_number" size="4" type="Integer" ref="5.1.4">Set to sequence number of original unbind request.</field>
+   </pdu>
+   
+   <pdu label="Table 4-9:" name="generic_nack">
+      <desc>Following is the format of the SMPP  generic_nack PDU . It comprises the SMPP message header only . </desc>
+      <field name="command_length" size="4" type="Integer" ref="5.1.1">Defines the overall length of the PDU.</field>
+      <field name="command_id" size="4" type="Integer" ref="5.1.2">Value corresponding to generic_nack PDU.</field>
+      <field name="command_status" size="4" type="Integer" ref="5.1.3">Error code corresponding to reason for sending the generic_nack.</field>
+      <field name="sequence_number" size="4" type="Integer" ref="5.1.4">Set to sequence number of original PDU or to NULL if the original PDU cannot be decoded.</field>
+   </pdu>
+   
+   <pdu label="Table 4-10:" name="submit_sm">
+      <desc>The format of the SMPP submit_sm PDU is defined in the following table . </desc>
+      <field name="command_length" size="4" type="Integer" ref="5.1.1">Set to overall length of PDU.</field>
+      <field name="command_id" size="4" type="Integer" ref="5.1.2">submit_sm</field>
+      <field name="command_status" size="4" type="Integer" ref="5.1.3">Not used. Set to NULL.</field>
+      <field name="sequence_number" size="4" type="Integer" ref="5.1.4">Set to a Unique sequence number. The associated submit_sm_resp PDU will echo this sequence number.</field>
+      <field name="service_type"
+             size="Var. max 6"
+             type="C- Octet String"
+             ref="5.2.11">The service_type parameter can be used to indicate the SMS Application service associated with the message. Specifying the service_type allows the ESME to avail of enhanced messaging services such as “replace by service” type to control the teleservice used on the air interface. Set to NULL for default SMSC settings.</field>
+      <field name="source_addr_ton" size="1" type="Integer" ref="5.2.5">Type of Number for source address. If not known, set to NULL (Unknown).</field>
+      <field name="source_addr_npi" size="1" type="Integer" ref="5.2.6">Numbering Plan Indicator for source address. If not known, set to NULL (Unknown).</field>
+      <field name="source_addr"
+             size="Var. max 21"
+             type="C- Octet String"
+             ref="5.2.8">Address of SME which originated this message. If not known, set to NULL (Unknown).</field>
+
+      <field name="dest_addr_ton" size="1" type="Integer" ref="5.2.5">Type of Number for destination.</field>
+      <field name="dest_addr_npi" size="1" type="Integer" ref="5.2.6">Numbering Plan Indicator for destination.</field>
+      <field name="destination_addr"
+             size="Var. max 21"
+             type="C- Octet String"
+             ref="5.2.9">Destination address of this short message. For mobile terminated messages, this is the directory number of the recipient MS.</field>
+      <field name="esm_class" size="1" type="Integer" ref="5.2.12">Indicates Message Mode &amp; Message Type.</field>
+      <field name="protocol_id" size="1" type="Integer" ref="5.2.13">Protocol Identifier. Network specific field.</field>
+      <field name="priority_flag" size="1" type="Integer" ref="5.2.14">Designates the priority level of the message.</field>
+      <field name="schedule_delivery_time"
+             size="1 or 17"
+             type="C- Octet String"
+             ref="5.2.15">The short message is to be scheduled by the SMSC for delivery. Set to NULL for immediate message delivery.</field>
+      <field name="validity_period"
+             size="1 or 17"
+             type="C- Octet String"
+             ref="5.2.16">The validity period of this message. Set to NULL to request the SMSC default validity period.</field>
+      <field name="registered_delivery" size="1" type="Integer" ref="5.2.17">Indicator to signify if an SMSC delivery receipt or an SME acknowledgement is required.</field>
+      <field name="replace_if_present_flag"
+             size="1"
+             type="Integer"
+             ref="5.2.18">Flag indicating if submitted message should replace an existing message.</field>
+      <field name="data_coding" size="1" type="Integer" ref="5.2.19">Defines the encoding scheme of the short message user data.</field>
+
+      <field name="sm_default_msg_id" size="1" type="Integer" ref="5.2.20">Indicates the short message to send from a list of predefined (‘canned’) short messages stored on the SMSC. If not using an SMSC canned message, set to NULL.</field>
+      <field name="sm_length" size="1" type="Integer" ref="5.2.21">Length in octets of the short_message user data.</field>
+      <field name="short_message"
+             size="Var. 0-254"
+             type="Octet String"
+             ref="5.2.22">Up to 254 octets of short message user data. The exact physical limit for short_message size may vary according to the underlying network. Applications which need to send messages longer than 254 octets should use the message_payload parameter. In this case the sm_length field should be set to zero. Note: The short message data should be inserted in either the short_message or message_payload fields. Both fields must not be used simultaneously.</field>
+
+      <field name="user_message_reference" type="TLV" ref="5.3.2.17">ESME assigned message reference number.</field>
+      <field name="source_port" type="TLV" ref="5.3.2.20">Indicates the application port number associated with the source address of the message. This parameter should be present for WAP applications.</field>
+      <field name="source_addr_subunit" type="TLV" ref="5.3.2.2">The subcomponent in the destination device which created the user data.</field>
+      <field name="destination_port" type="TLV" ref="5.3.2.21">Indicates the application port number associated with the destination address of the message. This parameter should be present for WAP applications.</field>
+      <field name="dest_addr_subunit" type="TLV" ref="5.3.2.1">The subcomponent in the destination device for which the user data is intended.</field>
+      <field name="sar_msg_ref_num" type="TLV" ref="5.3.2.22">The reference number for a particular concatenated short message.</field>
+      <field name="sar_total_segments" type="TLV" ref="5.3.2.23">Indicates the total number of short messages within the concatenated short message.</field>
+      <field name="sar_segment_seqnum" type="TLV" ref="5.3.2.24">Indicates the sequence number of a particular short message fragment within the concatenated short message.</field>
+      <field name="more_messages_to_send" type="TLV" ref="5.3.2.34">Indicates that there are more messages to follow for the destination SME.</field>
+      <field name="payload_type" type="TLV" ref="5.3.2.10">defines the type of payload (e.g. WDP, WCMP, etc.).</field>
+
+      <field name="message_payload" type="TLV" ref="5.3.2.32">Contains the extended short message user data. Up to 64K octets can be transmitted. Note: The short message data should be inserted in either the short_message or message_payload fields. Both fields should not be used simultaneously. The sm_length field should be set to zero if using the message_payload parameter .</field>
+      <field name="privacy_indicator" type="TLV" ref="5.3.2.14">Indicates the level of privacy associated with the message.</field>
+      <field name="callback_num" type="TLV" ref="5.3.2.36">A callback number associated with the short message. This parameter can be included a number of times for multiple callback addresses.</field>
+      <field name="callback_num_pres_ind" type="TLV" ref="5.3.2.37">Defines the callback number presentation and screening. If this parameter is present and there are multiple instances of the callback_num parameter then this parameter must occur an equal number of instances and the order of occurrence determines the part icular callback_num_pres_ind which corresponds to a particular callback_num .</field>
+
+      <field name="callback_num_atag" type="TLV" ref="5.3.2.38">Associates a displayable alphanumeric tag with the callback number. If this parameter is present and there are multiple instances of the callback_num parameter then this parameter must occur an equal number of instances and the order of occurrence determin es the particular callback_num_atag which corresponds to a particular callback_num .</field>
+      <field name="source_subaddress" type="TLV" ref="5.3.2.15">The subaddress of the message originator.</field>
+      <field name="dest_subaddress" type="TLV" ref="5.3.2.16">The subaddress of the message destination.</field>
+      <field name="user_response_code" type="TLV" ref="5.3.2.18">A user response code. The actual response codes are implementation specific.</field>
+      <field name="display_time" type="TLV" ref="5.3.2.26">Provides the receiving MS with a display time associated with the message.</field>
+      <field name="sms_signal" type="TLV" ref="5.3.2.40">Indicates the alerting mechanism when the message is received by an MS.</field>
+      <field name="ms_validity" type="TLV" ref="5.3.2.27">Indicates validity information for this message to the recipient MS.</field>
+      <field name="ms_msg_wait_facilities" type="TLV" ref="5.3.2.13">This parameter controls the indication and specifies the message type (of the message associated with the MWI) at the mobile station.</field>
+      <field name="number_of_messages" type="TLV" ref="5.3.2.39">Indicates the number of messages stored in a mail box</field>
+      <field name="alert_on_msg_delivery" type="TLV" ref="5.3.2.41">Request an MS alert signal be invoked on message delivery.</field>
+      <field name="language_indicator" type="TLV" ref="5.3.2.19">Indicates the language of an alphanumeric text message.</field>
+
+      <field name="its_reply_type" type="TLV" ref="5.3.2.42">The MS user’s reply method to an SMS delivery message received from the network is indicated and controlled by this parameter.</field>
+      <field name="its_session_info" type="TLV" ref="5.3.2.43">Session control information for Interactive Teleservice.</field>
+      <field name="ussd_service_op" type="TLV" ref="5.3.2.44">This parameter is used to identify the required USSD Service type when interfacing to a USSD system.</field>
+   </pdu>
+   
+   <pdu label="Table 4-11:" name="submit_sm_resp">
+      <desc>This is the response to the submit_sm PDU and has the following format: </desc>
+      <field name="command_length" size="4" type="Integer" ref="5.1.1">Set to overall length of PDU.</field>
+      <field name="command_id" size="4" type="Integer" ref="5.1.2">submit_sm_resp</field>
+      <field name="command_status" size="4" type="Integer" ref="5.1.3">Indicates outcome of submit_sm request.</field>
+      <field name="sequence_number" size="4" type="Integer" ref="5.1.4">Set to sequence number of original submit_sm PDU.</field>
+      <field name="message_id"
+             size="Var. max 9 33 65"
+             type="COctet String"
+             ref="5.2.23">This field contains the SMSC message ID of the submitted message. It may be used at a later stage to query the status of a message, cancel or replace the message.</field>
+   </pdu>
+   
+   <pdu label="Table 4-12:" name="submit_multi">
+      <desc>Following is the format of the SMPP submit_multi PDU. The command_id field contains the command identifier code for submit_multi . </desc>
+      <field name="command_length" size="4" type="Integer" ref="5.1.1">Set to overall length of PDU.</field>
+      <field name="command_id" size="4" type="Integer" ref="5.1.2">submit_multi</field>
+      <field name="command_status" size="4" type="Integer" ref="5.1.3">Not used. Set to NULL.</field>
+      <field name="sequence_number" size="4" type="Integer" ref="5.1.4">Set to a unique sequence number. The associated submit_multi_resp PDU will echo the same sequence number.</field>
+      <field name="service_type"
+             size="Var max 6"
+             type="C- Octet String"
+             ref="5.2.11">The service_type parameter can be used to indicate the SMS Application service associated with the message. Specifying the service_type allows the ESME to avail of enhanced messaging services such as replace by service type to control the teleservice used on the air interface. Set to NULL for default SMSC settings.</field>
+      <field name="source_addr_ton" size="1" type="Integer" ref="5.2.5">Type of Number for source address. If not known, set to NULL (Unknown).</field>
+      <field name="source_addr_npi" size="1" type="Integer" ref="5.2.6">Numbering Plan Indicator for source. If not known, set to NULL (Unknown).</field>
+      <field name="source_addr"
+             size="Var. max 21"
+             type="C- Octet String"
+             ref="5.2.8">Address of SME which originated this message. If not known, set to NULL (Unknown).</field>
+
+      <field name="number_of_dests" size="1" type="Integer" ref="5.2.24">Number of destination addresses - indicates the number of dest_address structures that are to follow. A maximum of 254 destination addresses are allowed. Note: Set to 1 when submitting to one SME Address OR when submitting to one Distribution List.</field>
+      <field name="dest_address(es)"
+             size="Var. n[2-24] See Ref."
+             type="See Ref."
+             ref="Table 4- 13">Contains one or more ( number_of_dests ) SME addresses or/and Distribution List names.</field>
+      <field name="esm_class" size="1" type="Integer" ref="5.2.12">Indicates Message Mode &amp; Message Type.</field>
+      <field name="protocol_id" size="1" type="Integer" ref="5.2.13">Protocol Identifier. Network specific field.</field>
+      <field name="priority_flag" size="1" type="Integer" ref="5.2.14">Designates the priority level of the message.</field>
+      <field name="schedule_delivery_time"
+             size="1 or 17"
+             type="C- Octet String"
+             ref="5.2.15">The short message is to be scheduled by the SMSC for delivery. Set to NULL for immediate message delivery.</field>
+      <field name="validity_period"
+             size="1 or 17"
+             type="C- Octet String"
+             ref="5.2.16">The validity period of this message. Set to NULL to request the SMSC default validity period.</field>
+      <field name="registered_delivery" size="1" type="Integer" ref="5.2.17">Indicator to signify if an SMSC delivery receipt or an SME acknowledgement is required.</field>
+      <field name="replace_if_present_flag"
+             size="1"
+             type="Integer"
+             ref="5.2.18">Reserved. Must be set to NULL.</field>
+      <field name="data_coding" size="1" type="Integer" ref="5.2.19">Indicates the encoding scheme of the short message.</field>
+
+      <field name="sm_default_msg_id" size="1" type="Integer" ref="5.2.20">Indicates the short message to send from a list of predefined (“canned”) short messages stored on the SMSC. If not using an SMSC predefined message, set to NULL.</field>
+      <field name="sm_length" size="1" type="Integer" ref="5.2.21">Length in octets of the short_message user data.</field>
+      <field name="short_message"
+             size="Var. 0-254"
+             type="Octet String"
+             ref="5.2.22">Up to 254 octets of short message user data. The exact physical limit for short_message size may vary according to the underlying network. Applications which need to send messages longer than 254 octets should use the message_payload parameter. In this case the sm_length parameter should be set to zero. Note: The short message data should be inserted in either the short_message or message_pay load parameters. Both parameters must not be used simultaneously.</field>
+
+      <field name="user_message_reference" type="TLV" ref="5.3.2.17">ESME assigned message reference number.</field>
+      <field name="source_port" type="TLV" ref="5.3.2.20">Indicates the application port number associated with the source address of the message. This parameter should be present for WAP applications.</field>
+      <field name="source_addr_subunit" type="TLV" ref="5.3.2.2">The subcomponent in the destination device which created the user data.</field>
+      <field name="destination_port" type="TLV" ref="5.3.2.21">Indicates the application port number associated with the destination address of the message. This parameter should be present for WAP applications</field>
+      <field name="dest_addr_subunit" type="TLV" ref="5.3.2.1">The subcomponent in the destination device for which the user data is intended.</field>
+      <field name="sar_msg_ref_num" type="TLV" ref="5.3.2.22">The reference number for a particular concatenated short message.</field>
+      <field name="sar_total_segments" type="TLV" ref="5.3.2.23">Indicates the total number of short messages within the concatenated short message.</field>
+      <field name="sar_segment_seqnum" type="TLV" ref="5.3.2.24">Indicates the sequence number of a particular short message fragment within the concatenated short message.</field>
+      <field name="payload_type" type="TLV" ref="5.3.2.10">Defines the type of payload (e.g. WDP, WCMP, etc.)</field>
+
+      <field name="message_payload" type="TLV" ref="5.3.2.32">Contains the extended short message user data. Up to 64K octets can be transmitted. Note: The short message data should be inserted in either the short_message or message_payload fields. Both fields should not be used simultaneously. The sm_length field sh ould be set to zero if using the message_payload parameter .</field>
+      <field name="privacy_indicator" type="TLV" ref="5.3.2.14">Indicates the level of privacy associated with the message.</field>
+      <field name="callback_num" type="TLV" ref="5.3.2.36">A callback number associated with the short message. This parameter can be included a number of times for multiple callback addresses.</field>
+      <field name="callback_num_pres_ind" type="TLV" ref="5.3.2.37">Identifies the presentation and screening associated with the callback number. If this parameter is present and there are multiple instances of the callback_num parameter then this parameter must occur an equal number of instances and the order of occurren ce determines the particular callback_num_pres_ind which corresponds to a particular callback_num .</field>
+
+      <field name="callback_num_atag" type="TLV" ref="5.3.2.38">Associates a displayable alphanumeric tag with the callback number. If this parameter is present and there are multiple instances of the callback_num parameter then this parameter must occur an equal number of instances and the order of occurrence determines the particular callback_num_atag which corresponds to a particular callback_num .</field>
+      <field name="source_subaddress" type="TLV" ref="5.3.2.15">The subaddress of the message originator.</field>
+      <field name="dest_subaddress" type="TLV" ref="5.3.2.16">The subaddress of the message destination.</field>
+      <field name="display_time" type="TLV" ref="5.3.2.26">Provides the receiving MS based SME with a display time associated with the message.</field>
+      <field name="sms_signal" type="TLV" ref="5.3.2.40">Indicates the alerting mechanism when the message is received by an MS.</field>
+      <field name="ms_validity" type="TLV" ref="5.3.2.27">Indicates validity information for this message to the recipient MS.</field>
+      <field name="ms_msg_wait_facilities" type="TLV" ref="5.3.2.13">This parameter controls the indication and specifies the message type (of the message associated with the MWI) at the mobile station.</field>
+      <field name="alert_on_msg_delivery" type="TLV" ref="5.3.2.41">Requests an MS alert signal be invoked on message delivery.</field>
+      <field name="language_indicator" type="TLV" ref="5.3.2.19">Indicates the language of an alphanumeric text message.</field>
+   </pdu>
+   
+   <tlv label="Table 4-13:"
+        name="dest_address"
+        desc="4.5.1.1 Destination Address definition ">
+      <desc>4.5.1.1 Destination Address definition </desc>
+      <field name="dest_flag" size="1" type="Integer" ref="5.2.25">Flag which will identify whether destination address is a Distribution List name or SME address.</field>
+      <field name="SME Address or Distribution List Name"
+             size="See Ref."
+             type="See Ref."
+             ref="Table 4-14&amp; Table 4-15">Depending on dest_flag this could be an SME Address or a Distribution List Name.</field>
+   
+      <field name="dest_addr_ton" size="1" type="Integer" ref="5.2.5">Type of Number for destination SME.</field>
+      <field name="dest_addr_npi" size="1" type="Integer" ref="5.2.6">Numbering Plan Indicator for destination SME.</field>
+      <field name="destination_addr"
+             size="Var. max. 21"
+             type="C- Octet String"
+             ref="5.2.9">Destination Address for this short message.</field>
+   </tlv>
+   
+   <tlv label="Table 4-15:"
+        name="DL"
+        desc="4.5.1.2 Distribution List (DL) definition ">
+      <desc>4.5.1.2 Distribution List (DL) definition </desc>
+      <field name="dl_name"
+             size="Var. max. 21"
+             type="C- Octet String"
+             ref="5.2.27">Name of Distribution List.</field>
+   </tlv>
+   
+   <pdu label="Table 4-16:" name="submit_multi_resp">
+      <desc>The following is the format of the SMPP submit_multi_resp PDU. The command_id field contains the command identifier code for submit_multi_resp. </desc>
+      <field name="command_length" size="4" type="Integer" ref="5.1.1">Set to overall length of PDU.</field>
+      <field name="command_id" size="4" type="Integer" ref="5.1.2">submit_multi_resp</field>
+      <field name="command_status" size="4" type="Integer" ref="5.1.3">Outcome of submit_multi request.</field>
+      <field name="sequence_number" size="4" type="Integer" ref="5.1.4">Set to sequence number of original submit_multi PDU.</field>
+      <field name="message_id"
+             size="Var. max 65"
+             type="COctet String"
+             ref="5.2.23">The SMSC message ID of the submitted message.</field>
+      <field name="no_unsuccess" size="1" type="Integer" ref="5.2.26">The number of messages to destination SME addresses that were unsuccessfully submitted to the SMSC.</field>
+      <field name="unsuccess_sme(s)"
+             size="Var. n[7-27] See Ref."
+             type="See Ref."
+             ref="Table 4-17">Contains one or more ( no_unsuccess ) SME address(es) or/and Distribution List names to which submission was unsuccessful.</field>
+   </pdu>
+   
+   <tlv label="Table 4-17:"
+        name="Unsuccess_smes"
+        desc="4.5.2.1 Unsuccessful deliveries ">
+      <desc>4.5.2.1 Unsuccessful deliveries </desc>
+      <field name="dest_addr_ton" size="1" type="Integer" ref="5.2.5">Type of number for destination SME.</field>
+      <field name="dest_addr_npi" size="1" type="Integer" ref="5.2.6">Numbering Plan Indicator for destination SME</field>
+      <field name="destination_addr"
+             size="Var. max. 21"
+             type="C-Octet String"
+             ref="5.2.9">Destination Address of destination SME</field>
+      <field name="error_status_code" size="4" type="Integer" ref="5.1.3">Indicates the success or failure of the submit_multi request to this SME address.</field>
+   </tlv>
+   
+   <pdu label="Table 4-18:" name="deliver_sm">
+      <desc>The deliver_sm PDU has the same format as the submit_sm PDU. For this reason, some fields are unused. </desc>
+      <field name="command_length" size="4" type="Integer" ref="5.1.1">Set to overall length of PDU.</field>
+      <field name="command_id" size="4" type="Integer" ref="5.1.2">deliver_sm</field>
+      <field name="command_status" size="4" type="Integer" ref="5.1.3">Unused. Set to NULL.</field>
+      <field name="sequence_number" size="4" type="Integer" ref="5.1.4">Set to a unique sequence number. The associated deliver_sm_resp PDU should echo the same sequence number.</field>
+      <field name="service_type"
+             size="Var max 6"
+             type="C- Octet String"
+             ref="5.2.11">The service_type parameter can be used to indicate the SMS Application service associated with the message.</field>
+      <field name="source_addr_ton" size="1" type="Integer" ref="5.2.5">Type of Number for source address. If not known, set to NULL (Unknown).</field>
+      <field name="source_addr_npi" size="1" type="Integer" ref="5.2.6">Numbering Plan Indicator for source. If not known, set to NULL (Unknown).</field>
+      <field name="source_addr"
+             size="Var. max 21"
+             type="C- Octet String"
+             ref="5.2.8">Address of SME which originated this message. If not known, set to NULL (Unknown).</field>
+      <field name="dest_addr_ton" size="1" type="Integer" ref="5.2.5">Type of number of destination SME.</field>
+      <field name="dest_addr_npi" size="1" type="Integer" ref="5.2.6">Numbering Plan Indicator of destination SME.</field>
+      <field name="destination_addr"
+             size="Var. max 21"
+             type="C- Octet String"
+             ref="5.2.9">Destination address of destination SME.</field>
+
+      <field name="esm_class" size="1" type="Integer" ref="5.2.12">Indicates Message Type and enhanced network services.</field>
+      <field name="protocol_id" size="1" type="Integer" ref="5.2.13">Protocol Identifier. Network Specific Field.</field>
+      <field name="priority_flag" size="1" type="Integer" ref="5.2.14">Designates the priority level of the message.</field>
+      <field name="schedule_delivery_time"
+             size="1"
+             type="C- Octet String"
+             ref="5.2.15">This field is unused for deliver_sm. It must be set to NULL.</field>
+      <field name="validity_period"
+             size="1"
+             type="C- Octet String"
+             ref="5.2.16">This field is unused for deliver_sm It must be set to NULL.</field>
+      <field name="registered_delivery" size="1" type="Integer" ref="5.2.17">Indicates if an ESME acknowledgement is required.</field>
+      <field name="replace_if_present_flag"
+             size="1"
+             type="Integer"
+             ref="5.2.18">Not used in deliver_sm . It must be set to NULL.</field>
+      <field name="data_coding" size="1" type="Integer" ref="5.2.19">Indicates the encoding scheme of the short message.</field>
+      <field name="sm_default_msg_id" size="1" type="Integer" ref="5.2.20">Unused in deliver_sm . It must be set to NULL.</field>
+      <field name="sm_length" size="1" type="Integer" ref="5.2.21">Length of short message user data in octets.</field>
+
+      <field name="short_message"
+             size="Var. 0-254"
+             type="Octet String"
+             ref="5.2.22">Up to 254 octets of short message user data. When sending messages longer than 254 octets the message_payload parameter should be used and the sm_length parameter should be set to zero. Note: The message data should be inserted in either the short_message or the message_payload parameters. Both parameters must not be used simultaneously.</field>
+
+      <field name="user_message_reference" type="TLV" ref="5.3.2.17">A reference assigned by the originating SME to the message. In the case that the deliver_sm is carrying an SMSC delivery receipt, an SME delivery acknowledgement or an SME user acknowledgement (as indicated in the esm_class field), the user_message_reference parameter is set to the message reference of the original message.</field>
+      <field name="source_port" type="TLV" ref="5.3.2.20">Indicates the application port number associated with the source address of the message. The parameter should be present for WAP applications.</field>
+      <field name="destination_port" type="TLV" ref="5.3.2.21">Indicates the application port number associated with the destination address of the message. The parameter should be present for WAP applications.</field>
+      <field name="sar_msg_ref_num" type="TLV" ref="5.3.2.22">The reference number for a particular concatenated short message.</field>
+      <field name="sar_total_segments" type="TLV" ref="5.3.2.23">Indicates the total number of short messages within the concatenated short message.</field>
+      <field name="sar_segment_seqnum" type="TLV" ref="5.3.2.24">Indicates the sequence number of a particular short message fragment within the concatenated short message.</field>
+      <field name="user_response_code" type="TLV" ref="5.3.2.18">A user response code. The actual response codes are SMS application specific.</field>
+
+      <field name="privacy_indicator" type="TLV" ref="5.3.2.14">Indicates a level of privacy associated with the message.</field>
+      <field name="payload_type" type="TLV" ref="5.3.2.10">Defines the type of payload (e.g. WDP, WCMP, etc.)</field>
+      <field name="message_payload" type="TLV" ref="5.3.2.32">Contains the extended short message user data. Up to 64K octets can be transmitted. Note: The short message data should be inserted in either the short_message or message_payload fields. Both fields should not be used simultaneously. The sm_length field should be set to zero if using the message_payload parameter.</field>
+      <field name="callback_num" type="TLV" ref="5.3.2.36">A callback number associated with the short message. This parameter can be included a number of times for multiple call back addresses.</field>
+      <field name="source_subaddress" type="TLV" ref="5.3.2.15">The subaddress of the message originator.</field>
+      <field name="dest_subaddress" type="TLV" ref="5.3.2.16">The subaddress of the message destination.</field>
+      <field name="language_indicator" type="TLV" ref="5.3.2.19">Indicates the language of an alphanumeric text message.</field>
+      <field name="its_session_info" type="TLV" ref="5.3.2.43">Session control information for Interactive Teleservice.</field>
+      <field name="network_error_code" type="TLV" ref="5.3.2.31">Network Error Code. May be present for Intermediate Notifications and SMSC Delivery Receipts</field>
+      <field name="message_state" type="TLV" ref="5.3.2.35">Message State. Should be present for SMSC Delivery Receipts and Intermediate Notifications.</field>
+
+      <field name="receipted_message_id" type="TLV" ref="5.3.2.12">SMSC message ID of receipted message Should be present for SMSC Delivery Receipts and Intermediate Notifications.</field>
+   </pdu>
+
+   <pdu label="Table 4-19:" name="deliver_sm_resp">
+      <desc>The following is the format of the SMPP deliver_sm_resp PDU. </desc>
+      <field name="command_length" size="4" type="Integer" ref="5.1.1">Set to overall length of PDU.</field>
+      <field name="command_id" size="4" type="Integer" ref="5.1.2">deliver_sm_resp</field>
+      <field name="command_status" size="4" type="Integer" ref="5.1.3">Indicates outcome of deliver_sm request.</field>
+      <field name="sequence_number" size="4" type="Integer" ref="5.1.4">Set to sequence number of deliver_sm PDU.</field>
+      <field name="message_id" size="1" type="COctet String" ref="5.2.23">This field is unused and is set to NULL.</field>
+   </pdu>
+
+   <pdu label="Table 4-20:" name="data_sm">
+      <desc>The following is the format of the SMPP data_sm PDU. </desc>
+      <field name="command_length" size="4" type="Integer" ref="5.1.1">Set to overall length of PDU.</field>
+      <field name="command_id" size="4" type="Integer" ref="5.1.2">data_sm</field>
+      <field name="command_status" size="4" type="Integer" ref="5.1.3">Not used. Set to NULL.</field>
+      <field name="sequence_number" size="4" type="Integer" ref="5.1.4">Set to a unique sequence number. The associated data_sm_resp PDU will echo the same sequence number. This parameter is used to facilitate transaction windowing.</field>
+      <field name="service_type"
+             size="Var. max 6"
+             type="C- Octet String"
+             ref="5.2.11">The service_type parameter can be used to indicate the SMS Application service associated with the message. Specifying the service_type allows the ESME/SMSC to • to indicate the teleservice used on the air interface.</field>
+      <field name="source_addr_ton" size="1" type="Integer" ref="5.2.5">Type of Number for source address. If not known, set to “Unknown” (0x00).</field>
+      <field name="source_addr_npi" size="1" type="Integer" ref="5.2.6">Numbering Plan Indicator for source address. If not known, set to “Unknown” (0x00).</field>
+      <field name="source_addr"
+             size="Var. max 65"
+             type="C- Octet String"
+             ref="5.2.8">Address of SME which originated this message.</field>
+      <field name="dest_addr_ton" size="1" type="Integer" ref="5.2.5">Type of Number for destination.</field>
+      <field name="dest_addr_npi" size="1" type="Integer" ref="5.2.6">Numbering Plan Indicator for destination.</field>
+
+      <field name="destination_addr"
+             size="Var. max 65"
+             type="C- Octet String"
+             ref="5.2.9">Destination address of this short message. For mobile terminated messages, this is the directory number of the recipient MS.</field>
+      <field name="esm_class" size="1" type="Integer" ref="5.2.12">Indicates Message Mode and Message Type.</field>
+      <field name="registered_delivery" size="1" type="Integer" ref="5.2.17">Indicator for requesting a SMSC delivery receipt or an SME acknowledgement</field>
+      <field name="data_coding" size="1" type="Integer" ref="5.2.19">Indicates the encoding scheme of the payload data</field>
+
+      <field name="source_port" type="TLV" ref="5.3.2.20">Indicates the application port number associated with the source address of the message. This parameter should be present for WAP applications.</field>
+      <field name="source_addr_subunit" type="TLV" ref="5.3.2.2">The subcomponent in the destination device which created the user data.</field>
+      <field name="source_network_type" type="TLV" ref="5.3.2.4">The correct network associated with the originating device.</field>
+      <field name="source_bearer_type" type="TLV" ref="5.3.2.6">The correct bearer type for the delivering the user data to the destination.</field>
+      <field name="source_telematics_id" type="TLV" ref="5.3.2.8">The telematics identifier associated with the source.</field>
+      <field name="destination_port" type="TLV" ref="5.3.2.21">Indicates the application port number associated with the destination address of the message. This parameter should be present for WAP applications.</field>
+      <field name="dest_addr_subunit" type="TLV" ref="5.3.2.1">The subcomponent in the destination device for which the user data is intended.</field>
+      <field name="dest_network_type" type="TLV" ref="5.3.2.3">The correct network for the destination device.</field>
+      <field name="dest_bearer_type" type="TLV" ref="5.3.2.5">The correct bearer type for the delivering the user data to the destination.</field>
+      <field name="dest_telematics_id" type="TLV" ref="5.3.2.7">The telematics identifier associated with the destination.</field>
+
+      <field name="sar_msg_ref_num" type="TLV" ref="5.3.2.22">The reference number for a particular concatenated short message.</field>
+      <field name="sar_total_segments" type="TLV" ref="5.3.2.23">Indicates the total number of short messages within the concatenated short message.</field>
+      <field name="sar_segment_seqnum" type="TLV" ref="5.3.2.24">Indicates the sequence number of a particular short message fragment within the concatenated short message.</field>
+      <field name="more_messages_to_send" type="TLV" ref="5.3.2.34">Indicates that there are more messages to follow for the destination SME.</field>
+      <field name="qos_time_to_live" type="TLV" ref="5.3.2.9">Time to live as a relative time in seconds from submission.</field>
+      <field name="payload_type" type="TLV" ref="5.3.2.10">Defines the type of payload (e.g. WDP, WCMP, etc.).</field>
+      <field name="message_payload" type="TLV" ref="5.3.2.32">Contains the message user data. Up to 64K octets can be transmitted.</field>
+      <field name="set_dpf" type="TLV" ref="5.3.2.29">Indicator for setting Delivery Pending Flag on delivery failure.</field>
+      <field name="receipted_message_id" type="TLV" ref="5.3.2.12">SMSC message ID of message being receipted. Should be present for SMSC Delivery Receipts and Intermediate Notifications.</field>
+      <field name="message_state" type="TLV" ref="5.3.2.35">Message State. Should be present for SMSC Delivery Receipts and Intermediate Notifications.</field>
+      <field name="network_error_code" type="TLV" ref="5.3.2.31">Network error code. May be present for SMSC Delivery Receipts and Intermediate Notifications.</field>
+      <field name="user_message_reference" type="TLV" ref="5.3.2.17">ESME assigned message reference number.</field>
+
+      <field name="privacy_indicator" type="TLV" ref="5.3.2.14">Indicates a level of privacy associated with the message.</field>
+      <field name="callback_num" type="TLV" ref="5.3.2.36">A callback number associated with the short message. This parameter can be included a number of times for multiple call back addresses.</field>
+      <field name="callback_num_pres_ind" type="TLV" ref="5.3.2.37">This parameter identifies the presentation and screening associated with the callback number. If this parameter is present and there are multiple instances of the callback_num parameter then this parameter must occur an equal number of instances and the or der of occurrence determines the particular callback_num_pres_ind which corresponds to a particular callback_num .</field>
+      <field name="callback_num_atag" type="TLV" ref="5.3.2.38">This parameter associates a displayable alphanumeric tag with the callback number. If this parameter is present and there are multiple instances of the callback_num parameter then this parameter must occur an equal number of instances and the order of occu rrence determines the particular callback_num_atag which corresponds to a particular callback_num .</field>
+      <field name="source_subaddress" type="TLV" ref="5.3.2.15">The subaddress of the message originator.</field>
+      <field name="dest_subaddress" type="TLV" ref="5.3.2.16">The subaddress of the message destination.</field>
+      <field name="user_response_code" type="TLV" ref="5.3.2.18">A user response code. The actual response codes are implementation specific.</field>
+
+      <field name="display_time" type="TLV" ref="5.3.2.26">Provides the receiving MS based SME with a display time associated with the message.</field>
+      <field name="sms_signal" type="TLV" ref="5.3.2.40">Indicates the alerting mechanism when the message is received by an MS.</field>
+      <field name="ms_validity" type="TLV" ref="5.3.2.27">Indicates validity information for this message to the recipient MS.</field>
+      <field name="ms_msg_wait_facilities" type="TLV" ref="5.3.2.13">This parameter controls the indication and specifies the message type (of the message associated with the MWI) at the mobile station.</field>
+      <field name="number_of_messages" type="TLV" ref="5.3.2.39">Indicates the number of messages stored in a mail box (e.g. voice mail box).</field>
+      <field name="alert_on_msg_delivery" type="TLV" ref="5.3.2.41">Requests an MS alert signal be invoked on message delivery.</field>
+      <field name="language_indicator" type="TLV" ref="5.3.2.19">Indicates the language of an alphanumeric text message.</field>
+      <field name="its_reply_type" type="TLV" ref="5.3.2.42">The MS user’s reply method to an SMS delivery message received from the network is indicated and controlled by this parameter.</field>
+      <field name="its_session_info" type="TLV" ref="5.3.2.43">Session control information for Interactive Teleservice.</field>
+   </pdu>
+   
+   <pdu label="Table 4-21:" name="data_sm_resp">
+      <desc>The following is the format of the SMPP data_sm_resp PDU. </desc>
+      <field name="command_length" size="4" type="Integer" ref="5.1.1">Set to overall length of PDU</field>
+      <field name="command_id" size="4" type="Integer" ref="5.1.2">data_sm_resp</field>
+      <field name="command_status" size="4" type="Integer" ref="5.1.3">Indicates outcome of data_sm request.</field>
+      <field name="sequence_number" size="4" type="Integer" ref="5.1.4">Set to sequence number of original data_sm PDU.</field>
+      <field name="message_id"
+             size="Var. max 65"
+             type="COctet String"
+             ref="5.2.23">This field contains the SMSC assigned message ID of the short message.</field>
+      <field name="delivery_failure_reason a" type="TLV" ref="5.3.2.33">Include to indicate reason for delivery failure.</field>
+      <field name="network_error_code a" type="TLV" ref="5.3.2.31">Error code specific to a wireless network.</field>
+      <optional name="additional_status_info_text TLV" ref="5.3.2.11">ASCII text giving a description of the meaning of the response</optional>
+      <field name="dpf_result a" type="TLV" ref="5.3.2.28">Indicates whether the Delivery Pending Flag was set.</field>
+   </pdu>
+   
+   <pdu label="Table 4-22:" name="query_sm">
+      <desc>Following is the format of the SMPP query_sm PDU. </desc>
+      <field name="command_length" size="4" type="Integer" ref="5.1.1">Set to overall length of PDU</field>
+      <field name="command_id" size="4" type="Integer" ref="5.1.2">query_sm</field>
+      <field name="command_status" size="4" type="Integer" ref="5.1.3">Not used. Set to NULL.</field>
+      <field name="sequence_number" size="4" type="Integer" ref="5.1.4">Set to a unique sequence number. The associated query_sm_resp PDU should echo the same sequence number</field>
+      <field name="message_id"
+             size="Var. Max 65"
+             type="C-Octet String"
+             ref="5.2.23">Message ID of the message whose state is to be queried. This must be the SMSC assigned Message ID allocated to the original short message when submitted to the SMSC by the submit_sm, data_sm or submit_multi command, and returned in the response PDU by the SMSC.</field>
+      <field name="source_addr_ton" size="1" type="Integer" ref="5.2.5">Type of Number of message originator. This is used for verification purposes, and must match that supplied in the original request PDU (e.g. submit_sm ). If not known, set to NULL.</field>
+      <field name="source_addr_npi" size="1" type="Integer" ref="5.2.6">Numbering Plan Identity of message originator. This is used for verification purposes, and must match that supplied in the original request PDU (e.g. submit_sm ). If not known, set to NULL.</field>
+      <field name="source_addr"
+             size="Var. Max 21"
+             type="C-Octet String"
+             ref="5.2.8">Address of message originator. This is used for verification purposes, and must match that supplied in the original request PDU (e.g. submit_sm ). If not known, set to NULL.</field>
+   </pdu>
+   
+   <pdu label="Table 4-23:" name="query_sm_resp">
+      <desc>Following is the format of the SMPP query_sm_resp PDU. </desc>
+      <field name="command_length" size="4" type="Integer" ref="5.1.1">Set to overall length of PDU.</field>
+      <field name="command_id" size="4" type="Integer" ref="5.1.2">query_sm_resp</field>
+      <field name="command_status" size="4" type="Integer" ref="5.1.3">Indicates outcome of query_sm request</field>
+      <field name="sequence_number" size="4" type="Integer" ref="5.1.4">Set to sequence number of original query_sm PDU.</field>
+      <field name="message_id"
+             size="Var. max 65"
+             type="C- Octet String"
+             ref="5.2.23">SMSC Message ID of the message whose state is being queried.</field>
+      <field name="final_date"
+             size="1 or 17"
+             type="C- Octet String"
+             ref="7.1.1">Date and time when the queried message reached a final state. For messages which have not yet reached a final state this field will contain a single NULL octet.</field>
+      <field name="message_state" size="1" type="Integer" ref="5.2.28">Specifies the status of the queried short message.</field>
+      <field name="error_code" size="1" type="Integer" ref="6.1">Where appropriate this holds a network error code defining the reason for failure of message delivery.</field>
+   </pdu>
+   
+   <pdu label="Table 4-24:" name="cancel_sm">
+      <desc>Following is the format of the SMPP cancel_sm PDU. </desc>
+      <field name="command_length" size="4" type="Integer" ref="5.1.1">Set to overall length of PDU.</field>
+      <field name="command_id" size="4" type="Integer" ref="5.1.2">cancel_sm</field>
+      <field name="command_status" size="4" type="Integer" ref="5.1.3">Not used. Set to NULL.</field>
+      <field name="sequence_number" size="4" type="Integer" ref="5.1.4">Set to a unique sequence number. The associated cancel_sm_resp PDU should echo the same sequence number.</field>
+      <field name="service_type"
+             size="Var. max 6"
+             type="C- Octet String"
+             ref="5.2.11">Set to indicate SMS Application service, if cancellation of a group of application service messages is desired. Otherwise set to NULL.</field>
+      <field name="message_id"
+             size="Var. max 65"
+             type="C- Octet String"
+             ref="5.2.23">Message ID of the message to be cancelled. This must be the SMSC assigned Message ID of the original message. Set to NULL if cancelling a group of messages.</field>
+      <field name="source_addr_ton" size="1" type="Integer" ref="5.2.5">Type of Number of message originator. This is used for verification purposes, and must match that supplied in the original message submission request PDU. If not known, set to NULL.</field>
+      <field name="source_addr_npi" size="1" type="Integer" ref="5.2.6">Numbering Plan Identity of message originator. This is used for verification purposes, and must match that supplied in the original message submission request PDU. If not known, set to NULL.</field>
+      <field name="source_addr"
+             size="Var. max 21"
+             type="C- Octet String"
+             ref="5.2.8">Source address of message(s) to be cancelled. This is used for verification purposes, and must match that supplied in the original message submission request PDU(s).</field>
+
+      <field name="dest_addr_ton" size="1" type="Integer" ref="5.2.5">Type of number of destination SME address of the message(s) to be cancelled. This is used for verification purposes, and must match that supplied in the original message submission request PDU (e.g. submit_sm ). May be set to NULL when the message_id is provided.</field>
+      <field name="dest_addr_npi" size="1" type="Integer" ref="5.2.6">Numbering Plan Indicator of destination SME address of the message(s)) to be cancelled. This is used for verification purposes, and must match that supplied in the original message submission request PDU. May be set to NULL when the message_id is provided.</field>
+      <field name="destination_addr"
+             size="Var. max 21"
+             type="C- Octet String"
+             ref="5.2.9">Destination address of message(s) to be cancelled. This is used for verification purposes, and must match that supplied in the original message submission request PDU. May be set to NULL when the message_id is provided.</field>
+   </pdu>
+   
+   <pdu label="Table 4-25:" name="cancel_sm_resp">
+      <desc>The cancel_sm_resp PDU is used to reply to a cancel_sm request. It comprises the SMPP message header only . </desc>
+      <field name="command_length" size="4" type="Integer" ref="5.1.1">Set to overall length of PDU.</field>
+      <field name="command_id" size="4" type="Integer" ref="5.1.2">cancel_sm_resp</field>
+      <field name="command_status" size="4" type="Integer" ref="5.1.3">Indicates outcome of cancel_sm request.</field>
+      <field name="sequence_number" size="4" type="Integer" ref="5.1.4">Set to sequence number of cancel_sm PDU.</field>
+   </pdu>
+   
+   <pdu label="Table 4-26:" name="replace_sm">
+      <desc>Following is the format of the SMPP replace_sm PDU. The command_id field contains the command identifier code for replace_sm . </desc>
+      <field name="command_length" size="4" type="Integer" ref="5.1.1">Set to overall length of PDU.</field>
+      <field name="command_id" size="4" type="Integer" ref="5.1.2">replace_sm</field>
+      <field name="command_status" size="4" type="Integer" ref="5.1.3">Not used. Set to NULL</field>
+      <field name="sequence_number" size="4" type="Integer" ref="5.1.4">Set to a unique sequence number. The associated replace_sm_resp PDU should echo the same sequence number.</field>
+      <field name="message_id"
+             size="Var. max 65"
+             type="C- Octet String"
+             ref="5.2.23">SMSC message ID of the message to be replaced. This must be the message ID allocated to the original short message when submitted to the SMSC by the submit_sm command, and returned in the submit_sm_resp message by the SMSC.</field>
+      <field name="source_addr_ton" size="1" type="Integer" ref="5.2.5">Type of Number of mesage originator. This is used for verification purposes, and must match that supplied in the corresponding submit_sm request. If not known, set to NULL.</field>
+      <field name="source_addr_npi" size="1" type="Integer" ref="5.2.6">Numbering Plan Identity of message originator. This is used for verification purposes, and must match that supplied in the corresponding submit_sm request. If not known set to NULL.</field>
+      <field name="source_addr"
+             size="Var. 1-21"
+             type="C- Octet String"
+             ref="5.2.8">Originating address of the short message to be replaced. This is used for verification purposes, and must match that supplied in the corresponding submit_sm request.</field>
+
+
+      <field name="schedule_delivery_time"
+             size="1 or 17"
+             type="C- Octet String"
+             ref="5.2.15">New scheduled delivery time for the short message. Set to NULL, if updating of the original scheduled delivery time is not desired.</field>
+      <field name="validity_period"
+             size="1 or 17"
+             type="C- Octet String"
+             ref="5.2.16">New expiration time for the short message. Set to NULL, if updating of the original expiration time is not required.</field>
+      <field name="registered_delivery" size="1" type="Integer" ref="5.2.17">New registered delivery parameter setting.</field>
+      <field name="sm_default_msg_id" size="1" type="Integer" ref="5.2.20">New pre-defined (canned) message identifier.</field>
+      <field name="sm_length" size="1" type="Integer" ref="5.2.21">Length of new short message in octets.</field>
+      <field name="short_message"
+             size="Var. 0-254"
+             type="Octet String"
+             ref="5.2.22">New short message to replace existing message.</field>
+   </pdu>
+   
+   <pdu label="Table 4-27:" name="replace_sm_resp">
+      <desc>The replace_sm_resp PDU is used to reply to a replace_sm request. It comprises the SMPP message header only . </desc>
+      <field name="command_length" size="4" type="Integer" ref="5.1.1">Set to overall length of PDU.</field>
+      <field name="command_id" size="4" type="Integer" ref="5.1.2">replace_sm_resp</field>
+      <field name="command_status" size="4" type="Integer" ref="5.1.3">Indicates outcome of replace_sm request</field>
+      <field name="sequence_number" size="4" type="Integer" ref="5.1.4">Expected to be the same sequence number of original replace_sm PDU.</field>
+   </pdu>
+   
+   <pdu label="Table 4-28:" name="enquire_link">
+      <desc>The enquire_link PDU comprises the SMPP message header only. </desc>
+      <field name="Field Nam e" size="Size octets" type="Type" ref="Ref.">Description</field>
+      <field name="command_length" size="4" type="Integer" ref="5.1.1">Set to overall length of PDU</field>
+      <field name="command_id" size="4" type="Integer" ref="5.1.2">enquire_link</field>
+      <field name="command_status" size="4" type="Integer" ref="5.1.3">Not used. Set to NULL</field>
+      <field name="sequence_number" size="4" type="Integer" ref="5.1.4">Set to a unique sequence number. The associated enquire_link_resp PDU should echo the same sequence number</field>
+   </pdu>
+   
+   <pdu label="Table 4-29:" name="enquire_link_resp">
+      <desc>The enquire_link_resp PDU is used to reply to an enquire_link request. It comprises the SMPP message header only . </desc>
+      <field name="command_length" size="4" type="Integer" ref="5.1.1">Set to overall length of PDU</field>
+      <field name="command_id" size="4" type="Integer" ref="5.1.2">enquire_link_resp</field>
+      <field name="command_status" size="4" type="Integer" ref="5.1.3">Set to ESME_ROK (Success)</field>
+      <field name="sequence_number" size="4" type="Integer" ref="5.1.4">Set to the same sequence number of original enquire_link PDU</field>
+   </pdu>
+   
+   <pdu label="Table 4-30:" name="alert_notification">
+      <desc>Following is the format of the SMPP alert_notification PDU. </desc>
+      <field name="command_length" size="4" type="Integer" ref="5.1.1">Set to overall length of PDU.</field>
+      <field name="command_id" size="4" type="Integer" ref="5.1.2">alert_notification</field>
+      <field name="command_status" size="4" type="Integer" ref="5.1.3">Not used. Set to NULL.</field>
+      <field name="sequence_number" size="4" type="Integer" ref="5.1.4">Set to a unique sequence number.</field>
+      <field name="source_addr_ton" size="1" type="Integer" ref="5.2.5">Type of number for the MS which has become available. If not known, set to NULL.</field>
+      <field name="source_addr_npi" size="1" type="Integer" ref="5.2.6">Numbering Plan Indicator for the MS which has become available. If not known, set to NULL.</field>
+      <field name="source_addr"
+             size="Var. max 65"
+             type="C- Octet String"
+             ref="5.2.8">Address of MS which has become available.</field>
+      <field name="esme_addr_ton" size="1" type="Integer" ref="5.2.5">Type of number for destination address which requested an alert on a particular MS becoming available. If not known, set to NULL.</field>
+      <field name="esme_addr_npi" size="1" type="Integer" ref="5.2.6">Numbering Plan Indicator for ESME which requested an alert on a particular MS becoming available. If not known, set to NULL.</field>
+      <field name="esme_addr"
+             size="Var. max 65"
+             type="C- Octet String"
+             ref="5.2.10">Address of ESME which requested an alert on a particular MS becoming available.</field>
+      <field name="ms_availability_status" type="TLV" ref="5.3.2.30">The status of the mobile station.</field>
+   </pdu>
+   
+   
+   <!-- xxxxxxxxxxxxxxxxxxxxxxxxxxx -->
+   <enum label="Table 5-1:" name="CommandIDs">
+      <desc>The complete set of SMPP Command IDs and their associated values are defined in the following table. </desc>
+      <field name="generic_nack" value="0x80000000"/>
+      <field name="bind_receiver" value="0x00000001"/>
+      <field name="bind_receiver_resp" value="0x80000001"/>
+      <field name="bind_transmitter" value="0x00000002"/>
+      <field name="bind_transmitter_resp" value="0x80000002"/>
+      <field name="query_sm" value="0x00000003"/>
+      <field name="query_sm_resp" value="0x80000003"/>
+      <field name="submit_sm" value="0x00000004"/>
+      <field name="submit_sm_resp" value="0x80000004"/>
+      <field name="deliver_sm" value="0x00000005"/>
+      <field name="deliver_sm_resp" value="0x80000005"/>
+      <field name="unbind" value="0x00000006"/>
+      <field name="unbind_resp" value="0x80000006"/>
+      <field name="replace_sm" value="0x00000007"/>
+      <field name="replace_sm_resp" value="0x80000007"/>
+      <field name="cancel_sm" value="0x00000008"/>
+      <field name="cancel_sm_resp" value="0x80000008"/>
+      <field name="bind_transceiver" value="0x00000009"/>
+      <field name="bind_transceiver_resp" value="0x80000009"/>
+      <field name="Reserved" value="0x0000000A 0x8000000A"/>
+      <field name="outbind" value="0x0000000B"/>
+      <field name="Reserved" value="0x0000000C - 0x00000014 0x8000000B - 0x80000014"/>
+      <field name="enquire_link" value="0x00000015"/>
+      <field name="enquire_link_resp" value="0x80000015"/>
+      <field name="Reserved" value="0x00000016 - 0x00000020 0x80000016 - 0x80000020"/>
+   </enum>
+   <enum label="Table 5-1:" name="CommandIDs">
+      <desc>Table 5-1: SMPP Command ID Values (Continued) </desc>
+      <field name="submit_multi" value="0x00000021"/>
+      <field name="submit_multi_resp" value="0x80000021"/>
+      <field name="Reserved" value="0x00000022 - 0x000000FF 0x80000022 - 0x800000FF"/>
+      <field name="Reserved" value="0x00000100"/>
+      <field name="Reserved" value="0x80000100"/>
+      <field name="Reserved" value="0x00000101 0x80000101"/>
+      <field name="alert_notification" value="0x00000102"/>
+      <field name="Reserved" value="0x80000102"/>
+      <field name="data_sm" value="0x00000103"/>
+      <field name="data_sm_resp" value="0x80000103"/>
+      <field name="Reserved for SMPP extension"
+             value="0x00000104 - 0x0000FFFF 0x80000104 - 0x8000FFFF"/>
+      <field name="Reserved" value="0x00010000 - 0x000101FF 0x80010000 - 0x800101FF"/>
+      <field name="Reserved for SMSC Vendor"
+             value="0x00010200 - 0x000102FF 0x80010200 - 0x800102FF"/>
+      <field name="Reserved" value="0x00010300 - 0xFFFFFFFF"/>
+   </enum>
+   <enum label="Table 5-2:" name="ErrorCodes" type="error">
+      <desc>The complete set of SMPP Error Codes and their associated values are defined in the following table. </desc>
+      <field name="ESME_ROK" value="0x00000000">No Error</field>
+      <field name="ESME_RINVMSGLEN" value="0x00000001">Message Length is invalid</field>
+      <field name="ESME_RINVCMDLEN" value="0x00000002">Command Length is invalid</field>
+      <field name="ESME_RINVCMDID" value="0x00000003">Invalid Command ID</field>
+      <field name="ESME_RINVBNDSTS" value="0x00000004">Incorrect BIND Status for given command</field>
+      <field name="ESME_RALYBND" value="0x00000005">ESME Already in Bound State</field>
+      <field name="ESME_RINVPRTFLG" value="0x00000006">Invalid Priority Flag</field>
+      <field name="ESME_RINVREGDLVFLG" value="0x00000007">Invalid Registered Delivery Flag</field>
+      <field name="ESME_RSYSERR" value="0x00000008">System Error</field>
+      <field name="Reserved" value="0x00000009">Reserved</field>
+      <field name="ESME_RINVSRCADR" value="0x0000000A">Invalid Source Address</field>
+      <field name="ESME_RINVDSTADR" value="0x0000000B">Invalid Dest Addr</field>
+      <field name="ESME_RINVMSGID" value="0x0000000C">Message ID is invalid</field>
+      <field name="ESME_RBINDFAIL" value="0x0000000D">Bind Failed</field>
+      <field name="ESME_RINVPASWD" value="0x0000000E">Invalid Password</field>
+      <field name="ESME_RINVSYSID" value="0x0000000F">Invalid System ID</field>
+      <field name="Reserved" value="0x00000010">Reserved</field>
+      <field name="ESME_RCANCELFAIL" value="0x00000011">Cancel SM Failed</field>
+      <field name="Reserved" value="0x00000012">Reserved</field>
+      <field name="ESME_RREPLACEFAIL" value="0x00000013">Replace SM Failed</field>
+   </enum>
+   <enum label="Table 5-2:" name="ErrorCodes" type="error">
+      <desc>Table 5-2: SMPP Error Codes </desc>
+      <field name="ESME_RMSGQFUL" value="0x00000014">Message Queue Full</field>
+      <field name="ESME_RINVSERTYP" value="0x00000015">Invalid Service Type</field>
+      <field name="Reserved" value="0x00000016- 0x00000032">Reserved</field>
+      <field name="ESME_RINVNUMDESTS" value="0x00000033">Invalid number of destinations</field>
+      <field name="ESME_RINVDLNAME" value="0x00000034">Invalid Distribution List name</field>
+      <field name="Reserved" value="0x00000035- 0x0000003F">Reserved</field>
+      <field name="ESME_RINVDESTFLAG" value="0x00000040">Destination flag is invalid ( submit_multi )</field>
+      <field name="Reserved" value="0x00000041">Reserved</field>
+      <field name="ESME_RINVSUBREP" value="0x00000042">Invalid ‘submit with replace’ request (i.e. submit_sm with replace_if_present_flag set)</field>
+      <field name="ESME_RINVESMCLASS" value="0x00000043">Invalid esm_class field data</field>
+      <field name="ESME_RCNTSUBDL" value="0x00000044">Cannot Submit to Distribution List</field>
+      <field name="ESME_RSUBMITFAIL" value="0x00000045">submit_sm or submit_multi failed</field>
+      <field name="Reserved" value="0x00000046- 0x00000047">Reserved</field>
+      <field name="ESME_RINVSRCTON" value="0x00000048">Invalid Source address TON</field>
+      <field name="ESME_RINVSRCNPI" value="0x00000049">Invalid Source address NPI</field>
+      <field name="ESME_RINVDSTTON" value="0x00000050">Invalid Destination address TON</field>
+      <field name="ESME_RINVDSTNPI" value="0x00000051">Invalid Destination address NPI</field>
+      <field name="Reserved" value="0x00000052">Reserved</field>
+      <field name="ESME_RINVSYSTYP" value="0x00000053">Invalid system_type field</field>
+      <field name="ESME_RINVREPFLAG" value="0x00000054">Invalid replace_if_present flag</field>
+      <field name="ESME_RINVNUMMSGS" value="0x00000055">Invalid number of messages</field>
+      <field name="Reserved" value="0x00000056- 0x00000057">Reserved</field>
+      <field name="ESME_RTHROTTLED" value="0x00000058">Throttling error (ESME has exceeded allowed message limits)</field>
+      <field name="Reserved" value="0x00000059- 0x00000060">Reserved</field>
+   </enum>
+   <enum label="Table 5-2:" name="ErrorCodes" type="error">
+      <desc>Table 5-2: SMPP Error Codes </desc>
+      <field name="ESME_RINVSCHED" value="0x00000061">Invalid Scheduled Delivery Time</field>
+      <field name="ESME_RINVEXPIRY" value="0x00000062">Invalid message validity period (Expiry time)</field>
+      <field name="ESME_RINVDFTMSGID" value="0x00000063">Predefined Message Invalid or Not Found</field>
+      <field name="ESME_RX_T_APPN" value="0x00000064">ESME Receiver Temporary App Error Code</field>
+      <field name="ESME_RX_P_APPN" value="0x00000065">ESME Receiver Permanent App Error Code</field>
+      <field name="ESME_RX_R_APPN" value="0x00000066">ESME Receiver Reject Message Error Code</field>
+      <field name="ESME_RQUERYFAIL" value="0x00000067">query_sm request failed</field>
+      <field name="Reserved" value="0x00000068 - 0x000000BF">Reserved</field>
+      <field name="ESME_RINVOPTPARSTREAM" value="0x000000C0">Error in the optional part of the PDU Body.</field>
+      <field name="ESME_ROPTPARNOTALLWD" value="0x000000C1">Optional Parameter not allowed</field>
+      <field name="ESME_RINVPARLEN" value="0x000000C2">Invalid Parameter Length.</field>
+      <field name="ESME_RMISSINGOPTPARAM" value="0x000000C3">Expected Optional Parameter missing</field>
+      <field name="ESME_RINVOPTPARAMVAL" value="0x000000C4">Invalid Optional Parameter Value</field>
+      <field name="Reserved" value="0x000000C5 - 0x000000FD">Reserved</field>
+      <field name="ESME_RDELIVERYFAILURE" value="0x000000FE">Delivery Failure (used for data_sm_resp )</field>
+      <field name="ESME_RUNKNOWNERR" value="0x000000FF">Unknown Error</field>
+      <field name="Reserved for SMPP extension" value="0x00000100- 0x000003FF">Reserved for SMPP extension</field>
+      <field name="Reserved for SMSC vendor specific errors"
+             value="0x00000400- 0x000004FF">Reserved for SMSC vendor specific errors</field>
+      <field name="Reserved" value="0x00000500- 0xFFFFFFFF">Reserved</field>
+   </enum>
+   <enum label="Table parameter" name="is">
+      <desc>5.2.5 addr_ton, source_addr_ton, dest_addr_ton, esme_addr_ton </desc>
+      <field name="Interface Version" value="Value"/>
+      <field name="Indicates that the EMSE supports version 3.3 or earlier of the SMPP protocol."
+             value="0x00-0x33"/>
+      <field name="Indicates that the ESME is supporting SMPP version 3.4"
+             value="0x34"/>
+      <field name="All other values reserved" value=""/>
+   </enum>
+   <enum label="Table 5-3:" name="TON">
+      <desc>These fields define the Type of Number (TON) to be used in the SME address parameters. The following TON values are defined: </desc>
+      <field name="TON" value="Value"/>
+      <field name="Unknown" value="00000000"/>
+      <field name="International" value="00000001"/>
+      <field name="National" value="00000010"/>
+      <field name="Network Specific" value="00000011"/>
+      <field name="Subscriber Number" value="00000100"/>
+      <field name="Alphanumeric" value="00000101"/>
+      <field name="Abbreviated" value="00000110"/>
+      <field name="All other values reserved" value=""/>
+   </enum>
+   <enum label="Table 5-4:" name="NPI">
+      <desc>These fields define the Numeric Plan Indicator (NPI) to be used in the SME address parameters. The following NPI values are defined: </desc>
+      <field name="NPI" value="Value"/>
+      <field name="Unknown" value="00000000"/>
+      <field name="ISDN (E163/E164)" value="00000001"/>
+      <field name="Data (X.121)" value="00000011"/>
+      <field name="Telex (F.69)" value="00000100"/>
+      <field name="Land Mobile (E.212)" value="00000110"/>
+      <field name="National" value="00001000"/>
+      <field name="Private" value="00001001"/>
+      <field name="ERMES" value="00001010"/>
+      <field name="Internet (IP)" value="00001110"/>
+      <field name="WAP Client Id (to be defined by WAP Forum)" value="00010010"/>
+      <field name="All other values reserved" value=""/>
+   </enum>
+   <enum label="Table other" name="values">
+      <desc>all other values reserved </desc>
+      <field name="" value="GSM Network Specific Features (bits 7-6)"/>
+      <field name="0 0 x x x x x x" value="No specific features selected"/>
+      <field name="0 1 x x x x x x" value="UDHI Indicator set"/>
+      <field name="1 0 x x x x x x" value="Reply Path"/>
+      <field name="1 1 x x x x x x" value="UDHI and Reply Path"/>
+   </enum>
+   <enum label="Table 5-5:" name="SMPP">
+      <desc>These are applied in different networks as follows:- </desc>
+      <field name="Priority Level" value="GSM a"/>
+      <field name="0" value="non-priority"/>
+      <field name="1" value="priority"/>
+      <field name="2" value="priority"/>
+      <field name="3" value="priority"/>
+      <field name="All other values reserved" value=""/>
+   </enum>
+   <enum label="Table registered_delivery" name="parameter">
+      <desc>all other values reserved </desc>
+      <field name="Bits" value="7 6 5 4 3 2 1 0"/>
+      <field name="" value=""/>
+      <field name="" value="x x x x x x 0 0"/>
+      <field name="" value="x x x x x x 0 1"/>
+      <field name="" value="x x x x x x 1 0"/>
+      <field name="" value="x x x x x x 1 1"/>
+      <field name="" value="x x x x 0 0 x x"/>
+      <field name="" value="x x x x 0 1 x x"/>
+      <field name="" value="x x x x 1 0 x x"/>
+      <field name="" value="x x x x 1 1 x x"/>
+      <field name="" value="x x x 0 x x x x"/>
+      <field name="" value="x x x 1 x x x x"/>
+   </enum>
+   <tlv label="Table 5-6:"
+        name="Message"
+        desc="The following is a list of allowable sta tes for a short message. The message_state value is returned by the SMSC to the ESME as part of the query_sm_resp PDU. ">
+      <desc>The following is a list of allowable sta tes for a short message. The message_state value is returned by the SMSC to the ESME as part of the query_sm_resp PDU. </desc>
+   </tlv>
+   <enum label="Table 5-7:" name="Optional">
+      <desc>Generic optional parameters may be applicable to all wireless network techno logies i.e., GSM/ iDEN, TDMA and CDMA. </desc>
+      <field name="Tag" value="Value"/>
+      <field name="dest_addr_subunit" value="0x0005"/>
+      <field name="dest_network_type" value="0x0006"/>
+      <field name="dest_bearer_type" value="0x0007"/>
+      <field name="dest_telematics_id" value="0x0008"/>
+      <field name="source_addr_subunit" value="0x000D"/>
+      <field name="source_network_type" value="0x000E"/>
+      <field name="source_bearer_type" value="0x000F"/>
+      <field name="source_telematics_id" value="0x0010"/>
+      <field name="qos_time_to_live" value="0x0017"/>
+      <field name="payload_type" value="0x0019"/>
+      <field name="additional_status_info_text" value="0x001D"/>
+      <field name="receipted_message_id" value="0x001E"/>
+      <field name="ms_msg_wait_facilities" value="0x0030"/>
+      <field name="privacy_indicator" value="0x0201"/>
+      <field name="source_subaddress" value="0x0202"/>
+      <field name="dest_subaddress" value="0x0203"/>
+      <field name="user_message_reference" value="0x0204"/>
+      <field name="user_response_code" value="0x0205"/>
+      <field name="source_port" value="0x020A"/>
+      <field name="destination_port" value="0x020B"/>
+      <field name="sar_msg_ref_num" value="0x020C"/>
+      <field name="language_indicator" value="0x020D"/>
+      <field name="sar_total_segments" value="0x020E"/>
+      <field name="sar_segment_seqnum" value="0x020F"/>
+      <field name="SC_interface_version" value="0x0210"/>
+   </enum>
+   <enum label="Table 5-7:" name="Optional">
+      <desc>Table 5-7: Optional Parameter Tag values (Continued) </desc>
+      <field name="Tag" value="Value"/>
+      <field name="callback_num_pres_ind" value="0x0302"/>
+      <field name="callback_num_atag" value="0x0303"/>
+      <field name="number_of_messages" value="0x0304"/>
+      <field name="callback_num" value="0x0381"/>
+      <field name="dpf_result" value="0x0420"/>
+      <field name="set_dpf" value="0x0421"/>
+      <field name="ms_availability_status" value="0x0422"/>
+      <field name="network_error_code" value="0x0423"/>
+      <field name="message_payload" value="0x0424"/>
+      <field name="delivery_failure_reason" value="0x0425"/>
+      <field name="more_messages_to_send" value="0x0426"/>
+      <field name="message_state" value="0x0427"/>
+      <field name="ussd_service_op" value="0x0501"/>
+      <field name="display_time" value="0x1201"/>
+      <field name="sms_signal" value="0x1203"/>
+      <field name="ms_validity" value="0x1204"/>
+      <field name="alert_on_message_delivery" value="0x130C"/>
+      <field name="its_reply_type" value="0x1380"/>
+      <field name="its_session_info" value="0x1383"/>
+   </enum>
+   <tlvref label="Table 5.3.2.1" name="dest_addr_subunit">
+      <field field="Parameter Tag" size="2" type="Integer">dest_addr_subunit</field>
+      <field field="Length" size="2" type="Integer">Length of Value part in octets</field>
+      <field field="Value" size="1" type="Integer">0x00 = Unknown (default) 0x01 = MS Display 0x02 = Mobile Equipment 0x03 = Smart Card 1 (expected to be SIM if a SIM exists in the MS) 0x04 = External Unit 1 5 to 255 = reserved</field>
+   </tlvref>
+   <tlvref label="Table 5.3.2.2" name="source_addr_subunit">
+      <field field="Parameter Tag" size="2" type="Integer">source_addr_subunit</field>
+      <field field="Length" size="2" type="Integer">Length of Value part in octets</field>
+      <field field="Value" size="1" type="Integer">see 5.3.2.1</field>
+   </tlvref>
+   <tlvref label="Table 5.3.2.3" name="dest_network_type">
+      <field field="Parameter Tag" size="2" type="Integer">dest_network_type</field>
+      <field field="Length" size="2" type="Integer">Length of Value part in octets</field>
+      <field field="Value" size="1" type="Integer">0x00 = Unknown 0x01 = GSM 0x02 = ANSI-136/TDMA 0x03 = IS-95/CDMA 0x04 = PDC 0x05 = PHS 0x06 = iDEN 0x07 = AMPS 0x08 = Paging Network 9 to 255 = reserved</field>
+   </tlvref>
+   <tlvref label="Table 5.3.2.4" name="source_network_type">
+      <field field="Parameter Tag" size="2" type="Integer">source_network_type</field>
+      <field field="Length" size="2" type="Integer">Length of Value part in octets</field>
+      <field field="Value" size="1" type="Integer">see 5.3.2.3</field>
+   </tlvref>
+   <tlvref label="Table 5.3.2.5" name="dest_bearer_type">
+      <field field="Parameter Tag" size="2" type="Integer">dest_bearer_type</field>
+      <field field="Length" size="2" type="Integer">Length of Value part in octets</field>
+      <field field="Value" size="1" type="Integer">0x00 = Unknown 0x01 = SMS 0x02 = Circuit Switched Data (CSD) 0x03 = Packet Data 0x04 = USSD 0x05 = CDPD 0x06 = DataTAC 0x07 = FLEX/ReFLEX 0x08 = Cell Broadcast (cellcast) 9 to 255 = reserved</field>
+   </tlvref>
+   <tlvref label="Table 5.3.2.6" name="source_bearer_type">
+      <field field="Parameter Tag" size="2" type="Integer">source_bearer_type</field>
+      <field field="Length" size="2" type="Integer">Length of Value part in octets</field>
+      <field field="Value" size="1" type="Integer">see 5.3.2.5</field>
+   </tlvref>
+   <tlvref label="Table 5.3.2.7" name="parameter">
+      <field field="Parameter Tag" size="2" type="Integer">dest_telematics_id</field>
+      <field field="Length" size="2" type="Integer">Length of Value part in octets</field>
+      <field field="Value" size="2" type="Integer">to be defined</field>
+   </tlvref>
+   <tlvref label="Table 5.3.2.8" name="source_telematics_id">
+      <field field="Parameter Tag" size="2" type="Integer">source_telematics_id</field>
+      <field field="Length" size="2" type="Integer">Length of Value part in octets</field>
+      <field field="Value" size="1" type="Integer">see 5.3.2.7</field>
+   </tlvref>
+   <tlvref label="Table 5.3.2.9" name="parameter">
+      <field field="Parameter Tag" size="2" type="Integer">qos_time_to_live</field>
+      <field field="Length" size="2" type="Integer">Length of Value part in octets</field>
+      <field field="Value" size="4" type="Integer">number of seconds for message to be retained by the receiving system.</field>
+   </tlvref>
+   <tlvref label="Table 5.3.2.10" name="payload_type">
+      <field field="Parameter Tag" size="2" type="Integer">payload_type</field>
+      <field field="Length" size="2" type="Integer">Length of Value part in octets</field>
+      <field field="Value" size="1" type="Integer">Default. In the case of a WAP application, the default higher layer message type is a WDP message. See [WDP] for details. WCMP message. Wireless Control Message Protocol formatted data. See [WCMP] for details. values 2 to 255 are reserved</field>
+   </tlvref>
+   <tlvref label="Table 5.3.2.11" name="additional_status_info_text">
+      <field field="Parameter Tag" size="2" type="Integer">additional_status_info_text</field>
+      <field field="Length" size="2" type="Integer">Length of Value part in octets</field>
+      <field field="Value" size="1 - 256" type="C Octet String">Free format text to allow implementations to supply the most useful information for problem diagnosis. Maximum length is 256 octets.</field>
+   </tlvref>
+   <tlvref label="Table 5.3.2.13" name="ms_msg_wait_facilities">
+      <field field="Parameter Tag" size="2" type="Integer">ms_msg_wait_facilities</field>
+      <field field="Length" size="2" type="Integer">Length of Value part in octets</field>
+      <field field="Value" size="1" type="Bit mask">Bits 7............0 I00000TT This parameter controls the indication and specifies the message type (of the message associated with the MWI) at the mobile station. The Indicator is encoded in bit 7 as follows: = Set Indication Inactive = Set Indication Active The Type of Message associ ated with the MWI is encoded in bits 0 and 1 as follows: = Voicemail Message Waiting = Fax Message Waiting = Electronic Mail Message Waiting = Other Message Waiting</field>
+   </tlvref>
+   <enum label="Table 5-8:" name="Privacy">
+      <desc>The privacy_indicator indicates the privacy level of the message. </desc>
+      <field name="Field" value="Size octets"/>
+      <field name="Parameter Tag" value="2"/>
+      <field name="Length" value="2"/>
+      <field name="Value" value="1"/>
+   </enum>
+   <tlvref label="Table 5.3.2.15" name="source_subaddress">
+      <field field="Parameter Tag" size="2" type="Integer"/>
+      <field field="Length" size="2" type="Integer">Length of Value part in octets</field>
+      <field field="Value" size="Var 2 - 23" type="Octet String">The first octet of the data field is a Type of Subaddress tag and indicates the type of subaddressing information included, and implies the type and length of subaddressing information which can accompany this tag value in the data field. Valid Tag values are: 00000001 - Reserved 00000010 - Reserved 10000000 - NSAP ( Even) [ITUT X.213] 10001000 - NSAP (Odd) [ITUT X.213] 10100000 - User Specified All other values Reserved The remaining octets contain the subaddress. A NSAP address shall be encoded using the preferred binary encoding specified in [ITUT X.213]. In this case the subaddress field contains the Authority and Format Identifier. A User Specified subaddress is encoded according to user specification, subject to a maximum of 22 octets.</field>
+   </tlvref>
+   <tlvref label="Table 5.3.2.18" name="response">
+      <field field="Parameter Tag" size="2" type="Integer">user_response_code</field>
+      <field field="Length" size="2" type="Integer">Length of value part in octets</field>
+      <field field="Value" size="1" type="Integer">0 to 255 (IS-95 CDMA) 0 to 15 (CMT-136 TDMA)</field>
+   </tlvref>
+   <tlvref label="Table 5.3.2.19" name="language_indicator">
+      <field field="Parameter Tag" size="2" type="Integer">language_indicator</field>
+      <field field="Length" size="2" type="Integer">Length of value part in octets</field>
+      <field field="Value" size="1" type="Integer">= unspecified (default) = english = french = spanish4 = german 5 = Portuguese refer to [CMT-136] for other values</field>
+   </tlvref>
+   <tlvref label="Table 5.3.2.20" name="source_port">
+      <field field="Parameter Tag" size="2" type="Integer">source_port</field>
+      <field field="Length" size="2" type="Integer">Length of value part in octets</field>
+      <field field="Value" size="2" type="Integer">All values allowed.</field>
+   </tlvref>
+   <tlvref label="Table 5.3.2.21" name="destination_port">
+      <field field="Parameter Tag" size="2" type="Integer">destination_port</field>
+      <field field="Length" size="2" type="Integer">Length of value part in octets</field>
+      <field field="Value" size="2" type="Integer">All values allowed.</field>
+   </tlvref>
+   <tlvref label="Table 5.3.2.22" name="sar_msg_ref_num">
+      <field field="Parameter Tag" size="2" type="Integer">sar_msg_ref_num</field>
+      <field field="Length" size="2" type="Integer">Length of value part in octets</field>
+      <field field="Value" size="2" type="Integer">This parameter shall contain a originator generated reference number so that a segmented short message may be reassembled into a single original message. This allows the parallel transmission of several segmented messages. This reference number shall remai n constant for every segment which makes up a particular concatenated short message. When present, the PDU must also contain the sar_total_segments and sar_segment_seqnum parameters. Otherwise this parameter shall be ignored.</field>
+   </tlvref>
+   <tlvref label="Table 5.3.2.23" name="sar_total_segments">
+      <field field="Parameter Tag" size="2" type="Integer">sar_total_segments</field>
+      <field field="Length" size="2" type="Integer">Length of value part in octets</field>
+      <field field="Value" size="1" type="Integer">This parameter shall contain a value in the range 1 to 255 indicating the total number of fragments within the concatenated short message. The value shall start at 1 and remain constant for every short messag e which makes up the concatenated short message. When present, the PDU must also contain the sar_msg_ref_num and sar_segment_seqnum parameters. Otherwise this parameter shall be ignored.</field>
+   </tlvref>
+   <tlvref label="Table 5.3.2.25" name="sc_interface_version">
+      <field field="Parameter Tag" size="2" type="Integer">sc_interface_version</field>
+      <field field="Length" size="2" type="Integer">Length of value part in octets</field>
+      <field field="Value" size="1" type="Integer">values as per 5.2.4. (interface_version)</field>
+   </tlvref>
+   <tlvref label="Table 5.3.2.26" name="display_time">
+      <field field="Parameter Tag" size="2" type="Integer">display_time</field>
+      <field field="Length" size="2" type="Integer">Length of value part in octets</field>
+      <field field="Value" size="1" type="Integer">= Temporary = Default (default) = Invoke values 3 to 255 are reserved</field>
+   </tlvref>
+   <tlvref label="Table 5.3.2.27" name="ms_validity">
+      <field field="Parameter Tag" size="2" type="Integer">ms_validity</field>
+      <field field="Length" size="2" type="Integer">Length of value part in octets</field>
+      <field field="Value" size="1" type="Integer">= Store Indefinitely (default) = Power Down = SID based registration area = Display Only values 4 to 255 are reserved</field>
+   </tlvref>
+   <tlvref label="Table 5.3.2.31" name="network_error_code">
+      <field field="Parameter Tag" size="2" type="Integer">network_error_code</field>
+      <field field="Length" size="2" type="Integer">Length of value part in octets</field>
+      <field field="Value" size="3" type="Octet String">Sub-field Size Type Network Type 1 Integer Error Code 2 Integer . The first octet indicates the network type. The following values are defined: = ANSI-136 = IS-95 = GSM = Reserved All other values reserved. The remaining two octets specify the actual network error code appropriate to the network type.</field>
+   </tlvref>
+   <tlvref label="Table 5.3.2.32" name="message_payload">
+      <field field="Parameter Tag" size="2" type="Integer">message_payload</field>
+      <field field="Length" size="2" type="Integer">Set to length of user data</field>
+      <field field="Value" size="Variable" type="Octet String">Short message user data. The maximum size is SMSC and network implementation specific.</field>
+   </tlvref>
+   <tlvref label="Table 5.3.2.34" name="">
+      <field field="Parameter Tag" size="2" type="Integer">more_messages_to_send</field>
+      <field field="Length" size="2" type="Integer">Length of value part in octets</field>
+      <field field="Value" size="1" type="">0 = No more messages to follow 1 = More messages to follow (default) values 2 to 255 are reserved</field>
+   </tlvref>
+   <tlvref label="Table 5.3.2.36" name="callback_num">
+      <field field="Parameter Tag" size="2" type="Integer"/>
+      <field field="Length" size="2" type="Integer">Length of Value part in octets</field>
+      <field field="Value" size="Var 4 - 19" type="Octet String">Bits 7.............0 0000000D (octet 1) 00000TTT (octet 2) 0000NNNN (octet 3) XXXXXXXX (octet 4) : : XXXXXXXX (octet N) The originating SME can set a Call Back Number for the receiving Mobile Station. The first octet contains the Digit Mode Indicator. Bit D=0 indicates that the Call Back Number is sent to the mobile as DTMF digits encoded in TBCD. Bit D=1 indicates that the Call Back Number is sent to the mobile encoded as ASCII digits. The 2nd octet contains the Type of Number (TON). Encoded as in section 5.2.5. The third octet contains the Numbering Plan Indicator (NPI). Encoded as specified in section 5.2.6 The remaining octets contain the Call Back Number digits encoded as ASCII characters</field>
+   </tlvref>
+   <tlvref label="Table 5.3.2.37" name="callback_num_pres_ind">
+      <field field="Parameter Tag" size="2" type="Integer">callback_num_pres_ind</field>
+      <field field="Length" size="2" type="Integer">Length of Value part in octets</field>
+      <field field="Value" size="1" type="Bit mask">Bits 7............0 0000ppss This parameter controls the presentation indication and screening of the CallBackNumber at the mobile station.If present, the callback_num parameter must also be present. The Presentation Indicator is encoded in bits 2 and 3 as follows: = Presentation All owed = Presentation Restricted = Number Not Available = Reserved The Screening Indicator is encoded in bits 0 and 1 as follows: = User provided, not screened = User provided, verified and passed10 = User provided, verified and failed 11 = Network Provided.</field>
+   </tlvref>
+   <tlvref label="Table 5.3.2.38" name="callback_num_atag">
+      <field field="Parameter Tag" size="2" type="Integer">callback_num_atag</field>
+      <field field="Length" size="2" type="Integer">Length of Value part in octets</field>
+      <field field="Value" size="Var max 65" type="Octet string">Alphanumeric display tag for call back number Bits 7...............0 EEEEEEEE (octet 1) XXXXXXXX (octet 2) : : XXXXXXXX (octet N) The first octet contains the encoding scheme of the Alpha Tag display characters. This field contains the same values as for Data Coding Scheme (see section 5.2.19). The following octets contain the display characters: There is one octet per display character for 7-bit and 8-bit encoding schemes. There are two octets per display character for 16-bit encoding schemes.</field>
+   </tlvref>
+   <tlvref label="Table 5.3.2.39" name="number_of_messages">
+      <field field="Parameter Tag" size="2" type="Integer">number_of_messages</field>
+      <field field="Length" size="2" type="Integer">Length of Value part in octets</field>
+      <field field="Value" size="1" type="Integer">0 to 99 = allowed values. values 100 to 255 are reserved</field>
+   </tlvref>
+   <tlvref label="Table 5.3.2.41" name="alert_on_message_delivery">
+      <field field="Parameter Tag" size="2" type="Integer">alert_on_message_delivery</field>
+      <field field="Length" size="2" type="Integer">Length of Value part in octets (= 0)</field>
+      <field field="Value" size="0" type="">There is no Value part associated with this parameter.</field>
+   </tlvref>
+   <tlvref label="Table 5.3.2.43" name="i">
+      <field field="Parameter Tag" size="2" type="Integer">its_session_info</field>
+      <field field="Length" size="2" type="Integer">Length of Value part in octets</field>
+      <field field="Value" size="2" type="Octet String">Bits 7...............0 SSSS SSSS (octet 1) NNNN NNNE (octet 2) Octet 1 contains the session number (0 255) encoded in binary. The session number remains constant for each session. The sequence number of the dialogue unit (as assigned by the ESME) within the session is encoded in bits 7..1 of octet 2. The End of Sessio n Indicator indicates the message is the end of the conversation session and is encoded in bit 0 of octet 2 as follows: = End of Session Indicator inactive. = End of Session Indicator active.</field>
+   </tlvref>
+   <format label="Table B-1:" name="Delivery">
+      <desc>The fields of the above delivery receipt example are explained in the following table: </desc>
+      <field name="Field">Size (octets)</field>
+      <field name="id">10</field>
+      <field name="sub">3</field>
+      <field name="dlvrd">3</field>
+      <field name="submit date">10</field>
+   </format>
+   <format label="Table B-1:" name="Delivery">
+      <desc>General DefinitionsAppendix B </desc>
+      <field name="Field">Size (octets)</field>
+      <field name="done date">10</field>
+      <field name="stat">7</field>
+      <field name="err">3</field>
+      <field name="text">20</field>
+   </format>
+   <format label="Table B-2:" name="Delivery">
+      <desc>Example Delivery Receipt message states: </desc>
+      <field name="Message State">Final Message States</field>
+      <field name="DELIVERED">DELIVRD</field>
+      <field name="EXPIRED">EXPIRED</field>
+      <field name="DELETED">DELETED</field>
+      <field name="UNDELIVERABLE">UNDELIV</field>
+      <field name="ACCEPTED">ACCEPTD</field>
+      <field name="UNKNOWN">UNKNOWN</field>
+      <field name="REJECTED">REJECTD</field>
+   </format>
+</smpp>
