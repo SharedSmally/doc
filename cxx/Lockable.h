@@ -2,14 +2,8 @@
 #define LOCKABLE_H
 
 #include <mutex>
-
-#ifdef CXX_17
-    #include  <shared_mutex>
-#else
-    #ifdef CXX_14
-        #include  <shared_mutex>
-    #endif
-#endif
+#include <shared_mutex>
+#include <condition_variable>
 
 /*
 mutex types: (C++11)
@@ -45,53 +39,10 @@ Conditional variables
 
 enum MutexType
 {
-    MUTEX,
-    MUTEXT0,
-    RECURSIVE_MUTEX,
-    RECURSIVE_MUTEXT0,
-    SHARED_MUTEX,
-    SHARED_MUTEXT0
+	NORMAL,
+	SHARED,
+	RECURSIVE
 };
-
-template < MutexType E >
-struct MutexTraits
-{
-    typedef std::mutex mutex_type;
-};
-
-template < >
-struct MutexTraits <MUTEXT0>
-{
-    typedef std::timed_mutex mutex_type;
-};
-
-template < >
-struct MutexTraits < RECURSIVE_MUTEX >
-{
-    typedef std::recursive_mutex mutex_type;
-};
-template < >
-struct MutexTraits < RECURSIVE_MUTEXT0 >
-{
-    typedef std::recursive_timed_mutex mutex_type;
-};
-
-#ifdef CXX_14
-template < >
-struct MutexTraits < SHARED_MUTEXT0 >
-{
-    typedef std::shared_timed_mutex mutex_type;
-};
-#endif
-
-#ifdef CXX_17
-template < >
-struct MutexTraits < SHARED_MUTEX >
-{
-    typedef std::shared_mutex mutex_type;
-};
-#endif
-
 enum LockingType
 {
     DEFER_LOCKING,
@@ -99,89 +50,176 @@ enum LockingType
     ADOPT_LOCKING
 };
 
+template <MutexType mt, bool t0>
+struct mutex_traits
+{
+	typedef std::mutex mutex_type;
+};
+template <bool any>
+struct cv_traits
+{
+	typedef std::condition_variable cv_type;
+};
 template < LockingType E >
-struct LockingTraits
+struct lock_traits
+{
+    typedef std::defer_lock_t locking_type;
+    static const locking_type & locking_;
+};
+
+template <MutexType mt, bool t0>
+class Lockable
+{
+public:
+	typedef typename mutex_traits<mt, t0>::mutex_type mutex_type;
+	typedef std::lock_guard<mutex_type> guard_type;
+	typedef std::unique_lock<mutex_type> unique_locker;
+	typedef std::shared_lock<mutex_type> shared_locker;
+#ifdef CXX_17
+	typedef std::scoped_lock<mutex_type> scoped_locker;
+#else
+    typedef std::unique_lock<mutex_type> scoped_locker;
+#endif
+	Lockable() : mutex_() {}
+
+protected:
+	//volatile mutex_type  mutex_;
+	mutable mutex_type  mutex_;
+};
+
+template <MutexType mt, bool t0, bool any>
+class Monitorable : public Lockable<mt, t0>
+{
+public:
+	typedef typename cv_traits<any>::cv_type cv_type;
+
+protected:
+	cv_type cv_;
+};
+
+template <typename T, MutexType mt, bool t0>
+class LockObject : public Lockable<mt, t0>
+{
+public:
+	typedef T type;
+
+protected:
+	T  value_;
+};
+
+template <typename T, MutexType mt, bool t0, bool any>
+class MonitorObject : public Monitorable<mt, t0, any>
+{
+public:
+	typedef T type;
+
+protected:
+	T  value_;
+};
+
+
+///////////////// specialized
+template < >
+struct mutex_traits <MutexType::NORMAL, false>
+{
+	typedef std::mutex mutex_type;
+};
+template < >
+struct mutex_traits <MutexType::NORMAL, true>
+{
+	typedef std::timed_mutex mutex_type;
+};
+
+template < >
+struct mutex_traits <MutexType::SHARED, false>
+{
+#ifdef CXX_17
+	typedef std::shared_mutex mutex_type;
+#else
+	typedef std::mutex mutex_type;
+#endif
+};
+template < >
+struct mutex_traits <MutexType::SHARED, true>
+{
+	typedef std::shared_timed_mutex mutex_type;
+};
+
+template < >
+struct mutex_traits <MutexType::RECURSIVE, false>
+{
+	typedef std::recursive_mutex mutex_type;
+};
+template < >
+struct mutex_traits <MutexType::RECURSIVE, true>
+{
+	typedef std::recursive_timed_mutex mutex_type;
+};
+
+template < >
+struct lock_traits<DEFER_LOCKING>
 {
     typedef std::defer_lock_t locking_type;
     static const locking_type & locking_;
 };
 template < >
-struct LockingTraits<DEFER_LOCKING>
-{
-    typedef std::defer_lock_t locking_type;
-    static const locking_type & locking_;
-};
-template < >
-struct LockingTraits<TRY_LOCKING>
+struct lock_traits<TRY_LOCKING>
 {
     typedef std::try_to_lock_t locking_type;
     static const locking_type & locking_;
 };
 template <  >
-struct LockingTraits<ADOPT_LOCKING>
+struct lock_traits<ADOPT_LOCKING>
 {
     typedef std::adopt_lock_t locking_type;
     static const locking_type & locking_;
 };
 
-
-template <MutexType E = MUTEX, LockingType L = DEFER_LOCKING >
-class Lockable
+template < >
+struct cv_traits <false>
 {
-public:
-    typedef typename MutexTraits<E>::mutex_type mutex_type;
-    typedef typename LockingTraits<L>::locking_type locking_type;
-
-    typedef std::lock_guard<mutex_type> locker_type;
-    typedef std::unique_lock<mutex_type> unique_locker;
-
-#ifdef CXX_17
-    typedef std::scoped_lock<mutex_type, locking_type> scoped_locker;
-#else
-    typedef std::unique_lock<mutex_type> scoped_locker;
-#endif
-
-#ifdef CXX_17
-    typedef std::shared_lock<mutex_type> shared_locker;
-#else
-    #ifdef CXX_14
-        typedef std::shared_lock<mutex_type> shared_locker;
-    #else
-        typedef std::unique_lock<mutex_type> shared_locker;
-    #endif
-#endif
-
-    Lockable()
-    {}
-    virtual ~Lockable()
-    {}
-
-    mutex_type & mutex() { return mutex_; }
-    const mutex_type & mutex() const { return mutex_; }
-
-protected:
-    mutable mutex_type mutex_;
+	typedef std::condition_variable cv_type;
 };
 
-template <typename T, MutexType E = MUTEX, LockingType L = DEFER_LOCKING >
-class LockableObject : public T, virtual public Lockable<E, L>
+template < >
+struct cv_traits <true>
 {
-public:
-	LockableObject(){}
-	virtual ~LockableObject(){};
+	typedef std::condition_variable_any cv_type;
 };
 
-///////////////////////////////////////////
-typedef Lockable<> DefaultLockable;
+// lockable
+typedef Lockable<MutexType::NORMAL, false>  Lock;
+typedef Lockable<MutexType::NORMAL, true> T0Lock;
 
-typedef Lockable<MUTEX>   MLockable;
-typedef Lockable<MUTEXT0> M0Lockable;
+typedef Lockable<MutexType::SHARED, false>  SLock;
+typedef Lockable<MutexType::SHARED, true> T0SLock;
 
-typedef Lockable<RECURSIVE_MUTEX>   RLockable;
-typedef Lockable<RECURSIVE_MUTEXT0> R0Lockable;
+typedef Lockable<MutexType::RECURSIVE, false>  RLock;
+typedef Lockable<MutexType::RECURSIVE, true> T0RLock;
 
-typedef Lockable<SHARED_MUTEX>   SLockable;
-typedef Lockable<SHARED_MUTEXT0> S0Lockable;
+
+// conditional_variable_any
+typedef Monitorable<MutexType::NORMAL, false, true>  MonitorAny;
+typedef Monitorable<MutexType::NORMAL, true, true> T0MonitorAny;
+
+typedef Monitorable<MutexType::SHARED, false, true>  SMonitorAny;
+typedef Monitorable<MutexType::SHARED, true, true> T0SMonitorAny;
+
+typedef Monitorable<MutexType::RECURSIVE, false, true>  RMonitorAny;
+typedef Monitorable<MutexType::RECURSIVE, true, true> T0RMonitorAny;
+
+// conditional_variable
+typedef Monitorable<MutexType::NORMAL, false, false>  Monitor;
+typedef Monitorable<MutexType::NORMAL, true, false> T0Monitor;
+
+typedef Monitorable<MutexType::SHARED, false, false>  SMonitor;
+typedef Monitorable<MutexType::SHARED, true, false> T0SMonitor;
+
+typedef Monitorable<MutexType::RECURSIVE, false, false>  RMonitor;
+typedef Monitorable<MutexType::RECURSIVE, true, false> T0RMonitor;
+
+
+/////////////////////////////////////////////////////////////////////
 
 
 #ifndef SLOCKER
@@ -191,6 +229,7 @@ typedef Lockable<SHARED_MUTEXT0> S0Lockable;
 #ifndef LOCKER
 #define LOCKER(T,obj)  T::locker_type locker((obj).mutex());
 #endif
+
 
 #endif
 
