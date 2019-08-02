@@ -5,6 +5,8 @@ cxx
  - Env setup:
 
 
+- Cxx libraries:
+- [facebook folly](https://github.com/facebook/folly)
 
  
  - CMake
