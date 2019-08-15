@@ -10,6 +10,13 @@ CXX ThirdPary Packages
    prefix="${HOME}/cdk/grpc" make install
 ```
 ## [etcd](https://github.com/etcd-io/etcd): https://github.com/etcd-io/etcd.git
+```
+   install go first (https://golang.org/doc/install)
+   cd etcd && make
+   prefix="${HOME}/cdk/etcd" make install
+   
+   See https://github.com/etcd-io/etcd/blob/master/Documentation/integrations.md for libraries for etcd client.
+```
 
 ## TEST
 ### [cppunit]()
