@@ -1,12 +1,44 @@
 CXX ThirdPary Packages
 
-
-
+## [protobuf](https://github.com/protocolbuffers/protobuf): https://github.com/protocolbuffers/protobuf.git
 ## [JSON](https://github.com/nlohmann/json): https://github.com/nlohmann/json.git
+
 ## [grpc](https://github.com/grpc/grpc):  https://github.com/grpc/grpc.git
 ```
    git submodule update --init
-   make
+   make prefix="${HOME}/cdk/grpc"
 ```
 ## [etcd](https://github.com/etcd-io/etcd): https://github.com/etcd-io/etcd.git
-## [protobuf](https://github.com/protocolbuffers/protobuf): https://github.com/protocolbuffers/protobuf.git
+
+## TEST
+### [cppunit]()
+### [googletest]()
+
+## Network
+### [curl]
+### [openldap]
+### [openssl]
+### [openssh2]
+
+## REGEX
+### PCRE
+### PCRE2
+
+##
+### event
+### libev
+### libuv
+
+## XML
+### expat
+### libxxml2
+### xalan
+### xerces
+
+## SQL Database
+### unixODBC
+### sqlite3
+
+## NoSQL database
+### [hiredis]
+### [librd kafka]()
