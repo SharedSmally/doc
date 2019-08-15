@@ -1,7 +1,12 @@
 CXX ThirdPary Packages
 
--
 
-- [JSON] (https://github.com/nlohmann/json): https://github.com/nlohmann/json.git
-- [grpc](https://github.com/grpc/grpc):  https://github.com/grpc/grpc.git
-- [etcd](https://github.com/etcd-io/etcd): https://github.com/etcd-io/etcd.git
+
+## [JSON](https://github.com/nlohmann/json): https://github.com/nlohmann/json.git
+## [grpc](https://github.com/grpc/grpc):  https://github.com/grpc/grpc.git
+```
+   git submodule update --init
+   make
+```
+## [etcd](https://github.com/etcd-io/etcd): https://github.com/etcd-io/etcd.git
+## [protobuf](https://github.com/protocolbuffers/protobuf): https://github.com/protocolbuffers/protobuf.git
