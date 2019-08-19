@@ -1,0 +1,34 @@
+
+<!-- can be obtained from man getsockopt -->
+<opts>
+   <sockopts>
+   </sockopts>
+
+   <ip4sockopts>
+   </ip4sockopts>
+
+   <ip6sockopts>
+   </ip6sockopts>
+
+   <tcp4sockopts>
+   </tcp4sockopts>
+
+   <tcp6sockopts>
+   </tcp6sockopts>
+
+   <udp4sockopts>
+   </udp4sockopts>
+
+   <udp6sockopts>
+   </udp6sockopts>
+
+   <mtp4sockopts>
+   </mtp4sockopts>
+
+   <sctp4sockopts>
+   </sctp4sockopts>
+
+   <sctp6sockopts>
+   </sctp6sockopts>
+
+</opts>
