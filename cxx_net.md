@@ -2,6 +2,8 @@
 ## Multicast
 [Multicast Tutorial](http://www.linuxfocus.org/English/January2001/article144.meta.shtml)
 
+ip4 address:   ipv4Address = 0x0a205625   (10.32.86.37)
+ip4 address:   ipv6Address = 0x0a205625000000000000000000000000  (10.32.86.37)
 
 ```
 struct ip_mreq {
