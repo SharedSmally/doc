@@ -1,5 +1,32 @@
 cxx
 ======
+## [C++ New features](https://github.com/AnthonyCalandra/modern-cpp-features)
+- [commonly used new features](https://cppdepend.com/blog/?p=319)
+- auto; nullptr; shared_ptr; noexcept; move; default/delete; 
+- Strongly-typed enums
+- static assert
+test assertions at compile-time using the new keyword static_assert, it is very useful to add conditions to the template parameters
+- Variadic template
+```
+template <typename U, typename... Args>
+void construct(U * p, Args&&... args)
+{
+   new (p) U(std::forward<Args>(args)...)
+}
+```
+- Range-based for loops
+- [lambda](https://en.cppreference.com/w/cpp/language/lambda)
+```
+[ captures ] ( params ) -> ret { body }	
+[ captures ] ( params ) { body }	
+[ captures ] { body }	
+
+auto glambda = [](auto a, auto&& b) { return a < b; };
+bool b = glambda(3, 3.14); /
+```
+- override identifier
+the compiler will check the base class(es) to see if there is a virtual function with this exact signature. And if there is not, the compiler will indicate an error.
+- Unordered containers: unordered_map; unordered_set; unordered_multimap; unordered_multiset
 
 ## Eclipse CXX (CDT)
  - Env setup:
