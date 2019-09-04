@@ -5,16 +5,16 @@
 - cpack: packing
 
 ## [CMake document](https://cmake.org/cmake/help/latest/)
-- [cmake] (https://cmake.org/cmake/help/latest/manual/cmake.1.html)
-- [ctest] (https://cmake.org/cmake/help/latest/manual/ctest.1.html)
-- [cpack] (https://cmake.org/cmake/help/latest/manual/cpack.1.html)
-- [build commands] (https://cmake.org/cmake/help/latest/manual/cmake-buildsystem.7.html)
+- [cmake](https://cmake.org/cmake/help/latest/manual/cmake.1.html)
+- [ctest](https://cmake.org/cmake/help/latest/manual/ctest.1.html)
+- [cpack](https://cmake.org/cmake/help/latest/manual/cpack.1.html)
+- [build commands](https://cmake.org/cmake/help/latest/manual/cmake-buildsystem.7.html)
     - add_executable / add_library / add_custom_target:  create a new target
     - target_link_libraries
     - set_target_properties/get_target_property
     - set_property/get_property
     - set_source_files_properties/get_source_fileproperty
-- [commands] (https://cmake.org/cmake/help/latest/manual/cmake-commands.7.html)
+- [commands](https://cmake.org/cmake/help/latest/manual/cmake-commands.7.html)
 
 ### steps
 - Read CMakeCache.txt
