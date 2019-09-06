@@ -13,6 +13,12 @@ git clone https://github.com/coreos/coreos-vagrant.git
 ```
 - Download config transpiler from https://github.com/coreos/container-linux-config-transpiler/releases
 
+## [Distribute Application using rkt](https://coreos.com/rkt/docs/latest/getting-started-guide.html)
+- Create applicatoin 
+- Build rkt image using [acbuild](https://github.com/containers/build/releases)
+- Launch Application using rkt
+- Test the application
+
 ## coreos vagrant
 k8s-coreos cluster: build with Vagrant at https://github.com/pires/kubernetes-vagrant-coreos-cluster
 - Run in Linux; Need to install nfs server and client packages:
