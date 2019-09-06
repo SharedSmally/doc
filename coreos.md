@@ -5,6 +5,14 @@
 - master: apiserver; controller-manager; scheduler; proxy (hyperkube)
 - nodes: kubelet; proxy
 
+## Build coreos cluster on Vagrant
+- See http://www.adaltas.com/en/2018/06/20/coreos-dev-cluster-virtualbox/ for steps
+- Clone Vagrant file from 
+```
+git clone https://github.com/coreos/coreos-vagrant.git
+```
+- Download config transpiler from https://github.com/coreos/container-linux-config-transpiler/releases
+
 ## coreos vagrant
 k8s-coreos cluster: build with Vagrant at https://github.com/pires/kubernetes-vagrant-coreos-cluster
 - Run in Linux; Need to install nfs server and client packages:
