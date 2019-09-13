@@ -161,3 +161,17 @@ openssl pkcs12 \
 ### TrustStore
 - Import Signed Certificates
 
+## Generating a Certificate Authority (CA) Certificate for Self-Signing
+### Create the root CA certificate:
+```
+openssl genrsa -des3 -out CA-key.pem 2048  # Generate a CA private key: CA-key.pem
+openssl req -new -key CA-key.pem -x509 -days 1000 -out CA-cert.pem   #Generate the root CA certificate: CA-cert.pem
+```
+### Create a Signing Certificate using root key and certificate
+```
+openssl genrsa -des3 -out server-key.pem 2048  #Generate a new key
+copy the openssl.cnf and modify some of the configuration settings
+openssl req –new –config openssl.cnf –key server-key.pem –out signingReq.csr #Generate a certificate signing request
+openssl x509 -req -days 365 -in signingReq.csr -CA CA-cert.pem -CAkey CA-key.pem -CAcreateserial -out server-cert.pem  #Self-sign the certificate using CA-cert.pem certificate and CA-key.pem private key
+```
+
