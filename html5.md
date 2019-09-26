@@ -1,3 +1,26 @@
+# HTML
+## [html tutorial](https://www.tutorialrepublic.com/html-tutorial/)
+
+### [Html5 canvas](https://www.tutorialrepublic.com/html-tutorial/html5-canvas.php)
+```
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Drawing on Canvas</title>
+<script>
+    window.onload = function() {
+        var canvas = document.getElementById("myCanvas");
+        var context = canvas.getContext("2d");
+        // draw stuff here
+    };
+</script>
+</head>
+<body>
+    <canvas id="myCanvas" width="300" height="200"></canvas>
+</body>
+</html>
+```
 
 ## [Form](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form)
 ```
