@@ -28,6 +28,11 @@ bool b = glambda(3, 3.14); /
 the compiler will check the base class(es) to see if there is a virtual function with this exact signature. And if there is not, the compiler will indicate an error.
 - Unordered containers: unordered_map; unordered_set; unordered_multimap; unordered_multiset
 
+## mutable vs volatile 
+- mutable interacts with const. If you have a const pointer, you normally could not change members. Mutable provides an exception to that rule. The compiler knows when a mutable object changes.
+
+- volatile, on the other hand, is totally unrelated to changes made by the program. It means that the memory could change for reasons beyond the control of the compiler, therefore the compiler has to read or write the memory address every time and can't cache the content in a register. The compiler cannot know when a volatile object changes.
+
 ## Eclipse CXX (CDT)
  - Env setup:
 
