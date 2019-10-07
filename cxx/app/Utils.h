@@ -81,6 +81,43 @@ inline std::string & group_name(std::string & str) // [ group_name ]
 	return trim(str);
 }
 
+template <class T, class ITER>
+std::string join(const ITER & begin, const ITER & end, const T &sep)
+{
+    ITER iter(begin);
+    std::ostringstream result;
+
+    if(iter!=end) { result << *iter++; }
+
+    while(iter!=end) {
+        result << sep << *iter++;
+    }
+
+    return result.str();
+}
+template <class T, class T1>
+std::string join(const T & v0, const T1 &sep)
+{
+	return join(v0.begin(), v0.end(),sep);
+}
+
+template <class T>
+void split(T & container, const std::string & s, const std::string & delimiter)
+{
+    size_t pos_start = 0, pos_end, delim_len = delimiter.length();
+    std::string token;
+
+    while ((pos_end = s.find (delimiter, pos_start)) != std::string::npos) {
+        token = s.substr (pos_start, pos_end - pos_start);
+        pos_start = pos_end + delim_len;
+        if (!token.empty())
+           container.push_back (token);
+    }
+    token = s.substr(pos_start);
+    if (!token.empty())
+        container.push_back (token);
+}
+/*
 inline void split(const std::string & str)
 {
 	std::string token, mystring("scott>=tiger");
@@ -90,5 +127,5 @@ inline void split(const std::string & str)
 		printf("%s ",token.c_str());
 	}
 }
-
+*/
 #endif
