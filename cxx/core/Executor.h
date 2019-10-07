@@ -8,8 +8,18 @@ public:
      virtual bool execute(RunnablePtr & task) = 0;
 };
 
-
 /////////////////////////////  impl
+class SyncExecutor
+{
+public:
+     virtual ~SyncExecutor(){}
+     virtual bool execute(RunnablePtr & task)
+     {
+         task->run();
+         return true;
+     }
+};
+
 class ProxyExecutor : public Executor
 {
 public:
@@ -55,6 +65,5 @@ protected:
     std::condition_variable cv_;
     std::deque<RunnablePtr> tasks_;
 };
-
 
 #endif
