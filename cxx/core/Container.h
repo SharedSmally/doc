@@ -31,12 +31,12 @@ public:
 		return put(name, std::static_pointer_cast<T>(ptr));
 	}
 	template <typename... Args>
-	bool putT(const std::string & name, Args... args)
+	bool put(const std::string & name, Args... args)
 	{
 		return put(name, std::make_shared<T>(args...));
 	}
 	template <typename T0, typename... Args>
-	bool putT0(const std::string & name, Args... args)
+	bool putT(const std::string & name, Args... args)
 	{
 		return put(name,std::make_shared<T0>(args...));
 	}
@@ -121,12 +121,12 @@ public:
 		return put(name, std::static_pointer_cast<T>(ptr));
 	}
 	template <typename... Args>
-	bool putT(const std::string & name, Args... args)
+	bool put(const std::string & name, Args... args)
 	{
 		return put(name, std::make_shared<T>(args...));
 	}
 	template <typename T0, typename... Args>
-	bool putT0(const std::string & name, Args... args)
+	bool putT(const std::string & name, Args... args)
 	{
 		return put(name,std::make_shared<T0>(args...));
 	}
@@ -181,3 +181,5 @@ public:
 protected:
 	container_type container_;
 };
+
+#endif
