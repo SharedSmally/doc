@@ -41,11 +41,13 @@ class CSocket : public Socket {
 	const static int BAD_FD;
 public:
 	CSocket(int fd) : Socket(fd) { } ;
+	CSocket(const Address & addr, bool bind, bool sctp=false);
 	CSocket(int domain, bool sctp);
 	virtual ~CSocket(){};
 
 	ssize_t send(const Buffer & buffer, int flags=0);
 	ssize_t recv(Buffer & buffer, int flags=0);
+
 };
 
 /*
@@ -66,6 +68,7 @@ public:
 class DSocket : public Socket {
 public:
 	DSocket(int fd ) : Socket(fd) { } ;
+	DSocket(const Address & addr, bool bind, bool sctp=false);
 	DSocket(int domain, bool sctp);
 	virtual ~DSocket(){};
 
