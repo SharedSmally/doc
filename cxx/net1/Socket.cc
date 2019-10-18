@@ -6,6 +6,7 @@
 #include <sys/socket.h>
 
 const int Socket::BAD_FD(-1);
+const int Socket::DEFAULT_BACKLOG(10);
 
 Socket::Socket(int domain, int type, int protocol)
 {
@@ -18,22 +19,36 @@ Socket::~Socket()
 		::close(fd_);
 }
 
+int Socket::_bind(const Address & addr)
+{
+	int ret = ::bind(fd_, addr.addr(), addr.length());
+	return ret;
+}
+int Socket::_connect(const Address & addr)
+{
+	int ret = ::connect(fd_, addr.addr(), addr.length());
+	return ret;
+}
+
+int Socket::_listen(int backlog)
+{
+	int ret = ::listen(fd_, backlog);
+	return ret;
+}
+
+int Socket::_accept(Address & addr)
+{
+	socklen_t len = addr.maxLength();
+	int ret = ::accept(fd_, addr.addr(), &len);
+	return ret;
+}
+
 CSocket::CSocket(int domain, bool sctp)
 : Socket(domain,sctp ? SOCK_STREAM : SOCK_STREAM,
 		sctp ? IPPROTO_SCTP : 0)
 {
 }
 
-CSocket::CSocket(const Address & addr, bool bind, bool sctp)
-: Socket(addr.domain(),sctp ? SOCK_STREAM : SOCK_STREAM,
-		sctp ? IPPROTO_SCTP : 0)
-{
-	if (bind)
-	{
-		int ret = ::bind(fd_, addr.addr(), addr.length());
-	}
-
-}
 //ssize_t send(int socket, const void *buffer, size_t length, int flags); flags: MSG_EOR, MSG_OOB
 //ssize_t recv(int socket, void *buffer, size_t length, int flags); flags: MSG_PEEK, MSG_OOB, MSG_WAITALL
 ssize_t CSocket::send(const Buffer & buffer, int flags)
@@ -103,16 +118,6 @@ DSocket::DSocket(int domain, bool sctp)
 {
 }
 
-DSocket::DSocket(const Address & addr, bool bind, bool sctp)
-: Socket(addr.domain(), sctp ? SOCK_SEQPACKET : SOCK_DGRAM,
-		sctp ? IPPROTO_SCTP : 0)
-{
-	if (bind)
-	{
-		int ret = ::bind(fd_, addr.addr(), addr.length());
-	}
-}
-
 //ssize_t sendto(int socket, const void *message, size_t length, int flags, const struct sockaddr *dest_addr, socklen_t dest_len);
 //ssize_t recvfrom(int socket, void *restrict buffer, size_t length, int flags, struct sockaddr * address, socklen_t * address_len);
 
@@ -160,3 +165,4 @@ ssize_t RSocket::recv(struct msghdr &msg, int flags)
 {
 	return ::recvmsg(fd_, &msg, flags);
 }
+
