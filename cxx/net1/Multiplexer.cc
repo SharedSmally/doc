@@ -60,6 +60,8 @@ void Multiplexer::stop()
 
 	running_ = false;
 	notify();
+
+	ioThread_->join();
 }
 
 bool Multiplexer::manage(ChannelPtr & channel)
