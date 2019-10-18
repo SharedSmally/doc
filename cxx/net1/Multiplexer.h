@@ -40,6 +40,19 @@ public:
 	void stop();
 	bool isRunning() const { return running_; }
 
+	template <typename T >
+	bool manage(std::shared_ptr<T> & channel)
+	{
+		ChannelPtr ptr = std::static_pointer_cast<Channel>(channel);
+		return manage(ptr);
+	}
+	template <typename T >
+	bool unmanage(std::shared_ptr<T> & channel)
+	{
+		ChannelPtr ptr = std::static_pointer_cast<Channel>(channel);
+		return unmanage(ptr);
+	}
+
 	virtual bool manage(ChannelPtr & channel) ;
 	virtual bool unmanage(ChannelPtr & channel) ;
 	//ChannelListener & getListener() = 0;
