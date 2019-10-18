@@ -10,10 +10,13 @@ class Address {
 public:
 	virtual ~Address() {}
 	virtual int domain() const = 0;
+	
 	virtual struct sockaddr * addr() = 0;
 	virtual const struct sockaddr * addr() const = 0;
+	
 	virtual socklen_t length() const = 0;
-	virtual socklen_t maxLength() const = 0;
+	virtual socklen_t size() const { return length(); }
+	virtual socklen_t maxLength() const  { return length(); }
 };
 
 /*
