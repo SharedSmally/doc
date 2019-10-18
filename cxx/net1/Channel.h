@@ -67,6 +67,7 @@ public:
 	{}
 
 	virtual int fd() { return sock_.fd(); }
+	SOCK & sock() { return sock_; }
 
 protected:
 	SOCK sock_;
