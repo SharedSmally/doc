@@ -20,12 +20,9 @@ template <typename ADDR>
 class Connection : public CSocket {
 public:
     Connection(const ADDR & localAddr, const ADDR & remoteAddr, int fd)
-    : localAddr_(localAddr), remoteAddr_(remoteAddr), Socket(fd)
+    : localAddr_(localAddr), remoteAddr_(remoteAddr), CSocket(fd)
     { };
     virtual ~Connection(){};
-
-    ssize_t send(const Buffer & buffer, int flags=0);
-    ssize_t recv(Buffer & buffer, int flags=0);
 
     const ADDR & remoteAddr() const { return remoteAddr_;}
     const ADDR & localAddr() const  { return localAddr_; }
@@ -98,7 +95,7 @@ public:
         int ret = _bind(localAddr_);
         if (sctp)
         {
-            ret = _listen();
+            ret = _listen(DEFAULT_BACKLOG);
         }
     }
     virtual ~DServerSocket(){};
@@ -111,3 +108,4 @@ protected:
 };
 
 #endif
+
