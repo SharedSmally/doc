@@ -7,15 +7,28 @@
 
 const int EpollMux::MAX_EVENTS(10);
 
+/*
+typedef union epoll_data {
+    void        *ptr;
+    int          fd;
+    uint32_t     u32;
+    uint64_t     u64;
+} epoll_data_t;
+
+struct epoll_event {
+    uint32_t     events;      // Epoll events
+    epoll_data_t data;        // User data variable
+};
+*/
+
 EpollMux::EpollMux(ChannelListener & listener, uint32_t initSize)
   : Multiplexer(listener, initSize)
 {
     epollfd_ = epoll_create1(0);
 
     struct epoll_event ev;
-    ev.events = EPOLLIN | EPOLLET;
-    ev.data.fd = efd_;
-    ev.data.u64 = 0;
+    ev.events = EPOLLIN | EPOLLET; //no shapshoot
+    ev.data.u64 = efd_;
 
     INFO("EpollMux::_join: efd=" << efd_);
     if (epoll_ctl(epollfd_, EPOLL_CTL_ADD, efd_, &ev) == -1) {
@@ -31,7 +44,7 @@ EpollMux::~EpollMux()
 
     struct epoll_event ev;
     ev.events = 0;
-    ev.data.fd = efd_;
+    ev.data.u64 = efd_;
 
     if (epoll_ctl(epollfd_, EPOLL_CTL_DEL, efd_, &ev) == -1) {
         //error
@@ -44,8 +57,7 @@ bool EpollMux::_join(ChannelPtr & channel, bool modify)
     INFO("EpollMux::_join: fd=" << channel->fd() <<";id=" << channel->id() << "; modify=" << modify);
     struct epoll_event ev;
     ev.events = getEpollEvents(channel);
-    ev.data.fd = channel->fd();
-    ev.data.u64 = channel->id();
+    ev.data.u64 = toEpollU64(channel->id(), channel->fd());
     int op = modify ? EPOLL_CTL_MOD : EPOLL_CTL_ADD;
     return epoll_ctl(epollfd_, op, channel->fd(), &ev) != -1;
 }
@@ -56,8 +68,7 @@ bool EpollMux::_leave(ChannelPtr & channel)
 
     struct epoll_event ev;
     ev.events = 0;
-    ev.data.fd = channel->fd();
-    ev.data.u64 = channel->id();
+    ev.data.u64 = toEpollU64(channel->id(), channel->fd());
 
     return (epoll_ctl(epollfd_, EPOLL_CTL_DEL, channel->fd(), &ev) != -1);
 }
@@ -65,6 +76,8 @@ bool EpollMux::_leave(ChannelPtr & channel)
 uint32_t EpollMux::getEpollEvents(ChannelPtr & channel)
 {
     if (!channel) return 0;
+    if (channel->server()) return EPOLLIN | EPOLLET;
+
     uint32_t events(0);
 
     if (Channel::isReadable(channel->events()))
@@ -100,33 +113,52 @@ uint32_t EpollMux::getChannelEvents(uint32_t events)
 	return evts;
 }
 
+//first 32bits for id; and last 32bits for fd
+uint64_t EpollMux::toEpollU64(Channel::id_type id, uint32_t fd)
+{
+	uint64_t u64(id);
+	u64 <<= 32;
+	u64 |= fd;
+	return u64;
+}
+void EpollMux::fromEpollU64(Channel::id_type & id, uint32_t & fd, uint64_t u64)
+{
+	fd = u64 & 0xFFFFFFFF;
+	u64 >>= 32;
+	id = u64 & 0xFFFFFFFF;
+}
+
 void EpollMux::_run()
 {
     struct epoll_event events[MAX_EVENTS];
-    int nfds(0), n, fd, evts;
-    uint64_t value(0), id(0);
+    int nfds(0), n, evts;
+    uint64_t value(0);
+    Channel::id_type id(0);
+    uint32_t fd;
 
     while (running_) {
         nfds = epoll_wait(epollfd_, events, MAX_EVENTS, -1);
         if (nfds == -1) {
             // error
+            ERROR("epoll_wait");
         }
 
         INFO("return from epoll_wait: nfds=" << nfds << "; channel.size=" << channels_.size());
         for (n = 0; n < nfds; ++n) {
-            fd = events[n].data.fd;
-            id = events[n].data.u64;
+            fromEpollU64(id, fd, events[n].data.u64);
             if (events[n].data.fd == efd_) {
                  INFO("eventfd: fd=" << fd << "; events=" << events[n].events << "; id="<< id);
                  bool ret = onNotified(value);
                  INFO("read eventfd: ret=" << ret << "; value=" << value);
             } else {
                  evts = getChannelEvents(events[n].events);
-                 INFO("epoll fd=" << fd << "; events=" << events[n].events << "; id="<< id << "; sock_events=" << evts);
                  if (fd < channels_.size()) {
+                     INFO("epoll fd=" << fd << "; events=" << events[n].events << "; id="<< id << "; sock_events=" << evts);
                      getListener().onEvents(channels_[fd], evts);
+                 } else {
+                     INFO("epoll nullptr channel: fd=" << fd << "; channels.size=" << channels_.size());
                  }
-                 //do_use_fd(events[n].data.fd);
+
             }
         }
     }
