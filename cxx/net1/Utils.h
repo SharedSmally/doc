@@ -1,10 +1,16 @@
+/*
+ * Utils.h
+ *
+ *  Created on: Oct 17, 2019
+ *      Author: wchen
+ */
 #ifndef CPW_NET1_UTILS_H_
 #define CPW_NET1_UTILS_H_
 
 #include <Address.h>
 #include <Channel.h>
-#include <Socket.h>
-
+#include <Client.h>
+#include <Server.h>
 
 template <typename ADDR>
 std::shared_ptr<ChannelObj<ServerSocket<ADDR> > > serverChannel(const ADDR & addr,
@@ -12,7 +18,7 @@ std::shared_ptr<ChannelObj<ServerSocket<ADDR> > > serverChannel(const ADDR & add
 {
 	std::shared_ptr<ChannelObj<ServerSocket<ADDR> > > channel
 	   = std::make_shared<ChannelObj<ServerSocket<ADDR> > >(addr, sctp);
-	channel->events(Channel::IN_EVENT);
+	channel->server(true); //events(Channel::IN_EVENT);
 	channel->sock().listen(backlog);
 	return channel;
 }
@@ -30,11 +36,11 @@ std::shared_ptr<ChannelObj<ClientSocket<ADDR> > > clientChannel(const ADDR & add
 }
 
 template <typename ADDR>
-std::shared_ptr<ChannelObj<Connection<ADDR> > > accept( std::shared_ptr<ChannelObj<ServerSocket<ADDR> > >  & svc )
+std::shared_ptr<ChannelObj<Connection<ADDR> > > connectChannel( std::shared_ptr<ChannelObj<ServerSocket<ADDR> > >  & svc )
 {
 	ADDR addr;
-	int fd = svc.accept(addr);
-	return std::make_shared<ChannelObj<Connection<ADDR> > >(svc->serverAddr(), addr, fd);
+	int fd = svc->sock().accept(addr);
+	return std::make_shared<ChannelObj<Connection<ADDR> > >(svc->sock().serverAddr(), addr, fd);
 }
 
 typedef std::shared_ptr<ChannelObj<Connection<IPv4Address> > > Connection4Ptr;
