@@ -17,7 +17,7 @@ class ClientSocket : public CSocket {
 public:
     ClientSocket(const ADDR & addr, const ADDR & svrAddr, bool sctp=false)
         : remoteAddr_(svrAddr), localAddr_(addr),
-          CSocket(addr.domain(), sctp)
+          CSocket(addr.domain(), sctp), connected_(false)
     {
     }
     virtual ~ClientSocket() { };
@@ -39,12 +39,14 @@ public:
         return ret;
     }
 
+    bool isConnected() const { return connected_; }
+    void setConnected(bool v){ connected_=v; }
+
 protected:
+    bool connected_;
     ADDR remoteAddr_;// remote server address
     ADDR localAddr_; // local address
 };
-
-
 
 // connectionless-based client:
 /*
@@ -71,3 +73,4 @@ protected:
 };
 
 #endif
+
