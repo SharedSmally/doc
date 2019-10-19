@@ -25,7 +25,8 @@ public:
     typedef uint32_t id_type;
 
     Channel()
-     : id_(++idCnt_)
+     : id_(++idCnt_), events_(ALL_EVENTS),
+       server_(false)
     {}
     virtual ~Channel() {}
     virtual int fd() = 0;
@@ -36,8 +37,12 @@ public:
     void events(uint32_t e) { events_=e; }
     uint32_t events() const { return events_; }
 
+    void server(bool v) { server_=v;}
+    bool server() const { return server_;}
+
 protected:
     id_type id_;
+    bool server_;
     uint32_t events_; // events to be monitored
 
     static std::atomic<id_type> idCnt_;
