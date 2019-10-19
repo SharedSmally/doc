@@ -87,8 +87,8 @@ bool Multiplexer::manage(ChannelPtr & channel)
     if (modify && channels_[fd]->id() != channel->id())
     {
         INFO("Multiplexer::update channel: channels[fd].id=" << channels_[fd]->id() << "; channel.id="<<channel->id());
-        channels_[fd] = channel;
     }
+    channels_[fd] = channel;
 
     INFO("Multiplexer::join channel: modify=" << modify);
     if (!_join(channel, modify) ) {
@@ -128,4 +128,3 @@ bool Multiplexer::unmanage(ChannelPtr & channel)
 
     return true;
 }
-
