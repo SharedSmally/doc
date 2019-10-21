@@ -11,10 +11,53 @@
   void doSomething(Args && ... args);  -> doSomething(int&&, double&&) [doSomething(10,20.0)]
 
 ```
-
+## [C++ reference 4-value: &&](https://stackoverflow.com/questions/5481539/what-does-t-double-ampersand-mean-in-c11)
+- Move semantics.
+```
+foo(foo const& other)
+{
+    this->length = other.length;
+    this->ptr = new int[other.length];
+    copy(other.ptr, other.ptr + other.length, this->ptr);
+}
+```
+can be optimized as for temporary object:
+```
+foo(foo&& other)
+{
+   this->length = other.length;
+   this->ptr = other.ptr;
+   other.length = 0;
+   other.ptr = nullptr;
+}
+```
+- Perfect forwarding
+```
+template <typename T, typename A1>
+std::unique_ptr<T> factory(A1& a1)
+{
+    return std::unique_ptr<T>(new T(a1));
+}
+```
+not work for factory<foo>(5).
+```
+template <typename T, typename A1>
+std::unique_ptr<T> factory(A1&& a1)
+{
+    return std::unique_ptr<T>(new T(std::forward<A1>(a1)));
+}
+  
+auto p1 = factory<foo>(foo()); // calls foo(foo&&)
+auto p2 = factory<foo>(*p1);   // calls foo(foo const&)
+```
+  When the function parameter type is of the form T&& where T is a template parameter, and the function argument is an lvalue of type A, the type A& is used for template argument deduction.
+```
+foo f1((foo())); // Move a temporary into f1; temporary becomes "empty"
+foo f2 = std::move(f1); // Move f1 into f2; f1 is now "empty"
+```
+  
 ## C++ template
-- virtual method cannot be a template. 
-
+- virtual method cannot be a template. If the generic form is not implemented, the individual one will be found and used. and will cause compile error if it is not implemented. The inherited virtual is still virtual.
 – To call a base template class function , need to use this:
 ```
 this->f();
