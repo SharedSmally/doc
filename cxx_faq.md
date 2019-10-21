@@ -11,7 +11,7 @@
   void doSomething(Args && ... args);  -> doSomething(int&&, double&&) [doSomething(10,20.0)]
 
 ```
-## [C++ reference 4-value: &&](https://stackoverflow.com/questions/5481539/what-does-t-double-ampersand-mean-in-c11)
+## [C++ reference r-value: &&](https://stackoverflow.com/questions/5481539/what-does-t-double-ampersand-mean-in-c11)
 - Move semantics.
 ```
 foo(foo const& other)
@@ -55,7 +55,28 @@ auto p2 = factory<foo>(*p1);   // calls foo(foo const&)
 foo f1((foo())); // Move a temporary into f1; temporary becomes "empty"
 foo f2 = std::move(f1); // Move f1 into f2; f1 is now "empty"
 ```
-  
+  Generically examples:
+  ```
+  // template
+template<class T> foo(T&& t) { ... }
+
+// auto
+auto&& t = ...;
+
+// typedef
+typedef ... T;
+T&& t = ...;
+
+// decltype
+decltype(...)&& t = ...;
+
+// template function
+template<typenname T, typename ... ARGS>
+std::shared_ptr<T> create(ARGS&& ... args) 
+{
+    return std::shared_ptr<T>(new T(std::forward<ARGS>(args)...));
+}
+  ```
 ## C++ template
 - virtual method cannot be a template. If the generic form is not implemented, the individual one will be found and used. and will cause compile error if it is not implemented. The inherited virtual is still virtual.
 – To call a base template class function , need to use this:
