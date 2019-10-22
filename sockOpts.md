@@ -1,4 +1,6 @@
-# SOCK Opts: use epoll/poll/select to detect socket inactivity (in ms).
+# SOCK Opts:
+##  use epoll/poll/select to detect socket inactivity (in ms).
+
 ## [Socket manual](http://man7.org/linux/man-pages/man7/socket.7.html)
 
 ## [tcp keep alive](https://stackoverflow.com/questions/1480236/does-a-tcp-socket-connection-have-a-keep-alive)
