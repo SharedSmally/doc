@@ -22,6 +22,11 @@ openssl verify -CAfile RootCert.pem -untrusted Intermediate.pem UserCert.pem
 ```
 
 ## Create a certificate:
+- List content of a certificate
+```
+$ openssl x509 -in acs.qacafe.com.pem -text
+$ openssl x509 -in MYCERT.der -inform der -text  # for DER
+```
 - Generate a new private key and Certificate Signing Request
 ```
 openssl req -out CSR.csr -new -newkey rsa:2048 -nodes -keyout privateKey.key
