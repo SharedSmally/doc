@@ -34,6 +34,10 @@ openssl req -out CSR.csr -new -newkey rsa:2048 -nodes -keyout privateKey.key
 - Generate a self-signed certificate
 ```
 openssl req -x509 -sha256 -nodes -days 365 -newkey rsa:2048 -keyout privateKey.key -out certificate.crt
+
+openssl req -x509 -nodes -days 3650 -subj "/C=US/ST=MD/L=Annapolis/O=XXX, Inc./OU=Dept Software/CN=10.12.67/32" -newkey rsa:1024 -keyout mykey.pem -out mycert.pem
+openssl x509 -in mycert.pem -text > cert.pem
+cat mykey.pem >> cert.pem
 ```
 - Generate a certificate signing request (CSR) for an existing private key
 ```
