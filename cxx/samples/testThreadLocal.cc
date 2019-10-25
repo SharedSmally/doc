@@ -40,3 +40,36 @@ int main() {
     t1.join();
     t2.join();
 }
+
+If you're using Pthreads you can do the following:
+
+//declare static data members
+pthread_key_t AnotherClass::key_value;
+pthread_once_t AnotherClass::key_init_once = PTHREAD_ONCE_INIT;
+
+//declare static function
+void AnotherClass::init_key()
+{
+    //while you can pass a NULL as the second argument, you 
+    //should pass some valid destrutor function that can properly
+    //delete a pointer for your MyClass
+    pthread_key_create(&key_value, NULL);
+}
+
+void AnotherClass::threadSpecificAction()
+{
+  //Initialize the key value
+  pthread_once(&key_init_once, init_key);
+
+  //this is where the thread-specific pointer is obtained
+  //if storage has already been allocated, it won't return NULL
+
+  MyClass *instance = NULL;
+  if ((instance = (MyClass*)pthread_getspecific(key_value)) == NULL)
+  {
+    instance = new MyClass;
+    pthread_setspecific(key_value, (void*)instance);
+  }
+
+  instance->doSomething();
+}
