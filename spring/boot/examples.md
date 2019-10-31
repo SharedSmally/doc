@@ -105,7 +105,7 @@
 ## Tools
 - [postman](https://www.getpostman.com/):  
 
-## [Create website to access H2 database] (https://stackabuse.com/integrating-h2-database-with-spring-boot/)
+## [Create website to access H2 database](https://stackabuse.com/integrating-h2-database-with-spring-boot/)
 - Boot starters: JPA, H2 and Web
 - Entity class and Repository interface for database table
 - Service that uses Repository interface to access the table
