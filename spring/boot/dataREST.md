@@ -1,0 +1,12 @@
+#[Spring Data REST](https://spring.io/projects/spring-data-rest)
+- Initializers: 
+    - SQL/Data JPA: spring-boot-starter-data-jpa
+    - SQL/H2 Database: h2database runtime
+    - Spring Web*: spring-boot-starter-web
+    - Web/Rest Repositories: spring-boot-starter-data-rest
+    - Web/Rest Repositories HAL Browser: spring-data-rest-hal-browser
+    - Web HATEOAS:
+    - Security/Spring Security:
+- [Document](https://docs.spring.io/spring-data/rest/docs/3.2.0.RELEASE/reference/html)
+- [API](https://docs.spring.io/spring-data/rest/docs/3.2.0.RELEASE/api/)
+- Resource: exported via @[RepositoryRestResource](https://docs.spring.io/spring-data/rest/docs/current/api/org/springframework/data/rest/core/annotation/RepositoryRestResource.html)
