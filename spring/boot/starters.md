@@ -1,5 +1,5 @@
 # [Spring Starters](https://start.spring.io/)
-[github](https://github.com/spring-projects/spring-boot/blob/master/spring-boot-project/spring-boot-starters)
+[Spring Boot Starters](https://github.com/spring-projects/spring-boot/tree/master/spring-boot-project/spring-boot-starters) are a set of convenient dependency descriptors that you can include in your application
 - SQL
    - JDBC 
    - Data JDBC
