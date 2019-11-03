@@ -43,6 +43,13 @@
 - Web
     - Web/Reactive Web
     - Repositories/Repositories HAL Browser
+- Web Servers
+    - Jetty
+    - Tomcat
+    - Undertow
+    - netty / reactor-netty
+    - Logging
+    - Log4j2
 - Template Engines
     - Thymelead
     - Apache Freemaker
