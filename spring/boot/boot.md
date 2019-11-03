@@ -1,4 +1,4 @@
-#[Spring Boot](https://spring.io/projects/spring-boot)
+# [Spring Boot](https://spring.io/projects/spring-boot)
 Auto Config for the basic services
 
 ## Spring Boot CLI
@@ -18,6 +18,7 @@ $ sdk ls springboot
 $ spring help
 ```
 - Simple Spring Boot App
+
 app.groovy
 ```
 @RestController
