@@ -8,4 +8,15 @@
 server.tomcat.remote-ip-header=x-forwarded-for
 server.tomcat.protocol-header=x-forwarded-proto
 ```
-- To
+- To configure Spring Security to require a secure channel for all (or some) requests, consider adding your own WebSecurityConfigurerAdapter that adds the following HttpSecurity configuration:
+```
+@Configuration(proxyBeanMethods = false)
+public class SslWebSecurityConfigurerAdapter extends WebSecurityConfigurerAdapter {
+
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        // Customize the application security
+        http.requiresChannel().anyRequest().requiresSecure();
+    }
+}
+```
