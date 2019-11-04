@@ -192,6 +192,98 @@ SpringApplication loads properties from application.properties files in the foll
 - A classpath /config package
 - The classpath root
 
-
+### [Boot Application Properties](https://docs.spring.io/spring-boot/docs/2.2.0.RELEASE/reference/html/appendix-application-properties.html)
+- Core properties
+    - logging
+    - spring.banner
+    - spring.info
+    - spring.jmx
+    - spring.messages
+    - spring.quartz
+    - spring.task    
+- Cache properties
+    - spring.cache
+- Mail properties
+    - spring.mail
+    - spring.sendgrid
+- JSON properties
+    - spring.gson
+    - spring.jackson
+- Data properties
+    - spring.couchbase
+    - spring.data.cassandra
+    - spring.data.couchbase
+    - spring.data.elasticsearch
+    - spring.data.jpa/jdbc
+    - spring.data.mongodb
+    - spring.data.neo4j
+    - spring.data.rest
+    - spring.data.solr
+    - spring.data.web
+    - spring.datasource (dbcp2/hikari/tomcat)
+    - spring.elasticsearch (jest/rest)
+    - spring.h2
+    - spring.influx
+    - spring.jdbc
+    - spring.jpa
+    - spring.mongodb
+    - spring.redis
+- Transaction properties
+    - spring.jta
+    - spring.jta.atomikos
+    - spring.jta.bitronix
+- Data migration properties
+    - spring.flyway
+    - spring.liquibase
+- Integration properties
+    - spring.activemq
+    - spring.artemis.embedded
+    - spring.artemis
+    - spring.batch
+    - spring.jms
+    - spring.kafka.admin
+    - spring.kafka
+    - spring.kafka.consumer
+    - spring.kafka.jaas
+    - spring.kafka.listener
+    - spring.kafka.producer
+    - spring.kafka.streams
+    - spring.rabbitmq
+    - spring.rabbitmq.listener
+    - spring.rabbitmq.template
+    - spring.webservices
+- Web properties
+    - spring.http
+    - spring.jersey
+    - spring.mvc
+    - spring.resources
+    - spring.servlet
+- Templating properties
+    - spring.freemarker
+    - spring.groovy.template
+    - spring.mustache
+    - spring.thymeleaf
+- Server properties
+    - server
+    - server.jetty
+    - server.servlet
+    - server.tomcat
+    - server.undertow
+- Security properties
+    - spring.ldap
+    - spring.security
+    - spring.session    
+- RSocket properties
+    - spring.rsocket.server
+- Actuator properties
+    - management.endpoin
+    - management.health
+    - management.info
+    - management.metrics
+    - management.server
+- Devtools properties
+    - spring.devtools    
+- Testing properties
+    - spring.test
 
 
