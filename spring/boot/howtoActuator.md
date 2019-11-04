@@ -80,7 +80,25 @@ Once ready, we can start defining operations using:
 - @DeleteOperation – it'll map to HTTP DELETE
 
 ## Extend existing EndPoint
-
+We can easily extend the behavior of a predefined endpoint using the @EndpointExtension annotations, or its more concrete specializations @EndpointWebExtension or @EndpointJmxExtension:
+```
+@Component
+@EndpointWebExtension(endpoint = InfoEndpoint.class)
+public class InfoWebEndpointExtension {
+     private InfoEndpoint delegate;
+     // standard constructor
+     @ReadOperation
+    public WebEndpointResponse<Map> info() {
+        Map<String, Object> info = this.delegate.info();
+        Integer status = getStatus(info);
+        return new WebEndpointResponse<>(info, status);
+    } 
+    private Integer getStatus(Map<String, Object> info) {
+        // return 5xx if this is a snapshot
+        return 200;
+    }
+}
+```
 ## Enable All Endpoints
 In order to access the actuator endpoints using HTTP, we need to both enable and expose them. 
 By default, all endpoints but /shutdown are enabled.  Only the /health and /info endpoints are exposed by default.
