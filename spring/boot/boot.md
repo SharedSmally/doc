@@ -194,11 +194,14 @@ SpringApplication loads properties from application.properties files in the foll
 - A classpath /config package
 - The classpath root
 
-### [Boot Autoconfiguration]
+### Boot Autoconfiguration
 - [Reference](https://docs.spring.io/spring-boot/docs/2.2.0.RELEASE/reference/html/appendix-auto-configuration-classes.html#auto-configuration-classes)
 - [github](https://github.com/spring-projects/spring-boot/tree/master/spring-boot-project/spring-boot-actuator-autoconfigure/src/main/java/org/springframework/boot/actuate/autoconfigure)
     - spring-boot-autoconfigure
     - spring-boot-actuator-autoconfigure
+- Multiple Modules
+   
+   Create the parent pom project, then add a main application module and a few modules with different Components. The main application will scan the service modules and start them.
 
 ### [Boot Application Properties](https://docs.spring.io/spring-boot/docs/2.2.0.RELEASE/reference/html/appendix-application-properties.html)
 - Core properties
