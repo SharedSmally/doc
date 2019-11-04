@@ -1,0 +1,102 @@
+# [Actuator](https://docs.spring.io/spring-boot/docs/2.2.0.RELEASE/reference/html/howto.html#howto-actuator)
+## Dependency
+```
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
+```
+
+## Configurations
+- [Reference](https://docs.spring.io/spring-boot/docs/2.2.0.RELEASE/reference/html/appendix-application-properties.html#actuator-properties)
+- the Actuator Endpoints HTTP Port or Address
+    - management.server.port: the application listening port
+    - management.server.address: the network IP address that the server is able to bind.
+    - management.server.ssl.xxx: SSL configurations
+    - management.server.servlet.context-path: Management endpoint context-path (for instance, `/management`). Requires a custom management.server.port.
+    
+- Enable/Expose Endpoints
+    - management.endpoint.xxx.cache.time-to-live: Maximum time that a response can be cached.
+    - management.endpoint.xxx.enabled: Whether to enable the xxx endpoint.
+    - management.health.xxx.enabled: Whether to enable xxx health check.
+    - management.metrics.enable.*: Whether meter IDs starting-with the specified name should be enabled. The longest match wins, the key `all` can also be used to configure all meters.
+    - management.endpoints.web.exposure.include: Endpoint IDs that should be included or '*' for all.
+    - management.endpoints.web.exposure.exclude> Endpoint IDs that should be excluded or '*' for all.
+    - management.metrics.export.xxx.enabled: Whether exporting of metrics to xxx is enabled.
+    - management.metrics.export.xxx.yyy: Whether exporting of metrics to xxx is enabled.
+    
+## Add New Metrics
+
+## Add New EndPoint
+```
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+
+import org.springframework.boot.actuate.endpoint.annotation.DeleteOperation;
+import org.springframework.boot.actuate.endpoint.annotation.Endpoint;
+import org.springframework.boot.actuate.endpoint.annotation.ReadOperation;
+import org.springframework.boot.actuate.endpoint.annotation.Selector;
+import org.springframework.boot.actuate.endpoint.annotation.WriteOperation;
+import org.springframework.stereotype.Component;
+
+@Component
+@Endpoint(id = "features")
+public class FeaturesEndpoint { 
+    private Map<String, Feature> features = new ConcurrentHashMap<>();
+ 
+    @ReadOperation
+    public Map<String, Feature> features() {
+        return features;
+    }
+ 
+    @ReadOperation
+    public Feature feature(@Selector String name) {
+        return features.get(name);
+    }
+ 
+    @WriteOperation
+    public void configureFeature(@Selector String name, Feature feature) {
+        features.put(name, feature);
+    }
+ 
+    @DeleteOperation
+    public void deleteFeature(@Selector String name) {
+        features.remove(name);
+    }
+ 
+    public static class Feature {
+        private Boolean enabled;
+         // [...] getters and setters 
+    }
+}
+```
+To get the endpoint, we need a bean. In our example, we're using @Component for this. Also, we need to decorate this bean with @Endpoint.
+
+The path of our endpoint is determined by the id parameter of @Endpoint, in our case, it'll route requests to /actuator/features.
+
+Once ready, we can start defining operations using:
+- @ReadOperation – it'll map to HTTP GET
+- @WriteOperation – it'll map to HTTP POST
+- @DeleteOperation – it'll map to HTTP DELETE
+
+## Extend existing EndPoint
+
+## Enable All Endpoints
+In order to access the actuator endpoints using HTTP, we need to both enable and expose them. 
+By default, all endpoints but /shutdown are enabled.  Only the /health and /info endpoints are exposed by default.
+
+- Expose all endpoints :
+```
+management.endpoints.web.exposure.include=*
+```
+- Explicitly enable a specific endpoint (for example /shutdown):
+'''
+management.endpoint.shutdown.enabled=true
+```
+- Expose all enabled endpoints except one (for example /loggers):
+```
+management.endpoints.web.exposure.include=*
+management.endpoints.web.exposure.exclude=loggers
+```
+
+## [Samples](https://www.baeldung.com/spring-boot-actuators)
