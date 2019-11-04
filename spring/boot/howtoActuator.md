@@ -1,4 +1,4 @@
-# [Actuator](https://docs.spring.io/spring-boot/docs/2.2.0.RELEASE/reference/html/howto.html#howto-actuator)
+# [Actuator](https://docs.spring.io/spring-boot/docs/2.2.0.RELEASE/reference/html/production-ready-features.html)
 ## Dependency
 ```
 		<dependency>
@@ -26,6 +26,68 @@
     - management.metrics.export.xxx.yyy: Whether exporting of metrics to xxx is enabled.
     
 ## Add New Metrics
+- Boot 2.0: [MicroMeter](https://www.baeldung.com/micrometer)
+    - Registe metric with MeterRegistry(Replacing CounterService)
+```
+@Autowired
+private MeterRegistry registry;
+ 
+private List<String> statusList;
+ 
+@Override
+public void increaseCount(final int status) {
+    String counterName = "counter.status." + status;
+    registry.counter(counterName).increment(1);
+    if (!statusList.contains(counterName)) {
+        statusList.add(counterName);
+    }
+}
+```
+    - Exporting Counts Using MeterRegistry
+```
+@Scheduled(fixedDelay = 60000)
+private void exportMetrics() {
+    ArrayList<Integer> statusCount = new ArrayList<Integer>();
+    for (String status : statusList) {
+         Search search = registry.find(status);
+         if (search != null) {
+              Counter counter = search.counter();
+              statusCount.add(counter != null ? ((int) counter.count()) : 0);
+              registry.remove(counter);
+         } else {
+              statusCount.add(0);
+         }
+    }
+    statusMetricsByMinute.add(statusCount);
+}
+```
+    - Publishing Metrics Using Meters
+```
+@Scheduled(fixedDelay = 60000)
+private void exportMetrics() {
+    ArrayList<Integer> lastMinuteStatuses = initializeStatuses(statusList.size()); 
+    for (Meter counterMetric : publicMetrics.getMeters()) {
+        updateMetrics(counterMetric, lastMinuteStatuses);
+    }
+    statusMetricsByMinute.add(lastMinuteStatuses);
+}
+ 
+private void updateMetrics(final Meter counterMetric, final ArrayList<Integer> statusCount) {
+    String status = "";
+    int index = -1;
+    int oldCount = 0;
+ 
+    if (counterMetric.getId().getName().contains("counter.status.")) {
+        status = counterMetric.getId().getName().substring(15, 18); // example 404, 200
+        appendStatusIfNotExist(status, statusCount);
+        index = statusList.indexOf(status);
+        oldCount = statusCount.get(index) == null ? 0 : statusCount.get(index);
+        statusCount.set(index, (int)((Counter) counterMetric).count() + oldCount);
+    }
+}
+```
+- [REST Metrics](https://www.baeldung.com/spring-rest-api-metrics)
+- [Spring Metrics](https://docs.spring.io/spring-metrics/docs/current/public/prometheus)
 
 ## Add New EndPoint
 ```
@@ -116,5 +178,5 @@ management.endpoint.shutdown.enabled=true
 management.endpoints.web.exposure.include=*
 management.endpoints.web.exposure.exclude=loggers
 ```
-
+## [How To](https://docs.spring.io/spring-boot/docs/2.2.0.RELEASE/reference/html/howto.html#howto-actuator)
 ## [Samples](https://www.baeldung.com/spring-boot-actuators)
