@@ -106,6 +106,8 @@ public class DatabaseAccountService implements AccountService {
     // ...
 }
 ```
+When SpringBoot starts up it scans for classes with @Components (@Controller, @Repository, @Service, @Configuration  in the project, by default it scans all the packages under the main app (class which having the @SpringBootApplication annotation)
+
 
 ## Application Configuration
 You can use properties files, YAML files, environment variables, and command-line arguments to externalize configuration. Property values can be injected directly into beans by using the @Value annotation, accessed through Spring’s Environment abstraction, or be bound to structured objects through @ConfigurationProperties.
