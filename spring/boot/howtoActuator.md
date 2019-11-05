@@ -31,7 +31,6 @@
 ```
 @Autowired
 private MeterRegistry registry;
- 
 private List<String> statusList;
  
 @Override
@@ -42,7 +41,32 @@ public void increaseCount(final int status) {
         statusList.add(counterName);
     }
 }
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import io.micrometer.core.instrument.Counter;
+import io.micrometer.core.instrument.MeterRegistry;
+
+@RestController
+public class MyController {
+
+    private final Counter myCounter;
+
+    public MyController(MeterRegistry meterRegistry) {
+        // Create the counter using the helper method on the builder
+        myCounter = meterRegistry.counter("my.counter", "mytagname", "mytagvalue");
+
+    }
+
+    @GetMapping("/")
+    public String getSomething() {
+    	myCounter.increment();
+    	return "hello, world";
+    }
+}
 ```
+
     - Exporting Counts Using MeterRegistry
 ```
 @Scheduled(fixedDelay = 60000)
@@ -61,6 +85,7 @@ private void exportMetrics() {
     statusMetricsByMinute.add(statusCount);
 }
 ```
+
     - Publishing Metrics Using Meters
 ```
 @Scheduled(fixedDelay = 60000)
