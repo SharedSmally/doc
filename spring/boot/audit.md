@@ -1,7 +1,7 @@
 # Spring Audit
 
 ## JPA Audit
-- {Tutorial](https://www.baeldung.com/database-auditing-jpa)
+- [Tutorial](https://www.baeldung.com/database-auditing-jpa)
 - Enabling JPA Auditing
 ```
 @Configuration
@@ -41,3 +41,66 @@ public class Bar {
 $ curl 'http://localhost:8080/actuator/auditevents?principal=alice&after=2019-10-
 16T17%3A05%3A59.53Z&type=logout' -i -X GET
 ```
+
+
+## Authentiation Audit 
+- [Tutorial](https://www.baeldung.com/spring-boot-authentication-audit)
+- Listening for Authentication and Authorization Events
+```
+@Component
+public class LoginAttemptsLogger {
+    @EventListener
+    public void auditEventHappened(AuditApplicationEvent auditApplicationEvent) {        
+        AuditEvent auditEvent = auditApplicationEvent.getAuditEvent();
+        System.out.println("Principal " + auditEvent.getPrincipal() + " - " + auditEvent.getType());
+         WebAuthenticationDetails details = (WebAuthenticationDetails) auditEvent.getData().get("details");
+        System.out.println("Remote IP address: " + details.getRemoteAddress());
+        System.out.println("  Session Id: " + details.getSessionId());
+    }
+}
+```
+- Use Authentication Audit Listener to publish more information in AuditEvent
+```
+@Component
+public class ExposeAttemptedPathAuthorizationAuditListener extends AbstractAuthorizationAuditListener {
+     public static final String AUTHORIZATION_FAILURE = "AUTHORIZATION_FAILURE";
+ 
+    @Override
+    public void onApplicationEvent(AbstractAuthorizationEvent event) {
+        if (event instanceof AuthorizationFailureEvent) {
+            onAuthorizationFailureEvent((AuthorizationFailureEvent) event);
+        }
+    }
+ 
+    private void onAuthorizationFailureEvent(AuthorizationFailureEvent event) {
+        Map<String, Object> data = new HashMap<>();
+        data.put("type", event.getAccessDeniedException().getClass().getName());
+        data.put("message", event.getAccessDeniedException().getMessage());
+        data.put("requestUrl", ((FilterInvocation)event.getSource()).getRequestUrl() );
+         
+        if (event.getAuthentication().getDetails() != null) {
+            data.put("details", event.getAuthentication().getDetails());
+        }
+        publish(new AuditEvent(event.getAuthentication().getName(), AUTHORIZATION_FAILURE, data));
+    }
+}
+```
+The listener can get more infomation:
+```
+@Component
+public class LoginAttemptsLogger {
+    @EventListener
+    public void auditEventHappened(AuditApplicationEvent auditApplicationEvent) {
+        AuditEvent auditEvent = auditApplicationEvent.getAuditEvent();
+          System.out.println("Principal " + auditEvent.getPrincipal() + " - " + auditEvent.getType());
+         WebAuthenticationDetails details = (WebAuthenticationDetails) auditEvent.getData().get("details");
+         System.out.println("  Remote IP address: " + details.getRemoteAddress());
+        System.out.println("  Session Id: " + details.getSessionId());
+        System.out.println("  Request URL: " + auditEvent.getData().get("requestUrl"));
+    }
+}
+```
+- Storing Audit Events
+By default, Spring Boot stores the audit events in an AuditEventRepository. If you don't create a bean with an own implementation, then an InMemoryAuditEventRepository will be wired for you.
+
+The InMemoryAuditEventRepository is a kind of circular buffer that stores the last 4000 audit events in memory. Those events can then be accessed via the management endpoint http://localhost:8080/auditevents.
