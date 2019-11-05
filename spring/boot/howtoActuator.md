@@ -27,14 +27,14 @@
     
 ## Add New Metrics
 - Boot 2.0: [MicroMeter](https://www.baeldung.com/micrometer)
-   - Add depdency for micrometer
+     - Add depdency for micrometer
 ```
 	<dependency>
   		<groupId>io.micrometer</groupId>
   		<artifactId>micrometer-registry-prometheus</artifactId>
 	</dependency>
 ```
-   - Registe metric with MeterRegistry(Replacing CounterService)
+     - Registe metric with MeterRegistry(Replacing CounterService)
 ```
 @Autowired
 private MeterRegistry registry;
@@ -72,7 +72,7 @@ public class MyController {
     }
 }
 ```
-   - Exporting Counts Using MeterRegistry
+     - Exporting Counts Using MeterRegistry
 ```
 @Scheduled(fixedDelay = 60000)
 private void exportMetrics() {
