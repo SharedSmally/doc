@@ -26,7 +26,7 @@
     - management.metrics.export.xxx.yyy: Whether exporting of metrics to xxx is enabled.
     
 ## Add New Metrics
-- Boot 2.0: [MicroMeter](https://www.baeldung.com/micrometer)
+- Boot 2.0: [MicroMeter](https://www.baeldung.com/micrometer)   
    - Add depdency for micrometer
 ```
 	<dependency>
@@ -116,6 +116,99 @@ private void updateMetrics(final Meter counterMetric, final ArrayList<Integer> s
 }
 ```
 - [REST Metrics](https://www.baeldung.com/spring-rest-api-metrics)
+    - Counter: merely a count over a specified property of an application. we can only increment the counter monotonically by a fixed positive amount. 
+```    
+    Counter counter = Counter
+  .builder("instance")
+  .description("indicates instance count of the object")
+  .tags("dev", "performance")
+  .register(registry);
+ 
+   counter.increment(2.0);
+```
+
+     - Timer: report at least the total time and events count of specific time series.
+```
+    SimpleMeterRegistry registry = new SimpleMeterRegistry();
+    Timer timer = registry.timer("app.event");
+    timer.record(() -> {
+        try {
+            TimeUnit.MILLISECONDS.sleep(1500);
+        } catch (InterruptedException ignored) { }
+    });
+    timer.record(3000, MILLISECONDS);
+```
+    - LongTaskTimer: record a long time running events
+```
+   LongTaskTimer longTaskTimer = LongTaskTimer
+      .builder("3rdPartyService")
+      .register(registry);
+   long currentTaskId = longTaskTimer.start();
+   try {
+        TimeUnit.SECONDS.sleep(2);
+    } catch (InterruptedException ignored) { }
+    long timeElapsed = longTaskTimer.stop(currentTaskId);
+```
+     - Gauge:only report data when observed. It is useful when monitoring stats of cache, collections, etc.:
+```
+   List<String> list = new ArrayList<>(4);
+   Gauge gauge = Gauge
+     .builder("cache.size", list, List::size)
+     .register(registry);
+   assertTrue(gauge.value() == 0.0);
+   list.add("1");
+   assertTrue(gauge.value() == 1.0);    
+```
+    - DistributionSummary:: Distribution of events and a simple summary:
+```
+   DistributionSummary distributionSummary = DistributionSummary
+     .builder("request.size")
+     .baseUnit("bytes")
+     .register(registry);
+ 
+   distributionSummary.record(3);
+   distributionSummary.record(4);
+   distributionSummary.record(5);
+ 
+   assertTrue(3 == distributionSummary.count());
+   assertTrue(12 == distributionSummary.totalAmount());
+```
+DistributionSummary and Timers can be enriched by quantile
+```
+   Timer timer = Timer.builder("test.timer")
+     .quantiles(WindowSketchQuantiles
+        .quantiles(0.3, 0.5, 0.95)  //indicating the values below which 95%, 50% and 30% of observations fall
+        .create())
+     .register(registry);
+     
+   timer.record(2, TimeUnit.SECONDS);
+   timer.record(2, TimeUnit.SECONDS);
+   timer.record(3, TimeUnit.SECONDS);
+   timer.record(4, TimeUnit.SECONDS);
+   timer.record(8, TimeUnit.SECONDS);
+   timer.record(13, TimeUnit.SECONDS);     
+   
+   List<Gauge> quantileGauges = registry.getMeters().stream()
+      .filter(m -> m.getType().name().equals("Gauge"))
+      .map(meter -> (Gauge) meter)
+      .collect(Collectors.toList());
+  
+   assertTrue(3 == quantileGauges.size());
+ 
+   Map<String, Integer> quantileMap = extractTagValueMap(registry, Type.Gauge, 1e9);
+   assertThat(quantileMap, allOf(
+      hasEntry("quantile=0.3",2),
+      hasEntry("quantile=0.5", 3),
+      hasEntry("quantile=0.95", 8)));
+```
+Micrometer also supports histograms:
+```	
+   DistributionSummary hist = DistributionSummary
+      .builder("summary")
+      .histogram(Histogram.linear(0, 10, 5))
+      .register(registry);
+```
+
 - [Spring Metrics](https://docs.spring.io/spring-metrics/docs/current/public/prometheus)
 
 ## Add New EndPoint
