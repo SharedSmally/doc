@@ -115,7 +115,42 @@ public class LoginAttemptsLogger {
     }
 }
 ```
-- 
+- Publishing own audits events with event publisher
+
+Use application event publisher (org.springframework.context.ApplicationEventPublisher) to publish a custom audit event with type CUSTOM_AUDIT_EVENT. Like any other events, the custom one will be stored using audit event repository.
+```
+@Component
+public class AuditApplicationEventListener {
+
+    private static final Logger LOG = LoggerFactory.getLogger(AuditApplicationEventListener.class);
+
+    @Autowired
+    private ApplicationEventPublisher applicationEventPublisher;
+
+    @EventListener(condition = "#event.auditEvent.type != 'CUSTOM_AUDIT_EVENT'")
+    @Async
+    public void onAuditEvent(AuditApplicationEvent event) {
+        AuditEvent actualAuditEvent = event.getAuditEvent();
+
+        LOG.info("On audit application event: timestamp: {}, principal: {}, type: {}, data: {}",
+            actualAuditEvent.getTimestamp(),
+            actualAuditEvent.getPrincipal(),
+            actualAuditEvent.getType(),
+            actualAuditEvent.getData()
+        );
+        applicationEventPublisher.publishEvent(
+            new AuditApplicationEvent(
+                new AuditEvent(actualAuditEvent.getPrincipal(), "CUSTOM_AUDIT_EVENT")
+            )
+        );
+    }
+
+    @EventListener(condition = "#event.auditEvent.type == 'CUSTOM_AUDIT_EVENT'")
+    public void onCustomAuditEvent(AuditApplicationEvent event) {
+        LOG.info("Handling custom audit event ...");
+    }
+}
+```
 
 - Storing Audit Events
 
