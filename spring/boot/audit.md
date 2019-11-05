@@ -105,3 +105,6 @@ public class LoginAttemptsLogger {
 By default, Spring Boot stores the audit events in an AuditEventRepository. If you don't create a bean with an own implementation, then an InMemoryAuditEventRepository will be wired for you.
 
 The InMemoryAuditEventRepository is a kind of circular buffer that stores the last 4000 audit events in memory. Those events can then be accessed via the management endpoint http://localhost:8080/auditevents.
+
+## Audit Event Repository
+- [Custom Audit Event Repository sample](https://github.com/sebasv89/spring-boot-examples/blob/master/src/main/java/co/svelez/springbootexample/repository/CustomAuditEventRepository.java)
