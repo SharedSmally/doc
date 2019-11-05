@@ -45,6 +45,7 @@ $ curl 'http://localhost:8080/actuator/auditevents?principal=alice&after=2019-10
 
 ## Authentiation Audit 
 - [Tutorial](https://www.baeldung.com/spring-boot-authentication-audit)
+- [Tutorial](https://blog.codeleak.pl/2017/03/spring-boot-and-security-events-with-actuator.html)
 - Listening for Authentication and Authorization Events
 ```
 @Component
@@ -56,6 +57,20 @@ public class LoginAttemptsLogger {
          WebAuthenticationDetails details = (WebAuthenticationDetails) auditEvent.getData().get("details");
         System.out.println("Remote IP address: " + details.getRemoteAddress());
         System.out.println("  Session Id: " + details.getSessionId());
+    }
+}
+```
+- Async events
+The @EventListener is synchronous, but if asynchronous behavior is desired you can annotate event listener method with @Async and make sure that async is enabled (e.g. via @EnableAsync):
+```
+@Component
+public class AuditApplicationEventListener {
+    private static final Logger LOG = LoggerFactory.getLogger(AuditApplicationEventListener.class);
+
+    @EventListener
+    @Async
+    public void onAuditEvent(AuditApplicationEvent event) {
+
     }
 }
 ```
@@ -100,11 +115,33 @@ public class LoginAttemptsLogger {
     }
 }
 ```
+- 
+
 - Storing Audit Events
 
 By default, Spring Boot stores the audit events in an AuditEventRepository. If you don't create a bean with an own implementation, then an InMemoryAuditEventRepository will be wired for you.
 
 The InMemoryAuditEventRepository is a kind of circular buffer that stores the last 4000 audit events in memory. Those events can then be accessed via the management endpoint http://localhost:8080/auditevents.
 
+No events will be stored in the event repository if not published, hence /auditevents endpoint will always return an empty array. To fix this you can either inject audit repository or extend directly from org.springframework.boot.actuate.audit.listener.AuditListener:
+```
+@Component
+public class AuditEventListener extends AbstractAuditListener {
+    private static final Logger LOG = LoggerFactory.getLogger(AuditEventListener.class);
+    @Autowired
+    private AuditEventRepository auditEventRepository;
+
+    @Override
+    protected void onAuditEvent(AuditEvent event) {
+        LOG.info("On audit event: timestamp: {}, principal: {}, type: {}, data: {}",
+            event.getTimestamp(),
+            event.getPrincipal(),
+            event.getType(),
+            event.getData()
+        );
+        auditEventRepository.add(event);
+    }
+}
+```
 ## Audit Event Repository
 - [Custom Audit Event Repository sample](https://github.com/sebasv89/spring-boot-examples/blob/master/src/main/java/co/svelez/springbootexample/repository/CustomAuditEventRepository.java)
