@@ -27,7 +27,14 @@
     
 ## Add New Metrics
 - Boot 2.0: [MicroMeter](https://www.baeldung.com/micrometer)
-    - Registe metric with MeterRegistry(Replacing CounterService)
+   - Add depdency for micrometer
+```
+	<dependency>
+  		<groupId>io.micrometer</groupId>
+  		<artifactId>micrometer-registry-prometheus</artifactId>
+	</dependency>
+```
+   - Registe metric with MeterRegistry(Replacing CounterService)
 ```
 @Autowired
 private MeterRegistry registry;
@@ -41,7 +48,9 @@ public void increaseCount(final int status) {
         statusList.add(counterName);
     }
 }
-
+```
+or 
+```
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -50,13 +59,10 @@ import io.micrometer.core.instrument.MeterRegistry;
 
 @RestController
 public class MyController {
-
     private final Counter myCounter;
-
     public MyController(MeterRegistry meterRegistry) {
         // Create the counter using the helper method on the builder
-        myCounter = meterRegistry.counter("my.counter", "mytagname", "mytagvalue");
-
+        myCounter = meterRegistry.counter("my.counter", "mytagname", "mytagvalue"); //name,tagname,tagvalue
     }
 
     @GetMapping("/")
@@ -66,8 +72,7 @@ public class MyController {
     }
 }
 ```
-
-    - Exporting Counts Using MeterRegistry
+   - Exporting Counts Using MeterRegistry
 ```
 @Scheduled(fixedDelay = 60000)
 private void exportMetrics() {
@@ -85,8 +90,7 @@ private void exportMetrics() {
     statusMetricsByMinute.add(statusCount);
 }
 ```
-
-    - Publishing Metrics Using Meters
+   - Publishing Metrics Using Meters
 ```
 @Scheduled(fixedDelay = 60000)
 private void exportMetrics() {
