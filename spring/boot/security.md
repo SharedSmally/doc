@@ -1,6 +1,6 @@
 # Spring Security
 
-## [boot/autoconfigure/security])(https://github.com/spring-projects/spring-boot/tree/master/spring-boot-project/spring-boot-autoconfigure/src/main/java/org/springframework/boot/autoconfigure/security)
+## [boot/autoconfigure/security](https://github.com/spring-projects/spring-boot/tree/master/spring-boot-project/spring-boot-autoconfigure/src/main/java/org/springframework/boot/autoconfigure/security)
 - [Security Properties](https://docs.spring.io/spring-boot/docs/current/reference/html/appendix-application-properties.html#security-properties): from SecurityProperties
    - spring.security.filter.dispatcher-types: Security filter chain dispatcher types. async, error, request
    - spring.security.filter.order: Security filter chain order. -100
