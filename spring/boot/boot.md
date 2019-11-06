@@ -1,5 +1,11 @@
 # [Spring Boot](https://spring.io/projects/spring-boot)
 Auto Config for the basic services
+- [Spring project github](https://github.com/spring-projects/)
+- [starters](https://github.com/spring-projects/spring-boot/tree/master/spring-boot-project/spring-boot-starters): Only pom.xml to include dependencies
+     - [okta starter](https://github.com/okta/okta-spring-boot): Support client and server-side applications
+     - Spring Security Starter: spring-boot-starter; spring-security-web; spring-security-config
+     - [Spring Security](https://github.com/spring-projects/spring-security)     
+- [auto-configuration](https://github.com/spring-projects/spring-boot/tree/master/spring-boot-project/spring-boot-autoconfigure/src/main/java/org/springframework/boot/autoconfigure)
 
 ## Spring Boot CLI
 - Install sdkman
