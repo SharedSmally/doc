@@ -12,6 +12,7 @@
 - oauth2: 
 
       - Client: OAuth2ClientProperties for spring.security.oauth2.client, and ClientsConfiguredCondition extends SpringBootCondition.
+      
             - Map<String, Provider>:
             
             spring.security.oauth2.client.provider.*: OAuth provider
