@@ -7,7 +7,7 @@
     * spring.security.user.name: Default user name.
     * spring.security.user.password: Password for the default user name.
     * spring.security.user.roles: Granted roles for the default user name.       
-* oauth2: 
+* oauth2: provides an application with the capability to have users log in to the application by using their existing account at an OAuth 2.0 Provider (e.g. GitHub) or OpenID Connect 1.0 Provider (such as Google).
     * Client: OAuth2ClientProperties for spring.security.oauth2.client, and ClientsConfiguredCondition extends SpringBootCondition.               * Map<String, Provider>:          
             spring.security.oauth2.client.provider.\*: OAuth provider         
         * Map<String, Registration>:          
