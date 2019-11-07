@@ -215,4 +215,19 @@ class SampleAuthenticationManager implements AuthenticationManager {
 ```
 A user is authenticated when the SecurityContextHolder contains a fully populated Authentication object.
 
+### Authorization
+- secure object: any object that can have security (such as an authorization decision) applied to it, such as method invocations and web requests.
+
+Each supported secure object type has its own interceptor class, a subclass of AbstractSecurityInterceptor. When the AbstractSecurityInterceptor is called, the SecurityContextHolder will contain a valid Authentication if the principal has been authenticated.
+
+- AbstractSecurityInterceptor: provides a consistent workflow for handling secure object requests:
+    - Look up the "configuration attributes" associated with the present request
+    - Submitting the secure object, current Authentication and configuration attributes to the AccessDecisionManager for an authorization decision
+    - Optionally change the Authentication under which the invocation takes place
+    - Allow the secure object invocation to proceed (assuming access was granted)
+    - Call the AfterInvocationManager if configured, once the invocation has returned. If the invocation raised an exception, the AfterInvocationManager will not be invoked.
+    
+- Configuration Attributes
+A String that has special meaning to the classes used by AbstractSecurityInterceptor. They are represented by the interface ConfigAttribute within the framework. They may be simple role names or have more complex meaning, depending on the how sophisticated the AccessDecisionManager implementation is.
+
  
