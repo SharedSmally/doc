@@ -52,4 +52,97 @@ amount=100.00&routingNumber=1234&account=9876&_csrf=4bfd1575-3ad1-4d21-96c7-4ef2
 - OpenID — spring-security-openid.jar: support OpenID web authentication against an external OpenID server.
 - Test — spring-security-test.jar: support for testing with Spring Security.
 
+## Spring Security Applications
+### 1. Spring Boot Auto Configuration
+- Enables Spring Security’s default configuration that creates a servlet Filter as a bean named springSecurityFilterChain. This bean is responsible for all the security (protecting the application URLs, validating submitted username and passwords, redirecting to the log in form, and so on) within your application.
+- Creates a UserDetailsService bean with a username of user and a randomly generated password that is logged to the console.
+- Registers the Filter with a bean named springSecurityFilterChain with the Servlet container for every request.
+```
+@EnableWebSecurity
+public class SecurityConfig extends WebSecurityConfigurerAdapter {
+	@Override
+	protected void configure(HttpSecurity http) throws Exception {
+		http.authorizeRequests(authorizeRequests ->
+					authorizeRequests
+						.antMatchers("/css/**", "/index").permitAll()
+						.antMatchers("/user/**").hasRole("USER")
+				)
+			.formLogin(formLogin ->
+					formLogin
+						.loginPage("/login")
+						.failureUrl("/login-error")
+				);
+	}
+
+	@Bean
+	public UserDetailsService userDetailsService() {
+		UserDetails userDetails = User.withDefaultPasswordEncoder()
+				.username("user")
+				.password("password")
+				.roles("USER")
+				.build();
+		return new InMemoryUserDetailsManager(userDetails);
+	}
+}
+```
+### 2. Spring Java Configuration
+- create a servlet Filter springSecurityFilterChain
+```
+import org.springframework.context.annotation.*;
+import org.springframework.security.config.annotation.web.configuration.*;
+import org.springframework.security.core.userdetails.*;
+import org.springframework.security.provisioning.*;
+@EnableWebSecurity
+public class WebSecurityConfig {
+    @Bean
+    public UserDetailsService userDetailsService() {
+        UserDetails user = User.withDefaultPasswordEncoder()
+            .username("user")
+            .password("password")
+            .roles("USER")
+            .build();
+        return  new InMemoryUserDetailsManager(user);
+    }
+}
+
+@Controller
+public class MainController {
+	@RequestMapping("/")
+	public String root() {
+		return "redirect:/index";
+	}
+
+	@RequestMapping("/index")
+	public String index() {
+		return "index";
+	}
+
+	@RequestMapping("/user/index")
+	public String userIndex() {
+		return "user/index";
+	}
+
+	@RequestMapping("/login")
+	public String login() {
+		return "login";
+	}
+
+	@RequestMapping("/login-error")
+	public String loginError(Model model) {
+		model.addAttribute("loginError", true);
+		return "login";
+	}
+}
+```
+
+-  register the springSecurityFilterChain with the war from AbstractSecurityWebApplicationInitializer
+```
+import org.springframework.security.web.context.*;
+public class SecurityInitializer extends AbstractSecurityWebApplicationInitializer {
+    public SecurityInitializer() {
+        super(WebSecurityConfig.class);
+    }
+}
+```
+
 
