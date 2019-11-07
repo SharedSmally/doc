@@ -145,7 +145,8 @@ public class SecurityInitializer extends AbstractSecurityWebApplicationInitializ
 }
 ```
 
-## Spring Security Components: spring-security-core
+## Spring Security: spring-security-core
+### Main Components:
 - SecurityContextHolder
 
 Store details of the present security context of the application. By default it is a ThreadLocal and is always available to methods in the same thread of execution. This behavioir mode can be changed in system property, or a static method on SecurityContextHolder. Inside the SecurityContextHolder we store details of the principal currently interacting with the application. Spring Security uses an Authentication object to represent this information:
@@ -165,7 +166,53 @@ Most authentication mechanisms within Spring Security return an instance of User
  UserDetails loadUserByUsername(String username) throws UsernameNotFoundException;
  ```
  On successful authentication, UserDetails is used to build the Authentication object that is stored in the SecurityContextHolder. There are a number of UserDetailsService implementations, including one that uses an in-memory map (InMemoryDaoImpl) and another that uses JDBC (JdbcDaoImpl). What the UserDetailsService returns can always be obtained from the SecurityContextHolder.
-- GrantedAuthority
+
+- GrantedAuthority (may from UserDatails)
+Another important method provided by Authentication is getAuthorities() that provides an array of GrantedAuthority objects. A GrantedAuthority is an authority that is granted to the principal. Such authorities are usually "roles", such as ROLE_ADMINISTRATOR or ROLE_HR_SUPERVISOR. These roles are later on configured for web authorization, method authorization and domain object authorization. Other parts of Spring Security are capable of interpreting these authorities, and expect them to be present. GrantedAuthority objects are usually loaded by the UserDetailsService.
  
- 
+ ### Authentication Procedure
+ Authentication request->AuthenticationManager: authenticate():
+     string username->UserDetails(via UserDetailsService)->Authentication result, may add new information, such as Authorities that will be used for authorization.
+ ```
+public class AuthenticationExample {
+  private static AuthenticationManager am = new SampleAuthenticationManager();
+
+  public static void main(String[] args) throws Exception {
+    BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+
+    while(true) {
+        System.out.println("Please enter your username:");
+        String name = in.readLine();
+        System.out.println("Please enter your password:");
+        String password = in.readLine();
+        try {
+           Authentication request = new UsernamePasswordAuthenticationToken(name, password);
+           Authentication result = am.authenticate(request);
+           SecurityContextHolder.getContext().setAuthentication(result);
+           break;
+        } catch(AuthenticationException e) {
+            System.out.println("Authentication failed: " + e.getMessage());
+        }
+      }
+      System.out.println("Successfully authenticated. Security context contains: " +
+            SecurityContextHolder.getContext().getAuthentication());
+   }
+}
+
+class SampleAuthenticationManager implements AuthenticationManager {
+   static final List<GrantedAuthority> AUTHORITIES = new ArrayList<GrantedAuthority>();
+   static {
+        AUTHORITIES.add(new SimpleGrantedAuthority("ROLE_USER"));
+   }
+
+    public Authentication authenticate(Authentication auth) throws AuthenticationException {
+      if (auth.getName().equals(auth.getCredentials())) {
+      return new UsernamePasswordAuthenticationToken(auth.getName(), auth.getCredentials(), AUTHORITIES);
+    }
+    throw new BadCredentialsException("Bad Credentials");
+  }
+}
+```
+A user is authenticated when the SecurityContextHolder contains a fully populated Authentication object.
+
  
