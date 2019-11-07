@@ -145,4 +145,27 @@ public class SecurityInitializer extends AbstractSecurityWebApplicationInitializ
 }
 ```
 
+## Spring Security Components: spring-security-core
+- SecurityContextHolder
 
+Store details of the present security context of the application. By default it is a ThreadLocal and is always available to methods in the same thread of execution. This behavioir mode can be changed in system property, or a static method on SecurityContextHolder. Inside the SecurityContextHolder we store details of the principal currently interacting with the application. Spring Security uses an Authentication object to represent this information:
+```
+Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+if (principal instanceof UserDetails) {
+   String username = ((UserDetails)principal).getUsername();
+} else {
+   String username = principal.toString();
+}
+```
+Most authentication mechanisms within Spring Security return an instance of UserDetails as the principal.
+- UserDetailsService
+
+ UserDetails is a core interface in Spring Security. It represents a principal, but in an extensible and application-specific way. It can be considered as the adapter between the user database and what Spring Security needs inside the SecurityContextHolder, and casted to the original object that user application provided. There is a special interface called UserDetailsService to provide a UserDetails object. The only method on this interface accepts a String-based username argument and returns a UserDetails:
+ ```
+ UserDetails loadUserByUsername(String username) throws UsernameNotFoundException;
+ ```
+ On successful authentication, UserDetails is used to build the Authentication object that is stored in the SecurityContextHolder. There are a number of UserDetailsService implementations, including one that uses an in-memory map (InMemoryDaoImpl) and another that uses JDBC (JdbcDaoImpl). What the UserDetailsService returns can always be obtained from the SecurityContextHolder.
+- GrantedAuthority
+ 
+ 
+ 
