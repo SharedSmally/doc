@@ -5,4 +5,4 @@
     - Access Control: interface [AccessDecisionManager](https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/access/AccessDecisionManager.html). The implemented classes are  AffirmativeBased, ConsensusBased, UnanimousBased. They are inherited from AbstractAccessDecisionManager that contains a list of AccessDecisionVoter<?>. The implemented classes are AbstractAclVoter, AclEntryVoter, AuthenticatedVoter, Jsr250Voter, MessageExpressionVoter, PreInvocationAuthorizationAdviceVoter, RoleHierarchyVoter, RoleVoter, WebExpressionVoter.
     - Creating and Customizing Filter Chains: [WebSecurityConfigurerAdapter](https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/config/annotation/web/configuration/WebSecurityConfigurerAdapter.html)::configure(HttpSecurity http).
 - [Java API](https://docs.spring.io/spring-security/site/docs/current/api/)
-- [Security Reference](https://docs.spring.io/spring-security/site/docs/5.2.2.BUILD-SNAPSHOT/reference/htmlsingle/)::configure(HttpSecurity http).
+- [Security Reference](https://docs.spring.io/spring-security/site/docs/5.2.2.BUILD-SNAPSHOT/reference/htmlsingle/)
