@@ -231,3 +231,85 @@ Each supported secure object type has its own interceptor class, a subclass of A
 A String that has special meaning to the classes used by AbstractSecurityInterceptor. They are represented by the interface ConfigAttribute within the framework. They may be simple role names or have more complex meaning, depending on the how sophisticated the AccessDecisionManager implementation is.
 
  
+ ## Expression-Based Access Control
+ ### Common Built-In Expressions
+- hasRole(String role):  hasRole('admin'). By default if the supplied role does not start with 'ROLE_' it will be added.
+- hasAnyRole(String... roles):  hasAnyRole('admin', 'user')
+- hasAuthority(String authority): hasAuthority('read')
+- hasAnyAuthority(String... authorities): hasAnyAuthority('read', 'write')
+- principal
+- authentication
+- permitAll
+- denyAll
+- isAnonymous()
+- isRememberMe()
+- isAuthenticated()
+- isFullyAuthenticated()
+- hasPermission(Object target, Object permission)
+- hasPermission(Object targetId, String targetType, Object permission)
+### Customized Check expression
+```
+public class WebSecurity {
+        public boolean check(Authentication authentication, HttpServletRequest request) {
+                ...
+        }
+}
+
+http
+   .authorizeRequests()
+   .antMatchers("/user/**").access("@webSecurity.check(authentication,request)")
+   ...
+```
+Path Variables
+```
+public class WebSecurity {
+        public boolean checkUserId(Authentication authentication, int id) {
+                ...
+        }
+}
+http
+    .authorizeRequests(authorizeRequests ->
+        authorizeRequests
+            .antMatchers("/user/{userId}/**").access("@webSecurity.checkUserId(authentication,#userId)")
+            ...
+    );
+```
+### Method Security Expressions: @PreAuthorize, @PreFilter, @PostAuthorize and @PostFilter
+Access Control using @PreAuthorize and @PostAuthorize
+```
+@PreAuthorize("hasRole('USER')")
+public void create(Contact contact);
+
+@PreAuthorize("hasPermission(#contact, 'admin')")
+public void deletePermission(Contact contact, Sid recipient, Permission permission);
+
+@PreAuthorize("#c.name == authentication.name")
+public void doSomething(@P("c") Contact contact);
+
+@PreAuthorize("#contact.name == authentication.name")
+public void doSomething(Contact contact);
+```
+
+Filtering using @PreFilter and @PostFilter
+```
+@PreAuthorize("hasRole('USER')")
+@PostFilter("hasPermission(filterObject, 'read') or hasPermission(filterObject, 'admin')")
+public List<Contact> getAll();
+```
+
+ ### Authorize Requests
+ ```
+ protected void configure(HttpSecurity http) throws Exception {
+    http
+        .authorizeRequests(authorizeRequests ->                                        
+            authorizeRequests
+                .antMatchers("/resources/**", "/signup", "/about").permitAll()         
+                .antMatchers("/admin/**").hasRole("ADMIN")                             
+                .antMatchers("/db/**").access("hasRole('ADMIN') and hasRole('DBA')")   
+                .anyRequest().authenticated()                                          
+        )
+        .formLogin(withDefaults());
+}
+ ```
+ 
+ 
