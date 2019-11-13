@@ -11,7 +11,7 @@
 - Use Spring Boot to take advantage of the spring-boot-starters in order to automatically manage the different needed dependencies.
 - Use Spring Web Services in combination with the maven-jaxb2-plugin plugin. 
 - Use a framework like Apache CXF in combination with the cxf-codegen-plugin plugin. 
-- Easiest: [Use cxf-spring-boot-starter-jaxws](https://github.com/codecentric/cxf-spring-boot-starter): (Only support one wsdl). See https://github.com/codecentric/cxf-spring-boot-starter/tree/master/cxf-spring-boot-starter-samples 
+- Easiest: [Use cxf-spring-boot-starter-jaxws](https://github.com/codecentric/cxf-spring-boot-starter): (Only support one wsdl). See https://github.com/codecentric/cxf-spring-boot-starter/tree/master/cxf-spring-boot-starter-samples. See [WSImport mojo](http://www.mojohaus.org/jaxws-maven-plugin/wsimport-mojo.html) for the configurations. 
 
 ## WSDL
 The WSDL contains 5 key pieces of information:
