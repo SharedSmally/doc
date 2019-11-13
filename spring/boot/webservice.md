@@ -13,7 +13,7 @@
 - Use Spring Boot to take advantage of the spring-boot-starters in order to automatically manage the different needed dependencies.
 - Use Spring Web Services in combination with the maven-jaxb2-plugin plugin. 
 - Use a framework like Apache CXF in combination with the cxf-codegen-plugin plugin. 
-- Easied: Use cxf-spring-boot-starter-jaxws: See https://github.com/codecentric/cxf-spring-boot-starter/tree/master/cxf-spring-boot-starter-samples 
+- Easiest: [Use cxf-spring-boot-starter-jaxws](https://github.com/codecentric/cxf-spring-boot-starter): See https://github.com/codecentric/cxf-spring-boot-starter/tree/master/cxf-spring-boot-starter-samples 
 
 ## Spring Boot
 - Dependencies
