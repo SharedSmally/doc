@@ -12,7 +12,17 @@
 - Use Spring Web Services in combination with the maven-jaxb2-plugin plugin. 
 - Use a framework like Apache CXF in combination with the cxf-codegen-plugin plugin. 
 - Easiest: [Use cxf-spring-boot-starter-jaxws](https://github.com/codecentric/cxf-spring-boot-starter): (Only support one wsdl). See https://github.com/codecentric/cxf-spring-boot-starter/tree/master/cxf-spring-boot-starter-samples. See [WSImport mojo](http://www.mojohaus.org/jaxws-maven-plugin/wsimport-mojo.html) for the configurations. 
-
+```
+                <configuration>
+ 				    <wsdlDirectory>src/mywsdls</wsdlDirectory>
+     				<wsdlFiles>
+         				<wsdlFile>a.wsdl</wsdlFile>
+         				<wsdlFile>b/b.wsdl</wsdlFile>
+         				<wsdlFile>${project.basedir}/src/mywsdls/c.wsdl</wsdlFile>
+     				</wsdlFiles>
+     				<wsdlLocation>http://example.com/mywebservices/*</wsdlLocation>
+ 				</configuration>
+```
 ## WSDL
 The WSDL contains 5 key pieces of information:
 - Types - <wsdl:types> defines the domain model used by the service. The model is defined via XSD and can be included inline, in the WSDL or imported from a separate XSD. Line 9 above imports the XSD file we created earlier.
