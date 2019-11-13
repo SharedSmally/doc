@@ -2,6 +2,54 @@
 
 ## [Plugin Developer](https://maven.apache.org/plugin-developers/index.html)
 - [Mojo Guide](https://maven.apache.org/guides/plugin/guide-java-plugin-development.html)
+- [Tutorial](https://carlosvin.github.io/posts/creating-custom-maven-plugin/)
+
+
+## Run command from Java
+```
+Runtime.getRuntime().exec(myCommand);
+    
+Runtime.getRuntime().exec(new String[] {"/bin/sh", "-c", filePath}, null)
+
+String[] cmd = { "sh", "MyFile.sh", "\pathOfTheFile"};
+Runtime.getRuntime().exec(cmd);
+```
+```
+ProcessBuilder pb = new ProcessBuilder("myshellScript.sh", "myArg1", "myArg2");
+ Map<String, String> env = pb.environment();
+ env.put("VAR1", "myValue");
+ env.remove("OTHERVAR");
+ env.put("VAR2", env.get("VAR1") + "suffix");
+ pb.directory(new File("myDir"));
+ Process p = pb.start();
+```
+Use Apache Commons exec library:
+```
+import java.io.IOException;
+import org.apache.commons.exec.CommandLine;
+import org.apache.commons.exec.DefaultExecutor;
+import org.apache.commons.exec.ExecuteException;
+
+public class TestScript {
+    int iExitValue;
+    String sCommandString;
+
+    public void runScript(String command){
+        sCommandString = command;
+        CommandLine oCmdLine = CommandLine.parse(sCommandString);
+        DefaultExecutor oDefaultExecutor = new DefaultExecutor();
+        oDefaultExecutor.setExitValue(0);
+        try {
+            iExitValue = oDefaultExecutor.execute(oCmdLine);
+        } catch (ExecuteException e) {
+            System.err.println("Execution failed.");
+            e.printStackTrace();
+        } catch (IOException e) {
+            System.err.println("permission denied.");
+            e.printStackTrace();
+        }
+    }
+```
 
 ## A Build [Lifecycle]() is Made Up of Phases
 Each of these build lifecycles is defined by a different list of build phases, wherein a build phase represents a stage in the lifecycle.
