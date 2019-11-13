@@ -13,6 +13,19 @@
 - Use a framework like Apache CXF in combination with the cxf-codegen-plugin plugin. 
 - Easiest: [Use cxf-spring-boot-starter-jaxws](https://github.com/codecentric/cxf-spring-boot-starter): (Only support one wsdl). See https://github.com/codecentric/cxf-spring-boot-starter/tree/master/cxf-spring-boot-starter-samples 
 
+## WSDL
+The WSDL contains 5 key pieces of information:
+- Types - <wsdl:types> defines the domain model used by the service. The model is defined via XSD and can be included inline, in the WSDL or imported from a separate XSD. Line 9 above imports the XSD file we created earlier.
+- Message - <wsdl:message> defines the request and response messages used by the service. The nested <wsdl:part> section defines the domain types of the request and response messages.
+- PortType - <wsdl:portType> defines the service operations, parameters, and response types exposed to clients.
+- Binding - <wsdl:binding> defines the protocol and data format.
+    - The binding type attribute refers to the portType defined earlier in the WSDL.
+    - The soap binding style can be either RPC or document.
+    - The transport attribute indicates that the service will be exposed over HTTP. Other options (less common) include JMS and SMTP.
+    - The operation element defines each operation that we exposed through the portType.
+    - Binding - <wsdl:binding> defines the protocol and data format.
+- Service - <wsdl:service> defines the exposed service using the portType and binding we defined above.
+
 ## Spring Boot
 - Dependencies
 ```
