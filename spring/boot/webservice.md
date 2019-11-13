@@ -69,6 +69,31 @@ dependency>
     </configuration>
 </plugin>
 ```
+or  generate Java classes for the domain model and service interface using the CXF codegen plugin to run a WSDL2Java job from WSDL
+```
+
+<plugin>
+  <groupId>org.apache.cxf</groupId>
+  <artifactId>cxf-codegen-plugin</artifactId>
+  <executions>
+    <execution>
+      <id>generate-sources</id>
+      <phase>generate-sources</phase>
+      <configuration>
+        <sourceRoot>src/generated/java</sourceRoot>
+        <wsdlOptions>
+          <wsdlOption>
+            <wsdl>${basedir}/src/main/resources/wsdl/Accounts.wsdl</wsdl>
+          </wsdlOption>
+        </wsdlOptions>
+      </configuration>
+      <goals>
+        <goal>wsdl2java</goal>
+      </goals>
+    </execution>
+  </executions>
+</plugin>
+```
 - Create the SOAP Web Service Endpoint
 
 - Configure web service beans
