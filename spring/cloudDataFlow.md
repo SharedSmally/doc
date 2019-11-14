@@ -13,6 +13,15 @@ The Spring Cloud Data Flow server uses Spring Cloud Deployer, to deploy data pip
 
 ## Deploy Platforms
 - [Local Machine](https://dataflow.spring.io/docs/installation/local/): Based on docker-compose
+    - install docker
+    ```
+    sudo yum install docker
+    ```
+    - install docker-compose: See the [latest release](https://github.com/docker/compose/releases)
+    ```
+    sudo curl -L https://github.com/docker/compose/releases/download/1.25.0-rc4/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
+    sudo chmod +x /usr/local/bin/docker-compose
+    ```
 - [Cloud Foundry](https://dataflow.spring.io/docs/installation/cloudfoundry/): 
 - [Kubernetes](https://dataflow.spring.io/docs/installation/kubernetes/)
 
