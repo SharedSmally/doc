@@ -7,7 +7,7 @@ The Spring Cloud Data Flow server uses Spring Cloud Deployer, to deploy data pip
 
 ## [Components](https://dataflow.spring.io/docs/concepts/architecture/)
 - Data Flow Server: Launch short-lived applications
-- [Skipper Server](Spring Cloud Skipper): Launch long-lived applications; discover Spring Boot applications and manage their lifecycle on multiple Cloud Platforms.
+- [Skipper Server] (https://spring.io/projects/spring-cloud-skipper): Launch long-lived applications; discover Spring Boot applications and manage their lifecycle on multiple Cloud Platforms.
 - Shell: 
 - Dashboard
 
@@ -20,6 +20,7 @@ The Spring Cloud Data Flow server uses Spring Cloud Deployer, to deploy data pip
     sudo systemctl enable docker
     sudo systemctl start docker
     sudo systemctl status docker
+    sudo docker info
     ```
     - install docker-compose: See the [latest release](https://github.com/docker/compose/releases)
     ```
@@ -32,25 +33,21 @@ The Spring Cloud Data Flow server uses Spring Cloud Deployer, to deploy data pip
     ```
     - Start Docker Compose
 ```
-export DATAFLOW_VERSION=2.2.1.RELEASE
-export SKIPPER_VERSION=2.1.2.RELEASE
-docker-compose up
+sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
+sudo DATAFLOW_VERSION=2.2.1.RELEASE SKIPPER_VERSION=2.1.2.RELEASE docker-compose up
 ```
-    or
-```
-DATAFLOW_VERSION=2.2.1.RELEASE SKIPPER_VERSION=2.1.2.RELEASE docker-compose up
-```
-    The Docker Compose file starts instances of the following products:
-    - Spring Cloud Data Flow Server
-    - Spring Cloud Skipper Server
-    - MySQL
-    - Apache Kafka
-    - Prometheus
-    - Grafana
+
+   The Docker Compose file starts instances of the following products:
+        - Spring Cloud Data Flow Server
+        - Spring Cloud Skipper Server
+        - MySQL
+        - Apache Kafka
+        - Prometheus
+        - Grafana
 
     - Stop Docker Compose
 ```
-DATAFLOW_VERSION=2.2.1.RELEASE SKIPPER_VERSION=2.1.2.RELEASE docker-compose down
+sudo DATAFLOW_VERSION=2.2.1.RELEASE SKIPPER_VERSION=2.1.2.RELEASE docker-compose down
 ```
     - Cloud Data Flow Shell: included in springcloud/spring-cloud-dataflow-server 
 ```
