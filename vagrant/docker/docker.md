@@ -1,9 +1,9 @@
 # Vagrant
 Easy create a VM (based on VirtualBox, or native VM) with network, ....
 
-# Docker
-service ran as a pod, pull image from registry (container)
+# Docker: Container(rkt)
+Service ran as a pod, pull image from registry (container). Build image from Application (coreOS-Only kernel+docker). 
 
-# Kubernates
-manage the services(docker)
+# Kubernates: Virtual Cluster
+Manage the services(docker)
 
