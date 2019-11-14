@@ -1,0 +1,30 @@
+# Spring Cloud Data Flow
+The Spring Cloud Data Flow server uses Spring Cloud Deployer, to deploy data pipelines made of Spring Cloud Stream or Spring Cloud Task applications onto modern platforms such as Cloud Foundry and Kubernetes.
+- [Project](https://spring.io/projects/spring-cloud-dataflow)
+- [Spring Cloud Data Flow Microsite](https://dataflow.spring.io/getting-started/)
+- [Reference](https://docs.spring.io/spring-cloud-dataflow/docs/current/reference/htmlsingle/)
+- [API Doc](https://docs.spring.io/spring-cloud-dataflow/docs/current/api/)
+
+## [Components](https://dataflow.spring.io/docs/concepts/architecture/)
+- Data Flow Server: Launch short-lived applications
+- [Skipper Server](Spring Cloud Skipper): Launch long-lived applications; discover Spring Boot applications and manage their lifecycle on multiple Cloud Platforms.
+- Shell: 
+- Dashboard
+
+## Deploy Platforms
+- [Local Machine](https://dataflow.spring.io/docs/installation/local/): Based on docker-compose
+- [Cloud Foundry](https://dataflow.spring.io/docs/installation/cloudfoundry/): 
+- [Kubernetes](https://dataflow.spring.io/docs/installation/kubernetes/)
+
+## Applications/DSL
+- Long-lived Applications: stream with sources, process, and sink
+    - [Stream Developer Guides](https://dataflow.spring.io/docs/stream-developer-guides/)
+    - [Spring Cloud Stream](https://spring.io/projects/spring-cloud-stream)
+    - [Spring Cloud Stream Reference](https://cloud.spring.io/spring-cloud-static/spring-cloud-stream/2.2.1.RELEASE/home.html)
+    - [Spring Cloud Stream App Starters](https://cloud.spring.io/spring-cloud-stream-app-starters/):  Spring Boot based Spring Integration applications that provide integration with external systems    
+- Short-lived Applications: task with batch
+    - [Batch Developer Guides](https://dataflow.spring.io/docs/batch-developer-guides/)
+    - [Spring Cloud Task](https://spring.io/projects/spring-cloud-task)
+    - [Spring Cloud Task Reference](https://docs.spring.io/spring-cloud-task/docs/2.1.3.RELEASE/reference/htmlsingle/)
+    - [Spring Cloud Task App Starters](https://cloud.spring.io/spring-cloud-task-app-starters/): standalone executable applications that can be used for on-demand use-cases such as database migration, machine learning, and scheduled operations.
+    
