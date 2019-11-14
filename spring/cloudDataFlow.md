@@ -55,6 +55,18 @@ sudo DATAFLOW_VERSION=2.2.1.RELEASE SKIPPER_VERSION=2.1.2.RELEASE docker-compose
 wget https://repo.spring.io/release/org/springframework/cloud/spring-cloud-dataflow-shell/2.2.1.RELEASE/spring-cloud-dataflow-shell-2.2.1.RELEASE.jar
 docker exec -it dataflow-server java -jar shell.jar
 ```
+    - Monitor
+```
+docker ps
+```
+         - Prometheus UI at http://localhost:9090/graph and http://localhost:9090/targets
+         - Grafana dashboard at http://localhost:3000:
+         - Dashboard at http(s)://localhost:9393/dashboard
+```
+User: admin
+Password: admin
+```
+
 - [Cloud Foundry](https://dataflow.spring.io/docs/installation/cloudfoundry/): 
 - [Kubernetes](https://dataflow.spring.io/docs/installation/kubernetes/)
 
