@@ -1,4 +1,4 @@
-# vagrant
+# Vagrant
 Easy create a VM (based on VirtualBox, or native VM) with network, ....
 
 # Docker
