@@ -1,4 +1,9 @@
-# Docker: service ran as a pod, pull image from registry (container)
+# vagrant
+Easy create a VM (based on VirtualBox, or native VM) with network, ....
 
-# Kubernates: manage the services(docker)
+# Docker
+service ran as a pod, pull image from registry (container)
+
+# Kubernates
+manage the services(docker)
 
