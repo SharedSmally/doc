@@ -15,6 +15,7 @@ The Spring Cloud Data Flow server uses Spring Cloud Deployer, to deploy data pip
 - [Local Machine](https://dataflow.spring.io/docs/installation/local/): Based on docker-compose
     - install docker
     ```
+    sudo yum install java-1.8.0-openjdk
     sudo yum install wget
     sudo yum install docker
     sudo systemctl enable docker
