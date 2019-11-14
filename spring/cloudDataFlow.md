@@ -15,13 +15,48 @@ The Spring Cloud Data Flow server uses Spring Cloud Deployer, to deploy data pip
 - [Local Machine](https://dataflow.spring.io/docs/installation/local/): Based on docker-compose
     - install docker
     ```
+    sudo yum install wget
     sudo yum install docker
+    sudo systemctl enable docker
+    sudo systemctl start docker
+    sudo systemctl status docker
     ```
     - install docker-compose: See the [latest release](https://github.com/docker/compose/releases)
     ```
     sudo curl -L https://github.com/docker/compose/releases/download/1.25.0-rc4/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
     sudo chmod +x /usr/local/bin/docker-compose
     ```
+    - Downloading the Docker Compose File
+    ```
+    wget https://raw.githubusercontent.com/spring-cloud/spring-cloud-dataflow/v2.2.1.RELEASE/spring-cloud-dataflow-server/docker-compose.yml    
+    ```
+    - Start Docker Compose
+```
+export DATAFLOW_VERSION=2.2.1.RELEASE
+export SKIPPER_VERSION=2.1.2.RELEASE
+docker-compose up
+```
+    or
+```
+DATAFLOW_VERSION=2.2.1.RELEASE SKIPPER_VERSION=2.1.2.RELEASE docker-compose up
+```
+    The Docker Compose file starts instances of the following products:
+    - Spring Cloud Data Flow Server
+    - Spring Cloud Skipper Server
+    - MySQL
+    - Apache Kafka
+    - Prometheus
+    - Grafana
+
+    - Stop Docker Compose
+```
+DATAFLOW_VERSION=2.2.1.RELEASE SKIPPER_VERSION=2.1.2.RELEASE docker-compose down
+```
+    - Cloud Data Flow Shell: included in springcloud/spring-cloud-dataflow-server 
+```
+wget https://repo.spring.io/release/org/springframework/cloud/spring-cloud-dataflow-shell/2.2.1.RELEASE/spring-cloud-dataflow-shell-2.2.1.RELEASE.jar
+docker exec -it dataflow-server java -jar shell.jar
+```
 - [Cloud Foundry](https://dataflow.spring.io/docs/installation/cloudfoundry/): 
 - [Kubernetes](https://dataflow.spring.io/docs/installation/kubernetes/)
 
