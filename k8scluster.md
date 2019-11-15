@@ -1,5 +1,5 @@
 ## setup K8S cluster.
-Using [ coreos-vagrant repo ](https://github.com/coreos/coreos-vagrant). See [Seyup K8S cluster](https://stackoverflow.com/questions/49605297/coreos-cluster-with-vagrant-does-not-start-configure-etcd-correctly?rq=1). Then login node and start etcd service (defined in etcd-member.service) that knows how to fetch and run etcd v3 in a Linux container. No etcd v3-series binary is directly included in the Container Linux filesystem
+Using [ coreos-vagrant repo ](https://github.com/coreos/coreos-vagrant). See [Setup K8S cluster](https://stackoverflow.com/questions/49605297/coreos-cluster-with-vagrant-does-not-start-configure-etcd-correctly?rq=1). Then login node and start etcd service (defined in etcd-member.service) that knows how to fetch and run etcd v3 in a Linux container. No etcd v3-series binary is directly included in the Container Linux filesystem
 ```
 core@core-02 / $ sudo find ./ -name etcd-member.service
 ./usr/lib64/systemd/system/etcd-member.service
