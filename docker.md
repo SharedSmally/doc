@@ -13,7 +13,7 @@ Docker Toolbox includes docker engine, docker-machine(connect to dock hosts), an
 ## [Kitematic](https://kitematic.com/)
 Kitematic is the GUI for dockers. It can be installed from Docker Toolbox.
 
-## Docker VM (hold docker container)
+## Docker VM (hold docker container; similar to vagrant)
 - VM operations:
 
 **docker-machine _create | rm | start | stop | restart | kill_**
