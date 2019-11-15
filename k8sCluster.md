@@ -1,5 +1,5 @@
 
-##[K8s Cluster](https://cloud.google.com/kubernetes-engine/docs/concepts/cluster-architecture)
+## [K8s Cluster](https://cloud.google.com/kubernetes-engine/docs/concepts/cluster-architecture)
 A Kubernetes cluster consists of at least one cluster master and multiple worker machines called nodes. These master and node machines run the Kubernetes cluster orchestration system.
 
 On cluster, apiserver/ kube-scheduler/ kube-controller-manager (needs etcd for data sharing) are running on the master. Kubelet and kube-proxy run on each working nodes. They also need to run container service (docker or rkt, ...).
