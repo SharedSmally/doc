@@ -1,8 +1,10 @@
 
-##[K8s Cluster] https://cloud.google.com/kubernetes-engine/docs/concepts/cluster-architecture
+##[K8s Cluster](https://cloud.google.com/kubernetes-engine/docs/concepts/cluster-architecture)
 A Kubernetes cluster consists of at least one cluster master and multiple worker machines called nodes. These master and node machines run the Kubernetes cluster orchestration system.
 
 On cluster, apiserver/ kube-scheduler/ kube-controller-manager (needs etcd for data sharing) are running on the master. Kubelet and kube-proxy run on each working nodes. They also need to run container service (docker or rkt, ...).
+
+![K8s components](https://d33wubrfki0l68.cloudfront.net/817bfdd83a524fed7342e77a26df18c87266b8f4/3da7c/images/docs/components-of-kubernetes.png)
 
 ### [Master]()
 - The cluster master runs the Kubernetes control plane processes, including the Kubernetes API server, scheduler, and core resource controllers. The master is the unified endpoint for your cluster. All interactions with the cluster are done via Kubernetes API calls, and the master runs the Kubernetes API Server process to handle those requests.
