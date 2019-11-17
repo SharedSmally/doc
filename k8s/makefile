@@ -3,6 +3,7 @@ MINISHIFT_VERSION=1.34.1
 OPENSHIFT_VERSION=3.10.14
 ORIGIN_VERSION=3.11.0
 ORIGIN_TAG=0cbc58b
+FABRIC8_VERSION=0.4.176
 
 main: k8s
 
@@ -41,8 +42,12 @@ openshift-origin-server-v${ORIGIN_VERSION}-${ORIGIN_TAG}-linux-64bit.tar.gz:
 	wget https://github.com/openshift/origin/releases/download/v${ORIGIN_VERSION}/$@ -O $@
 
 # https://fabric8.io/
-fabric8:
-	curl -sS https://get.fabric8.io/download.txt | bash
+# https://github.com/fabric8io/gofabric8/releases/
+fabric8: gofabric8-linux-amd64
+	#curl -sS https://get.fabric8.io/download.txt | bash
+	
+gofabric8-linux-amd64:	
+	wget https://github.com/fabric8io/gofabric8/releases/download/v${FABRIC8_VERSION}/$@ -O $@
 
 #####################################################
 
