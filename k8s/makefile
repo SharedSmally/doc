@@ -22,7 +22,7 @@ minishift:minishift-${MINISHIFT_VERSION}-linux-amd64.tgz
 minishift-${MINISHIFT_VERSION}-linux-amd64.tgz:
 	wget https://github.com/minishift/minishift/releases/download/v${MINISHIFT_VERSION}/$@ -O $@
 
-#  http://www.openshift.org
+#  http://www.openshift.org: needs to login/register
 # openshift: trial version:https://developers.redhat.com/products/openshift/download
 openshift: oc-${OPENSHIFT_VERSION}-linux.tar.gz
 
