@@ -7,8 +7,8 @@ FABRIC8_VERSION=0.4.176
 
 main: k8s
 
-k8stools: minikube minishift openshift
-	# fabric8
+k8stools: minikube minishift origin fabric8
+	#openshift
 
 #####################################################
 # minikube; minishift; openshift/origin; fabric8
