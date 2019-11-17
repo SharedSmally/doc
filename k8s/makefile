@@ -27,7 +27,7 @@ minishift-${MINISHIFT_VERSION}-linux-amd64.tgz:
 openshift: oc-${OPENSHIFT_VERSION}-linux.tar.gz
 
 oc-${OPENSHIFT_VERSION}-linux.tar.gz:
-	https://developers.redhat.com/download-manager/file/$@ -O $@
+	wget https://developers.redhat.com/download-manager/file/$@ -O $@
 
 # Openshift/Origin:trial version OKD: https://www.okd.io/download.html
 # https://github.com/openshift/origin/releases/tag/v3.11.0
