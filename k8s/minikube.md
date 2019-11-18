@@ -1,6 +1,6 @@
 # [Minikube](https://github.com/kubernetes/minikube)
 ## [Document](https://minikube.sigs.k8s.io/docs/)
-- Commands
+- [Commands](https://minikube.sigs.k8s.io/docs/reference/commands/)
 ```
   minikube [command]
 Available Commands:
