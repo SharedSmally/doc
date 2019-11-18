@@ -31,6 +31,8 @@ Available Commands:
 ```
 minikube start
 minikube start -p <cluster_name>
+minikube status
+kubectl get po -A  #list running Pods
 ```
 - stop minikube
 ```
@@ -48,3 +50,27 @@ minikube dashboard
 ```
 minikube addon
 ```
+## Environment
+The config directory is ~/.minikube/:
+- addons
+- cache
+    - images: gcr.io; k8s.gcr.io (docker images from k8s, gcr repositories)
+    - iso: minikube-xxx.iso (ISO for VM)
+    - vx.x.x: kubeadm; kubelet
+- certs
+- config
+- files
+- logs
+- machines: VM disk and image
+- profiles
+
+/var/lib/kubeadm.yaml is used by kubeadm for cluster networking setup:
+- dnsDomain: cluster.local
+- podSubnet: ""
+- serviceSubnet: 10.96.0.0/12
+
+minikube requires access from the host to the following IP ranges:
+- 192.168.99.0/24: Used by the minikube VM. Configurable for some hypervisors via --host-only-cidr
+- 192.168.39.0/24: Used by the minikube kvm2 driver.
+- 10.96.0.0/12: Used by service cluster IP’s. Configurable via --service-cluster-ip-range
+
