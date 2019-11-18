@@ -2,7 +2,7 @@
 Minishift is a tool for application development in local OpenShift clusters. It uses libmachine for provisioning VMs, and OpenShift Origin for running the cluster.
 - [Release](https://github.com/minishift/minishift/releases)
 - [Document](https://docs.okd.io/latest/welcome/index.html)
-
+- [xterm](https://github.com/xtermjs/xterm.js/releases)
 ## Quickstart
 - Start: creates an OpenShift cluster (download minishift-centos7.iso to start a VM)
 ```
