@@ -50,6 +50,19 @@ minikube dashboard
 ```
 minikube addon
 ```
+## [Examples](https://minikube.sigs.k8s.io/docs/examples/)
+- starting a server:
+```
+kubectl create deployment hello-minikube --image=k8s.gcr.io/echoserver:1.4 
+```
+- Exposing a service as a NodePort
+```
+kubectl expose deployment hello-minikube --type=NodePort --port=8080
+```
+- open the exposed endpoint in browser (access the service):
+```
+minikube service hello-minikube
+```
 ## Environment
 The config directory is ~/.minikube/:
 - addons
