@@ -1,6 +1,9 @@
 # [K8S Concepts](https://kubernetes.io/docs/concepts/)
 
 ## K8S Cluster
+- Deployment Platforms
+![Platform](https://d33wubrfki0l68.cloudfront.net/26a177ede4d7b032362289c6fccd448fc4a91174/eb693/images/docs/container_evolution.svg)
+- K8S Components
 ![Kubernetes Components](https://d33wubrfki0l68.cloudfront.net/817bfdd83a524fed7342e77a26df18c87266b8f4/3da7c/images/docs/components-of-kubernetes.png)
 - Master Nodes: responsible for maintaining the desired state for your cluster (using etcd)
     - kube-apiserver: the front end for the Kubernetes control plane to exposes the Kubernetes API.
