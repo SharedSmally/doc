@@ -16,7 +16,7 @@
 - Working Nodes: the machines (VMs, physical servers, etc) that run the applications and cloud workflows
     - kubelet, which communicates with the Kubernetes Master.
     - kube-proxy, a network proxy which reflects Kubernetes networking services on each node.
-- [kubectl](): CLI to communicate with api-server in Master Nodes using [K8S API]()
+- [kubectl](https://kubernetes.io/docs/reference/kubectl/overview/): CLI to communicate with api-server in Master Nodes using [K8S API](https://kubernetes.io/docs/reference/kubernetes-api/api-index/)
 
 ## K8S Objects
 Basic Objects
