@@ -46,7 +46,7 @@ minikube ssh
 ```
 minikube dashboard
 ```
-- kubectl proxy: run kubectl acting as a reverse proxy, and handles locating the apiserver and authenticating
+- [kubectl proxy](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#proxy): run kubectl acting as a reverse proxy, and handles locating the apiserver and authenticating
 ```
 kubectl proxy --port=8080
 curl http://localhost:8080/
