@@ -75,3 +75,81 @@ or permanently save the namespace for all subsequent kubectl commands in that co
 kubectl config set-context --current --namespace=<insert-namespace-name-here>
 ```
 When create a Service, it creates a corresponding DNS entry of the form <service-name>.<namespace-name>.svc.cluster.local.
+
+Not all Objects are in a Namespace. low-level resources, such as nodes and persistentVolumes, are not in any namespace.
+
+### [Labels and Selectors](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/)
+Labels can be used to select objects and to find collections of objects that satisfy certain conditions. They are key/value pairs that are attached to objects, such as pods. They are intended to be used to specify identifying attributes of objects that are meaningful and relevant to users, but do not directly imply semantics to the core system.
+```
+apiVersion: v1
+kind: Pod
+metadata:
+  name: label-demo
+  labels:
+    environment: production
+    app: nginx
+```
+Via a label selector, the client/user can identify a set of objects. K8S API supports two types of selectors: equality-based and set-based. A label selector can be made of multiple requirements which are comma-separated that all must be satisfied so the comma separator acts as a logical AND (&&) operator. For both equality-based and set-based conditions there is no logical OR (||) operator.
+
+- Equality-based requirement
+Equality- or inequality-based requirements allow filtering by label keys and values. Matching objects must satisfy all of the specified label constraints, though they may have additional labels as well. Three kinds of operators are admitted =,==,!=.
+```
+environment = production
+tier != frontend
+environment=production,tier!=frontend
+```
+
+- Set-based requirement (or operation)
+Set-based label requirements allow filtering keys according to a set of values. Three kinds of operators are supported: in,notin and exists (only the key identifier):
+```
+environment in (production, qa)
+tier notin (frontend, backend)
+partition   #all resources including a label with key partition;no values are checked
+!partition
+```
+Set-based requirements can be mixed with equality-based requirements:
+```
+partition in (customerA, customerB),environment!=qa.
+```
+For Service and ReplicationController:
+```
+selector:
+    component: redis
+```
+For resources that support set-based requirement, such as Job, Deployment, Replica Set, and Daemon Set:
+```
+selector:
+  matchLabels:
+    component: redis
+  matchExpressions:
+    - {key: tier, operator: In, values: [cache]}
+    - {key: environment, operator: NotIn, values: [dev]}
+```
+Some [recommended label names](https://kubernetes.io/docs/concepts/overview/working-with-objects/common-labels/): app.kubernetes.io/name:instance:version:component:part-of:managed-by
+
+### [Annotations](https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/)
+ Annotations are not used to identify and select objects. They are key/value pairs, and used to attach arbitrary non-identifying metadata to objects:
+ ```
+apiVersion: v1
+kind: Pod
+metadata:
+  name: annotations-demo
+  annotations:
+    imageregistry: "https://hub.docker.com/"         
+ ```
+ Valid annotation keys have two segments: an optional prefix and name, separated by a slash (/). The prefix is optional. If specified, the prefix must be a DNS subdomain: a series of DNS labels separated by dots (.), not longer than 253 characters in total, followed by a slash (/). The kubernetes.io/ and k8s.io/ prefixes are reserved for Kubernetes core components. Labels without a prefix are private to users.
+ 
+### [Field Selectors](https://kubernetes.io/docs/concepts/overview/working-with-objects/field-selectors/)
+Field selectors is used tp select Kubernetes resources based on the value of one or more resource fields:
+```
+metadata.name=my-service
+metadata.namespace!=default
+status.phase=Pendin
+
+$ kubectl get pods --field-selector status.phase=Running
+```
+The =, ==, and != operators can be used with field selectors (= and == mean the same thing). 
+```
+kubectl get services  --all-namespaces --field-selector metadata.namespace!=default
+kubectl get pods --field-selector=status.phase!=Running,spec.restartPolicy=Always
+```
