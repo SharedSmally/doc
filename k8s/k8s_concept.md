@@ -33,7 +33,7 @@ Basic Objects: Every includes two nested object fields that govern the object’
 - Pod
 - Service
 - Volume
-- Namespace
+- Namespace (virtual cluster)
 
  Higher-level abstractions rely on Controllers to build upon the basic objects:
 - Deployment
@@ -51,4 +51,27 @@ In the .yaml file for the Kubernetes object to create, the following fields are 
 - metadata - Data that helps uniquely identify the object, including a name string, UID, and optional namespace
 - spec - What state you desire for the object
 
+### Namespace
+List the current namespaces in a cluster using:
+```
+kubectl get namespace
+NAME          STATUS    AGE
+default       Active    1d
+kube-system   Active    1d
+kube-public   Active    1d
+```
+Kubernetes starts with three initial namespaces:
+- default: The default namespace for objects with no other namespace
+- kube-system: The namespace for objects created by the Kubernetes system
+- kube-public: This namespace is created automatically and is readable by all users (including those not authenticated).
 
+To set the namespace for a current request, use the --namespace flag.
+```
+kubectl run nginx --image=nginx --namespace=<insert-namespace-name-here>
+kubectl get pods --namespace=<insert-namespace-name-here>
+```
+or permanently save the namespace for all subsequent kubectl commands in that context
+```
+kubectl config set-context --current --namespace=<insert-namespace-name-here>
+```
+When create a Service, it creates a corresponding DNS entry of the form <service-name>.<namespace-name>.svc.cluster.local.
