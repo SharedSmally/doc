@@ -46,6 +46,13 @@ minikube ssh
 ```
 minikube dashboard
 ```
+- kubectl proxy: run kubectl acting as a reverse proxy, and handles locating the apiserver and authenticating
+```
+kubectl proxy --port=8080
+curl http://localhost:8080/
+curl http://localhost:8080/api/
+curl http://localhost:8080/openapi/v2
+```
 - addon management
 ```
 minikube addon
