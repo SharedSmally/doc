@@ -8,12 +8,6 @@
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>
     <xsl:param name="text-encoding" select="'iso-8859-1'"/>
-    <xsl:param name='newline'><xsl:text>
-</xsl:text></xsl:param>
-
-    <xsl:variable name="name" select="/cfile/@name"/>
-    <xsl:variable name="hfile" select="concat(system-property('user.dir'),'/tmp.h')"/>
-    <xsl:variable name="text" select="unparsed-text($hfile,$text-encoding)"/>
 
     <xsl:template match="/">
         <xsl:apply-templates/>
@@ -27,13 +21,12 @@
     <xsl:template match="BODY/DIV/DIV">  <!--  API Overview -->
        <xsl:variable name="date" select="tokenize(tokenize(DIV[1]/DIV[2]/DIV[1],': ')[2], '\s+')[1]"/>
        <xsl:variable name="version" select="tokenize(DIV[1]/DIV[2]/DIV[2],': ')[2]"/>
-<k8s version="{$version}" date="{$date}">
+<k8sapi version="{$version}" date="{$date}">
            <xsl:apply-templates/>
-</k8s>
+</k8sapi>
     </xsl:template>
     
     <!-- example -->
-<!-- 
     <xsl:template match="BODY/DIV/DIV/DIV">   
         <xsl:variable name="kube" select="DIV/DIV/PRE[@class='kubectl']"/>
         <xsl:variable name="curl" select="DIV/DIV/PRE[@class='curl']"/>
@@ -48,19 +41,25 @@
 </example>
         </xsl:if>
     </xsl:template>
--->
-
+ 
     <xsl:template match="BODY/DIV/DIV/H1">
 <group name="{text()}">
 </group>
     </xsl:template>
 
+    <!-- H2 could also be group -->
     <xsl:template match="BODY/DIV/DIV/H2">  <!-- following siblings: request/<P>; response: text or STRONG/text() -->
           <xsl:choose>
               <xsl:when test="count(STRONG)=0">
                  <xsl:variable name="desc" select="normalize-space(following-sibling::P[1]/text())"></xsl:variable>
-<operation name="{text()}" id="{@id}" desc="{$desc}">
-</operation>
+                 <xsl:choose>
+                    <xsl:when test="name(following-sibling::*[1])='TABLE'">
+<group name="{text()}" id="{@id}" desc="{$desc}"/>
+                    </xsl:when>
+                    <xsl:otherwise>
+<operation name="{text()}" id="{@id}" desc="{$desc}"/>
+                    </xsl:otherwise>
+                 </xsl:choose>
               </xsl:when>
               <xsl:otherwise>
                 <xsl:variable name="name" select="STRONG"/>
@@ -86,10 +85,10 @@
     </xsl:template>
     
     <xsl:template match="BODY/DIV/DIV/TABLE">  <!--  latest previous sibling of H1, H2, H3; THEAD/TBODY -->
-       <xsl:variable name="name" select="THEAD/TR/TH[1]/text()"/>  <!--  CODE/DESC; FIELD/DESC;    -->
+       <xsl:variable name="name" select="THEAD/TR/TH[1]/text()"/>  <!--  FIELD/DESC; Parameter/Desc; CODE/DESC; Group/Id/Kind    -->
          <xsl:choose>
              <xsl:when test="$name='Field'">
-<resource name="{$name}">
+<resource>
              <xsl:apply-templates select="TBODY/TR"/>
 </resource>
              </xsl:when>
