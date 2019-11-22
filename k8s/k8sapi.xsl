@@ -14,7 +14,6 @@
     </xsl:template>
 
     <xsl:template match="HTML">
-        <xsl:apply-templates select="BODY/DIV[@id='sidebar-wrapper']" mode="side"/>
         <xsl:apply-templates select="BODY/DIV/DIV[@id='page-content-wrapper']"/>
     </xsl:template>
 
@@ -25,30 +24,15 @@
            <xsl:apply-templates/>
 </k8sapi>
     </xsl:template>
-    
-    <!-- example -->
-    <xsl:template match="BODY/DIV/DIV/DIV">   
-        <xsl:variable name="kube" select="DIV/DIV/PRE[@class='kubectl']"/>
-        <xsl:variable name="curl" select="DIV/DIV/PRE[@class='curl']"/>
-        <xsl:if test="string-length($kube)>0 or string-length($curl)>0">
-<example name="{@id}">
-            <xsl:if test="string-length($kube)>0">
-    <xsl:value-of select="$kube"/>
-            </xsl:if>
-            <xsl:if test="string-length($curl)>0">
-    <xsl:value-of select="$curl"/>
-            </xsl:if>
-</example>
-        </xsl:if>
-    </xsl:template>
- 
+
     <xsl:template match="BODY/DIV/DIV/H1">
 <group name="{text()}">
 </group>
     </xsl:template>
 
     <!-- H2 could also be group -->
-    <xsl:template match="BODY/DIV/DIV/H2">  <!-- following siblings: request/<P>; response: text or STRONG/text() -->
+    <!-- following siblings: request/<P>; response: text or STRONG/text() -->
+    <xsl:template match="BODY/DIV/DIV/H2">  
           <xsl:choose>
               <xsl:when test="count(STRONG)=0">
                  <xsl:variable name="desc" select="normalize-space(following-sibling::P[1]/text())"></xsl:variable>
@@ -84,8 +68,9 @@
 </request>
     </xsl:template>
     
-    <xsl:template match="BODY/DIV/DIV/TABLE">  <!--  latest previous sibling of H1, H2, H3; THEAD/TBODY -->
-       <xsl:variable name="name" select="THEAD/TR/TH[1]/text()"/>  <!--  FIELD/DESC; Parameter/Desc; CODE/DESC; Group/Id/Kind    -->
+    <!--  FIELD/DESC; Parameter/Desc; CODE/DESC; Group/Id/Kind    -->
+    <xsl:template match="BODY/DIV/DIV/TABLE">  
+       <xsl:variable name="name" select="THEAD/TR/TH[1]/text()"/>  
          <xsl:choose>
              <xsl:when test="$name='Field'">
 <resource>
@@ -152,17 +137,5 @@
 
     <xsl:template match="*">
     </xsl:template>
-    <xsl:template match="BODY/DIV" mode="side">
-    </xsl:template>
-    
-   <xsl:function name="cpw:getText">
-       <xsl:param name="node"/>
-       <xsl:variable name="t1" select="$node/text()"/>
-       <xsl:variable name="t2" select="$node/STRONG/text()"/>
-       <xsl:choose>
-          <xsl:when test="string-length($t1)>0"><xsl:value-of select="$t1"/></xsl:when>
-          <xsl:when test="string-length($t2)>0"><xsl:value-of select="$t2"/></xsl:when>
-       </xsl:choose>
-   </xsl:function>
 
 </xsl:stylesheet>
