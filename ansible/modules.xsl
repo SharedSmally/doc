@@ -11,12 +11,38 @@
 
     <xsl:template match="/">
 <ansible category="modules">
-        <xsl:apply-templates select="html/body/blockquote/div/ul[@class='simple']/li"/>
+        <xsl:apply-templates select="html/body/div/nav/div/div/ul[@class='current']/li/ul" mode="index"/>
+        <xsl:apply-templates select="html/body/section/div/div/div/div/div/blockquote/div/ul" mode="all"/>   
 </ansible>
     </xsl:template>
 
-    <xsl:template match="html/body/blockquote/div/ul/li">
-<module href="{a/@href}"><xsl:value-of select="text()"/></module>
+    <xsl:template match="ul" mode="index">
+<modules category="index">
+        <xsl:apply-templates mode="index"/>
+</modules>
+    </xsl:template>
+
+    <xsl:template match="li" mode="index">
+       <xsl:variable name="href" select="a[1]/@href"/>
+       <xsl:if test="starts-with($href, 'list_of_')">    
+<module name="{$href}">
+    <xsl:value-of select="a[1]"/>
+</module>
+       </xsl:if>
+    </xsl:template>
+
+    <xsl:template match="ul"  mode="all">
+<modules category="all">
+        <xsl:apply-templates mode="all"/>
+</modules>
+    </xsl:template>
+        
+    <xsl:template match="li" mode="all">
+    <xsl:variable name="href" select="tokenize(a[1]/@href, '#')"/>
+<module name="{$href[2]}" href="{$href[1]}">
+    <xsl:value-of select="a[1]"/>
+</module>
     </xsl:template>
     
+    <xsl:template match="*"/>
 </xsl:stylesheet>
