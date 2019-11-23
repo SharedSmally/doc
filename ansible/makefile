@@ -1,6 +1,3 @@
-NAME=ansible
-URL=https://docs.ansible.com/ansible/latest/modules/list_of_all_modules.html
-
 main: modules.xml
 
 modules.xml: modules.h.xml  
@@ -29,7 +26,6 @@ modules.h.xml: modules.html
 	
 modules.html: 
 	wget ${URL} -O $@
-
 	
 clean:
 	${RM} modules.xml
