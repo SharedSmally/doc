@@ -1,8 +1,7 @@
 <xsl:stylesheet
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
     xmlns:xs="http://www.w3.org/2001/XMLSchema"
-    xmlns:cpw="http://www.jpw.com/product/app/cxx"
-    exclude-result-prefixes="cpw xs"
+    exclude-result-prefixes="xs"
     version="2.0">
 
     <xsl:output method="xml" indent="yes"/>
@@ -24,10 +23,9 @@
 
     <xsl:template match="li" mode="index">
        <xsl:variable name="href" select="a[1]/@href"/>
-       <xsl:if test="starts-with($href, 'list_of_')">    
-<module name="{$href}">
-    <xsl:value-of select="a[1]"/>
-</module>
+       <xsl:if test="starts-with($href, 'list_of_')">
+       <xsl:variable name="name" select="replace(a[1],' modules','')"/>    
+<module name="{$name}" href="{$href}"/>
        </xsl:if>
     </xsl:template>
 
