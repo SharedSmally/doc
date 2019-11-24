@@ -5,6 +5,7 @@
 - Commands
     - ansible
     - ansible-config:
+    
     View, edit, and manage ansible configuration from ANSIBLE_CONFIG, ./ansible.cfg, ~/.ansible.cfg or /etc/ansible/ansible.cfg.
     - ansible-connection
     - ansible-console
