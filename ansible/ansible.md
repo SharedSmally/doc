@@ -76,7 +76,15 @@ tasks/main.yml
     state: present
 ```
 
+## Ansible Tutorial
+- [Tutorial](https://www.tutorialspoint.com/ansible/index.htm)
+    - [role tutorial](https://www.tutorialspoint.com/ansible/ansible_roles.htm)
+```
+ansible-playbook -i hosts main.yml 
+```
+
 ## [User Guide](https://docs.ansible.com/ansible/latest/user_guide/index.html)
+
 
 ## [Play Books](https://docs.ansible.com/ansible/latest/user_guide/playbooks.html)
 playbook is a YAML file to map a group of hosts to some well defined roles, represented by tasks. a task is nothing more than a call to an ansible module.
