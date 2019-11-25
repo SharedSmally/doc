@@ -1,4 +1,5 @@
-# Ansible(on Python, Shell and OpenSSH)
+# Ansible
+Based on Python, Shell and OpenSSH
 - [Documents](https://docs.ansible.com/ansible/latest/index.html)
 - [Modules](https://docs.ansible.com/ansible/latest/modules/modules_by_category.html)
 - [GitHub](https://github.com/ansible/ansible)
@@ -19,6 +20,58 @@
     ansible-playbook playbook.yml -f 10 -i inventory-file
     ```
     - ansible-vault: encryption/decryption utility for Ansible data files
+    
+## Ansible Basic 
+- Tools
+    - Verify ansible file
+    ```
+    ansible-lint playbook.yml
+    ```
+    - Run ansible
+    ```
+    ansible-playbook -i hosts main.yml 
+    ```
+    - Roles management
+    ```
+    ansible-galaxy init xxxrole
+    ```
+    - [Playbook, Role, Block, Task top levels](https://docs.ansible.com/ansible/latest/reference_appendices/playbooks_keywords.html)
+    ```
+    hosts; vars; var_files; tasks; handlers
+    ```
+    
+- [Playbook Introduction](https://docs.ansible.com/ansible/latest/user_guide/playbooks_intro.html)
+playbook is a YAML file to map a group of hosts to some well defined roles, represented by tasks. a task is nothing more than a call to an ansible module.
+```
+---
+- hosts: webservers
+  vars:
+    http_port: 80
+    max_clients: 200
+  remote_user: root
+  tasks:
+  - name: ensure apache is at the latest version
+    yum:
+      name: httpd
+      state: latest
+  - name: write the apache config file
+    template:
+      src: /srv/httpd.j2
+      dest: /etc/httpd.conf
+    notify:
+    - restart apache
+  - name: ensure apache is running
+    service:
+      name: httpd
+      state: started
+  handlers:
+    - name: restart apache
+      service:
+        name: httpd
+        state: restarted
+```
+- [Best Practices](https://docs.ansible.com/ansible/latest/user_guide/playbooks_best_practices.html)  
+
 ## [Roles](https://docs.ansible.com/ansible/latest/user_guide/playbooks_reuse_roles.html)
 Roles are ways of automatically loading certain vars_files, tasks, and handlers based on a known file structure. 
 ```
@@ -79,43 +132,12 @@ tasks/main.yml
 ## Ansible Tutorial
 - [Tutorial](https://www.tutorialspoint.com/ansible/index.htm)
     - [role tutorial](https://www.tutorialspoint.com/ansible/ansible_roles.htm)
-```
-ansible-playbook -i hosts main.yml 
-```
+
 
 ## [User Guide](https://docs.ansible.com/ansible/latest/user_guide/index.html)
 
 
 ## [Play Books](https://docs.ansible.com/ansible/latest/user_guide/playbooks.html)
-playbook is a YAML file to map a group of hosts to some well defined roles, represented by tasks. a task is nothing more than a call to an ansible module.
-```
----
-- hosts: webservers
-  vars:
-    http_port: 80
-    max_clients: 200
-  remote_user: root
-  tasks:
-  - name: ensure apache is at the latest version
-    yum:
-      name: httpd
-      state: latest
-  - name: write the apache config file
-    template:
-      src: /srv/httpd.j2
-      dest: /etc/httpd.conf
-    notify:
-    - restart apache
-  - name: ensure apache is running
-    service:
-      name: httpd
-      state: started
-  handlers:
-    - name: restart apache
-      service:
-        name: httpd
-        state: restarted
-```
 
 - [variables](https://docs.ansible.com/ansible/latest/user_guide/playbooks_variables.htm)
     - Define variables
