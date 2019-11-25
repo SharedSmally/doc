@@ -4,10 +4,9 @@
 - [GitHub](https://github.com/ansible/ansible)
 - [Commands](https://docs.ansible.com/ansible/latest/user_guide/command_line_tools.html)
     - ansible: define and run a single task ‘playbook’ against a set of hosts
-```
-$ ansible [pattern] -m [module] -a "[module options]"  -u username
-```
-
+    ```
+      $ ansible [pattern] -m [module] -a "[module options]"  -u username
+    ```
     - ansible-playbook: run Ansible playbooks, executing the defined tasks on the targeted hosts.
     - ansible-config: view, edit, and manage ansible configuration from ANSIBLE_CONFIG, ./ansible.cfg, ~/.ansible.cfg or /etc/ansible/ansible.cfg.
     - ansible-connection
@@ -20,9 +19,48 @@ $ ansible [pattern] -m [module] -a "[module options]"  -u username
 
 ## [User Guide](https://docs.ansible.com/ansible/latest/user_guide/index.html)
 
-## Play Books
+## [Play Books](https://docs.ansible.com/ansible/latest/user_guide/playbooks.html)
+- Register Variables
+```
+ name: test play
+  hosts: all
+  tasks:
+      - shell: cat /etc/motd
+        register: motd_contents
+      - shell: echo "motd contains the word hi"
+        when: motd_contents.stdout.find('hi') != -1
+```
+- [conditionals](https://docs.ansible.com/ansible/latest/user_guide/playbooks_conditionals.html): when statement
+```
+tasks:
+  - name: "shut down CentOS 6 and Debian 7 systems"
+    command: /sbin/shutdown -t now
+    when: (ansible_facts['distribution'] == "CentOS" and ansible_facts['distribution_major_version'] == "6") or
+          (ansible_facts['distribution'] == "Debian" and ansible_facts['distribution_major_version'] == "7")
 
-## Jinja2 template
+tasks:
+    - command: echo {{ item }}
+      loop: [ 0, 2, 4, 6, 8, 10 ]
+      when: item > 5          
+```
+- [loop](https://docs.ansible.com/ansible/latest/user_guide/playbooks_loops.html):  loop and with_<lookup>
+```
+- name: add several users
+  user:
+    name: "{{ item }}"
+    state: present
+    groups: "wheel"
+  loop:   #loop: "{{ somelist }}"
+     - testuser1
+     - testuser2
+```
+- [Block](https://docs.ansible.com/ansible/latest/user_guide/playbooks_blocks.html)
+
+## [Jinja2 template](https://docs.ansible.com/ansible/latest/user_guide/playbooks_templating.html)
+
+## [Modules](https://docs.ansible.com/ansible/latest/modules/modules_by_category.html)
+
+## [Plugins](https://docs.ansible.com/ansible/latest/plugins/action.html)
 
 ## [YAML](https://docs.ansible.com/ansible/latest/reference_appendices/YAMLSyntax.html)
 - All YAML files can optionally begin with --- and end with .... to indicate the start and end of a document.
