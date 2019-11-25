@@ -15,13 +15,119 @@
     - ansible-galaxy: manage Ansible roles in shared repositories
     - ansible-inventory: display or dump the configured inventory
     - ansible-pull: pull playbooks from a VCS repo and executes them for the local host
+    ```
+    ansible-playbook playbook.yml -f 10 -i inventory-file
+    ```
     - ansible-vault: encryption/decryption utility for Ansible data files
+## [Roles](https://docs.ansible.com/ansible/latest/user_guide/playbooks_reuse_roles.html)
+Roles are ways of automatically loading certain vars_files, tasks, and handlers based on a known file structure. 
+```
+site.yml
+webservers.yml
+fooservers.yml
+roles/
+   common/
+     tasks/
+     handlers/
+     files/
+     templates/
+     vars/
+     defaults/
+     meta/
+   webservers/
+     tasks/
+     defaults/
+     meta/
+```
+- tasks - contains the main list of tasks to be executed by the role.
+- handlers - contains handlers, which may be used by this role or even anywhere outside this role.
+- defaults - default variables for the role 
+- vars - other variables for the role 
+- files - contains files which can be deployed via this role.
+- templates - contains templates which can be deployed via this role.
+- meta - defines some meta data for this role. 
+
+webservers.yml:
+```
+---
+- hosts: webservers
+  roles:
+    - common
+    - webservers
+```
+
+tasks/main.yml
+```
+# roles/example/tasks/main.yml
+- name: added in 2.4, previously you used 'include'
+  import_tasks: redhat.yml
+  when: ansible_facts['os_family']|lower == 'redhat'
+- import_tasks: debian.yml
+  when: ansible_facts['os_family']|lower == 'debian'
+
+# roles/example/tasks/redhat.yml
+- yum:
+    name: "httpd"
+    state: present
+
+# roles/example/tasks/debian.yml
+- apt:
+    name: "apache2"
+    state: present
+```
 
 ## [User Guide](https://docs.ansible.com/ansible/latest/user_guide/index.html)
 
 ## [Play Books](https://docs.ansible.com/ansible/latest/user_guide/playbooks.html)
-- Register Variables
+playbook is a YAML file to map a group of hosts to some well defined roles, represented by tasks. a task is nothing more than a call to an ansible module.
 ```
+---
+- hosts: webservers
+  vars:
+    http_port: 80
+    max_clients: 200
+  remote_user: root
+  tasks:
+  - name: ensure apache is at the latest version
+    yum:
+      name: httpd
+      state: latest
+  - name: write the apache config file
+    template:
+      src: /srv/httpd.j2
+      dest: /etc/httpd.conf
+    notify:
+    - restart apache
+  - name: ensure apache is running
+    service:
+      name: httpd
+      state: started
+  handlers:
+    - name: restart apache
+      service:
+        name: httpd
+        state: restarted
+```
+
+- [variables](https://docs.ansible.com/ansible/latest/user_guide/playbooks_variables.htm)
+    - Define variables
+    ```
+- hosts: all
+  remote_user: root
+  vars:
+    favcolor: blue
+  vars_files:
+    - /vars/external_vars.yml
+  tasks:
+    ```
+    - Access variable
+    ```
+    {{ ansible_facts["eth0"]["ipv4"]["address"] }}
+    {{ ansible_facts.eth0.ipv4.address }}
+    {{ foo[0] }} # for array
+    ```
+    - Register Variables
+    ```
  name: test play
   hosts: all
   tasks:
@@ -29,7 +135,8 @@
         register: motd_contents
       - shell: echo "motd contains the word hi"
         when: motd_contents.stdout.find('hi') != -1
-```
+    ```
+
 - [conditionals](https://docs.ansible.com/ansible/latest/user_guide/playbooks_conditionals.html): when statement
 ```
 tasks:
