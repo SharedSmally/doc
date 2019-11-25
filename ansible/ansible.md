@@ -7,6 +7,7 @@
 ```
 $ ansible [pattern] -m [module] -a "[module options]"  -u username
 ```
+
     - ansible-playbook: run Ansible playbooks, executing the defined tasks on the targeted hosts.
     - ansible-config: view, edit, and manage ansible configuration from ANSIBLE_CONFIG, ./ansible.cfg, ~/.ansible.cfg or /etc/ansible/ansible.cfg.
     - ansible-connection
