@@ -111,7 +111,7 @@ playbook is a YAML file to map a group of hosts to some well defined roles, repr
 
 - [variables](https://docs.ansible.com/ansible/latest/user_guide/playbooks_variables.htm)
     - Define variables
-    ```
+```
 - hosts: all
   remote_user: root
   vars:
@@ -120,6 +120,7 @@ playbook is a YAML file to map a group of hosts to some well defined roles, repr
     - /vars/external_vars.yml
   tasks:
     ```
+    
     - Access variable
     ```
     {{ ansible_facts["eth0"]["ipv4"]["address"] }}
