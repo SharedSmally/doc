@@ -19,21 +19,21 @@ Usage: docker [OPTIONS] COMMAND [ARG...]
     - Versioning
     - Authentication
     - Containers      
-          - List containers
-          - Create/Kill/Remove/Delete a container
-          - Start/Stop/Restart a container
-          - Update/Rename/Resize a container
-          - Pause/Unpause a container
-          - Export/Wait for a container
-          - Attach to a container or via a websocket
-          - Inspect a container
-          - List processes running inside a container
-          - Get container logs
-          - Get changes on a container’s filesystem          
-          - Get container stats based on resource usage
-          - Get information about files in a container
-          - Get an archive of a filesystem resource in a container
-          - Extract an archive of files or folders to a directory in a container
+         - List containers
+         - Create/Kill/Remove/Delete a container
+         - Start/Stop/Restart a container
+         - Update/Rename/Resize a container
+         - Pause/Unpause a container
+         - Export/Wait for a container
+         - Attach to a container or via a websocket
+         - Inspect a container
+         - List processes running inside a container
+         - Get container logs
+         - Get changes on a container’s filesystem          
+         - Get container stats based on resource usage
+         - Get information about files in a container
+         - Get an archive of a filesystem resource in a container
+         - Extract an archive of files or folders to a directory in a container
     - Images      
           - List Images
           - Build/Create/Remove/Delete/Delete cache
