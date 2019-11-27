@@ -12,7 +12,106 @@ Common commands for Dockerfile:
 | CMD     | Defaults for an executing container | `CMD ["/bin/echo", "hello world"]`|
 | EXPOSE  | Informs the network ports that the container will listen on | `EXPOSE 8093`|
 
-- docker build: Build an image from a Dockerfile
+## dockerfile format: # for comments
+- FROM
+
+Initializes a new build stage and sets the Base Image for subsequent instructions. ARG is the only instruction that may precede FROM in the Dockerfile. FROM can appear multiple times within a single Dockerfile to create multiple images or use one build stage as a dependency for another. 
+```
+FROM <image> [AS <name>]
+FROM <image>[:<tag>] [AS <name>]
+FROM <image>[@<digest>] [AS <name>]
+```
+
+- RUN
+```
+RUN <command> (shell form, the command is run in a shell, default is /bin/sh -c on Linux or cmd /S /C on Windows)
+RUN ["executable", "param1", "param2"] (exec form)
+```
+
+- CMD
+```
+CMD ["executable","param1","param2"] (exec form, this is the preferred form)
+CMD ["param1","param2"] (as default parameters to ENTRYPOINT)
+CMD command param1 param2 (shell form)
+```
+
+- LABEL
+```
+LABEL <key>=<value> <key>=<value> <key>=<value> ...
+```
+
+- EXPOSE: protocol=TCP or UDP
+```
+EXPOSE <port> [<port>/<protocol>...]
+```
+
+- ENV
+```
+ENV <key> <value>
+ENV <key>=<value> ...
+```
+
+- ADD
+```
+ADD [--chown=<user>:<group>] <src>... <dest>
+ADD [--chown=<user>:<group>] ["<src>",... "<dest>"] (required for paths containing whitespace)
+```
+
+- COPY
+```
+COPY [--chown=<user>:<group>] <src>... <dest>
+COPY [--chown=<user>:<group>] ["<src>",... "<dest>"] (required for paths containing whitespace)
+```  
+
+- ENTRYPOINT
+```
+ENTRYPOINT ["executable", "param1", "param2"] (exec form, preferred)
+ENTRYPOINT command param1 param2 (shell form)
+```
+
+- VOLUME
+```
+VOLUME ["/data"]
+```
+
+- USER
+```
+USER <user>[:<group>] or
+USER <UID>[:<GID>]
+```
+
+- WORKDIR
+```
+WORKDIR /path/to/workdir
+```
+
+- ARG
+```
+ARG <name>[=<default value>]
+```
+
+- ONBUILD
+```
+ONBUILD [INSTRUCTION]
+```
+
+- STOPSIGNAL
+```
+STOPSIGNAL signal
+```
+
+- HEALTHCHECK
+```
+HEALTHCHECK [OPTIONS] CMD command (check container health by running a command inside the container)
+HEALTHCHECK NONE (disable any healthcheck inherited from the base image)
+```
+
+- SHELL
+```
+SHELL ["executable", "parameters"]
+```
+
+## docker build: Build an image from a Dockerfile
 
 The docker build command builds an image from a Dockerfile and a context. The build’s context is the set of files at a specified location PATH or URL. The PATH is a directory on your local filesystem. The URL is a Git repository location.
 ```
