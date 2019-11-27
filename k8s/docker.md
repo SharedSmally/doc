@@ -2,6 +2,13 @@
 - docker engine (Docker daemon: [dockerd](https://docs.docker.com/engine/reference/commandline/dockerd/))
 - docker client ([docker](https://docs.docker.com/engine/reference/commandline/cli/))
 
+Run docker without sudo:
+```
+$sudo usermod -a -G docker `whoami`
+$newgrp docker
+$docker ps
+```
+
 ## [Reference](https://docs.docker.com/reference/)
 - [Docker File Format](https://docs.docker.com/engine/reference/builder/)
 - [docker CLI](https://docs.docker.com/engine/reference/commandline/cli/)
