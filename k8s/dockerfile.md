@@ -1,9 +1,10 @@
 # Dockerfile
 Dockerfile is used to build docker image. The complete reference is at https://docs.docker.com/reference/builder/:
 
-.Common commands for Dockerfile:
+Common commands for Dockerfile:
 
-| Command | Purpose | Example|
+| Command | Description | Example  |
+| ------- | ----------- |------------- |
 | FROM    | First non-comment instruction in _Dockerfile_ | `FROM ubuntu`|
 | COPY    | Copies mulitple source files from the context to the file system of the container at the specified path | `COPY .bash_profile /home`|
 | ENV     | Sets the environment variable | `ENV HOSTNAME=test`|
