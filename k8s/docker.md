@@ -35,41 +35,41 @@ Usage: docker [OPTIONS] COMMAND [ARG...]
          - Get an archive of a filesystem resource in a container
          - Extract an archive of files or folders to a directory in a container
     - Images      
-          - List Images
-          - Build/Create/Remove/Delete/Delete cache
-          - Push/Tag/Search an image
-          - Inspect an image/Get the history of an image  
-          - Export/Export/Import
+         - List Images
+         - Build/Create/Remove/Delete/Delete cache
+         - Push/Tag/Search an image
+         - Inspect an image/Get the history of an image  
+         - Export/Export/Import
     - Networks
-          - List networks
-          - Create/Remove/Delete/Inspect a network
-          - Connect/Disconnect a container to a network
+         - List networks
+         - Create/Remove/Delete/Inspect a network
+         - Connect/Disconnect a container to a network
     - Volumes
-          - List volumes
-          - Create/Remove/Delete/Inspect a volume
+         - List volumes
+         - Create/Remove/Delete/Inspect a volume
     - Exec
-          - Create/Start/Resize/Inspect an exec instance
+         - Create/Start/Resize/Inspect an exec instance
     - Swarm
-          - Initialize/Join/Leave/Update/Lock/Unlock/Inspect
+         - Initialize/Join/Leave/Update/Lock/Unlock/Inspect
     - Nodes
-          - List/Inspect/Delete/Update a node
+         - List/Inspect/Delete/Update a node
     - Services
-          - List/Create/Inspect/Delete/Update/Get service logs
+         - List/Create/Inspect/Delete/Update/Get service logs
     - Tasks
-          - List tasks/Inspect a task/ Get task logs
+         - List tasks/Inspect a task/ Get task logs
     - Secrets
-          - List secrets/Create/Inspect/Delete/Update a secret
+         - List secrets/Create/Inspect/Delete/Update a secret
     - Configs
-          - List configs/Create/Inspect/Delete/Update a Config
+         - List configs/Create/Inspect/Delete/Update a Config
     - Plugins
-          - List plugins
-          - Get plugin privileges
-          - Create/Install/Config/Inspect/Remove a plugin
-          - Enable/Disable/Upgrade/Push a plugin
+         - List plugins
+         - Get plugin privileges
+         - Create/Install/Config/Inspect/Remove a plugin
+         - Enable/Disable/Upgrade/Push a plugin
     - System    
-          - Check auth configuration
-          - Get system/data usage information
-          - Monitor events
+         - Check auth configuration
+         - Get system/data usage information
+         - Monitor events
     - Distribution
-           - Get image information from the registry
+         - Get image information from the registry
     - Session
