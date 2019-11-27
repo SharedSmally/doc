@@ -1,13 +1,18 @@
 # [Docker](https://docs.docker.com)
-- docker engine (dockerd)
-- docker client (docker)
+- docker engine (Docker daemon: [dockerd](https://docs.docker.com/engine/reference/commandline/dockerd/))
+- docker client ([docker](https://docs.docker.com/engine/reference/commandline/cli/))
 
 ## [Reference](https://docs.docker.com/reference/)
 - [Docker File Format](https://docs.docker.com/engine/reference/builder/)
 - [docker CLI](https://docs.docker.com/engine/reference/commandline/cli/)
+```
+$ docker
+Usage: docker [OPTIONS] COMMAND [ARG...]
+       docker [ --help | -v | --version ]
+```
     - VM
     - Images
-    - Containers
+    - Container
     
 - [docker API](https://docs.docker.com/engine/api/v1.40/): in OpenAPI format
     - Errors
