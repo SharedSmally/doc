@@ -24,15 +24,15 @@ Docker Maven Plugin allows you to manage Docker images and containers using Mave
 |docker:logs|Show container logs|
 Complete set of goals are listed at https://github.com/fabric8io/docker-maven-plugin.
 
-    - Create the Docker image:
+   - Create the Docker image:
     ```
      mvn -f docker-java-sample/pom.xml package -Pdocker
     ```
-    - Run the Docker container:
+   - Run the Docker container:
     ```
     mvn -f docker-java-sample/pom.xml install -Pdocker
     ```
-    - Update pom.xml to enable Docker packaging and running:
+   - Update pom.xml to enable Docker packaging and running:
 ```
 <profiles>
     <profile>
