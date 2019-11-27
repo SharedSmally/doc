@@ -14,6 +14,7 @@ Common commands for Dockerfile:
 
 - [Docker for Java](https://github.com/docker/labs/tree/master/developer-tools/java/)
 Docker Maven Plugin allows you to manage Docker images and containers using Maven. It comes with predefined goals:
+
 | Goal |	Description |
 |docker:build|Build images||
 |docker:start|Create and start containers|
@@ -22,14 +23,15 @@ Docker Maven Plugin allows you to manage Docker images and containers using Mave
 |docker:remove|Remove images from local docker host|
 |docker:logs|Show container logs|
 Complete set of goals are listed at https://github.com/fabric8io/docker-maven-plugin.
+
     - Create the Docker image:
-```
-mvn -f docker-java-sample/pom.xml package -Pdocker
-```
+    ```
+     mvn -f docker-java-sample/pom.xml package -Pdocker
+    ```
     - Run the Docker container:
-```
-mvn -f docker-java-sample/pom.xml install -Pdocker
-```
+    ```
+    mvn -f docker-java-sample/pom.xml install -Pdocker
+    ```
     - Update pom.xml to enable Docker packaging and running:
 ```
 <profiles>
