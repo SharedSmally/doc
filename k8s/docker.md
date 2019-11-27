@@ -10,10 +10,9 @@ $ docker
 Usage: docker [OPTIONS] COMMAND [ARG...]
        docker [ --help | -v | --version ]
 ```
-
-   - VM
-   - Images
-   - Container
+         - VM
+         - Images
+         - Container
     
 - [docker API](https://docs.docker.com/engine/api/v1.40/): in OpenAPI format
     - Errors
