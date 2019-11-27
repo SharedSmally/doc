@@ -13,6 +13,7 @@ Common commands for Dockerfile:
 | EXPOSE  | Informs the network ports that the container will listen on | `EXPOSE 8093`|
 
 - docker build: Build an image from a Dockerfile
+The docker build command builds an image from a Dockerfile and a context. The build’s context is the set of files at a specified location PATH or URL. The PATH is a directory on your local filesystem. The URL is a Git repository location.
 ```
 Usage:  docker build [OPTIONS] PATH | URL | -
   -f, --file=                     Name of the Dockerfile (Default is 'PATH/Dockerfile')
