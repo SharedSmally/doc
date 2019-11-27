@@ -22,7 +22,9 @@ Usage: docker [OPTIONS] COMMAND [ARG...]
 ```
          - VM
          - Images
-         - Container
+         - Containers
+         - Volumes
+         - Networks
 ![container lifecycle](https://miro.medium.com/max/1129/1*vca4e-SjpzSL5H401p4LCg.png)
     
 - [docker API](https://docs.docker.com/engine/api/v1.40/): in OpenAPI format
