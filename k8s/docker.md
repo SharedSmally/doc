@@ -8,8 +8,8 @@
 ```
 $ docker
 Usage: docker [OPTIONS] COMMAND [ARG...]
-       docker [ --help | -v | --version ]
-```
+       docker [ --help | -v | --version ]```
+    
     - VM
     - Images
     - Container
