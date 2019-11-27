@@ -13,6 +13,7 @@ Common commands for Dockerfile:
 | EXPOSE  | Informs the network ports that the container will listen on | `EXPOSE 8093`|
 
 - [Docker for Java](https://github.com/docker/labs/tree/master/developer-tools/java/)
+
 Docker Maven Plugin allows you to manage Docker images and containers using Maven. It comes with predefined goals:
 
 | Goal |	Description |
