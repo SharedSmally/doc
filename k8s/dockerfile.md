@@ -16,12 +16,14 @@ Common commands for Dockerfile:
 Docker Maven Plugin allows you to manage Docker images and containers using Maven. It comes with predefined goals:
 
 | Goal |	Description |
+| ---- | ----------- |
 |docker:build|Build images||
 |docker:start|Create and start containers|
 |docker:stop|Stop and destroy containers|
 |docker:push|Push images to a registry|
 |docker:remove|Remove images from local docker host|
 |docker:logs|Show container logs|
+
 Complete set of goals are listed at https://github.com/fabric8io/docker-maven-plugin.
 
    - Create the Docker image:
