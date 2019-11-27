@@ -111,6 +111,11 @@ HEALTHCHECK NONE (disable any healthcheck inherited from the base image)
 SHELL ["executable", "parameters"]
 ```
 
+## Environment replacement
+Environment variables (declared with the ENV statement) can be used in certain instructions as variables to be interpreted by the Dockerfile. Escapes are also handled for including variable-like syntax into a statement literally.
+
+Environment variables are notated in the Dockerfile either with ```$variable_name``` or ```${variable_name}```. They are treated equivalently and the brace syntax is typically used to address issues with variable names with no whitespace, like ${foo}_bar.
+
 ## docker build: Build an image from a Dockerfile
 
 The docker build command builds an image from a Dockerfile and a context. The build’s context is the set of files at a specified location PATH or URL. The PATH is a directory on your local filesystem. The URL is a Git repository location.
