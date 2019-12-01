@@ -1,4 +1,5 @@
 # docker Container management
+/var/lib/docker:
 ```
 docker container COMMAND
 Commands:
@@ -33,7 +34,6 @@ Commands:
 
   export      Export a container's filesystem as a tar archive
   
-
   logs        Fetch the logs of a container
   ls          List containers
   port        List port mappings or a specific mapping for the container
@@ -41,6 +41,7 @@ Commands:
 ```
 
 ## [docker run](https://docs.docker.com/engine/reference/commandline/run/)
+ docker containers exit if there is no running application in the container.
 - Start container with login: 
 ```
 docker run -it --name NAME IMAGE
@@ -63,4 +64,18 @@ docker run -it --name NAME IMAGE
 ## Common commands
 - Show containers in running state: ```docker ps```
 - Show containers in all states: ```docker ps -a```
+- Execute command without exited:```docker run -t -d <image-name>```
+- [Run alpine](https://stackoverflow.com/questions/45638784/how-to-retain-docker-alpine-container-after-exit-is-used/51133128#51133128):```docker run -d --name alpine alpine tail -f /dev/null```
+- sh into the alpine container: ```docker exec -it alpine sh```
+- Specify port: ```docker run -t -d -p <port-no> <image-name>```
+- Log in to the container shell:```docker exec -it <container id> /bin/bash```
+- Add the ENTRYPOINT in docker file:
+```
+while true
+do
+    echo "Press [CTRL+C] to stop.."
+    sleep 1
+done
+```
+- Execute a command in a running container:```docker exec [OPTIONS] CONTAINER COMMAND [ARG...]```  
 
