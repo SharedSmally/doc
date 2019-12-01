@@ -64,9 +64,9 @@ docker run -it --name NAME IMAGE
 ## Common commands
 - Show containers in running state: ```docker ps```
 - Show containers in all states: ```docker ps -a```
-- Execute command without exited:```docker run -t -d <image-name>```
+- Execute command without exited:```docker run -t -d <image-name>```.  -d for detached mode, it means that a Docker container runs in the background of your terminal. It does not receive input or display output. can use -dit.
 - [Run alpine](https://stackoverflow.com/questions/45638784/how-to-retain-docker-alpine-container-after-exit-is-used/51133128#51133128):```docker run -d --name alpine alpine tail -f /dev/null```
-- sh into the alpine container: ```docker exec -it alpine sh```
+- sh into the alpine container: ```docker exec -it alpine sh```. -it ensures that bash or sh can be allocated to a pseudo terminal.
 - Specify port: ```docker run -t -d -p <port-no> <image-name>```
 - Log in to the container shell:```docker exec -it <container id> /bin/bash```
 - Add the ENTRYPOINT in docker file:
@@ -78,7 +78,24 @@ do
 done
 ```
 - Execute a command in a running container:```docker exec [OPTIONS] CONTAINER COMMAND [ARG...]```  
-- gcc compile:
+
+## [Container Details](https://www.ianlewis.org/en/what-are-kubernetes-pods-anyway)
+Containers are normal processes that are executed using two features of the Linux kernel called namespaces and cgroups. Namespaces allow you to provide a "view" to the process that hides everything outside of those namespaces, thus giving it its own environment to run in. This makes it so processes can't see or interfere with other processes. The Namespaces include:
+    - Hostname
+    - Process IDs
+    - File System
+    - Network interfaces
+    - Inter-Process Communication (IPC)
+
+A process can use all the resources on the physical machine it runs on, thus starving other processes for resources. In order to limit that, Linux has a feature called cgroups. Processes can be run in a cgroup much like a namespace but the cgroup limits the resources that the process can use. These resources include CPU, RAM, block I/O, network I/O etc. CPU can be limited by milli-cores (a 1000th of a core), and/or bytes of RAM. The process itself can run as normal but it will only be able to use as much CPU as allowed by the cgroup and will get out-of-memory errors if it exceeds the memory limit set on the cgroup.
+![containers](https://storage.googleapis.com/static.ianlewis.org/prod/img/766/containers.png)
+
+```
+$ docker run -d --name ghost --net=container:nginx --ipc=container:nginx --pid=container:nginx ghost
+```
+![nginx container can proxy requests directly on localhost to our container](https://storage.googleapis.com/static.ianlewis.org/prod/img/766/ghost_.png)
+
+## gcc compile:
 ```
 $ docker run --rm  -t -d --name gcc -v ~/test:/test gcc:latest
 $ docker exec -it gcc bash   # login container
