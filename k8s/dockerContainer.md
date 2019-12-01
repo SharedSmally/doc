@@ -95,6 +95,19 @@ A process can use all the resources on the physical machine it runs on, thus sta
 $ docker run -d --name ghost --net=container:nginx --ipc=container:nginx --pid=container:nginx ghost
 ```
 ![nginx container can proxy requests directly on localhost to our container](https://storage.googleapis.com/static.ianlewis.org/prod/img/766/ghost_.png)
+ Multiple processes can be combined with the same namespaces and cgroups. Pods can specify the multiple containers to run and Kubernetes automates setting up the namespaces and cgroups in the right way.
+ 
+When the pod containers are set up, each process "feels" like it's running on the same machine. They can talk to each other on localhost, they can use shared volumes. They can even use IPC or send each other signals like HUP or TERM (With shared PID namespaces):
+![pod containers](https://storage.googleapis.com/static.ianlewis.org/prod/img/766/pods.png)
+
+- [Pause Container](https://www.ianlewis.org/en/almighty-pause-container) in K8s cluster
+Deploy a group of applications that are partially isolated and partially share an environment. In Linux, a new process process inherits its namespaces from the parent process. The way that running a process in a new namespace is by "unsharing" the namespace with the parent process thus creating a new namespace. In Kubernetes, the pause container serves as the "parent container" for all of the containers in the pod. The pause container has two core responsibilities. First, it serves as the basis of Linux namespace sharing in the pod. And second, with PID (process ID) namespace sharing enabled, it serves as PID 1 for each pod and reaps zombie processes:
+```
+docker run -d --name pause -p 8080:80 gcr.io/google_containers/pause-amd64:3.0   # parent container
+$ docker run -d --name nginx -v `pwd`/nginx.conf:/etc/nginx/nginx.conf --net=container:pause --ipc=container:pause --pid=container:pause nginx    # child ngix container
+$ docker run -d --name ghost --net=container:pause --ipc=container:pause --pid=container:pause ghost #child ghost container
+```
+The pause container is used as the container whose namespaces to join. When access http://localhost:8080/, it is able to see ghost running through an nginx proxy because the network namespace is shared among the pause, nginx, and ghost containers.
 
 ## gcc compile:
 ```
