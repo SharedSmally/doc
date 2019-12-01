@@ -78,4 +78,11 @@ do
 done
 ```
 - Execute a command in a running container:```docker exec [OPTIONS] CONTAINER COMMAND [ARG...]```  
+- gcc compile:
+```
+$ docker run --rm  -t -d --name gcc -v ~/test:/test gcc:latest
+$ docker exec -it gcc bash   # login container
+$ docker exec gcc g++ -o /test/test1 /test/test1.cc
+$ docker exec gcc test/test1 
+```
 
