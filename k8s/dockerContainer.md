@@ -40,8 +40,27 @@ Commands:
   top         Display the running processes of a container
 ```
 
-## docker run
+## [docker run](https://docs.docker.com/engine/reference/commandline/run/)
+- Start container with login: 
+```
+docker run -it --name NAME IMAGE
+```
+    - -it: --interactive --tty
+    - --attach , -a 		Attach to STDIN, STDOUT or STDERR
+    - --detach , -d     Run container in background and print container ID
+    - --rm              Automatically remove the container when it exits
+    - --publish , -p 		Publish a container’s port(s) to the host
+    - --network 		    Connect a container to a network
+    - --mount 		      Attach a filesystem mount to the container
+    - --volume , -v 		Bind mount a volume
+    - --ipc 	        	IPC mode to use
+    - --net 		        Connect a container to a network
+    - --pid 		        PID namespace to use
+    - --userns 		      User namespace to use
+    - --uts 		        UTS namespace to use
 
+[Shared namespaces in pods](https://www.ianlewis.org/en/what-are-kubernetes-pods-anyway) 
+    
 ## Common commands
 - Show containers in running state: ```docker ps```
 - Show containers in all states: ```docker ps -a```
