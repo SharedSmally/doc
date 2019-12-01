@@ -58,8 +58,7 @@ docker run -it --name NAME IMAGE
     - --pid 		        PID namespace to use
     - --userns 		      User namespace to use
     - --uts 		        UTS namespace to use
-
-[Shared namespaces in pods](https://www.ianlewis.org/en/what-are-kubernetes-pods-anyway) 
+- [ create a set of containers running in a single set of namespaces](https://www.ianlewis.org/en/what-are-kubernetes-pods-anyway) 
     
 ## Common commands
 - Show containers in running state: ```docker ps```
