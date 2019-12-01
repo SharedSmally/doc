@@ -81,6 +81,7 @@ done
 
 ## [Container Details](https://www.ianlewis.org/en/what-are-kubernetes-pods-anyway)
 Containers are normal processes that are executed using two features of the Linux kernel called namespaces and cgroups. Namespaces allow you to provide a "view" to the process that hides everything outside of those namespaces, thus giving it its own environment to run in. This makes it so processes can't see or interfere with other processes. The Namespaces include:
+
     - Hostname
     - Process IDs
     - File System
