@@ -13,12 +13,12 @@ Common commands for Dockerfile:
 | EXPOSE  | Informs the network ports that the container will listen on | `EXPOSE 8093`|
 
 ## Tips
-- [run-cmd-entry] (https://goinbigdata.com/docker-run-vs-cmd-vs-entrypoint/)
+- [run-cmd-entry](https://goinbigdata.com/docker-run-vs-cmd-vs-entrypoint/)
     - RUN executes command(s) in a new layer and creates a new image. often used for installing software packages.
     - CMD sets default command and/or parameters, which can be overwritten from command line when docker container runs.
     - ENTRYPOINT configures a container that will run as an executable (default command). optional configs are specified in CMD
 
-- [add vs copy]()
+- [add vs copy](https://medium.com/@Grigorkh/dockerfile-add-vs-copy-d120e72d09dd)
     - COPY takes in a src and destination. It only copy a local file or directory from host into the Docker image
     - ADD can do the same, but it also supports 2 other sources: use a URL instead of a local file/director, or extract a tar file from the source directly into the destination.
 
