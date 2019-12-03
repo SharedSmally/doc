@@ -7,7 +7,9 @@
 - Management node: only hosts management services such as monitoring, metering, and logging.
 - VA node
 - etcd node
+
 Example: [IBM Cloud Private](). Applications: image registry, manage charts and apps.
+
 - CDK on LXD
 - Docker Desktop
 - Minishift/OpenShift
