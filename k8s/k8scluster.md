@@ -19,7 +19,8 @@ Using Vagrant images for HyperV, libvirt-kvm, VirtualBox and VMware.
 
 ### kubectl config
 ```
-$kubectl config -h
+$ kubectl config -h
+$ kubectl config view
 ```
 using context (cluster-user-credential) based on config file:
 - --kubeconfig flag: Only that file without merging
