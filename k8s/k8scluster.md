@@ -8,8 +8,7 @@
 - VA node
 - etcd node
 
-Example: [IBM Cloud Private](). Applications: image registry, manage charts and apps.
-
+## [Environment Setup](https://kubernetes.io/docs/setup/)
 - CDK on LXD
 - Docker Desktop
 - Minishift/OpenShift
