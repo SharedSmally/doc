@@ -13,7 +13,7 @@ Example: [IBM Cloud Private](). Applications: image registry, manage charts and 
 - CDK on LXD
 - Docker Desktop
 - Minishift/OpenShift
-- MicroK8s
+- MicroK8s(Single Node)/Charmed(Multi Nodes)
 - IBM Cloud Private-CE(Community Edition)
 - k3s
 
