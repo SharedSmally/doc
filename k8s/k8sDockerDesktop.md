@@ -14,6 +14,14 @@ Starting to serve on 127.0.0.1:8001
 ```
 Go to http://localhost:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/ on Browser and you will get the below JSON output:
 
+Alternatively:
+```
+> kubectl get pods --namespace=kube-system
+Show Dashboard, then forward:
+> kubectl port-forward kubernetes-dashboard-7798c48646-ctrtl 8443:8443 --namespace=kube-system
+```
+Launch a browser and go to https://localhost:8443
+
 - Config Dashboard
 Run the below command to set token:
 ```
