@@ -70,3 +70,26 @@ Connection options:
   -U NAME database user name (default: "root")
   -W prompt for password (should happen automatically)
 ```
+
+## [redis](https://hub.docker.com/_/redis)
+- list running container for postgresql
+```
+> docker container ls
+CONTAINER_ID ... NAME
+xxx              redis
+```
+- login redis
+```
+> docker exec -it redis /bin/bash
+```
+- connecting via redis-cli
+```
+> docker exec -it redis redis-cli
+```
+
+## [kafka](https://hub.docker.com/r/wurstmeister/kafka)
+
+## Rabbit MQ server
+
+## LDAP Server
+
