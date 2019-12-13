@@ -1,6 +1,69 @@
 # K8S Tutorial
 
-## [Use ConfigMap](https://matthewpalmer.net/kubernetes-app-developer/articles/ultimate-configmap-guide-kubernetes.html) for Configuration
+## Configuration
+Kubernetes configs applications using Secrets for confidential data (obfuscated with a Base64 encoding) and ConfigMaps for non-confidential data.
+
+Create the API key as a Secret:
+```
+kubectl create secret generic apikey --from-literal=API_KEY=123–456
+kubectl create secret generic my-secret --from-file=./secret/secret.json
+kubectl get secret
+kubectl create secret generic apikey --from-literal=API_KEY=098765 -o yaml --dry-run | kubectl replace -f -   #replace
+```
+Create the language as a ConfigMap:
+```
+kubectl create configmap language --from-literal=LANGUAGE=English
+kubectl create configmap my-config --from-file=./config/config.json
+kubectl get configmap
+kubectl create configmap language --from-literal=LANGUAGE=Spanish -o yaml --dry-run | kubectl replace -f - #replace
+```
+Read from them in Kubernetes deployment
+```
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: envtest
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        name: envtest
+    spec:
+      containers:
+      - name: envtest
+        image: gcr.io/<PROJECT_ID>/envtest
+        ports:
+        - containerPort: 3000
+        env:
+        - name: LANGUAGE
+          valueFrom:
+            configMapKeyRef:
+              name: language
+              key: LANGUAGE
+        - name: API_KEY
+          valueFrom:
+            secretKeyRef:
+              name: apikey
+              key: API_KEY
+    spec:
+      containers:
+        ......
+        volumeMounts:
+          - name: my-config
+            mountPath: /usr/src/app/config
+          - name: my-secret
+            mountPath: /usr/src/app/secret
+      volumes:
+      - name: my-config
+        configMap:
+          name: my-config
+      - name: my-secret
+        secret:
+          secretName: my-secret              
+```
+
+### [Use ConfigMap](https://matthewpalmer.net/kubernetes-app-developer/articles/ultimate-configmap-guide-kubernetes.html) for Configuration
 A ConfigMap is a dictionary of configuration settings that consists of key-value pairs of strings. Kubernetes provides these values to the containers. Defining the ConfigMap in YAML and mounting it as a Volume is the easiest way to use ConfigMaps.
 - Define the ConfigMap in a YAML file.
 ```
