@@ -1,7 +1,7 @@
 # K8S Network
 
 ## [Service](https://kubernetes.io/docs/concepts/services-networking/service/)
-Service is an abstraction that defines a logical set of Pods and a policy by which to access them (micro-service pattern). The set of Pods targeted by a Service is usually determined by a selector (created by Deployment, StatefulSet, Pods)
+Service is an abstraction that defines a logical set of Pods and a policy by which to access them (micro-service pattern). The set of Pods targeted by a Service is usually determined by a selector (created by Deployment, StatefulSet, Pods). See [service tutorial](https://www.bmc.com/blogs/kubernetes-services/)
 
 ### Service with selector
 A service with a set of Pods that each listen on TCP port 9376 and carry a label app=MyApp:
