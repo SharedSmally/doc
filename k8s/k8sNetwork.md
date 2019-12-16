@@ -53,7 +53,22 @@ Exposes the Service on a cluster-internal IP. Choosing this value makes the Serv
 
     - spec.clusterIp:spec.ports[*].port
     
-You can only access this service while inside the cluster. It is accessible from its spec.clusterIp port. If a spec.ports[\*].targetPort is set it will route from the port to the targetPort. The CLUSTER-IP you get when calling kubectl get services is the IP assigned to this service within the cluster internally.
+You can only access this service while inside the cluster. It is accessible from its spec.clusterIp port. If a spec.ports[\*].targetPort is set it will route from the port to the targetPort. The CLUSTER-IP you get when calling kubectl get services is the IP assigned to this service within the cluster internally.![ClusterIP](https://miro.medium.com/max/850/1*I4j4xaaxsuchdvO66V3lAg.png)
+```
+apiVersion: v1
+kind: Service
+metadata:  
+  name: my-internal-service
+spec:
+  selector:    
+    app: my-app
+  type: ClusterIP
+  ports:  
+  - name: http
+    port: 80
+    targetPort: 80
+    protocol: TCP
+```
 
 - NodePort: Services are reachable by clients on the same LAN/clients who can ping the K8s Host Nodes (and pods/services in the cluster)
 
@@ -62,10 +77,26 @@ Exposes the Service on each Node’s IP at a static port (the NodePort). A Clust
     - <NodeIP>:spec.ports[*].nodePort
     - spec.clusterIp:spec.ports[*].port
   
-If you access this service on a nodePort from the node's external IP, it will route the request to spec.clusterIp:spec.ports[\*].port, which will in turn route it to your spec.ports[*].targetPort, if set. This service can also be accessed in the same way as ClusterIP.
+If you access this service on a nodePort from the node's external IP, it will route the request to spec.clusterIp:spec.ports[\*].port, which will in turn route it to your spec.ports[\*].targetPort, if set. This service can also be accessed in the same way as ClusterIP.
 
-Your NodeIPs are the external IP addresses of the nodes. You cannot access your service from <ClusterIP>:spec.ports[*].nodePort.
-
+Your NodeIPs are the external IP addresses of the nodes. You cannot access your service from <ClusterIP>:spec.ports[*].nodePort.![NodePort](https://miro.medium.com/max/1047/1*CdyUtG-8CfGu2oFC5s0KwA.png)
+```
+apiVersion: v1
+kind: Service
+metadata:  
+  name: my-nodeport-service
+spec:
+  selector:    
+    app: my-app
+  type: NodePort
+  ports:  
+  - name: http
+    port: 80
+    targetPort: 80
+    nodePort: 30036
+    protocol: TCP  
+```
+  
 - LoadBalancer:  Services are reachable by everyone connected to the internet.
 
 Exposes the Service externally using a cloud provider’s load balancer. NodePort and ClusterIP Services, to which the external load balancer routes, are automatically created. A LoadBalancer exposes the following:
@@ -74,10 +105,40 @@ Exposes the Service externally using a cloud provider’s load balancer. NodePor
     - <NodeIP>:spec.ports[*].nodePort
     - spec.clusterIp:spec.ports[*].port
   
-You can access this service from your load balancer's IP address, which routes your request to a nodePort, which in turn routes the request to the clusterIP port. You can access this service as you would a NodePort or a ClusterIP service as well.
+You can access this service from your load balancer's IP address, which routes your request to a nodePort, which in turn routes the request to the clusterIP port. You can access this service as you would a NodePort or a ClusterIP service as well. ![LB](https://miro.medium.com/max/913/1*P-10bQg_1VheU9DRlvHBTQ.png)
+```
+
+```
   
 - ExternalName: Maps the Service to the contents of the externalName field (e.g. foo.bar.example.com), by returning a CNAME record with its value. No proxying of any kind is set up.
 
+## Ingress
+
+Ingress is actually NOT a type of service. Instead, it sits in front of multiple services and act as a “smart router” or entrypoint into your cluster. ![Ingress](https://miro.medium.com/max/1985/1*KIVa4hUVZxg-8Ncabo8pdg.png)
+```
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: my-ingress
+spec:
+  backend:
+    serviceName: other
+    servicePort: 8080
+  rules:
+  - host: foo.mydomain.com
+    http:
+      paths:
+      - backend:
+          serviceName: foo
+          servicePort: 8080
+  - host: mydomain.com
+    http:
+      paths:
+      - path: /bar/*
+        backend:
+          serviceName: bar
+          servicePort: 8080
+```
 
 ## Deployment & StatefulSet (with Persistent Volume)
 
