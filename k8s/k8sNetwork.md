@@ -50,6 +50,7 @@ An ExternalName Service is a special case of Service that does not have selector
 - ClusterIP: Services are reachable by pods/services in the Cluster
 
 Exposes the Service on a cluster-internal IP. Choosing this value makes the Service only reachable from within the cluster. This is the default ServiceType. A ClusterIP exposes the following:
+
     - spec.clusterIp:spec.ports[*].port
     
 You can only access this service while inside the cluster. It is accessible from its spec.clusterIp port. If a spec.ports[\*].targetPort is set it will route from the port to the targetPort. The CLUSTER-IP you get when calling kubectl get services is the IP assigned to this service within the cluster internally.
@@ -57,6 +58,7 @@ You can only access this service while inside the cluster. It is accessible from
 - NodePort: Services are reachable by clients on the same LAN/clients who can ping the K8s Host Nodes (and pods/services in the cluster)
 
 Exposes the Service on each Node’s IP at a static port (the NodePort). A ClusterIP Service, to which the NodePort Service routes, is automatically created. You’ll be able to contact the NodePort Service, from outside the cluster, by requesting <NodeIP>:<NodePort>. A NodePort exposes the following:
+  
     - <NodeIP>:spec.ports[*].nodePort
     - spec.clusterIp:spec.ports[*].port
   
@@ -67,6 +69,7 @@ Your NodeIPs are the external IP addresses of the nodes. You cannot access your 
 - LoadBalancer:  Services are reachable by everyone connected to the internet.
 
 Exposes the Service externally using a cloud provider’s load balancer. NodePort and ClusterIP Services, to which the external load balancer routes, are automatically created. A LoadBalancer exposes the following:
+
     - spec.loadBalancerIp:spec.ports[*].port
     - <NodeIP>:spec.ports[*].nodePort
     - spec.clusterIp:spec.ports[*].port
