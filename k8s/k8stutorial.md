@@ -19,6 +19,7 @@ ConfigMap is used for non-secure configurations
 Secrect is used for secure configurations (base64). 
 
 - Depolyment vs StatefulSet vs DaemonSet
+
 Deployment create ReplicateSet to automatically manage the list of pods internally.
 
 StatefulSet needs Persistent Volumes to store persistent data.
@@ -26,9 +27,11 @@ StatefulSet needs Persistent Volumes to store persistent data.
 Daemonset is used to deployment service in each Node(VM).
 
 - Service vs Deployment vs StatefulSet 
+
 Service exposes the services deployed by Deployment vs StatefulSet. Services consists a list of EndPoint (via EndPointSlice). 
 
 - Ingress vs Service
+
 Ingress dispatches the incoming traffic to different service (LB).
 
 ## [Service vs Deployment](https://matthewpalmer.net/kubernetes-app-developer/articles/service-kubernetes-example-tutorial.html)
