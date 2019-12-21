@@ -34,6 +34,10 @@ Service exposes the services deployed by Deployment vs StatefulSet. Services con
 
 Ingress dispatches the incoming traffic to different service (LB).
 
+- Context
+
+Use kubeconfig files to organize information about clusters, users, namespaces, and authentication mechanisms (context). namespace define the scope of the names of the resources.
+
 ## [Service vs Deployment](https://matthewpalmer.net/kubernetes-app-developer/articles/service-kubernetes-example-tutorial.html)
 - A deployment(no attached Volumes)/StatefulSet(with attached Volumes) is responsible for keeping a set of pods running.
 - A Job/CronJob for run-on-completion of applications
