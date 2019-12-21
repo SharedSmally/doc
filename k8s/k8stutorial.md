@@ -14,6 +14,19 @@ kubectl config use-context
 ```
 
 ## Concepts
+- metadata
+
+labels for resource identifying, and annotation for resource description. 
+
+nodeSelector is the simplest recommended form of node selection constraint. nodeSelector is a field of PodSpec. It specifies a map of key-value pairs. For the pod to be eligible to run on a node, the node must have each of the indicated key-value pairs as labels. 
+
+Node affinity is conceptually similar to nodeSelector – it allows to constrain which nodes THE pod is eligible to be scheduled on, based on labels on the node. 
+
+Inter-pod affinity and anti-affinity allow to constrain which nodes your pod is eligible to be scheduled based on labels on pods that are already running on the node rather than based on labels on nodes.
+
+Node affinity is a property of pods that attracts them to a set of nodes (either as a preference or a hard requirement). Taints are the opposite – they allow a node to repel a set of pods.
+
+
 - Pod vs Container:
 
 Pod consists a set of close-coupled containers. Each Pod is assigned a IP. The containers within the same Pod share the same filesystem, process namespace, IPC and network (similar to the dockers shared the same one from the common parent docker) 
