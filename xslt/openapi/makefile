@@ -10,6 +10,8 @@ download:
 	@for rel in ${RELS} ; do \
 		mkdir -p REL-$$rel ; \
 		wget ${FTP_BASE}/REL-$$rel/ -O REL-$$rel/index.html ; \
+		mkdir -p REL-$$rel/oldVersions/ ; \
+		wget ${FTP_BASE}/REL-$$rel/oldVersions/ -O REL-$$rel/oldVersions/index.html ; \
 	done
 
 index:
@@ -17,6 +19,9 @@ index:
 		cp REL-$$rel/index.html REL-$$rel/tmp.xml; \
 		$(call make_index_xml,REL-$$rel/tmp.xml ); \
 		xsl makefile.xsl REL-$$rel/tmp.xml REL-$$rel/makefile; \
+		cp REL-$$rel/oldVersions/index.html REL-$$rel/oldVersions/tmp.xml; \
+		$(call make_index_xml,REL-$$rel/oldVersions/tmp.xml ); \
+		xsl makefile.xsl REL-$$rel/oldVersions/tmp.xml REL-$$rel/oldVersions/makefile; \
 	done
 	
 cleanall:
