@@ -19,13 +19,13 @@ download: \
 
 <xsl:template match="A" mode="main">
    <xsl:if test="ends-with(@HREF,'.yaml')">
-       <xsl:value-of select="concat('    ',text())"/> \
+       <xsl:value-of select="concat('    ',replace(text(),'#','\\#'))"/> \
 </xsl:if>
 </xsl:template>
 
 <xsl:template match="A">
    <xsl:if test="ends-with(@HREF,'.yaml')">
-       <xsl:value-of select="text()"/>:
+       <xsl:value-of select="replace(text(),'#','\\#')"/>:
 	wget https:/<xsl:value-of select="@HREF"/> -O $@
 
 </xsl:if>
