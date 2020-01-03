@@ -1,0 +1,20 @@
+#!/bin/bash
+
+# Using saxon for xslt
+
+SAXON_HOME=${HOME}/bin/saxon
+
+if (( $# < 3 )); then
+  echo "$0 file.xsl xmlfile outfile [options]"
+  exit 0
+fi
+
+xslfile="$1"; shift
+srcfile="$1"; shift
+outfile="$1"; shift
+
+#echo " generate file ${outfile}  from ${srcfile} using xslt ${xslfile}"
+
+java -classpath ${SAXON_HOME}/saxon9he.jar:${SAXON_HOME}/saxon9-xqj.jar \
+      net.sf.saxon.Transform \
+     -xsl:${xslfile} -s:${srcfile} -o:${outfile} $@
