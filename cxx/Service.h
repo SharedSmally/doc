@@ -66,6 +66,12 @@ protected:
     std::map<KEY, ObjectPtr> objs_;
 };
 
-
-
+template <OBJECT>
+class ObjectFactory
+{
+public:
+    typedef std::shared_ptr< OBJECT > ObjectPtr;
+    
+};
+           
 #endif
