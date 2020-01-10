@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema targetNamespace="http://www.cpw.com/app/" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:cpw="http://www.cpw.com/app/">
+
+    <complexType name="NamedObj">
+    	<sequence>
+    		<element name="desc" type="string"></element>
+    	</sequence>
+    	<attribute name="name" type="NCName"></attribute>
+        <attribute name="label" type="string"></attribute>
+        <attribute name="desc" type="string"></attribute>
+    </complexType>
+
+    <complexType name="Bitset">
+        <annotation>
+        	<documentation>bitset (set of booleans) represented by an integer.</documentation>
+        </annotation>
+        <complexContent>
+    		<extension base="cpw:NamedObj">
+    			<sequence>
+    				<element name="item" type="cpw:BitsetItem" maxOccurs="unbounded" minOccurs="1"></element>
+    			</sequence>
+    		</extension>
+    	</complexContent>
+    </complexType>
+
+    <complexType name="List">
+        <annotation>
+        	<documentation>list of enums (ListItem).</documentation>
+        </annotation>
+        <complexContent>
+    		<extension base="cpw:NamedObj">
+    		    <sequence>
+    				<element name="item" type="cpw:ListItem" maxOccurs="unbounded" minOccurs="1"></element>
+    			</sequence>
+    		</extension>
+    	</complexContent>
+    </complexType>
+
+    <complexType name="BitsetItem">
+    	<annotation>
+    		<documentation>one bit in bitset.</documentation>
+    	</annotation>
+    	<complexContent>
+    		<extension base="cpw:NamedObj">
+    			<attribute name="default" type="boolean"></attribute>
+    		</extension>
+    	</complexContent>
+    </complexType>
+
+    <complexType name="ListItem">
+    	<complexContent>
+    		<extension base="cpw:NamedObj">
+    			<attribute name="value" type="int"></attribute>
+    			<attribute name="literal" type="string"></attribute>
+    		</extension>
+    	</complexContent>
+    </complexType>
+
+    <complexType name="Struct">
+    	<complexContent>
+    		<extension base="cpw:NamedObj">
+    			<sequence>
+    				<element name="property" type="cpw:Property" maxOccurs="unbounded" minOccurs="1"></element>
+    			</sequence>
+    		</extension>
+    	</complexContent>
+    </complexType>
+
+    <complexType name="Property">
+    	<complexContent>
+    		<extension base="cpw:NamedObj">
+    			<attribute name="type" type="string"></attribute>
+    			<attribute name="size">
+    				<simpleType>
+    					<restriction base="string">
+    						<pattern
+    							value="((\d+)?(\.\.((\d+)?|\*))?)|\*|\?|\+">
+    						</pattern>
+    					</restriction>
+    				</simpleType>
+    			</attribute>
+    			<attribute name="default" type="string"></attribute>
+    			<attribute name="pattern" type="string"></attribute>
+    			<attribute name="range" type="string"></attribute>
+    		</extension>
+    	</complexContent>
+    </complexType>
+
+
+    <simpleType name="Version">
+    	<annotation>
+    		<documentation>
+    			version of format major.minor[.build[.revision]]
+    			(example: 1.2.12.102)
+    		</documentation>
+    	</annotation>
+    	<restriction base="string">
+    		<pattern value="(\d+)\.(\d+)\.(\d+)(\.(\d+))?"></pattern>
+    	</restriction>
+    </simpleType>
+</schema>
