@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema targetNamespace="http://www.cpw.com/product/" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:cpw="http://www.cpw.com/product/">
+    <element name="product" type="cpw:Product"></element>
+    
+    <complexType name="Product">
+    	<complexContent>
+    		<extension base="cpw:NamedObject">
+    			<sequence>
+    				<element name="project" type="cpw:Project" maxOccurs="unbounded" minOccurs="1"></element>
+    			</sequence>
+    		</extension>
+    	</complexContent>
+    </complexType>
+
+    <complexType name="NamedObject"></complexType>
+
+    <complexType name="Project">
+    	<complexContent>
+    		<extension base="cpw:NamedObject">
+    			<sequence>
+    				<element name="module" type="cpw:Module"
+    					maxOccurs="unbounded" minOccurs="1">
+    				</element>
+    			</sequence>
+    		</extension>
+    	</complexContent>
+    </complexType>
+
+    <complexType name="Module">
+    	<complexContent>
+    		<extension base="cpw:NamedObject"></extension>
+    	</complexContent>
+    </complexType>
+</schema>
