@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema targetNamespace="http://www.cpw.com/app/appsvc/" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:cpw="http://www.cpw.com/app/appsvc/">
+    <element name="service" type="cpw:Service"></element>
+    
+    <complexType name="Service">
+    	<complexContent>
+    		<extension base="cpw:NamedObject">
+    			<sequence>
+    				<element name="configs" type="cpw:Configs" maxOccurs="unbounded" minOccurs="0"></element>
+    				<element name="beans" type="cpw:Beans"
+    					maxOccurs="unbounded" minOccurs="0">
+    				</element>
+    			</sequence>
+    		</extension>
+    	</complexContent>
+    </complexType>
+
+    <complexType name="NamedObject"></complexType>
+
+    <complexType name="Configs">
+    	<sequence>
+    		<element name="config" type="cpw:Config"
+    			maxOccurs="unbounded" minOccurs="0">
+    		</element>
+    		<element name="info" type="cpw:Information"
+    			maxOccurs="unbounded" minOccurs="0">
+    		</element>
+    		<element name="count" type="cpw:Count" maxOccurs="unbounded"
+    			minOccurs="0">
+    		</element>
+    		<element name="metric" type="cpw:Metric"
+    			maxOccurs="unbounded" minOccurs="0">
+    		</element>
+    		<element name="notify" type="cpw:Notifier" maxOccurs="unbounded" minOccurs="0"></element>
+    	</sequence>
+    </complexType>
+
+    <complexType name="Config"></complexType>
+
+    <complexType name="Information"></complexType>
+
+    <complexType name="Count"></complexType>
+
+    <complexType name="Metric"></complexType>
+
+    <complexType name="Notifier"></complexType>
+
+    <complexType name="Beans"></complexType>
+</schema>
