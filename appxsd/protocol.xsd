@@ -22,24 +22,12 @@
     			<element name="message" type="cpw:Message"
     				maxOccurs="unbounded" minOccurs="0">
     			</element>
-    			<element name="interface" type="cpw:Interface"
-    				maxOccurs="unbounded" minOccurs="0">
-    			</element>
+
     			<element name="service" type="cpw:Service"
     				maxOccurs="unbounded" minOccurs="0">
     			</element>
     		</choice>
     	</sequence>
-    </complexType>
-
-    <complexType name="Interface">
-    	<complexContent>
-    		<extension base="cpw:NamedObj">
-    		    <sequence>
-    				<element name="property" type="cpw:Method" maxOccurs="unbounded" minOccurs="1"></element>
-    			</sequence>
-    		</extension>
-    	</complexContent>
     </complexType>
 
     <complexType name="Function">
@@ -58,11 +46,6 @@
     	</complexContent>
     </complexType>   
     
-    <complexType name="Method">
-    	<complexContent>
-    		<extension base="cpw:Function"></extension>
-    	</complexContent>
-    </complexType>
 
     <complexType name="Message">
         <complexContent>
@@ -71,9 +54,15 @@
     </complexType>
 
     <complexType name="Service">
-        <complexContent>
-    		<extension base="cpw:NamedObj"></extension>
+    	<complexContent>
+    		<extension base="cpw:NamedObj">
+    			<sequence>
+    				<element name="function" type="cpw:Function"
+    					maxOccurs="unbounded" minOccurs="0">
+    				</element>
+    			</sequence>
+    		</extension>
     	</complexContent>
-    </complexType>    
+    </complexType>
 
 </schema>
