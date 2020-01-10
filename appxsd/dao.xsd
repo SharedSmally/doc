@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema targetNamespace="http://www.cpw.com/app/"
+  " xmlns="http://www.w3.org/2001/XMLSchema" xmlns:cpw="http://www.cpw.com/app/" >
+
+	<include schemaLocation="common.xsd"/>
+	
+	<element name="dao" type="cpw:Dao"></element>
+
+	<complexType name="Dao">
+		<sequence maxOccurs="unbounded" minOccurs="1">
+			<choice>
+				<element name="bitset" type="cpw:Bitset"
+					maxOccurs="unbounded" minOccurs="0">
+				</element>
+				<element name="list" type="cpw:List"
+					maxOccurs="unbounded" minOccurs="0">
+				</element>
+				<element name="struct" type="cpw:Struct"
+					maxOccurs="unbounded" minOccurs="0">
+				</element>
+				<element name="entity" type="cpw:Entity"
+					maxOccurs="unbounded" minOccurs="0">
+				</element>
+			</choice>
+		</sequence>
+		<attribute name="name" type="string"></attribute>
+	</complexType>
+
+	<complexType name="Entity">
+		<complexContent>
+			<extension base="cpw:NamedObj">
+				<sequence>
+					<element name="key" type="cpw:EntityKey"
+						maxOccurs="1" minOccurs="0">
+					</element>
+					<element name="field" type="cpw:EntityField"
+						maxOccurs="unbounded" minOccurs="0">
+					</element>
+				</sequence>
+				<attribute name="key" type="string"></attribute>
+			</extension>
+		</complexContent>
+	</complexType>
+
+	<complexType name="Key">
+
+	</complexType>
+
+	<complexType name="Field">
+		<complexContent>
+			<extension base="cpw:NamedObj">
+				<attribute name="type" type="string"></attribute>
+				<attribute name="size">
+					<simpleType>
+						<restriction base="string">
+							<pattern
+								value="((\d+)?(\.\.((\d+)?|\*))?)|\*|\?|\+">
+							</pattern>
+						</restriction>
+					</simpleType>
+				</attribute>
+				<attribute name="default" type="string"></attribute>
+			</extension>
+		</complexContent>
+	</complexType>
+</schema>
