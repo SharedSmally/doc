@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema targetNamespace="http://www.cpw.com/app/"
+    xmlns="http://www.w3.org/2001/XMLSchema" 
+    xmlns:cpw="http://www.cpw.com/app/">
+    
+    <include schemaLocation="common.xsd"/>
+    
+    <element name="protocol" type="cpw:Protocol"></element>
+    	
+    <complexType name="Protocol">
+    	<sequence maxOccurs="unbounded" minOccurs="1">
+    		<choice>
+    			<element name="bitset" type="cpw:Bitset"
+    				maxOccurs="unbounded" minOccurs="0">
+    			</element>
+    			<element name="list" type="cpw:List"
+    				maxOccurs="unbounded" minOccurs="0">
+    			</element>
+    			<element name="struct" type="cpw:Struct"
+    				maxOccurs="unbounded" minOccurs="0">
+    			</element>
+    			<element name="message" type="cpw:Message"
+    				maxOccurs="unbounded" minOccurs="0">
+    			</element>
+    			<element name="interface" type="cpw:Interface"
+    				maxOccurs="unbounded" minOccurs="0">
+    			</element>
+    			<element name="service" type="cpw:Service"
+    				maxOccurs="unbounded" minOccurs="0">
+    			</element>
+    		</choice>
+    	</sequence>
+    </complexType>
+
+    <complexType name="Interface">
+    	<complexContent>
+    		<extension base="cpw:NamedObj">
+    		    <sequence>
+    				<element name="property" type="cpw:Method" maxOccurs="unbounded" minOccurs="1"></element>
+    			</sequence>
+    		</extension>
+    	</complexContent>
+    </complexType>
+
+    <complexType name="Function">
+    	<complexContent>
+    		<extension base="cpw:NamedObj">
+    		    <sequence>
+    				<element name="arg" type="cpw:Arg" maxOccurs="unbounded" minOccurs="1"></element>
+    			</sequence>
+    		</extension>
+    	</complexContent>
+    </complexType>
+
+    <complexType name="Arg">
+        <complexContent>
+    		<extension base="cpw:NamedObj"></extension>
+    	</complexContent>
+    </complexType>   
+    
+    <complexType name="Method">
+    	<complexContent>
+    		<extension base="cpw:Function"></extension>
+    	</complexContent>
+    </complexType>
+
+    <complexType name="Message">
+        <complexContent>
+    		<extension base="cpw:Struct"></extension>
+    	</complexContent>
+    </complexType>
+
+    <complexType name="Service">
+        <complexContent>
+    		<extension base="cpw:NamedObj"></extension>
+    	</complexContent>
+    </complexType>    
+
+</schema>
