@@ -1,3 +1,5 @@
+NAME=xoma
+URL_BASE=http://openmobilealliance.org/
 URL_SPEC=http://openmobilealliance.org/wp/index.html
 #URL_API=http://openmobilealliance.org/wp/API_Inventory.html
 #NGSI: OMA Next Generation Services Interface: http://www.openmobilealliance.org/release/NGSI/(V1_0-20120529-A)
@@ -27,7 +29,7 @@ xsd dtd wsdl omna:
 	cp oma_$@.html tmp.xml
 	sed -i 's/<br>/<br\/>/g' tmp.xml
 	sed -i 's/<hr>/<hr\/>/g' tmp.xml
-	xsl xsl/oma_$@.xsl tmp.xml oma_$@.xml
+	xsl xsl/oma_$@.xsl tmp.xml oma_$@.xml name="${NAME}" base="${URL_BASE}"
 
 update:
 	wget ${URL_SPEC} -O oma_spec.html
