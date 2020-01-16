@@ -8,11 +8,16 @@ open(OUTFILE, "> $ARGV[1]") || die "ERROR: Cannot write output file $ARGV[1]\n";
 my $release=$ARGV[2];
 my $series=$ARGV[3];
 
+print OUTFILE "RELEASE=${release}\n";
+print OUTFILE "SERIES=${series}\n\n";
+
 print OUTFILE "DOC_DIR=/cygdrive/c/Users/$ENV{USER}/Documents/MyDoc/x3gpp/R${release}/S${series}\n";
 print OUTFILE "URL_BASE=https://www.3gpp.org/ftp/specs/latest/Rel-${release}/${series}_series\n";
+
 my $s0 = << 'END_MESSAGE';
 
 main: init download doc
+        ./fileIndex.pl "3GPP Release ${RELEASE} - Series ${SERIES}" index.html ${DOC_DIR} ${DOC_DIR}/zip
 
 init: ${DOC_DIR}/zip
 
@@ -38,8 +43,7 @@ print OUTFILE "\n";
 print OUTFILE "doc:  \\\n";
 foreach(@lines) {
     my @a0 = split(/\s+/, $_);
-    if ($a0[5] =~ /\.zip$/)
-    {
+    if ($a0[5] =~ /\.zip$/) {
        my $d0 = $a0[5];  $d0 =~ s/\.zip$/\.doc/g;
        print OUTFILE "  \${DOC_DIR}/$d0  \\\n" ;
     }
