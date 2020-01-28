@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="gnss">
+        <package name="gps" country="US" href="https://www.gps.gov/technical/icwg/">
+           <icd version="IS-GPS-200" href="https://www.gps.gov/technical/icwg/IS-GPS-200K.pdf" desc="L1 and L2"/>
+           <icd version="IS-GPS-705" href="https://www.gps.gov/technical/icwg/IS-GPS-705F.pdf" desc="L5"/>
+           <icd version="IS-GPS-800" href="https://www.gps.gov/technical/icwg/IS-GPS-800F.pdf" desc="L1"/>
+           <icd version="IS-GPS-240" href="https://www.gps.gov/technical/icwg/ICD-GPS-240C.pdf" desc="OCS-AEP"/>
+           <icd version="ICD-GPS-870" href="https://www.gps.gov/technical/icwg/ICD-GPS-870D.pdf" desc="OCX-AEP"/>
+        </package>
+        <package name="glonass" country="Russian">
+            <icd version="5.1" href="http://www.spacecorp.ru/upload/iblock/1c4/cgs-aaixymyt%205.1%20ENG%20v%202014.02.18w.pdf"/>
+            <icd version="4.0" href="http://www.gnss.umaine.edu/PDF-files/glonass.pdf"/>
+        </package>
+        <package name="beidou" country="China">
+        </package>
+
+        <package name="galileo" country="EU" href="https://www.gsc-europa.eu/electronic-library/programme-reference-documents#Galileo%20pub">
+            <icd version="1.1" name="OS SDD"  href="https://www.gsc-europa.eu/sites/default/files/sites/all/files/Galileo-OS-SDD_v1.1.pdf" desc="Galileo Open Service - Service Definition Document"/>
+            <icd version="1.3" name="OS SIS"  href="https://www.gsc-europa.eu/sites/default/files/sites/all/files/Galileo-OS-SIS-ICD.pdf" desc="Galileo - Open Service - Signal In Space Interface Control Document"/>
+            <icd version="1.2" name="ICA" href="https://www.gsc-europa.eu/sites/default/files/sites/all/files/Galileo_Ionospheric_Model.pdf" desc="Ionospheric Correction Algorithm for Galileo Single Frequency Users"/>
+            <icd version="1.0" name="TR" href="https://www.gsc-europa.eu/sites/default/files/sites/all/files/E6BC_SIS_Technical_Note.pdf" desc="Galileo E6-B/C SIS Technical Note"/>
+            <icd version="2.0" name="SAR" href="https://www.gsc-europa.eu/sites/default/files/sites/all/files/Galileo-SAR-SDD.pdf" desc="Galileo - Search and Rescue - Service Definition Document "/>
+            <icd version="2.3" name="OS" href="https://www.gsc-europa.eu/sites/default/files/sites/all/files/egnos_os_sdd_in_force.pdf" desc="EGNOS - Open Service - Service Definition Document"/>
+            <icd version="3.3" name="SoL"  href="https://www.gsc-europa.eu/sites/default/files/sites/all/files/egnos_sol_sdd_in_force.pdf" desc="EGNOS - Safety of Life - Service Definition Document"/>
+            <icd version="2.2" name="EDAS" href="https://www.gsc-europa.eu/sites/default/files/sites/all/files/egnos-data-access-service-sdd.PDF" desc="EGNOS - Data Access Service - Service Definition Document"/>
+            <!-- 
+            <icd version="1.1" name="OS" href="https://www.gsc-europa.eu/sites/default/files/sites/all/files/Galileo-OS-SDD_v1.1.pdf" desc="Galileo - Open Service - Signal In Space Operational Status Definition (OS SIS OSD)"/>
+             -->
+        </package>
+
+        <package name="qzss" country="Japan" href="https://qzss.go.jp/en/">
+        </package>
+
+        <package name="navic" country="India">
+        </package>
+</project>
