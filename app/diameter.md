@@ -58,4 +58,5 @@ The Diameter base protocol is defined by RFC 6733 and defines the minimum requir
     
 ## 3GPP Diameter: TS 29.230
 
-## Message Flow ![https://en.wikipedia.org/wiki/File:Diameter_message_flow.png]
+## Message Flow 
+![https://en.wikipedia.org/wiki/File:Diameter_message_flow.png]
