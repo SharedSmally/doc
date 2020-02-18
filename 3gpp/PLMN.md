@@ -1,5 +1,5 @@
 # PLMN ([Public land mobile network](https://en.wikipedia.org/wiki/Public_land_mobile_network))
-- [MCC(Mobile Country Code) and MNC (Mobile Network Code)]((https://en.wikipedia.org/wiki/Mobile_country_code))
+- [MCC(Mobile Country Code) and MNC (Mobile Network Code)](https://en.wikipedia.org/wiki/Mobile_country_code)
 - UE (User Equipment) - AN (Access Network) - CN(Core Network)
 - TS 23.002: 
 - TS 23.501:
