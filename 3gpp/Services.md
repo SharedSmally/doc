@@ -4,6 +4,23 @@
 - NAS: 24.301(EPS), 24.501(5G)
 - Non-3GPP: 23.402(EPS), 24.502(5G)
 - GTP: 29.274(GTPv2-C), 29.281(GTPv1-U), 32.; 29.060(Gn/Gp)
+- MAP: 29.002
+- OSA: 29.198/199
+- Diameter: 29.230
+- 5G OpenAPI: 29.500
+
+## PLMN Network: 300; 410
+- 2G: GSM/GERAN: 48.xxx; 43.xxx; 23.060;
+- 3G: UMTS/UTRAN: 25.xxx
+- 4G: LTE/EUTRAN: 36.xxx
+- 5G: NR/NRRAN: 38.xxx
+
+- 1xx: UE and BS
+- 2xx: Physical Layer
+- 3xx: UE-RAN
+- 4xx: RAN
+
+## Services
 - LCS: 23.271
 - IMS: 23.228
 - V2X: 23.287
