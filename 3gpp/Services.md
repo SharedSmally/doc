@@ -1,4 +1,4 @@
-#3GPP Entities
+# 3GPP Entities (23.002; 23.501)
 
 ## GCR (Group Call Register)
 - 43.068, 43.069
