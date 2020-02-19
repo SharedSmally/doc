@@ -1,9 +1,8 @@
-# 3GPP Entities 
-- PLMN Architecture: 23.002; 23.401(GPRS)
-- 5G Architecture: 23.501
+# 3GPP 
+- Architecture: 23.002(PLMN); 23.401(GPRS); 23.501 (5G)
 - NAS: 24.301(EPS), 24.501(5G)
 - Non-3GPP: 23.402(EPS), 24.502(5G)
-- GTP: 29.274(GTPv2-C), 29.281(GTPv1-U), 32.; 29.060(Gn/Gp)
+- GTP: 29.274(GTPv2-C), 29.281(GTPv1-U), 32.295(GTP'); 29.060(Gn/Gp)
 - MAP: 29.002
 - OSA: 29.198/199
 - Diameter: 29.230
