@@ -1,6 +1,9 @@
 # 3GPP Entities 
-- PLMN Architecture: 23.002
+- PLMN Architecture: 23.002; 23.401(GPRS)
 - 5G Architecture: 23.501
+- NAS: 24.301(EPS), 24.501(5G)
+- Non-3GPP: 23.402(EPS), 24.502(5G)
+- GTP: 29.274(GTPv2-C), 29.281(GTPv1-U), 32.; 29.060(Gn/Gp)
 - LCS: 23.271
 - IMS: 23.228
 - V2X: 23.287
@@ -9,6 +12,7 @@
 - MBMS: 23.246
 - MCPTT: 23.179 
 - CAMEL: 23.078
+
 
 ## Location Services (LCS) - 23.273
 - 36.305: LCS in EUTRAN: Lpp(26.345)/Lppa(36.355); SLs(29.171)/SLg(29.172)/SLh(29.173)
