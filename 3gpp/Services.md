@@ -1,15 +1,22 @@
-# 3GPP Entities (23.002; 23.501)
-
-## GCR (Group Call Register)
-- 43.068, 43.069
-
-## Group Call Register (GCR) - 43.068, 43.069
+# 3GPP Entities 
+- PLMN Architecture: 23.002
+- 5G Architecture: 23.501
+- LCS: 23.271
+- IMS: 23.228
+- V2X: 23.287
+- SMS: 23.204
+- ProSe: 23.303
+- MBMS: 23.246
+- MCPTT: 23.179 
+- CAMEL: 23.078
 
 ## Location Services (LCS) - 23.273
 - 36.305: LCS in EUTRAN: Lpp(26.345)/Lppa(36.355); SLs(29.171)/SLg(29.172)/SLh(29.173)
 - 25.305: LCS in UTRAN: MAP(Lg;Lh)/LCSAP
 - 43.059: LCS in GSM: MAP(Lg;Lh;29.002)/LCSAP
 - Entities: GMLC; LMU; SMLC; E-SMLC
+
+## Group Call Register (GCR) - 43.068, 43.069
 
 ## CAMEL - 22.078/23.078:
 - GSM Service Control Function (gsmSCF)
@@ -86,7 +93,7 @@
 
 ## User Data Repository (UDR) 23.203/23.214
 
-## facilitate communications with packet data networks and applications - 23.682
+## Facilitate communications with packet data networks and applications - 23.682
 - Machine Type Communication-InterWorking Function (MTC-IWF) 
 - Machine Type Communication- Authentication, Authorization and Accounting (MTC-AAA)
 - Service Capability Exposure Function (SCEF) 
