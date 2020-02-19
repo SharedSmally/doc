@@ -9,11 +9,11 @@
 - Diameter: 29.230
 - 5G OpenAPI: 29.500
 
-## PLMN Network: 300; 410
-- 2G: GSM/GERAN: 48.xxx; 43.xxx; 23.060;
-- 3G: UMTS/UTRAN: 25.xxx
-- 4G: LTE/EUTRAN: 36.xxx
-- 5G: NR/NRRAN: 38.xxx
+## PLMN Network: xx.300; xx.410:   UE-AN-CN
+- 2G: GSM/GERAN: 48.xxx; 43.xxx; 23.060; BTS-BSC-SGSN/MSC
+- 3G: UMTS/UTRAN: 25.xxx: NodeB-RNC-SGSN/MSC
+- 4G: LTE/EUTRAN: 36.xxx: eNodeB-MME/s-GW/p-GW
+- 5G: NR/NRRAN: 38.xxx:ngNode-SMF
 
 - 1xx: UE and BS
 - 2xx: Physical Layer
