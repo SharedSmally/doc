@@ -8,6 +8,10 @@ Stage 1
 - TS 22.282	Mission Critical (MC) data
 
 Stage 2
+- TS 23.280: "Common functional architecture to support mission critical services".
+- TS 23.281: "Functional architecture and information flows to support Mission Critical Video (MCVideo); Stage 2".
+- TS 23.282: "Functional architecture and information flows to support Mission Critical Data (MCData); Stage 2".
+- TS 23.283: "Mission Critical Communication Interworking with Land Mobile Radio Systems; Stage 2".
 - TS 23.379	Functional architecture and information flows to support Mission Critical Push To Talk (MCPTT); Stage 2
 
 Stage 3: UE
