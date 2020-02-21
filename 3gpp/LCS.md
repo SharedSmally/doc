@@ -17,6 +17,7 @@ Stage 3: UE
 - TS 24.571	5G System (5GS); Control plane Location Services (LCS) procedures; Stage 3
 
 Stage 3: CN
+- TS 29.002 MAP
 - TS 29.171	Location Services (LCS); LCS Application Protocol (LCS-AP) between the Mobile Management Entity (MME) and Evolved Serving Mobile Location Centre (E-SMLC); SLs interface	 
 - TS 29.172	Location Services (LCS); Evolved Packet Core (EPC) LCS Protocol (ELP) between the Gateway Mobile Location Centre (GMLC) and the Mobile Management Entity (MME); SLg interface	 
 - TS 29.173	Location Services (LCS); Diameter-based SLh interface for Control Plane LCS
