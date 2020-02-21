@@ -1,4 +1,6 @@
 # GTP
+- [wiki](https://en.wikipedia.org/wiki/GPRS_Tunnelling_Protocol)
+- [impl](https://sourceforge.net/projects/nwgtpv2/)
 
 ## 3GPP Standards
 - TS 29.060	General Packet Radio Service (GPRS); GPRS Tunnelling Protocol (GTP) across the Gn and Gp interface
@@ -7,3 +9,5 @@
 - TS 29.281	General Packet Radio System (GPRS) Tunnelling Protocol User Plane (GTPv1-U)
 - TS 32.295	Telecommunication management; Charging management; Charging Data Record (CDR) transfer; GTP'
 
+## Protocol
+- Gn/Gp:  SGSN-GGSN (Gnin the same PLMN
