@@ -19,4 +19,7 @@
 - TS 29.388: V2X Control Function to V2X Control Function to Home Subscriber Server (HSS) aspects (V4).
 - TS 29.389	Inter-V2X Control Function Signalling aspects (V6); Stage 3
 - TS 29.486	Vehicle-to-Everything (V2X) Application Enabler (VAE) service; Stage 3
+- TS 33.185	Security aspect for LTE support of Vehicle-to-Everything (V2X) services
+- TS 33.536	Security aspects of 3GPP support for advanced Vehicle-to-Everything (V2X) services
+
 
