@@ -256,6 +256,44 @@ link 0 stream 0 sending m3ua NTFY length=24 routingContext={{135}} status={type=
       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
       |                        Correlation Id                         |
       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+
+   Protocol Data: variable length
+      The Protocol Data parameter contains the original SS7 MTP3
+      message, including the Service Information Octet and Routing
+      Label. The Protocol Data parameter contains the following fields:
+         Service Indicator
+         Network Indicator
+         Message Priority
+         Destination Point Code
+         Originating Point Code
+         Signalling Link Selection Code (SLS)
+         User Protocol Data, which includes
+            MTP3-User protocol elements (e.g., ISUP, SCCP, or TUP parameters)
+
+   The Protocol Data parameter is encoded as follows:
+        0                   1                   2                   3
+        0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
+       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+       |                     Originating Point Code                    |
+       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+       |                     Destination Point Code                    |
+       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+       |       SI      |       NI      |      MP       |      SLS      |
+       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+       \                                                               \
+       /                     User Protocol Data                        /
+       \                                                               \
+       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+
+      Originating Point Code: 32 bits (unsigned integer)
+      Destination Point Code: 32 bits (unsigned integer)
+
+   Service Indicator: 8 bits (unsigned integer)
+   Network Indicator: 8 bits (unsigned integer)
+   Message Priority: 8 bits (unsigned integer)
+   Signalling Link Selection: 8 bits (unsigned integer)
+
+User Protocol Data: variable-length octet string
 ```
 
 ### M3UA data
@@ -308,5 +346,6 @@ SCCP UnitData mhandling=0, pclass=0, clg={ssn-routed ssn 8}, cld={ssn-routed ssn
 link 0 stream 1 sending m3ua DATA length=200 protocolData={opc=4222, dpc=4221, si=3, ni=2, mp=0, sls=0, dataLen=173}
 Sending 0x01000101000000C8021000BD0000107E0000107D030200000900030507024291024208A162819E4804000000006B1A2818060700118605010101A00D600BA1090607010203040506076C7AA17802010002015630700A0100302A800101A10880069021435344F58207902160972216F2A412800163820A53617479614B756D6172830101300B040994010000000000011080069144871132008107022287113200F0820821436500896745F08508100C0C0C0C0C0C0C860204D2AD09800723636803F20193000000
 
-0x01000101 000000C8 (01-01: Transfer Messages-Payload Data; length=200=0xC8) 021000BD0000107E0000107D030200000900030507024291024208A162819E4804000000006B1A2818060700118605010101A00D600BA1090607010203040506076C7AA17802010002015630700A0100302A800101A10880069021435344F58207902160972216F2A412800163820A53617479614B756D6172830101300B040994010000000000011080069144871132008107022287113200F0820821436500896745F08508100C0C0C0C0C0C0C860204D2AD09800723636803F20193000000
+0x01000101 000000C8 (01-01: Transfer Messages-Payload Data; length=200=0xC8) 021000BD(protocol data:0x0210; length=00BD=189 = 173 + 4*4)
+0000107E (OPC=4222) 0000107D (DPC=4221) 03(SI) 02(NI) 00(MP) 00(SLS): The following is SCCP 0900030507024291024208A162819E4804000000006B1A2818060700118605010101A00D600BA1090607010203040506076C7AA17802010002015630700A0100302A800101A10880069021435344F58207902160972216F2A412800163820A53617479614B756D6172830101300B040994010000000000011080069144871132008107022287113200F0820821436500896745F08508100C0C0C0C0C0C0C860204D2AD09800723636803F20193 000000
 ```
