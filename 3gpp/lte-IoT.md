@@ -13,6 +13,7 @@
 ## [Chipset Vendors](http://www.codeplayon.com/2019/03/narrow-band-nb-iot-modem-chip-vendors-2/)
 - Qualcomm: MDM 9207(CAT1)/9206(Cat-M1)/9205
     - [DeveloperNetwork](https://developer.qualcomm.com/project/)
+    - [Cellular IoT-mdm9206](https://developer.qualcomm.com/blog/cellular-iot-mdm9206-modem-and-new-lte-iot-sdk)
 - HiSilicom: Balong
 - Samsung: Exynos
 - Sequans: Monarch/Monarch-N
