@@ -9,3 +9,13 @@
     
 ![diagram](https://cdn-images-1.medium.com/max/800/1*NElcQqs2kIB_OLC56es04w.jpeg)
     
+
+## Chipset
+- Qualcomm: MDM 9207(CAT1)/9206(Cat-M1)/9205
+    - [DeveloperNetwork](https://developer.qualcomm.com/project/)
+- Sequans: Monarch/Monarch-2
+- Altair: ALT1250
+- MediaTek: MT2625 SoC
+- u-blox: SARA R410M; C030 Application board
+- Telit: xE910:  ME910G1/ME910C1
+- Quectel: BG96
