@@ -10,16 +10,19 @@
 ![diagram](https://cdn-images-1.medium.com/max/800/1*NElcQqs2kIB_OLC56es04w.jpeg)
     
 
-## Chipset
+## [Chipset Vendors](http://www.codeplayon.com/2019/03/narrow-band-nb-iot-modem-chip-vendors-2/)
 - Qualcomm: MDM 9207(CAT1)/9206(Cat-M1)/9205
     - [DeveloperNetwork](https://developer.qualcomm.com/project/)
 - HiSilicom: Balong
 - Samsung: Exynos
-- Sequans: Monarch/Monarch-2
+- Sequans: Monarch/Monarch-N
 - Altair: ALT1250
 - MediaTek: MT2625 SoC
 - u-blox: SARA R410M; C030 Application board
+- Nordic Semiconductor: nRF9160
+- SaneChips: RoseFinch7100
+- Riot Micro: RM1000 
 
 ## Distributor
 - Telit: xE910: ME910G1/ME910C1 (from QM)
-- Quectel: BG96 (from QM)
+- Quectel: BG96/BC95 (from HiSilicom)
