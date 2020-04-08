@@ -11,8 +11,9 @@
     
 
 ## [Chipset Vendors](http://www.codeplayon.com/2019/03/narrow-band-nb-iot-modem-chip-vendors-2/)
-- Qualcomm: MDM 9207(CAT1)/9206(Cat-M1)/9205
+- Qualcomm: [MDM 9207(CAT1)/9206(Cat-M1)/9205(Cheap)](https://rethinkresearch.biz/articles/qualcomms-latest-iot-modem-chipset-covers-nearly-all-the-3gpp-bases/)
     - [DeveloperNetwork](https://developer.qualcomm.com/project/)
+    - [OS-IoT C Library for BG96/MDM9206 in ThreadX](https://os-iot.org/c-library/)
     - [Cellular IoT-mdm9206](https://developer.qualcomm.com/blog/cellular-iot-mdm9206-modem-and-new-lte-iot-sdk)
 - HiSilicom: Balong
 - Samsung: Exynos
