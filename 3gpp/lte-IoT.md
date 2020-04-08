@@ -13,9 +13,13 @@
 ## Chipset
 - Qualcomm: MDM 9207(CAT1)/9206(Cat-M1)/9205
     - [DeveloperNetwork](https://developer.qualcomm.com/project/)
+- HiSilicom: Balong
+- Samsung: Exynos
 - Sequans: Monarch/Monarch-2
 - Altair: ALT1250
 - MediaTek: MT2625 SoC
 - u-blox: SARA R410M; C030 Application board
-- Telit: xE910:  ME910G1/ME910C1
-- Quectel: BG96
+
+## Distributor
+- Telit: xE910: ME910G1/ME910C1 (from QM)
+- Quectel: BG96 (from QM)
