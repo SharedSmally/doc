@@ -1,4 +1,5 @@
-# Wireless WANS (Long Range): 30% licensed/unlicened spectrum
+# Wireless WANS (Long Range): 30% 
+- licensed/unlicened spectrum
 - LTE-M
 - NB-IoT (LPWA)
 - EC-GSM-IoT
@@ -27,15 +28,14 @@
 - Sequans: Monarch/Monarch-N
 - Altair: ALT1250
 - MediaTek: MT2625 SoC
+- Nordic Semiconductor: nRF91xx(9160): $25; DK(DevKit:$150); https://devzone.nordicsemi.com
 - u-blox: SARA R410M; C030 Application board
-- Nordic Semiconductor: nRF91xx(9160)
 - SaneChips: RoseFinch7100
 - Riot Micro: RM1000 
 
 ## Distributor
 - Telit: xE910: ME910G1/ME910C1 (from QM)
 - Quectel: BG96/BC95 (from HiSilicom)
-
 
 # Local networks (Short Range): 70%
 - Bluetooth LE
@@ -48,3 +48,8 @@
 ## BlueTooth
 - NORDIC SEMICONDUCTOR: nRF 5340
 
+## Sensors
+- $2 for 10PCBs: https://jlcpcb.com (Gerber)
+
+## IoT Projects
+- https://openthread.io/
