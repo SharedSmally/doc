@@ -1,4 +1,11 @@
-# LTE-M vs NB-IoT
+# Wireless WANS (Long Range): 30% licensed/unlicened spectrum
+- LTE-M
+- NB-IoT (LPWA)
+- EC-GSM-IoT
+- LoRaWAN
+- SigFox
+
+## LTE-M vs NB-IoT
 ## Reference
 - [LTE-M vs NB-IoT](https://www.iotforall.com/cellular-iot-explained-nb-iot-vs-lte-m/): From release 13
     - Cat-1: 
@@ -21,10 +28,23 @@
 - Altair: ALT1250
 - MediaTek: MT2625 SoC
 - u-blox: SARA R410M; C030 Application board
-- Nordic Semiconductor: nRF9160
+- Nordic Semiconductor: nRF91xx(9160)
 - SaneChips: RoseFinch7100
 - Riot Micro: RM1000 
 
 ## Distributor
 - Telit: xE910: ME910G1/ME910C1 (from QM)
 - Quectel: BG96/BC95 (from HiSilicom)
+
+
+# Local networks (Short Range): 70%
+- Bluetooth LE
+- WiFi 802.11ah
+- IEEE 802.15.4
+- ZigBee
+- XBee
+- Z-Wave
+
+## BlueTooth
+- NORDIC SEMICONDUCTOR: nRF 5340
+
