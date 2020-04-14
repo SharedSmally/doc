@@ -7,4 +7,8 @@ are different while for TDD system only one ARFCN number is enough as downlink a
 - ARFCN started from GSM 
 - UARFCN for UMTS/WCDMA: 25.101-1 and 25.101-2 
 - EARFCN for E-UTAR/LTE: 36.101-1 and 36.101-2
-- NR-ARFCN for 5G/New Radio: NR-ARFCNs for 5G new radio are defined in 3GPP specification 38.101-1 and 38.101-2. The relationship between NR-ARFCN and frequence is defined in table 5.4.2.1-1.
+- NR-ARFCN for 5G/New Radio: NR-ARFCNs for 5G new radio are defined in 3GPP specification 38.101-1 and 38.101-2. The relationship between NR-ARFCN and frequence is defined in table 5.4.2.1-1: 
+    Bands:
+    - 0-3G
+    - 3-24.25G
+    - 24.25-100G
