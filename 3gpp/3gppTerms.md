@@ -19,5 +19,5 @@ are different while for TDD system only one ARFCN number is enough as downlink a
    - [v3.0.3](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.3.md)
    - [v3.1.0](https://github.com/OAI/OpenAPI-Specification/tree/v3.1.0-dev)
 - Tools: 
-   - [OpenAPI Tools] (https://OpenAPITools.org)
-   - [openapi-generator](https://openapi-generator.tech/) in [ github ](https://github.com/OpenAPITools/openapi-generator) for C/C++/C##/Java/...
+   - [ OpenAPI Tools ](https://OpenAPITools.org)
+   - [ openapi-generator ](https://openapi-generator.tech/) in [ github ](https://github.com/OpenAPITools/openapi-generator) for C/C++/C##/Java/...
