@@ -21,3 +21,4 @@ are different while for TDD system only one ARFCN number is enough as downlink a
 - Tools: 
    - [ OpenAPI Tools ](https://OpenAPITools.org)
    - [ openapi-generator ](https://openapi-generator.tech/) in [ github ](https://github.com/OpenAPITools/openapi-generator) for C/C++/C##/Java/...
+   - [ jq ](https://stedolan.github.io/jq/): jq is a lightweight and flexible command-line JSON processor.
