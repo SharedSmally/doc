@@ -23,6 +23,7 @@ are different while for TDD system only one ARFCN number is enough as downlink a
    - [ openapi-generator ](https://openapi-generator.tech/) in [ github ](https://github.com/OpenAPITools/openapi-generator) for C/C++/C##/Java/...
    - [ jq ](https://stedolan.github.io/jq/): jq is a lightweight and flexible command-line JSON processor.
    - [ Swagger ](https://swagger.io/docs/specification/about/) is a set of open-source tools built around the OpenAPI Specification that can help you design, build, document and consume REST APIs. The major Swagger tools include:
-        - Swagger Editor – browser-based editor where you can write OpenAPI specs.
-        - Swagger UI – renders OpenAPI specs as interactive API documentation.
-        - Swagger Codegen – generates server stubs and client libraries from an OpenAPI spec.
+        - [ Swagger Editor ](https://swagger.io/tools/swagger-editor/download/)– browser-based editor where you can write OpenAPI specs.
+        - [ Swagger UI ]() – renders OpenAPI specs as interactive API documentation.
+        - [ Swagger Codegen ]((https://swagger.io/tools/swagger-codegen/download/)) – generates server stubs and client libraries from an OpenAPI spec.
+        
