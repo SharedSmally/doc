@@ -35,3 +35,24 @@
 - Dispathcer: Dispatch the incoming messages to the specific Services
 - DaoManager: Service interfaces for DAO data persistence:  CRUD
 - CacheMgr: manage the Cacheable
+
+## Class
+- public static Meta & getMeta(): MetaData about the class, static infomation; read only
+
+```
+template <typename META>
+class MetaClass {
+public:
+static META & getMeta() { return meta_; }
+
+private:
+static META meta_;
+};
+
+class MyClass : MetaClass<String> {
+
+};
+
+String MetaClass<String>::meta_("String");
+```
+
