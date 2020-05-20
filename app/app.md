@@ -15,13 +15,14 @@
     - Resetable Parameters: includes Counts (only value, ++), Gauges(one value, ++,--) and Metrics)
     - Session Records: records for each transaction, may collect Session data from differernt services.
     - Session Data: data related to the session for the specific service
-    - Session Context: Context for the session
+    - Session Context: Context for the session, including SessionID, Timeout, ...,
 
 - ServiceContext: Organize Services within an application
     - Contains a list of services, and organized by parent-children relationship.
 
-- Message: message passing between services;
-- DAO: Data Access Object for Persistt
+- Message/Serializable: Serializable object passing between services; could be xml,json,rawbytes,... (Format)
+- DAO/Persistable: Data Access Object for Persistence; could be sql,redis,queue,mongodb,...; querying by key 
+- Cacheable: part of Persistable; expired after the given time
 
 ## Basic Services
 - ExecutorService: execute task
@@ -33,3 +34,4 @@
     - Handler: Specialized Service to handle the specific message
 - Dispathcer: Dispatch the incoming messages to the specific Services
 - DaoManager: Service interfaces for DAO data persistence:  CRUD
+- CacheMgr: manage the Cacheable
