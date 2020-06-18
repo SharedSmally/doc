@@ -47,9 +47,12 @@
   - SctpSocket(Unicast Sctp socket)
   - BsctpSocket(Broadcast Sctp socket)
   - IPSocket(raw IP socket)
-### SocketOptions; managed by OptionMgr
-### SocketHandler: handle message from the socket, subclass of EventHandler
-### Channel: combine SocketHandler (EventHandler) and Socket (EventObject)
+### SocketOptions; 
+   managed by OptionMgr:  [xxx/Tcp/...Options]
+### SocketHandler: 
+   handle message from the socket, subclass of EventHandler, read/write raw binary data
+### Channel: 
+   combine SocketHandler (EventHandler) and Socket (EventObject)
 ### Socket/FD-based Multiplexer: EventMgr
    - PollMulplex: based on poll
    - SelectMulplex: based on select
@@ -58,7 +61,10 @@
    - Server
    - Client
    - Proxy
-### Session/SessionMgr: associated by message; including a sequence of message via a Channel (TimedObject)
+### Session/SessionMgr:
+associated by message; including a sequence of message via a Channel (TimedObject), may be separated into to 2 parts
+- lower level handler: read/write data(binary)
+- application level handler: convert raw binary data into application message, and handle it.
 
 ## Class
 - public static Meta & getMeta(): MetaData about the class, static infomation; read only; class traits
