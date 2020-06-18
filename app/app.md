@@ -17,7 +17,7 @@
     - Session Data: data related to the session for the specific service
     - Session Context: Context for the session, including SessionID, Timeout, ...,
 
-- ServiceContext: Organize Services within an application
+- ServiceContext: Organize Services within an application, the root is AppContext (one App has one AppContext)
     - Contains a list of services, and organized by parent-children relationship.
 
 - Message/Serializable: Serializable object passing between services; could be xml,json,rawbytes,... (Format)
@@ -36,8 +36,32 @@
 - DaoManager: Service interfaces for DAO data persistence:  CRUD
 - CacheMgr: manage the Cacheable
 
+## net
+### Address: socket address
+  - IPv4Addr/IPv6Addr/IPAddr/UnixAddr
+### Socket: subclass of FDObject (subclass of EventObject), can be configured by SocketOptions
+  - TCPSocket(connection-based unicast socket )
+      - SslSocket
+  - UDPSocket(connectionless-based unicast socket)
+  - BcastSocket(BroadCast)
+  - SctpSocket(Unicast Sctp socket)
+  - BsctpSocket(Broadcast Sctp socket)
+  - IPSocket(raw IP socket)
+### SocketOptions; managed by OptionMgr
+### SocketHandler: handle message from the socket, subclass of EventHandler
+### Channel: combine SocketHandler (EventHandler) and Socket (EventObject)
+### Socket/FD-based Multiplexer: EventMgr
+   - PollMulplex: based on poll
+   - SelectMulplex: based on select
+   - EPollMulplex: based on epoll
+### NetApp 
+   - Server
+   - Client
+   - Proxy
+### Session/SessionMgr: associated by message; including a sequence of message via a Channel (TimedObject)
+
 ## Class
-- public static Meta & getMeta(): MetaData about the class, static infomation; read only
+- public static Meta & getMeta(): MetaData about the class, static infomation; read only; class traits
 
 ```
 template <typename META>
