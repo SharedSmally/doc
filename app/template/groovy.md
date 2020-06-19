@@ -16,3 +16,5 @@ def template = engine.createTemplate(text).make(binding)
 def result = 'Dear "Sam Pullara",\nSo nice to meet you in San Francisco.\nSee you in December,\nGroovy-Dev'
 assert result == template.toString()
 ```
+
+There are other templating solutions that can be used along with Groovy, such as FreeMarker, Velocity, StringTemplate.
