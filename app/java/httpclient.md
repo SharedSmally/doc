@@ -9,7 +9,7 @@ JDK 11 comes up with the HTTP Client API as a reinvention of HttpUrlConnection(o
 - [Jetty client](https://www.eclipse.org/jetty/javadoc/current/org/eclipse/jetty/http2/client/HTTP2Client.html) supports the HTTP/2 protocol for both client and server implementations
 - [Netty client](https://netty.io/)
 
-- [Apache HttpComponents] (https://hc.apache.org/news.html): Core; Client; AsyncClient
+- [Apache HttpComponents](https://hc.apache.org/news.html): Core; Client; AsyncClient
 - [OkHttp3](https://square.github.io/okhttp/): OkHttp depends on Okio for high-performance I/O and the Kotlin standard library. An HTTP+HTTP/2 client for Android and Java applications.
 
 
