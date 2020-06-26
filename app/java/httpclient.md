@@ -129,7 +129,7 @@ public class GetExampleH2 {
 - http: 
     - with/without ALPN; protocol=http/1.0
     
-For H2_PRIOR_KNOWLEDGE, Network is unreachable to http://www.google.com/.
+For H2_PRIOR_KNOWLEDGE without setting ConnectionSpecs, Network is unreachable to http://www.google.com/. It uses http/2 requests for http://website with returning protocol=h2_prior_knowledge. 
 
 
 
