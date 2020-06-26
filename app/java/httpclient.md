@@ -122,11 +122,13 @@ public class GetExampleH2 {
   }
 }
 ```
-https: 
+
+- https: 
     - with ALPN; protocol=h2
     - without ALPN; protocol=http/1.0
-http: 
+- http: 
     - with/without ALPN; protocol=http/1.0
+    
 For H2_PRIOR_KNOWLEDGE, Network is unreachable to http://www.google.com/.
 
 
