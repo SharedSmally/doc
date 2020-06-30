@@ -132,6 +132,25 @@ public class GetExampleH2 {
 For H2_PRIOR_KNOWLEDGE without setting ConnectionSpecs, Network is unreachable to http://www.google.com/. It uses http/2 requests for http://website with returning protocol=h2_prior_knowledge. 
 
 
+### Protocols
+- h2 protocol/encrypted mode: HTTP/2 uses Transport Layer Security (TLS) [TLS12]. It is used in the TLS application-layer protocol negotiation (ALPN) extension [TLS-ALPN] field and in any place where HTTP/2 over TLS is identified. The "h2" string is serialized into an ALPN protocol identifier as the two-octet sequence: 0x68, 0x32.
+- h2c protocol/unencrypted variant: HTTP/2 is run over cleartext TCP. This identifier is used in the HTTP/1.1 Upgrade header field and in any place where HTTP/2 over TCP is identified. The "h2c" string is reserved from the ALPN identifier space but describes a protocol that does not use TLS. It either requires a HTTP upgrade or to have prior knowledge about HTTP/2. HTTP/2 can be negotiated over unencrypted channels (known as h2c) using Upgrade header.
+
+HTTP/2 can be negotiated over unencrypted channels (known as h2c) but it's more complicated as how does the client know whether the server will understand the relatively new HTTP/2 protocol? Additionally proxy servers often have problems handling new protocols like this when sent unencrypted but handle them fine when sent encrypted (because they cannot see its using a new protocol in this case).
+
+For encrypted connections, HTTP/2 (known as h2 when encrypted) is negotiated as part of HTTPS negotiation using the ALPN extension (or the older NPN extension it has replaced) before the first HTTP request is sent.
+
+For unencrypted connections, where there is no HTTPS negotiation, there are two options:
+- Assume the server speaks HTTP/2 and just start talking HTTP/2 immediately. This is a bit presumptious but in theory would work if you fell back to HTTP/1 if that failed. In many ways it's similar to the discussion on making HTTPS default and falling back to HTTP - it needs critical mass to make this worthwhile.
+
+- Send the initial request as a HTTP/1 request and with an upgrade: h2c HTTP Header (and a base 64 HTTP/2 settings frame as another HTTP header). This asks the server if we can switch to HTTP/2 for the next request. The server should send the HTTP/1 response with a similar upgrade header at which point the next request can be sent as a HTTP/2 request. This process is detailed in the HTTP/2 spec in section 3.2.
+
+So the cases could be:
+- h1_1: h1_1 only
+- h2: h2 for TLS and h2_prior knowledge for non-tls (http/2 directly)
+- h2c: h2 for TLS (version negiotiation) and h2c for non-tls (via h2c upgrade: first http/1.1 with header: Upgrade: h2c, then continues with http/2.0
+
+
 
 
 
