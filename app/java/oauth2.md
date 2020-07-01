@@ -1,4 +1,4 @@
-#OAUTH 2
+# OAUTH 2
 
 ## Roles
 - Client: Application
@@ -17,6 +17,15 @@
 
     Verifies the identity of the user then issues access tokens to the application.
 
+## Flow 
+![flow](https://assets.digitalocean.com/articles/oauth/abstract_flow.png)
+- The application requests authorization to access service resources from the user
+- If the user authorized the request, the application receives an authorization grant
+- The application requests an access token from the authorization server (API) by presenting authentication of its own identity, and the authorization grant
+- If the application identity is authenticated and the authorization grant is valid, the authorization server (API) issues an access token to the application. Authorization is complete.
+- The application requests the resource from the resource server (API) and presents the access token for authentication
+- If the access token is valid, the resource server (API) serves the resource to the application
+The actual flow of this process will differ depending on the authorization grant type in use,
 
 
 ## Tutorial
