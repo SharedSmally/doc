@@ -39,10 +39,10 @@ TaskStatus: INIT, CANCELLED, RUNNING, SUCESS, ERROR
 - bool try_lock();
 
 ## SyncObject
--bool wait() //throws InterruptedException
--bool wait(const ) //throws InterruptedException
--void notify()
--void notifyAll()
+- bool wait() //throws InterruptedException
+- bool wait(const ) //throws InterruptedException
+- void notify()
+- void notifyAll()
 
 ## Cloneable / Moveable
 - T clone()
