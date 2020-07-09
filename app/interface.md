@@ -1,0 +1,64 @@
+# Interfaces
+- Xxxable: Interface of the class of the Objects to be Managed 
+- XxxObject/Xxxer: The concrete classes that implement the Xxxable interface
+- XxxMgr: The Singleton concrete classes that manage the Xxxable managed objects, may have multiple instances of XxxMgrs on different policies.
+
+## Runnable
+- void run(); 
+
+## Taskable : Runnable
+- void run(); 
+- bool cancel(); 
+- TaskStatus status() const; 
+TaskStatus: INIT, CANCELLED, RUNNING, SUCESS, ERROR
+
+## Timerable / TimerObject
+- const Time & getExpireTime() const; 
+- void setExpireTime( const Time &); 
+- void onExpired(); 
+
+## Streamable: input/output in binary format
+- void input(std::istream & in)
+- void output(std::ostream & out) const
+
+## Comparable: order of the object
+- CompareResult compare(const Comparable & obj) const
+- CompareResult: LT(-1), LE, EQ(0), GE, GT(1)
+
+## Object(Printable, Hashable)
+- std::string toString() const ; // Printable
+- bool fromString(const std::string &) ; // Parseable; Parser
+- uint32_t hashCode() const ;    // Hashable
+
+## Parseable: XmlParser, JsonParser, TextParser, MessageParser
+- bool parse(std::istream & in) throws FormatException
+
+## Cacheable / CacheObject / CacheMgr
+See for Java Cache mechanism
+
+## Serializeable / DataObject / DataMgr
+
+## 
+
+## Event / EventSource / EventListener / EventHandler
+- EventSource: the source object that can send out the events (Shareable)
+- EventObject: the event objects that the EventSource send out when something happens, include the source
+- EventListener: callback function called when the EventSource sends the EventObject
+     - bool onEvent(EventObject & obj);
+- EventHandler: handle the events,
+     - register/deregister the EventListeners
+     - bool handle(EventObject & obj); return false if not handled in this Handler.
+- EventHandlerMgr: may have the tree- or linear- layout handlers to handle the events, Singleton
+
+## FDObject:SocketObject / NetworkMgr
+- FDObject: EventSource that uses fd to handle the events
+- SocketObject: FDObject that uses socket as fd to handle the events
+     - IPSocket
+     - TCPSocket
+     - UDPSOcket
+     - SCTPSocket
+     - ...
+- NetworkMgr:
+    - PollMgr: use poll() function 
+    - SelectMgr: use select() function 
+    - EpollMgr: use epoll() function 
