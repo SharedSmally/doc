@@ -1,4 +1,34 @@
 # Objects
+## Object
+- uint32_t hashcode() const
+- bool equals(Object obj) const
+- std::string toString() const
+
+## SyncObject 
+Use Reentry Mutex for sync
+- bool wait() //throws InterruptedException
+- bool wait(const ) //throws InterruptedException
+- void notify()
+- void notifyAll()
+
+## RWSyncObject
+Use Read-Write-Mutex for sync
+- bool wait() //throws InterruptedException
+- bool wait(const ) //throws InterruptedException
+- void notify()
+- void notifyAll()
+
+## MetaObject
+- static ClassObject<MetaObject> getClass();
+
+## ClassObject<T> : Constructor
+- Constructor[] getConstructors();
+- MethodObject[] getMethods();
+- MethodObject getMethod(const std::string & mehodname, Args... args);    
+Constructor:
+- T * create/construct(Args... args);
+MethodObject
+- T1 call(const std::string & methodName, T & obj, Args... args);
 
 ## Thread / ThreadPool
 
@@ -46,13 +76,6 @@ protected:
    DATA data_;
 };
 ```
-
-## SyncObject
-
-- bool wait() //throws InterruptedException
-- bool wait(const ) //throws InterruptedException
-- void notify()
-- void notifyAll()
 
 ## Manager<KEY, DATA>
 
