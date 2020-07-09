@@ -41,7 +41,16 @@ See for [Java Cache mechanism](https://dzone.com/articles/introducing-amp-assimi
 - Google Guava: In-process (same process)
 - Coherence*: Distributed
 
-## Persistenceable / DataObject / DataMgr
+## Persistenceable / DataObject / DataMgr: CRUD
+- load()
+- save()
+- update()
+- remove()
+- const Key & getKey();
+- static Persistenceable getByKey(const Key & key);
+- static Persistenceable[] getByCriterion(const Criterion & criterion)
+
+DataMgr implementation:
 - SQL/ORM: JDBC, JPA
 - NoSQL: Key-value
 - Kafka Queue:
