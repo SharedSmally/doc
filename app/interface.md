@@ -47,7 +47,11 @@ TaskStatus: INIT, CANCELLED, RUNNING, SUCESS, ERROR
 ## Cloneable / Moveable
 - T clone()
 - T move()
- 
+
+## Singleton / SingletonMgr
+- static T & instance() ; //Singleton
+- static T & instance() ; //SingletonMgr
+
 ## Manageable / Factory / FactoryMgr 
 Manage/create objects by name (Key)
 - ManageablePtr get(const std::string & name)     
