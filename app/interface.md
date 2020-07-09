@@ -34,11 +34,17 @@ TaskStatus: INIT, CANCELLED, RUNNING, SUCESS, ERROR
 - bool parse(std::istream & in) throws FormatException
 
 ## Cacheable / CacheObject / CacheMgr
-See for Java Cache mechanism
+See for [Java Cache mechanism](https://dzone.com/articles/introducing-amp-assimilating-caching-quick-read-fo)
+- Ehcache: Distributed, Level 2
+- Hazelcast: Distributed data grid, Level 2
+- Redis/Memcached: Distributed in-memory store
+- Google Guava: In-process (same process)
+- Coherence*: Distributed
 
-## Serializeable / DataObject / DataMgr
-
-## 
+## Persistenceable / DataObject / DataMgr
+- SQL/ORM: JDBC, JPA
+- NoSQL: Key-value
+- Kafka Queue:
 
 ## Event / EventSource / EventListener / EventHandler
 - EventSource: the source object that can send out the events (Shareable)
