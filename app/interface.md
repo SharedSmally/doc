@@ -1,7 +1,8 @@
 # Interfaces
 - Xxxable: Interface of the class of the Objects to be Managed 
 - XxxObject/Xxxer: The concrete classes that implement the Xxxable interface
-- XxxMgr: The Singleton concrete classes that manage the Xxxable managed objects, may have multiple instances of XxxMgrs on different policies.
+- XxxMgr: The Singleton concrete classes that manage the Xxxable managed objects
+- XxxService: The Singleton concrete classes that provide Xxxable services, use multiple instances of XxxMgrs on different policies.
 
 ## Runnable
 - void run(); 
@@ -46,7 +47,10 @@ TaskStatus: INIT, CANCELLED, RUNNING, SUCESS, ERROR
 - static T & instance() ; //Singleton
 - static T & instance() ; //SingletonMgr
 
-## Manageable / Factory / FactoryMgr 
+## Service : ServiceContext
+Manager may
+
+## Manageable / Factory / FactoryService (FactoryMgr)
 Manage/create objects by name (Key)
 - ManageablePtr get(const std::string & name)     
 - T * get<T>(const std::string & name)
@@ -62,7 +66,7 @@ See for [Java Cache mechanism](https://dzone.com/articles/introducing-amp-assimi
 - Google Guava: In-process (same process)
 - Coherence*: Distributed
 
-## Persistenceable / DataObject / DataMgr: CRUD
+## Persistenceable / DataObject / DataService(DataMgr): CRUD
 - load()
 - save()
 - update()
@@ -94,7 +98,7 @@ Tree struct to store/retrieve the objects
      - bool handle(EventObject & obj); return false if not handled in this Handler.
 - EventHandlerMgr: may have the tree- or linear- layout handlers to handle the events, Singleton
 
-## FDObject:SocketObject / NetworkMgr
+## FDObject:SocketObject / NetworkService
 - FDObject: EventSource that uses fd to handle the events
 - SocketObject: FDObject that uses socket as fd to handle the events
      - IPSocket
@@ -102,7 +106,7 @@ Tree struct to store/retrieve the objects
      - UDPSOcket
      - SCTPSocket
      - ...
-- NetworkMgr:
+- NetworkService: use NetworkMgr of following subclasses:
     - PollMgr: use poll() function 
     - SelectMgr: use select() function 
     - EpollMgr: use epoll() function 
