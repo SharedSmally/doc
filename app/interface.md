@@ -33,6 +33,29 @@ TaskStatus: INIT, CANCELLED, RUNNING, SUCESS, ERROR
 ## Parseable: XmlParser, JsonParser, TextParser, MessageParser
 - bool parse(std::istream & in) throws FormatException
 
+## Lockable 
+- void lock()
+- void unlock()
+- bool try_lock();
+
+## SyncObject
+-bool wait() //throws InterruptedException
+-bool wait(const ) //throws InterruptedException
+-void notify()
+-void notifyAll()
+
+## Cloneable / Moveable
+- T clone()
+- T move()
+ 
+## Manageable / Factory / FactoryMgr 
+Manage/create objects by name (Key)
+- ManageablePtr get(const std::string & name)     
+- T * get<T>(const std::string & name)
+- bool put<T>(const std::string & name, ...Args);     
+- bool has(const std::string & name);
+- ManageablePtr remove(const std::string & name);
+
 ## Cacheable / CacheObject / CacheMgr
 See for [Java Cache mechanism](https://dzone.com/articles/introducing-amp-assimilating-caching-quick-read-fo)
 - Ehcache: Distributed, Level 2
@@ -54,6 +77,14 @@ DataMgr implementation:
 - SQL/ORM: JDBC, JPA
 - NoSQL: Key-value
 - Kafka Queue:
+
+## Context: TreeNode
+Tree struct to store/retrieve the objects
+- Context & root();
+- Context & parent();
+- Container<Context> & siblings();  
+- int index() const;
+- Container<Context> & children();
 
 ## Event / EventSource / EventListener / EventHandler
 - EventSource: the source object that can send out the events (Shareable)
