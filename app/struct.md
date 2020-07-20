@@ -19,13 +19,15 @@
    type, name, size?, initial_value
 
 ## type: alias to existing data type. C++ typedef
+```
 <type name="" class="array:XXX|vector|set|map" template="">
     <template>
 </type>
-
+```
 Similar to [ FIDL ](https://fuchsia.dev/fuchsia-src/development/languages/fidl)/ [ Protocol-buffer ](https://developers.google.com/protocol-buffers).
 
 ## Definitions: publicid systemid
+```
 <dao xmlns="" publicid="ref_id" namespace="">
    <include local="localfile"/>*
    
@@ -47,9 +49,9 @@ Similar to [ FIDL ](https://fuchsia.dev/fuchsia-src/development/languages/fidl)/
    <type name="" container="array/vector/set" type="" size="" />
    <map name="" key="key_type" value="value_type"/>
 </dao>
-include file; same namespace.
-import file as xxx; in different namespace; href="HREF_ID"
-
+```
+- include file; same namespace.
+- import file as xxx; in different namespace; href="HREF_ID"
 
 ### Schema
 - In an XML instance document, the value of @schemaLocation is a link to the XML Schema
@@ -67,14 +69,15 @@ import file as xxx; in different namespace; href="HREF_ID"
         <field name="name" type="ns:type"
     </struct
 </dao>
-
 ```
+
 - Links in an XML Schema document:
 ```
    <include schemaLocation="... link ..." />
    <import schemaLocation="... link ..." namespace="XYZ" />
 ```
-3. Links in an XSLT document:
+
+- Links in an XSLT document:
 ```
    <include href="... link ..." />
    <import href="... link ..." />
