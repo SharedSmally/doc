@@ -3,7 +3,7 @@
 ## Basic Types 
 - bool
 - int8,int16,int32,int64
-- uint8,uint16,uint32,uint64
+- uint8 (byte),uint16,uint32,uint64
 - float32,float64,complex32,complex64
 - string
 - bits:uintX, enum:intX
