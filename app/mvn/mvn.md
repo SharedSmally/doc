@@ -18,6 +18,35 @@ Running a phase basically runs the plugins bound with it.
 
 A group of ordered phases. There are three built-in lifecycle: default, clean and site. 
 
+- Maven Plugin 
+
+A Maven plugin is a group of goals
+```
+<build>
+    <plugins>
+        <plugin>
+            <artifactId>maven-xxx-plugin</artifactId>
+            <version>${maven.xxx.version}</version>
+            <executions>
+                <execution>
+                    <goals>
+                        <goal>goal1</goal>
+                        <goal>goal2</goal>
+                    </goals>
+                </execution>
+            </executions>
+        </plugin>
+    </plugins>
+</build>
+```
+
+## mvn command
+```
+mvn <PHASE>
+mvn <PHASE>:<GOAL>
+mvn <PLUGIN>:<GOAL>
+```
+
 ## Life Cycle
 There are three built-in life cycles. [ @see the attached Phases ](http://maven.apache.org/guides/introduction/introduction-to-the-lifecycle.html#Lifecycle%5FReference):
 
