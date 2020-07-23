@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xsi:schemaLocation="http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  
+  <groupId>com.mycompany.app</groupId>
+  <artifactId>my-module</artifactId>
+  <version>1</version>
+  <packaging>pom/jar</packaging>
+  <description>...</description>
+  
+  <properties>
+    <mavenVersion>3.0</mavenVersion>
+  </properties>
+  
+  <parent>
+    <groupId>com.mycompany.app</groupId>
+    <artifactId>my-app</artifactId>
+    <version>1</version>
+  </parent>
+
+  <modules>
+     <module>mod-name1</module>*
+  <modules>
+  
+  <dependencies>
+   <dependency>
+    <groupId>com.mycompany.app</groupId>
+    <artifactId>my-app</artifactId>
+    <version>1</version>
+    </dependency>
+  </dependencies>
+  
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>maven-clean-plugin</artifactId>
+        <version>3.0.0</version>
+        <executions>
+          <execution>
+             <id>MakeSDK</id>
+             <phase>package</phase>
+             <goals>
+                <goal>exec</goal>
+              </goals>
+           </execution>
+        </executions>
+        <configuration>
+        </configuration>
+      <plugin>
+    </plugins>
+  </build>
+      
+  <profiles>
+    <profile>
+    </profile>
+  </profiles>
+</project>
+  
+</project>
