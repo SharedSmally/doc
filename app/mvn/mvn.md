@@ -33,8 +33,11 @@ A Maven plugin is a group of goals
                         <goal>goal1</goal>
                         <goal>goal2</goal>
                     </goals>
+                    <phase>validate</phase>
                 </execution>
             </executions>
+            <configuration>
+            </configuration>
         </plugin>
     </plugins>
 </build>
