@@ -63,6 +63,9 @@ Map<String, String> fields = jedis.hgetAll("user#1");
 String job = fields.get("job");
 ```
 
+### Layout:
+JedisPool(thread-safe) => Jedis implments Commands => Client (subclass of Connection, close)
+
 ### Advanced Features
 - Transactions:  guarantee atomicity and thread safety operations
 ```
@@ -268,7 +271,8 @@ public class KVStoreSubClient extends Thread{
             e.printStackTrace();
         }
     }
-}```
+}
+```
 
 ```
 JedisPool pool = new JedisPool(...);
@@ -277,5 +281,27 @@ try {
     // Is connected
 } catch (JedisConnectionException e) {
     // Not connected
+}
+```
+Using Ping to monitor connection
+```
+public boolean isConnected(){
+    try{
+        monitorDbObj.ping();
+        return true;
+    } catch (JedisConnectionException e){ 
+        if(!this.connecting){
+            connecting = true;  
+            try{
+                isConnected = connectDb();
+            } catch (JedisConnectionException ex){
+                isConnected = false;
+            } 
+            connecting = false; 
+        } 
+    } catch (JedisDataException e){
+        connecting = false;
+    }
+    return false;
 }
 ```
