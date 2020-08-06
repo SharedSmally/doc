@@ -1,4 +1,11 @@
 # redis
+Redis is an in-memory database.
+
+## Deployment
+- Standalone: One VM runs a redis server
+- Replicated: One master and multiple replicas (slaveof xxx). The master pushes data to replicas. Replicas don’t talk between themselves.
+- Sentinel: Monitoring system with a Redis replicated system, each instance (master or replicas) has the corresponding Sentinel to minitor the instance, and select the master if the master is down.
+- Cluster: a multi-master architecture: the data is partitioned (sharded) into 16k buckets, each bucket with an assigned master in the cluster, and typically replicated twice. Should be with Sentinel.
 
 ## Java Clients
 - jedis (simple, lack features like thread safety, transparent reconnection handling and an asynchronous API)
