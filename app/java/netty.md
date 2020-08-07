@@ -39,28 +39,28 @@
          - OioSctpChannel
          - OioSctpServerChannel
 - unix
-      - DatagramSocketAddress / DomainSocketAddress
-      - UnixChannel / ServerDomainSocketChannel
-      - DomainSocketChannel / DomainSocketChannelConfig
+    - DatagramSocketAddress / DomainSocketAddress
+    - UnixChannel / ServerDomainSocketChannel
+    - DomainSocketChannel / DomainSocketChannelConfig
 - local
-      - LocalEventLoopGroup / LocalAddress
-      - LocalChannel / LocalServerChannel
+    - LocalEventLoopGroup / LocalAddress
+    - LocalChannel / LocalServerChannel
 - rxtx
-      - RxtxDeviceAddress / RxtxChannelOption<T> / RxtxChannelConfig
-      - RxtxChannel
+    - RxtxDeviceAddress / RxtxChannelOption<T> / RxtxChannelConfig
+    - RxtxChannel
 
 ## Transprots
 - OIO: old blocking IO: n<1000; OioEventLoopGroup (deprecated)
 - NIO : NIO based nonblocking: n>1000: 
       - NioEventLoop; NioEventLoopGroup
 - epoll: 
-      - EpollEventLoopGroup / Epoll / EpollTcpInfo / EpollMode	 
-      - EpollChannelConfig / / EpollServerChannelConfig / EpollChannelOption<T>	
-      - EpollDatagramChannel / EpollDatagramChannelConfig 	 
-      - EpollDomainSocketChannel / EpollDomainSocketChannelConfig  
-      - EpollServerDomainSocketChannel / EpollServerChannelConfig  
-      - EpollServerSocketChannel / EpollServerSocketChannelConfig       
-      - EpollSocketChannel / EpollSocketChannelConfig        
+    - EpollEventLoopGroup / Epoll / EpollTcpInfo / EpollMode	 
+    - EpollChannelConfig / / EpollServerChannelConfig / EpollChannelOption<T>	
+    - EpollDatagramChannel / EpollDatagramChannelConfig 	 
+    - EpollDomainSocketChannel / EpollDomainSocketChannelConfig  
+    - EpollServerDomainSocketChannel / EpollServerChannelConfig  
+    - EpollServerSocketChannel / EpollServerSocketChannelConfig       
+    - EpollSocketChannel / EpollSocketChannelConfig        
 - kqueue
 
 - ndt: Deprecated 
