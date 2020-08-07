@@ -1,6 +1,6 @@
 # [Netty](https://netty.io/)
 
-##mvn
+## mvn
 ```
 <property>
     <netty.version>4.1.51.Final</netty.version>
@@ -76,6 +76,15 @@ A ChannelHandler is provided with a ChannelHandlerContext object. A ChannelHandl
 
 ```
 public interface ChannelHandler
+
+public interface ChannelInboundHandler extends ChannelHandler
+void channelRead(ChannelHandlerContext ctx, java.lang.Object msg)
+void channelXxx(ChannelHandlerContext ctx)
+......
+
+public interface ChannelOutboundHandler extends ChannelHandler
+void write(ChannelHandlerContext ctx, java.lang.Object msg, ChannelPromise promise)
+......
 ```
 
 ## Channels (socket,sctp for NIO, OIO-deprecated)
