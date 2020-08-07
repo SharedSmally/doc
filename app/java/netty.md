@@ -12,6 +12,63 @@
     <version>${netty.version}</version>
 </dependency>
 ```
+## Bootstrap
+- AbstractBootstrap<B,C>: : set group,channel,handler for creted channels
+```
+public abstract class AbstractBootstrap<B extends AbstractBootstrap<B,C>,C extends Channel>
+
+abstract AbstractBootstrapConfig<B,C> 	config()
+
+B 	channel(java.lang.Class<? extends C> channelClass)
+B 	group(EventLoopGroup group)
+B 	handler(ChannelHandler handler)
+
+ChannelFuture 	bind(xxx)
+```
+- AbstractBootstrapConfig
+```
+public abstract class AbstractBootstrapConfig<B extends AbstractBootstrap<B,C>,C extends Channel>
+
+java.util.Map<AttributeKey<?>,java.lang.Object> 	attrs()
+ChannelFactory<? extends C> 	channelFactory()
+EventLoopGroup 	group()
+ChannelHandler 	handler()
+java.net.SocketAddress 	localAddress()
+java.util.Map<ChannelOption<?>,java.lang.Object> 	options()
+```
+- Bootstrap
+```
+public class Bootstrap extends AbstractBootstrap<Bootstrap,Channel>
+BootstrapConfig config()
+ChannelFuture connect(xxx);
+Bootstrap remoteAddress(xxx);
+```
+- BootstrapConfig
+```
+public final class BootstrapConfig extends AbstractBootstrapConfig<Bootstrap,Channel>
+
+java.net.SocketAddress 	remoteAddress()
+AddressResolverGroup<?> 	resolver()
+```
+- ServerBootstrap: add group,channel,handler for child
+```
+public class ServerBootstrap extends AbstractBootstrap<ServerBootstrap,ServerChannel>
+
+<T> ServerBootstrap 	childAttr(AttributeKey<T> childKey, T value)
+ServerBootstrap 	childHandler(ChannelHandler childHandler)
+<T> ServerBootstrap 	childOption(ChannelOption<T> childOption, T value)
+
+ServerBootstrapConfig 	config()
+```
+- ServerBootstrapConfig:
+```
+public final class ServerBootstrapConfig extends AbstractBootstrapConfig<ServerBootstrap,ServerChannel>
+
+java.util.Map<AttributeKey<?>,java.lang.Object> 	childAttrs()
+EventLoopGroup 	childGroup()
+ChannelHandler 	childHandler()
+java.util.Map<ChannelOption<?>,java.lang.Object> 	childOptions()
+```
 ## Concepts
 - EventLoop: handle all the I/O operations for a Channel once registered
 ```
