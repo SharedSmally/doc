@@ -28,18 +28,18 @@ Redis is an in-memory database.
 </dependency>
 ```
 ### Data Structures
-- String
+- String [Commands](https://redis.io/commands/#string): SET/GET|[RANGE,BIT]; INCR/DECR/INCRBY/APPEND.
 ```
 jedis.set("events/city/rome", "32,15,223,828");
 String cachedResponse = jedis.get("events/city/rome");
 ```
-- List
+- List [Commands](https://redis.io/commands/#list): [L|R]PUSH|TRIM
 ```
 jedis.lpush("queue#tasks", "firstTask");
 jedis.lpush("queue#tasks", "secondTask");
 String task = jedis.rpop("queue#tasks");
 ```
-- Set
+- Set [Commands](https://redis.io/commands/#set):SADD/REMOVE
 ```
 jedis.sadd("nicknames", "nickname#1");
 jedis.sadd("nicknames", "nickname#2");
@@ -47,7 +47,7 @@ jedis.sadd("nicknames", "nickname#1");
 Set<String> nicknames = jedis.smembers("nicknames");
 boolean exists = jedis.sismember("nicknames", "nickname#1");
 ```
-- Sorted Set
+- Sorted Set [Commands](https://redis.io/commands/#sorted_set): Zxxx
 ```
 Map<String, Double> scores = new HashMap<>();
 scores.put("PlayerOne", 3000.0);
@@ -61,7 +61,7 @@ scores.entrySet().forEach(playerScore -> {
 String player = jedis.zrevrange("ranking", 0, 1).iterator().next();
 long rank = jedis.zrevrank("ranking", "PlayerOne");
 ```
-- Hash
+- Hash [Commands](https://redis.io/commands/#hash): Hxxx
 ```
 jedis.hset("user#1", "name", "Peter");
 jedis.hset("user#1", "job", "politician");
@@ -69,6 +69,8 @@ String name = jedis.hget("user#1", "name");
 Map<String, String> fields = jedis.hgetAll("user#1");
 String job = fields.get("job");
 ```
+- [Keys](https://redis.io/commands/#generic); [Streams](https://redis.io/commands/#stream); [Pub/Sub](https://redis.io/commands/#pubsub);  
+- [Client](https://redis.io/commands/#connection); [Server](https://redis.io/commands/#server); [Scripting](https://redis.io/commands/#scripting); [Cluster](https://redis.io/commands/#cluster)
 
 ### Layout:
 JedisPool(thread-safe) => Jedis implments Commands => Client (subclass of Connection, close)
