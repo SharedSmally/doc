@@ -24,7 +24,7 @@ ChannelFuture	writeAndFlush(java.lang.Object msg [,ChannelPromise promise])
 ## [ChannelPipeline](https://netty.io/4.0/api/io/netty/channel/ChannelPipeline.html)
 public interface ChannelPipeline extends java.lang.Iterable<java.util.Map.Entry<java.lang.String,ChannelHandler>>
 ```
-ChannelPipeline	addAfter/Before(EventExecutorGroup group, java.lang.String baseName, java.lang.String name, ChannelHandler handler)
+ChannelPipeline	addAfter/Before(EventExecutorGroup group, String baseName, java.lang.String name, ChannelHandler handler)
 ChannelPipeline	addAfter/Before(java.lang.String baseName, java.lang.String name, ChannelHandler handler)
 
 ChannelPipeline	addFirst/Last(ChannelHandler... handlers)
@@ -173,7 +173,7 @@ void	userEventTriggered(ChannelHandlerContext ctx, java.lang.Object evt)
 public interface ChannelOutboundHandler extends ChannelHandler
 ```
 void	bind(ChannelHandlerContext ctx, java.net.SocketAddress localAddress, ChannelPromise promise)
-void	connect(ChannelHandlerContext ctx, java.net.SocketAddress remoteAddress, java.net.SocketAddress localAddress, ChannelPromise promise)
+void	connect(ChannelHandlerContext ctx, SocketAddress remoteAddr, SocketAddress localAddr, ChannelPromise promise)
 
 void	close(ChannelHandlerContext ctx, ChannelPromise promise)
 void	disconnect(ChannelHandlerContext ctx, ChannelPromise promise)
