@@ -1,5 +1,37 @@
 # [netty java API](https://netty.io/4.0/api/index.html?overview-summary.html)
 
+## Concepts
+- Events
+Netty is event-driven application, so the pipeline of the data processing is a chain of events going through handlers. Events and handlers are related to the inbound and outbound data flow. 
+
+Inbound events:
+- Channel activation and deactivation
+- Read operation events
+- Exception events
+- User events
+
+Outbound events are related to opening/closing a connection and writing/flushing data.
+
+- Channel Handler
+The base interfaces for the channel event handlers are ChannelHandler and its ancestors ChannelOutboundHandler and ChannelInboundHandler. The empty implementations are ChannelInboundHandlerAdapter and ChannelOutboundHandlerAdapter. These adapters can be extended when need to process only a subset of all events. The implementations for HTTP are HttpRequestDecoder, HttpResponseEncoder, HttpObjectAggregator. 
+
+- Encoders and Decoders: convert the message from byte sequence (for socket read/write) to Java object and vice versa.
+    - Decoders: special extensions of the ChannelInboundHandler to decode incoming data. The base class of most decoders is ByteToMessageDecoder.
+    - Encoder: special extensions of the ChannelOutboundHandler to encode outgoing data. The base for most encoders is MessageToByteEncoder. We can 
+
+- Channels
+```
+
+```
+
+- Threads for a channel:
+     - Regardless of its transport and type, all its upstream (i.e. inbound) events must be fired from the thread that performs I/O for the channel (i.e. I/O thread).
+     - All downstream (i.e. outbound) events can be triggered from any thread including the I/O thread and non-I/O threads. However, any upstream events triggered as a side effect of the downstream event must be fired from the I/O thread. (e.g. If Channel.close() triggers channelDisconnected, channelUnbound, and channelClosed, they must be fired by the I/O thread.
+
+- [Reference Counted Objects](https://netty.io/wiki/reference-counted-objects.html)
+[ByteBuf](https://netty.io/4.0/api/index.html?io/netty/buffer/ByteBuf.html) is the most notable type which takes advantage of reference counting to improve the allocation and deallocation performance
+
+
 ## [Channel](https://netty.io/4.0/api/io/netty/channel/Channel.html)
 
 public interface Channel extends AttributeMap
