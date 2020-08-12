@@ -2,9 +2,17 @@
 
 ## Issues
 - Decode called [multiple times](https://stackoverflow.com/questions/26531134/netty-decoder-method-called-multiple-times)
+
 Simple solution: call clear() method.
 The decoding mechanism is explained more in the Netty User Guide - Dealing with a Stream-based Transport. Multiple calls are made to ensure the full message bytes are received.
 
+- [netty writeandflush not working] (https://stackoverflow.com/questions/28934777/netty-writeandflush-method-doesnt-work),
+    - [second issue](https://stackoverflow.com/questions/43909348/netty-writeandflush-incomplete)
+    - [third issue](https://stackoverflow.com/questions/22794326/not-able-to-send-byte-to-server-with-netty)
+Solution: all writeandflush statements must end with "\r\n" in order to flush. With out that they dont flush. I don't understand why that is but whatever.
+
+- netty cannot send byte[]
+Solution: Need to add io.netty.handler.codec.bytes.ByteArrayEncoder and ByteArrayDecoder to do the transformation between byte[] and ByteBuf. The Netty socket only works directly with ByteBuf. 
 
 ## Concepts
 - Events
