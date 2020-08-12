@@ -1,5 +1,11 @@
 # [netty java API](https://netty.io/4.0/api/index.html?overview-summary.html)
 
+## Issues
+- Decode called [multiple times](https://stackoverflow.com/questions/26531134/netty-decoder-method-called-multiple-times)
+Simple solution: call clear() method.
+The decoding mechanism is explained more in the Netty User Guide - Dealing with a Stream-based Transport. Multiple calls are made to ensure the full message bytes are received.
+
+
 ## Concepts
 - Events
 Netty is event-driven application, so the pipeline of the data processing is a chain of events going through handlers. Events and handlers are related to the inbound and outbound data flow. 
