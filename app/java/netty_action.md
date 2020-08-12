@@ -3,6 +3,10 @@
 ## Concepts
 - Channel (Socket): For incoming(inbound) and outgoing(outbound) data
 
+Netty’s Channel implementations are thread-safe, so you can store a reference to a
+Channel and use it whenever you need to write something to the remote peer, even
+when many threads are in use.
+
 - Events: triggerd by inbund data or an associated change of state, or the result of an operation
 
 - ChannelHandler: Callback to handle events
