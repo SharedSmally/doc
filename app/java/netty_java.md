@@ -1,4 +1,5 @@
 # [netty java API](https://netty.io/4.0/api/index.html?overview-summary.html)
+- [Netty-in action](https://livebook.manning.com/book/netty-in-action/chapter-5/)
 
 ## Issues
 - Decode called [multiple times](https://stackoverflow.com/questions/26531134/netty-decoder-method-called-multiple-times)
@@ -27,6 +28,71 @@ where blockingThreadPool is regular ThreadPoolExecutor.
 ExecutorService blockingThreadPool = Executors.newFixedThreadPool(10)
 ```
 
+Not working using the following:
+```
+ch.pipeline().addLast(new DefaultEventExecutorGroup(10), new ServerHandler());
+```
+
+- [Netty ChannelHandlerContext writing from different thread](https://stackoverflow.com/questions/44782682/netty-channelhandlercontext-writing-from-different-thread)
+
+ChannelHandlerContext.write method checks what thread you are in. If ctx.write method is called from the outside thread (not the event executor thread) than the ctx.write operation will be submitted to the thread that belongs to your context. What actually happens could simply described like this:
+```
+gameLogicPool.send(new Runnable() {
+         //your logic here
+         ctx.write(response);
+         //ctx.write actually does this when executed from another thread:
+         ctx.executor().execute(new Runnable() {
+             //write happens here when you are in event executor already
+             }
+         );
+    }
+);
+```
+
+- [write difference for channelhandlercontext and channel](https://stackoverflow.com/questions/32514803/netty-what-are-the-differences-between-channelhandlercontext-channel-write)
+
+Channel#write and ChannelPipeline#write write response from the tail handler context in pipeline.
+```
+// DefaultChannelPipeline # write
+public ChannelFuture write(Object msg) {
+    return tail.write(msg);
+}
+```
+
+ChannelHandlerContext#write writes response from the next handler context.
+```
+// AbstractChannelHandlerContext # write
+next.invoker().invokeWrite(next, msg, promise);
+```
+
+- [Pipeline](https://programmer.group/netty-pipeline-depth-analysis.html)
+
+ChannelPepiline is a component added by netty to the native channel. Annotations on the Channel Pipeline interface illustrate the role of channel Pipeline. This channel Pipeline is the implementation of advanced filters. netty directs the data in channel Pipeline and gives users 100% control over the data in channel. In addition, the channelPipeline data structure is a two-way linked list. Each node is ChannelContext. ChannelContext maintains the reference of the corresponding handler and pipeline. To sum up, through channelPipeline, users can easily write data to Channel and read data from Channel.
+
+- http Server:
+```
+public class ServerInitializer extends ChannelInitializer<Channel> {   
+    @Override  
+    protected void initChannel(Channel ch) {  
+        ChannelPipeline pipeline = ch.pipeline();  
+        pipeline.addLast(new HttpServerCodec());  
+        pipeline.addLast(new HttpObjectAggregator(Integer.MAX_VALUE));  
+        pipeline.addLast(new ServerHandler());  
+    }        
+}
+public class ServerHandler extends SimpleChannelInboundHandler<FullHttpRequest> {       
+    @Override  
+    protected void channelRead0(ChannelHandlerContext ctx, FullHttpRequest msg) {  
+        ByteBuf content = Unpooled.copiedBuffer("Hello World!", CharsetUtil.UTF_8);  
+        FullHttpResponse response = new DefaultFullHttpResponse(HttpVersion.HTTP_1_1, HttpResponseStatus.OK, content);  
+        response.headers().set(HttpHeaderNames.CONTENT_TYPE, "text/html");  
+        response.headers().set(HttpHeaderNames.CONTENT_LENGTH, content.readableBytes());  
+        ctx.write(response);  
+        ctx.flush();  
+    }       
+}
+```
+
 ## Concepts
 - Events
 Netty is event-driven application, so the pipeline of the data processing is a chain of events going through handlers. Events and handlers are related to the inbound and outbound data flow. 
@@ -47,9 +113,13 @@ The base interfaces for the channel event handlers are ChannelHandler and its an
     - Encoder: special extensions of the ChannelOutboundHandler to encode outgoing data. The base for most encoders is MessageToByteEncoder. We can 
 
 - Channels
-```
-
-```
+    - EpollSocket (Uses JNI for epoll() and non-blocking IO: EpollEventLoopGroup, NioServerSocketChannel, EpollServerSocketChannel; only for TCP and UDP in Linux)
+    - EmbeddedChannel (testing ChannelHandlers)
+    - LocalServerChannel (Local transport—asynchronous communications within a JVM)
+    - NioDatagramChannel
+    - NioSctpChannel  
+    - NioSocketChannel (NIO—asynchronous transport: TCP, UDP, SCTP, UDT)
+    - OioSocketChannel (OIO—blocking transport: TCP, UDP, SCTP, UDT))
 
 - Threads for a channel:
      - Regardless of its transport and type, all its upstream (i.e. inbound) events must be fired from the thread that performs I/O for the channel (i.e. I/O thread).
