@@ -9,10 +9,23 @@ The decoding mechanism is explained more in the Netty User Guide - Dealing with 
 - [netty writeandflush not working] (https://stackoverflow.com/questions/28934777/netty-writeandflush-method-doesnt-work),
     - [second issue](https://stackoverflow.com/questions/43909348/netty-writeandflush-incomplete)
     - [third issue](https://stackoverflow.com/questions/22794326/not-able-to-send-byte-to-server-with-netty)
+
 Solution: all writeandflush statements must end with "\r\n" in order to flush. With out that they dont flush. I don't understand why that is but whatever.
 
 - netty cannot send byte[]
+
 Solution: Need to add io.netty.handler.codec.bytes.ByteArrayEncoder and ByteArrayDecoder to do the transformation between byte[] and ByteBuf. The Netty socket only works directly with ByteBuf. 
+
+- [execute handler in a separate thread](https://stackoverflow.com/questions/44398509/how-to-execute-business-logic-handler-in-a-separate-thread-pool-using-netty)
+
+The handler will be always attached to the same thread of EventExecutorGroup. In order to execute blocking operation in parallel as soon as it arrives, need to use a separate ThreadPoolExecutor:
+```
+ch.pipeline().addLast(new ServerHandler(blockingThreadPool));
+```
+where blockingThreadPool is regular ThreadPoolExecutor.
+```
+ExecutorService blockingThreadPool = Executors.newFixedThreadPool(10)
+```
 
 ## Concepts
 - Events
