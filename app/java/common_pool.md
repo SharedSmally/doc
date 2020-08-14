@@ -9,6 +9,39 @@
 </dependency>
 ```
 ## Interfaces
+- [ObjectPool<T>](https://commons.apache.org/proper/commons-pool/apidocs/org/apache/commons/pool2/ObjectPool.html)
+```
+T	borrowObject()
+void	returnObject(T obj)
+void	invalidateObject(T obj)
+    
+void	addObject()/addObjects(int count)
+void	clear()/close()
+int	getNumActive()/getNumIdle()
+``` 
+
+Example usage:
+```
+ Object obj = null;
+ try {
+     obj = pool.borrowObject();
+     try {
+         //...use the object...
+     } catch(Exception e) {        
+         pool.invalidateObject(obj);  // invalidate the object        
+         obj = null; // do not return the object to the pool twice
+     } finally {
+         // make sure the object is returned to the pool
+         if(null != obj) {
+             pool.returnObject(obj);
+        }
+     }
+ } catch(Exception e) {
+       // failed to borrow an object
+ }    
+```
+Implementing Classes: BaseObjectPool, GenericObjectPool, ProxiedObjectPool, SoftReferenceObjectPool
+    
 - [PooledObjectFactory]():
 
 provides a generic interface for managing the lifecycle of a pooled object:
