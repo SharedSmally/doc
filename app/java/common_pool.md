@@ -47,15 +47,29 @@ Implementing Classes: BaseObjectPool, GenericObjectPool, ProxiedObjectPool, Soft
 provides a generic interface for managing the lifecycle of a pooled object:
 ```
 public interface PooledObjectFactory<T> {
-    PooledObject<T> makeObject();
-    void activateObject(PooledObject<T> obj);
-    void passivateObject(PooledObject<T> obj);
-    boolean validateObject(PooledObject<T> obj);
-    void destroyObject(PooledObject<T> obj);
+void	activateObject(PooledObject<T> p);   // Reinitializes an instance to be returned by the pool.
+void	destroyObject(PooledObject<T> p);    // Destroys an instance no longer needed by the pool.
+
+PooledObject<T>	makeObject()                 // Creates an instance that can be served by the pool and wrap it in a PooledObject to be managed by the pool.
+void passivateObject(PooledObject<T> p)      // Uninitializes (Reset) an instance to be returned to the idle object pool.
+boolean	validateObject(PooledObject<T> p)    // Ensures that the instance is safe to be returned by the pool.
 }
 ```
 Implementing Classes: [BasePooledObjectFactory](https://commons.apache.org/proper/commons-pool/apidocs/org/apache/commons/pool2/BasePooledObjectFactory.html)
-
+```
+void  activateObject(PooledObject<T> p); // No-op.
+void  destroyObject(PooledObject<T> p);  // No-op.
+PooledObject<T>	makeObject() // Creates an instance that can be served by the pool and wrap it in a PooledObject to be managed by the pool.
+void passivateObject(PooledObject<T> p); // No-op.
+       // pooledObject.getObject().reset();
+boolean	validateObject(PooledObject<T> p); // This implementation always returns true.
+       // return pooledObject.getObject().isValid();
+abstract T create()   // Creates an object instance, to be wrapped in a PooledObject:
+       // return new T();
+abstract PooledObject<T> wrap(T obj)  // Wrap the provided instance with an implementation of PooledObject.
+       // return new DefaultPooledObject<StringBuffer>(buffer);
+```
+    
 - KeyedPooledObjectFactory:
 
 Defines a similar interface for KeyedObjectPools:
