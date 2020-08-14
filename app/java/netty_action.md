@@ -47,3 +47,31 @@ Initializer will add an instance of ChannelHandler to the Channel’s ChannelPip
       - channelActive()—Called after the connection to the server is established
       - channelRead0()—Called when a message is received from the server
       - exceptionCaught()—Called if an exception is raised during processing
+
+
+## Channel: implementations are thread-safe, can be stored and used to write data to the remote peer whenever needed
+- eventLoop: return the EventLoop that is assigned to the Channel
+- pipeline: return the ChannelPipeline (list of ChannelHandlers) that is assigned to the Channel
+- isActive: return true if the Channel is active: TcpSocket is active if connected to the remote peer, and DatagramSocket is open
+- localAddress: return the local SocketAddress
+- remoteAddress: return the remote SocketAddress
+- write: writes data to the remote peer. The data is passed to ChannelPipeline and queued until it is flushed
+- flush: Flush the previously written data to the underlying transport, such as a Socket
+- writeAndFlush: calling write followed by flush().  
+
+wite/flush return ChannelFuture that can set the listener (ChannelFutureListener) to be called when the operation completed.
+
+Channel transport Types
+- NIO: io.netty.channel.socket.nio: Selector-based: TCP/UDP/SCTP/UDT: NioSocketChannel/NioServerSocketChannel/NioEventLoopGroup
+- OIO: io.netty.channel.socket.oio: blocking stream: TCP/UDP/SCTP/UDT: OioSocketChannel/OioServerSocketChannel/OioEventLoopGroup
+- EPoll: io.netty.channel.epoll: JNI for epoll() and non-blocking io: TCP/UDP: EpollSocketChannel/EpollServerSocketChannel/EpollEventLoopGroup
+- Local: io.netty.channel.local: communication in the same VM via pipe
+- Embedded: io.netty.channel.embedded: without a true network-based transport. Used for testing ChannelHandler
+
+
+## ByteBuf
+NIO uses ByteBuffer as byte container; while Nettys use ByteBuf.
+```
+
+```
+
