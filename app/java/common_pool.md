@@ -1,7 +1,9 @@
 # [Apache Common Pool](https://commons.apache.org/proper/commons-pool/)
 
 ## Interfaces
-- [PooledObjectFactory](): provides a generic interface for managing the lifecycle of a pooled object:
+- [PooledObjectFactory]():
+
+provides a generic interface for managing the lifecycle of a pooled object:
 ```
 public interface PooledObjectFactory<T> {
     PooledObject<T> makeObject();
@@ -13,7 +15,9 @@ public interface PooledObjectFactory<T> {
 ```
 Implementing Classes: [BasePooledObjectFactory](https://commons.apache.org/proper/commons-pool/apidocs/org/apache/commons/pool2/BasePooledObjectFactory.html)
 
-- KeyedPooledObjectFactory: Defines a similar interface for KeyedObjectPools:
+- KeyedPooledObjectFactory:
+
+Defines a similar interface for KeyedObjectPools:
 ```
 public interface KeyedPoolableObjectFactory<K,V> {
     PooledObject<V> makeObject(K key);
@@ -26,9 +30,12 @@ public interface KeyedPoolableObjectFactory<K,V> {
 Implementing Classes: [BaseKeyedPooledObjectFactory](https://commons.apache.org/proper/commons-pool/apidocs/org/apache/commons/pool2/BaseKeyedPooledObjectFactory.html)
 
 - [PooledObject](https://commons.apache.org/proper/commons-pool/apidocs/org/apache/commons/pool2/PooledObject)
+
 Known Implementing Classes: DefaultPooledObject, PooledSoftReference
 
-- [GenericObjectPool](https://commons.apache.org/proper/commons-pool/apidocs/org/apache/commons/pool2/impl/GenericObjectPool.html) / [GenericKeyedObjectPool](https://commons.apache.org/proper/commons-pool/apidocs/org/apache/commons/pool2/impl/GenericKeyedObjectPool.html): provides a wide variety of configuration options, including the ability to cap the number of idle or active instances, to evict instances as they sit idle in the pool, etc. As of version 2, GenericObjectPool also provides abandoned instance tracking and removal.
+- [GenericObjectPool](https://commons.apache.org/proper/commons-pool/apidocs/org/apache/commons/pool2/impl/GenericObjectPool.html) / [GenericKeyedObjectPool](https://commons.apache.org/proper/commons-pool/apidocs/org/apache/commons/pool2/impl/GenericKeyedObjectPool.html):
+
+provides a wide variety of configuration options, including the ability to cap the number of idle or active instances, to evict instances as they sit idle in the pool, etc. As of version 2, GenericObjectPool also provides abandoned instance tracking and removal.
 ```
 public class GenericObjectPool<T>  extends BaseGenericObjectPool<T>
 implements ObjectPool<T>, GenericObjectPoolMXBean, UsageTracking<T>
@@ -46,7 +53,9 @@ GenericKeyedObjectPool(KeyedPooledObjectFactory<K,T> factory)
 GenericKeyedObjectPool(KeyedPooledObjectFactory<K,T> factory, GenericKeyedObjectPoolConfig<T> config)
 ```
 
-- SoftReferenceObjectPool: can grow as needed, but allows the garbage collector to evict idle instances from the pool as needed.
+- SoftReferenceObjectPool:
+
+can grow as needed, but allows the garbage collector to evict idle instances from the pool as needed.
 ```
 public class SoftReferenceObjectPool<T> extends BaseObjectPool<T>
 
