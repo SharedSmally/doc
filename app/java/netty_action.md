@@ -165,8 +165,17 @@ ByteBufAllocator alloc = ctx.alloc();
 
 Both ByteBuf and ByteBufHolder implement interface ReferenceCounted, which is essential to pooling implementation. Trying to access a reference-counted object that’s been released will result in an IllegalReferenceCountException.
 
-In ChannelHandler, it is responsible for explicitly releasing the memory associated with pooled ByteBuf instances.
-Netty provides a utility method for this purpose, ReferenceCountUtil.release()
+In ChannelHandler, it is responsible for explicitly releasing the memory associated with pooled ByteBuf instances. Prevent leaks in the implemement Channel-
+InboundHandler.channelRead() and ChannelOutboundHandler.write().  Netty provides a utility method for this purpose, ReferenceCountUtil.release(msg). Netty provides class ResourceLeakDetector to diagnose potential problems. The detect levels are:
+
+- DISABLED
+- SIMPLE
+- ADVANCED
+- PARANOID
+
+```
+java -Dio.netty.leakDetectionLevel=ADVANCED
+```
    
 ## Channel,ChannelHandler and ChannelPipeline
 ChannelHandlers are chained together in a ChannelPipeline to organize processing logic.
@@ -209,3 +218,119 @@ Most of the methods in ChannelOutboundHandler take a ChannelPromise argument to 
 ChannelPromise is a subinterface of ChannelFuture that defines the writable methods, such as setSuccess() or setFailure( ), thus
 making ChannelFuture immutable.    
 
+Because consuming inbound data and releasing it is such a common task, Netty provides a special ChannelInboundHandler implementation called SimpleChannelInboundHandler . This implementation will automatically release a message once it’s consumed by channelRead0().
+
+### ChannelPipeline
+Every new Channel that’s created is assigned a new ChannelPipeline . This association is permanent; the Channel can neither attach another ChannelPipeline nor
+detach the current one. This is a fixed operation in Netty’s component lifecycle and requires no action on the part of the developer. If an inbound event is triggered, it’s passed from the beginning to the end of the ChannelPipeline
+
+A ChannelHandlerContext enables a ChannelHandler to interact with its ChannelPipeline and with other handlers. A handler can notify the next ChannelHandler
+in the ChannelPipeline and even dynamically modify the ChannelPipeline it belongs to.
+
+### ChannelHandlerContext
+A ChannelHandlerContext represents an association between a ChannelHandler and
+a ChannelPipeline and is created whenever a ChannelHandler is added to a ChannelPipeline.
+The primary function of a ChannelHandlerContext is to manage the interaction of its 
+associated ChannelHandler with others in the same ChannelPipeline .
+
+If you invoke these methods on a Channel or ChannelPipeline instance, they propagate
+through the entire pipeline. The same methods called on a ChannelHandlerContext
+will start at the current associated ChannelHandler and propagate only to the next
+ChannelHandler in the pipeline that is capable of handling the event.
+
+The ChannelHandlerContext associated with a ChannelHandler never changes,
+so it’s safe to cache a reference to it.
+```
+public class WriteHandler extends ChannelHandlerAdapter {
+   private ChannelHandlerContext ctx;
+   @Override
+   public void handlerAdded(ChannelHandlerContext ctx) {
+      this.ctx = ctx;
+   }
+   public void send(String msg) {
+      ctx.writeAndFlush(msg);
+   }
+}
+```
+Because a ChannelHandler can belong to more than one ChannelPipeline , it can be
+bound to multiple ChannelHandlerContext instances. A ChannelHandler intended
+for this use must be annotated with @Sharable ; otherwise, attempting to add it to
+more than one ChannelPipeline will trigger an exception. Clearly, to be safe for use
+with multiple concurrent channels (that is, connections), such a ChannelHandler
+must be thread-safe.
+```
+@Sharable
+public class SharableHandler extends ChannelInboundHandlerAdapter {
+   @Override
+   public void channelRead(ChannelHandlerContext ctx, Object msg) {
+      System.out.println("Channel read message: " + msg);
+      ctx.fireChannelRead(msg);   //forwards to next Handler
+   }
+}
+```
+use @Sharable only if it is certain that ChannelHandler is thread-safe.
+
+### Handling inbound exceptions
+
+If an exception is thrown during processing of an inbound event, it will start to flow
+through the ChannelPipeline starting at the point in the ChannelInboundHandler
+where it was triggered. To handle such an inbound exception, you need to override
+the following method in your ChannelInboundHandler implementation.
+```
+public class InboundExceptionHandler extends ChannelInboundHandlerAdapter {
+   @Override
+   public void exceptionCaught(ChannelHandlerContext ctx,Throwable cause) {
+       cause.printStackTrace();
+       ctx.close();
+   }
+}
+```
+Because the exception will continue to flow in the inbound direction (just as with all
+inbound events), the ChannelInboundHandler that implements the preceding logic is
+usually placed last in the ChannelPipeline . This ensures that all inbound exceptions
+are always handled, wherever in the ChannelPipeline they may occur.
+
+### Handling outbound exceptions
+- Every outbound operation returns a ChannelFuture . The ChannelFutureListeners 
+registered with a ChannelFuture are notified of success or error when the operation completes.
+- Almost all methods of ChannelOutboundHandler are passed an instance of ChannelPromise.
+As a subclass of ChannelFuture , ChannelPromise can also be assigned listeners for asynchronous notification.
+```
+ChannelPromise setSuccess();
+ChannelPromise setFailure(Throwable cause);
+```
+Option 1: invoke addListener() on the ChannelFuture that is returned
+by an outbound operation (for example write() )
+```
+ChannelFuture future = channel.write(someMessage);
+future.addListener(new ChannelFutureListener() {
+   @Override
+   public void operationComplete(ChannelFuture f) {
+      if (!f.isSuccess()) {
+         f.cause().printStackTrace();
+         f.channel().close();
+      }
+    }
+});
+```
+
+Option 2: add a ChannelFutureListener to the ChannelPromise that is
+passed as an argument to the ChannelOutboundHandler methods
+```
+public class OutboundExceptionHandler extends ChannelOutboundHandlerAdapter {
+   @Override
+   public void write(ChannelHandlerContext ctx, Object msg, ChannelPromise promise) {
+      promise.addListener(new ChannelFutureListener() {
+         @Override
+         public void operationComplete(ChannelFuture f) {
+             if (!f.isSuccess()) {
+                f.cause().printStackTrace();
+                f.channel().close();
+              }
+          }
+     });
+   }
+}
+```
+
+## Eventloop
