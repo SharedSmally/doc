@@ -3,6 +3,8 @@
 
 The Java heap is the memory area that JVM allocated from native memory for java applications. -Xmx(max) and -Xms(min) will specify the heap size allocation.
 
+Garbage collection is the JVM's process of freeing up unused Java objects in the Java heap. The Java heap is where the objects of a Java program live. It is a repository for live objects, dead objects, and free memory. When an object can no longer be reached from any pointer in the running program, it is considered "garbage" and ready for collection
+
 - Direct memory
 
 NIO added support for direct [ByteBuffers](https://docs.oracle.com/javase/7/docs/api/java/nio/ByteBuffer.html) to perform I/O based on channels and buffer, which can be passed directly to native memory rather than Java heap: allocation memory via native calls.
@@ -16,6 +18,9 @@ an intermediate buffer before (or after) each invocation of one of the underlyin
 
 However, the application still uses an object on the Java heap to orchestrate I/O operations, but the buffer that holds the 
 data is held in native memory, the Java heap object only contains a reference to the native heap buffer. 
+
+It doesn't mean directory memory JVM doesn't manage direct memory, the objects in direct memory has references in heap, 
+when the reference get garbage collected, the object in direct memory will get freed up. 
 
 - [Buffer](https://docs.oracle.com/javase/7/docs/api/java/nio/Buffer.html): 
 
