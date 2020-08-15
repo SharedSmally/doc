@@ -334,3 +334,364 @@ public class OutboundExceptionHandler extends ChannelOutboundHandlerAdapter {
 ```
 
 ## Eventloop
+An EventLoop is powered by exactly one Thread that never changes,
+and tasks ( Runnable or Callable ) can be submitted directly to EventLoop implementations 
+for immediate or scheduled execution. Depending on the configuration and
+the available cores, multiple EventLoop s may be created in order to optimize resource
+use, and a single EventLoop may be assigned to service multiple Channels.
+
+Netty’s EventLoop extends ScheduledExecutorService, defines parent() that returns a reference 
+to the EventLoopGroup to which the current EventLoop instance belongs.
+```
+public interface EventLoop extends EventExecutor, EventLoopGroup {
+    @Override
+    EventLoopGroup parent();
+}
+```
+All I/O operations and events are handled by the same Thread that has been assigned to the EventLoop, 
+
+If the calling Thread is that of the EventLoop , the code block is executed. Otherwise, 
+the EventLoop schedules a task for later execution and puts it in an internal queue. 
+When the EventLoop next processes its events, it will execute those in the queue. 
+Each EventLoop has its own task queue, independent of that of any other EventLoop.
+
+Never put a long-running task in the execution queue, because it will block any other task from executing on the same thread.
+
+The EventLoop s that service I/O and events for Channel s are contained in an EventLoopGroup.
+Asynchronous implementations use only a few EventLoops (and associated Threads), and they
+may be shared among Channels. This allows many Channels to be served by the smallest 
+possible number of Threads, rather than assigning a Thread per Channel. Once a Channel 
+has been assigned an EventLoop , it will use this EventLoop/Thread throughout its lifetime.
+
+For OIO, one EventLoop/Thread is assigned to each Channel. It is guaranteed that the I/O events of 
+each Channel will be handled by only one Thread.
+
+## Bootstrap
+Bootstrapping an application is the process of configuring it to run. A server application
+devotes a parent channel to accepting connections from clients and
+creating child channels for conversing with them, whereas a client will most likely
+require only a single, non-parent channel for all network interactions.
+
+It may need to create multiple channels that have similar or identical settings. 
+To support this pattern without requiring a new bootstrap instance to be created
+and configured for each channel, AbstractBootstrap has been marked Cloneable.
+Calling clone() on an already configured bootstrap will return another bootstrap
+instance that’s immediately usable. This creates only a shallow copy of the 
+bootstrap’s EventLoopGroup, so the latter will be shared among all of the cloned channels.
+```
+public abstract class AbstractBootstrap <B extends AbstractBootstrap<B,C>,C extends Channel>
+
+public class Bootstrap extends AbstractBootstrap<Bootstrap,Channel>: client or connectionless app
+
+public class ServerBootstrap extends AbstractBootstrap<ServerBootstrap,ServerChannel>: server app
+```
+Client Application:
+```
+EventLoopGroup group = new NioEventLoopGroup();
+Bootstrap bootstrap = new Bootstrap();
+bootstrap.group(group)
+  .channel(NioSocketChannel.class)
+  .handler(new SimpleChannelInboundHandler<ByteBuf>() {
+     @Override
+     protected void channeRead0(ChannelHandlerContext ctx, ByteBuf byteBuf) throws Exception {
+        System.out.println("Received data");
+     }
+  } );
+ChannelFuture future = bootstrap.connect( new InetSocketAddress("www.manning.com", 80));
+future.addListener(new ChannelFutureListener() {
+    @Override
+    public void operationComplete(ChannelFuture channelFuture) throws Exception {
+        if (channelFuture.isSuccess()) {
+           System.out.println("Connection established");
+        } else {
+           System.err.println("Connection attempt failed");
+           channelFuture.cause().printStackTrace();
+        }
+    }
+} );
+```
+Server Application:
+```
+NioEventLoopGroup group = new NioEventLoopGroup();
+ServerBootstrap bootstrap = new ServerBootstrap();
+bootstrap.group(group)
+  .channel(NioServerSocketChannel.class)
+  .childHandler(new SimpleChannelInboundHandler<ByteBuf>() {
+     @Override
+     protected void channelRead0(ChannelHandlerContext ctx, ByteBuf byteBuf) throws Exception {
+         System.out.println("Received data");
+     }
+   });
+ChannelFuture future = bootstrap.bind(new InetSocketAddress(8080));
+future.addListener(new ChannelFutureListener() {
+   @Override
+   public void operationComplete(ChannelFuture channelFuture) throws Exception {
+      if (channelFuture.isSuccess()) {
+         System.out.println("Server bound");
+      } else {
+         System.err.println("Bound attempt failed");
+         channelFuture.cause().printStackTrace();
+      }
+   }
+});   
+```
+The EventLoop can be shared. 
+
+To add multiple ChannelHandlers during a bootstrap use ChannelInitializer:
+
+```
+public abstract class ChannelInitializer<C extends Channel> extends ChannelInboundHandlerAdapter
+{
+    protected abstract void initChannel(C ch) throws Exception;
+}
+
+bootstrap.group(new NioEventLoopGroup(), new NioEventLoopGroup())
+  .channel(NioServerSocketChannel.class)
+  .childHandler(new ChannelInitializerImpl());
+
+final class ChannelInitializerImpl extends ChannelInitializer<Channel> {
+  @Override
+  protected void initChannel(Channel ch) throws Exception {
+    ChannelPipeline pipeline = ch.pipeline();
+    pipeline.addLast(new HttpClientCodec());
+    pipeline.addLast(new HttpObjectAggregator(Integer.MAX_VALUE));
+  }
+}
+```
+
+Use ChannelOption s to configure a Channel and an attribute to store properties and data.
+Netty offers the AttributeMap abstraction, a collection provided by the channel and bootstrap 
+classes, and AttributeKey<T> , a generic class for inserting and retrieving attribute values. 
+With these tools, you can safely associate any kind of data item with both client and server Channel s.
+```
+final AttributeKey<Integer> id = new AttributeKey<Integer>("ID");
+Bootstrap bootstrap = new Bootstrap();
+bootstrap.handler(
+    new SimpleChannelInboundHandler<ByteBuf>() {    
+      @Override
+      public void channelRegistered(ChannelHandlerContext ctx) throws Exception {
+         Integer idValue = ctx.channel().attr(id).get();
+         // do something with the idValue attribute with the AttributeKey and its value
+      }
+    }); 
+     ...
+bootstrap.     
+bootstrap.attr(id, 123456);     
+```
+Bootstrapping DatagramChannels: use Bootstrap, don't need to call connect() but only bind().  
+```
+Bootstrap bootstrap = new Bootstrap();
+bootstrap.group(new OioEventLoopGroup()).channel(OioDatagramChannel.class).handler(
+   new SimpleChannelInboundHandler<DatagramPacket>(){
+      @Override
+      public void channelRead0(ChannelHandlerContext ctx, DatagramPacket msg) throws Exception {
+         // Do something with the packet
+      }
+   }
+);
+ChannelFuture future = bootstrap.bind(new InetSocketAddress(0));
+future.addListener(new ChannelFutureListener() { 
+   @Override
+   public void operationComplete(ChannelFuture channelFuture) throws Exception {
+      if (channelFuture.isSuccess()) {
+         System.out.println("Channel bound");
+      } else {
+         System.err.println("Bind attempt failed");     
+         channelFuture.cause().printStackTrace();
+      }
+   }
+});     
+```
+
+## Testing: EmbeddedChannel
+Write inbound or outbound data into an EmbeddedChannel and then check whether anything 
+reached the end of the ChannelPipeline to determine whether messages were encoded or 
+decoded and whether any ChannelHandler actions were triggered.
+```
+writeInbound( Object... msgs) Writes an inbound message to the EmbeddedChannel . Returns
+            true if data can be read from the EmbeddedChannel via readInbound() .
+readInbound() Reads an inbound message from the EmbeddedChannel . Anything
+            returned traversed the entire ChannelPipeline . Returns null if nothing is ready to read.
+writeOutbound(Object... msgs) Writes an outbound message to the EmbeddedChannel . Returns
+            true if something can now be read from the EmbeddedChannel via readOutbound() .
+readOutbound() Reads an outbound message from the EmbeddedChannel . Anything
+            returned traversed the entire ChannelPipeline . Returns null if nothing is ready to read.
+finish() Marks the EmbeddedChannel as complete and returns true if either inbound or outbound data can be read. 
+            This will also call close() on the EmbeddedChannel .
+```
+Inbound data is processed by ChannelInboundHandler s and represents data read from
+the remote peer. Outbound data is processed by ChannelOutboundHandler s and repre-
+sents data to be written to the remote peer. Use the \*Inbound() or \*Outbound() pairs of methods to test the ChannelHandlers.
+```
+@Test
+public void testFramesDecoded2() {
+  ByteBuf buf = Unpooled.buffer();
+  for (int i = 0; i < 9; i++) {
+     buf.writeByte(i);
+  }
+  
+  ByteBuf input = buf.duplicate();
+  EmbeddedChannel channel = new EmbeddedChannel(new FixedLengthFrameDecoder(3));
+  assertFalse(channel.writeInbound(input.readBytes(2)));
+  assertTrue(channel.writeInbound(input.readBytes(7)));
+  assertTrue(channel.finish());
+
+  ByteBuf read = (ByteBuf) channel.readInbound();
+  assertEquals(buf.readSlice(3), read);
+  read.release();
+  read = (ByteBuf) channel.readInbound();
+  assertEquals(buf.readSlice(3), read);
+  read.release();
+
+  read = (ByteBuf) channel.readInbound();
+  assertEquals(buf.readSlice(3), read);
+  read.release();
+  assertNull(channel.readInbound());
+  buf.release();
+  
+  EmbeddedChannel channel = new EmbeddedChannel(new AbsIntegerEncoder());
+  assertTrue(channel.writeOutbound(buf));
+  assertTrue(channel.finish());
+  // read bytes
+  for (int i = 1; i < 10; i++) {
+    assertEquals(i, channel.readOutbound());
+  }
+  assertNull(channel.readOutbound());
+}
+```
+## Codecs (encoder/decoder)
+### Decoders
+- Decoding bytes to messages: ByteToMessageDecoder and ReplayingDecoder
+- Decoding one message type to another: MessageToMessageDecoder
+
+Decoders are responsible for transforming inbound data from one format to
+another, they implement ChannelInboundHandler.
+
+#### ByteToMessageDecoder
+Not know whether the remote peer will send a complete message all at once, this
+class buffers inbound data until it’s ready for processing.
+```
+decode(ChannelHandlerContext ctx, ByteBuf in, List<Object> out);
+   // This call is repeated until it is determined that no new items have been 
+   // added to the List or no more bytes are readable in the ByteBuf
+   // if the List is not empty, its contents are passed to the next handler in the pipeline
+decodeLast(ChannelHandlerContext ctx,ByteBuf in,List<Object> out)
+   // The default implementation provided by Netty simply calls decode(). 
+   // This method is called once, when the Channel goes inactive. 
+   // Override the method to provide special handling.
+```
+Sample
+```
+public class ToIntegerDecoder extends ByteToMessageDecoder {
+  @Override
+  public void decode(ChannelHandlerContext ctx, ByteBuf in, List<Object> out) throws Exception {
+    if (in.readableBytes() >= 4) { // need to verify that the input ByteBuf has enough data
+       out.add(in.readInt());
+    }
+  }
+}
+```
+In the case of encoders and decoders, the reference counting procedure is quite simple:
+once a message has been encoded or decoded, it will automatically be released by a call to
+ReferenceCountUtil.release(message). If need to keep a reference for later use,
+call ReferenceCountUtil.retain(message). This increments the reference count, 
+preventing the message from being released.
+
+#### ReplayingDecoder
+
+ReplayingDecoder extends ByteToMessageDecoder, a special decode that frees us from having to call
+readableBytes(). It wraps the incoming ByteBuf with a custom ByteBuf implementation, 
+ReplayingDecoderBuffer , that executes the call internally.
+```
+public abstract class ReplayingDecoder<S> extends ByteToMessageDecoder
+
+The parameter S specifies the type to be used for state management, where Void 
+indicates that none is to be performed.
+
+public class ToIntegerDecoder2 extends ReplayingDecoder<Void> {
+  @Override
+  public void decode(ChannelHandlerContext ctx, ByteBuf in, List<Object> out) throws Exception {
+    out.add(in.readInt());
+  }
+}
+```
+ints extracted from the ByteBuf are added to the List. If insufficient bytes
+are available, this implementation of readInt() throws an Error that will be caught
+and handled in the base class. The decode() method will be called again when more
+data is ready for reading.
+
+Not all ByteBuf operations are supported. If an unsupported method is called,
+an UnsupportedOperationException will be thrown.
+
+#### MessageToMessageDecoder<I>
+The parameter I specifies the type of the input msg argument to decode().
+```
+public abstract class MessageToMessageDecoder<I> extends ChannelInboundHandlerAdapter
+
+decode(ChannelHandlerContext ctx, I msg, List<Object> out)
+```
+     
+Netty provides a TooLongFrameException , which is intended to be thrown by decoders if a
+frame exceeds a specified size limit.
+
+
+### Encoders
+
+an encoder implements ChannelOutboundHandler and transforms outbound data from one format to another.
+
+#### MessageToByteEncoder
+```
+ encode(ChannelHandlerContext ctx, I msg, ByteBuf out)
+    // called with the outbound message (of type I ) that this class will encode to a ByteBuf.
+    // The ByteBuf is then forwarded to the next ChannelOutboundHandler in the pipeline.
+public class ShortToByteEncoder extends MessageToByteEncoder<Short> {
+  @Override
+  public void encode(ChannelHandlerContext ctx, Short msg, ByteBuf out) throws Exception {
+     out.writeShort(msg);
+  }
+}
+```
+
+#### MessageToMessageEncoder
+```
+encode(ChannelHandlerContext ctx, I msg, List<Object> out)
+
+public class IntegerToStringEncoder extends MessageToMessageEncoder<Integer> {
+  @Override
+  public void encode(ChannelHandlerContext ctx, Integer msg, List<Object> out) throws Exception {
+    out.add(String.valueOf(msg));
+  }
+}
+```
+### codec classes
+Manage transformations of both inbound and outbound data and messages in one class. 
+These classes implement both ChannelInboundHandler and ChannelOutboundHandler.
+
+#### ByteToMessageCodec
+```
+decode(ChannelHandlerContext ctx, ByteBuf in, List<Object>) 
+decodeLast(ChannelHandlerContext ctx,ByteBuf in,List<Object> out)
+encode(ChannelHandlerContext ctx,I msg,ByteBuf out)
+```
+#### MessageToMessageCodec
+```
+public abstract class MessageToMessageCodec<INBOUND_IN,OUTBOUND_IN>
+
+protected abstract decode(ChannelHandlerContext ctx, INBOUND_IN msg, List<Object> out)
+protected abstract encode(ChannelHandlerContext ctx,OUTBOUND_IN msg,List<Object> out)
+```
+
+#### CombinedChannelDuplexHandler
+
+Deploy a decoder and an encoder as a single unit, acts as a container for a ChannelInboundHandler and a ChannelOutbound-
+Handler.
+
+```
+public class CombinedChannelDuplexHandler <I extends ChannelInboundHandler, O extends ChannelOutboundHandler>
+
+public class CombinedByteCharCodec extends CombinedChannelDuplexHandler<ByteToCharDecoder, CharToByteEncoder> {
+   public CombinedByteCharCodec() {
+      super(new ByteToCharDecoder(), new CharToByteEncoder());
+   }
+}
+```
