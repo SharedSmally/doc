@@ -70,8 +70,94 @@ Channel transport Types
 
 
 ## ByteBuf
-NIO uses ByteBuffer as byte container; while Nettys use ByteBuf.
+NIO uses ByteBuffer as byte container; while Nettys use ByteBuf. ByteBuf has both reader and write indices, while NIO ByteByffer has only one, so need to call mark()/flip() to switch between read and write modes.
+
+BufferBuf could be in different modes:
+
+- Heap buffer mode
+
+Stores the data in the heap space of JVM ( via a backing array, memory allocated fromJVM heap):
+```
+ByteBuf heapBuf = ...;
+if (heapBuf.hasArray()) {
+   byte[] array = heapBuf.array();
+   int offset = heapBuf.arrayOffset() + heapBuf.readIndex(); // offset of first byte
+   int length = heapBuf.readableBytes(); // number of readable bytes
+   handleArray(array, offset, length);
+}
+```
+- Direct buffer mode
+
+Memory is allocated via native calls, the contents resides outside of the normal garbage-collected heap, it can avoid copying the buffer contents before/after each invocation of a native IO operation. When data is in a heap-allocated buffer, JVM needs to copy the buffer data to a direct buffer internally before sending it through the socket. 
+
+It is more expensive to allocate and release the direct buffer that the heap-based buffers, and may need to make a copy for the data is not in the heap:
+```
+ByteBuf directBuf = ...;
+if (!directBuf.hasArray()) {
+   int length = directBuf.readableBytes(); // number of readable bytes
+   byte[] array = new byte[length];
+   directBuf.getBytes(directBuf.readIndex(),array); // copy data into the array
+   handleArray(array, 0, length);
+}
 ```
 
+- Composite node
+
+Present an aggregated view of multiple ByteBufs, may include  both direct and notredict allocations
+```
+CompositeByteBuf msgBuf = Unpooled.compositeBuffer();
+ByteBuf headerBuf = ...; // direct or nondirect
+ByteBuf bodyBuf = ...; // direct or nondirect
+messageBuf.addComponents(headerBuf,bodyBuf);
+//messageBuf.removeComponents(0); //remove first component, headerBuf
+for (ByteBuf buf : messageBuf) {
+   System.out.println(buf.toString());
+}
+```
+CompositeByteBuf resembles the direct buffer pattern to access the data:
+```
+CompositeByteBuf compBuf = Unpooled.compositeBuffer();
+int length = compBuf.readableBytes(); // number of readable bytes
+byte[] array = new byte[length];
+compBuf.getBytes(compBuf.readIndex(),array); // copy data into the array
+handleArray(array, 0, length);
 ```
 
+### ByteBuf operations
+- Drrived buffers
+    - duplicate()
+    - slice()/slice(int,int)
+    - Unpooled.unmodifiableBuffer(...)
+    - order(ByteOrder)
+    - readSlice(int)
+Each returns a new ByteBuf instance with its own reader,writer and marker indices, but the internal storage is shared.
+The derived buffer is inexpensive to create, but when modify its contents, the source instance contents are modified.
+If need a true copy of an existing buffer, use copy()/copy(int,int) to return an independent copy of the data.
+
+- Read/write operations
+    - get()/set(): start at a given index and leave it unchanged
+    - read()/write(): start at a given index and adjust it by the number of bytes accessed
+    
+- ByteBufHolder
+Interface to handle common use case for using ByteBuffer. It provides methods to access the underlying data and reference counting.
+
+- ByteBuf allocation
+    - on-demand: interface ByteBufAllocator with pooling to reduce the overhead of allocation and deallocating memory. ByteBufAllocator can be obtained from Channel( each have a distinct instance) or the ChannelHandlerContext that is bound to a ChannelHandler.
+```
+Channel channel = ...;
+ByteBufAllocator alloc = channel.alloc();
+
+ChannelHandlerContext ctx = ...;
+ByteBufAllocator alloc = ctx.alloc();
+```
+
+   Netty provided 2 implementations of ByteBufAllocator: PooledByteBufAllocator and UnpolledByteBufAllocator. The former improves the performance and minimuzes memory fragmentation.
+   
+   Netty provides a utility class, Unpooled, to provide static helper methods to create unpooled ByteBuf instance when don't have a reference to a ByteBufAllocator. 
+   
+   ByteBufUtil provides static helper methods for manipulating a ByteBuf. hexdump() prints a hexdec representation of the content. boolean equals(NyteNuf, ByteBuf).
+   
+- Refernce counting
+
+Both ByteBuf and ByteBufHolder implement interface ReferenceCounted, which is essential to pooling implementation. Trying to access a reference-counted object that’s been released will result in an IllegalReferenceCountException.
+   
