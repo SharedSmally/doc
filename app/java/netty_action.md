@@ -39,17 +39,22 @@ approach causes the message to start from the tail of the ChannelPipeline, the l
 Initializer will add an instance of ChannelHandler to the Channel’s ChannelPipeline.
 
 - ChannelInboundHandlerAdapter: server handler
+
       - channelRead()—Called for each incoming message
       - channelReadComplete()—Notifies the handler that the last call made to channel-Read() was the last message in the current batch
       - exceptionCaught()—Called if an exception is thrown during the read operation
 
 - SimpleChannelInboundHandler<ByteBuf>: client handler to process the data
+     
       - channelActive()—Called after the connection to the server is established
       - channelRead0()—Called when a message is received from the server
       - exceptionCaught()—Called if an exception is raised during processing
 
 
-## Channel: implementations are thread-safe, can be stored and used to write data to the remote peer whenever needed
+## Channel:
+
+Implementations are thread-safe, can be stored and used to write data to the remote peer whenever needed
+
 - eventLoop: return the EventLoop that is assigned to the Channel
 - pipeline: return the ChannelPipeline (list of ChannelHandlers) that is assigned to the Channel
 - isActive: return true if the Channel is active: TcpSocket is active if connected to the remote peer, and DatagramSocket is open
@@ -67,7 +72,6 @@ Channel transport Types
 - EPoll: io.netty.channel.epoll: JNI for epoll() and non-blocking io: TCP/UDP: EpollSocketChannel/EpollServerSocketChannel/EpollEventLoopGroup
 - Local: io.netty.channel.local: communication in the same VM via pipe
 - Embedded: io.netty.channel.embedded: without a true network-based transport. Used for testing ChannelHandler
-
 
 ## ByteBuf
 NIO uses ByteBuffer as byte container; while Nettys use ByteBuf. ByteBuf has both reader and write indices, while NIO ByteByffer has only one, so need to call mark()/flip() to switch between read and write modes.
@@ -160,4 +164,48 @@ ByteBufAllocator alloc = ctx.alloc();
 - Refernce counting
 
 Both ByteBuf and ByteBufHolder implement interface ReferenceCounted, which is essential to pooling implementation. Trying to access a reference-counted object that’s been released will result in an IllegalReferenceCountException.
+
+In ChannelHandler, it is responsible for explicitly releasing the memory associated with pooled ByteBuf instances.
+Netty provides a utility method for this purpose, ReferenceCountUtil.release()
    
+## Channel,ChannelHandler and ChannelPipeline
+ChannelHandlers are chained together in a ChannelPipeline to organize processing logic.
+
+### Channel Lifecycle
+- ChannelUnregistered: The Channel was created, but isn’t registered to an EventLoop .
+- ChannelRegistered: The Channel is registered to an EventLoop .
+- ChannelActive:  The Channel is active (connected to its remote peer). It’s now possible to receive and send data.
+- ChannelInactive: The Channel isn’t connected to the remote peer.
+
+### ChannelHandler Lifecycle (with ChannelHandlerContext)
+- handlerAdded: Called when a ChannelHandler is added to a ChannelPipeline
+- handlerRemoved: Called when a ChannelHandler is removed from a ChannelPipeline
+- exceptionCaught: Called if an error occurs in the ChannelPipeline during processing
+
+### subinterfaces of ChannelHandler :
+- ChannelInboundHandler: Processes inbound data and state changes of all kinds, Implemented classes: ChannelInboundHandlerAdapter, SimpleChannelInboundHandler(no need to release message)
+    - channelRegistered: Invoked when a Channel is registered to its EventLoop and is able to handle I/O.
+    - channelUnregistered: Invoked when a Channel is deregistered from its EventLoop and can’t handle any I/O.
+    - channelActive: Invoked when a Channel is active; the Channel is connected/bound and ready.
+    - channelInactive: Invoked when a Channel leaves active state and is no longer connected to its remote peer.
+    
+    - channelReadComplete: Invoked when a read operation on the Channel has completed.
+    - channelRead: Invoked if data is read from the Channel .
+    - channelWritabilityChanged: Invoked when the writability state of the Channel changes.
+    - userEventTriggered: Invoked when ChannelnboundHandler.fireUserEventTriggered() is called  
+
+- ChannelOutboundHandler —Processes outbound data and allows interception of all operations
+    - bind(ChannelHandlerContext, SocketAddress,ChannelPromise): Invoked on request to bind the Channel to a local address
+    - connect(ChannelHandlerContext, SocketAddress,SocketAddress,ChannelPromise): Invoked on request to connect the Channel to the remote peer
+    - disconnect(ChannelHandlerContext,ChannelPromise): Invoked on request to disconnect the Channel from the remote peer
+    - close(ChannelHandlerContext,ChannelPromise): Invoked on request to close the Channel    
+    - deregister(ChannelHandlerContext,ChannelPromise): Invoked on request to deregister the Channel from its EventLoop
+    
+    - read(ChannelHandlerContext): Invoked on request to read more data from the Channel
+    - flush(ChannelHandlerContext): Invoked on request to flush queued data to the remote peer through the Channel
+    - write(ChannelHandlerContext,Object,ChannelPromise): Invoked on request to write data through the Channel to the remote peer
+    
+Most of the methods in ChannelOutboundHandler take a ChannelPromise argument to be notified when the operation completes. 
+ChannelPromise is a subinterface of ChannelFuture that defines the writable methods, such as setSuccess() or setFailure( ), thus
+making ChannelFuture immutable.    
+
