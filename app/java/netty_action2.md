@@ -547,7 +547,7 @@ For the monitor:
 - Receive UDP DatagramPacket s broadcast by the LogEventBroadcaster
 - Decode them to LogEvent messages
 - Write the LogEvent messages to System.out
-
+```
 public class LogEventDecoder extends MessageToMessageDecoder<DatagramPacket> {
    @Override
    protected void decode(ChannelHandlerContext ctx, DatagramPacket datagramPacket, List<Object> out) throws Exception {
@@ -584,7 +584,7 @@ public class LogEventHandler extends SimpleChannelInboundHandler<LogEvent> {
    }
 }   
 ```
-
+The main application:
 ```
 public class LogEventMonitor {
    private final EventLoopGroup group;
