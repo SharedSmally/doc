@@ -301,7 +301,7 @@ channel.writeAndFlush(region).addListener( //Sends the DefaultFileRegion and reg
 
 In cases where need to copy the data from the file system into user memory, use ChunkedWriteHandler, 
 which provides support for writing a large data stream asynchronously without incurring high
-memory consumption. The key is interface ChunkedInput<B> , where the parameter B is the type returned
+memory consumption. The key is interface ChunkedInput\<B\> , where the parameter B is the type returned
 by the method readChunk(). Four implementations of this interface are provided.  Each one represents 
 a data stream of indefinite length to be consumed by a ChunkedWriteHandler:
 
