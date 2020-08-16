@@ -273,5 +273,53 @@ static ChannelOption<DomainSocketReadMode> 	DOMAIN_SOCKET_READ_MODE
 static ChannelOption<java.lang.Boolean> 	SO_REUSEPORT 
 ```
 
+## ChannelFuture
+- [ChannelFuture](https://netty.io/4.1/api/io/netty/channel/ChannelFuture.html)
+```
+public interface ChannelFuture extends Future<java.lang.Void>
+
+ChannelFuture 	addListener(GenericFutureListener<? extends Future<? super java.lang.Void>> listener)
+ChannelFuture 	addListeners(GenericFutureListener<? extends Future<? super java.lang.Void>>... listeners)
+ChannelFuture 	removeListener(GenericFutureListener<? extends Future<? super java.lang.Void>> listener)
+ChannelFuture 	removeListeners(GenericFutureListener<? extends Future<? super java.lang.Void>>... listeners)
+
+ChannelFuture 	await()
+ChannelFuture 	awaitUninterruptibly()
+ChannelFuture 	sync()
+ChannelFuture 	syncUninterruptibly()
+
+Channel 	channel()
+boolean 	isVoid()
+```
+- [ChannelPromise](https://netty.io/4.1/api/io/netty/channel/ChannelPromise.html)
+```
+public interface ChannelPromise extends ChannelFuture, Promise<java.lang.Void>
+
+ChannelPromise 	addListener(GenericFutureListener<? extends Future<? super java.lang.Void>> listener)
+ChannelPromise 	addListeners(GenericFutureListener<? extends Future<? super java.lang.Void>>... listeners)
+ChannelPromise 	removeListener(GenericFutureListener<? extends Future<? super java.lang.Void>> listener)
+ChannelPromise 	removeListeners(GenericFutureListener<? extends Future<? super java.lang.Void>>... listeners)
+
+ChannelPromise 	await()
+ChannelPromise 	awaitUninterruptibly()
+ChannelPromise 	sync()
+ChannelPromise 	syncUninterruptibly()
+
+Channel 	channel()
+
+ChannelPromise 	setFailure(java.lang.Throwable cause)
+ChannelPromise 	setSuccess() 
+ChannelPromise 	setSuccess(java.lang.Void result)
+boolean 	trySuccess() 
+ChannelPromise 	unvoid()
+```
+- [GenericFutureListener](https://netty.io/4.1/api/io/netty/util/concurrent/GenericFutureListener.html)
+```
+public interface GenericFutureListener<F extends Future<?>> extends java.util.EventListener
+
+void 	operationComplete(F future)
+```
+
 ## ChannelHandler
+
 
