@@ -3,11 +3,11 @@
 ## EventLoopGroup related classes:
 - EventExecutorGroup
 ```
-public interface EventExecutorGroup extends java.util.concurrent.ScheduledExecutorService, java.lang.Iterable<EventExecutor>
+public interface EventExecutorGroup extends ScheduledExecutorService, Iterable<EventExecutor>
 
 EventExecutor 	next()
-Future<?> 	submit(java.lang.Runnable task)
-ScheduledFuture<?> 	schedule(java.lang.Runnable command, long delay, java.util.concurrent.TimeUnit unit) 
+Future<?> 	submit(Runnable task)
+ScheduledFuture<?> 	schedule(Runnable command, long delay,TimeUnit unit) 
 Future<?> 	shutdownGracefully()
 Future<?> 	terminationFuture()
 ```
@@ -15,8 +15,7 @@ Future<?> 	terminationFuture()
 - EventLoopGroup:
 
 Implementing Classes:
-
-    - AbstractEventLoopGroup, EpollEventLoopGroup, NioEventLoopGroup, OioEventLoopGroup, KQueueEventLoopGroup, LocalEventLoopGroup, 
+    - AbstractEventLoopGroup, EpollEventLoopGroup, NioEventLoopGroup, OioEventLoopGroup, KQueueEventLoopGroup, LocalEventLoopGroup
     - DefaultEventLoopGroup, MultithreadEventLoopGroup, ThreadPerChannelEventLoopGroup
     - AbstractEventLoop, DefaultEventLoop, NioEventLoop, SingleThreadEventLoop, ThreadPerChannelEventLoop,  (implementing classes of EventGroup)
 ```
