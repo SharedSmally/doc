@@ -1,6 +1,6 @@
 # [Netty API javadoc](https://netty.io/4.1/api/index.html)
 
-## EventLoopGroup related classes:
+## [EventLoopGroup](https://netty.io/4.1/api/io/netty/channel/EventLoopGroup.html) related classes:
 - EventExecutorGroup
 ```
 public interface EventExecutorGroup extends ScheduledExecutorService, Iterable<EventExecutor>
