@@ -321,5 +321,272 @@ void 	operationComplete(F future)
 ```
 
 ## ChannelHandler
+- [ChannelHandler](https://netty.io/4.1/api/io/netty/channel/ChannelHandler.html)
+```
+void 	handlerAdded(ChannelHandlerContext ctx)
+void 	handlerRemoved(ChannelHandlerContext ctx)
+```
+- [ChannelInboundHandler](https://netty.io/4.1/api/io/netty/channel/ChannelInboundHandler.html)
+```
+public interface ChannelInboundHandler extends ChannelHandler
+
+void 	channelActive(ChannelHandlerContext ctx)
+void 	channelInactive(ChannelHandlerContext ctx)
+
+void 	channelRegistered(ChannelHandlerContext ctx)
+void 	channelUnregistered(ChannelHandlerContext ctx)
+
+void 	exceptionCaught(ChannelHandlerContext ctx, java.lang.Throwable cause)
+
+void 	channelRead(ChannelHandlerContext ctx, java.lang.Object msg)
+void 	channelReadComplete(ChannelHandlerContext ctx)
+
+void 	channelWritabilityChanged(ChannelHandlerContext ctx)
+
+void 	userEventTriggered(ChannelHandlerContext ctx, java.lang.Object evt)
+```
+- [ChannelOutboundHandler]()
+```
+void 	bind(ChannelHandlerContext ctx, java.net.SocketAddress localAddress, ChannelPromise promise)
+void 	close(ChannelHandlerContext ctx, ChannelPromise promise)
+void 	connect(ChannelHandlerContext ctx, SocketAddress remoteAddr, SocketAddress localAddr, ChannelPromise promise)
+
+void 	deregister(ChannelHandlerContext ctx, ChannelPromise promise)
+void 	disconnect(ChannelHandlerContext ctx, ChannelPromise promise)
+
+void 	flush(ChannelHandlerContext ctx)
+void 	read(ChannelHandlerContext ctx)
+void 	write(ChannelHandlerContext ctx, java.lang.Object msg, ChannelPromise promise)
+```
+- [ChannelHandlerContext](https://netty.io/4.1/api/io/netty/channel/ChannelHandlerContext.html)
+```
+public interface ChannelHandlerContext extends AttributeMap, ChannelInboundInvoker, ChannelOutboundInvoker
+
+ByteBufAllocator 	alloc()
+<T> Attribute<T> 	attr(AttributeKey<T> key)
+
+Channel 	channel()
+ChannelPipeline 	pipeline()
+
+EventExecutor 	executor()
+ChannelHandler 	handler()
+
+<T> boolean 	hasAttr(AttributeKey<T> key)
+boolean 	isRemoved()
+java.lang.String 	name()
+
+ChannelHandlerContext 	fireChannelActive()
+ChannelHandlerContext 	fireChannelInactive()
+ChannelHandlerContext 	fireChannelRead(java.lang.Object msg)
+ChannelHandlerContext 	fireChannelReadComplete()
+ChannelHandlerContext 	fireChannelRegistered()
+ChannelHandlerContext 	fireChannelUnregistered()
+ChannelHandlerContext 	fireChannelWritabilityChanged()
+ChannelHandlerContext 	fireExceptionCaught(java.lang.Throwable cause)
+ChannelHandlerContext 	fireUserEventTriggered(java.lang.Object evt)
+
+ChannelHandlerContext 	flush()
+ChannelHandlerContext 	read()
+From ChannelOutboundInvoker fro writexxx.
+```
+- [ChannelOutboundInvoker](https://netty.io/4.1/api/io/netty/channel/ChannelOutboundInvoker.html)
+```
+ChannelFuture 	bind(java.net.SocketAddress localAddress)
+ChannelFuture 	bind(java.net.SocketAddress localAddress, ChannelPromise promise)
+
+ChannelFuture 	close()
+ChannelFuture 	close(ChannelPromise promise)
+
+ChannelFuture 	connect(java.net.SocketAddress remoteAddress)
+ChannelFuture 	connect(java.net.SocketAddress remoteAddress, ChannelPromise promise)
+ChannelFuture 	connect(java.net.SocketAddress remoteAddress, java.net.SocketAddress localAddress)
+ChannelFuture 	connect(java.net.SocketAddress remoteAddress, java.net.SocketAddress localAddress, ChannelPromise promise)
+
+ChannelFuture 	disconnect()
+ChannelFuture 	disconnect(ChannelPromise promise)
+
+ChannelFuture 	deregister()
+ChannelFuture 	deregister(ChannelPromise promise)
+
+ChannelFuture 	newFailedFuture(java.lang.Throwable cause)
+ChannelProgressivePromise 	newProgressivePromise()
+ChannelPromise 	newPromise()
+ChannelFuture 	newSucceededFuture()
+ChannelPromise 	voidPromise()
+
+ChannelOutboundInvoker 	read()
+ChannelOutboundInvoker 	flush()
+ChannelFuture 	write(java.lang.Object msg)
+ChannelFuture 	write(java.lang.Object msg, ChannelPromise promise)
+ChannelFuture 	writeAndFlush(java.lang.Object msg)
+ChannelFuture 	writeAndFlush(java.lang.Object msg, ChannelPromise promise)
+```
+
+- [ChannelPipeline](https://netty.io/4.1/api/io/netty/channel/ChannelPipeline.html)
+```
+public interface ChannelPipeline extends ChannelInboundInvoker, ChannelOutboundInvoker, Iterable<Map.Entry<String,ChannelHandler>>
+
+ChannelPipeline 	addAfter(EventExecutorGroup group, java.lang.String baseName, java.lang.String name, ChannelHandler handler)
+ChannelPipeline 	addAfter(java.lang.String baseName, java.lang.String name, ChannelHandler handler)
+
+ChannelPipeline 	addBefore(EventExecutorGroup group, java.lang.String baseName, java.lang.String name, ChannelHandler handler)
+ChannelPipeline 	addBefore(java.lang.String baseName, java.lang.String name, ChannelHandler handler)
+
+ChannelPipeline 	addFirst(ChannelHandler... handlers)
+ChannelPipeline 	addFirst(EventExecutorGroup group, ChannelHandler... handlers)
+ChannelPipeline 	addFirst(EventExecutorGroup group, java.lang.String name, ChannelHandler handler)
+ChannelPipeline 	addFirst(java.lang.String name, ChannelHandler handler)
+
+ChannelPipeline 	addLast(ChannelHandler... handlers)
+ChannelPipeline 	addLast(EventExecutorGroup group, ChannelHandler... handlers)
+ChannelPipeline 	addLast(EventExecutorGroup group, java.lang.String name, ChannelHandler handler)
+ChannelPipeline 	addLast(java.lang.String name, ChannelHandler handler)
+
+ChannelPipeline 	remove(ChannelHandler handler)
+<T extends ChannelHandler> T 	remove(java.lang.Class<T> handlerType)
+ChannelHandler 	remove(java.lang.String name)
+ChannelHandler 	removeFirst()
+ChannelHandler 	removeLast()
+
+ChannelPipeline 	replace(ChannelHandler oldHandler, java.lang.String newName, ChannelHandler newHandler)
+<T extends ChannelHandler> T 	replace(java.lang.Class<T> oldHandlerType, java.lang.String newName, ChannelHandler newHandler)
+ChannelHandler 	replace(java.lang.String oldName, java.lang.String newName, ChannelHandler newHandler)
+
+Channel 	channel()
+java.util.List<String> 	names()
+java.util.Map<String,ChannelHandler> 	toMap()
+
+ChannelHandlerContext 	context(ChannelHandler handler)
+ChannelHandlerContext 	context(java.lang.Class<? extends ChannelHandler> handlerType)
+ChannelHandlerContext 	context(java.lang.String name)
+
+ChannelPipeline 	fireChannelActive()
+ChannelPipeline 	fireChannelInactive()
+ChannelPipeline 	fireChannelRead(java.lang.Object msg)
+ChannelPipeline 	fireChannelReadComplete()
+ChannelPipeline 	fireChannelRegistered()
+ChannelPipeline 	fireChannelUnregistered()
+ChannelPipeline 	fireChannelWritabilityChanged()
+ChannelPipeline 	fireExceptionCaught(java.lang.Throwable cause)
+ChannelPipeline 	fireUserEventTriggered(java.lang.Object event)
+
+ChannelHandler 	first()
+ChannelHandlerContext 	firstContext()
+ChannelHandler 	last()
+ChannelHandlerContext 	lastContext()
+<T extends ChannelHandler> T 	get(java.lang.Class<T> handlerType)
+ChannelHandler 	get(java.lang.String name)
+
+ChannelPipeline 	flush()
+Methods from ChannelOutboundInvoker for read,write,bind,connect,etc/
+```
+- [ChannelInitializer](https://netty.io/4.1/api/io/netty/channel/ChannelInitializer.html)
+```
+@ChannelHandler.Sharable
+public abstract class ChannelInitializer<C extends Channel> extends ChannelInboundHandlerAdapter
+
+void 	channelRegistered(ChannelHandlerContext ctx)
+void 	exceptionCaught(ChannelHandlerContext ctx, Throwable cause)
+void 	handlerAdded(ChannelHandlerContext ctx)
+void 	handlerRemoved(ChannelHandlerContext ctx)
+
+protected abstract void 	initChannel(C ch)
+```
+
+- [SimpleChannelInboundHandler](https://netty.io/4.1/api/io/netty/channel/SimpleChannelInboundHandler.html)
+```
+public abstract class SimpleChannelInboundHandler<I> extends ChannelInboundHandlerAdapter
+
+protected 	SimpleChannelInboundHandler()
+protected 	SimpleChannelInboundHandler(boolean autoRelease)
+protected 	SimpleChannelInboundHandler(java.lang.Class<? extends I> inboundMessageType)
+protected 	SimpleChannelInboundHandler(java.lang.Class<? extends I> inboundMessageType, boolean autoRelease)
+
+boolean 	acceptInboundMessage(java.lang.Object msg)
+void 	channelRead(ChannelHandlerContext ctx, java.lang.Object msg)
+protected abstract void 	channelRead0(ChannelHandlerContext ctx, I msg)
+```
+- [ByteToMessageCodec](https://netty.io/4.1/api/io/netty/handler/codec/ByteToMessageCodec.html)
+```
+public abstract class ByteToMessageCodec<I> extends ChannelDuplexHandler 
+
+boolean 	acceptOutboundMessage(java.lang.Object msg)
+
+void 	channelInactive(ChannelHandlerContext ctx)
+void 	channelRead(ChannelHandlerContext ctx, java.lang.Object msg)
+void 	channelReadComplete(ChannelHandlerContext ctx)
+
+void 	handlerAdded(ChannelHandlerContext ctx)
+void 	handlerRemoved(ChannelHandlerContext ctx)
+void 	write(ChannelHandlerContext ctx, java.lang.Object msg, ChannelPromise promise)
+
+protected abstract void 	decode(ChannelHandlerContext ctx, ByteBuf in, List<Object> out) 
+protected void 	decodeLast(ChannelHandlerContext ctx, ByteBuf in, List<Object> out) 
+protected abstract void 	encode(ChannelHandlerContext ctx, I msg, ByteBuf out)
+```
 
 
+- [ByteToMessageDecoder](https://netty.io/4.1/api/io/netty/handler/codec/ByteToMessageDecoder.html)
+```
+public abstract class ByteToMessageDecoder extends ChannelInboundHandlerAdapter
+protected int 	actualReadableBytes()
+protected void 	callDecode(ChannelHandlerContext ctx, ByteBuf in, java.util.List<java.lang.Object> out)
+
+void 	channelInactive(ChannelHandlerContext ctx)
+void 	channelRead(ChannelHandlerContext ctx, java.lang.Object msg)
+void 	channelReadComplete(ChannelHandlerContext ctx)
+
+protected abstract void 	decode(ChannelHandlerContext ctx, ByteBuf in, List<Object> out)
+
+protected void 	decodeLast(ChannelHandlerContext ctx, ByteBuf in, java.util.List<java.lang.Object> out)
+protected void 	discardSomeReadBytes() 
+void 	handlerRemoved(ChannelHandlerContext ctx)
+protected void 	handlerRemoved0(ChannelHandlerContext ctx)
+protected ByteBuf 	internalBuffer()
+boolean 	isSingleDecode()
+void 	setCumulator(ByteToMessageDecoder.Cumulator cumulator)
+void 	setDiscardAfterReads(int discardAfterReads)
+void 	setSingleDecode(boolean singleDecode)
+void 	userEventTriggered(ChannelHandlerContext ctx, java.lang.Object evt)
+```
+- [MessageToByteEncoder](https://netty.io/4.1/api/io/netty/handler/codec/MessageToByteEncoder.html)
+```
+public abstract class MessageToByteEncoder<I> extends ChannelOutboundHandlerAdapter
+
+boolean 	acceptOutboundMessage(java.lang.Object msg)
+protected ByteBuf 	allocateBuffer(ChannelHandlerContext ctx, I msg, boolean preferDirect)
+protected abstract void 	encode(ChannelHandlerContext ctx, I msg, ByteBuf out)
+protected boolean 	isPreferDirect() 
+
+void 	write(ChannelHandlerContext ctx, java.lang.Object msg, ChannelPromise promise)
+```
+- [MessageToMessageCodec](https://netty.io/4.1/api/io/netty/handler/codec/MessageToMessageCodec.html)
+```
+boolean 	acceptInboundMessage(java.lang.Object msg)
+boolean 	acceptOutboundMessage(java.lang.Object msg)
+void 	channelRead(ChannelHandlerContext ctx, java.lang.Object msg)
+
+protected abstract void 	decode(ChannelHandlerContext ctx, INBOUND_IN msg, java.util.List<java.lang.Object> out) 
+protected abstract void 	encode(ChannelHandlerContext ctx, OUTBOUND_IN msg, java.util.List<java.lang.Object> out) 
+
+void 	write(ChannelHandlerContext ctx, java.lang.Object msg, ChannelPromise promise)
+```
+
+- [MessageToMessageDecoder](https://netty.io/4.1/api/io/netty/handler/codec/MessageToMessageDecoder.html)
+```
+public abstract class MessageToMessageDecoder<I> extends ChannelInboundHandlerAdapter
+
+boolean 	acceptInboundMessage(java.lang.Object msg)
+void 	channelRead(ChannelHandlerContext ctx, java.lang.Object msg)
+
+protected abstract void 	decode(ChannelHandlerContext ctx, I msg, List<Object> out)
+```
+
+- [MessageToMessageEncoder](https://netty.io/4.1/api/io/netty/handler/codec/MessageToMessageEncoder.html)
+```
+public abstract class MessageToMessageEncoder<I> extends ChannelOutboundHandlerAdapter
+
+boolean 	acceptOutboundMessage(java.lang.Object msg)
+protected abstract void 	encode(ChannelHandlerContext ctx, I msg, List<Object> out)
+void 	write(ChannelHandlerContext ctx, java.lang.Object msg, ChannelPromise promise)
+```
