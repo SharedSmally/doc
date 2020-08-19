@@ -1,6 +1,6 @@
 # Spring WebFlux
 2 types of Publishers:
-- Mono
+- [Mono]()
 
 Specialized Publisher that emits at most one item and then optionally terminates 
 with an onComplete signal or an onError signal. In short, it returns 0 or 1 element.
@@ -10,7 +10,7 @@ with an onComplete signal or an onError signal. In short, it returns 0 or 1 elem
 Mono noData = Mono.empty();
 Mono data = Mono.just(“rishi”);
 ```
-- Flux
+- [Flux](https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/concurrent/Flow.html)
 
 Standard Publisher representing an asynchronous sequence of 0 to N emitted items, 
 optionally terminated by either a completion signal or an error. These three types of signal 
