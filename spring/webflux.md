@@ -1,18 +1,22 @@
 # Spring WebFlux
 2 types of Publishers:
 - Mono
-A Mono is a specialized Publisher that emits at most one item and then optionally terminates 
+
+Specialized Publisher that emits at most one item and then optionally terminates 
 with an onComplete signal or an onError signal. In short, it returns 0 or 1 element.
-![https://i0.wp.com/blog.knoldus.com/wp-content/uploads/2019/05/mono.png?w=903&ssl=1]
+
+![Mono](https://i0.wp.com/blog.knoldus.com/wp-content/uploads/2019/05/mono.png?w=903&ssl=1)
 ```
 Mono noData = Mono.empty();
 Mono data = Mono.just(“rishi”);
 ```
 - Flux
-A Flux is a standard Publisher representing an asynchronous sequence of 0 to N emitted items, 
+
+Standard Publisher representing an asynchronous sequence of 0 to N emitted items, 
 optionally terminated by either a completion signal or an error. These three types of signal 
 translate to calls to a downstream subscriber’s onNext, onComplete, or onError methods.
-![https://i1.wp.com/blog.knoldus.com/wp-content/uploads/2019/05/flux.png?w=833&ssl=1]
+
+![Flux](https://i1.wp.com/blog.knoldus.com/wp-content/uploads/2019/05/flux.png?w=833&ssl=1)
 ```
 Flux flux1 = Flux.just(“foo”, “bar”, “foobar”);
 Flux flux2 = Flux.fromIterable(Arrays.asList(“A”, “B”, “C”));
