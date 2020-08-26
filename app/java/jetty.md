@@ -83,9 +83,21 @@ A Handler base class to daisy chain handlers together in the style of aspect-ori
 
 A specialized HandlerCollection that uses the longest prefix of the request URI (the contextPath) to select a contained ContextHandler to handle the request.
 
+### Handlers
+- ResourceHandler:  serve static content/resource from the specific path
+- ServletHandler: handles HTTP requests based on servlets logic.
+- ContextHandler: type of ScopedHandler that responds only to requests that a URI prefix matches the configured context path
+- ServletContextHandler: specialized ContextHandler that supports for standard sessions and Servlets
+- WebAppContext: extension of ServletContextHandler that uses the standard layout and web.xml to configure the servlets, filters and other features from a web.xml and/or annotations.
+
 
 ## Connectors
+When the Server instance is passed a port number, it internally creates a default instance of a Connector(ServerConnector) that listens for requests on that port. It is desirable to explicitly instantiate and configure one or more Connectors for a Server instance.
+
 
 ## WebSocket
+
+
+## [HttpClient](https://www.eclipse.org/jetty/documentation/current/http-client-api.html)
 
 
