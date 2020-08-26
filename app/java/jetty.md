@@ -61,7 +61,9 @@ To produce a response to a request:
 - Call another Handler (HandlerWrapper).
 - Select one or many Handlers to call (HandlerCollection).
 ```
-void handle(java.lang.String target, Request baseRequest, javax.servlet.http.HttpServletRequest request, javax.servlet.http.HttpServletResponse response) throws java.io.IOException, javax.servlet.ServletException
+void handle(java.lang.String target, Request baseRequest, javax.servlet.http.HttpServletRequest request, 
+            javax.servlet.http.HttpServletResponse response)
+            throws java.io.IOException, javax.servlet.ServletException
 ```
 
 ### Handler Collections
@@ -74,6 +76,7 @@ Holds a collection of other handlers and calls each handler in order, such as fo
 A Handler Collection that calls each handler in turn until either an exception is thrown, the response is committed or the request.isHandled() returns true, such as combining handlers that conditionally handle a request, such as calling multiple contexts until one matches a virtual host.
 
 - HandlerWrapper
+
 A Handler base class to daisy chain handlers together in the style of aspect-oriented programming, such as a standard web application implemented by a chain of a context, session, security and servlet handlers.
 
 - ContextHandlerCollection
