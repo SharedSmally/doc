@@ -92,11 +92,11 @@ NAME=app
 
 #Common Name
 CN=jetty.eclipse.org
-#organizational unit
+#organizational unit?
 UNIT=Jetty
-#organization
+#organization?
 ORG=TCS
-#City or Locality
+#City or Locality?
 CITY=Annapolis
 #State
 STATE=MD
@@ -109,7 +109,8 @@ KEYSTORE_PASS=abcdef12
 KEY_PASS=abcdef12
 # trusted store password
 
-main: app.pem app.csr app.p12
+main: app.pem app.csr app.p12 appCA.jks
+
 
 app: app.jks
 
@@ -117,6 +118,10 @@ ${NAME}.jks:
         keytool -genkey -keystore ${NAME}.jks -alias ${NAME}  -keyalg RSA -keysize 2048 \
         -validity 10000 -dname "CN=${CN}, OU=${UNIT}, O=${ORG}, L=${CITY}, ST=${STATE}, C=${COUNTRY}" \
         -storepass ${KEYSTORE_PASS} -keypass ${KEY_PASS}
+
+# create trustedstore
+%CA.jks:%.pem
+        keytool -import -file $< -alias ${NAME} -keystore $@ -storepass ${KEYSTORE_PASS}
 
 %.pem:%.jks
         keytool -exportcert -rfc -alias ${NAME} -storepass ${KEYSTORE_PASS}  -keystore $< -file $@
@@ -131,11 +136,11 @@ ${NAME}.jks:
 
 print:
         keytool -list -storepass ${KEYSTORE_PASS} -keystore ${NAME}.jks
+        keytool -list -storepass ${KEYSTORE_PASS} -keystore ${NAME}CA.jks
 
 printp12:
         keytool -list -storepass ${KEYSTORE_PASS} -keystore ${NAME}.p12
 
 printcert:
         keytool -printcert -file app.pem
-
 ```
