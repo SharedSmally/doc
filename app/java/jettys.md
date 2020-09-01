@@ -60,7 +60,9 @@ $ keytool -genkey -keystore app.jks -alias app   -keyalg RSA -keysize 2048 \
 ```
 $ keytool -export -alias app -storepass abcdef12  -keystore keystore -file jetty.cer
 $ keytool -exportcert -rfc -alias jetty -storepass abcdef12  -keystore keystore -file jetty.pem
+
 $ openssl x509 -inform PEM -in ssl/app.pem -text -out certdata.pem
+$ curl --cacert certdata.pem https://localhost:9998
 ```
 - Convert to PKCS12
 ```
