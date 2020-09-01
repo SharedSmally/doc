@@ -16,6 +16,10 @@ password
 OBF:1v2j1uum1xtv1zej1zer1xtn1uvk1v1v
 MD5:5f4dcc3b5aa765d61d8327deb882cf99
 CRYPT:usjRS48E8ZADM
+
+//Using the `-n` option to exclude a new line from being added.
+$ echo -n password | md5sum
+5f4dcc3b5aa765d61d8327deb882cf99 *-
 ```
 
 ## keytool
