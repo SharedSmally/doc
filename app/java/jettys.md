@@ -1,5 +1,11 @@
 # jetty Https
 
+The JSSE makes use of files called KeyStores and TrustStores. The KeyStore is used by the adapter for client authentication, while the TrustStore is used to authenticate a server in SSL authentication.
+
+- A KeyStore consists of a database containing a private key and an associated certificate, or an associated certificate chain. The certificate chain consists of the client certificate and one or more certification authority (CA) certificates.
+
+- A TrustStore contains only the certificates trusted by the client (a “trust” store). These certificates are CA root certificates, that is, self-signed certificates.
+
 ## keytool
 
 Key and Certificate Management Tool
