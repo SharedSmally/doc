@@ -6,6 +6,18 @@ The JSSE makes use of files called KeyStores and TrustStores. The KeyStore is us
 
 - A TrustStore contains only the certificates trusted by the client (a “trust” store). These certificates are CA root certificates, that is, self-signed certificates.
 
+## [Secure Password Obfuscation](https://www.eclipse.org/jetty/documentation/current/configuring-security-secure-passwords.html)
+Passwords can be stored in clear text, obfuscated, checksummed or encrypted in order of increasing security. The class org.eclipse.jetty.util.security.Password can be used to generate all varieties of passwords.
+
+```
+$ java -cp ../lib/jetty-util-9.4.31.v20200723.jar org.eclipse.jetty.util.security.Password username password
+2017-12-13 11:19:27.928:INFO::main: Logging initialized @95ms to org.eclipse.jetty.util.log.StdErrLog
+password
+OBF:1v2j1uum1xtv1zej1zer1xtn1uvk1v1v
+MD5:5f4dcc3b5aa765d61d8327deb882cf99
+CRYPT:usjRS48E8ZADM
+```
+
 ## keytool
 
 Key and Certificate Management Tool
@@ -139,6 +151,12 @@ ${NAME}.jks:
 %.p12:%.jks
         keytool -importkeystore -srckeystore $< -destkeystore $@ -deststoretype pkcs12 \
         -srcstorepass ${KEYSTORE_PASS} -deststorepass ${KEYSTORE_PASS}
+
+passwd:
+        $ java -cp ~/.m2/repository/org/eclipse/jetty/jetty-util/9.4.31.v20200723/jetty-util-9.4.31.v20200723.jar \
+                org.eclipse.jetty.util.security.Password ${NAME} ${KEY_PASS}
+        $ java -cp ~/.m2/repository/org/eclipse/jetty/jetty-util/9.4.31.v20200723/jetty-util-9.4.31.v20200723.jar \
+                org.eclipse.jetty.util.security.Password ${NAME} ${KEYSTORE_PASS}
 
 print:
         keytool -list -storepass ${KEYSTORE_PASS} -keystore ${NAME}.jks
