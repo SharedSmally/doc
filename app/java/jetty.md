@@ -65,6 +65,76 @@ void handle(java.lang.String target, Request baseRequest, javax.servlet.http.Htt
             javax.servlet.http.HttpServletResponse response)
             throws java.io.IOException, javax.servlet.ServletException
 ```
+Application:
+```
+import org.eclipse.jetty.server.Server;
+import org.eclipse.jetty.server.HttpConnectionFactory;
+public class App {
+    public static void main( String[] args ) {
+        try {
+            App app = new App();
+            app.start();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+    public void start() throws Exception {
+        Server server = new Server(9999);
+        try {
+            server.getConnectors()[0].getConnectionFactory(HttpConnectionFactory.class);
+            server.setHandler(new HelloHttpRequestHandler());
+            server.start();
+            server.join();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+}
+```
+Customized Handler:
+```
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.eclipse.jetty.server.Request;
+import org.eclipse.jetty.server.handler.AbstractHandler;
+
+public class HelloHttpRequestHandler extends AbstractHandler {
+    public HelloHttpRequestHandler() {
+        this("Hello World");
+    }
+    public HelloHttpRequestHandler( String greeting){
+        this(greeting, null);
+    }   
+    public HelloHttpRequestHandler( String greeting, String body ) {
+        this.greeting = greeting;
+        this.body = body;
+    }
+
+    @Override
+    public void handle( String target, Request baseRequest,  HttpServletRequest request,
+                       HttpServletResponse response ) throws IOException, ServletException {
+        response.setContentType("text/html; charset=utf-8");
+        response.setStatus(HttpServletResponse.SC_OK);
+
+        PrintWriter out = response.getWriter();
+
+        out.println("<h1>" + greeting + "</h1>");
+        if (body != null) {
+            out.println(body);
+        }
+
+        baseRequest.setHandled(true);
+    }
+
+    final String greeting;
+    final String body;
+}
+```
 
 ### Handler Collections
 Complex request handling is typically built from multiple Handlers to be combined:
@@ -99,5 +169,108 @@ When the Server instance is passed a port number, it internally creates a defaul
 
 
 ## [HttpClient](https://www.eclipse.org/jetty/documentation/current/http-client-api.html)
+- Blocking API
+- Non-Blocking API
 
+- [Content Handling](https://www.eclipse.org/jetty/documentation/current/http-client-api.html#http-client-content)
+```
+import static org.junit.Assert.assertTrue;
+
+import org.junit.Test;
+
+import java.util.concurrent.TimeUnit;
+import java.nio.charset.StandardCharsets;
+
+import org.eclipse.jetty.client.HttpClient;
+import org.eclipse.jetty.client.api.ContentResponse;
+import org.eclipse.jetty.client.api.Response;//.CompleteListener
+import org.eclipse.jetty.client.api.Result;
+import org.eclipse.jetty.client.util.BufferingResponseListener;
+
+public class AppTest {
+    @Test
+    public void testHelloHttpServer() {
+       try {  //https://www.eclipse.org/jetty/documentation/current/http-client-api.html
+        HttpClient httpClient = new HttpClient();
+        httpClient.start();
+        testGet(httpClient);
+        testPost(httpClient);
+        testPostAsync(httpClient);
+        Thread.sleep(5000);       
+        httpClient.stop();
+       } catch (Exception ex)       {
+          ex.printStackTrace();
+       }
+    }
+    
+    protected void testGet(HttpClient client) throws Exception {
+        ContentResponse response = client
+            .GET("http://localhost:9999");
+
+        System.out.format("Http GET response:\n  version=%s; status=%d; reason=%s\n",
+                response.getVersion(), response.getStatus(), response.getReason());
+        System.out.format("  type=%s; encoding=%s;\n  content:\n%s\n",
+              response.getMediaType(), response.getEncoding(), response.getContentAsString());
+    }
+    
+    protected void testPost(HttpClient client) throws Exception {
+        ContentResponse response = client
+          .POST("http://localhost:9999/entity/1")
+          .param("p", "value")
+          .timeout(5, TimeUnit.SECONDS)
+          .send();
+
+        System.out.format("Http POST response:\n  version=%s; status=%d; reason=%s\n",
+                response.getVersion(), response.getStatus(), response.getReason());
+        System.out.format("  type=%s; encoding=%s;\n  content:\n%s\n",
+              response.getMediaType(), response.getEncoding(), response.getContentAsString());
+    }
+
+    protected void testPostAsync(HttpClient client) throws Exception {
+        client
+          .POST("http://localhost:9999/entity/1")
+          .param("p", "value")
+          .timeout(5, TimeUnit.SECONDS)
+          .onResponseContent(new Response.ContentListener() {
+              @Override
+              public void onContent(Response response, java.nio.ByteBuffer content) {
+                   System.out.println("POST request content");
+                   System.out.format("Http Async POST response content:\n  version=%s; status=%d; reason=%s\n",
+                           response.getVersion(), response.getStatus(), response.getReason());
+                   //System.out.format("  content:\n%s\n", content.toString()); //not work
+              }
+          })
+          .send(/* new Response.CompleteListener() {
+              @Override
+              public void onComplete(Result result) {  //1.7
+              result -> { //1.8
+                  if (result.isSucceeded()) {
+                      System.out.println("POST request completed: success");
+                      Response response = result.getResponse();
+                      System.out.format("Http Async POST response:\n  version=%s; status=%d; reason=%s\n",
+                              response.getVersion(), response.getStatus(), response.getReason());
+                  } else if (result.isFailed()) {
+                     System.out.println("POST request completed: failed");
+                     java.lang.Throwable failure =  result.getFailure();
+                     if (failure != null) {
+                         failure.printStackTrace();
+                     }
+                  } else {
+                     System.out.println("POST request completed: none success/failure");  
+                  }
+              //} */
+              //https://www.eclipse.org/jetty/documentation/current/http-client-api.html#http-client-content
+              new BufferingResponseListener(8 * 1024) {
+                    @Override
+                    public void onComplete(Result result) {
+                        System.out.println("POST request completed: success");
+                        if (!result.isFailed()) {
+                            byte[] content = getContent();
+                            System.out.println("  Content:"+new String(content, StandardCharsets.UTF_8));
+                        }
+                    }
+          });
+    }
+}
+```
 
