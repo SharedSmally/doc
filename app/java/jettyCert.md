@@ -75,3 +75,56 @@ curl -v -k https://localhost:8443 --cert ./client.crt --key ./client.key
 curl -v -k --cert-type P12 --cert ./client.p12 https://localhost:8443
 ```
 
+## makefile:
+```
+make: server client
+
+server:
+	keytool -genkey -alias server -keystore server.jks \
+	-keyalg RSA -keysize 2048 \
+	-validity 10000 -dname "CN=localhost, OU=test, O=jpw, L=Annapolis, ST=MD, C=US" \
+	-keypass pass_key_server -storepass pass_keystore_server 
+	keytool -export -alias server -storepass pass_keystore_server -keystore server.jks -file server.cer 
+	keytool -import -file ./server.cer -alias server -storepass pass_turststore_server -keystore client_truststore.jks -noprompt
+	
+client:
+	keytool -genkey -alias client -keystore client.jks \
+	-keyalg RSA -keysize 2048  \
+	-validity 10000 -dname "CN=localhost, OU=test, O=jpw, L=Annapolis, ST=MD, C=US" \
+	-keypass pass_key_client -storepass pass_keystore_client  
+	keytool -export -alias client -storepass pass_keystore_client -keystore client.jks -file client.cer 
+	keytool -import -file ./client.cer -alias client -storepass pass_keystore_client -keystore server_truststore.jks -noprompt
+
+p12:
+	keytool -importkeystore \
+	        -srcalias  client -srcstoretype  jks    -srckeystore ./client.jks  \
+	        -srckeypass pass_key_client -srcstorepass pass_keystore_client   \
+	        -destalias client -deststoretype pkcs12 -destkeystore ./client.p12 \
+	        -destkeypass pass_key_client -deststorepass pass_key_client -noprompt
+#for pkcs12, keypass should be the same as storepass
+
+p12_ext:
+	openssl pkcs12 -in client.p12 -nokeys -out client.crt -passin pass:pass_key_client -password pass:pass_key_client
+	openssl pkcs12 -in client.p12 -nocerts -nodes -out client.key
+	openssl pkcs12 -in client.p12 -out client.pem
+
+# Different store and key passwords not supported for PKCS12 KeyStores
+#-genkey is old now rather use -genkeypair althought both works equally.
+
+print:
+	#keytool -list -keystore client.jks -storepass pass_keystore_client
+	keytool -list -storetype pkcs12 -keystore client.p12 -storepass pass_key_client
+	#openssl pkcs12 -info -in client.p12 -noout 
+	 
+copy:
+	cp *.jks ../src/main/resources/
+	
+clean:
+	${RM} *.jks *.cer *.p12
+
+test:
+	curl -v -k https://localhost:9998 --cert ./client.crt --key ./client.key
+	curl -v -k --cert-type P12 --cert ./client.p12 https://localhost:9998
+	
+	#Pcert-type: PEM, DER, ENG and P12
+```
