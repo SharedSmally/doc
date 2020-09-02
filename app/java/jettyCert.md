@@ -72,6 +72,6 @@ openssl pkcs12 -in client.p12 -nocerts -nodes -out client.key
 - Test
 ```
 curl -v -k https://localhost:8443 --cert ./client.crt --key ./client.key
-curl -v -k --cert-type=P12 --cert ./client.p12 https://localhost:8443
+curl -v -k --cert-type P12 --cert ./client.p12 https://localhost:8443
 ```
 
