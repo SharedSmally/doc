@@ -93,7 +93,7 @@ public class HelloServlet extends HttpServlet {
     }
 }
 ```
-- Another example
+- Example supports http/2 and TLS
 ```
 import org.apache.catalina.Context;
 import org.apache.catalina.startup.Tomcat;
