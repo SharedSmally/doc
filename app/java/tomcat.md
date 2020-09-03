@@ -93,6 +93,86 @@ public class HelloServlet extends HttpServlet {
     }
 }
 ```
+- Another example
+```
+import org.apache.catalina.Context;
+import org.apache.catalina.startup.Tomcat;
+import org.apache.catalina.LifecycleException;
+import org.apache.catalina.connector.Connector;
+import org.apache.coyote.http2.Http2Protocol;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.ServletException;
 
+    private volatile boolean mutualAuthentication;
+    private volatile String cipherSuites;
+    private volatile String tlsVersions;
+    private volatile String trustStore;
+    private volatile String trustStorePassword;
+    
+    void setupTomcat() {  
+                Tomcat tomcat = new Tomcat();
+                tomcat.setBaseDir("temp");
+                tomcat.setPort(Integer.parseInt(port));
+
+                String contextPath = "";
+                String docBase = new File(".").getAbsolutePath();
+
+                Context context = tomcat.addContext(contextPath, docBase);
+
+                HttpServlet servlet = new HttpCustomerServlet(this);
+                String servletName = "HttpCustomerServlet";
+                String urlPattern = "/*";
+
+                tomcat.addServlet(contextPath, servletName, servlet);
+                context.addServletMappingDecoded(urlPattern, servletName);
+
+                Connector connector = tomcat.getConnector();
+                connector.addUpgradeProtocol(new Http2Protocol());
+
+                if (Boolean.parseBoolean(secure)) {
+                    // set up ssl params
+                    connector.setSecure(true);
+                    connector.setScheme("https");
+                    connector.setAttribute("SSLEnabled", true);
+                    connector.setAttribute("clientAuth", mutualAuthentication);
+                    connector.setAttribute("sslProtocol", "TLS");
+                    //need keypass and keystore
+                    if (trustStorePassword != null)
+                        connector.setAttribute("keystorePass", trustStorePassword);
+                    if (trustStore != null)
+                        connector.setAttribute("keystoreFile", trustStore);
+                    if (tlsVersions != null)
+                        connector.setAttribute("sslEnabledProtocols", tlsVersions);
+                    if (cipherSuites != null)
+                        connector.setAttribute("ciphers", cipherSuites);
+                }
+            } catch (LifecycleException err) {
+                return false;
+            }
+       }
+
+import java.io.*;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+public class HttpCustomerServlet extends HttpServlet {
+    @Override
+    protected void service(HttpServletRequest req, HttpServletResponse resp)
+           throws ServletException, IOException {
+           String body=req.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
+
+            resp.setContentType(contenttype);
+            resp.setContentLength(responseData.length());
+                
+            PrintWriter writer = resp.getWriter();
+            writer.println(responseData);
+            writer.flush();
+    }
+}
+```
 
 
