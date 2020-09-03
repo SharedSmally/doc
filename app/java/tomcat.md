@@ -1,5 +1,5 @@
 # Create Http Server on Tomcat
-See [example](https://devcenter.heroku.com/articles/create-a-java-web-application-using-embedded-tomcat)
+See [example](https://devcenter.heroku.com/articles/create-a-java-web-application-using-embedded-tomcat) and [embedded tomcat](http://zetcode.com/web/embeddedtomcat/)
 - Add dependencies in pom.xml: Only embed-core is required
 ```
   <properties>
