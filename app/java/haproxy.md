@@ -47,3 +47,6 @@ server domain 127.0.0.1:8282
 ## [HAProxy with jetty](https://www.eclipse.org/jetty/documentation/current/http2-configuring-haproxy.html)
 
 ## [KeepAlive configuration](https://www.keepalived.org/manpage.html)
+
+## [Pacemaker](https://clusterlabs.org/)
+Pacemaker is a high-availability cluster resource manager.
