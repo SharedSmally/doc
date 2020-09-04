@@ -6,7 +6,8 @@ HAProxy is a free, very fast and reliable solution offering high availability, l
 - [Introduction](http://cbonte.github.io/haproxy-dconv/2.3/intro.html)
 - [Configuration](http://cbonte.github.io/haproxy-dconv/2.3/configuration.html)
 - [Management](http://cbonte.github.io/haproxy-dconv/2.3/management.html)
-- [High Available/Failover setup](https://www.digitalocean.com/community/tutorials/how-to-set-up-highly-available-haproxy-servers-with-keepalived-and-floating-ips-on-ubuntu-14-04):
+- High Available/Failover in [Ubuntu](https://www.digitalocean.com/community/tutorials/how-to-set-up-highly-available-haproxy-servers-with-keepalived-and-floating-ips-on-ubuntu-14-04) or [centOS](https://www.centlinux.com/2018/08/keepalived-configure-floating-ip-centos-7.html):
+
 Using some form of VRRP to maintain a virtual IP address across 1 or more servers, each running HAproxy. This is typically done with [keepalived](https://www.keepalived.org/) as
 [described](https://autoize.com/redundant-load-balancing-haproxy-keepalived/).
 
@@ -48,5 +49,8 @@ server domain 127.0.0.1:8282
 
 ## [KeepAlive configuration](https://www.keepalived.org/manpage.html)
 
+## [HAProxy_keepalive for K8s](https://vitobotta.com/2020/03/20/haproxy-kubernetes-hetzner-cloud/)
+
 ## [Pacemaker](https://clusterlabs.org/)
 Pacemaker is a high-availability cluster resource manager.
+
