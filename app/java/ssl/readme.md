@@ -18,30 +18,31 @@
 - L:  Locality/City
 - C:  Country (2 character country code such as US)
 
-## keytool
-```
-Key and Certificate Management Tool. Commands:
- -genkeypair         Generates a key pair
- -genseckey          Generates a secret key
- -gencert            Generates certificate from a certificate request
- -certreq            Generates a certificate request
+## [keytool](https://docs.oracle.com/en/java/javase/11/tools/keytool.html)
+- Creating or Adding Data to the Keystore:
+    -gencert
+    -genkeypair
+    -genseckey
+    -importcert
+    -importpass
+- Importing Contents from Another Keystore:
+    -importkeystore
+- Generating a Certificate Request:
+    -certreq
+- Exporting Data:
+    -exportcert
+- Displaying Data :
+    -list
+    -printcert
+    -printcertreq
+    -printcrl
+- Managing the Keystore:
+    -storepasswd
+    -keypasswd
+    -delete
+    -changealias
 
- -exportcert         Exports certificate
- -importcert         Imports a certificate or a certificate chain
- -importkeystore     Imports one or all entries from another keystore
- 
- -changealias        Changes an entry's alias
- -delete             Deletes an entry
- 
- -importpass         Imports a password
- -keypasswd          Changes the key password of an entry
- -storepasswd        Changes the store password of a keystore
- 
- -list               Lists entries in a keystore
- -printcert          Prints the content of a certificate
- -printcertreq       Prints the content of a certificate request
- -printcrl           Prints the content of a CRL file
-```
+### Commonly used commands
 - Generate a Keystore and key pair
 ```
 keytool -genkey -keyalg RSA -alias mydomain -keystore keystore.jks -keysize 2048 -keypasswd  keypass  -storepasswd storepass
@@ -86,6 +87,10 @@ keytool -storepasswd -new new_storepass -keystore keystore.jks  #change keystore
 ```
 keytool -export -alias mydomain -file mydomain.crt -keystore keystore.jks  # export CA from a keystore
 keytool -import -trustcacerts -file ca.pem -alias CANAME -keystore cacerts # import CA to a Trusted Certs(Store)
+```
+- Generate Certificate
+```
+keytool -certreq -alias client -keypass pass_key_client -storepass pass_keystore_client -keystore client.jks -infile server.csr -rfc -outfile server.cst
 ```
 
 ## openssl
