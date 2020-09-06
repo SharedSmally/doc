@@ -1,3 +1,4 @@
+```
 DIR=../src/main/resources/
 
 # https://www.eclipse.org/jetty/documentation/current/configuring-ssl.html
@@ -139,9 +140,6 @@ server_csr:
 server_jks_csr:
 	keytool -certreq -keypass pass_key_server -storepass pass_keystore_server \
 	-alias server -keystore server.jks -file server.csr
-
-
-
 copy:
 	cp *.jks ../src/main/resources/
 
@@ -160,3 +158,4 @@ print_crt:
 	
 clean:
 	${RM} *.jks *.cer *.p12	
+```
