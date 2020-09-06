@@ -1,7 +1,7 @@
 DIR=../src/main/resources/
 
-#https://www.eclipse.org/jetty/documentation/current/configuring-ssl.html
-#https://www.sslshopper.com/article-most-common-java-keytool-keystore-commands.html
+# https://www.eclipse.org/jetty/documentation/current/configuring-ssl.html
+# https://www.sslshopper.com/article-most-common-java-keytool-keystore-commands.html
 # keystore/; truststore
 main: server client
 
