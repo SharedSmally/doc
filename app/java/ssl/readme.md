@@ -20,27 +20,27 @@
 
 ## [keytool](https://docs.oracle.com/en/java/javase/11/tools/keytool.html)
 - Creating or Adding Data to the Keystore:
-    -gencert
-    -genkeypair
-    -genseckey
-    -importcert
-    -importpass
+    - gencert
+    - genkeypair
+    - genseckey
+    - importcert
+    - importpass
 - Importing Contents from Another Keystore:
-    -importkeystore
+    - importkeystore
 - Generating a Certificate Request:
-    -certreq
+    - certreq
 - Exporting Data:
-    -exportcert
+    - exportcert
 - Displaying Data :
-    -list
-    -printcert
-    -printcertreq
-    -printcrl
+    - list
+    - printcert
+    - printcertreq
+    - printcrl
 - Managing the Keystore:
-    -storepasswd
-    -keypasswd
-    -delete
-    -changealias
+    - storepasswd
+    - keypasswd
+    - delete
+    - changealias
 
 ### Commonly used commands
 - Generate a Keystore and key pair
