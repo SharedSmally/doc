@@ -1,4 +1,9 @@
 # Jetty Certificates
+
+When the server certificate is having Subject Alternative Names (SAN), the requesting home name must match with one of the SANs.
+If the server’s SSL certificate does not have SANs, then the requesting home name must match with the Common Name (CN) of
+the certificate.
+
 - [Generate CA, Server, Client certificates](https://gist.github.com/jankronquist/6412839) 
 - [Enable mutual authentication in Jetty server](https://imlc.me/how-to-enable-mutual-authentication-in-jetty-server)
 - [Add Certificate in jetty](https://stackoverflow.com/questions/20056304/in-the-jetty-server-how-can-i-obtain-the-client-certificate-used-when-client-aut)
