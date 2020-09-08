@@ -65,6 +65,23 @@ client_ca.jks:
 	-keystore client_ca.jks -storepass pass_turststore_client -noprompt
 	
 ###############################################################################
+passwd_svr:
+	mvn -f ../pom.xml exec:java -Dexec.mainClass="org.eclipse.jetty.util.security.Password" \
+	-Dexec.classpathScope=runtime -Dexec.args="wchen pass_keystore_server"
+	mvn -f ../pom.xml  exec:java -Dexec.mainClass="org.eclipse.jetty.util.security.Password" \
+	-Dexec.classpathScope=runtime -Dexec.args="wchen pass_key_server"
+	mvn -f ../pom.xml exec:java -Dexec.mainClass="org.eclipse.jetty.util.security.Password" \
+	-Dexec.classpathScope=runtime -Dexec.args="wchen pass_turststore_server"
+
+passwd_client:
+	mvn -f ../pom.xml exec:java -Dexec.mainClass="org.eclipse.jetty.util.security.Password" \
+	-Dexec.classpathScope=runtime -Dexec.args="wchen pass_keystore_client"
+	mvn -f ../pom.xml  exec:java -Dexec.mainClass="org.eclipse.jetty.util.security.Password" \
+	-Dexec.classpathScope=runtime -Dexec.args="wchen pass_key_client"
+	mvn -f ../pom.xml exec:java -Dexec.mainClass="org.eclipse.jetty.util.security.Password" \
+	-Dexec.classpathScope=runtime -Dexec.args="wchen pass_turststore_client"
+
+###############################################################################
 print:
 	keytool -list -storetype pkcs12 -keystore server.p12 -storepass pass_p12_server
 	keytool -list -storetype pkcs12 -keystore client.p12 -storepass pass_p12_client
