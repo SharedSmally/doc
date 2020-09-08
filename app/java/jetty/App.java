@@ -58,8 +58,10 @@ public class App {
         // -k: --insecure  Allow insecure server connections when using SSL
         // For self-signed ca: curl https://localhost:9998 --cacert ./server.crt --key ./client.key
         sslContextFactory.setKeyStorePath(App.class.getResource("/server.jks").toExternalForm());
-        sslContextFactory.setKeyStorePassword("pass_keystore_server");
-        sslContextFactory.setKeyManagerPassword("pass_key_server");
+        //sslContextFactory.setKeyStorePassword("pass_keystore_server");
+        //sslContextFactory.setKeyManagerPassword("pass_key_server");        
+        sslContextFactory.setKeyStorePassword("OBF:1xtp1saj1z7g1yf41rw91x131rwl1x1v1yf41y101y0q1yf21x0r1rw91x1j1rwl1yf21z7m1sar1xtt");
+        sslContextFactory.setKeyManagerPassword("OBF:1xtp1saj1z7g1yf41rw91x131rwl20zj1rw91x1j1rwl1yf21z7m1sar1xtt");
         
         // also works with p12
         /*
@@ -70,7 +72,8 @@ public class App {
         //
 
         sslContextFactory.setTrustStorePath(App.class.getResource("/server_ca.jks").toExternalForm());
-        sslContextFactory.setTrustStorePassword("pass_turststore_server");
+        //sslContextFactory.setTrustStorePassword("pass_turststore_server");
+        sslContextFactory.setTrustStorePassword("OBF:1xtp1saj1z7g1yf41rw91ytc1v2t1vnw1yf41y101yta1ytc1y0q1yf21vn61v1l1yta1rwl1yf21z7m1sar1xtt");
         sslContextFactory.setNeedClientAuth(true);
 
         ServerConnector sslConnector = new ServerConnector(server,
