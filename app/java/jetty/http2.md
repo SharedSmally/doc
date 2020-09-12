@@ -62,6 +62,12 @@ ALPN now uses the ServiceLoader to find one or more ALPNProcessors. These are fo
 
 Need to have the appropriate ones of those on the classpath.
 
+Netty is preferred for several reasons for making Http/2 connections. Few advantages I have seen using it are :
+
+- No need for the ALPN jar to be added to the boot classpath. Adding maven dependency "netty-tcnative-boringssl-static" does the job
+- It inherently support a asynchronous model of using the API, simpler to handle data pushed by the server in case of HTTP/2
+
+
 ### Start jetty Http/2 server
 ```
 $ java -jar $JETTY_HOME/start.jar --add-to-startd=http2,http2c
