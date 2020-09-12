@@ -57,12 +57,14 @@ $ java -jar $JETTY_HOME/start.jar --add-to-startd=http2,http2c
 ```
 
 HTTP/2 Configuration
-|Properties |	Configuration File | Description |
-|start.d 	| $JETTY_HOME/etc 	| |
-|ssl.ini |	jetty-ssl.xml |	Connector configuration (eg port) common to HTTPS and HTTP/2|
-|ssl.ini |	jetty-ssl-context.xml |	Keystore  configuration common to HTTPS and HTTP/2 |
-|https.ini |	jetty-https.xml |	HTTPS Protocol configuraton |
-|http2.ini |	jetty-http2.xml |	HTTP/2 Protocol configuration |
+
+| Properties |	Configuration File | Description |
+| ----------- | ----------- | ----------- |
+| start.d 	| $JETTY_HOME/etc 	| |
+| ssl.ini |	jetty-ssl.xml |	Connector configuration (eg port) common to HTTPS and HTTP/2|
+| ssl.ini |	jetty-ssl-context.xml |	Keystore  configuration common to HTTPS and HTTP/2 |
+| https.ini |	jetty-https.xml |	HTTPS Protocol configuraton |
+| http2.ini |	jetty-http2.xml |	HTTP/2 Protocol configuration |
 
 
 ## Http/2 Client
