@@ -3,8 +3,7 @@
 ## Http/2 Server:
 
 [Protocols](https://http2.github.io/http2-spec/) using ServerConnector:
-- h2: http/2: SSL, (ssl, alpn, h2) {0.0.0.0:8443}
-
+- h2: http/2: SSL, (ssl, alpn, h2) {0.0.0.0:8443} [jetty-alpn-server-${jetty.version}.jar;jetty-alpn-client-${jetty.version}.jar]
 h2 identifies the protocol where HTTP/2 uses Transport Layer Security (TLS). 
 It is used in the TLS application-layer protocol negotiation (ALPN) extension
 field and in any place where HTTP/2 over TLS is identified.
@@ -40,6 +39,31 @@ Upgrade: h2c
 
 [ HTTP/2 connection ...
 ```
+
+```
+org.eclipse.jetty.server.ServerConnector
+org.eclipse.jetty.server.ConnectionFactory:
+   org.eclipse.jetty.server.SslConnectionFactory
+   org.eclipse.jetty.alpn.server.ALPNServerConnectionFactory
+   org.eclipse.jetty.http2.server.HTTP2ServerConnectionFactory
+   
+-Xbootclasspath/p:
+   ${settings.localRepository}/org/mortbay/jetty/alpn/alpn-boot/8.1.11.v20170118/alpn-boot-8.1.11.v20170118.jar
+```
+
+### Start jetty Http/2 server
+```
+$ java -jar $JETTY_HOME/start.jar --add-to-startd=http2,http2c
+```
+
+HTTP/2 Configuration
+|Properties |	Configuration File | Description |
+|start.d 	| $JETTY_HOME/etc 	| |
+|ssl.ini |	jetty-ssl.xml |	Connector configuration (eg port) common to HTTPS and HTTP/2|
+|ssl.ini |	jetty-ssl-context.xml |	Keystore  configuration common to HTTPS and HTTP/2 |
+|https.ini |	jetty-https.xml |	HTTPS Protocol configuraton |
+|http2.ini |	jetty-http2.xml |	HTTP/2 Protocol configuration |
+
 
 ## Http/2 Client
 
