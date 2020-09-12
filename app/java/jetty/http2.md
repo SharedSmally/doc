@@ -51,6 +51,17 @@ org.eclipse.jetty.server.ConnectionFactory:
    ${settings.localRepository}/org/mortbay/jetty/alpn/alpn-boot/8.1.11.v20170118/alpn-boot-8.1.11.v20170118.jar
 ```
 
+ALPN now uses the ServiceLoader to find one or more ALPNProcessors. These are found in the new modules:
+
+- jetty-alpn-openjdk8-client
+- jetty-alpn-openjdk8-server
+- jetty-alpn-java-client
+- jetty-alpn-java-server
+- jetty-alpn-conscrypt-client
+- jetty-alpn-conscrypt-server
+
+Need to have the appropriate ones of those on the classpath.
+
 ### Start jetty Http/2 server
 ```
 $ java -jar $JETTY_HOME/start.jar --add-to-startd=http2,http2c
