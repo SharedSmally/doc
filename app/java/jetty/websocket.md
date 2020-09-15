@@ -1,6 +1,7 @@
 # jetty WebSocket
 - [Document](https://www.eclipse.org/jetty/documentation/current/websocket-jetty.html)
 - [java doc](https://www.eclipse.org/jetty/javadoc/current/org/eclipse/jetty/websocket/api/package-summary.html)
+- [Tutorial](https://itnext.io/writing-a-web-socket-server-with-embedded-jetty-46fe9ab1c435)
 - 3 Components
     - Web Socket
     - WebSocket Server (via WebServelet)
