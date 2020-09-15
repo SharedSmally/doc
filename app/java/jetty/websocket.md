@@ -9,9 +9,11 @@
 An indication to the WebSocket that the Upgrade has succeeded and the WebSocket is now open.
 An org.eclipse.jetty.websocket.api.Session object will be passed for this Open Event.
 For normal WebSockets,  store and use this Session for communicating with the Remote Endpoint.
-For Stateless WebSockets, the Session will be passed into each event as it occurs, allowing to only have 1 instance of a WebSocket serving many Remote Endpoints.
+For Stateless WebSockets, the Session will be passed into each event as it occurs, allowing to only 
+have 1 instance of a WebSocket serving many Remote Endpoints.
 
 - On Close Event
+
 An indication that the WebSocket is now closed.
 Every Close Event will have a Status Code (and an optional Closure Reason Message)
 A normal WebSocket closure will go through a Close Handshake where both the Local Endpoint and the Remote 
@@ -25,9 +27,11 @@ On an abnormal closure, such as a connection disconnect or a connection timeout,
 without going through a Close Handshake, this will still result in an On Close Event (and likely a corresponding On Error Event).
 
 - On Error Event
+
 If an error occurred, during the implementation, the WebSocket will be notified via this event handler.
 
 - On Message Event
+
 An indication that a complete message has been received and is ready for handling by your WebSocket.
 This can be a (UTF8) TEXT message or a raw BINARY message.
 
