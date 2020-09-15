@@ -58,7 +58,8 @@ Handle incoming HTTP requests:
 ```
 Server	getServer()	 
 void	setServer(Server server)
-void	handle(java.lang.String target, Request baseRequest, javax.servlet.http.HttpServletRequest request, javax.servlet.http.HttpServletResponse response)	
+void	handle(java.lang.String target, Request baseRequest, javax.servlet.http.HttpServletRequest request,
+             javax.servlet.http.HttpServletResponse response)	
 ```
 
 ## jetty WebSocket
