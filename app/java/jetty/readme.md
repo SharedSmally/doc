@@ -25,6 +25,10 @@ ServerConnector(Server server, SslContextFactory sslContextFactory)
 ServerConnector(Server server, SslContextFactory sslContextFactory, ConnectionFactory... factories)
 
 void	addConnector(Connector connector)/removeConnector(Connector connector)
+
+Methods inherited from class org.eclipse.jetty.server.handler.HandlerWrapper
+   destroy, expandChildren, getHandler, getHandlers, handle, insertHandler, setHandler
+public void setHandler(Handler handler)
 ```
 
 ### [ConnectionFactory](https://www.eclipse.org/jetty/javadoc/current/org/eclipse/jetty/server/ConnectionFactory.html)
