@@ -14,7 +14,7 @@ ServerConnector(Server server, SslContextFactory sslContextFactory)
 ServerConnector(Server server, SslContextFactory sslContextFactory, ConnectionFactory... factories)
 ```
 
-- [ConnectionFactory](https://www.eclipse.org/jetty/javadoc/current/org/eclipse/jetty/server/ConnectionFactory.html)
+### [ConnectionFactory](https://www.eclipse.org/jetty/javadoc/current/org/eclipse/jetty/server/ConnectionFactory.html)
 A Connection factory is responsible for instantiating and configuring a Connection instance to handle an EndPoint accepted by a Connector.
 - http
 Creates an HTTP connection that can handle multiple versions of HTTP from 0.9 to 1.1
