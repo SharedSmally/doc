@@ -2,6 +2,7 @@
 - [Jetty](https://www.eclipse.org/jetty/)
 - [Document](https://www.eclipse.org/jetty/documentation/current/)
 - [Java Doc](https://www.eclipse.org/jetty/javadoc/current/)
+- [Official cookbook](https://github.com/jetty-project/embedded-jetty-cookbook)
 
 ## jetty Server
 The basic class is [Server](https://www.eclipse.org/jetty/javadoc/current/org/eclipse/jetty/server/Server.html). 
