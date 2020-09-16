@@ -36,3 +36,5 @@ org.springframework.core.env.Environment extends PropertyResolver:
 String[]	getActiveProfiles()
 String[]	getDefaultProfiles()
 ```
+Java configuration typically uses @[Bean](https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/context/annotation/Bean.html)-annotated methods within a @[Configuration](https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/context/annotation/Configuration.html) class in [context annotation](https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/context/annotation/package-summary.html).
+ 
