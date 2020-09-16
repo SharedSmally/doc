@@ -85,7 +85,7 @@ Special consideration must be taken for @Bean methods that return Spring BeanFac
 @Configuration is meta-annotated with @Component, therefore @Configuration classes are candidates for component scanning and may take advantage of @Autowired/@Inject like any regular @Component.
 
 ### Working with externalized values
-Externalized values may be looked up by injecting the Spring Environment into a @Configuration class:
+- Externalized values may be looked up by injecting the Spring Environment into a @Configuration class:
 ```
  @Configuration
  public class AppConfig {
@@ -99,7 +99,7 @@ Externalized values may be looked up by injecting the Spring Environment into a 
      }
  }
 ```
- @Configuration can contribute property sources to the Environment object using the @PropertySource annotation
+ - @Configuration can contribute property sources to the Environment object using the @PropertySource annotation
  ```
  @Configuration
  @PropertySource("classpath:/com/acme/app.properties")
@@ -112,7 +112,7 @@ Externalized values may be looked up by injecting the Spring Environment into a 
      }
  }
  ```
-Externalized values may be injected into @Configuration classes using the @Value annotation:
+- Externalized values may be injected into @Configuration classes using the @Value annotation:
 ```
  @Configuration
  @PropertySource("classpath:/com/acme/app.properties")
@@ -126,7 +126,7 @@ Externalized values may be injected into @Configuration classes using the @Value
  }
 ```
 ### Composing @Configuration classes:
-@Configuration classes may be composed using the @Import annotation:
+- @Configuration classes may be composed using the @Import annotation:
 ```
  @Configuration
  public class DatabaseConfig {
@@ -152,7 +152,7 @@ Externalized values may be injected into @Configuration classes using the @Value
  }
 ```
 
-@Configuration classes may be marked with the @Profile annotation to indicate they should be processed only if a given profile or profiles are active
+- @Configuration classes may be marked with the @Profile annotation to indicate they should be processed only if a given profile or profiles are active
 ```
  @Profile("development")
  @Configuration
@@ -172,7 +172,7 @@ Externalized values may be injected into @Configuration classes using the @Value
      }
  }
 ```
-Declare profile conditions at the @Bean method level:
+- Declare profile conditions at the @Bean method level:
 ```
  @Configuration
  public class ProfileDatabaseConfig {
@@ -185,7 +185,7 @@ Declare profile conditions at the @Bean method level:
      public DataSource productionDatabase() { ... }
  }
 ```
-With Spring XML using the @ImportResource annotation
+- With Spring XML using the @ImportResource annotation
 ```
  @Configuration
  @ImportResource("classpath:/com/acme/database-config.xml")
@@ -199,7 +199,7 @@ With Spring XML using the @ImportResource annotation
      }
  }
 ```
-@Configuration classes may be nested within one another 
+- @Configuration classes may be nested within one another 
 ```
  @Configuration
  public class AppConfig {
@@ -219,7 +219,7 @@ With Spring XML using the @ImportResource annotation
      }
  }
 ```
-Spring TestContext framework provides @ContextConfiguration annotation accepting an array of component class references — typically @Configuration or @Component classes.
+- Spring TestContext framework provides @ContextConfiguration annotation accepting an array of component class references — typically @Configuration or @Component classes.
 ```
  @RunWith(SpringRunner.class)
  @ContextConfiguration(classes = {AppConfig.class, DatabaseConfig.class})
