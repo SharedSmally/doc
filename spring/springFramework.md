@@ -3,7 +3,7 @@
 - [Document](https://docs.spring.io/spring-framework/docs/current/spring-framework-reference/)
 
 ## Spring Framework Components
-- Core: IoC Container, Events, Resources, i18n, Validation, Data Binding, Type Conversion, SpEL, AOP.
+- [Core](https://docs.spring.io/spring-framework/docs/current/spring-framework-reference/core.html): IoC Container, Events, Resources, i18n, Validation, Data Binding, Type Conversion, SpEL, AOP.
      - aop: aspectj, framework
      - beans: factory
      - context
@@ -13,16 +13,16 @@
      - format: datetime, number
      - ui
      - util
-- Testing	: Mock Objects, TestContext Framework, Spring MVC Test, WebTestClient.
+- [Testing](https://docs.spring.io/spring-framework/docs/current/spring-framework-reference/testing.html): Mock Objects, TestContext Framework, Spring MVC Test, WebTestClient.
      - mock    
      - test: context, web
-- Data Access: Transactions, DAO Support, JDBC, O/R Mapping, XML Marshalling.
+- [Data Access](https://docs.spring.io/spring-framework/docs/current/spring-framework-reference/data-access.html): Transactions, DAO Support, JDBC, O/R Mapping, XML Marshalling.
      - dao
      - jdbc: datasource
      - orm: hibernate, jpa
      - transaction: jta, reactive
      - oxm: jaxb, jibx,mime,xstream
-- Web Servlet: Spring MVC, WebSocket, SockJS, STOMP Messaging.
+- [Web Servlet](https://docs.spring.io/spring-framework/docs/current/spring-framework-reference/web.html#spring-web): Spring MVC, WebSocket, SockJS, STOMP Messaging.
      - http
          - server: reactive
          - client: reactive
@@ -33,13 +33,13 @@
      - web.servlet: 
          - view: xml, json, xslt, document, freemaker, feed, groovy, script, titles3
     
-- Web Reactive: Spring WebFlux, WebClient, WebSocket.
+- [Web Reactive](https://docs.spring.io/spring-framework/docs/current/spring-framework-reference/web-reactive.html#spring-webflux): Spring WebFlux, WebClient, WebSocket.
      - web.socket: 
           - client: jetty, standard
           - server: jetty, standard
           - sockjs: 
      - web.reactive:
-- Integration:  Remoting, JMS, JCA, JMX, Email, Tasks, Scheduling, Caching.
+- [Integration](https://docs.spring.io/spring-framework/docs/current/spring-framework-reference/integration.html#spring-integration):  Remoting, JMS, JCA, JMX, Email, Tasks, Scheduling, Caching.
      - cache: ehcache, jcache, caffeine, concurrent
      - ejb
      - jca: cci
@@ -50,7 +50,7 @@
      - messaging: handler, rsocket, simp, tcp
      - remoting: caucho, httpinvoker, jaxws, rmi, soap     
      - scheduling: aspectj, commonj, concurrent, quartz
-- Languages: Kotlin, Groovy, Dynamic Languages.
+- [Languages](https://docs.spring.io/spring-framework/docs/current/spring-framework-reference/languages.html#languages): Kotlin, Groovy, Dynamic Languages.
      - scripting: bsh,groovy
 
 
