@@ -101,7 +101,7 @@ Special consideration must be taken for @Bean methods that return Spring BeanFac
 @Configuration
 @ComponentScan  //@ComponentScan(basePackages = "com.jcpw.componentscan.springapp.xxx")
 public class SpringComponentScanApp {
-    private static ApplicationContext applicationContext;
+    private static ApplicationContext ctx;
 
     @Bean
     public ExampleBean exampleBean() {
@@ -109,9 +109,8 @@ public class SpringComponentScanApp {
     }
  
     public static void main(String[] args) {
-        applicationContext = new AnnotationConfigApplicationContext(SpringComponentScanApp.class);
- 
-        for (String beanName : applicationContext.getBeanDefinitionNames()) {
+        ctx = new AnnotationConfigApplicationContext(SpringComponentScanApp.class);
+        for (String beanName : ctx.getBeanDefinitionNames()) {
             System.out.println(beanName);
         }
     }
@@ -126,18 +125,23 @@ public class Cat {}
 
 In Sprint Boot, @SpringBootApplication annotation is a combination of three annotations: @Configuration, @EnableAutoConfiguration, @ComponentScan.
 ```
-package com.baeldung.componentscan.springbootapp;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ApplicationContext;
+
 // ...
 @SpringBootApplication
 public class SpringBootComponentScanApp {
-    private static ApplicationContext applicationContext;
+    private static ApplicationContext ctx;
      @Bean
     public ExampleBean exampleBean() {
         return new ExampleBean();
     }
      public static void main(String[] args) {
-        applicationContext = SpringApplication.run(SpringBootComponentScanApp.class, args);
-        checkBeansPresence("cat", "dog", "rose", "exampleBean", "springBootComponentScanApp");
+        ctx = SpringApplication.run(SpringBootComponentScanApp.class, args);
+        for (String beanName : ctx.getBeanDefinitionNames()) {
+            System.out.println(beanName);
+        }
      }
 ```
 
