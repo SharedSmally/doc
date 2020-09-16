@@ -83,11 +83,11 @@ Special consideration must be taken for @Bean methods that return Spring BeanFac
 
 Scopes a single bean definition to any number of object instances.
 
-- request
+- request: @RequestScope
 
 Scopes a single bean definition to the lifecycle of a single HTTP request. That is, each HTTP request has its own instance of a bean created off the back of a single bean definition. Only valid in the context of a web-aware Spring ApplicationContext.
 
-- session
+- session: @SessionScope
 
 Scopes a single bean definition to the lifecycle of an HTTP Session. Only valid in the context of a web-aware Spring ApplicationContext.
 
@@ -98,6 +98,123 @@ Scopes a single bean definition to the lifecycle of a ServletContext. Only valid
 - websocket
 
 Scopes a single bean definition to the lifecycle of a WebSocket. Only valid in the context of a web-aware Spring ApplicationContext.
+
+### Lifecycle callback interfaces
+- Initialization Callbacks
+The org.springframework.beans.factory.InitializingBean interface lets a bean perform initialization work after the container has set all necessary properties on the bean.
+```
+void afterPropertiesSet() throws Exception;
+
+public class AnotherExampleBean implements InitializingBean {
+    @Override
+    public void afterPropertiesSet() {
+        // do some initialization work
+    }
+}
+```
+Multiple lifecycle mechanisms configured for the same bean are called as follows:
+    - Methods annotated with @PostConstruct
+    - afterPropertiesSet() as defined by the InitializingBean callback interface
+    - A custom configured init() method
+
+- Destruction Callbacks
+Implementing the org.springframework.beans.factory.DisposableBean interface lets a bean get a callback when the container that contains it is destroyed. 
+```
+void destroy() throws Exception;
+```
+Destroy methods are called in the same order:
+    - Methods annotated with @PreDestroy
+    - destroy() as defined by the DisposableBean callback interface
+    -  A custom configured destroy() method
+
+- Startup and Shutdown Callbacks
+The Lifecycle interface defines the essential methods for any object that has its own lifecycle requirements:
+```
+public interface Lifecycle {
+    void start();
+    void stop();
+    boolean isRunning();
+}
+
+public interface LifecycleProcessor extends Lifecycle {
+    void onRefresh();
+    void onClose();
+}
+
+public interface Phased {
+    int getPhase();
+}
+
+public interface SmartLifecycle extends Lifecycle, Phased {
+    boolean isAutoStartup();
+    void stop(Runnable callback); //for asynchronous shutdown 
+}
+```
+Any Spring-managed object may implement the Lifecycle interface. When the ApplicationContext itself receives start and stop signals, it cascades those calls to all Lifecycle implementations defined within that context.
+
+When starting, the objects with the lowest phase start first. When stopping, the reverse order is followed. An object that implements SmartLifecycle and whose getPhase() method returns Integer.MIN_VALUE would be among the first to start and the last to stop.
+
+- ApplicationContextAware and BeanNameAware
+When an ApplicationContext creates an object instance that implements the org.springframework.context.ApplicationContextAware interface, the instance is provided with a reference to that ApplicationContext:
+```
+public interface ApplicationContextAware {
+    void setApplicationContext(ApplicationContext applicationContext) throws BeansException;
+}
+
+public interface BeanNameAware {
+    void setBeanName(String name) throws BeansException;
+}
+```
+- Other Aware interfaces
+    - ApplicationContextAware
+
+Declaring ApplicationContext.
+
+    - ApplicationEventPublisherAware
+
+Event publisher of the enclosing ApplicationContext.
+
+    - BeanClassLoaderAware
+
+Class loader used to load the bean classes.
+
+    - BeanFactoryAware
+
+Declaring BeanFactory.
+
+    - BeanNameAware
+
+Name of the declaring bean.
+
+    - BootstrapContextAware
+
+Resource adapter BootstrapContext the container runs in. Typically available only in JCA-aware ApplicationContext instances.
+
+    - LoadTimeWeaverAware
+
+Defined weaver for processing class definition at load time.
+
+    - MessageSourceAware
+
+Configured strategy for resolving messages (with support for parametrization and internationalization).
+
+
+    - NotificationPublisherAware
+
+Spring JMX notification publisher.
+
+    - ResourceLoaderAware
+
+Configured loader for low-level access to resources.
+
+    - ServletConfigAware
+
+Current ServletConfig the container runs in. Valid only in a web-aware Spring ApplicationContext.
+
+    - ServletContextAware
+
+Current ServletContext the container runs in. Valid only in a web-aware Spring ApplicationContext.
+
 
 ## [@Configuration](https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/context/annotation/Configuration.html)
 ### bootstrap
