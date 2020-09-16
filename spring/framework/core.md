@@ -37,9 +37,13 @@ String[]	getActiveProfiles()
 String[]	getDefaultProfiles()
 ```
 Java configuration typically uses @Bean-annotated methods within a @Configuration class in [context annotation](https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/context/annotation/package-summary.html).
+- Annocation: @Bean and @Configuration 
 
-- [@Bean](https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/context/annotation/Bean.html)
+## [@Bean](https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/context/annotation/Bean.html)
 ```
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
  @Configuration
  public class AppConfig {
      @Bean
@@ -73,7 +77,7 @@ Special consideration must be taken for @Bean methods that return Spring BeanFac
 
 ## [@Configuration](https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/context/annotation/Configuration.html)
 ### bootstrap
-@Configuration classes are typically bootstrapped using either AnnotationConfigApplicationContext or AnnotationConfigWebApplicationContext:
+- @Configuration classes are typically bootstrapped using either AnnotationConfigApplicationContext or AnnotationConfigWebApplicationContext:
 ```
  AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext();
  ctx.register(AppConfig.class);
@@ -83,6 +87,60 @@ Special consideration must be taken for @Bean methods that return Spring BeanFac
 ```
 
 @Configuration is meta-annotated with @Component, therefore @Configuration classes are candidates for component scanning and may take advantage of @Autowired/@Inject like any regular @Component.
+
+- @Configuration classes may not only be bootstrapped using component scanning, but may also themselves configure component scanning using the @ComponentScan annotation:
+```
+ @Configuration
+ @ComponentScan("com.acme.app.services")
+ public class AppConfig {
+     // various @Bean definitions ...
+ }
+```
+@ComponentScan with @Configuration is used to specify the packages to be scanned. @ComponentScan without arguments scan the current package and all of its sub-packages.
+```
+@Configuration
+@ComponentScan  //@ComponentScan(basePackages = "com.jcpw.componentscan.springapp.xxx")
+public class SpringComponentScanApp {
+    private static ApplicationContext applicationContext;
+
+    @Bean
+    public ExampleBean exampleBean() {
+        return new ExampleBean();
+    }
+ 
+    public static void main(String[] args) {
+        applicationContext = new AnnotationConfigApplicationContext(SpringComponentScanApp.class);
+ 
+        for (String beanName : applicationContext.getBeanDefinitionNames()) {
+            System.out.println(beanName);
+        }
+    }
+}
+
+@Component
+public class Dog {}
+
+@Component
+public class Cat {}
+```
+
+In Sprint Boot, @SpringBootApplication annotation is a combination of three annotations: @Configuration, @EnableAutoConfiguration, @ComponentScan.
+```
+package com.baeldung.componentscan.springbootapp;
+// ...
+@SpringBootApplication
+public class SpringBootComponentScanApp {
+    private static ApplicationContext applicationContext;
+     @Bean
+    public ExampleBean exampleBean() {
+        return new ExampleBean();
+    }
+     public static void main(String[] args) {
+        applicationContext = SpringApplication.run(SpringBootComponentScanApp.class, args);
+        checkBeansPresence("cat", "dog", "rose", "exampleBean", "springBootComponentScanApp");
+     }
+```
+
 
 ### Working with externalized values
 - Externalized values may be looked up by injecting the Spring Environment into a @Configuration class:
@@ -234,3 +292,14 @@ Special consideration must be taken for @Bean methods that return Spring BeanFac
  }
 ```
 Spring features such as asynchronous method execution, scheduled task execution, annotation driven transaction management, and Spring MVC can be enabled and configured from @Configuration classes using their respective "@Enable" annotations: @EnableAsync, @EnableScheduling, @EnableTransactionManagement, @EnableAspectJAutoProxy, @EnableWebMvc.
+
+## [Components](https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/stereotype/package-summary.html) in org.springframework.stereotype 
+These classes are considered as candidates for auto-detection when using annotation-based configuration and classpath scanning.
+- Component: Indicates that an annotated class is a component
+- Controller: Indicates that an annotated class is a Controller (RestController for REST)
+- Indexed: Indicate that the annotated element represents a stereotype for the index.
+- Repository: Indicates that an annotated class is a DAO Repository, a mechanism for encapsulating storage, retrieval, and search behavior which emulates a collection of objects
+- Service	:Indicates that an annotated class is a Service, an operation offered as an interface that stands alone in the model, with no encapsulated state.
+- Aspect
+
+
