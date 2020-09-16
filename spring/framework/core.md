@@ -36,7 +36,9 @@ org.springframework.core.env.Environment extends PropertyResolver:
 String[]	getActiveProfiles()
 String[]	getDefaultProfiles()
 ```
-Java configuration typically uses @[Bean](https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/context/annotation/Bean.html)-annotated methods within a @[Configuration](https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/context/annotation/Configuration.html) class in [context annotation](https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/context/annotation/package-summary.html):
+Java configuration typically uses @Bean-annotated methods within a @Configuration class in [context annotation](https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/context/annotation/package-summary.html).
+
+- [@Bean](https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/context/annotation/Bean.html)
 ```
  @Configuration
  public class AppConfig {
@@ -44,11 +46,191 @@ Java configuration typically uses @[Bean](https://docs.spring.io/spring/docs/cur
      public FooService fooService() {
          return new FooService(fooRepository());
      }
-     @Bean
+     @Bean({"b1", "b2"}) // bean available as 'b1' and 'b2', but not 'fooRepository'
      public FooRepository fooRepository() {
          return new JdbcFooRepository(dataSource());
      }
-     // ...
+     @Bean
+     @Profile("production")
+     @Scope("prototype")
+     public MyBean myBean() {
+         // instantiate and configure MyBean obj
+         return obj;
+     }
  }
 ```
- 
+Typically, @Bean methods are declared within @Configuration classes. It can be used in conjunction with @Scope, @Lazy, @DependsOn and @Primary annotations to provide attributes for profile, scope, lazy, depends-on or primary.
+
+@Bean methods may also be declared within classes that are not annotated with @Configuration, such as in a @Component class or even in a plain old class (lite mode). Bean methods in lite mode will be treated as plain factory methods by the container.
+
+Special consideration must be taken for @Bean methods that return Spring BeanFactoryPostProcessor (BFPP) types. Because BFPP objects must be instantiated very early in the container lifecycle, they can interfere with processing of annotations such as @Autowired, @Value, and @PostConstruct within @Configuration classes. To avoid these lifecycle issues, mark BFPP-returning @Bean methods as static.
+```
+     @Bean
+     public static PropertySourcesPlaceholderConfigurer pspc() {
+         // instantiate, configure and return pspc ...
+     }
+```
+
+## [@Configuration](https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/context/annotation/Configuration.html)
+### bootstrap
+@Configuration classes are typically bootstrapped using either AnnotationConfigApplicationContext or AnnotationConfigWebApplicationContext:
+```
+ AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext();
+ ctx.register(AppConfig.class);
+ ctx.refresh();
+ MyBean myBean = ctx.getBean(MyBean.class);
+ // use myBean ...
+```
+
+@Configuration is meta-annotated with @Component, therefore @Configuration classes are candidates for component scanning and may take advantage of @Autowired/@Inject like any regular @Component.
+
+### Working with externalized values
+Externalized values may be looked up by injecting the Spring Environment into a @Configuration class:
+```
+ @Configuration
+ public class AppConfig {
+     @Autowired Environment env;
+
+     @Bean
+     public MyBean myBean() {
+         MyBean myBean = new MyBean();
+         myBean.setName(env.getProperty("bean.name"));
+         return myBean;
+     }
+ }
+```
+ @Configuration can contribute property sources to the Environment object using the @PropertySource annotation
+ ```
+ @Configuration
+ @PropertySource("classpath:/com/acme/app.properties")
+ public class AppConfig {
+     @Inject Environment env;
+        
+     @Bean
+     public MyBean myBean() {
+         return new MyBean(env.getProperty("bean.name"));
+     }
+ }
+ ```
+Externalized values may be injected into @Configuration classes using the @Value annotation:
+```
+ @Configuration
+ @PropertySource("classpath:/com/acme/app.properties")
+ public class AppConfig {
+     @Value("${bean.name}") String beanName;
+
+     @Bean
+     public MyBean myBean() {
+         return new MyBean(beanName);
+     }
+ }
+```
+### Composing @Configuration classes:
+@Configuration classes may be composed using the @Import annotation:
+```
+ @Configuration
+ public class DatabaseConfig {
+     @Bean
+     public DataSource dataSource() {
+         // instantiate, configure and return DataSource
+     }
+ }
+
+ @Configuration
+ @Import(DatabaseConfig.class)
+ public class AppConfig {
+     private final DatabaseConfig dataConfig;
+
+     public AppConfig(DatabaseConfig dataConfig) {
+         this.dataConfig = dataConfig;
+     }
+
+     @Bean
+     public MyBean myBean() {  // reference the dataSource() bean method
+         return new MyBean(dataConfig.dataSource());
+     }
+ }
+```
+
+@Configuration classes may be marked with the @Profile annotation to indicate they should be processed only if a given profile or profiles are active
+```
+ @Profile("development")
+ @Configuration
+ public class EmbeddedDatabaseConfig {
+     @Bean
+     public DataSource dataSource() {
+         // instantiate, configure and return embedded DataSource
+     }
+ }
+
+ @Profile("production")
+ @Configuration
+ public class ProductionDatabaseConfig {
+     @Bean
+     public DataSource dataSource() {
+         // instantiate, configure and return production DataSource
+     }
+ }
+```
+Declare profile conditions at the @Bean method level:
+```
+ @Configuration
+ public class ProfileDatabaseConfig {
+     @Bean("dataSource")
+     @Profile("development")
+     public DataSource embeddedDatabase() { ... }
+
+     @Bean("dataSource")
+     @Profile("production")
+     public DataSource productionDatabase() { ... }
+ }
+```
+With Spring XML using the @ImportResource annotation
+```
+ @Configuration
+ @ImportResource("classpath:/com/acme/database-config.xml")
+ public class AppConfig {
+     @Inject DataSource dataSource; // from XML
+
+     @Bean
+     public MyBean myBean() {
+         // inject the XML-defined dataSource bean
+         return new MyBean(this.dataSource);
+     }
+ }
+```
+@Configuration classes may be nested within one another 
+```
+ @Configuration
+ public class AppConfig {
+     @Inject DataSource dataSource;
+
+     @Bean
+     public MyBean myBean() {
+         return new MyBean(dataSource);
+     }
+
+     @Configuration
+     static class DatabaseConfig {
+         @Bean
+         DataSource dataSource() {
+             return new EmbeddedDatabaseBuilder().build();
+         }
+     }
+ }
+```
+Spring TestContext framework provides @ContextConfiguration annotation accepting an array of component class references — typically @Configuration or @Component classes.
+```
+ @RunWith(SpringRunner.class)
+ @ContextConfiguration(classes = {AppConfig.class, DatabaseConfig.class})
+ public class MyTests {
+     @Autowired MyBean myBean;
+     @Autowired DataSource dataSource;
+
+     @Test
+     public void test() {
+         // assertions against myBean ...
+     }
+ }
+```
+Spring features such as asynchronous method execution, scheduled task execution, annotation driven transaction management, and Spring MVC can be enabled and configured from @Configuration classes using their respective "@Enable" annotations: @EnableAsync, @EnableScheduling, @EnableTransactionManagement, @EnableAspectJAutoProxy, @EnableWebMvc.
