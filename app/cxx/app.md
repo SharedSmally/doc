@@ -1,12 +1,35 @@
 # Application
-- AppContext: Container of Beans
+- AppContext: Container of Beans, root of ServiceContext
 - BeanFactory: Factory to create Bean using BeanInfo
 - BeanInfo: template to create Bean
 - Bean: Manageable Objects with LifeCycle
 - Component/Service/Repository/Controller: 
+- ServiceContext: Service containers with hierarchy: 
 
-## AppContext -> BeanFactory
+## BeanFactory
+```
+std::shared_ptr<T> create(const String & name, ARGS... args)
+```
+## BeanFactoryMgr
+```
+void subscribe<T>(BeanFactory<T> factory)
+void unsubscribe<T>()
+std::shared_ptr<T> create(const String & name)
+```
+## AppContext -> BeanFactoryMgr
 The IoC container of Beans
+```
+std::shared_ptr<Bean> get(const String & name)
+std::shared_ptr<T> get<T>(const String & name)
+bool contains(const String & name) const
+```
+## ServiceContext -> AppContext
+```
+AppContext & getRoot()
+ServiceContext & getParent()
+ServiceContext & getChild(const String & name)
+bool isRoot() const
+```
 
 ## beans.xml
 ```
