@@ -1,6 +1,6 @@
 # C++ Sample
 
-## variadic template arguments
+## [variadic template arguments](https://en.cppreference.com/w/cpp/language/parameter_pack)
 - [Store variadic template arguments](https://stackoverflow.com/questions/16868129/how-to-store-variadic-template-arguments)
 ```
 #include <iostream>
