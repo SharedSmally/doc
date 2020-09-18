@@ -36,7 +36,9 @@ All application contexts implement the ResourceLoader interface, so it may be us
 - WebApplicationContext returns a ServletContextResource. 
 
 The strategy for converting String objects to Resource objects:
+
 | Prefix |	Example | 	Explanation |
+| :------------- | :----------: | -----------: |
 | classpath: | classpath:com/myapp/config.xml | Loaded from the classpath.|
 | file: |  file:///data/config.xml | Loaded as a URL from the filesystem.|
 | http: | https://myserver/logo.png | Loaded as a URL. |
