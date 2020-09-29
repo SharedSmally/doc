@@ -8,6 +8,7 @@ Auto Config for the basic services
 - [Spring Boot Auto-Configuration](https://github.com/spring-projects/spring-boot/tree/master/spring-boot-project/spring-boot-autoconfigure/src/main/java/org/springframework/boot/autoconfigure)
 - [Spring Boot Application-Properties](https://docs.spring.io/spring-boot/docs/current/reference/html/appendix-application-properties.html)
 - [Condition Configuration](https://reflectoring.io/spring-boot-conditionals/)
+- [Tutorial](https://www.tutorialspoint.com/spring_boot/spring_boot_introduction.htm)
 
 ## Spring Boot CLI
 - Install sdkman
