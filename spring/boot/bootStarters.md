@@ -52,6 +52,8 @@
 | spring-boot-starter-websocket | Starter for building WebSocket applications using Spring Framework’s WebSocket support |
 
 - Misc Starters
+
+| Name	| Description |
 |---|---|
 | spring-boot-starter-actuator | Starter for using Spring Boot’s Actuator which provides production ready features to monitor and manage application |
 | spring-boot-starter-log4j2 | Starter for using Log4j2 for logging. An alternative to spring-boot-starter-logging |
