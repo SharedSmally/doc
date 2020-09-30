@@ -1,5 +1,6 @@
 # [Boot Starters](https://docs.spring.io/spring-boot/docs/current/reference/html/using-spring-boot.html#using-boot-starter)
 - Spring Boot application starters
+
 | Name	| Description |
 | spring-boot-starter | Core starter, including auto-configuration support, logging and YAML |
 | spring-boot-starter-activemq | Starter for JMS messaging using Apache ActiveMQ |
