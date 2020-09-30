@@ -50,4 +50,15 @@
 | spring-boot-starter-web-services | Starter for using Spring Web Services |
 | spring-boot-starter-webflux | Starter for building WebFlux applications using Spring Framework’s Reactive Web support |
 | spring-boot-starter-websocket | Starter for building WebSocket applications using Spring Framework’s WebSocket support |
+
+- Misc Starters
 |---|---|
+| spring-boot-starter-actuator | Starter for using Spring Boot’s Actuator which provides production ready features to monitor and manage application |
+| spring-boot-starter-log4j2 | Starter for using Log4j2 for logging. An alternative to spring-boot-starter-logging |
+| spring-boot-starter-logging | Starter for logging using Logback. Default logging starter |
+| spring-boot-starter-jetty | Starter for using Jetty as the embedded servlet container. An alternative to spring-boot-starter-tomcat |
+| spring-boot-starter-reactor-netty | Starter for using Reactor Netty as the embedded reactive HTTP server. |
+| spring-boot-starter-tomcat | Starter for using Tomcat as the embedded servlet container. Default servlet container starter used by spring-boot-starter-web |
+| spring-boot-starter-undertow | Starter for using Undertow as the embedded servlet container. An alternative to spring-boot-starter-tomcat |
+
+
