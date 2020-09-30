@@ -2,6 +2,7 @@
 - Spring Boot application starters
 
 | Name	| Description |
+|---|---|
 | spring-boot-starter | Core starter, including auto-configuration support, logging and YAML |
 | spring-boot-starter-activemq | Starter for JMS messaging using Apache ActiveMQ |
 | spring-boot-starter-amqp | Starter for using Spring AMQP and Rabbit MQ |
@@ -49,3 +50,4 @@
 | spring-boot-starter-web-services | Starter for using Spring Web Services |
 | spring-boot-starter-webflux | Starter for building WebFlux applications using Spring Framework’s Reactive Web support |
 | spring-boot-starter-websocket | Starter for building WebSocket applications using Spring Framework’s WebSocket support |
+|---|---|
