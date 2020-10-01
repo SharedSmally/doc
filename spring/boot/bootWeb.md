@@ -27,6 +27,16 @@ Request parameters are the result of submitting an HTTP request with a query str
 
 Request attributes (request-scoped variables) are objects of any type that are explicitly placed on the request object via a call to the setAttribute() method. They are retrieved via the getAttribute(). Attributes are objects, not just a string, and can be placed in the request, session, or context objects. They can be set programaticly and retrieve them later.
 
+Parameter:
+- Read only
+- Contains submitted data
+- Strings
+
+Attribute:
+- Read/Write
+- Doesn't contain submitted data
+- Can be any Object
+
 ## Web Annotations
 - [API doc](https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/bind/annotation/package-summary.html)
 - [@RestController](https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/bind/annotation/RestController.html)/TYPE: @Controller(class) + @ResponseBody(method)
