@@ -1,4 +1,5 @@
-# Boot Data: [Application Properties](https://docs.spring.io/spring-boot/docs/current/reference/html/appendix-application-properties.html#data-properties)
+# Boot Data:
+- Data [Application Properties](https://docs.spring.io/spring-boot/docs/current/reference/html/appendix-application-properties.html#data-properties)
 - SQL    
     - Data Access
     - SQL Drivers
