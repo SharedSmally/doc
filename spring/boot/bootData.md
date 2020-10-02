@@ -66,6 +66,7 @@
 ```
 ### Data Access
 - Data JDBC: use [JdbcTemplate](https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/jdbc/core/JdbcTemplate.html) to execute SQL statement directly on Java Object.
+    - [JDBC Project](https://spring.io/projects/spring-data-jdbc)
     - [Setup JdbcTemplate with/without Spring Boot](https://www.sivalabs.in/2016/03/springboot-working-with-jdbctemplate/)
 ```
   @Autowired
@@ -88,10 +89,96 @@ spring.datasource.password=admin
 spring.datasource.schema=create-db.sql
 spring.datasource.data=seed-data.sql
 ```
-- Data JPA
-    - JPA Hibernate
+- Data JPA: Entity and Reposotiry, JPA Data Access Abstraction that wraps of JPA provider 
+    - [JPA Project](https://spring.io/projects/spring-data-jpa)
+    - JPA Hibernate JPA provider
+    - Eclipse Link JPA provider
+```
+@Entity
+public class Customer {
+  @Id
+  @GeneratedValue(strategy = GenerationType.AUTO)
+  private Long id;
+
+  private String firstname;
+  private String lastname;
+
+  // … methods omitted
+}
+
+@Entity
+public class Account {
+  @Id
+  @GeneratedValue(strategy = GenerationType.AUTO)
+  private Long id;
+
+  @ManyToOne
+  private Customer customer;
+
+  @Temporal(TemporalType.DATE)
+  private Date expiryDate;
+
+  // … methods omitted
+}
+
+@Transactional(readOnly = true) 
+public interface AccountRepository extends JpaRepository<Account, Long> {
+  List<Account> findByCustomer(Customer customer); 
+  
+  @Query("<JPQ statement here>")
+  List<Account> findByMyCustomer(Customer customer); 
+}
+
+@Repository
+@Transactional(readOnly = true)
+class AccountServiceImpl implements AccountService {
+  @Autowired
+  private AccountRepository repository;
+
+  @Override
+  @Transactional
+  public Account save(Account account) {
+    return repository.save(account);
+  }
+
+  @Override
+  public List<Account> findByCustomer(Customer customer) {
+    return repository.findByCustomer(Customer customer);
+  }
+  
+  @Override 
+  public Page<Customer> findAll(Pageable pageable) {
+    return repository.findAll(pageable);
+  }
+
+  @Override
+  public Page<Customer> findByLastname(String lastname, Pageable pageable) {
+    return repository.findByLastname(lastname, pageable); 
+  }
+}
+```
 - Data R2DBC
-- JOOQ Access
+- JOOQ Access: Based on Database table to generate Java classes to access database (database-first/Source code generation), and use DSL and DSLContext to execute SQL queries
+    - [JOOQ Manual](http://www.jooq.org/learn/)
+    - [Tutorial](https://www.sivalabs.in/2016/03/springboot-working-with-jooq/)
+```
+@Service
+public class UserService {
+    @Autowired
+    private DSLContext dslContext; 
+
+    @Transactional 
+    public boolean registerUser(String email) {
+        UsersRecord existingRecord = dslContext.selectFrom(USERS)
+                .where(USERS.EMAIL.eq(email))
+                .fetchAny();
+        if (existingRecord != null) {
+            return false;
+        }
+        // register user etc.
+    }
+}
+```
 - Database Connection Pool:
     - dbcp2
     - Hikari DataSource
@@ -105,7 +192,7 @@ spring.datasource.data=seed-data.sql
 
 ### SQL Drivers
 #### Embedded DB
-- MyBatis
+- MyBatis:  SQL templating language that writes SQL in XML files
 - H2
 - Derby
 - HyperSQL
