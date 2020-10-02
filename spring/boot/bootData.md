@@ -1,9 +1,10 @@
-# Boot Data
-- SQL
+# Boot Data: [Application Properties](https://docs.spring.io/spring-boot/docs/current/reference/html/appendix-application-properties.html#data-properties)
+- SQL    
     - Data Access
-    - SQL Driver
-    - Migration
+    - SQL Drivers
+    - Migration: [Application Properties](https://docs.spring.io/spring-boot/docs/current/reference/html/appendix-application-properties.html#transaction-properties)
 - NoSQL
+- Transaction: [Application Properties](https://docs.spring.io/spring-boot/docs/current/reference/html/appendix-application-properties.html#transaction-properties)
 
 ## SQL
 - [ Tutorial ](https://spring.io/guides/gs/relational-data-access/)
@@ -63,10 +64,43 @@
 </project>
 ```
 ### Data Access
-- Data JDBC
+- Data JDBC: use [JdbcTemplate](https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/jdbc/core/JdbcTemplate.html) to execute SQL statement directly on Java Object.
+    - [Setup JdbcTemplate with/without Spring Boot](https://www.sivalabs.in/2016/03/springboot-working-with-jdbctemplate/)
+```
+  @Autowired
+  JdbcTemplate jdbcTemplate;
+  
+    jdbcTemplate.execute("DROP TABLE customers IF EXISTS");
+    jdbcTemplate.execute("CREATE TABLE customers(id SERIAL, first_name VARCHAR(255), last_name VARCHAR(255))");
+    // Uses JdbcTemplate's batchUpdate operation to bulk load data
+    jdbcTemplate.batchUpdate("INSERT INTO customers(first_name, last_name) VALUES (?,?)", splitUpNames);
+    jdbcTemplate.query("SELECT id, first_name, last_name FROM customers WHERE first_name = ?", new Object[] { "Josh" },
+        (rs, rowNum) -> new Customer(rs.getLong("id"), rs.getString("first_name"), rs.getString("last_name"))
+    ).forEach(customer -> log.info(customer.toString()));
+```
+For [Data Source properties](https://docs.spring.io/spring-boot/docs/current/reference/html/appendix-application-properties.html#data-properties):
+```
+spring.datasource.driver-class-name=com.mysql.jdbc.Driver
+spring.datasource.url=jdbc:mysql://localhost:3306/test
+spring.datasource.username=root
+spring.datasource.password=admin
+spring.datasource.schema=create-db.sql
+spring.datasource.data=seed-data.sql
+```
 - Data JPA
+    - JPA Hibernate
 - Data R2DBC
 - JOOQ Access
+- Database Connection Pool:
+    - dbcp2
+    - Hikari DataSource
+    - Tomcat DataSource
+    - XA DataSource
+
+### Data Transaction
+- [Transaction App Properties](https://docs.spring.io/spring-boot/docs/current/reference/html/appendix-application-properties.html#transaction-properties)
+- atomikos
+- bitronix
 
 ### SQL Drivers
 #### Embedded DB
@@ -81,6 +115,7 @@
 - Oracle
 - PostgreSQL
 ### Data Migration
+- [Application Properties](https://docs.spring.io/spring-boot/docs/current/reference/html/appendix-application-properties.html#data-migration-properties)
 - Liquidbase
 - Flyway
 
