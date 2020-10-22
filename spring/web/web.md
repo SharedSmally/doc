@@ -1,4 +1,4 @@
-# SpringIteb Frsamework
+# Spring Web Framework
 Spring web framework is built on the MVC (Model-View-Controller) pattern, it needs to define a ViewResolver bean corresponding 
 for each technology to render each view type, so returning the view names from @Controller mapping methods in the same way as returning JSP files.
 
