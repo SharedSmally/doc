@@ -19,3 +19,12 @@ Template engines: [Configuration](https://www.baeldung.com/spring-template-engin
     - [Config thymeleaf](http://zetcode.com/springboot/thymeleafconfig/): Not needed in autoconfig.
     
 - RestController: method() return model object, and the corresponding json string is rendered
+
+
+
+## Tips
+- th:tag should be in <>:
+```
+working:  <div>Web Application. Passed spring parameter : <div th:text="${spring}"/></div>
+Not work: <div>Web Application. Passed spring parameter : th:text="${spring}"</div>
+```
