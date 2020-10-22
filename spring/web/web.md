@@ -11,3 +11,11 @@ Template engines: [Configuration](https://www.baeldung.com/spring-template-engin
 - Mustache (faster), smiliar to FreeMarker
 - Pebble
 - jasper: for docs or PDF
+
+
+## Controllers
+- Normal controller: method() return view name, and the corresponding view page is rendered via template engine (template file name without .html suffix)
+    - [Pass parameters from Controller to View] (https://www.baeldung.com/spring-mvc-model-model-map-model-view) via Model, ModelMap and ModelView
+    - [Config thymeleaf](http://zetcode.com/springboot/thymeleafconfig/): Not needed in autoconfig.
+    
+- RestController: method() return model object, and the corresponding json string is rendered
