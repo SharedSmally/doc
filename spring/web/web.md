@@ -414,6 +414,148 @@ Furthermore, ResponseEntity provides two nested builder interfaces: HeadersBuild
 - HeadersBuilder<?> noContent();
 - HeadersBuilder<?> notFound();
 
+## [multipart File Upload](https://www.baeldung.com/spring-file-upload)
+May need Apache commons-fileupload Commons IO
+```
+<dependency>
+	<groupId>commons-fileupload</groupId>
+	<artifactId>commons-fileupload</artifactId>
+	<version>1.3.1</version>
+</dependency>
+<dependency>
+	<groupId>commons-io</groupId>
+	<artifactId>commons-io</artifactId>
+	<version>2.4</version>
+</dependency>
+```
+In application.properties, control whether fileuploading is enabled, the maximum file upload size, and the location:
+```
+spring.servlet.multipart.enabled=true
+
+spring.servlet.multipart.max-file-size=128KB
+spring.servlet.multipart.max-request-size=128KB
+
+spring.servlet.multipart.location=${java.io.tmpdir}
+```
+- Upload file
+Build a form use an HTML input tag with type='file', set the encoding attribute of the form to multipart/form-data:
+```
+<form:form method="POST" action="/spring-mvc-xml/uploadFile" enctype="multipart/form-data">
+    <table>
+        <tr>
+            <td><form:label path="file">Select a file to upload</form:label></td>
+            <td><input type="file" name="file" /></td>
+        </tr>
+        <tr>
+            <td><input type="submit" value="Submit" /></td>
+        </tr>
+    </table>
+</form>
+```
+In the controller, use a MultipartFile variable to store the uploaded file
+```
+@RequestMapping(value = "/uploadFile", method = RequestMethod.POST)
+public String submit(@RequestParam("file") MultipartFile file, ModelMap modelMap) {
+    modelMap.addAttribute("file", file);    
+    return "fileUploadView";
+}
+
+private void storeUploadFile(MultipartFile file)
+{
+    InputStream in = file.getInputStream();
+    File currDir = new File(".");
+    String path = currDir.getAbsolutePath();
+    fileLocation = path.substring(0, path.length() - 1) + file.getOriginalFilename();
+    FileOutputStream f = new FileOutputStream(fileLocation);
+    int ch = 0;
+    while ((ch = in.read()) != -1) {
+        f.write(ch);
+    }
+    f.flush();
+    f.close();
+}
+```
+- Upload Multiple Files
+```
+<form:form method="POST" action="/spring-mvc-java/uploadMultiFile" enctype="multipart/form-data">
+    <table>
+        <tr>
+            <td>Select a file to upload</td>
+            <td><input type="file" name="files" /></td>
+        </tr>
+        <tr>
+            <td>Select a file to upload</td>
+            <td><input type="file" name="files" /></td>
+        </tr>
+        <tr>
+            <td>Select a file to upload</td>
+            <td><input type="file" name="files" /></td>
+        </tr>
+        <tr>
+            <td><input type="submit" value="Submit" /></td>
+        </tr>
+    </table>
+</form:form>
+```
+In Controller, use an array of MultipartFile
+```
+@RequestMapping(value = "/uploadMultiFile", method = RequestMethod.POST)
+public String submit(@RequestParam("files") MultipartFile[] files, ModelMap modelMap) {
+    modelMap.addAttribute("files", files);
+    return "fileUploadView";
+}
+```
+
+- Uploading Files With Additional Form Data
+```
+<form:form method="POST" 
+  action="/spring-mvc-java/uploadFileWithAddtionalData"
+  enctype="multipart/form-data">
+    <table>
+        <tr>
+            <td>Name</td>
+            <td><input type="text" name="name" /></td>
+        </tr>
+        <tr>
+            <td>Email</td>
+            <td><input type="text" name="email" /></td>
+        </tr>
+        <tr>
+            <td>Select a file to upload</td>
+            <td><input type="file" name="file" /></td>
+        </tr>
+        <tr>
+            <td><input type="submit" value="Submit" /></td>
+        </tr>
+    </table>
+</form:form>
+```
+In the controller, get all the form data using the @RequestParam annotation:
+```
+@PostMapping("/uploadFileWithAddtionalData")
+public String submit( @RequestParam MultipartFile file, @RequestParam String name, @RequestParam String email, ModelMap modelMap) {
+    modelMap.addAttribute("name", name);
+    modelMap.addAttribute("email", email);
+    modelMap.addAttribute("file", file);
+    return "fileUploadView";
+}
+```
+- Ancapsulate all the form fields in a model class and use @ModelAttribute annotation in the controller
+```
+public class FormDataWithFile { 
+    private String name;
+    private String email;
+    private MultipartFile file;
+    
+    // standard getters and setters
+}
+
+@PostMapping("/uploadFileModelAttribute")
+public String submit(@ModelAttribute FormDataWithFile formDataWithFile, ModelMap modelMap) { 
+    modelMap.addAttribute("formDataWithFile", formDataWithFile);
+    return "fileUploadView";
+}
+```
 
 ## Tips
 - th:tag should be in <>:
