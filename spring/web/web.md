@@ -379,6 +379,40 @@ public ResponseTransfer postResponseXmlContent(@RequestBody LoginForm loginForm)
     return new ResponseTransfer("XML Content!");
 }
 ```
+Aark these methods with @ResponseStatus to return a custom HTTP status.
+
+### [ResponseEntity](https://www.baeldung.com/spring-response-entity)
+ResponseEntity represents the whole HTTP response: status code, headers, and body.
+```
+@GetMapping("/hello")
+ResponseEntity<String> hello() {
+    return new ResponseEntity<>("Hello World!", HttpStatus.OK);
+}
+
+@GetMapping("/customHeader")
+ResponseEntity<String> customHeader() {
+    HttpHeaders headers = new HttpHeaders();
+    headers.add("Custom-Header", "foo");        
+    return new ResponseEntity<>("Custom header set", headers, HttpStatus.OK);
+}
+
+@GetMapping("/hello")
+ResponseEntity<String> hello() {
+    return ResponseEntity.ok("Hello World!");  //
+}
+
+@GetMapping("/customHeader")
+ResponseEntity<String> customHeader() {
+    return ResponseEntity.ok().header("Custom-Header", "foo").body("Custom header set");
+}
+```
+Furthermore, ResponseEntity provides two nested builder interfaces: HeadersBuilder and its subinterface, BodyBuilder.
+- BodyBuilder accepted();
+- BodyBuilder badRequest();
+- BodyBuilder created(java.net.URI location);
+- BodyBuilder ok();
+- HeadersBuilder<?> noContent();
+- HeadersBuilder<?> notFound();
 
 
 ## Tips
