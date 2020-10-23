@@ -14,8 +14,7 @@ Template engines: [Configuration](https://www.baeldung.com/spring-template-engin
 
 
 ## Controllers
-- Normal controller: method() return view name, and the corresponding view page is rendered via template engine (template file name without .html suffix)
-    - [Pass parameters from Controller to View] (https://www.baeldung.com/spring-mvc-model-model-map-model-view) via Model, ModelMap and ModelView
+- Normal controller: method() return view name, and the corresponding view page is rendered via template engine (template file name without .html suffix)  
     - [Config thymeleaf](http://zetcode.com/springboot/thymeleafconfig/): Not needed in autoconfig.
     - Serialize returned object if specified as @RequestBody
 ```
@@ -45,6 +44,40 @@ public class SimpleBookRestController {
     private Book findBookById(int id) {
         // ...
     }
+}
+```
+
+## [Pass parameters from Controller to to render a View] (https://www.baeldung.com/spring-mvc-model-model-map-model-view)
+- via Model, method returns the View name
+The model can supply attributes used for rendering views. To provide a view with usable data, simply add this data to its Model object. Additionally, maps with attributes can be merged with Model instances:
+```
+@GetMapping("/showViewPage")
+public String passParametersWithModel(Model model) {
+    Map<String, String> map = new HashMap<>();
+    map.put("spring", "mvc");
+    model.addAttribute("message", "Baeldung");
+    model.mergeAttributes(map);
+    return "viewPage";
+}
+```
+- via ModelMap, method returns the View name 
+ModelMap can pass a collection of values and treat these values as if they were within a Map
+```
+@GetMapping("/printViewPage")
+public String passParametersWithModelMap(ModelMap map) {
+    map.addAttribute("welcomeMessage", "welcome");
+    map.addAttribute("message", "Baeldung");
+    return "viewPage";
+}
+```
+- via ModelView
+Pass all the information required by Spring MVC in one return.
+```
+@GetMapping("/goToViewPage")
+public ModelAndView passParametersWithModelAndView() {
+    ModelAndView modelAndView = new ModelAndView("viewPage");
+    modelAndView.addObject("message", "customer message");
+    return modelAndView;
 }
 ```
 
@@ -415,7 +448,7 @@ Furthermore, ResponseEntity provides two nested builder interfaces: HeadersBuild
 - HeadersBuilder<?> notFound();
 
 ## [multipart File Upload](https://www.baeldung.com/spring-file-upload)
-May need Apache commons-fileupload Commons IO
+May need Apache commons-fileupload Commons IO, See [Guides](https://spring.io/guides/gs/uploading-files/)
 ```
 <dependency>
 	<groupId>commons-fileupload</groupId>
