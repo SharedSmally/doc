@@ -49,6 +49,8 @@ public class SimpleBookRestController {
 ```
 
 ## Request Mapping
+- [web bind annotation](https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/bind/annotation/package-summary.html)
+
 ### [Request Mapping](https://www.baeldung.com/spring-requestmapping)
 - By Path and HTTP method
 ```
@@ -199,7 +201,7 @@ public ResponseEntity<?> deleteBazz(@PathVariable String id){
 }
 ```
 
-# [RequestParam](https://www.baeldung.com/spring-request-param)
+### [RequestParam](https://www.baeldung.com/spring-request-param)
 - A Simple Mapping: http://localhost:8080/api/foos?id=abc
 ```
 @GetMapping("/api/foos")
@@ -258,8 +260,125 @@ http://localhost:8080/api/foos?id=1,2,3
 http://localhost:8080/api/foos?id=1&id=2
 ```
 
-# PathVariable
+### PathVariable
+@PathVariable indicates that a method parameter should be bound to a URI template variable. If the method parameter is Map<String, String> then the map is populated with all path variable names and values. It has the following optional elements:
+- name - name of the path variable to bind to
+- required - tells whether the path variable is required
+- value - alias for name
 
+```
+@RestController
+public class MyController {
+    private static final Logger logger = LoggerFactory.getLogger(MyController.class);
+
+    @ResponseStatus(value = HttpStatus.OK)
+    @GetMapping(value = "/user/{name}")
+    public void process(@PathVariable String name) {
+        logger.info("User name: {}", name);
+    }
+
+    @ResponseStatus(value = HttpStatus.OK)
+    @GetMapping(value = "/user/{name}/{email}")
+    public void process2(@PathVariable String name, @PathVariable String email) {
+        logger.info("User name: {} and email: {}", name, email);
+    }
+
+    @ResponseStatus(value = HttpStatus.OK)
+    @GetMapping(value = "/book/{author}/{title}")
+    public void process3(@PathVariable Map<String, String> vals) {
+        logger.info("{}: {}", vals.get("author"), vals.get("title"));
+    }
+}
+```
+
+### [Request Headers](https://www.baeldung.com/spring-rest-http-headers)
+- Accessing HTTP Headers: header could be string, numeric type. If a named header isn't found in the request, the method returns a “400 Bad Request” error. 
+```
+@GetMapping("/greeting")
+public ResponseEntity<String> greeting(@RequestHeader("accept-language") String language) {
+    return new ResponseEntity<String>(greeting, HttpStatus.OK);
+}
+
+@GetMapping("/double")
+public ResponseEntity<String> doubleNumber(@RequestHeader("my-number") int myNumber) {
+    return new ResponseEntity<String>(String.format("%d * 2 = %d",  myNumber, (myNumber * 2)), HttpStatus.OK);
+}
+```
+- All Headers: could use a Map, a MultiValueMap(headers may have multiple values) or a HttpHeaders object
+```
+@GetMapping("/listHeaders")
+public ResponseEntity<String> listAllHeaders(@RequestHeader Map<String, String> headers) {
+    headers.forEach((key, value) -> { LOG.info(String.format("Header '%s' = %s", key, value)); });
+    return new ResponseEntity<String>(String.format("Listed %d headers", headers.size()), HttpStatus.OK);
+}
+// If the header has more than one value, will get only the first value using Map
+
+@GetMapping("/multiValue")
+public ResponseEntity<String> multiValue( @RequestHeader MultiValueMap<String, String> headers) {
+    headers.forEach((key, value) -> { LOG.info(String.format("Header '%s' = %s", key, value.stream().collect(Collectors.joining("|"))));  });
+        
+    return new ResponseEntity<String>(String.format("Listed %d headers", headers.size()), HttpStatus.OK);
+}
+
+@GetMapping("/getBaseUrl")
+public ResponseEntity<String> getBaseUrl(@RequestHeader HttpHeaders headers) {
+    InetSocketAddress host = headers.getHost();
+    String url = "http://" + host.getHostName() + ":" + host.getPort();
+    return new ResponseEntity<String>(String.format("Base URL = %s", url), HttpStatus.OK);
+}
+```
+- @RequestHeader Attributes
+```
+public ResponseEntity<String> greeting(@RequestHeader("accept-language") String language) {}
+public ResponseEntity<String> greeting(@RequestHeader(name = "accept-language") String language) {}
+public ResponseEntity<String> greeting(@RequestHeader(value = "accept-language") String language) {}
+```
+When we name a header specifically, the header is required by default. If the header isn't found in the request, the controller returns a 400 error.
+```
+@GetMapping("/nonRequiredHeader")
+public ResponseEntity<String> evaluateNonRequiredHeader(@RequestHeader(value = "optional-header", required = false) String optionalHeader) {
+    return new ResponseEntity<String>(String.format("Was the optional header present? %s!",(optionalHeader == null ? "No" : "Yes")),HttpStatus.OK);
+}
+```
+
+### [Request and Response Body](https://www.baeldung.com/spring-request-response-body)
+@RequestBody annotation maps the HttpRequest body to a transfer or domain object, enabling automatic deserialization of the inbound HttpRequest body onto a Java object
+```
+@PostMapping("/request")
+public ResponseEntity postController(@RequestBody LoginForm loginForm) {
+    exampleService.fakeAuthenticate(loginForm);
+    return ResponseEntity.ok(HttpStatus.OK);
+}
+```
+@ResponseBody annotation tells a controller that the object returned is automatically serialized into JSON and passed back into the HttpResponse object
+```
+@Controller
+@RequestMapping("/post")
+public class ExamplePostController {
+    @Autowired
+    ExampleService exampleService;
+ 
+    @PostMapping("/response")
+    @ResponseBody
+    public ResponseTransfer postResponseController( @RequestBody LoginForm loginForm) {
+        return new ResponseTransfer("Thanks For Posting!!!");
+     }
+}
+```
+Explicitly set the content type that the mapping method returns by produces
+```
+@PostMapping(value = "/content", produces = MediaType.APPLICATION_JSON_VALUE)
+@ResponseBody
+public ResponseTransfer postResponseJsonContent(@RequestBody LoginForm loginForm) {
+    return new ResponseTransfer("JSON Content!");
+}
+
+@PostMapping(value = "/content", produces = MediaType.APPLICATION_XML_VALUE)
+@ResponseBody
+public ResponseTransfer postResponseXmlContent(@RequestBody LoginForm loginForm) {
+    return new ResponseTransfer("XML Content!");
+}
+```
 
 
 ## Tips
