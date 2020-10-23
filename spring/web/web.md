@@ -49,6 +49,7 @@ public class SimpleBookRestController {
 
 ## [Pass parameters to render a View](https://www.baeldung.com/spring-mvc-model-model-map-model-view)
 - via Model, method returns the View name
+
 The model can supply attributes used for rendering views. To provide a view with usable data, simply add this data to its Model object. Additionally, maps with attributes can be merged with Model instances:
 ```
 @GetMapping("/showViewPage")
@@ -61,6 +62,7 @@ public String passParametersWithModel(Model model) {
 }
 ```
 - via ModelMap, method returns the View name 
+
 ModelMap can pass a collection of values and treat these values as if they were within a Map
 ```
 @GetMapping("/printViewPage")
@@ -71,6 +73,7 @@ public String passParametersWithModelMap(ModelMap map) {
 }
 ```
 - via ModelView
+
 Pass all the information required by Spring MVC in one return.
 ```
 @GetMapping("/goToViewPage")
