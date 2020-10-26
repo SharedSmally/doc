@@ -429,3 +429,164 @@ Status variables are defined within a th:each attribute and contain the followin
   <p th:case="*">User is some other thing</p>
 </div>
 ```
+
+## Template Layout
+- define fragments: th.fragment: copy fragment in /WEB-INF/templates/footer.html
+```
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <body> 
+    <div th:fragment="copy"> &copy; 2011 The Good Thymes Virtual Grocery </div>
+    <div id="copy-section"> &copy; 2011 The Good Thymes Virtual Grocery </div>
+  </body>  
+</html>
+```
+
+- refer fragments: th.include or th:replace or th:include
+```
+<body>
+  ...
+  <div th:insert="~{footer :: copy}"></div> 
+  <div th:insert="~{footer :: #copy-section}"></div>
+</body>
+```
+or
+```
+<div th:insert="footer :: copy"></div>
+<div th:insert="footer :: (${user.isAdmin}? #{footer.admin} : #{footer.normaluser})"></div>
+```
+- Fragment specification syntax
+    - ~{templatename::selector}: Includes the fragment resulting from applying the specified Markup Selector on the template named templatename. 
+    - ~{templatename}: Includes the complete template named templatename.
+    - ~{::selector} / ~{this::selector}: Inserts a fragment from the same template, matching selector
+
+- difference between th:insert and th:replace (and th:include, not recommended)
+    - th:insert is the simplest: it will simply insert the specified fragment as the body of its host tag. keep the host tag
+    - th:replace actually replaces its host tag with the specified fragment. remove the host tag
+    - th:include is similar to th:insert, but instead of inserting the fragment it only inserts the contents of this fragment. keep the host tag, remove fragment tag.
+
+- Parameterizable fragment signatures: functional-like fragments
+```
+<div th:fragment="frag (onevar,twovar)">
+    <p th:text="${onevar} + ' - ' + ${twovar}">...</p>
+</div>
+```
+```
+<div th:replace="::frag (${value1},${value2})">...</div>
+<div th:replace="::frag (onevar=${value1},twovar=${value2})">...</div>
+<div th:replace="::frag (twovar=${value2},onevar=${value1})">...</div>
+```
+ th:assert attribute can specify a comma-separated list of expressions which should be evaluated and produce true for every evaluation, raising an exception if not.
+ ```
+ <div th:assert="${onevar},(${twovar} != 43)">...</div>
+ ```
+ 
+ - th:remove:
+ ```
+   <tr th:remove="all">
+    <td>Mild Cinnamon</td>
+    <td>1.99</td>
+    <td>yes</td>
+    <td>
+      <span>3</span> comment/s
+      <a href="comments.html">view</a>
+    </td>
+  </tr>
+ ```
+    - all: Remove both the containing tag and all its children.
+    - body: Do not remove the containing tag, but remove all its children.
+    - tag: Remove the containing tag, but do not remove its children.
+    - all-but-first: Remove all children of the containing tag except the first one.
+    - none : Do nothing. This value is useful for dynamic evaluation.
+
+- Layout Inheritance
+```
+<!DOCTYPE html>
+<html th:replace="~{layoutFile :: layout(~{::title}, ~{::section})}">
+<head>
+    <title>Page Title</title>
+</head>
+<body>
+<section>
+    <p>Page content</p>
+    <div>Included on page</div>
+</section>
+</body>
+</html>
+```
+## Local Variables
+
+Thymeleaf calls local variables the variables that are defined for a specific fragment of a template, and are only available for evaluation inside that fragment.
+```
+<div th:with="firstPer=${persons[0]},secondPer=${persons[1]}">
+  <p>
+    The name of the first person is <span th:text="${firstPer.name}">Julius Caesar</span>.
+  </p>
+  <p>
+    But the name of the second person is <span th:text="${secondPer.name}">Marcus Antonius</span>.
+  </p>
+</div>
+```
+
+## Attribute Precedence
+```
+Order	Feature	Attributes
+1	Fragment inclusion	              th:insert, th:replace
+2	Fragment iteration	              th:each
+3	Conditional evaluation	          th:if,th:unless,th:switch,th:case
+4	Local variable definition	        th:object,th:with
+5	General attribute modification	  th:attr,th:attrprepend,th:attrappend
+6	Specific attribute modification	  th:value,th:href,th:src,...
+7	Text (tag body modification)	    th:text,th:utext
+8	Fragment specification	          th:fragment
+9	Fragment removal	                th:remove
+```
+
+## Blocks
+- Comments:
+```
+<!-- User info follows -->
+<!--/* This code will be removed at Thymeleaf parsing time! */-->
+```
+- Synthetic th:block tag
+```
+<table>
+  <th:block th:each="user : ${users}">
+    <tr>
+        <td th:text="${user.login}">...</td>
+        <td th:text="${user.name}">...</td>
+    </tr>
+    <tr>
+        <td colspan="2" th:text="${user.address}">...</td>
+    </tr>
+  </th:block>
+</table>
+```
+- Inlining
+```
+<p>Hello, [[${session.user.name}]]!</p> 
+```
+instead of
+```
+<p>Hello, <span th:text="${session.user.name}">Sebastian</span>!</p>
+```
+- Disabling inlining:
+```
+<p th:inline="none">A double array looks like this: [[1, 2, 3], [4, 5]]!</p>
+```
+- JavaScript inlining
+```
+<script th:inline="javascript">
+    ...
+    var username = [[${session.user.name}]];
+    ...
+</script>
+```
+- CSS inlining
+```
+<style th:inline="css">
+    .[[${classname}]] { text-align: [[${align}]]; }
+</style>
+```
+
+## [Expression Basic Objects](https://www.thymeleaf.org/doc/tutorials/3.0/usingthymeleaf.html#base-objects)
