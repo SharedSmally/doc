@@ -1,5 +1,5 @@
 #  Spring Data REST
-Build hypermedia-driven REST web services that connect to Spring Data repositories using HAL as the driving hypermedia type.
+Spring Data REST builds on top of the Spring Data repositories and automatically exports those as REST resources. It builds hypermedia-driven REST web services that connect to Spring Data repositories using HAL as the driving hypermedia type.
 
 - [Reference](https://docs.spring.io/spring-data/rest/docs/current/reference/html/)
 - [Tutorial](https://www.baeldung.com/spring-data-rest-intro)
