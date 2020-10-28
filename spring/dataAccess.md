@@ -66,6 +66,38 @@ class Customer {
   // … further properties omitted
 }
 ```
+- Query keywords
+
+| Logical keyword | Keyword expressions |
+| AND   | And |
+| OR    | Or   |
+| AFTER |  After, IsAfter |
+| BEFORE |  Before, IsBefore |
+| CONTAINING |  Containing, IsContaining, Contains |
+| BETWEEN |  Between, IsBetween |
+| ENDING_WITH |  EndingWith, IsEndingWith, EndsWith |
+| EXISTS |  Exists |
+| FALSE |  False, IsFalse |
+| GREATER_THAN |  GreaterThan, IsGreaterThan |
+| GREATER_THAN_EQUALS |  GreaterThanEqual, IsGreaterThanEqual |
+| IN |  In, IsIn |
+| IS |  Is, Equals, (or no keyword) |
+| IS_EMPTY |  IsEmpty, Empty |
+| IS_NOT_EMPTY |  IsNotEmpty, NotEmpty |
+| IS_NOT_NULL |  NotNull, IsNotNull |
+| IS_NULL |  Null, IsNull |
+| LESS_THAN |  LessThan, IsLessThan |
+| LESS_THAN_EQUAL |  LessThanEqual, IsLessThanEqual |
+| LIKE |  Like, IsLike |
+| NEAR |  Near, IsNear |
+| NOT |  Not, IsNot |
+| NOT_IN |  NotIn, IsNotIn |
+| NOT_LIKE |  NotLike, IsNotLike |
+| REGEX |  Regex, MatchesRegex, Matches |
+| STARTING_WITH |  StartingWith, IsStartingWith, StartsWith |
+| TRUE |  True, IsTrue |
+| WITHIN |  Within, IsWithin |
+
 
 ## Spring JPA
 - Model/Domain: @Entity
