@@ -69,7 +69,7 @@ class Customer {
 - Query keywords
 
 | Logical keyword | Keyword expressions |
-
+| --------------- | ----------- |
 | AND   | And |
 | OR    | Or   |
 | AFTER |  After, IsAfter |
