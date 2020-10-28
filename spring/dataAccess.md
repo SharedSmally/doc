@@ -100,8 +100,9 @@ class Customer {
 | WITHIN |  Within, IsWithin |
 
 - Query return types
+
 | Query return types |  Return type	Description |
-| ------ |  ------ |
+| ------------------ |  ----------------------- |
 | void  |  Denotes no return value. |
 | Primitives  |  Java primitives. |
 | Wrapper types  |  Java wrapper types. |
