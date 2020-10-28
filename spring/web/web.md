@@ -591,7 +591,84 @@ public String submit(@ModelAttribute FormDataWithFile formDataWithFile, ModelMap
     modelMap.addAttribute("formDataWithFile", formDataWithFile);
     return "fileUploadView";
 }
+``
+
+## Data Binding from From
+- One GET method to show the Form input page: Create ModelAttribute object and pass it to page
+- One POST method to`handle the Inputs from Form (ModelAttribute)
+- Tutorial:
+    - [Spring MVC and Thymeleaf](https://www.thymeleaf.org/doc/articles/springmvcaccessdata.html)
+    - [Spring MVC and Thymelead Tutorial](https://www.thymeleaf.org/doc/tutorials/2.1/thymeleafspring.html)
+    - [Spring Form Guidline](https://spring.io/guides/gs/handling-form-submission/)
+    - [*HTML Form Handling in Thymeleaf](https://attacomsian.com/blog/spring-boot-thymeleaf-form-handling)
+    - [Spring Boot + Thymeleaf HTML Form Handling](https://medium.com/@grokwich/spring-boot-thymeleaf-html-form-handling-762ef0d51327)
+    - [Spring Thymeleaf](https://stackoverflow.com/questions/39596933/spring-boot-thymeleaf-form-binding)
+    - [Bind Fixed Length](https://www.baeldung.com/thymeleaf-list)
+    - [Spring Boot Thymeleaf Form Handling](https://www.codejava.net/frameworks/spring-boot/spring-boot-thymeleaf-form-handling-tutorial)
+- Model    
 ```
+public class Greeting {
+  private long id;
+  private String content;
+
+  public long getId() {
+    return id;
+  }
+
+  public void setId(long id) {
+    this.id = id;
+  }
+
+  public String getContent() {
+    return content;
+  }
+
+  public void setContent(String content) {
+    this.content = content;
+  }
+}
+```
+- Controller
+```
+@Controller
+public class GreetingController {
+  @GetMapping("/greeting")
+  public String greetingForm(Model model) {
+    model.addAttribute("greeting", new Greeting());   # create ModelAttribute object
+    return "greeting";
+  }
+
+  @PostMapping("/greeting")
+  public String greetingSubmit(@ModelAttribute Greeting greeting, Model model) {
+    model.addAttribute("greeting", greeting);
+    return "result";
+  }
+}
+```
+- Form page: th:object is the model attribute to be binding, and td:field is the individual field.
+```
+<!DOCTYPE HTML>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <title>Getting Started: Handling Form Submission</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+    <h1>Form</h1>
+    <form action="#" th:action="@{/greeting}" th:object="${greeting}" method="post">
+    	<p>Id: <input type="text" th:field="*{id}" /></p>
+        <p>Message: <input type="text" th:field="*{content}" /></p>
+        <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+    </form>
+</body>
+</html>
+```
+Thymeleaf provides several special attributes to work with HTML forms:
+- th:object — Used for specifying a model attribute that acts as a command object.
+- th:field — Used for binding HTML form elements with a property in the form-backing bean.
+- th:errors — An attribute that holds all form validation errors.
+- th:errorclass — Used for setting a CSS class to a form input if that field has validation errors.
+
 
 ## Tips
 - th:tag should be in <>:
