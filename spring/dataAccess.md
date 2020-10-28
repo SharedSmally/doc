@@ -1,5 +1,5 @@
 # [Spring Data Access](https://spring.io/projects/spring-data)
-- Spring [Data Commons](https://github.com/spring-projects/spring-data-commons)
+- Spring [Data Commons](https://github.com/spring-projects/spring-data-commons): [Reference](https://docs.spring.io/spring-data/commons/docs/current/reference/html/)
 - Spring [JDBC](https://spring.io/projects/spring-data-jdbc) and [JDBC Ext](https://spring.io/projects/spring-data-jdbc-ext)
 - Spring [Data JPA](https://spring.io/projects/spring-data-jpa)
 - Spring [Data KeyValue](https://github.com/spring-projects/spring-data-keyvalue)
@@ -17,11 +17,61 @@
 - Spring [Data Neo4j](https://spring.io/projects/spring-data-neo4j) 
 ......
 
+## Data Common
+- Object creation
+Spring Data automatically tries to detect a persistent entity’s constructor to be used to materialize objects of that type:
+    - If there’s a no-argument constructor, it will be used. Other constructors will be ignored.
+    - If there’s a single constructor taking arguments, it will be used.
+    - If there are multiple constructors taking arguments, the one to be used by Spring Data will have to be annotated with @PersistenceConstructor.
+    - The value resolution assumes constructor argument names to match the property names of the entity
+    
+-  Property population    
+    - If the property is immutable but exposes a with… method, we use the with… method to create a new entity instance with the new property value.
+    - If property access (i.e. access through getters and setters) is defined, we’re invoking the setter method.
+    - If the property is mutable we set the field directly.
+    - If the property is immutable we’re using the constructor to be used by persistence operations (see Object creation) to create a copy of the instance.
+    - By default, we set the field value directly.
+    
+- CrudRepository Interface
+```
+public interface CrudRepository<T, ID> extends Repository<T, ID> {
+  <S extends T> S save(S entity);      
+  Optional<T> findById(ID primaryKey); 
+  Iterable<T> findAll();               
+  long count();                        
+  void delete(T entity);               
+  boolean existsById(ID primaryKey);   
+  //......
+}
+```
+
+- PagingAndSortingRepository interface
+```
+public interface PagingAndSortingRepository<T, ID> extends CrudRepository<T, ID> {
+  Iterable<T> findAll(Sort sort);
+  Page<T> findAll(Pageable pageable);
+}
+```
+
+- Audit metadata
+Spring provides @CreatedBy and @LastModifiedBy to capture the user who created or modified the entity as well as @CreatedDate and @LastModifiedDate to capture when the change happened.
+```
+class Customer {
+  @CreatedBy
+  private User user;
+
+  @CreatedDate
+  private DateTime createdDate;
+
+  // … further properties omitted
+}
+```
+
 ## Spring JPA
-- Model: Entity
+- Model/Domain: @Entity
 ```
 ```
-- Repository: interface inherit from CRUDRepository or
+- Repository: interface inherit from JpaRepository, PagingAndSortingRepository or CrudRepository 
 ```
 ```
 - Service: Combine Repositories to provides servive
@@ -32,9 +82,9 @@
 ```
 
 ## Spring MongoDB
-- Model:
+- Model: @Document
 
-- Repository:
+- Repository: interface inherit from MongoRepository, PagingAndSortingRepository or CrudRepository 
 
 
 ## Spring 
