@@ -14,7 +14,7 @@
     <properties>
         <bootstrap.version>4.0.0-2</bootstrap.version>
         <webjars-locator.version>0.30</webjars-locator.version>
-        <lombok.version>1.18.2</lombok.version>
+        <lombok.version>1.18.16</lombok.version>
     </properties>
 
     <!-- Inherit defaults from Spring Boot -->
