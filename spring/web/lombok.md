@@ -5,7 +5,35 @@
 ## [Features](https://projectlombok.org/features/all)
 - @NoArgsConstructor, @RequiredArgsConstructor and @AllArgsConstructor
 
+generate a constructor that will accept 1 parameter for certain fields, and simply assigns this parameter to the field. 
+
+@NoArgsConstructor will generate a constructor with no parameters. 
+
+@RequiredArgsConstructor generates a constructor with 1 parameter for each field that requires special handling. All non-initialized final fields get a parameter, as well as any fields that are marked as @NonNull that aren't initialized where they are declared. 
+
+@AllArgsConstructor generates a constructor with 1 parameter for each field in your class. Fields marked with @NonNull result in null checks on those parameters.
+
+```
+import lombok.AccessLevel;
+import lombok.RequiredArgsConstructor;
+import lombok.AllArgsConstructor;
+import lombok.NonNull;
+
+@RequiredArgsConstructor(staticName = "of")
+@AllArgsConstructor(access = AccessLevel.PROTECTED)
+public class ConstructorExample<T> {
+  private int x, y;
+  @NonNull private T description;
+  
+  @NoArgsConstructor
+  public static class NoArgsExample {
+    @NonNull private String field;
+  }
+}
+```
+
 - @Getter/@Setter
+
 Anotate any field with @Getter and/or @Setter, to let lombok generate the default getter/setter automatically.
 
 A default getter simply returns the field, and is named getFoo if the field is called foo (or isFoo if the field's type is boolean). A default setter is named setFoo if the field is called foo, returns void, and takes 1 parameter of the same type as the field. It simply sets the field to this value. 
@@ -44,6 +72,7 @@ public class GetterSetterExample {
 ```
 
 - @NonNull
+
 On the parameter of a method or constructor to have lombok generate a null-check statement
 
 The null-check looks like if (param == null) throw new NullPointerException("param is marked @NonNull but is null"); and will be inserted at the very top of your method. For constructors, the null-check will be inserted immediately following any explicit this() or super() calls.
@@ -150,6 +179,7 @@ public class EqualsAndHashCodeExample {
 ```
 
 @Data
+
 @Data is a convenient shortcut annotation that bundles the features of @ToString, @EqualsAndHashCode, @Getter / @Setter and @RequiredArgsConstructor together.
 ```
 import lombok.AccessLevel;
@@ -172,6 +202,7 @@ import lombok.ToString;
 }
 ```
 @Value
+
 @Value is the immutable variant of @Data; all fields are made private and final by default, and setters are not generated. 
 ```
 import lombok.AccessLevel;
@@ -197,7 +228,7 @@ import lombok.ToString;
 
 @Builder
 
- @Builder lets you automatically produce the code required to have your class be instantiable with code such as:
+@Builder lets you automatically produce the code required to have your class be instantiable with code such as:
 Person.builder().name("Adam Savage").city("San Francisco").job("Mythbusters").job("Unchained Reaction").build();
 
 @Builder can be placed on a class, or on a constructor, or on a method. While the "on a class" and "on a constructor" mode are the most common use-case, @Builder is most easily explained with the "method" use-case. 
@@ -236,6 +267,7 @@ public class SneakyThrowsExample implements Runnable {
 @Synchronized
 
 @Synchronized is a safer variant of the synchronized method modifier. Like synchronized, the annotation can be used on static and instance methods only. It operates similarly to the synchronized keyword, but it locks on different objects. The keyword locks on this, but the annotation locks on a field named $lock, which is private.
+
 If the field does not exist, it is created for you. If you annotate a static method, the annotation locks on a static field named $LOCK instead. 
 ```
 import lombok.Synchronized;
@@ -261,6 +293,7 @@ public class SynchronizedExample {
 ```
 
 @With
+
 Immutable 'setters' - methods that create a clone but with one changed field.
 ```
 import lombok.AccessLevel;
@@ -280,6 +313,7 @@ public class WithExample {
 ```
 
 - @Getter(lazy=true)
+
 Generate a getter which will calculate a value once, the first time this getter is called, and cache it from then on
 ```
 import lombok.Getter;
@@ -298,6 +332,7 @@ public class GetterLazyExample {
 ```
 
 - @Log
+
 Put the variant of @Log on theass to have a static final log field, initialized as is the commonly prescribed way for the logging framework, and then use to write log statements. 
 
     - @CommonsLog: Creates private static final org.apache.commons.logging.Log log = org.apache.commons.logging.LogFactory.getLog(LogExample.class); 
