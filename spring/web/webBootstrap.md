@@ -1,7 +1,9 @@
 # Web on Bootstrap
 - [Tutorial](https://frontbackend.com/thymeleaf/spring-boot-bootstrap-thymeleaf-autocomplete)
 
-## layout: in src/main/resources
+## layout:
+
+In src/main/resources
 - static/
     - css/: \*.css
     - js/: \*.js
