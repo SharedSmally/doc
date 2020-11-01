@@ -21,8 +21,8 @@ In src/main/resources
     <artifactId>thymeleaf-bootstrap-autocomplete-input</artifactId>
 
     <properties>
-        <bootstrap.version>4.0.0-2</bootstrap.version>
-        <jquery.version>2.1.4</jquery.version>
+        <bootstrap.version>4.5.3</bootstrap.version>
+        <jquery.version>3.5.1</jquery.version>
         <webjars-locator.version>0.40</webjars-locator.version>
         <lombok.version>1.18.16</lombok.version>
     </properties>
