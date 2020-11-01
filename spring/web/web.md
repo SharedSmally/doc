@@ -591,7 +591,7 @@ public String submit(@ModelAttribute FormDataWithFile formDataWithFile, ModelMap
     modelMap.addAttribute("formDataWithFile", formDataWithFile);
     return "fileUploadView";
 }
-``
+```
 
 ## Data Binding from From
 - One GET method to show the Form input page: Create ModelAttribute object and pass it to page
@@ -669,6 +669,53 @@ Thymeleaf provides several special attributes to work with HTML forms:
 - th:errors — An attribute that holds all form validation errors.
 - th:errorclass — Used for setting a CSS class to a form input if that field has validation errors.
 
+- [ModelAttribute](https://www.baeldung.com/spring-mvc-and-the-modelattribute-annotation)
+@ModelAttribute can be used either as a method parameter or at the method level:
+    - At the Method Level
+When the annotation is used at the method level it indicates the purpose of that method is to add one or more model attributes. Such methods support the same argument types as @RequestMapping methods but cannot be mapped directly to requests.
+```
+@Controller
+@ControllerAdvice
+public class EmployeeController {
+    private Map<Long, Employee> employeeMap = new HashMap<>();    
+    @ModelAttribute
+    public void addAttributes(Model model) {
+         model.addAttribute("msg", "Welcome to the Netherlands!");
+    }
+```
+@ModelAttribute methods are invoked before the controller methods annotated with @RequestMapping are invoked, for the model object has to be created before any processing starts inside the controller methods.
+
+Need to annotate the respective class as @ControllerAdvice to add values in Model which will be identified as global. 
+
+    - As a Method Argument
+```
+    @RequestMapping(value = "/addEmployee", method = RequestMethod.POST)
+    public String submit( @ModelAttribute("employee") Employee employee,
+	       BindingResult result, ModelMap model) {
+        if (result.hasErrors()) {
+	     return "error";
+	}
+	model.addAttribute("name", employee.getName());
+	model.addAttribute("id", employee.getId());
+	 
+	employeeMap.put(employee.getId(), employee);
+	 
+	return "employeeView";
+    }
+```
+    - The View
+```
+<form:form method="POST" action="/spring-mvc-basics/addEmployee" 
+    modelAttribute="employee">
+    <form:label path="name">Name</form:label>
+    <form:input path="name" />
+	    
+    <form:label path="id">Id</form:label>
+    <form:input path="id" />
+	    
+    <input type="submit" value="Submit" />
+</form:form>
+```
 
 ## Tips
 - th:tag should be in <>:
