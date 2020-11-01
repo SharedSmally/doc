@@ -1,6 +1,13 @@
 # Web on Bootstrap
 - [Tutorial](https://frontbackend.com/thymeleaf/spring-boot-bootstrap-thymeleaf-autocomplete)
 
+## layout: in src/main/resources
+- static/
+    - css/: \*.css
+    - js/: \*.js
+- templates/: \*.html
+- application.properties
+
 ## pom.xml:
 - webjars: bootstrap; webjars-locator
 ```
@@ -13,7 +20,8 @@
 
     <properties>
         <bootstrap.version>4.0.0-2</bootstrap.version>
-        <webjars-locator.version>0.30</webjars-locator.version>
+        <jquery.version>2.1.4</jquery.version>
+        <webjars-locator.version>0.40</webjars-locator.version>
         <lombok.version>1.18.16</lombok.version>
     </properties>
 
@@ -41,6 +49,11 @@
         </dependency>
         <dependency>
             <groupId>org.webjars</groupId>
+            <artifactId>jquery</artifactId>
+            <version>${jquery.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.webjars</groupId>
             <artifactId>webjars-locator</artifactId>
             <version>${webjars-locator.version}</version>
         </dependency>
@@ -64,4 +77,37 @@
     </build>
 
 </project>
+```
+- index.html
+```
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Add Bootstrap to Thymeleaf</title>
+<link th:href = "@{/css/bootstrap.min.css}" rel="stylesheet">
+</head>
+<body>
+ <div class = "container">
+  <div class = "row">
+    <table class = "table table-responsive table-bordered table-striped">
+     <thead>
+      <tr>
+       <th> Employee First Name</th>
+       <th> Employee Last Name</th>
+       <th> Employee Email</th>
+      </tr>
+     </thead>
+     <tbody>
+     <tr th:each="employee : ${employees}">
+      <td th:text="${employee.firstName}"></td>
+      <td th:text="${employee.lastName}"></td>
+      <td th:text="${employee.email}"></td>
+     </tr>
+    </tbody>
+    </table>
+  </div>
+ </div>
+</body>
+</html>
 ```
