@@ -57,22 +57,31 @@ you to quickly create a service broker that deploys applications and services to
 
 
 ## Spring Cloud Components
-- ![Configuration](https://static.javatpoint.com/tutorial/spring-cloud/images/components-of-spring-cloud.png)
+- Configuration:
+![Configuration](https://static.javatpoint.com/tutorial/spring-cloud/images/components-of-spring-cloud.png)
 Spring Cloud config server can use Git, SVN (Apache Subversion), filesystem, and Vault to Store config. 
 Config clients (microservice app) retrieve the configuration client from the server on startup.
 
-- ![Service Discovery](https://static.javatpoint.com/tutorial/spring-cloud/images/components-of-spring-cloud2.png)
+- Service Discover
+![Service Discovery](https://static.javatpoint.com/tutorial/spring-cloud/images/components-of-spring-cloud2.png)
 There are two discovery patterns: Client-side discovery and Server-side discovery.
 
-- ![Circuit Breakers](https://static.javatpoint.com/tutorial/spring-cloud/images/components-of-spring-cloud3.png)
+- Circuit Breakers
+![Circuit Breakers Flow](https://static.javatpoint.com/tutorial/spring-cloud/images/components-of-spring-cloud3.png)
+![Close State](https://static.javatpoint.com/tutorial/spring-cloud/images/components-of-spring-cloud4.png)
+![OpenState]{https://static.javatpoint.com/tutorial/spring-cloud/images/components-of-spring-cloud5.png}
+![Half Open State](https://static.javatpoint.com/tutorial/spring-cloud/images/components-of-spring-cloud6.png)
+
 Circuit breakers calculate when to open and close the circuit and what to do in case of failure. When all services fail at some point, the circuit breaker handles these failures gracefully. The circuit breakers have three states: OPEN, CLOSED, and HALF-OPEN State.
 
 
-- ![Routing and Messaging](https://static.javatpoint.com/tutorial/spring-cloud/images/components-of-spring-cloud7.png)
+- Routing and Messaging
+![Routing and Messaging](https://static.javatpoint.com/tutorial/spring-cloud/images/components-of-spring-cloud7.png)
 Spring Cloud supports communication via messaging or HTTP request. Routing uses Netflix Ribbon and Open Feign while messaging uses Kafka or Rabbit MQ.
 
 
-- ![API Gateway](https://static.javatpoint.com/tutorial/spring-cloud/images/components-of-spring-cloud8.png)
+- API Gateway
+![API Gateway](https://static.javatpoint.com/tutorial/spring-cloud/images/components-of-spring-cloud8.png)
 API Gateway allows us to route API request (external or internal) to connect services.
 
 - Tracing: Sleuth/Zipkin
