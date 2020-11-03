@@ -76,9 +76,9 @@ There are two discovery patterns: Client-side discovery and Server-side discover
 
 ![Close State](https://static.javatpoint.com/tutorial/spring-cloud/images/components-of-spring-cloud4.png)
 
-![OpenState]{https://static.javatpoint.com/tutorial/spring-cloud/images/components-of-spring-cloud5.png}
+![OpenState](https://static.javatpoint.com/tutorial/spring-cloud/images/components-of-spring-cloud5.png}
 
-![Half Open State](https://static.javatpoint.com/tutorial/spring-cloud/images/components-of-spring-cloud6.png)
+![HalfOpenState](https://static.javatpoint.com/tutorial/spring-cloud/images/components-of-spring-cloud6.png)
 
 Circuit breakers calculate when to open and close the circuit and what to do in case of failure. When all services fail at some point, the circuit breaker handles these failures gracefully. The circuit breakers have three states: OPEN, CLOSED, and HALF-OPEN State.
 
