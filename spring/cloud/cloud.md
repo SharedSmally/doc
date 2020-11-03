@@ -76,7 +76,7 @@ There are two discovery patterns: Client-side discovery and Server-side discover
 
 ![Close State](https://static.javatpoint.com/tutorial/spring-cloud/images/components-of-spring-cloud4.png)
 
-![OpenState](https://static.javatpoint.com/tutorial/spring-cloud/images/components-of-spring-cloud5.png}
+![OpenState](https://static.javatpoint.com/tutorial/spring-cloud/images/components-of-spring-cloud5.png)
 
 ![HalfOpenState](https://static.javatpoint.com/tutorial/spring-cloud/images/components-of-spring-cloud6.png)
 
