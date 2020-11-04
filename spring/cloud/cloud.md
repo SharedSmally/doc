@@ -2,6 +2,52 @@
 - [Document](https://cloud.spring.io/spring-cloud-static/spring-cloud.htm)
 - [Tutorial](https://www.javatpoint.com/components-of-spring-cloud)
 
+## Projects
+- Spring Cloud Commons
+    - Load Balancer
+	- Circuit Breaker
+- Spring Cloud [Gateway](https://docs.spring.io/spring-cloud-gateway/docs/2.2.5.RELEASE/reference/html/)
+- Spring Cloud [Config](https://docs.spring.io/spring-cloud-config/docs/2.2.5.RELEASE/reference/html/)
+- Spring Cloud Schema Registry
+    - Spring Cloud Netflix
+    - Spring Cloud Consul
+    - Spring Cloud Zookeeper
+- Spring Cloud [Circuit Breaker](https://spring.io/projects/spring-cloud-circuitbreaker):
+    - Netflix Hystrix
+    - Resilience4J
+    - Sentinel
+    - Spring Retry
+- Cloud Platform
+    - Spring Cloud Azure
+    - Spring Cloud Alibaba
+    - Spring Cloud for Amazon Web Services
+    - Spring Cloud for Cloud Foundry
+    - Spring Cloud GCP
+    - Spring Cloud Kubernetes
+- Cloud Tools:
+    - Spring Cloud CLI: CLI to provide Spring Boot command line features for Spring Cloud.
+    - Spring Cloud Skipper: A tool to discover Spring Boot applications and manage their lifecycle on multiple Cloud Platforms. 
+    - Spring Cloud Sleuth/zipkin: Provides Spring Boot auto-configuration for distributed tracing.
+    - Spring Cloud OpenFeign: Declarative REST Client: Feign creates a dynamic implementation of an interface decorated with JAX-RS or Spring MVC annotations
+- Security:
+    - Spring Cloud Security
+    - Spring Cloud Vault
+- Broker
+    - Spring Cloud - Cloud Foundry Service Broker
+    - Spring Cloud Open Service Broker
+    - Spring Cloud App Broker
+- Application
+    - Spring Cloud Cluster
+    - Spring Cloud Connectors:  Java CFEnv
+    - Spring Cloud Bus
+    - Spring Cloud Contract
+    - Spring Cloud Function
+    - Spring Cloud Pipelines
+    - Spring Cloud Stream
+    - Spring Cloud Stream Applications
+    - Spring Cloud Stream App Starters
+    - Spring Cloud Task
+    - Spring Cloud Task App Starters
 
 ## Spring Cloud
 - [Azure](https://spring.io/projects/spring-cloud-azure)
