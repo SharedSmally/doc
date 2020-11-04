@@ -1,12 +1,12 @@
 # [Spring Cloud Commons](https://spring.io/projects/spring-cloud-commons)
 - Spring Cloud Context 
 
-provides utilities and special services for the ApplicationContext of a Spring Cloud application (bootstrap context, encryption, refresh scope and environment endpoints).
+Provides utilities and special services for the ApplicationContext of a Spring Cloud application (bootstrap context, encryption, refresh scope and environment endpoints).
 
-       - Bootstrap Context
-       - TextEncryptor beans
-       - Refresh Scope
-       - Spring Boot Actuator endpoints for manipulating the Environment
+    - Bootstrap Context
+    - TextEncryptor beans
+    - Refresh Scope
+    - Spring Boot Actuator endpoints for manipulating the Environment
 
 - Spring Cloud Commons
 
