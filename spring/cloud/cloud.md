@@ -4,11 +4,8 @@
 
 ## Projects
 - Spring Cloud Commons
-    - Load Balancer
-	- Circuit Breaker
-- Spring Cloud [Gateway](https://docs.spring.io/spring-cloud-gateway/docs/2.2.5.RELEASE/reference/html/)
-- Spring Cloud [Config](https://docs.spring.io/spring-cloud-config/docs/2.2.5.RELEASE/reference/html/)
-- Spring Cloud Schema Registry
+- Spring Cloud [Gateway](https://docs.spring.io/spring-cloud-gateway/docs/2.2.5.RELEASE/reference/html/) and Client-side Load Balancer
+- Spring Cloud [Config](https://docs.spring.io/spring-cloud-config/docs/2.2.5.RELEASE/reference/html/) and Service/Schema Registry
     - Spring Cloud Netflix
     - Spring Cloud Consul
     - Spring Cloud Zookeeper
@@ -17,25 +14,9 @@
     - Resilience4J
     - Sentinel
     - Spring Retry
-- Cloud Platform
-    - Spring Cloud Azure
-    - Spring Cloud Alibaba
-    - Spring Cloud for Amazon Web Services
-    - Spring Cloud for Cloud Foundry
-    - Spring Cloud GCP
-    - Spring Cloud Kubernetes
-- Cloud Tools:
-    - Spring Cloud CLI: CLI to provide Spring Boot command line features for Spring Cloud.
-    - Spring Cloud Skipper: A tool to discover Spring Boot applications and manage their lifecycle on multiple Cloud Platforms. 
-    - Spring Cloud Sleuth/zipkin: Provides Spring Boot auto-configuration for distributed tracing.
-    - Spring Cloud OpenFeign: Declarative REST Client: Feign creates a dynamic implementation of an interface decorated with JAX-RS or Spring MVC annotations
 - Security:
     - Spring Cloud Security
     - Spring Cloud Vault
-- Broker
-    - Spring Cloud - Cloud Foundry Service Broker
-    - Spring Cloud Open Service Broker
-    - Spring Cloud App Broker
 - Application
     - Spring Cloud Cluster
     - Spring Cloud Connectors:  Java CFEnv
@@ -48,6 +29,23 @@
     - Spring Cloud Stream App Starters
     - Spring Cloud Task
     - Spring Cloud Task App Starters
+- Cloud Tools:    
+    - Spring Cloud Skipper: A tool to discover Spring Boot applications and manage their lifecycle on multiple Cloud Platforms. 
+    - Spring Cloud Sleuth/zipkin: Provides Spring Boot auto-configuration for distributed tracing.
+    - Spring Cloud OpenFeign: Declarative REST Client: Feign creates a dynamic implementation of an interface decorated with JAX-RS or Spring MVC annotations   
+- Broker
+    - Spring Cloud - Cloud Foundry Service Broker
+    - Spring Cloud Open Service Broker
+    - Spring Cloud App Broker
+- Cloud Deployment    
+    - Spring Cloud for Cloud Foundry (CLI: CF)    
+    - Spring Cloud Kubernetes (CLI: kubctl)
+    - Spring Cloud CLI: CLI to provide Spring Boot command line features for Spring Cloud.
+- Cloud Platform
+    - Spring Cloud Azure
+    - Spring Cloud Alibaba
+    - Spring Cloud for Amazon Web Services
+    - Spring Cloud GCP   
 
 ## Spring Cloud
 - [Azure](https://spring.io/projects/spring-cloud-azure)
