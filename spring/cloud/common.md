@@ -1,20 +1,4 @@
 # [Spring Cloud Commons](https://spring.io/projects/spring-cloud-commons)
-- Spring Cloud Commons
-    - Load Balancer
-	- Circuit Breaker
-- Spring Cloud Gateway
-- Spring Cloud Config
-- Spring Cloud Schema Registry
-    - Spring Cloud Netflix
-    - Spring Cloud Consul
-    - Spring Cloud Zookeeper
-- Spring Cloud Circuit Breaker:
-    - Netflix Hystrix
-    - Resilience4J
-    - Sentinel
-    - Spring Retry
-
-## Cloud Components:
 - Spring Cloud Context 
 
 Provides utilities and special services for the ApplicationContext of a Spring Cloud application (bootstrap context, encryption, refresh scope and environment endpoints).
