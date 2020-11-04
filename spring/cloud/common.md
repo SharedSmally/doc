@@ -1,4 +1,20 @@
 # [Spring Cloud Commons](https://spring.io/projects/spring-cloud-commons)
+- Spring Cloud Commons
+    - Load Balancer
+	- Circuit Breaker
+- Spring Cloud Gateway
+- Spring Cloud Config
+- Spring Cloud Schema Registry
+    - Spring Cloud Netflix
+    - Spring Cloud Consul
+    - Spring Cloud Zookeeper
+- Spring Cloud Circuit Breaker:
+    - Netflix Hystrix
+    - Resilience4J
+    - Sentinel
+    - Spring Retry
+
+## Cloud Components:
 - Spring Cloud Context 
 
 Provides utilities and special services for the ApplicationContext of a Spring Cloud application (bootstrap context, encryption, refresh scope and environment endpoints).
@@ -12,6 +28,26 @@ Provides utilities and special services for the ApplicationContext of a Spring C
 
 A set of abstractions and common classes used in different Spring Cloud implementations (eg. Spring Cloud Netflix vs. Spring Cloud Consul).
 
-    - DiscoveryClient interface
-    - ServiceRegistry interface
+    - DiscoveryClient interface:  Spring Cloud Netflix Eureka, Spring Cloud Consul Discovery, and Spring Cloud Zookeeper Discovery.
+    - ServiceRegistry interface: EurekaRegistration/EurekaServiceRegistry, ConsulRegistration/ConsulServiceRegistry, ZookeeperRegistration/ZookeeperServiceRegistry
+```
+@Configuration
+@EnableDiscoveryClient(autoRegister=false)
+public class MyConfiguration {
+    private ServiceRegistry registry;
+    public MyConfiguration(ServiceRegistry registry) {
+        this.registry = registry;
+    }
+
+    // called through some external process, such as an event or a custom actuator endpoint
+    public void register() {
+        Registration registration = constructRegistration();
+        this.registry.register(registration);
+    }
+}
+```
     - Instrumentation for RestTemplate to resolve hostnames using DiscoveryClient
+    - Use Spring RestTemplate , WebClient, WebFlux (one or multiple) as a Load Balancer Client
+    
+## [Document](https://spring.io/projects/spring-cloud-commons#learn)
+- [Reference doc](https://docs.spring.io/spring-cloud-commons/docs/2.2.4.RELEASE/reference/html/)
