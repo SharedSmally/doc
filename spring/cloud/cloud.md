@@ -6,9 +6,9 @@
 - Spring Cloud Commons
 - Spring Cloud [Gateway](https://docs.spring.io/spring-cloud-gateway/docs/2.2.5.RELEASE/reference/html/) and Client-side Load Balancer
 - Spring Cloud [Config](https://docs.spring.io/spring-cloud-config/docs/2.2.5.RELEASE/reference/html/) and Service/Schema Registry
-    - Spring Cloud Netflix
-    - Spring Cloud Consul
-    - Spring Cloud Zookeeper
+    - Spring Cloud Netflix: Eureka; 
+    - Spring Cloud Consul:
+    - Spring Cloud Zookeeper: (etcd,...)
 - Spring Cloud [Circuit Breaker](https://spring.io/projects/spring-cloud-circuitbreaker):
     - Netflix Hystrix
     - Resilience4J
@@ -51,8 +51,9 @@
 - [Azure](https://spring.io/projects/spring-cloud-azure)
 - [Alibaba](https://spring.io/projects/spring-cloud-alibaba)
 - [AWS](https://spring.io/projects/spring-cloud-aws)
-- [Cloud Foundry](https://spring.io/projects/spring-cloud-cloudfoundry)
 - [GCP](https://spring.io/projects/spring-cloud-gcp)
+- [Cloud Foundry](https://spring.io/projects/spring-cloud-cloudfoundry)
+- [Kubernetes](https://spring.io/projects/spring-cloud-kubernetes)
 - [NetFlix](https://spring.io/projects/spring-cloud-netflix)
     - Service Discovery: embedded/standalone Eureka server and Client
     - Circuit Breaker: embedded/standalone Hystrix server and client
