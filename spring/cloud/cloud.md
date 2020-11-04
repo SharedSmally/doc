@@ -44,8 +44,8 @@
 - Cloud Platform
     - Spring Cloud Azure
     - Spring Cloud Alibaba
-    - Spring Cloud for Amazon Web Services
-    - Spring Cloud GCP   
+    - Spring Cloud AWS
+    - Spring Cloud GCP
 
 ## Spring Cloud
 - [Azure](https://spring.io/projects/spring-cloud-azure)
