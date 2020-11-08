@@ -88,6 +88,11 @@ public class CfgclientApplication {
 	}
 }
 ```
+
+By default, the configuration values are read on the client’s startup, and not again. You can force a bean to refresh its configuration – to pull updated values from the Config Server – by annotating the Controller with the Spring Cloud Config @RefreshScope and then by triggering a /actuator/refresh event.
+
+Once the /actuator/refresh event is triggered for the service, all the beans that are annotated with @RefreshScope will be refreshed (that means the values will be retrieved from the Config Server and updates the bean).
+
 - In src/main/resources/application.properties:
 ```
 management.endpoints.web.exposure.include=*
