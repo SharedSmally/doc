@@ -25,6 +25,8 @@ public class ServiceRegistrationAndDiscoveryServiceApplication {
 	}
 }
 ```
+use the spring-cloud-starter-netflix-eureka-server dependency and @EnableEurekaServer to run own server.
+
 - src/main/resources/application.properties
 ```
 server.port=8761
@@ -69,7 +71,9 @@ public class ServiceRegistrationAndDiscoveryClientApplication {
 	}
 }
 ```
-In src/main/resources/bootstrap.properties:
+The Spring Boot application with @EnableEurekaClient will try to contact a Eureka server on http://localhost:8761 (the default value of eureka.client.serviceUrl.defaultZone).
+
+- In src/main/resources/bootstrap.properties:
 ```
 spring.application.name=a-bootiful-client
 ```
