@@ -101,3 +101,15 @@ http://localhost:8080/message
 ## Push Notifications and Spring Cloud Bus
 - [Refresh](https://tech.asimio.net/2017/02/02/Refreshable-Configuration-using-Spring-Cloud-Config-Server-Spring-Cloud-Bus-RabbitMQ-and-Git.html)
   ![work-flow](https://tech.asimio.net/images/config-server-spring-cloud-bus-rabbitmq-git-workflow.png); using Rabbit/Redis for PUB/SUB.
+- [Use Spring Cloud Bus](https://springbootdev.com/2018/07/21/spring-cloud-config-using-git-webhook-to-auto-refresh-the-config-changes-with-spring-cloud-stream-spring-cloud-bus-and-rabbitmq-part-3/)
+
+## Spring Cloud Stream vs Spring Cloud Bus?
+
+Spring Cloud Stream is a framework that helps to develop message driven or event driven microservices. It uses underlying message broker (such as RabbitMQ or Kafka) to publish event and messages across application services.
+
+Spring Cloud Bus connects the distributed services through a message broker (known as RabbitMQ or Kafka). Therefore it can  broadcast and deliver the published event and message to the related service. Spring Cloud Bus is built on Spring Cloud Stream. it can be identified as the application use of Spring Cloud Stream.
+
+## Auto refreshing with webhook event
+
+Once the Git repository received the pushed update, it will notify the given URL endpoint with set of parameters (The URL will be registered during the webhook registration process). This is known as triggering the webhook event.
+
