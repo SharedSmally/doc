@@ -29,6 +29,8 @@ The client will have another endpoint ‘/bus-refresh'. Calling this endpoint wi
 - all subscribed nodes will update their configuration as well
 
 ## Config Server Depdendencies
+Use spring-cloud-config-monitor to monitor configuration changes and broadcast events using RabbitMQ as transport.
+
 - spring-cloud-config-monitor
 - spring-cloud-starter-stream-rabbit
 - RabbitMQ configs in application.properties
