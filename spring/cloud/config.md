@@ -8,6 +8,7 @@ The default implementation of the server storage backend uses git. Spring Cloud 
 remote clients from various sources. Other sources are any JDBC compatible database, Subversion, Hashicorp Vault, 
 Credhub, Redis, AWS and local filesystems.
 
+- Config Server![Config Server](https://chathurangat.files.wordpress.com/2018/07/15359236.png)
 - [Reference](https://cloud.spring.io/spring-cloud-config/reference/html/)
 - Config Server
 - Config Client
