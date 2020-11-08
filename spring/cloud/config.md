@@ -42,7 +42,8 @@ The Config Server needs to know which repository to manage:
 ```
 server.port=8888
 spring.cloud.config.server.git.uri=${HOME}/Desktop/config
-spring.cloud.config.server.git.uri: file://${user.home}/config-repo  #${user.home}/config-repo is a local git repository containing YAML and properties files.
+spring.cloud.config.server.git.uri: file://${user.home}/config-repo  
+#${user.home}/config-repo is a local git repository containing YAML and properties files.
 ```
 spring.cloud.config.server can specify multiple resources that the config server can pull. It  has a clone of the remote git repository after check-outing branch to local repo.
 
@@ -77,6 +78,11 @@ The client can access any value in the Config Server by using the traditional me
 
 When Spring Cloud Config Client starts, it binds to the Config Server (via spring.cloud.config.uri in bootstrap.yml) and initializes Spring Environment with remote property sources. It consumes the Config Server with the server address set in spring.cloud.config.uri. 
 
+The Config Service serves property sources from /{application}/{profile}/{label}:
+- name = ${spring.application.name}
+- profile = ${spring.profiles.active} (actually Environment.getActiveProfiles())
+- label = "master"
+
 ## Refresh Config
 - Update a-bootiful-client.properties, then run git commands:
 ```
@@ -93,3 +99,5 @@ http://localhost:8080/message
 ```
 
 ## Push Notifications and Spring Cloud Bus
+- [Refresh](https://tech.asimio.net/2017/02/02/Refreshable-Configuration-using-Spring-Cloud-Config-Server-Spring-Cloud-Bus-RabbitMQ-and-Git.html)
+  ![work-flow](https://tech.asimio.net/images/config-server-spring-cloud-bus-rabbitmq-git-workflow.png); using Rabbit/Redis for PUB/SUB.
