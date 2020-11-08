@@ -1,11 +1,21 @@
 # Spring Cloud Config
+
+Spring Cloud Config provides server-side and client-side support for externalized configuration in a distributed system,
+Have a central place to manage external properties for applications across all environments. The concepts on both client 
+and server map identically to the Spring Environment and PropertySource abstractions. 
+
+The default implementation of the server storage backend uses git. Spring Cloud Config Server pulls configuration for 
+remote clients from various sources. Other sources are any JDBC compatible database, Subversion, Hashicorp Vault, 
+Credhub, Redis, AWS and local filesystems.
+
+- [Reference](https://cloud.spring.io/spring-cloud-config/reference/html/)
 - Config Server
 - Config Client
+- Implementations:
     - Vault Configuration
     - Zookeeper Configuration
     - Consul Configuration
-    - Netflex
-
+    
 ## Config Server
 Needs spring-cloud-config-server dependencies
 - Stand up a Config Server
@@ -32,7 +42,9 @@ The Config Server needs to know which repository to manage:
 ```
 server.port=8888
 spring.cloud.config.server.git.uri=${HOME}/Desktop/config
+spring.cloud.config.server.git.uri: file://${user.home}/config-repo  #${user.home}/config-repo is a local git repository containing YAML and properties files.
 ```
+spring.cloud.config.server can specify multiple resources that the config server can pull. It  has a clone of the remote git repository after check-outing branch to local repo.
 
 On the file system, 
 - Create a new directory and run git init in it. 
@@ -58,14 +70,19 @@ management.endpoints.web.exposure.include=*
 ```
 spring.application.name=a-bootiful-client
 spring.cloud.config.uri=http://localhost:8888
-
 ```
 
 Spring sees the configuration property files, as it would any property file loaded from application.properties or application.yml or any other PropertySource
 The client can access any value in the Config Server by using the traditional mechanisms (such as @ConfigurationProperties or @Value("${...}") or through the Environment abstraction). 
 
+When Spring Cloud Config Client starts, it binds to the Config Server (via spring.cloud.config.uri in bootstrap.yml) and initializes Spring Environment with remote property sources. It consumes the Config Server with the server address set in spring.cloud.config.uri. 
+
 ## Refresh Config
-- Update a-bootiful-client.properties, then run git commands: git add; git commit -m "xxx"
+- Update a-bootiful-client.properties, then run git commands:
+```
+git add -A .
+git commit -m "xxx"
+```
 - Refresh client application: 
 ```
 curl localhost:8080/actuator/refresh -d {} -H "Content-Type: application/json"
@@ -74,3 +91,5 @@ curl localhost:8080/actuator/refresh -d {} -H "Content-Type: application/json"
 ```
 http://localhost:8080/message
 ```
+
+## Push Notifications and Spring Cloud Bus
