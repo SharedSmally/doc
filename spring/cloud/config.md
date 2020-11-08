@@ -129,6 +129,17 @@ curl localhost:8080/actuator/refresh -d {} -H "Content-Type: application/json"
 http://localhost:8080/message
 ```
 
+## [Refresh Config via Cloud Bus](https://springbootdev.com/2018/07/17/spring-cloud-config-refreshing-the-config-changes-with-spring-cloud-bus-part-2/)
+
+If any property is changed, the related service need to be notified by triggering a refresh event with Spring Boot Actuator (/actuator/refresh). The user will have to manually trigger this refresh event. Once the event is triggered, all the beans annotated with @RefreshScope will be reloaded (the configurations will be re-fetched) from the Config Server.
+
+In a real microservice environment, there will be a large number of independent application services. Therefore is it not practical for the user to manually trigger the refresh event for all the related services whenever a property is changed.
+
+The better approach is to trigger the refresh event for one service and broadcast the event through all other available services.  There is a way to trigger the refresh event for only one service and that event is automatically propagated (broadcasted) through all the other services via Spring Cloud Bus.
+
+Use spring-cloud-starter-bus-amqp: ![The Architecture](https://chathurangat.files.wordpress.com/2018/07/untitled-diagram-9.png)
+
+
 ## Push Notifications and Spring Cloud Bus
 - [Refresh](https://tech.asimio.net/2017/02/02/Refreshable-Configuration-using-Spring-Cloud-Config-Server-Spring-Cloud-Bus-RabbitMQ-and-Git.html)
   ![work-flow](https://tech.asimio.net/images/config-server-spring-cloud-bus-rabbitmq-git-workflow.png); using Rabbit/Redis for PUB/SUB.
@@ -139,6 +150,11 @@ http://localhost:8080/message
 Spring Cloud Stream is a framework that helps to develop message driven or event driven microservices. It uses underlying message broker (such as RabbitMQ or Kafka) to publish event and messages across application services.
 
 Spring Cloud Bus connects the distributed services through a message broker (known as RabbitMQ or Kafka). Therefore it can  broadcast and deliver the published event and message to the related service. Spring Cloud Bus is built on Spring Cloud Stream. it can be identified as the application use of Spring Cloud Stream.
+
+Spring Cloud Bus links the independent services in the microservices environment through a light weight message broker (e.g:- RabbitMQ or Kafka).  This message broker can be used to broadcast the configuration changes and events. In addition, it can be used as a communication channel among independent services.
+
+A key idea is that the Bus is like a distributed Actuator for a Spring Boot application that is scaled out, but it can also be used as a communication channel between applications.
+
 
 ## Auto refreshing with webhook event
 
