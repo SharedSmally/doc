@@ -62,7 +62,32 @@ Property keys in more specifically named files (such as a-bootiful-client.proper
 
 ## Config Client
 Needs the Config Client, Spring Boot Actuator, and Spring Web dependencies.
+- Config Client
+```
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
+@SpringBootApplication
+@RefreshScope
+@RestController
+public class CfgclientApplication {
+	public static void main(String[] args) {
+		SpringApplication.run(CfgclientApplication.class, args);
+	}
+
+    @Value("${message:Hello default}")
+	private String message;
+
+	@RequestMapping("/message")
+	String getMessage() {
+	    return this.message;
+	}
+}
+```
 - In src/main/resources/application.properties:
 ```
 management.endpoints.web.exposure.include=*
