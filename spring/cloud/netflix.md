@@ -9,3 +9,6 @@
 - External Configuration: Archaius
 - Router and Filter: Zuul
 
+## Eureka
+- [Tutorial](https://medium.com/swlh/spring-cloud-service-discovery-with-eureka-16f32068e5c7): ![Architecture](https://miro.medium.com/max/700/1*ITGONeSNR8GBm-UznTNODA.png)
+
