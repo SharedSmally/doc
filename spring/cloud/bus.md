@@ -4,7 +4,7 @@ Spring Cloud Bus uses lightweight message broker to link distributed system node
 or other management information. We can think about it as a distributed Actuator. The project uses AMQP broker as the transport, 
 but Apache Kafka or Redis can be utilized instead of RabbitMQ. Other transports are not supported yet.
 
-- [Reference]
+- [Reference](https://spring.io/projects/spring-cloud-bus)
 - [Tutorial](https://www.baeldung.com/spring-cloud-bus)
 
 ## Config Client Depdendencies
