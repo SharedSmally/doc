@@ -80,3 +80,9 @@ spring.application.name=a-bootiful-client
 When a client registers with Eureka, it provides meta-data about itself — such as host, port, health indicator URL, home page, and other details. Eureka receives heartbeat messages from each instance belonging to a service. If the heartbeat fails over a configurable timetable, the instance is normally removed from the registry.
 
 Having spring-cloud-starter-netflix-eureka-client on the classpath makes the app into both a Eureka “instance” (it registers itself) and a “client” (it can query the registry to locate other services). The instance behaviour is driven by eureka.instance.* configuration keys, but the defaults are fine if you ensure that your application has a value for spring.application.name (this is the default for the Eureka service ID or VIP).
+
+- In application.properties:
+```
+eureka.client.serviceUrl.defaultZone = http://localhost:8761/eureka
+```
+eureka.client.serviceUrl.defaultZone indicates the location of the Eureka server.
