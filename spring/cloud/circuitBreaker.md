@@ -18,7 +18,8 @@ public static class DemoControllerService {
 	}
 
 	public String slow() {
-		return cbFactory.create("slow").run(() -> rest.getForObject("/slow", String.class), throwable -> "fallback");
+		return cbFactory.create("slow").run(() -> rest.getForObject("/slow", String.class),
+		          throwable -> "fallback");
 	}
 }
 ```
