@@ -139,7 +139,108 @@ reactor.core.publisher.Mono<ResponseEntity<Void>>	toBodilessEntity()
 
 ### R2DBC
 R2DBC stands for Reactive Relational Database Connectivity, an incubator to integrate relational databases using a reactive driver. Spring Data R2DBC provides familiar Spring abstractions and repository support for R2DBC. It helps Spring-powered applications to perform database operations in a reactive way. At this moment, only PostGres, MSSQL, and H2 support R2DBC drivers.
+- [Sample](https://medium.com/@dassum/building-a-reactive-restful-web-service-using-spring-boot-and-postgres-c8e157dbc81d)
+```
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Table("users")
+public class User {
 
+    @Id
+    private Integer id;
+    private String name;
+    private int age;
+    private double salary;
+}
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Table("department")
+public class Department {
+    @Id
+    private Integer id;
+    private String name;
+    @Column("user_id")
+    private Integer userId;
+    private String loc;
+}
+public interface UserRepository extends ReactiveCrudRepository<User,Long> {
+    @Query("select * from users where age >= $1")
+    Flux<User> findByAge(int age);
+}
+
+public interface DepartmentRepository extends ReactiveCrudRepository<Department,Integer> {
+    Mono<Department> findByUserId(Integer userId);
+}
+
+import com.reactive.examples.dto.UserDepartmentDTO;
+import com.reactive.examples.model.User;
+import com.reactive.examples.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
+
+import java.util.List;
+
+@RestController
+@RequestMapping("/users")
+public class UserController {
+@Autowired
+private UserService userService;
+
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public Mono<User> create(@RequestBody User user){
+        return userService.createUser(user);
+    }
+
+    @GetMapping
+    public Flux<User> getAllUsers(){
+        return userService.getAllUsers();
+    }
+
+    @GetMapping("/{userId}")
+    public Mono<ResponseEntity<User>> getUserById(@PathVariable Integer userId){
+        Mono<User> user = userService.findById(userId);
+        return user.map( u -> ResponseEntity.ok(u))
+                .defaultIfEmpty(ResponseEntity.notFound().build());
+    }
+
+    @PutMapping("/{userId}")
+    public Mono<ResponseEntity<User>> updateUserById(@PathVariable Integer userId, @RequestBody User user){
+        return userService.updateUser(userId,user)
+                .map(updatedUser -> ResponseEntity.ok(updatedUser))
+                .defaultIfEmpty(ResponseEntity.badRequest().build());
+    }
+
+    @DeleteMapping("/{userId}")
+    public Mono<ResponseEntity<Void>> deleteUserById(@PathVariable Integer userId){
+        return userService.deleteUser(userId)
+                .map( r -> ResponseEntity.ok().<Void>build())
+                .defaultIfEmpty(ResponseEntity.notFound().build());
+    }
+
+    @GetMapping("/age/{age}")
+    public Flux<User> getUsersByAge(@PathVariable int age) {
+        return userService.findUsersByAge(age);
+    }
+
+    @PostMapping("/search/id")
+    public Flux<User> fetchUsersByIds(@RequestBody List<Integer> ids) {
+        return userService.fetchUsers(ids);
+    }
+
+    @GetMapping("/{userId}/department")
+    public Mono<UserDepartmentDTO> fetchUserAndDepartment(@PathVariable Integer userId){
+        return userService.fetchUserAndDepartment(userId);
+    }
+}
+```
 ### Other Reactive Sources
 - Reactive Redis
 - Reactive Kafka
