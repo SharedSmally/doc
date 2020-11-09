@@ -1,8 +1,51 @@
 # Circuit Breaker
-- [Reference]()
+- [Project](https://spring.io/projects/spring-cloud-circuitbreaker)
+- [Resilience4J Reference](https://docs.spring.io/spring-cloud-circuitbreaker/docs/1.0.4.RELEASE/reference/html/)
+- [Tutorial](https://www.baeldung.com/spring-cloud-netflix-hystrix)
 - [Sample](https://spring.io/guides/gs/circuit-breaker/)
 
-##
+## Core Concepts
+- Circuit Breakers In non-Reactive Code
+```
+@Service
+public static class DemoControllerService {
+	private RestTemplate rest;
+	private CircuitBreakerFactory cbFactory;
+
+	public DemoControllerService(RestTemplate rest, CircuitBreakerFactory cbFactory) {
+		this.rest = rest;
+		this.cbFactory = cbFactory;
+	}
+
+	public String slow() {
+		return cbFactory.create("slow").run(() -> rest.getForObject("/slow", String.class), throwable -> "fallback");
+	}
+}
+```
+The CircuitBreakerFactory.create API will create an instance of a class called CircuitBreaker. The run method takes a Supplier and a Function. The Supplier is the code that you are going to wrap in a circuit breaker. The Function is the fallback that will be executed if the circuit breaker is tripped. The function will be passed the Throwable that caused the fallback to be triggered. You can optionally exclude the fallback if you do not want to provide one.
+
+- Circuit Breakers In Reactive Code
+```
+@Service
+public static class DemoControllerService {
+	private ReactiveCircuitBreakerFactory cbFactory;
+	private WebClient webClient;
+
+	public DemoControllerService(WebClient webClient, ReactiveCircuitBreakerFactory cbFactory) {
+		this.webClient = webClient;
+		this.cbFactory = cbFactory;
+	}
+
+	public Mono<String> slow() {
+		return webClient.get().uri("/slow").retrieve().bodyToMono(String.class).transform(
+		     it -> cbFactory.create("slow").run(it, throwable -> return Mono.just("fallback")));
+	}
+}
+```
+The ReactiveCircuitBreakerFactory.create API will create an instance of a class called ReactiveCircuitBreaker. The run method takes with a Mono or Flux and wraps it in a circuit breaker. You can optionally profile a fallback Function which will be called if the circuit breaker is tripped and will be passed the Throwable that caused the failure.
+
+
+## Netfix Hystrix
 - Dependencies: netflix-hystrix
 - Set up a Server Microservice Application
 ```
@@ -98,6 +141,7 @@ public class BookService {
 ```
 Apply @HystrixCommand to the original readingList() method, and a new method: reliable(). The @HystrixCommand annotation has reliable as its fallbackMethod. If, for some reason, Hystrix opens the circuit on readingList(), there is an excellent (short) placeholder reading list ready for your users.
 
+##
 
 ## [Concept](https://martinfowler.com/bliki/CircuitBreaker.html)
 - Pattern: 
