@@ -135,3 +135,15 @@ reactor.core.publisher.Mono<ResponseEntity<Void>>	toBodilessEntity()
          }
      });
 ```
+
+
+### R2DBC
+R2DBC stands for Reactive Relational Database Connectivity, an incubator to integrate relational databases using a reactive driver. Spring Data R2DBC provides familiar Spring abstractions and repository support for R2DBC. It helps Spring-powered applications to perform database operations in a reactive way. At this moment, only PostGres, MSSQL, and H2 support R2DBC drivers.
+
+### Other Reactive Sources
+- Reactive Redis
+- Reactive Kafka
+- Reactive mongodb
+- [Reactive Streams](https://docs.spring.io/spring-integration/reference/html/reactive-streams.html)
+
+
