@@ -4,6 +4,14 @@
 - [Tutorial](https://www.baeldung.com/spring-cloud-netflix-hystrix)
 - [Sample](https://spring.io/guides/gs/circuit-breaker/)
 
+Spring Cloud Circuit breaker provides an abstraction across different circuit breaker implementations. It provides a consistent API to use in your applications allowing you the developer to choose the circuit breaker implementation that best fits your needs for your app.
+
+Implementations:
+- Netfix Hystrix
+- Resilience4J
+- Sentinel
+- Spring Retry
+
 ## Core Concepts
 - Circuit Breakers In non-Reactive Code
 ```
