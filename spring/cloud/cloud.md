@@ -2,6 +2,23 @@
 - [Document](https://cloud.spring.io/spring-cloud-static/spring-cloud.htm)
 - [Tutorial](https://www.javatpoint.com/components-of-spring-cloud)
 
+## Cloud Commons
+- Config Server: Bus/Stream
+- Service Restry/Discovery
+- Circuit Breaker
+- Gateway: LoadBalance; Gateway; Zuul
+- Trace: Sleuth
+- Deploy: Skipper
+- Implementations:
+    - Consul:Config;Discovery;LoadBalance;Router
+    - Netfliex:Config;Discovery;LoadBalance;Router;Feign
+    - Zookeeper: Config; Discovery
+    - Vault: store security info
+    - Kubernetes: Discovery; Config; CS-LoadBalance
+- Common: Task; Function; Service/App Broker;
+
+CS-LB: Client-Side Load Balance
+
 ## Projects
 - Spring Cloud Commons
 - Spring Cloud [Gateway](https://docs.spring.io/spring-cloud-gateway/docs/2.2.5.RELEASE/reference/html/) and Client-side Load Balancer
