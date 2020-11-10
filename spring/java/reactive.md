@@ -52,11 +52,11 @@ public abstract class Flux<T> extends Object implements CorePublisher<T> {
    Flux<T>	take(...);
    <U> Flux<T>	timeout(...)
 
-   subscribe(); 
-   subscribe(Consumer<? super T> consumer); 
-   subscribe(Consumer<? super T> consumer, Consumer<? super Throwable> errorConsumer); 
-   subscribe(Consumer<? super T> consumer, Consumer<? super Throwable> errorConsumer, Runnable completeConsumer); 
-   subscribe(Consumer<? super T> consumer, Consumer<? super Throwable> errorConsumer, Runnable completeConsumer, Consumer<? super Subscription> subscriptionConsumer); 
+   Disposable subscribe(); 
+   Disposable subscribe(Consumer<? super T> consumer); 
+   Disposable subscribe(Consumer<? super T> consumer, Consumer<? super Throwable> errorConsumer); 
+   Disposable subscribe(Consumer<? super T> consumer, Consumer<? super Throwable> errorConsumer, Runnable completeConsumer); 
+   Disposable subscribe(Consumer<? super T> consumer, Consumer<? super Throwable> errorConsumer, Runnable completeConsumer, Consumer<? super Subscription> subscriptionConsumer); 
           
    static <T,V> Flux<V>	combineLatest(...)
    static <T> Flux<T>	concat/concatDelayError(...)
