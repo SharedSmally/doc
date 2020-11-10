@@ -103,6 +103,9 @@ Direct Known Subclasses: MonoOperator, MonoProcessor
 - Stream
 
 ## Interfaces in [concurrent](https://docs.oracle.com/javase/9/docs/api/java/util/concurrent/package-summary.html)
+- Architecture 
+![arch](https://drek4537l1klr.cloudfront.net/urma2/Figures/17fig03_alt.jpg)
+
 - [Publisher](https://docs.oracle.com/javase/9/docs/api/java/util/concurrent/Flow.Publisher.html)
 ```
 @FunctionalInterface
