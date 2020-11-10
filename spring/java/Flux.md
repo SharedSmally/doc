@@ -57,6 +57,19 @@ static <T> Flux<T> 	push(Consumer<? super FluxSink<T>> emitter, FluxSink.Overflo
 ```
 
 ### Creators
+- combine/concat/merge/zip
+- create/defer
+- error
+- first
+- from 
+- generate
+- interval
+- just
+- push
+- switchOnNext
+- using
+
+
 #### combine method
 - static <T,V> Flux<V> 	combineLatest(Function<Object[],V> combinator, int prefetch, Publisher<? extends T>... sources)
 
