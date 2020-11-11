@@ -1,4 +1,7 @@
 # Flux Samples
+- [Web Flux](https://docs.spring.io/spring-framework/docs/current/reference/html/web-reactive.html)
+- [Reactor](https://www.logicbig.com/tutorials/misc/reactive-programming/reactor/)
+- [flatMapSequential](https://www.logicbig.com/tutorials/misc/reactive-programming/reactor/flat-map-sequential.html)
 
 - [Cold vs Hot Publisher](http://www.vinsguru.com/reactive-programming-publisher-types-cold-vs-hot/)
 There are two types of Publishers in Reactor, Cold Publisher and Hot Publisher. 
@@ -46,7 +49,8 @@ public void exampleHotPublisher() throws InterruptedException {
 }
 ```
 
-- Schedulers (Concurrency Abstraction)
+- Schedulers (Concurrency Abstraction) with publishOn and subscribeOn
+
 In Reactor, the execution model and where the execution happens is determined by the Scheduler that is used and Publisher chain is completely agnostic of that. A Scheduler has scheduling responsibilities similar to an ExecutorService, but having a dedicated abstraction lets it do more, notably acting as a clock and enabling a wider range of implementations (virtual time for tests, trampolining or immediate scheduling, and so on).
 The Schedulers helper class has static factory methods that give access to the many types execution contexts easily:
      - Schedulers.immediate() — Does not spin any thread, the submitted Runnable will be directly executed, effectively running them on the current Thread
