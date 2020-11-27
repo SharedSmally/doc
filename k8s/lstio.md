@@ -1,5 +1,6 @@
 # lstio
-- [lstio](https://istio.io/latest/)
+- [lstio](https://istio.io/latest/): service mesh ![serviceMesh](https://www.redhat.com/cms/managed-files/service-mesh-1680.png)
+
 - ![Architecture](https://istio.io/latest/docs/ops/deployment/architecture/arch.svg)
 - Components
     - sidecar proxy (Envoy):
