@@ -1,4 +1,6 @@
-# BITSTRING
+# ASN1 data
+## BITSTRING
+```
 <wlan-ecid-MeasSupported>apSSID apSN apDevType apPhyType apRSSI apChanFreq apRTD ueTP ueAG apRepLoc non-serving historic apTP apAG ueSN ueRSSI</wlan-ecid-MeasSupported>
 16:  16 0xFF; 0xFF
 
@@ -29,4 +31,48 @@ wlan-ecid-MeasSupported    BIT    STRING    {
     apAG    (13),
     ueSN    (14),
     ueRSSI    (15)}    (SIZE(1..16)),
+```
+using [bitstrhelpers functions](https://www.obj-sys.com/docs/acv61/CCppRunTime/com/group__bitstrhelpers.shtml) to access size-varied bitstring: 
+bitIndex starts from 0.
+```
+int 	rtxSetBit (OSOCTET *pBits, OSUINT32 numbits, OSUINT32 bitIndex)
+OSUINT32 	rtxSetBitFlags (OSUINT32 flags, OSUINT32 mask, OSBOOL action)
+int 	rtxClearBit (OSOCTET *pBits, OSUINT32 numbits, OSUINT32 bitIndex)
+OSBOOL 	rtxTestBit (const OSOCTET *pBits, OSUINT32 numbits, OSUINT32 bitIndex)
+```
+
+## Iterator
+```
+ASN1T_EPDU_Sequence & epduSeq = r9->epdu_ProvideLocationInformation;
+ASN1C_EPDU_Sequence epduCSeq(epduSeq);
+ASN1CSeqOfListIterator * iter = epduCSeq.iterator();
+
+while( iter->hasNext()) {
+    ASN1T_EPDU * epdu = static_cast<lppv14_3::ASN1T_EPDU*>(iter->next());
+    // using EPDU
+    ASN1T_EPDU_Identifier & epduId = epdu->ePDU_Identifier;
+    ASN1T_EPDU_Body & epduBody = epdu->ePDU_Body;
+}
     
+EPDU-Sequence ::= SEQUENCE (SIZE (1..maxEPDU)) OF EPDU
+maxEPDU INTEGER ::= 16
+EPDU ::= SEQUENCE {
+        ePDU-Identifier                 EPDU-Identifier,
+        ePDU-Body                       EPDU-Body
+}
+
+ProvideLocationInformation-r9-IEs ::= SEQUENCE {
+        commonIEsProvideLocationInformation    CommonIEsProvideLocationInformation     OPTIONAL,
+        a-gnss-ProvideLocationInformation       A-GNSS-ProvideLocationInformation       OPTIONAL,
+        otdoa-ProvideLocationInformation        OTDOA-ProvideLocationInformation        OPTIONAL,
+        ecid-ProvideLocationInformation         ECID-ProvideLocationInformation         OPTIONAL,
+        epdu-ProvideLocationInformation         EPDU-Sequence                           OPTIONAL,
+        ...,
+        [[
+        sensor-ProvideLocationInformation-r13   Sensor-ProvideLocationInformation-r13   OPTIONAL,
+        tbs-ProvideLocationInformation-r13      TBS-ProvideLocationInformation-r13      OPTIONAL,
+        wlan-ProvideLocationInformation-r13     WLAN-ProvideLocationInformation-r13     OPTIONAL,
+        bt-ProvideLocationInformation-r13       BT-ProvideLocationInformation-r13       OPTIONAL
+        ]]
+}
+```
