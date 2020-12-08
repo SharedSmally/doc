@@ -103,3 +103,27 @@ ProvideLocationInformation-r9-IEs ::= SEQUENCE {
 
 ## Debug
 - using debug version of asn1 runtime libraries
+```
+unsigned char buf[ups::MAX_BUFFER_SIZE];
+ASN1PEREncodeBuffer encodeBuffer(buf, ups::MAX_BUFFER_SIZE, FALSE);
+ASN1C_ULP_PDU pduc(encodeBuffer, pdu);
+
+int16_t status(pduc.EncodeTo(encodeBuffer));
+
+if(status != RT_OK)
+{
+    ASN1Utils::printASNErrorInfo(encodeBuffer);
+}
+    
+    template< typename T >
+    inline void printASNErrorInfo(T &msg)
+    {
+        char buffer[ASN1_ERROR_SIZE];
+        size_t len(sizeof(buffer));
+        memset(buffer, 0, len);
+
+        msg.getErrorInfo(buffer, len);
+        DO_AppOutput(debug, std::endl << buffer);
+        SHOW_Trace(trace, "ASN1 Error Info: " << std::endl << buffer);
+    }
+```
