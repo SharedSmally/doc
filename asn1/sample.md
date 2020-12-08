@@ -123,7 +123,10 @@ if(status != RT_OK)
         memset(buffer, 0, len);
 
         msg.getErrorInfo(buffer, len);
-        DO_AppOutput(debug, std::endl << buffer);
-        SHOW_Trace(trace, "ASN1 Error Info: " << std::endl << buffer);
+        std::cout << "ASN1 Error Info: " << std::endl << buffer << std::endl;
     }
+    
+    printErrorInfo();   setDiag(true);
+    
+    lsof to check code libs
 ```
