@@ -41,6 +41,29 @@ int 	rtxClearBit (OSOCTET *pBits, OSUINT32 numbits, OSUINT32 bitIndex)
 OSBOOL 	rtxTestBit (const OSOCTET *pBits, OSUINT32 numbits, OSUINT32 bitIndex)
 ```
 
+For encode/decode of fixed-length bitstring:
+```
+nrci is a 36bits string:
+uint64_t nrci;
+
+encode:
+uint8_t ptr[5];
+*ptr++ = nrci >> 28;
+*ptr++ = (nrci >> 20) & 0xFF;
+*ptr++ = (nrci >> 12) & 0xFF;
+*ptr++ = (nrci >> 4) & 0xFF;
+*ptr++ = (nrci << 4) & 0xF0;
+
+decode:
+uint8_t buffer[5];
+nrci = 0;
+nrci |= static_cast<uint64_t> (*buffer++) >> 28;
+nrci |= static_cast<uint32_t> (*buffer++) >> 20;
+nrci |= static_cast<uint32_t> (*buffer++) >> 12;
+nrci |= static_cast<uint32_t> (*buffer++) >> 4;
+nrci |= static_cast<uint32_t> (*buffer++) << 4;
+```
+
 ## Iterator
 ```
 ASN1T_EPDU_Sequence & epduSeq = r9->epdu_ProvideLocationInformation;
@@ -76,3 +99,7 @@ ProvideLocationInformation-r9-IEs ::= SEQUENCE {
         ]]
 }
 ```
+
+
+## Debug
+- using debug version of asn1 runtime libraries
