@@ -1,7 +1,8 @@
 # ASN1 data
 ## BITSTRING
 ```
-<wlan-ecid-MeasSupported>apSSID apSN apDevType apPhyType apRSSI apChanFreq apRTD ueTP ueAG apRepLoc non-serving historic apTP apAG ueSN ueRSSI</wlan-ecid-MeasSupported>
+<wlan-ecid-MeasSupported>apSSID apSN apDevType apPhyType apRSSI apChanFreq apRTD ueTP ueAG
+      apRepLoc non-serving historic apTP apAG ueSN ueRSSI</wlan-ecid-MeasSupported>
 16:  16 0xFF; 0xFF
 
 <wlan-ecid-MeasSupported>apSSID apRSSI</wlan-ecid-MeasSupported>
