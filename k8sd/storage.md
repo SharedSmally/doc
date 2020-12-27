@@ -28,35 +28,35 @@ spec:
       fsType: ext4
 ```
 
-    - [configMap](https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/)
-    - secret:  pass sensitive information, such as passwords, to Pods.
-    - emptyDir: An emptyDir volume is first created when a Pod is assigned to a node, and exists as long as that Pod is running on that node.
-    - hostPath:  mounts a file or directory from the host node's filesystem into your Pod. 
-    - local: A local volume represents a mounted local storage device such as a disk, partition or directory.
-    - projected: maps several existing volume sources into the same directory.
-    - persistentVolumeClaim: mount a PersistentVolume into a Pod
+- [configMap](https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/)
+- secret:  pass sensitive information, such as passwords, to Pods.
+- emptyDir: An emptyDir volume is first created when a Pod is assigned to a node, and exists as long as that Pod is running on that node.
+- hostPath:  mounts a file or directory from the host node's filesystem into your Pod. 
+- local: A local volume represents a mounted local storage device such as a disk, partition or directory.
+- projected: maps several existing volume sources into the same directory.
+- persistentVolumeClaim: mount a PersistentVolume into a Pod
     
-    - awsElasticBlockStore
-    - azureDisk/azureFile
-    - cephfs
-    - cinder
-    - fc (fibre channel)
-    - gcePersistentDisk
-    - glusterfs
-    - iscsi
-    - nfs
-    - portworxVolume
-    - quobyte 
-    - rbd
-    - storageOS
-    - vsphereVolume   
+- awsElasticBlockStore
+- azureDisk/azureFile
+- cephfs
+- cinder
+- fc (fibre channel)
+- gcePersistentDisk
+- glusterfs
+- iscsi
+- nfs
+- portworxVolume
+- quobyte 
+- rbd
+- storageOS
+- vsphereVolume   
 
-- Persistent Volumes
-- Volume Snapshots
-- CSI Volume Cloning
-- Storage Classes
-- Volume Snapshot Classes
-- Dynamic Volume Provisioning
-- Storage Capacity
-- Ephemeral Volumes
-- Node-specific Volume Limits
+## Persistent Volumes
+## Volume Snapshots
+## CSI Volume Cloning
+## Storage Classes
+## Volume Snapshot Classes
+## Dynamic Volume Provisioning
+## Storage Capacity
+## Ephemeral Volumes
+## Node-specific Volume Limits
