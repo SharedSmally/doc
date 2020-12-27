@@ -1,6 +1,6 @@
 # Kerbenetes
 
-## Service
+## [Service](https://kubernetes.io/docs/concepts/services-networking/service/)
 
 A service enables network access to a set of Pods in Kubernetes.
 
@@ -16,12 +16,38 @@ It changes where a Service is able to be accessed from. The possible types are C
 - NodePort – This makes the service accessible on a static port on each Node in the cluster. This means that the service can handle requests that originate from outside the cluster.
 - LoadBalancer – The service becomes accessible externally through a cloud provider's load balancer functionality. GCP, AWS, Azure, and OpenStack offer this functionality. The cloud provider will create a load balancer, which then automatically routes requests to your Kubernetes Service
 
+selector: When the node receives a request on the static port (30163), "select pods with the label 'app' set to 'echo-hostname'", and forward the request to one of them
+  
+Three types of ports for a service (in ports):
+- nodePort - a static port assigned on each the node
+- port - port exposed internally in the cluster
+- targetPort - the container port to send requests to
 
 
-
-
-## Deployment
-
+## [Deployment](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/)
+```
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+  labels:
+    app: nginx
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:1.14.2
+        ports:
+        - containerPort: 80
+```
 
 
 
