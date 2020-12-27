@@ -1,13 +1,13 @@
 # [k8s Workload Resources](https://kubernetes.io/docs/concepts/workloads/controllers/)
-- Deployments: Provides declarative updates for Pods and ReplicaSets. (use/own ReplicaSet)
-- ReplicaSet: Maintain a stable set of replica Pods running at any given time. The successors to ReplicationControllers. 
-- ReplicationController: Same as ReplicaSet, except not support set-based selector 
-- StatefulSets: Manages the deployment and scaling of a set of Pods, and provides guarantees about the ordering and uniqueness of these Pods.
-- DaemonSet: A DaemonSet ensures that all (or some) Nodes run a copy of a Pod. 
-- Jobs: A Job creates one or more Pods and ensures that a specified number of them successfully terminate. 
-- CronJob: A CronJob creates Jobs on a repeating schedule.
-- Garbage Collection
-- TTL Controller for Finished Resources
+- **Deployments**: Provides declarative updates for Pods and ReplicaSets. (use/own ReplicaSet)
+- **ReplicaSet**: Maintain a stable set of replica Pods running at any given time. The successors to ReplicationControllers. 
+- **ReplicationController**: Same as ReplicaSet, except not support set-based selector 
+- **StatefulSets**: Manages the deployment and scaling of a set of Pods, and provides guarantees about the ordering and uniqueness of these Pods.
+- **DaemonSet**: A DaemonSet ensures that all (or some) Nodes run a copy of a Pod. 
+- **Jobs**: A Job creates one or more Pods and ensures that a specified number of them successfully terminate. 
+- **CronJob**: A CronJob creates Jobs on a repeating schedule.
+- **Garbage Collection**
+- **TTL Controller for Finished Resources**
 
 ## [Replicaset](https://kubernetes.io/docs/concepts/workloads/controllers/replicaset/)
 ```
