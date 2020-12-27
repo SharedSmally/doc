@@ -34,6 +34,59 @@ more ARG instructions, which declare arguments that are used in FROM lines in th
 - WORKDIR
 - ONBUILD 
 
+## Environment replacement
+Environment variables can also be used in certain instructions as variables to be interpreted by the Dockerfile.
+
+Environment variables are notated in the Dockerfile either with **$variable_name** or **${variable_name}**. They are treated equivalently and the brace syntax is typically used to address issues with variable names with no whitespace, like ${foo}_bar.
+
+The ${variable_name} syntax also supports a few of the standard bash modifiers:
+- **${variable:-word}**: if variable is set then the result will be that value. If variable is not set then word will be the result.
+- **${variable:+word}**: if variable is set then word will be the result, otherwise the result is the empty string.
+
+Environment variable substitution will use the same value for each variable throughout the entire instruction:
+```
+ENV abc=hello
+ENV abc=bye def=$abc   # def has a value of hello, not bye
+ENV ghi=$abc           # ghi has a value of bye
+```
+
+## [ADD vs COPY](https://phoenixnap.com/kb/docker-add-vs-copy)
+
+The basic syntax for the ADD command is:
+```
+ADD <src> … <dest>
+```
+It includes the source you want to copy (<src>) followed by the destination where you want to store it (<dest>). If the source is a directory, ADD copies everything inside of it (including file system metadata).
+
+For instance, if the file is locally available and you want to add it to the directory of an image, you type:
+```
+ADD /source/file/path  /destination/path
+```
+ADD can also copy files from a URL. It can download an external file and copy it to the wanted destination. For example:
+```
+ADD http://source.file/url  /destination/path
+```
+An additional feature is that it copies compressed files, automatically extracting the content in the given destination. This feature only applies to locally stored compressed files/directories.
+```
+ADD source.file.tar.gz /temp
+```
+Cannot download and extract a compressed file/directory from a URL. The command does not unpack external packages when copying them to the local filesystem.
+
+
+COPY only has only one assigned function: duplicate files/directories in a specified location in their existing format. This means that it doesn’t deal with extracting a compressed file, but rather copies it as-is.
+
+To use the COPY instruction, follow the basic command format:
+```
+COPY <src> … <dest> 
+```
+For example:
+```
+COPY /source/file/path  /destination/path 
+```
+
+If you need to copy from the local build context into a container, stick to using COPY.
+To sum up – use COPY. Avoid the ADD command unless you need to extract a local tar file.
+
 ## Parser directives
 The following parser directives are supported:
 - syntax
