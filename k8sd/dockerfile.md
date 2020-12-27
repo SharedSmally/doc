@@ -140,16 +140,15 @@ Or
 FROM [--platform=<platform>] <image>[@<digest>] [AS <name>]
 ```
 
-## RUN: execute any commands in a new layer on top of the current image and commit the results.
+## RUN
+Execute any commands in a new layer on top of the current image and commit the results.
 ```
 RUN <command> (shell form, the command is run in a shell, which by default is /bin/sh -c on Linux or cmd /S /C on Windows)
-```
-or
-```
 RUN ["executable", "param1", "param2"] (exec form)
 ```
 
-## CMD: provide defaults for an executing container.
+## CMD
+Provide defaults for an executing container.
 ```
 CMD ["executable","param1","param2"] (exec form, this is the preferred form)
 CMD ["param1","param2"] (as default parameters to ENTRYPOINT)
@@ -157,7 +156,8 @@ CMD command param1 param2 (shell form)
 ```
 There can only be one CMD instruction in a Dockerfile. If you list more than one CMD then only the last CMD will take effect.
 
-## LABEL: adds metadata to an image.
+## LABEL
+Adds metadata to an image.
 ```
 LABEL <key>=<value> <key>=<value> <key>=<value> ...
 ```
@@ -166,7 +166,8 @@ command to view image labels:
 docker image inspect --format='' myimage
 ```
 
-## EXPOSE: informs Docker that the container listens on the specified network ports at runtime
+## EXPOSE
+Informs Docker that the container listens on the specified network ports at runtime
 ```
 EXPOSE <port> [<port>/<protocol>...]
 ```
@@ -179,14 +180,16 @@ egardless of the EXPOSE settings, you can override them at runtime by using the 
 docker run -p 80:80/tcp -p 80:80/udp ...
 ```
 
-## ENV: sets the environment variable <key> to the value <value>
+## ENV
+sets the environment variable <key> to the value <value>
 ```
 ENV <key>=<value> ...
 ```
 The environment variables set using ENV will persist when a container is run from the resulting image. 
 ARG is not persisted in the final image.
 
-## ADD: copies new files, directories or remote file URLs and adds them to the filesystem of the image:
+## ADD (not recommended)
+Copies new files, directories or remote file URLs and adds them to the filesystem of the image:
 ```
 ADD [--chown=<user>:<group>] <src>... <dest>
 ADD [--chown=<user>:<group>] ["<src>",... "<dest>"]
@@ -204,13 +207,15 @@ ADD --chown=1 files* /somedir/
 ADD --chown=10:11 files* /somedir/
 ```
 
-## COPY: copies new files or directories from <src> and adds them to the filesystem of the container at the path <dest> 
+## COPY
+copies new files or directories from <src> and adds them to the filesystem of the container at the path <dest> 
 ```
 COPY [--chown=<user>:<group>] <src>... <dest>
 COPY [--chown=<user>:<group>] ["<src>",... "<dest>"]
 ```
 
-## ENTRYPOINT:  configure a container that will run as an executable.
+## ENTRYPOINT
+Configure a container that will run as an executable.
 ```
 ENTRYPOINT ["executable", "param1", "param2"]   # exec form
 ENTRYPOINT command param1 param2    #shell form
@@ -258,7 +263,8 @@ Both CMD and ENTRYPOINT instructions define what command gets executed when runn
 - CMD should be used as a way of defining default arguments for an ENTRYPOINT command or for executing an ad-hoc command in a container.
 - CMD will be overridden when running the container with alternative arguments.
 
-## VOLUME: creates a mount point and marks it as holding externally mounted volumes from native host or other containers. 
+## VOLUME
+Creates a mount point and marks it as holding externally mounted volumes from native host or other containers. 
 ```
 VOLUME ["/data"]
 ```
