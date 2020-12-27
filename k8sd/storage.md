@@ -51,12 +51,72 @@ spec:
 - storageOS
 - vsphereVolume   
 
-## Persistent Volumes
-## Volume Snapshots
-## CSI Volume Cloning
-## Storage Classes
-## Volume Snapshot Classes
-## Dynamic Volume Provisioning
+## [ersistent Volumes](https://kubernetes.io/docs/concepts/storage/persistent-volumes/)
+
+A PersistentVolume (PV) is a piece of storage in the cluster that has been provisioned by an administrator or dynamically provisioned using Storage Classes. It is a resource in the cluster just like a node is a cluster resource. PVs are volume plugins like Volumes, but have a lifecycle independent of any individual Pod that uses the PV. This API object captures the details of the implementation of the storage, be that NFS, iSCSI, or a cloud-provider-specific storage system.
+
+A PersistentVolumeClaim (PVC) is a request for storage by a user. It is similar to a Pod. Pods consume node resources and PVCs consume PV resources. Pods can request specific levels of resources (CPU and Memory). Claims can request specific size and access modes (e.g., they can be mounted ReadWriteOnce, ReadOnlyMany or ReadWriteMany).
+
+## [Volume Snapshots](https://kubernetes.io/docs/concepts/storage/volume-snapshots/)
+A VolumeSnapshot represents a snapshot of a volume on a storage system.
+
+Similar to how API resources PersistentVolume and PersistentVolumeClaim are used to provision volumes for users and administrators, VolumeSnapshotContent and VolumeSnapshot API resources are provided to create volume snapshots for users and administrators.
+
+A VolumeSnapshotContent is a snapshot taken from a volume in the cluster that has been provisioned by an administrator. It is a resource in the cluster just like a PersistentVolume is a cluster resource.
+
+A VolumeSnapshot is a request for snapshot of a volume by a user. It is similar to a PersistentVolumeClaim.
+
+## [CSI Volume Cloning](https://kubernetes.io/docs/concepts/storage/volume-pvc-datasource/)
+
+## [Storage Classes](https://kubernetes.io/docs/concepts/storage/storage-classes/)
+A StorageClass provides a way for administrators to describe the "classes" of storage they offer. Each StorageClass contains the fields provisioner, parameters, and reclaimPolicy, which are used when a PersistentVolume belonging to the class needs to be dynamically provisioned.
+
+## [Volume Snapshot Classes](https://kubernetes.io/docs/concepts/storage/volume-snapshot-classes/)
+VolumeSnapshotClass provides a way to describe the "classes" of storage when provisioning a volume snapshot.
+
+## [Dynamic Volume Provisioning](https://kubernetes.io/docs/concepts/storage/dynamic-provisioning/)
+Dynamic volume provisioning allows storage volumes to be created on-demand. It automatically provisions storage when it is requested by users.
+
 ## Storage Capacity
-## Ephemeral Volumes
+
+## [Ephemeral Volumes](https://kubernetes.io/docs/concepts/storage/ephemeral-volumes/)
+Some application need additional storage but don't care whether that data is stored persistently across restarts. For example, caching services are often limited by memory size and can move infrequently used data into storage that is slower than memory with little impact on overall performance.
+
+Other applications expect some read-only input data to be present in files, like configuration data or secret keys.
+
+Ephemeral volumes are designed for these use cases. Because volumes follow the Pod's lifetime and get created and deleted along with the Pod, Pods can be stopped and restarted without being limited to where some persistent volume is available.
+
+Ephemeral volumes are specified inline in the Pod spec, which simplifies application deployment and management.
+Types of ephemeral volumes
+
+Kubernetes supports several different kinds of ephemeral volumes for different purposes:
+
+- **emptyDir**: empty at Pod startup, with storage coming locally from the kubelet base directory (usually the root disk) or RAM
+- **configMap, downwardAPI, secret**: inject different kinds of Kubernetes data into a Pod
+- **CSI ephemeral volumes**: similar to the previous volume kinds, but provided by special CSI drivers which specifically support this feature
+- **generic ephemeral volumes**: can be provided by all storage drivers that also support persistent volumes
+    
+emptyDir, configMap, downwardAPI, secret are provided as local ephemeral storage. They are managed by kubelet on each node.
+
+CSI ephemeral volumes must be provided by third-party CSI storage drivers.
+```
+kind: Pod
+apiVersion: v1
+metadata:
+  name: my-csi-app
+spec:
+  containers:
+    - name: my-frontend
+      image: busybox
+      volumeMounts:
+      - mountPath: "/data"
+        name: my-csi-inline-vol
+      command: [ "sleep", "1000000" ]
+  volumes:
+    - name: my-csi-inline-vol
+      csi:
+        driver: inline.storage.kubernetes.io
+        volumeAttributes:
+          foo: bar
+```
 ## Node-specific Volume Limits
