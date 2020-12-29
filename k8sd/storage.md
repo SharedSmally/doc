@@ -1,5 +1,50 @@
 # [Storage](https://kubernetes.io/docs/concepts/storage/)
 
+## [Volume vs PersistVolume](https://matthewpalmer.net/kubernetes-app-developer/articles/kubernetes-volumes-example-nfs-persistent-volume.html)
+
+Pod includes multiple containers.
+
+In Kubernetes, each container can read and write to its own, isolated filesystem. But, data on that filesystem will be destroyed when the container is restarted.
+
+To solve this, Kubernetes has volumes. Volumes let your pod write to a filesystem that exists as long as the pod exists. Volumes also let you share data between containers in the same pod. But, data in that volume will be destroyed when the pod is restarted.
+
+To solve this, Kubernetes has persistent volumes. Persistent volumes are long-term storage in your Kubernetes cluster. Persistent volumes exist beyond containers, pods, and nodes. A pod uses a persistent volume claim to to get read and write access to the persistent volume.
+
+| Type of storage |	How long does it last? |
+| :---: | :---: | 
+| Container filesystem |	Container lifetime |
+| Volume 	| Pod lifetime |
+| Persistent volume |	Cluster lifetime |
+
+There are two steps for using a volume:
+- First, the pod defines the volume (Persistent volume, host filesystem, pod filesystem, PersistVolumeClaim, etc).
+- Second, the container uses volumeMounts to add that volume at a specific path (mountPath) in its filesystem.
+```
+kind: Pod
+apiVersion: v1
+metadata:
+  name: simple-volume-pod
+spec:
+  # Volumes are declared by the pod. They share its lifecycle and are communal across containers.
+  volumes:
+    # Volumes have a name and configuration based on the type of volume. we use the emptyDir volume type here
+    - name: simple-vol
+      emptyDir: {} # No extra configuration
+
+  # Now, one of our containers can mount this volume and use it like any other directory.
+  containers:
+    - name: my-container
+      volumeMounts:
+        - name: simple-vol # This is the name of the volume we set at the pod level
+          mountPath: /var/simple # Where to mount this directory in our container
+      
+      # Now that we have a directory mounted at /var/simple, let's write to a file inside it!
+      image: alpine
+      command: ["/bin/sh"]
+      args: ["-c", "while true; do date >> /var/simple/file.txt; sleep 5; done"]
+```
+
+
 ## [Volumes](https://kubernetes.io/docs/concepts/storage/volumes/)
 Kubernetes supports many types of volumes. A Pod can use any number of volume types simultaneously. 
 Ephemeral volume types have a lifetime of a pod, but persistent volumes exist beyond the lifetime of a pod. 
@@ -51,11 +96,11 @@ spec:
 - storageOS
 - vsphereVolume   
 
-## [ersistent Volumes](https://kubernetes.io/docs/concepts/storage/persistent-volumes/)
+## [Persistent Volumes](https://kubernetes.io/docs/concepts/storage/persistent-volumes/)
 
 A PersistentVolume (PV) is a piece of storage in the cluster that has been provisioned by an administrator or dynamically provisioned using Storage Classes. It is a resource in the cluster just like a node is a cluster resource. PVs are volume plugins like Volumes, but have a lifecycle independent of any individual Pod that uses the PV. This API object captures the details of the implementation of the storage, be that NFS, iSCSI, or a cloud-provider-specific storage system.
 
-A PersistentVolumeClaim (PVC) is a request for storage by a user. It is similar to a Pod. Pods consume node resources and PVCs consume PV resources. Pods can request specific levels of resources (CPU and Memory). Claims can request specific size and access modes (e.g., they can be mounted ReadWriteOnce, ReadOnlyMany or ReadWriteMany).
+A PersistentVolumeClaim (PVC) is a request for storage by a user. It is similar to a Pod. Pods consume node resources and PVCs consume PV resources. Pods can request specific levels of resources (CPU and Memory). Claims can request specific size and access modes (e.g., they can be mounted ReadWriteOnce, ReadOnlyMany or ReadWriteMany).  via storageClass to match PV or StorageClass to claim storage.
 
 ## [Volume Snapshots](https://kubernetes.io/docs/concepts/storage/volume-snapshots/)
 A VolumeSnapshot represents a snapshot of a volume on a storage system.
