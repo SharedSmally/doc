@@ -13,8 +13,8 @@ To solve this, Kubernetes has persistent volumes. Persistent volumes are long-te
 | Type of storage |	How long does it last? |
 | :---: | :---: | 
 | Container filesystem |	Container lifetime |
-| Volume 	| Pod lifetime |
-| Persistent volume |	Cluster lifetime |
+| Volume 	| Pod lifetime, used by container via volumeMounts |
+| Persistent volume |	Cluster lifetime, used by Pod via Persistent Volume Claim |
 
 There are two steps for using a volume:
 - First, the pod defines the volume (Persistent volume, host filesystem, pod filesystem, PersistVolumeClaim, etc).
