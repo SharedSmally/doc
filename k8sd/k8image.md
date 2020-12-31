@@ -24,6 +24,7 @@
 - Standard: [Open Container Initiative](https://opencontainers.org/) releases [image and runtime](https://opencontainers.org/release-notices/overview/)specs
 ### Implementation:
 - [Docker](https://www.docker.com/)
+
 The implementation of Docker before 1.1 was a monolithic daemon. The monolith did everything as one package such as downloading container images, launching container processes, exposing a remote API, and acting as a log collection daemon, all in a centralized process running as root. 
 
 The new architecture of Docker 1.11 after building it on runC and containerd:
@@ -32,6 +33,7 @@ The new architecture of Docker 1.11 after building it on runC and containerd:
 Runc is a CLI tool for spawning and running containers according to the OCI specification.
 
 - [containerd](https://containerd.io/)
+
 From a high level stand point, containerd is a daemon that controls runC.
 
 Containerd is available as a daemon for Linux and Windows. It manages the complete container lifecycle of its host system, from image transfer and storage to container execution and supervision to low-level storage to network attachments and beyond.
@@ -39,5 +41,9 @@ Containerd is available as a daemon for Linux and Windows. It manages the comple
 
 
 - [CRI-O](https://cri-o.io/)
+
 CRI-O is an implementation of the Kubernetes CRI (Container Runtime Interface) to enable using OCI (Open Container Initiative) compatible runtimes. It is a lightweight alternative to using Docker as the runtime for kubernetes. It allows Kubernetes to use any OCI-compliant runtime as the container runtime for running pods. 
 ![CRI-O architecture](https://cri-o.io/assets/images/architecture.png)
+
+The screenshot below illustrates the whole Kubernetes and CRI-O process:
+![CRI-O-k8s](https://computingforgeeks.com/wp-content/uploads/2019/12/Kubernetes-1024x620.png)
