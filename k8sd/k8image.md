@@ -22,7 +22,11 @@
    
 ## [Container runtimes](https://computingforgeeks.com/docker-vs-cri-o-vs-containerd/)
 - Standard: [Open Container Initiative](https://opencontainers.org/) releases [image and runtime](https://opencontainers.org/release-notices/overview/)specs
+
 ### Implementation:
+
+ All three, docker, containerd, cri-o,depend on runC at the lowest level to handle the running of containers. 
+ 
 - [Docker](https://www.docker.com/)
 
 The implementation of Docker before 1.1 was a monolithic daemon. The monolith did everything as one package such as downloading container images, launching container processes, exposing a remote API, and acting as a log collection daemon, all in a centralized process running as root. 
