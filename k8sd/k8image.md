@@ -1,7 +1,9 @@
 # docker images for K8s
-- k8server:
-- k8client:
-- k8image:
+- k8master: docker image for k8s server/master node: api-server + etcd + controller
+- k8server: docker image for k8s server/master node: api-server + controller
+- k8etcd:   docker image for k8s server/master node: etcd
+- k8worker: docker image for k8s client/worker node
+- k8image: image for pod container
     - k8image with [Virtual Machine Runtime](https://en.wikipedia.org/wiki/Comparison_of_application_virtualization_software)
     - k8java: with java VM
     - k8python: with python VM
