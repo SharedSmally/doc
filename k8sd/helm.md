@@ -55,6 +55,14 @@ $ helm uninstall nginx-ingress  # uninstall the release
 $ helm list  
 ```
 
+## Helm Charts and repositories
+- Adding an external Helm repository
+- Private repository - HTTP
+- Private repository - S3:  s3://bucketname
+- Private repository - GCS:  gs://bucketname
+- Private repository - Azure
+
+
 ## Helm CLI command
 - Common actions for Helm:
     - helm search:    search for charts
