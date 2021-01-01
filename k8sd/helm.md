@@ -3,6 +3,15 @@
 - [docs](https://helm.sh/docs/)
 
 ## Helm Tutorial
+
+A Chart is a Helm package. It contains all of the resource definitions necessary to run an application, tool, or service inside of a Kubernetes cluster. 
+
+A Repository is the place where charts can be collected and shared. It's the archive for Kubernetes packages.
+
+A Release is an instance of a chart running in a Kubernetes cluster. One chart can often be installed many times into the same cluster. And each time it is installed, a new release is created. Each one will have its own release, which will in turn have its own release name.
+
+Helm installs charts into Kubernetes, creating a new release for each installation. And to find new charts, you can search Helm chart repositories.
+
 - Install Helm 3 on Linux
 ```
 $ curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3
