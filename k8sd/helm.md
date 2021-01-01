@@ -20,6 +20,7 @@ helm installed into /usr/local/bin/helm
 
 - Add Helm Chart repository
 ```
+$ helm repo rm stable
 $ helm repo add stable https://charts.helm.sh/stable
 $ helm search repo stable   # list all charts
 ```
