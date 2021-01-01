@@ -22,7 +22,8 @@ helm installed into /usr/local/bin/helm
 ```
 $ helm repo rm stable
 $ helm repo add stable https://charts.helm.sh/stable
-$ helm search repo stable   # list all charts
+$ helm search repo stable   # list all charts in given repository
+$ helm search hub # searches the Artifact Hub, charts from different repositories.
 ```
 | Name	| Old Location |	New Location |
 | :---: | :---: | :---: |
