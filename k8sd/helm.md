@@ -24,6 +24,7 @@ $ helm repo add stable https://charts.helm.sh/stable
 $ helm search repo stable   # list all charts
 ```
 | Name	| Old Location |	New Location |
+| == | == | == |
 | stable |	https://kubernetes-charts.storage.googleapis.com |	https://charts.helm.sh/stable |
 | incubator	| https://kubernetes-charts-incubator.storage.googleapis.com | https://charts.helm.sh/incubator |
 
