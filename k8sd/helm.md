@@ -51,6 +51,7 @@ $ helm repo update
 $ helm show chart stable/nginx-ingress  # Get chart features:
 $ helm install nginx-ingress stable/nginx-ingress  # Install the chart
 $ helm ls  # Confirm installation: release
+$ helm status nginx-ingress  #
 $ helm uninstall nginx-ingress  # uninstall the release
 $ helm list  
 ```
