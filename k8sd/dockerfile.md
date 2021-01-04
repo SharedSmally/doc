@@ -15,6 +15,44 @@ $ docker build -t shykes/myapp:1.0.2 -t shykes/myapp:latest .
 - https://github.com/docker-library/
 - https://github.com/docker-library/openjdk
 
+In docker-Context here are the important informations you need.
+```
+    Alpine
+    Url: https://alpinelinux.org/
+    Shorty: Its very small.
+    Packagemanger: apk
+    Shells: /bin/sh
+    Size: Few MBs - current tag needs 2.7MB
+
+    Jessie aka Debian 8
+    Url: https://wiki.debian.org/DebianJessie
+    Shorty: All what you need, but LTS is running out. Click me for details
+    Packagemanager: apt
+    Shells: /bin/bash and many more
+    Size: Round about 50MB
+
+    Stretch aka Debian 9
+    Url: https://wiki.debian.org/DebianStretch
+    Shorty: All what you need
+    Packagemanager: apt
+    Shells: /bin/bash, many more
+    Size: Round about 40MB
+
+    Buster aka Debian 10
+    Url: https://wiki.debian.org/DebianBuster
+    Shorty: All what you need, but newer
+    Packagemanager: apt
+    Shells: /bin/bash and many more
+    Size: Round about 50MB
+
+    Ubuntu based on debain
+    Url: https://wiki.debian.org/DebianBuster
+    Shorty: All what you need - and some more
+    Packagemanager: apt
+    Shells: /bin/bash and more
+    Size: Round about 25MB
+```
+
 ## Docker file Format
 ```
 # Comment
