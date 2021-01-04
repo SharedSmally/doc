@@ -11,6 +11,10 @@ $ docker build -f /path/to/a/Dockerfile .
 $ docker build -t shykes/myapp:1.0.2 -t shykes/myapp:latest .
 ```
 
+## Docker images
+- https://github.com/docker-library/
+- https://github.com/docker-library/openjdk
+
 ## Docker file Format
 ```
 # Comment
