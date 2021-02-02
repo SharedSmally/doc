@@ -17,8 +17,8 @@ kubectl get pods
 kubectl delete pod ${name}-<id>
 ```
 
-# HA pOSTGREsql ON k8S
-- [Crunchy PostgreSQL Operator] (https://info.crunchydata.com/blog/deploy-high-availability-postgresql-on-kubernetes):Patroni for consensus management
+# HA Postgres ON k8S
+- [Crunchy PostgreSQL Operator](https://info.crunchydata.com/blog/deploy-high-availability-postgresql-on-kubernetes):Patroni for consensus management
 - [Stolon](https://github.com/sorintlab/stolon): Build-in keepers and sentinels, no need VIP/HAProxy
 
 # Health check:
