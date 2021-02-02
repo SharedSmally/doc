@@ -21,6 +21,13 @@ kubectl delete pod ${name}-<id>
 - [Crunchy PostgreSQL Operator](https://info.crunchydata.com/blog/deploy-high-availability-postgresql-on-kubernetes):Patroni for consensus management
 - [Stolon](https://github.com/sorintlab/stolon): Build-in keepers and sentinels, no need VIP/HAProxy
 
+# Kafka/zookeeper
+
+# Redis and Redis Sentinel
+
+# Service Mesh: 
+- [istio](https://istio.io):
+
 # Health check:
 return 200 OK in the RUNNING state, or 204 for other states with the corresponding message:
 ```
