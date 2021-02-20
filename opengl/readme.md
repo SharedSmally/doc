@@ -1,5 +1,55 @@
 # OpenGL
+## Linux OpenGL
+- Core OpenGL (GL: glXxx): functions begin with a prefix "gl" (e.g., glColor, glVertex, glTranslate, glRotate).
+- OpenGL Utility Library (GLU: gluXxx): built on-top of the core OpenGL to provide important utilities and more building models (such as qradric surfaces). 
+- OpenGL Utilities Toolkit (GLUT:glutXxx): provides support to interact with the Operating System (window, key and mouse inputs); and more building models (such as sphere and torus). Alternative of GLUT includes SDL, ....
+- OpenGL Extension Wrangler Library (GLEW): a cross-platform open-source C/C++ extension loading library. provides efficient run-time mechanisms for determining which OpenGL extensions are supported on the target platform(http://glew.sourceforge.net/).
 
+```
+apt-get install freeglut3 freeglut3-dev libglew-dev
+apt-get install mesa-utils
+```
+Sample code
+```
+#include <GL/gl.h>
+#include <GL/freeglut.h>
+
+void drawTriangle()
+{
+    glClearColor(0.4, 0.4, 0.4, 0.4);
+    glClear(GL_COLOR_BUFFER_BIT);
+
+    glColor3f(1.0, 1.0, 1.0);
+    glOrtho(-1.0, 1.0, -1.0, 1.0, -1.0, 1.0);
+
+    glBegin(GL_TRIANGLES);
+       glVertex3f(-0.7, 0.7, 0);
+       glVertex3f(0.7, 0.7, 0);
+       glVertex3f(0, -1, 0);
+    glEnd();
+
+    glFlush();
+}
+
+int main(int argc, char **argv)
+{
+    glutInit(&argc, argv);
+    glutInitDisplayMode(GLUT_SINGLE);
+    glutInitWindowSize(500, 500);
+    glutInitWindowPosition(100, 100);
+    glutCreateWindow("OpenGL - Creating a triangle");
+    glutDisplayFunc(drawTriangle);
+    glutMainLoop();
+    return 0;
+}
+```
+makefile:
+```
+main: hello
+
+hello: hello.cc
+	g++ -o $@ $< -lGL -lglut
+```
 ## PyOpengl
 - [Document](http://pyopengl.sourceforge.net/documentation/index.html)
 
