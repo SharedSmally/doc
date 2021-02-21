@@ -4,11 +4,16 @@
 - OpenGL Utility Library (GLU: gluXxx): built on-top of the core OpenGL to provide important utilities and more building models (such as qradric surfaces). 
 - OpenGL Utilities Toolkit (GLUT:glutXxx): provides support to interact with the Operating System (window, key and mouse inputs); and more building models (such as sphere and torus). Alternative of GLUT includes SDL, ....
 - OpenGL Extension Wrangler Library (GLEW): a cross-platform open-source C/C++ extension loading library. provides efficient run-time mechanisms for determining which OpenGL extensions are supported on the target platform(http://glew.sourceforge.net/).
-
+- Programmable Pipeline: vertex shaders and fragment shaders, using GLSL (GL Shader Language), See http://xed.ch/h/opengl.html
 ```
+
 apt-get install freeglut3 freeglut3-dev libglew-dev
 apt-get install libglut3-dev glutg3-dev freeglut3-dev
 apt-get install mesa-utils
+
+sudo apt-get install libglew1.5 libglewmx1.5 libglew1.5-dev libglewmx1.5-dev glew-utils
+#include <GL/glew.h>    
+-lGL -lGLU -lglut -lGLEW -lm
 ```
 Sample code
 ```
