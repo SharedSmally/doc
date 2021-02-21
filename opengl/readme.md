@@ -7,6 +7,7 @@
 
 ```
 apt-get install freeglut3 freeglut3-dev libglew-dev
+apt-get install libglut3-dev glutg3-dev freeglut3-dev
 apt-get install mesa-utils
 ```
 Sample code
