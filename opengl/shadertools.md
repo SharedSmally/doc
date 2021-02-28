@@ -1,4 +1,7 @@
 # Shader Tools
+## Turorials
+- [Learn OpenGL](https://learnopengl.com/G)
+
 
 ## [Shadertoy](https://www.shadertoy.com/)
 - [Create a new image](https://www.shadertoy.com/new)
