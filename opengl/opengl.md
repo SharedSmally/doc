@@ -1,8 +1,8 @@
 # opengl functions
 
 ## Tutorials
--[Learn opengl](https://learnopengl.com/Getting-started/Textures
--[OpenGL Programming](https://en.wikibooks.org/wiki/OpenGL_Programming]
+- [Learn opengl](https://learnopengl.com/Getting-started/Textures
+- [OpenGL Programming](https://en.wikibooks.org/wiki/OpenGL_Programming]
 
 
 ```
