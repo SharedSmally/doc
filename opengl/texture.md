@@ -1,5 +1,6 @@
 # Texture
--Tutorials: https://learnopengl.com/Getting-started/Textures
+-[Learn opengl](https://learnopengl.com/Getting-started/Textures
+-[OpenGL Programming](https://en.wikibooks.org/wiki/OpenGL_Programming]
 
 In order to map a texture to the triangle we need to tell each vertex of the triangle which part of the texture it corresponds to. Each vertex should thus have a texture coordinate associated with them that specifies what part of the texture image to sample from. Fragment interpolation then does the rest for the other fragments.
 
@@ -38,7 +39,7 @@ else
 stbi_image_free(data);
 ```
 
-## Vetices
+## Vetices 
 ```
 float vertices[] = {  // with attributes, such as color,textcoord,normal,frog
     // positions          // colors           // texture coords
@@ -86,6 +87,6 @@ Need tell OpenGL where to get the data for attribute 0 (first argument) from, an
 - vertices are read with a stride of 20 bytes
 - starting at byte 0 of the buffer
 
-
+## [Vetex with additional attributes](https://en.wikibooks.org/wiki/OpenGL_Programming/Modern_OpenGL_Tutorial_03)
 
 
