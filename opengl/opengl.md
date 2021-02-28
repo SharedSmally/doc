@@ -3,7 +3,7 @@
 ## Tutorials
 - [Learn opengl](https://learnopengl.com/Getting-started/Textures)
 - [OpenGL Programming](https://en.wikibooks.org/wiki/OpenGL_Programming)
-
+- [GLSL Programming](https://en.wikibooks.org/wiki/GLSL_Programming)
 
 ```
 #include <GL/gl.h>
