@@ -9,9 +9,9 @@ $ which python
 $HOME/dev3.8/bin/python
 $ python --version
 Python 3.8.5
+$ pip3 install numpy
 $ pip3 install wxpython
 $ pip3 install matplot
-$ pip3 install numpy
 $ pip3 install pgopengl
 ```
 Install eclipse with pydev
