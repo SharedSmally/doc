@@ -49,7 +49,7 @@ scintilla.Lexer = Lexer.Cpp;
 - [OpenGLContext tutorial](http://pyopengl.sourceforge.net/context/documentation.html): fails to install using: ```pip3 install openglcontext```
 
 ## GLCanvas Samples
-- [Sample1](# https://wiki.wxpython.org/GLCanvas%20update): keys.sort() => sorted(keys)
+- [Sample1](https://wiki.wxpython.org/GLCanvas%20update): keys.sort() => sorted(keys)
 - [Sample2](https://wiki.wxpython.org/GLCanvas)
 - [Sample3](https://community.khronos.org/t/rubberband-problems-using-opengl-wxpython/57581): Add self.context = glcanvas.GLContext(self)
 
