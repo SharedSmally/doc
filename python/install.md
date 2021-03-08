@@ -13,7 +13,8 @@ $ pip3 install numpy
 $ pip3 install wxpython
 $ pip3 install matplot
 
-$ python3 install PyOpenGL PyOpenGL_accelerate
+$ pip3 install PyOpenGL PyOpenGL_accelerate  (OpenGL2); need OpenGL3.0 for shader, use Modern GL
+# pip3 install PyOpenGL==3.0.2
 $ python3 install pygame 
 ```
 Install eclipse with pydev
@@ -31,6 +32,8 @@ Install eclipse with pydev
 - Rich Text Editor:[RichTextCtrl](https://wxpython.org/Phoenix/docs/html/wx.richtext.RichTextCtrl.html)
 - STC Styled Editor:[wxStyledTextCtrl](https://wxpython.org/Phoenix/docs/html/wx.stc.StyledTextCtrl.html#phoenix-title-wx-stc-styledtextctrl) and [API](https://wxpython.org/Phoenix/docs/html/wx.stc.StyledTextCtrl.html)
     - [Automatic Syntax Highlighting](https://github.com/jacobslusser/ScintillaNET/wiki/Automatic-Syntax-Highlighting): using Lexer.
+    - [Lexer](https://wiki.wxpython.org/StyledTextCtrl%20Lexer%20Quick%20Reference)
+    - [Customized Lexer](https://wiki.wxwidgets.org/Adding_a_custom_lexer_with_syntax_highlighting_and_folding_to_a_WxStyledTextCtrl)
 ```
 scintilla.Lexer = Lexer.Cpp;
 ```
@@ -41,6 +44,21 @@ scintilla.Lexer = Lexer.Cpp;
 - [GLCanvas wiki](https://wiki.wxwidgets.org/WxGLCanvas)
 - [GlCanvas sample](https://wiki.wxpython.org/GLCanvas%20update)
 - [PyGame](https://stackabuse.com/advanced-opengl-in-python-with-pygame-and-pyopengl/)
+- [Opengl Tutorial](https://open.gl/drawing)
+- [PyOpenGL tutorial](http://pyopengl.sourceforge.net/context/documentation.html)
+- [OpenGLContext tutorial](http://pyopengl.sourceforge.net/context/documentation.html): fails to install using: ```pip3 install openglcontext```
+
+## GLCanvas Samples
+- [Sample1](# https://wiki.wxpython.org/GLCanvas%20update): keys.sort() => sorted(keys)
+- [Sample2](https://wiki.wxpython.org/GLCanvas)
+- [Sample3](https://community.khronos.org/t/rubberband-problems-using-opengl-wxpython/57581): Add self.context = glcanvas.GLContext(self)
+
+For the older (before wx 2.7.x) and simpler method, create a wxGLCanvas window using one of the three constructors that implicitly create a rendering context, call wxGLCanvas::SetCurrent to direct normal OpenGL commands to the window, and then call wxGLCanvas::SwapBuffers to show the OpenGL buffer on the window.
+
+For the newer (wx 2.7.x+) method, create a wxGLCanvas window using the constructor that does not create an implicit rendering context, create an explicit instance of a wxGLContext that is initialized with the wxGLCanvas yourself, then use either wxGLCanvas::SetCurrent with the instance of the wxGLContext or wxGLContext::SetCurrent with the instance of the wxGLCanvas to bind the OpenGL state that is represented by the rendering context to the canvas, and then call wxGLCanvas::SwapBuffers to swap the buffers of the OpenGL canvas and thus show your current output.
+
+To set up the attributes for the canvas (number of bits for the depth buffer, number of bits for the stencil buffer and so on) you should set up the correct values of the attribList parameter. The values that should be set up and their meanings will be described below.
+
 ```
 import pygame as pg
 from pygame.locals import *
