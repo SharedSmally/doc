@@ -5,16 +5,19 @@ Python 2.7.18
 $ sudo apt-get install python3.8 python3.8-dev python3.8-distutils python3.8-venv
 $ python3.8 -m venv dev3.8/
 $ source dev3.8/bin/activate
+
 $ which python
 $HOME/dev3.8/bin/python
 $ python --version
+
 Python 3.8.5
+$ pip3 install OpenGL
+
 $ pip3 install numpy
 $ pip3 install wxpython
 $ pip3 install matplot
 
-$ pip3 install PyOpenGL PyOpenGL_accelerate  (OpenGL2); need OpenGL3.0 for shader, use Modern GL
-# pip3 install PyOpenGL==3.0.2
+$ pip3 install PyOpenGL PyOpenGL_accelerate  (include OpenGL)
 $ python3 install pygame 
 ```
 Install eclipse with pydev
