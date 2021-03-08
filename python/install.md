@@ -53,6 +53,8 @@ scintilla.Lexer = Lexer.Cpp;
 - [Sample2](https://wiki.wxpython.org/GLCanvas)
 - [Sample3](https://community.khronos.org/t/rubberband-problems-using-opengl-wxpython/57581): Add self.context = glcanvas.GLContext(self)
 
+Make sure the frame is shown before calling SetCurrent
+
 For the older (before wx 2.7.x) and simpler method, create a wxGLCanvas window using one of the three constructors that implicitly create a rendering context, call wxGLCanvas::SetCurrent to direct normal OpenGL commands to the window, and then call wxGLCanvas::SwapBuffers to show the OpenGL buffer on the window.
 
 For the newer (wx 2.7.x+) method, create a wxGLCanvas window using the constructor that does not create an implicit rendering context, create an explicit instance of a wxGLContext that is initialized with the wxGLCanvas yourself, then use either wxGLCanvas::SetCurrent with the instance of the wxGLContext or wxGLContext::SetCurrent with the instance of the wxGLCanvas to bind the OpenGL state that is represented by the rendering context to the canvas, and then call wxGLCanvas::SwapBuffers to swap the buffers of the OpenGL canvas and thus show your current output.
