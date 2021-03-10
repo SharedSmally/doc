@@ -12,3 +12,6 @@
 - [Unreal](https://www.unrealengine.com)
 - [Blender](https://www.blender.org/)
 - [UPBGE](https://upbge.org/)
+- [Quixel Bridge](https://quixel.com/bridge)
+
+Cloud (DataCenter)<------------>Edge<-------------->Terminal
