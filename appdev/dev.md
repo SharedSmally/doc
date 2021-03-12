@@ -83,4 +83,8 @@ $ DESTDIR=/home/vagrant/pkgs meson install -C build
     ninja -C build
 ```
 - ssh:
+- unixODBC
+- sqlite3
+- expat
+- xerces
 - 
