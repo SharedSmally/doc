@@ -27,7 +27,7 @@ $ vagrant plugin install vagrant-libvirt
   config.vm.provision "shell", inline: <<-SHELL
      sudo yum update -y
      sudo yum install epel-release -y
-     sudo yum groupinstall -y "Development Tools"  # includ gcc,g++,make,.... kernel needs perl
+     sudo yum groupinstall -y "Development Tools"  # includ gcc,g++,make,.... kernel needs perl(8.3.1)
 
      sudo yum install -y binutils bison flex 
      sudo yum install -y gcc gcc-c++ gdb glibc-devel 
