@@ -56,7 +56,8 @@ sudo yum install -y java-1.8.0-openjdk-headless   # already installed in centos
 sudo yum install -y java-1.8.0-openjdk        # JRE 8
 sudo yum install -y java-1.8.0-openjdk-devel  # JDK 8
 ```
-    - Oracle JDK
+
+   - Oracle JDK
 ```
 curl -LO -H "Cookie: oraclelicense=accept-securebackup-cookie" \
 "http://download.oracle.com/otn-pub/java/jdk/11.0.1+13/90cf5d8f270a4347a95050320eef3fb7/jdk-11.0.1_linux-x64_bin.rpm"
