@@ -1,4 +1,79 @@
 # Build k8s cluster
+## [Architecture]()
+![](https://d33wubrfki0l68.cloudfront.net/2475489eaf20163ec0f54ddc1d92aa8d4c87c96b/e7c81/images/docs/components-of-kubernetes.svg)
+- [Container runtime]((https://kubernetes.io/docs/setup/production-environment/container-runtimes/)): for all nodes
+    - containerd
+    - Docker
+    - CRI-O
+- [etcd](https://github.com/etcd-io/etcd/blob/release-3.4/Documentation/op-guide/clustering.md): access by master, bootstrapping via:
+    - Static
+    - etcd Discovery
+    - DNS Discovery
+- master(Control-Plane)
+    - apiServer
+    - controllerManager
+    - scheduler
+    - cloud-controller-manager
+- worker
+    - kubelet
+    - kube-proxy 
+
+## [Components](https://kubernetes.io/docs/concepts/overview/components/)
+The components on a node include the kubelet, a container runtime, and the kube-proxy
+
+### [etcd Cluster Guide](https://github.com/etcd-io/etcd/blob/release-3.4/Documentation/op-guide/clustering.md)
+
+### [Container runtime](https://kubernetes.io/docs/setup/production-environment/container-runtimes/)
+Install a container runtime into each node in the cluster:
+- containerd
+- Docker
+- CRI-O
+
+### flannel for cluster network
+
+###
+
+### Bootstrapping clusters
+- [Local with kubeadm](https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/)
+- [AWS with kops](https://kubernetes.io/docs/setup/production-environment/tools/kops/)
+- [Clouds with Kubespray](https://kubernetes.io/docs/setup/production-environment/tools/kubespray/)
+- [Cloud Providers](https://kubernetes.io/docs/setup/production-environment/turnkey-solutions/)
+
+### [kubectl cheatsheet](https://kubernetes.io/docs/reference/kubectl/cheatsheet/)
+```
+kubectl get svc
+kubectl describe svc
+kubectl delete svc
+kubectl apply -f example-controller.yaml
+kubectl exec -it <pod-name> -- /bin/bash
+kubectl logs <pod-name>
+```
+- [Resource Types](https://kubernetes.io/docs/reference/kubectl/overview/#resource-types)
+    - configmaps/cm
+    - nodes/no
+    - pods/po
+    - services/svc
+    - endpoints/ep
+    - daemonsets/ds
+    - replicasets/rs	
+    - statefulsets/sts
+    - cronjobs/cj
+    - deployments/deploy
+    - ingresses/ing
+    - namespaces/ns
+    - networkpolicies/netpol
+    - podsecuritypolicies/psp
+    - priorityclasses/pc
+    - storageclasses/sc
+    - persistentvolumeclaims/pvc
+    - persistentvolumes/pv
+    - poddisruptionbudgets/pdb
+    - componentstatuses/cs
+    - events/ev
+    - limitranges/limits
+
+
+## Setup
 - [Setup k8s cluster](https://medium.com/swlh/setup-own-kubernetes-cluster-via-virtualbox-99a82605bfcc)
 - [Sample 1](https://gist.github.com/danielepolencic/ef4ddb763fd9a18bf2f1eaaa2e337544)
 Vagrantfile for VirtualBox and Vagrant: 
