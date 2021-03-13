@@ -20,7 +20,7 @@
 - worker
     - kubelet
     - kube-proxy 
-- hyberkube
+- hyberkube (docker image) 
 Kubernetes is a set of daemons/binaries:
     - kube-apiserver (AKA the master),
     - kube-scheduler (resources manager)
@@ -76,7 +76,10 @@ Install a container runtime into each node in the cluster:
 
 ### flannel for cluster network
 
-###
+### [podman](http://docs.podman.io/en/latest/)
+ Tool to find, run, build, share and deploy applications using Open Containers Initiative (OCI) Containers (including docker) and Container Images(docker image).
+
+
 
 ### Bootstrapping clusters
 - [Local with kubeadm](https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/)
