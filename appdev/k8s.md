@@ -1,7 +1,7 @@
 # Build k8s cluster
 ## [Architecture]()
 ![](https://d33wubrfki0l68.cloudfront.net/2475489eaf20163ec0f54ddc1d92aa8d4c87c96b/e7c81/images/docs/components-of-kubernetes.svg)
-- [CoreOS](https://getfedora.org/coreos?stream=stable): replaced by Fedora CoreOS: kernel; network; container runtime
+- [CoreOS](https://getfedora.org/coreos?stream=stable): replaced by Fedora CoreOS: only need kernel; network-flannel; container runtime (k8os)
     - [coreos-vagrant](https://github.com/coreos/coreos-vagrant): 2018
     - [vagrant coreos](https://github.com/meltwater/vagrant-coreos)
 - [Container runtime]((https://kubernetes.io/docs/setup/production-environment/container-runtimes/)): for all nodes
@@ -12,12 +12,12 @@
     - Static
     - etcd Discovery
     - DNS Discovery
-- master(Control-Plane)
+- master(Control-Plane): k8os-master=k8os+master components
     - apiServer
     - controllerManager
     - scheduler
     - cloud-controller-manager
-- worker
+- worker: k8os-worker=k8os+worker components
     - kubelet
     - kube-proxy 
 - hyberkube (docker image) 
