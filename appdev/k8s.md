@@ -1,6 +1,9 @@
 # Build k8s cluster
 ## [Architecture]()
 ![](https://d33wubrfki0l68.cloudfront.net/2475489eaf20163ec0f54ddc1d92aa8d4c87c96b/e7c81/images/docs/components-of-kubernetes.svg)
+- [CoreOS](https://getfedora.org/coreos?stream=stable): replaced by Fedora CoreOS
+    - [coreos-vagrant](https://github.com/coreos/coreos-vagrant): 2018
+    - [vagrant coreos](https://github.com/meltwater/vagrant-coreos)
 - [Container runtime]((https://kubernetes.io/docs/setup/production-environment/container-runtimes/)): for all nodes
     - containerd
     - Docker
