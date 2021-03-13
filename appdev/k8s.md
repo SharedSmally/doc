@@ -20,7 +20,42 @@
 - worker: k8os-worker=k8os+worker components
     - kubelet
     - kube-proxy 
-- hyberkube (docker image) 
+- CNI(container network interface) [Providers](https://rancher.com/blog/2019/2019-03-21-comparing-kubernetes-cni-providers-flannel-calico-canal-and-weave/)
+How the container connects to other containers, the host, and outside networks. The implementaions:
+    - [Flannel](https://github.com/flannel-io/flannel): layer 3 IPv4 overlay network on VXLAN
+    - [Calico](https://www.projectcalico.org/): performance, flexibility, and power,layer 3 network using BGP routing protocol; networking policy capabilities 
+    - [Canal](https://github.com/projectcalico/canal): Flannel+Calico
+    - [Weave](https://www.weave.works/): Creates a mesh overlay network  
+
+## [Components](https://kubernetes.io/docs/concepts/overview/components/)
+The components on a node include the kubelet, a container runtime, and the kube-proxy
+
+### [etcd Cluster Guide](https://github.com/etcd-io/etcd/blob/release-3.4/Documentation/op-guide/clustering.md)
+
+### [Container runtime](https://kubernetes.io/docs/setup/production-environment/container-runtimes/)
+Install a container runtime into each node in the cluster:
+- containerd
+- Docker
+- CRI-O
+
+### CNI Providers
+- Flannel
+- Calico
+- Canal
+- Weave
+
+
+### [podman](http://docs.podman.io/en/latest/)
+ Tool to find, run, build, share and deploy applications using Open Containers Initiative (OCI) Containers (including docker) and Container Images(docker image).
+
+###[Istio](https://istio.io/): a service mesh
+[Core features](https://istio.io/latest/docs/ops/deployment/):
+- Traffic management: control the flow of traffic and API calls between services
+- Security: provides the underlying secure communication channel, and manages authentication, authorization, and encryption of service communication at scale.
+- Observability: tracing, monitoring, and logging to provide insights into service mesh deployment
+![Architecture](https://istio.io/latest/docs/ops/deployment/architecture/arch.svg)
+
+### hyperkube (docker image) 
 Kubernetes is a set of daemons/binaries:
     - kube-apiserver (AKA the master),
     - kube-scheduler (resources manager)
@@ -62,23 +97,6 @@ sudo docker run \
       --cluster-dns=10.0.0.10 \
       --cluster-domain=cluster.local
 ```
-
-## [Components](https://kubernetes.io/docs/concepts/overview/components/)
-The components on a node include the kubelet, a container runtime, and the kube-proxy
-
-### [etcd Cluster Guide](https://github.com/etcd-io/etcd/blob/release-3.4/Documentation/op-guide/clustering.md)
-
-### [Container runtime](https://kubernetes.io/docs/setup/production-environment/container-runtimes/)
-Install a container runtime into each node in the cluster:
-- containerd
-- Docker
-- CRI-O
-
-### flannel for cluster network
-
-### [podman](http://docs.podman.io/en/latest/)
- Tool to find, run, build, share and deploy applications using Open Containers Initiative (OCI) Containers (including docker) and Container Images(docker image).
-
 
 
 ### Bootstrapping clusters
