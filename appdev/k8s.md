@@ -1,7 +1,7 @@
 # Build k8s cluster
 ## [Architecture]()
 ![](https://d33wubrfki0l68.cloudfront.net/2475489eaf20163ec0f54ddc1d92aa8d4c87c96b/e7c81/images/docs/components-of-kubernetes.svg)
-- [CoreOS](https://getfedora.org/coreos?stream=stable): replaced by Fedora CoreOS
+- [CoreOS](https://getfedora.org/coreos?stream=stable): replaced by Fedora CoreOS: kernel; network; container runtime
     - [coreos-vagrant](https://github.com/coreos/coreos-vagrant): 2018
     - [vagrant coreos](https://github.com/meltwater/vagrant-coreos)
 - [Container runtime]((https://kubernetes.io/docs/setup/production-environment/container-runtimes/)): for all nodes
@@ -20,6 +20,48 @@
 - worker
     - kubelet
     - kube-proxy 
+- hyberkube
+Kubernetes is a set of daemons/binaries:
+    - kube-apiserver (AKA the master),
+    - kube-scheduler (resources manager)
+    - kube-controller-manager (monitor RC, and maintain the desired state)
+    - kubelet (start/stop containers, sync conf.),
+    - kube-proxy (expose services on each node)
+    - kubectl (client CLI)
+The hyperkube binary is an all in one binary combining all the previously separate binaries. 
+The command runs the daemon kubelet:
+```
+hyperkube kubelet \
+  --api-servers=http://localhost:8080 \
+  --v=2 \
+  --address=0.0.0.0 \
+  --enable-server \
+  --hostname-override=127.0.0.1 \
+  --config=/etc/kubernetes/manifests-multi \
+  --cluster-dns=10.0.0.10 \
+  --cluster-domain=cluster.local
+```
+or
+```
+sudo docker run \
+    --volume=/:/rootfs:ro \
+    --volume=/sys:/sys:ro \
+    --volume=/dev:/dev \
+    --volume=/var/lib/docker/:/var/lib/docker:rw \
+    --volume=/var/lib/kubelet/:/var/lib/kubelet:rw \
+    --volume=/var/run:/var/run:rw \
+    --net=host \
+    --privileged=true \
+    --pid=host \
+    -d gcr.io/google_containers/hyperkube:v${K8S_VERSION} \
+    /hyperkube kubelet \
+      --api-servers=http://localhost:8080 \
+      --v=2 --address=0.0.0.0 --enable-server \
+      --hostname-override=127.0.0.1 \
+      --config=/etc/kubernetes/manifests-multi \
+      --cluster-dns=10.0.0.10 \
+      --cluster-domain=cluster.local
+```
 
 ## [Components](https://kubernetes.io/docs/concepts/overview/components/)
 The components on a node include the kubelet, a container runtime, and the kube-proxy
