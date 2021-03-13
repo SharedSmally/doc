@@ -1,4 +1,5 @@
 # Build k8s cluster
+- [Setup](https://medium.com/swlh/setup-own-kubernetes-cluster-via-virtualbox-99a82605bfcc)
 - [Sample 1](https://gist.github.com/danielepolencic/ef4ddb763fd9a18bf2f1eaaa2e337544)
 Vagrantfile for VirtualBox and Vagrant: 
 ```
