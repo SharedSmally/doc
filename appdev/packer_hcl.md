@@ -68,7 +68,7 @@ build {
 }
 ```
 
-## [Builder]
+## [Builder](https://www.packer.io/docs/builders)
 Create machines and generating images from them for various platforms
 - [Community builders](https://www.packer.io/community-tools#community-builders)
 - [Jeff Geerling's Vagrant Box Packer Builds](https://github.com/geerlingguy/packer-boxes/blob/master/README.md)
@@ -156,7 +156,7 @@ build {
 }
 ```
 
-## [variable block](https://www.packer.io/docs/templates/hcl_templates/blocks/variable)
+## [variable block](https://www.packer.io/docs/templates/hcl_templates/blocks/variable) and [template](https://www.packer.io/docs/templates/hcl_templates/variables)
 - Types:
     - string
     - number
@@ -172,11 +172,44 @@ variable "image_id" {
   description = "The id of the machine image (AMI) to use for the server."
 }  
 ```
+Build Variables:
+  - name Represents the name of the build block being run. This is different than the name of the source block being run.
+  - ID: Represents the vm being provisioned. For example, in Amazon it is the instance id; in digitalocean, it is the droplet id; in Vmware, it is the vm name.
+  - Host, Port, User and Password: The host, port, user, and password that Packer uses to access the machine. 
+  - ConnType: Type of communicator being used. For example, for SSH communicator this will be "ssh".
+  - PackerRunUUID: Current build's unique id. Can be used to specify build artifacts. 
+  - PackerHTTPIP, PackerHTTPPort, and PackerHTTPAddr: HTTP IP, port, and address of the file server Packer creates to serve items in the "http" dir to the vm. The HTTP address is displayed in the format IP:PORT.
+  - SSHPublicKey and SSHPrivateKey: The public and private key that Packer uses to connect to the instance. 
 
-## [locals block](https://www.packer.io/docs/templates/hcl_templates/blocks/locals)
+## [locals block](https://www.packer.io/docs/templates/hcl_templates/blocks/locals) and [templates](https://www.packer.io/docs/templates/hcl_templates/locals)
+```
+local "mylocal" {
+  expression = "${var.secret_api_key}"
+  sensitive  = true
+}
+
+locals {
+  instance_ids = "${concat(aws_instance.blue.*.id, aws_instance.green.*.id)}"
+}
+
+locals {
+  default_name_prefix = "${var.project_name}-web"
+  name_prefix         = "${var.name_prefix != "" ? var.name_prefix : local.default_name_prefix}"
+}
+```
 
 ## [packer Block](https://www.packer.io/docs/templates/hcl_templates/blocks/packer)
-
+```
+packer {
+  required_plugins {
+    happycloud = {
+      version = ">= 2.7.0"
+      source = "github.com/hashicorp/happycloud"
+    }
+  }
+  required_version = ">= 1.2.0, < 2.0.0"
+}
+```
 ## [data block](https://www.packer.io/docs/templates/hcl_templates/datasources):
 Defines data sources within Packer configuration, used in locals and sources configuration.
 It requests that Packer read from a given data source ("amazon-ami") and export the result under the given local name ("example"). 
@@ -204,6 +237,11 @@ locals {
 Packer support [Amazon Data Sources](https://www.packer.io/docs/datasources/amazon) now:
 - amazon-ami: Filter and fetch an Amazon AMI to output all the AMI information.
 - amazon-secretsmanager: Retrieve information about a Secrets Manager secret version, including its secret value.
+
+## [Expressions](https://www.packer.io/docs/templates/hcl_templates/expressions)
+
+## [Functions](https://www.packer.io/docs/templates/hcl_templates/functions)
+
 
 ## [Communicators](https://www.packer.io/docs/communicators)
 Communicators are the mechanism Packer uses to upload files, execute scripts, etc. on the machine being created, and are configured within the builder section.
