@@ -1,15 +1,32 @@
 # [Packer](https://www.packer.io/): Build Automated Machine Images on many platforms
 - [Documents](https://www.packer.io/docs/)
 - [packer CLI](https://www.packer.io/docs/commands)
-    - init
-    - build
-    - console
-    - fix
-    - fmt
-    - inspect
-    - validate
-    - hcl2_upgrade
 - [Quick Start](https://learn.hashicorp.com/collections/packer/getting-started)
+
+## [packer CLI](https://www.packer.io/docs/commands)
+- [init](https://www.packer.io/docs/commands/init): download Packer plugin binaries.
+      - ```-upgrade```: get the latest versions for all plugins.
+- [build](https://www.packer.io/docs/commands/build):takes a template and runs all the builds within it to generate a set of artifacts.
+      - ```-var```: Set a variable in your packer template. 
+      - ```-var-file```: Set template variables from a file.   
+- [console](https://www.packer.io/docs/commands/console): print out the variables
+- [fmt](https://www.packer.io/docs/commands/fmt): format HCL2 configuration files to a canonical format and style
+- [fix](https://www.packer.io/docs/commands/fix):finds backwards incompatible parts
+- [inspect](https://www.packer.io/docs/commands/inspect):outputs the various components a template defines.
+- [validate](https://www.packer.io/docs/commands/validate): validate the syntax and configuration of a template
+
+The format with ```-machine-readable``` flag is:
+```
+timestamp,target,type,data...
+```
+ The Message Types for ```packer build```:
+- ui: human-readable string that would be sent to stdout even not in machine-readable mode
+     - say: in a non-machine-readable format, this would be bolded. Normally it is used for anouncements about beginning new steps in the build process
+     - message: the most commonly used message type, used for basic updates during the build process.
+     - error: reserved for errors
+- artifact-count: how many artifacts a particular build produced.
+- artifact: about what Packer created during its build. An example output pattern:```timestamp, buildname, artifact, artifact_number, key, value``` where key and value contain information about the artifact.
+
 
 ## The [Template](https://www.packer.io/docs/templates): 
 The configuration file to define what  and how a image will be built use the Hashicorp Configuration Language (HCL). 
