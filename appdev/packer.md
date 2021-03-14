@@ -37,7 +37,7 @@ The configuration file to define what  and how a image will be built use the Has
 ### [HCL template](https://www.packer.io/docs/templates/hcl_templates)
 - [Guide](https://www.packer.io/guides/hcl)
 #### Comments:
-- # begins a single-line comment, ending at the end of the line.
+- \# begins a single-line comment, ending at the end of the line.
 - // also begins a single-line comment, as an alternative to #.
 - /* and */ are start and end delimiters for a comment that might span over multiple lines.
 
@@ -84,8 +84,6 @@ build {
   }
 }
 ```
-
-
 
 #### [variable Types](https://www.packer.io/guides/hcl/variables)
 Defining Variables and locals in a file variables.pkr.hcl:
