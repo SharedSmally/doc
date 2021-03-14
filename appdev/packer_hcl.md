@@ -75,6 +75,10 @@ Create machines and generating images from them for various platforms
 Built-in Builders
 - [AWS](https://www.packer.io/docs/builders/amazon)
 - [Docker](https://www.packer.io/docs/builders/docker): [centos8 docker](https://hub.docker.com/_/centos)
+Must specify (only) one of commit, discard, or export_path:
+      - commit (bool): If true, the container will be committed to an image rather than exported.
+      - discard (bool): Throw away the container when the build is complete, useful for the artifice post-processor.
+      - export_path (string): The path where the final container will be exported as a tar file.
 ```
 source "docker" "centos8" {
     image = "centos:8"
@@ -93,6 +97,26 @@ source "docker" "centos8" {
     ]
 }
 ```
+Allowed metadata fields that can be changed are:
+    - CMD: String, supports both array (escaped) and string form
+```
+        EX: "CMD [\"nginx\", \"-g\", \"daemon off;\"]" corresponds to Docker exec form
+        EX: "CMD nginx -g daemon off;" corresponds to Docker shell form, invokes a command shell first
+```        
+    - ENTRYPOINT: String, supports both array (escaped) and string form
+```    
+        EX: "ENTRYPOINT [\"/bin/sh\", \"-c\", \"/var/www/start.sh\"]" corresponds to Docker exec form
+        EX: "ENTRYPOINT /var/www/start.sh" corresponds to Docker shell form, invokes a command shell first
+```        
+    - ENV: String, note there is no equal sign: "ENV HOSTNAME www.example.com" not "ENV HOSTNAME=www.example.com"
+    - EXPOSE: String, space separated ports: "EXPOSE 80 443"
+    - LABEL: String, space separated key=value pairs: "LABEL version=1.0"
+    - ONBUILD: String: EX: "ONBUILD RUN date"
+    - MAINTAINER: String, deprecated: "MAINTAINER NAME"
+    - USER: String: "USER USERNAME"
+    - VOLUME: String: "VOLUME FROM TO"
+    - WORKDIR:String: "WORKDIR PATH"
+        
 - [Vagrant](https://www.packer.io/docs/builders/vagrant): [centos8 vagrant]()
 ```
 source "vagrant" "example" {
@@ -106,8 +130,48 @@ build {
   sources = ["source.vagrant.example"]
 }
 ```
+- [QEMU](https://www.packer.io/docs/builders/qemu)
+```
+source "qemu" "example" {
+  iso_url           = "http://mirror.raystedman.net/centos/6/isos/x86_64/CentOS-6.9-x86_64-minimal.iso"
+  iso_checksum      = "md5:af4a1640c0c6f348c6c41f1ea9e192a2"
+  output_directory  = "output_centos_tdhtest"
+  shutdown_command  = "echo 'packer' | sudo -S shutdown -P now"
+  disk_size         = "5000M"
+  format            = "qcow2"
+  accelerator       = "kvm"
+  http_directory    = "path/to/httpdir"
+  ssh_username      = "root"
+  ssh_password      = "s0m3password"
+  ssh_timeout       = "20m"
+  vm_name           = "tdhtest"
+  net_device        = "virtio-net"
+  disk_interface    = "virtio"
+  boot_wait         = "10s"
+  boot_command      = ["<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/centos6-ks.cfg<enter><wait>"]
+}
+
+build {
+  sources = ["source.qemu.example"]
+}
+```
 
 ## [variable block](https://www.packer.io/docs/templates/hcl_templates/blocks/variable)
+- Types:
+    - string
+    - number
+    - bool
+    - list(<TYPE>)
+    - set(<TYPE>)
+    - map(<TYPE>)
+    - object({<ATTR NAME> = <TYPE>, \.\.\. })
+    - tuple([<TYPE>, \.\.\.])
+```
+variable "image_id" {
+  type        = string
+  description = "The id of the machine image (AMI) to use for the server."
+}  
+```
 
 ## [locals block](https://www.packer.io/docs/templates/hcl_templates/blocks/locals)
 
@@ -141,6 +205,124 @@ Packer support [Amazon Data Sources](https://www.packer.io/docs/datasources/amaz
 - amazon-ami: Filter and fetch an Amazon AMI to output all the AMI information.
 - amazon-secretsmanager: Retrieve information about a Secrets Manager secret version, including its secret value.
 
+## [Communicators](https://www.packer.io/docs/communicators)
+Communicators are the mechanism Packer uses to upload files, execute scripts, etc. on the machine being created, and are configured within the builder section.
+- [ssh](https://www.packer.io/docs/communicators/ssh)
+
+## [Provisioners](https://www.packer.io/docs/provisioners)
+Provisioners use builtin and third-party software to install and configure the machine image after booting. 
+- installing packages
+- patching the kernel
+- creating users
+- downloading application code
+```
+  "provisioners": [
+    {
+      "type": "shell",
+      "inline": [
+        "sudo apt-get install -y python-pip",
+        "sudo pip install ifs",
+        "sudo ifs install consul --version=0.5.2"
+      ]
+    },
+    {
+      "type": "file",
+      "source": "/usr/local/bin/consul",
+      "destination": "consul",
+      "direction": "download"
+    }
+  ],
+```
+-[ansible local](https://www.packer.io/docs/provisioners/ansible-local)
+```
+  provisioner "ansible-local" {
+    playbook_file   = "./playbook.yml"
+    extra_arguments = ["--extra-vars", "\"pizza_toppings=${var.topping}\""]
+  }
+```
+-[ansible(remote)](https://www.packer.io/docs/provisioners/ansible)
+```
+    provisioner "ansible" {
+      playbook_file = "./playbook.yml"
+    }
+```
+- [Shell(remote)](https://www.packer.io/docs/provisioners/shell)
+```
+provisioner "shell" {
+    inline = ["echo foo"]
+}
+```
+-[Shell-local](https://www.packer.io/docs/provisioners/shell-local)
+```
+  provisioner "shell-local" {
+    inline = ["echo foo"]
+  }
+```
+
+###[Post Processor](https://www.packer.io/docs/post-processors)
+- [aws import](https://www.packer.io/docs/post-processors/amazon-import)
+- [docker-import](https://www.packer.io/docs/post-processors/docker-import)
+- [docker push](https://www.packer.io/docs/post-processors/docker-push)
+- [docker save](https://www.packer.io/docs/post-processors/docker-save)
+- [docker tag](https://www.packer.io/docs/post-processors/docker-tag)
+- [compress](https://www.packer.io/docs/post-processors/compress)
+```
+{
+  "type": "compress",
+  "output": "log_{{.BuildName}}.gz",
+  "compression_level": 9
+}
+```
+- [CheckSum](https://www.packer.io/docs/post-processors/checksum) 
+```
+post-processors "checksum" {
+  checksum_types = ["sha1", "sha256"]
+  output = "packer_{{.BuildName}}_{{.ChecksumType}}.checksum"
+}
+```
+- [shell local](https://www.packer.io/docs/post-processors/shell-local)
+```
+  post-processor "shell-local" {
+    inline = ["echo foo"]
+  }
+```
+- [vagrant](https://www.packer.io/docs/post-processors/vagrant):  takes a build and converts the artifact into a valid Vagrant box
+```
+  post-processor "vagrant" {
+    keep_input_artifact = true
+    provider_override = "virtualbox"
+  }
+```
+- [vagrant cloud](https://www.packer.io/docs/post-processors/vagrant-cloud)
+```
+  "post-processors": [
+    {
+      "type": "shell-local",
+      "inline": ["echo Doing stuff..."]
+    },
+    [
+      {
+        "type": "vagrant",
+        "include": ["image.iso"],
+        "vagrantfile_template": "vagrantfile.tpl",
+        "output": "proxycore_{{.Provider}}.box"
+      },
+      {
+        "type": "vagrant-cloud",
+        "box_tag": "hashicorp/precise64",
+        "access_token": "{{user `cloud_token`}}",
+        "version": "{{user `version`}}"
+      }
+    ]
+  ]
+```
+
 Linux VM:
-- QEMU is a type 2 hypervisor that runs within user space and performs virtual hardware emulation
+- QEMU is a type 2 hypervisor that runs within user space and performs virtual hardware emulation, can use underline KVM
 - KVM is a type 1 hypervisor that runs in kernel space, that allows a user space program access to the hardware virtualization features of various processors.
+
+libvirt:  primarily targets KVM VMs, but also manages Xen and LXC.
+Unify the API and CLI of creating and managing VMs, provides CLI tools:
+- virsh
+- virt-manager
+- virt-install
