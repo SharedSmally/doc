@@ -14,6 +14,7 @@
 - [fix](https://www.packer.io/docs/commands/fix):finds backwards incompatible parts
 - [inspect](https://www.packer.io/docs/commands/inspect):outputs the various components a template defines.
 - [validate](https://www.packer.io/docs/commands/validate): validate the syntax and configuration of a template
+- [hcl2_upgrade](https://www.packer.io/docs/commands/hcl2_upgrade): transpile a JSON configuration template to HCL2
 
 The format with ```-machine-readable``` flag is:
 ```
