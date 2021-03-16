@@ -2,9 +2,11 @@
 - [current docs](https://etcd.io/docs/current/)
 - [etcd docker guide](https://etcd.io/docs/v2/docker_guide/)
 - [Demo](https://etcd.io/docs/current/demo/)
+- [Release](https://github.com/etcd-io/etcd/releases/)
+
+## [Config](https://computingforgeeks.com/how-to-install-etcd-on-rhel-centos-8/) in centos/8
 
 ## Deployment
-- [Release](https://github.com/etcd-io/etcd/releases/)
 - Download
 ```
 ETCD_VER=v3.4.15
