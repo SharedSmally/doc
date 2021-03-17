@@ -1,5 +1,14 @@
 # Configuration in centos/8:
-
+## [Install vbox guest additions](https://linuxconfig.org/virtualbox-install-guest-additions-on-redhat-8) 
+```
+wget https://www.virtualbox.org/download/testcase/VBoxGuestAdditions_6.1.19-142994.iso
+$sudo dnf install -y tar bzip2 kernel-devel-$(uname -r) kernel-headers perl gcc make elfutils-libelf-devel
+$sudo mkdir /media/iso
+$sudo mount -t iso9660 -o loop rhel-8.0-x86_64-dvd.iso /media/iso
+$sudo /media/iso/VBoxLinuxAdditions.run
+$sudo umount /media/iso
+$sudo lsmod | grep vbox
+```
 ## etcd
 - Single Node: https://computingforgeeks.com/how-to-install-etcd-on-rhel-centos-8/
 ```
@@ -135,9 +144,36 @@ ExecStart=/usr/local/bin/etcd \\
 ```
 
 ## container runtime
-- docker + containerd
+- docker + containerd [install](https://phoenixnap.com/kb/how-to-install-docker-on-centos-8)
 ```      
-
+$ sudo dnf config-manager --add-repo=https://download.docker.com/linux/centos/docker-ce.repo
+$ sudo dnf install -y docker-ce docker-ce-cli
+$ sudo systemctl disable firewalld
+$ sudo systemctl enable --now docker
+$ systemctl is-active docker
+$ systemctl is-enabled docker
+$ sudo usermod -aG docker $(whoami) #add to docker group
+$ docker run hello-world
+```
+May need to download and install containerd.io (containerd.io > 1.2.0-3.el7):
+```
+$ wget https://download.docker.com/linux/centos/7/x86_64/stable/Packages/containerd.io-1.2.6-3.3.el7.x86_64.rpm
+$ sudo dnf localinstall ./containerd.io-1.2.6-3.3.el7.x86_64.rpm
+```
+- Build vagrant box
+Clean VM
+```
+$ sudo yum clean all
+$ sudo dnf clean all
+```
+Build vagrant box
+```
+vagrant package --output centos8-docker.box
+vagrant box add centos8/docker centos8-docker.box
+```
+Use vagrant box
+```
+vagrant init centos8/docker
 ```
 
 ## Kubernetes cluster
