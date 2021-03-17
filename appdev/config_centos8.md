@@ -180,8 +180,11 @@ vagrant init centos8/docker
 - Master(s)
 - Worker(s)
 
-## K8s Cluster
+## [K8s Cluster](https://www.tecmint.com/install-a-kubernetes-cluster-on-centos-8/)
+```
+dnf install kubeadm -y 
 
+```
 ## K8s services
 
 ### PostGresql
