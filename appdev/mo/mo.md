@@ -25,7 +25,7 @@
 - [v1.3](http://www.openmobilealliance.org/release/DM/V1_3-20160524-A/)
     - Architecture
     - Protocol
-    - Binding: HTTP, OBEX, PUSH, WSP
+    - Binding: PUSH over WSP/SIP/HTTP/OBEX; HTTP, OBEX(Ir), WSP
     - DevInfo/DevDetail
     - MetaInfo
     - Sessionless/Reporting
