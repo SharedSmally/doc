@@ -42,6 +42,58 @@
     - Delegation
     - DMACC
 
-## LwM2M 
+## Data Synchronization (DS)
+Contents
+- Syntax: SyncML XSD
+- DevInfo
+- MO
+- Notification
+- Provisioing
+- Protocol: Callflow
+- Binding: HTTP; OBEX; WSP
+Versions
+- v1.1.2
+- v1.2.2
+- v2.0.0
+
+## SyncML Common for DS and DM
+- [v](http://openmobilealliance.org/release/Common/V1_2_2-20090724-A/)
+- [v1.2.0](http://openmobilealliance.org/release/Common/V1_2-20070221-A/)
+- [v1.2.1](http://openmobilealliance.org/release/Common/V1_2_1-20070813-A/)
+- [v1.2.2](http://openmobilealliance.org/release/Common/V1_2_2-20090724-A/)
+    - Binding: HTTP; OBEX; WSP
+    - Common
+    - MetaInfo
+    - RepPro
+    - SAN (Server Alerted Notification)
+
+## [WAP](http://www1.wapforum.org)
+- WAP Binary XML Content: WBXML
+- Wireless Datagram Protocol Specification: WDP
+- Wireless Session Protocol specification: WSP
+- Wireless Transaction Protocol Specification: WTP
+
+- 
+## [LwM2M](http://www.openmobilealliance.org/release/LightweightM2M/) 
+Components in 1.0.x
+-Access Control
+- Connectivity-Monitoring
+- Connectivity Statistics
+- Device
+- Firmware
+- Location
+- Security
+- Server
+Components 1.1.x, 1.2:
+- CORE
+- Transport
+- XSD
+Versions
+- [v1.0.0](http://www.openmobilealliance.org/release/LightweightM2M/V1_0-20170208-A/)
+- [v1.0.1](http://www.openmobilealliance.org/release/LightweightM2M/V1_0_1-20170704-A/)
+- [v1.0.2](http://www.openmobilealliance.org/release/LightweightM2M/V1_0_2-20180209-A/)
+- [v1.1.0](http://www.openmobilealliance.org/release/LightweightM2M/V1_1-20180710-A/)
+- [v1.1.1](http://www.openmobilealliance.org/release/LightweightM2M/V1_1_1-20190617-A/)
+- [v1.2.0](http://www.openmobilealliance.org/release/LightweightM2M/V1_2-20201110-A/)
 
 ## oneM2M
