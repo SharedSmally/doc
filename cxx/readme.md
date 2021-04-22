@@ -1,3 +1,16 @@
+```
+Disable to use new:
+You can just declare operator new = delete, similar to how you'd disable some constructors. Like
+
+struct Foo {
+    void* operator new(std::size_t) = delete;
+    void* operator new[](std::size_t) = delete;
+};
+
+That'll give you compiler errors when you try to use new with this class. See https://godbolt.org/z/RToOcf
+
+```
+
 basic components for c++ application
 - core: 
     Object; Wrapper; Traits; 
