@@ -1,0 +1,19 @@
+DEBUG asn1c decode message:
+   link with debug-version of libraries
+
+"412-22-123456"
+cellidentity = { 28, 0x00 0x1E 0x24 0000xxxx }
+"412-22-123457"
+cellidentity = { 28, 0x00 0x1E 0x24 0001xxxx }   
+"412-22-1193046"     0001 0010-0011 0100-0101 0110 
+cellidentity = { 28, 0x01 0x23 0x45 0110xxxx }
+"412-22-123455"           0001-1110 0010-0011 1111 xxxx
+mcc[0] = 4
+mcc[1] = 1
+mcc[2] = 2
+mnc[0] = 2
+mnc[1] = 2
+cellidentity = { 28, 0x00 0x1E 0x23 1111xxxx }
+
+cellidenty: 28bits;   cid <<= 4; big-endian copy
+
