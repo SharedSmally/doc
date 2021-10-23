@@ -1,7 +1,7 @@
 
 # [Deploy Victoria](https://docs.openstack.org/victoria/install/) 
 
-## minimum depolyment
+## minimum depolyment: using python3
 - Identity service – keystone installation
 - Image service – glance installation
 - Placement service – placement installation
