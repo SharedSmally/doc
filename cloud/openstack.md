@@ -14,11 +14,11 @@
 
 ## Networking
 - Provider networks:
-![provider](https://docs.openstack.org/install-guide/_images/network1-services.png)
+[provider](https://docs.openstack.org/install-guide/_images/network1-services.png)
 The simplest way with primarily layer-2 (bridging/switching) services and VLAN segmentation of networks, bridges virtual networks to physical networks and relies on physical network infrastructure for layer-3 (routing) services. Additionally, a DHCP service provides IP address information to instances.
 
 - Self-service networks: 
-![self-service](https://docs.openstack.org/install-guide/_images/network2-services.png)
+[self-service](https://docs.openstack.org/install-guide/_images/network2-services.png)
 Augments the provider networks option with layer-3 (routing) services that enable self-service networks using overlay segmentation methods such as VXLAN. routes virtual networks to physical networks using NAT, provides the foundation for advanced services such as LBaaS and FWaaS.
 
 ## Components
