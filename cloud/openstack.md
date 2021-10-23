@@ -1,5 +1,3 @@
-# [CentOS](https://www.centos.org/)
-
 # [OpenStack](https://www.openstack.org/)
 
 ## Architecture
@@ -7,18 +5,21 @@
 
 ## Deployment
 ![Hardware Requirements](https://docs.openstack.org/install-guide/_images/hwreqs.png)
-- *Controller node*: runs the Identity service, Image service, Placement service, management portions of Compute, management portion of Networking, various Networking agents, and the Dashboard. Also includes supporting services such as an SQL database, message queue, and NTP.
-- *Compute node*: runs the hypervisor portion of Compute that operates instances. Also runs a Networking service agent that connects instances to virtual networks and provides firewalling services to instances via security groups.
-- *Block Storage*: contains the disks that the Block Storage and Shared File System services provision for instances.service traffic between compute nodes and this node uses the management network. 
-- *Object Storage*: contain the disks that the Object Storage service uses for storing accounts, containers, and objects. Service traffic between compute nodes and this node uses the management network. 
+
+- **Controller node**: runs the Identity service, Image service, Placement service, management portions of Compute, management portion of Networking, various Networking agents, and the Dashboard. Also includes supporting services such as an SQL database, message queue, and NTP.
+- **Compute node**: runs the hypervisor portion of Compute that operates instances. Also runs a Networking service agent that connects instances to virtual networks and provides firewalling services to instances via security groups.
+- **Block Storage**: contains the disks that the Block Storage and Shared File System services provision for instances.service traffic between compute nodes and this node uses the management network. 
+- **Object Storage**: contain the disks that the Object Storage service uses for storing accounts, containers, and objects. Service traffic between compute nodes and this node uses the management network. 
 
 ## Networking
 ### Provider networks:
 ![provider](https://docs.openstack.org/install-guide/_images/network1-services.png)
+
 The simplest way with primarily layer-2 (bridging/switching) services and VLAN segmentation of networks, bridges virtual networks to physical networks and relies on physical network infrastructure for layer-3 (routing) services. Additionally, a DHCP service provides IP address information to instances.
 
 ### Self-service networks: 
 ![self-service](https://docs.openstack.org/install-guide/_images/network2-services.png)
+
 Augments the provider networks option with layer-3 (routing) services that enable self-service networks using overlay segmentation methods such as VXLAN. routes virtual networks to physical networks using NAT, provides the foundation for advanced services such as LBaaS and FWaaS.
 
 ## Components
