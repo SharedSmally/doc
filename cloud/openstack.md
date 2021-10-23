@@ -81,21 +81,50 @@ Augments the provider networks option with layer-3 (routing) services that enabl
 - Etcd
 
 ### services that require passwords
+- Service passwords
 | Password name | Description |
 |---------------|--------------|
-| Database password | Root password for the database |
-| ADMIN_PASS | Password of user admin |
-| CINDER_DBPASS | Database password for the Block Storage service |
-| CINDER_PASS | Password of Block Storage service user cinder |
-| DASH_DBPASS | Database password for the Dashboard |
-| DEMO_PASS | Password of user demo |
-| GLANCE_DBPASS | Database password for Image service |
-| GLANCE_PASS | Password of Image service user glance |
-| KEYSTONE_DBPASS | Database password of Identity service |
-| METADATA_SECRET | Secret for the metadata proxy |
-| NEUTRON_DBPASS | Database password for the Networking service |
-| NEUTRON_PASS | Password of Networking service user neutron |
-| NOVA_DBPASS | Database password for Compute service |
-| NOVA_PASS | 	Password of Compute service user nova |
-| PLACEMENT_PASS | Password of the Placement service user placement |
 | RABBIT_PASS | Password of RabbitMQ user openstack |
+| ADMIN_PASS | Password of user admin |
+| DEMO_PASS | Password of user demo |
+| KEYSTONE_DBPASS | Database password of Identity service |
+| GLANCE_PASS | Password of Image service user glance |
+| CINDER_PASS | Password of Block Storage service user cinder |
+| NEUTRON_PASS | Password of Networking service user neutron |
+| NOVA_PASS | 	Password of Compute service user nova |
+| METADATA_SECRET | Secret for the metadata proxy |
+
+- Service Database passwords
+| Password name | Description |
+|---------------|--------------
+| Database password | Root password for the database |
+| GLANCE_DBPASS | Database password for Image service |
+| PLACEMENT_PASS | Password of the Placement service user placement |
+| DASH_DBPASS | Database password for the Dashboard |
+| NOVA_DBPASS | Database password for Compute service |
+| NEUTRON_DBPASS | Database password for the Networking service |
+| CINDER_DBPASS | Database password for the Block Storage service |
+
+- User admin (for services) openstack environment variables: admin-openrc in admin project
+```
+export OS_PROJECT_DOMAIN_NAME=Default
+export OS_USER_DOMAIN_NAME=Default
+export OS_PROJECT_NAME=admin
+export OS_USERNAME=admin
+export OS_PASSWORD=ADMIN_PASS
+export OS_AUTH_URL=http://controller:5000/v3
+export OS_IDENTITY_API_VERSION=3
+export OS_IMAGE_API_VERSION=2
+```
+
+- User demo openstack environment variables: demo-openrc in myproj project
+```
+export OS_PROJECT_DOMAIN_NAME=Default
+export OS_USER_DOMAIN_NAME=Default
+export OS_PROJECT_NAME=myproject
+export OS_USERNAME=myuser
+export OS_PASSWORD=DEMO_PASS
+export OS_AUTH_URL=http://controller:5000/v3
+export OS_IDENTITY_API_VERSION=3
+export OS_IMAGE_API_VERSION=2
+```
