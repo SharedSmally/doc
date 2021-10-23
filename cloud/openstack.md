@@ -1,9 +1,9 @@
-# CentOS ()
-# OpenStack (https://www.openstack.org/)
+# [CentOS](https://www.centos.org/)
+# [OpenStack](https://www.openstack.org/)
 ## Components
-- Compute
-Nova Compute Service
-Zun Containers Service
+### Compute
+- Nova Compute Service
+- Zun Containers Service
 
 - Hardware Lifecycle
 Ironic Bare Metal Provisioning Service
