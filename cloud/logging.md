@@ -51,3 +51,19 @@ Elastic provides two main ways to send data to Elasticsearch:
     - **Managed by Fleet** — easily deploy services with the Fleet UI. Once installed, the Elastic Agent lifecycle and policy/configuration is managed from a central point.
     - **Standalone mode** — once installed, all configuration is applied to the Elastic Agent manually. 
 
+### Setup auditbeat
+```
+$ curl -L -O https://artifacts.elastic.co/downloads/beats/auditbeat/auditbeat-7.15.1-linux-x86_64.tar.gz
+$ vi itbeat.yaml
+$ sudo ./auditbeat setup
+$ sudo chown 0:0 autitbeat.yaml
+$ sudo ./auditbeat run
+```
+### [Develop Beat](https://www.elastic.co/guide/en/beats/devguide/current/newbeat-overview.html)
+Using GO language
+![Beat](https://www.elastic.co/guide/en/beats/devguide/current/images/beat_overview.png)
+At the high level, a simple Beat has two main components:
+- a component that collects the actual data, and
+- a publisher(libbeat) that sends the data to the specified output, such as Elasticsearch or Logstash.
+
+[Interface implementation Guide](https://www.elastic.co/guide/en/beats/devguide/current/beater-interface.html)
