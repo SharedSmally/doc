@@ -46,8 +46,8 @@ kubectl -n elastic-system logs -f statefulset.apps/elastic-operator
 
 ## Data Collector
 Elastic provides two main ways to send data to Elasticsearch:
-- Beats are lightweight data shippers that send operational data to Elasticsearch. Elastic provides separate Beats for different types of data, such as logs, metrics, and uptime. Depending on what data you want to collect, you may need to install multiple shippers on a single host.
-- Elastic Agent is a single agent for logs, metrics, security data, and threat prevention. The Elastic Agent can be deployed in two different modes:
-    - Managed by Fleet — easily deploy services with the Fleet UI. Once installed, the Elastic Agent lifecycle and policy/configuration is managed from a central point.
-    - Standalone mode — once installed, all configuration is applied to the Elastic Agent manually. See Run Elastic Agent standalone (advanced users) for more information.
+- **Beats**: lightweight data shippers that send operational data to Elasticsearch. Elastic provides separate Beats for different types of data, such as logs, metrics, and uptime. Depending on what data you want to collect, you may need to install multiple shippers on a single host.
+- **Elastic Agent**: a single agent for logs, metrics, security data, and threat prevention. The Elastic Agent can be deployed in two different modes:
+    - **Managed by Fleet** — easily deploy services with the Fleet UI. Once installed, the Elastic Agent lifecycle and policy/configuration is managed from a central point.
+    - **Standalone mode** — once installed, all configuration is applied to the Elastic Agent manually. See Run Elastic Agent standalone (advanced users) for more information.
 
