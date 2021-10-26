@@ -61,7 +61,9 @@ $ sudo ./auditbeat run
 ```
 ### [Develop Beat](https://www.elastic.co/guide/en/beats/devguide/current/newbeat-overview.html)
 Using GO language
+
 ![Beat](https://www.elastic.co/guide/en/beats/devguide/current/images/beat_overview.png)
+
 At the high level, a simple Beat has two main components:
 - a component that collects the actual data, and
 - a publisher(libbeat) that sends the data to the specified output, such as Elasticsearch or Logstash.
