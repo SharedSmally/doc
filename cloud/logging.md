@@ -43,6 +43,7 @@ kubectl -n elastic-system logs -f statefulset.apps/elastic-operator
 ```
 - [Quick Start](https://www.elastic.co/guide/en/cloud-on-k8s/current/k8s-quickstart.html)
 
+## [Kibana Guide](https://www.elastic.co/guide/en/kibana/7.16/index.html)
 
 ## Data Collector
 Elastic provides two main ways to send data to Elasticsearch:
