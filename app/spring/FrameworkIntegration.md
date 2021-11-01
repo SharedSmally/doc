@@ -14,25 +14,24 @@
 - [WebClient](): a non-blocking, reactive alternative that supports both synchronous and asynchronous as well as streaming scenarios.
 
 ### RestTemplate
-- Initialization: The default uses java.net.HttpURLConnection to perform requests. 
+#### Initialization: The default uses java.net.HttpURLConnection to perform requests. 
 ```
 RestTemplate template = new RestTemplate(new HttpComponentsClientHttpRequestFactory());
 ```
-[ClientHttpRequestFactory](https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/http/client/ClientHttpRequestFactory.html): create ClientHttpRequest. The Implementations:
+It uses [ClientHttpRequestFactory](https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/http/client/ClientHttpRequestFactory.html) to create ClientHttpRequest. The Implementations:
 ```
 ClientHttpRequest createRequest(URI uri, HttpMethod httpMethod)
 ```
+-  BufferingClientHttpRequestFactory
+-  HttpComponentsAsyncClientHttpRequestFactory
+-  HttpComponentsClientHttpRequestFactory
+-  Netty4ClientHttpRequestFactory
+-  OkHttp3ClientHttpRequestFactory
+-  SimpleClientHttpRequestFactory
+-  InterceptingClientHttpRequestFactory
+-  MockMvcClientHttpRequestFactory
 
-   -  BufferingClientHttpRequestFactory
-   -  HttpComponentsAsyncClientHttpRequestFactory
-   -  HttpComponentsClientHttpRequestFactory
-   -  Netty4ClientHttpRequestFactory
-   -  OkHttp3ClientHttpRequestFactory
-   -  SimpleClientHttpRequestFactory
-   -  InterceptingClientHttpRequestFactory
-   -  MockMvcClientHttpRequestFactory
-
-- Common Methods:
+#### Common Methods:
 
 | Method group |	Description |
 |--------------|--------------|
