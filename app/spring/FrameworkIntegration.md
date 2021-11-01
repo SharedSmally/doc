@@ -18,19 +18,20 @@
 ```
 RestTemplate template = new RestTemplate(new HttpComponentsClientHttpRequestFactory());
 ```
-[ClientHttpRequestFactory](https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/http/client/ClientHttpRequestFactory.html): create ClientHttpRequest
+[ClientHttpRequestFactory](https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/http/client/ClientHttpRequestFactory.html): create ClientHttpRequest. The Implementations:
 ```
 ClientHttpRequest createRequest(URI uri, HttpMethod httpMethod)
 ```
-Implementations:
-    -  BufferingClientHttpRequestFactory
-    -  HttpComponentsAsyncClientHttpRequestFactory
-    -  HttpComponentsClientHttpRequestFactory
-    -  Netty4ClientHttpRequestFactory
-    -  OkHttp3ClientHttpRequestFactory
-    -  SimpleClientHttpRequestFactory
-    -  InterceptingClientHttpRequestFactory
-    -  MockMvcClientHttpRequestFactory
+
+   -  BufferingClientHttpRequestFactory
+   -  HttpComponentsAsyncClientHttpRequestFactory
+   -  HttpComponentsClientHttpRequestFactory
+   -  Netty4ClientHttpRequestFactory
+   -  OkHttp3ClientHttpRequestFactory
+   -  SimpleClientHttpRequestFactory
+   -  InterceptingClientHttpRequestFactory
+   -  MockMvcClientHttpRequestFactory
+
 - Common Methods:
 
 | Method group |	Description |
