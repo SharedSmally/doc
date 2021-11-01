@@ -63,7 +63,7 @@ For some defined [**Packaging**](https://maven.apache.org/guides/introduction/in
 
 A lifecycle consists a list of pre-ordered phases. Each lifecycles has a list of pre-defineds phases.
 
-A Plugin provides a list of Goals. Each goal can be attached to a specific lifecycle's phase. So the execution of a phase will execute a list of attched goals in the order that they are attached.
+A Plugin provides a list of Goals. Each goal can have a default phase, and can be attached to a specific lifecycle's phase. So the execution of a phase will execute a list of attched goals in the order that they are attached.
 
 The attachment of Plugin Goal and Lifecycle Phase could be in \<plugins>\<plugin>...\</plugin>\</plugins> or \<pluginManagement>\<plugin>...\</plugin>\</pluginManagement> within \<build> in profile or main pom.
     
@@ -84,16 +84,18 @@ The attachment of Plugin Goal and Lifecycle Phase could be in \<plugins>\<plugin
                         <goal>goal1</goal>
                         <goal>goal2</goal>
                     </goals>
-                </execution>
+                    <configuration>
+                    </configuration>
+                </execution>*
             </executions>
             <configuration>
             </configuration>
-        </plugin>
+        </plugin>*
     </plugins>
 
     <pluginManagement>
          <plugin>
-         </plugin>
+         </plugin>*
     </pluginManagement>
 </build>
 ```
