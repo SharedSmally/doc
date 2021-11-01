@@ -15,6 +15,7 @@ mvn help:describe -DgroupId=plugin-groupId -DartifactId=plugin-artifactId -Ddeta
 
 Maven is based on the build lifecycle. There are 3 built-in build lifecycles:
 - default:  handle the project development (23 phases)
+
 | Phase | Description |
 |-------|-------------|
 |validate |	validate the project is correct and all necessary information is available.|
@@ -42,6 +43,7 @@ Maven is based on the build lifecycle. There are 3 built-in build lifecycles:
 |deploy |	done in an integration or release environment, copies the final package to the remote repository for sharing with other developers and projects.|
 
 - clean: clean the project (3 phases: pre-clean; clean; post-clean) 
+
 | Phase | Description |
 |-------|-------------|
 |pre-clean | execute processes needed prior to the actual project cleaning|
@@ -49,6 +51,7 @@ Maven is based on the build lifecycle. There are 3 built-in build lifecycles:
 |post-clean | execute processes needed to finalize the project cleaning |
 
 - site: build the project's web site 
+
 | Phase |	Description |
 |-------|---------------|
 |pre-site |	execute processes needed prior to the actual project site generation|
