@@ -45,6 +45,11 @@ The attachment of Plugin Goal and Lifecycle Phase could be in \<plugins>\<plugin
             </configuration>
         </plugin>
     </plugins>
+
+    <pluginManagement>
+         <plugin>
+         </plugin>
+    </pluginManagement>
 </build>
 ```
 
