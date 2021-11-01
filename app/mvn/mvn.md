@@ -6,9 +6,11 @@
 
 ## mvn command
 ```
-mvn <PHASE>
+mvn <PHASE> [-dskipTests=true]
 mvn <PHASE>:<GOAL>
 mvn <PLUGIN>:<GOAL>
+mvn help:describe -Dcmd=phase-name     #goals linked to the phase
+mvn help:describe -DgroupId=plugin-groupId -DartifactId=plugin-artifactId -Ddetail=true   #list of goals for the plugin
 ```
 
 Maven is based on the build lifecycle. There are 3 built-in build lifecycles:
