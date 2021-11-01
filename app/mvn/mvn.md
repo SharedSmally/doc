@@ -4,10 +4,52 @@
 - [ POM reference ](http://maven.apache.org/pom.html)
 - [ POM Properties ](https://cwiki.apache.org/confluence/display/MAVEN/Maven+Properties+Guide)
 
+## mvn command
+```
+mvn <PHASE>
+mvn <PHASE>:<GOAL>
+mvn <PLUGIN>:<GOAL>
+```
+
+Maven is based on the build lifecycle. There are 3 built-in build lifecycles:
+- default:  handle the project development (23 phases)
+- clean: clean the project (2 phases) 
+- site: build the project's web site (3 phases)
+
+A lifecycle consists a list of pre-ordered phases. Each lifecycles has a list of pre-defineds phases.
+
+A Plugin provides a list of Goals. Each goal can be attached to a specific lifecycle's phase. So the execution of a phase will execute a list of attched goals in the order that they are attached.
+
+The attachment of Plugin Goal and Lifecycle Phase could be in <plugins><plugin>...</plugin></plugins> or <pluginManagement><plugin>...</plugin></pluginManagement> within <build> in profile or main pom.
+    
+- For plugin in <plugins>, it is used locally, can not be referenced in other places or in the sub-pom files
+- For plugin in <pluginManagement>, it is used globally, can be referenced/shared in other places or in the sub-pom files
+
+```
+<build>
+    <plugins>
+        <plugin>
+            <artifactId>maven-xxx-plugin</artifactId>
+            <version>${maven.xxx.version}</version>
+            <executions>
+                <execution>
+                    <id>exec-id</id> 
+                    <phase>package</package> 
+                    <goals>
+                        <goal>goal1</goal>
+                        <goal>goal2</goal>
+                    </goals>
+                </execution>
+            </executions>
+            <configuration>
+            </configuration>
+        </plugin>
+    </plugins>
+</build>
+```
+
 ## Concepts
-
 - Goal 
-
 The single unit of task which does some real work. For example the compile goal (runs as  mvn compiler:compile) compiles the Java source. 
 All goals are provided by plugins, either by default plugins or by user defined plugins (configured in pom file).
 
@@ -24,34 +66,9 @@ A group of ordered phases. There are three built-in lifecycle: default, clean an
 - Maven Plugin 
 
 A Maven plugin is a group of goals
-```
-<build>
-    <plugins>
-        <plugin>
-            <artifactId>maven-xxx-plugin</artifactId>
-            <version>${maven.xxx.version}</version>
-            <executions>
-                <execution>
-                    <goals>
-                        <goal>goal1</goal>
-                        <goal>goal2</goal>
-                    </goals>
-                    <phase>validate</phase>
-                </execution>
-            </executions>
-            <configuration>
-            </configuration>
-        </plugin>
-    </plugins>
-</build>
-```
 
-## mvn command
-```
-mvn <PHASE>
-mvn <PHASE>:<GOAL>
-mvn <PLUGIN>:<GOAL>
-```
+
+
 
 ## [ Life Cycle ](https://maven.apache.org/guides/introduction/introduction-to-the-lifecycle.html)
 There are three built-in life cycles. [ @see the attached Phases ](http://maven.apache.org/guides/introduction/introduction-to-the-lifecycle.html#Lifecycle%5FReference):
