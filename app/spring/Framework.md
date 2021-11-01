@@ -34,13 +34,3 @@ Interface Methods with inheritance: (Config: setXxx; )
 - **org.springframework.core.io.ResourceLoader**: getClassLoader, getResource
 
 
-
-## Integration
-### Remoting
-### JMS
-### JCA
-### JMX
-### Jmail
-### Tasks
-### Scheduling
-### Cache
