@@ -34,12 +34,6 @@ Interface Methods with inheritance: (Config: setXxx; )
 - **org.springframework.core.io.ResourceLoader**: getClassLoader, getResource
 
 
-## Data Access
-### transactions
-### DAO support
-### JDBC
-### ORM
-### Marshalling XML
 
 ## Integration
 ### Remoting
