@@ -55,6 +55,7 @@ The attachment of Plugin Goal and Lifecycle Phase could be in \<plugins>\<plugin
 
 ## Concepts
 - Goal 
+
 The single unit of task which does some real work. For example the compile goal (runs as  mvn compiler:compile) compiles the Java source. 
 All goals are provided by plugins, either by default plugins or by user defined plugins (configured in pom file).
 
@@ -71,8 +72,6 @@ A group of ordered phases. There are three built-in lifecycle: default, clean an
 - Maven Plugin 
 
 A Maven plugin is a group of goals
-
-
 
 
 ## [ Life Cycle ](https://maven.apache.org/guides/introduction/introduction-to-the-lifecycle.html)
