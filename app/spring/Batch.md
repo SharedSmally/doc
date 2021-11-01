@@ -1,0 +1,11 @@
+# Spring Batch
+- Job
+    - Step: 
+         - ItemReader
+         - ItemProcessor
+         - ItemWriter
+- Job Instance: Job + JobParameter
+- JobExecution 
+    - StepExecution
+- JobLauncher
+-
