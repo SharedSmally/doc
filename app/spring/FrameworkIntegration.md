@@ -45,8 +45,7 @@ Implementations:
 |patchForObject|Updates a resource by using PATCH and returns the representation from the response. Note that the JDK HttpURLConnection does not support PATCH, but Apache HttpComponents and others do.
 |delete|Deletes the resources at the specified URI by using DELETE.|
 |optionsForAllow|Retrieves allowed HTTP methods for a resource by using ALLOW.|
-|exchange|More generalized (and less opinionated) version of the preceding methods that provides extra flexibility when needed. It accepts a RequestEntity (including HTTP method, URL, headers, and body as input) and returns a ResponseEntity.
-These methods allow the use of ParameterizedTypeReference instead of Class to specify a response type with generics.|
+|exchange|More generalized (and less opinionated) version of the preceding methods that provides extra flexibility when needed. It accepts a RequestEntity (including HTTP method, URL, headers, and body as input) and returns a ResponseEntity. These methods allow the use of ParameterizedTypeReference instead of Class to specify a response type with generics.|
 |execute| The most generalized way to perform a request, with full control over request preparation and response extraction through callback interfaces.|
 
 
