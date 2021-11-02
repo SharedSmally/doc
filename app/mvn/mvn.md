@@ -135,7 +135,10 @@ They come in five different styles:
 - settings.x: A dot (.) notated path in the settings.xml will contain the corresponding element's value. For example: <settings><offline>false</offline></settings> is accessible via ${settings.offline}.
 - Java System Properties: All properties accessible via java.lang.System.getProperties() are available as POM properties, such as ${java.home}.
 - x: Set within a <properties /> element in the POM. The value of <properties><someVar>value</someVar></properties> may be used as ${someVar}.
-    
+
+## test
+The Failsafe Plugin is designed to run integration tests while the Surefire Plugin is designed to run unit tests. 
+
 ## executions - execution
 - [Guide](https://maven.apache.org/guides/mini/guide-default-execution-ids.html)
 - [Configurations](http://maven.apache.org/guides/mini/guide-configuring-plugins.html)
