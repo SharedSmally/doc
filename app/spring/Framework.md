@@ -21,8 +21,10 @@ IoC Container:
     
 Interface Methods with inheritance: (Config: setXxx; )
 - **org.springframework.web.context.ConfigurableWebApplicationContext**:
+
  setConfigLocation, setConfigLocations
 - **org.springframework.web.context.WebApplicationContext**:
+
  getServletContext
 - **org.springframework.context.ConfigurableApplicationContext**: addApplicationListener, addBeanFactoryPostProcessor, addProtocolResolver, close, getApplicationStartup, getBeanFactory, getEnvironment, isActive, refresh, registerShutdownHook, setApplicationStartup, setClassLoader, setEnvironment, setId, setParent
 - **org.springframework.context.ApplicationContext**: getApplicationName, getAutowireCapableBeanFactory, getDisplayName, getId, getParent, getStartupDate
