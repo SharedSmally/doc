@@ -26,15 +26,35 @@ Interface Methods with inheritance: (Config: setXxx; )
 - **org.springframework.web.context.WebApplicationContext**:
 
  getServletContext
-- **org.springframework.context.ConfigurableApplicationContext**: addApplicationListener, addBeanFactoryPostProcessor, addProtocolResolver, close, getApplicationStartup, getBeanFactory, getEnvironment, isActive, refresh, registerShutdownHook, setApplicationStartup, setClassLoader, setEnvironment, setId, setParent
-- **org.springframework.context.ApplicationContext**: getApplicationName, getAutowireCapableBeanFactory, getDisplayName, getId, getParent, getStartupDate
-- **org.springframework.core.env.EnvironmentCapable**: getEnvironment
- - **org.springframework.beans.factory.ListableBeanFactory**: containsBeanDefinition, findAnnotationOnBean, getBeanDefinitionCount, getBeanDefinitionNames, getBeanNamesForAnnotation, getBeanNamesForType, getBeanProvider, getBeansOfType, getBeansWithAnnotation
-- **org.springframework.beans.factory.HierarchicalBeanFactory**: containsLocalBean, getParentBeanFactory
-- **org.springframework.beans.factory.BeanFactory**: containsBean, getAliases, getBean, getBeanProvider, getType, isPrototype, isSingleton, isTypeMatch
-- **org.springframework.context.MessageSource**: getMessage
-- **org.springframework.context.ApplicationEventPublisher**: publishEvent
-- **org.springframework.core.io.support.ResourcePatternResolver**: getResources
-- **org.springframework.core.io.ResourceLoader**: getClassLoader, getResource
+- **org.springframework.context.ConfigurableApplicationContext**:
+
+addApplicationListener, addBeanFactoryPostProcessor, addProtocolResolver, close, getApplicationStartup, getBeanFactory, getEnvironment, isActive, refresh, registerShutdownHook, setApplicationStartup, setClassLoader, setEnvironment, setId, setParent
+- **org.springframework.context.ApplicationContext**:
+
+getApplicationName, getAutowireCapableBeanFactory, getDisplayName, getId, getParent, getStartupDate
+- **org.springframework.core.env.EnvironmentCapable**:
+
+ getEnvironment
+ - **org.springframework.beans.factory.ListableBeanFactory**:
+ 
+ containsBeanDefinition, findAnnotationOnBean, getBeanDefinitionCount, getBeanDefinitionNames, getBeanNamesForAnnotation, getBeanNamesForType, getBeanProvider, getBeansOfType, getBeansWithAnnotation
+- **org.springframework.beans.factory.HierarchicalBeanFactory**:
+
+containsLocalBean, getParentBeanFactory
+- **org.springframework.beans.factory.BeanFactory**:
+
+containsBean, getAliases, getBean, getBeanProvider, getType, isPrototype, isSingleton, isTypeMatch
+- **org.springframework.context.MessageSource**:
+
+getMessage
+- **org.springframework.context.ApplicationEventPublisher**:
+
+publishEvent
+- **org.springframework.core.io.support.ResourcePatternResolver**:
+
+getResources
+- **org.springframework.core.io.ResourceLoader**:
+
+getClassLoader, getResource
 
 
