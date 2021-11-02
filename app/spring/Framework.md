@@ -8,8 +8,8 @@
 - Integration
 
 ## IoC
-IoC Container: 
-- [ApplicationContext](https://docs.spring.io/spring-framework/docs/5.3.12/javadoc-api/org/springframework/context/ApplicationContext.html) is a subinterface of [BeanFactory](https://docs.spring.io/spring-framework/docs/5.3.12/javadoc-api/org/springframework/beans/factory/BeanFactory.html) with the following implementations:
+IoC Container: A Spring IoC container (ApplicationContext) manages one or more beans. 
+- [ApplicationContext](https://docs.spring.io/spring-framework/docs/5.3.12/javadoc-api/org/springframework/context/ApplicationContext.html) is a subinterface of [BeanFactory](https://docs.spring.io/spring-framework/docs/5.3.12/javadoc-api/org/springframework/beans/factory/BeanFactory.html) with the following implementations for:
 - Application
     - ClassPathXmlApplicationContext 
     - FileSystemXmlApplicationContext
@@ -56,5 +56,50 @@ getResources
 - **org.springframework.core.io.ResourceLoader**:
 
 getClassLoader, getResource
+
+## Xml based Configuration
+```
+// create and configure beans
+ApplicationContext context = new ClassPathXmlApplicationContext("services.xml", "daos.xml");
+
+// retrieve configured instance
+PetStoreService service = context.getBean("petStore", PetStoreService.class);
+
+// use configured instance
+List<String> userList = service.getUsernameList();
+
+<beans>
+    <import resource="services.xml"/>
+    <import resource="resources/messageSource.xml"/>
+    <import resource="/resources/themeSource.xml"/>
+
+    <bean id="bean1" class="..."/>
+    <bean id="bean2" class="..."/>
+</beans>
+```
+
+## Java based Configuration
+Java configuration typically uses @Bean-annotated methods within a @Configuration class.
+-  @Configuration
+-  @Bean
+-  @Import
+-  @DependsOn
+
+## Bean
+- Class
+- Name: One Id and multiple aliases
+- Scope
+- Constructor arguments
+- Properties
+- Autowiring mode
+- Lay initialization
+- Initialization method
+- Destruction method
+
+## Aware
+
+## Resource
+
+## Environment
 
 
