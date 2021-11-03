@@ -1,31 +1,34 @@
 # Java Test
-- Junit/TestNG: Test framework, Provide Assert, Before, Test 
+- Junit/TestNG: Test framework, Provide Assert, Before, Test. See [difference](https://www.guru99.com/junit-vs-testng.html). TestNG is powerful than JUnit. 
 - EasyMock/MockIt: mocking system 
 - PowerMock: Extra features on Mocking syste,
+
+## [TestNG](https://testng.org/doc/)
+- [Document](https://testng.org/doc/documentation-main.html)
 ```
- <dependencies>
-  <!-- https://mvnrepository.com/artifact/org.easymock/easymock -->
-  <dependency>
-   <groupId>org.easymock</groupId>
-   <artifactId>easymock</artifactId>
-   <version>4.3</version>
-  </dependency>
-
-  <!-- https://mvnrepository.com/artifact/org.powermock/powermock-module-junit4 -->
-  <dependency>
-   <groupId>org.powermock</groupId>
-   <artifactId>powermock-module-junit4</artifactId>
-   <version>2.0.9</version>
-  </dependency>
-
-  <!-- https://mvnrepository.com/artifact/org.powermock/powermock-api-easymock -->
-  <dependency>
-   <groupId>org.powermock</groupId>
-   <artifactId>powermock-api-easymock</artifactId>
-   <version>2.0.9</version>
-  </dependency>
-
- </dependencies>
+<!-- https://mvnrepository.com/artifact/org.powermock/powermock-module-testng:
+     depends or powermock-core, testng -->
+<dependency>
+    <groupId>org.powermock</groupId>
+    <artifactId>powermock-module-testng</artifactId>
+    <version>2.0.9</version>
+    <scope>test</scope>
+</dependency>
+```
+```
+public class Test1 {
+  @Test(groups = { "functest", "checkintest" })
+  public void testMethod1() {
+  }
+ 
+  @Test(groups = {"functest", "checkintest"} )
+  public void testMethod2() {
+  }
+ 
+  @Test(groups = { "functest" })
+  public void testMethod3() {
+  }
+}
 ```
 
 ## Junit
@@ -197,3 +200,29 @@ public class TestReaderMockSupportTest extends EasyMockSupport{
 PowerMock is an extension of Mocking frameworks like Mockito or EasyMock with more powerful capabilities. Mockito/EasyMock and PowerMock can be combined into the same unit test.
 
 Normally Mockito is used for unit testing and PowerMock is used for extra features as testing static methods and constructor.
+
+```
+ <dependencies>
+  <!-- https://mvnrepository.com/artifact/org.easymock/easymock -->
+  <dependency>
+   <groupId>org.easymock</groupId>
+   <artifactId>easymock</artifactId>
+   <version>4.3</version>
+  </dependency>
+
+  <!-- https://mvnrepository.com/artifact/org.powermock/powermock-module-junit4 -->
+  <dependency>
+   <groupId>org.powermock</groupId>
+   <artifactId>powermock-module-junit4</artifactId>
+   <version>2.0.9</version>
+  </dependency>
+
+  <!-- https://mvnrepository.com/artifact/org.powermock/powermock-api-easymock -->
+  <dependency>
+   <groupId>org.powermock</groupId>
+   <artifactId>powermock-api-easymock</artifactId>
+   <version>2.0.9</version>
+  </dependency>
+
+ </dependencies>
+```
