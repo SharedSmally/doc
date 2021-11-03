@@ -202,6 +202,14 @@ PowerMock is an extension of Mocking frameworks like Mockito or EasyMock with mo
 Normally Mockito is used for unit testing and PowerMock is used for extra features as testing static methods and constructor.
 
 ```
+    //Creating a mock using the PowerMockito.mock
+    //method for the EmployeeService class.
+    EmployeeService mock =PowerMockito.mock(EmployeeService.class);
+    
+    //Next statement essentially says that when getProjectedEmployeeCount method
+    //is called on the mocked EmployeeService instance, return 8.
+    PowerMockito.when(mock.getEmployeeCount()).thenReturn(8);
+    
  <dependencies>
   <!-- https://mvnrepository.com/artifact/org.easymock/easymock -->
   <dependency>
