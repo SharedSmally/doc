@@ -27,7 +27,7 @@ based Runner for running any TestEngine on the platform in a JUnit 4 based envir
     - **org.junit.platform.suite.engine**: Provides a TestEngine for running declarative test suites.
     - **org.junit.platform.testkit**: Defines the Test Kit API for the JUnit Platform.
 
-- **Vintage**: provides a TestEngine for running JUnit 3 and JUnit 4 based tests on the platform. 
+- **Vintage**: provides a TestEngine for running JUnit 3 and JUnit 4 based tests on the platform. It requires JUnit 4.12 or later to be present on the class/module path 
     - **org.junit.vintage.engine**: Provides a TestEngine for running JUnit 3 and 4 based tests on the platform.
 
 
