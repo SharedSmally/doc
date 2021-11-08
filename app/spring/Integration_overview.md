@@ -1,7 +1,11 @@
 # [Spring Integration](https://spring.io/projects/spring-integration)
 - [Reference](https://docs.spring.io/spring-integration/docs/current/reference/html/)
 - [API doc](https://docs.spring.io/spring-integration/docs/current/api/)
-- Components: Message; Channel; MessageEndpoint( with MessageHandler); 
+- Components: 
+    - Message; 
+    - Channel;
+    - MessageEndpoint( with MessageHandler); 
+
 Spring integration follows the “pipes-and-filters” model. The “filters” represent any components capable of producing or consuming messages, and the “pipes” transport the messages between filters so that the components themselves remain loosely-coupled.
 
 ## Message
