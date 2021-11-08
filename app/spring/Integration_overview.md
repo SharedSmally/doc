@@ -63,6 +63,7 @@ Represents the “pipe” of a pipes-and-filters architecture. Supports 2 types 
 - boolean 	unsubscribe(MessageHandler handler)
 
 The channel can buffer messages, pollable channels are capable of buffering Messages within a queue.
+
 ###[Interface PollableChannel](https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/messaging/PollableChannel.html)
 
 A MessageChannel from which messages may be actively received through polling. It needs a Poller.
@@ -109,8 +110,11 @@ A request-reply service activator endpoint connects a target object’s method t
 The endpoint to connects a message channel to some other system or transport. Channel adapters may be either inbound or outbound. Typically, the channel adapter does some mapping between the message and whatever object or resource is received from or sent to the other system (file, HTTP Request, JMS message, and others). Depending on the transport, the channel adapter may also populate or extract message header values. Spring Integration provides a number of channel adapters.
   
 ![InBound Adaptor](https://docs.spring.io/spring-integration/docs/current/reference/html/images/source-endpoint.jpg)
+
   An inbound channel adapter endpoint connects a source system to a MessageChannel.
+
 ![OutBound Adaptor](https://docs.spring.io/spring-integration/docs/current/reference/html/images/target-endpoint.jpg)  
+
   An outbound channel adapter endpoint connects a MessageChannel to a target system
   
 ## Endpoint Bean Names
