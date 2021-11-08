@@ -5,6 +5,7 @@
     - Message: org.springframework.messaging.Message: Headers with Payload
     - Channel: org.springframework.messaging.MessageChannel: PollableChannel; SubscribableChannel 
     - MessageEndpoint( with MessageHandler):  org.springframework.integration.endpoint.AbstractEndpoint: The main implementations are:
+    
           - EventDrivenConsumer, used when we subscribe to a SubscribableChannel to listen for messages.
           - PollingConsumer, used when we poll for messages from a PollableChannel.
 
