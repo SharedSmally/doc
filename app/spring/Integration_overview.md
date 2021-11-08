@@ -21,7 +21,7 @@ Headers are also used for passing values to and from connected transports.
   Return the message payload.
   
 ### Interface [MessageSource<T>](https://docs.spring.io/spring-integration/docs/current/api/org/springframework/integration/core/MessageSource.html):
-- default IntegrationPatternType 	getIntegrationPatternType() 	
+- IntegrationPatternType 	getIntegrationPatternType() 	
   
 Return a pattern type this component implements.
 - Message<T> 	receive() 	
@@ -32,7 +32,10 @@ Retrieve the next available message from this source.
 - void 	handleMessage(Message<?> message)
 
 Handle the given message.
-### [MessageHandlerChain](https://docs.spring.io/spring-integration/docs/current/api/org/springframework/integration/handler/MessageHandlerChain.html): A composite MessageHandler implementation that invokes a chain of MessageHandler instances in order. 
+
+### [MessageHandlerChain](https://docs.spring.io/spring-integration/docs/current/api/org/springframework/integration/handler/MessageHandlerChain.html)
+ 
+A composite MessageHandler implementation that invokes a chain of MessageHandler instances in order. 
 
 ### [MessageProducer](https://docs.spring.io/spring-integration/docs/current/api/org/springframework/integration/core/MessageProducer.html)
 - MessageChannel 	getOutputChannel() 	
