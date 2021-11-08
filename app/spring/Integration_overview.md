@@ -4,10 +4,9 @@
 - Components: 
     - Message: org.springframework.messaging.Message: Headers with Payload
     - Channel: org.springframework.messaging.MessageChannel: PollableChannel; SubscribableChannel 
-    - MessageEndpoint( with MessageHandler):  org.springframework.integration.endpoint.AbstractEndpoint: The main implementations are:
-    
-          - EventDrivenConsumer, used when we subscribe to a SubscribableChannel to listen for messages.
-          - PollingConsumer, used when we poll for messages from a PollableChannel.
+    - MessageEndpoint( with MessageHandler):  org.springframework.integration.endpoint.AbstractEndpoint: The main implementations are:    
+        - EventDrivenConsumer, used when we subscribe to a SubscribableChannel to listen for messages.
+        - PollingConsumer, used when we poll for messages from a PollableChannel.
 
 Spring integration follows the “pipes-and-filters” model. The “filters” represent any components capable of producing or consuming messages, and the “pipes” transport the messages between filters so that the components themselves remain loosely-coupled.
 
