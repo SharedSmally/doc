@@ -2,9 +2,11 @@
 - [Reference](https://docs.spring.io/spring-integration/docs/current/reference/html/)
 - [API doc](https://docs.spring.io/spring-integration/docs/current/api/)
 - Components: 
-    - Message; 
-    - Channel;
-    - MessageEndpoint( with MessageHandler); 
+    - Message: org.springframework.messaging.Message: Headers with Payload
+    - Channel: org.springframework.messaging.MessageChannel: PollableChannel; SubscribableChannel 
+    - MessageEndpoint( with MessageHandler):  org.springframework.integration.endpoint.AbstractEndpoint: The main implementations are:
+          - EventDrivenConsumer, used when we subscribe to a SubscribableChannel to listen for messages.
+          - PollingConsumer, used when we poll for messages from a PollableChannel.
 
 Spring integration follows the “pipes-and-filters” model. The “filters” represent any components capable of producing or consuming messages, and the “pipes” transport the messages between filters so that the components themselves remain loosely-coupled.
 
@@ -175,8 +177,54 @@ public class SomeConfiguration {
 ``` 
 - Handler: someService.handler (the bean name)
 - Consumer: someService (the endpoint ID)
-  
-  
+
+If a MessageHandler @Bean does not define an AbstractReplyProducingMessageHandler, the framework wraps the provided bean in a ReplyProducingMessageHandlerWrapper. This wrapper supports request handler advice handling and emits the normal 'produced no reply' debug log messages. Its bean name is the handler bean name plus .wrapper (when there is an @EndpointId — otherwise, it is the normal generated handler name).
+
+ Pollable Message Sources create two beans, a SourcePollingChannelAdapter (SPCA) and a MessageSource.  
+```
+@EndpointId("someAdapter")
+@InboundChannelAdapter(channel = "channel3", poller = @Poller(fixedDelay = "5000"))
+public String pojoSource() {
+    ...
+}
+```
+- SPCA: someAdapter
+- Handler: someAdapter.source
+
+```
+@Bean("someAdapter.source")
+@EndpointId("someAdapter")
+@InboundChannelAdapter(channel = "channel3", poller = @Poller(fixedDelay = "5000"))
+public MessageSource<?> source() {
+    return () -> {
+        ...
+    };
+}
+```
+- SPCA: someAdapter
+- Handler: someAdapter.source (as long as you use the convention of appending .source to the @Bean name)
+
+## Common Annotations
+- @EnableIntegration:
+    
+    Is used to allow the registration of Spring Integration infrastructure beans. It is useful when have a parent context with no Spring Integration components and two or more child contexts that use Spring Integration. It lets these common components be declared once only, in the parent context.
+
+- @IntegrationComponentScan
+    
+    Permits classpath scanning. This annotation plays a similar role as the standard Spring Framework @ComponentScan annotation, but it is restricted to components and annotations that are specific to Spring Integration, which the standard Spring Framework component scan mechanism cannot reach.     
+
+- @EnablePublisher
+    
+    Registers a PublisherAnnotationBeanPostProcessor bean and configures the default-publisher-channel for those @Publisher annotations that are provided without a channel attribute.     
+
+- @GlobalChannelInterceptor
+    Used to mark ChannelInterceptor beans for global channel interception. It can be placed at the class level (with a @Component stereotype annotation) or on @Bean methods within @Configuration classes. In either case, the bean must implement ChannelInterceptor. 
+    
+- @IntegrationConverter
+    
+    Marks Converter, GenericConverter, or ConverterFactory beans as candidate converters for integrationConversionService. It can be used at the class level (with a @Component stereotype annotation) or on @Bean methods within @Configuration classes.
+    
+    
 ## [Annotations](https://docs.spring.io/spring-integration/docs/current/api/org/springframework/integration/annotation/package-summary.html)
 - IntegrationComponentScan: Configures component scanning directives for use with Configuration classes.
 
