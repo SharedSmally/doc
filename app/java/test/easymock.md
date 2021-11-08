@@ -88,13 +88,15 @@ public class ExampleTest extends EasyMockSupport {
     - T eq(T)/eq(T1,T2); T gt(T); T lt(T);  T not(T)
     - static <T extends Comparable<T>> T 	geq(T value)
     - static <T extends Comparable<T>> T 	leq(T value)
-    - static <T> IExpectationSetters<T> expect(T value) 
-    - static <T> IExpectationSetters<T> 	expectLastCall()
     - static void 	replay(Object... mocks)
     - static void 	reset(Object... mocks)
     - static void 	verify(Object... mocks)
     - static void 	verifyRecording(Object... mocks)
     - static void 	verifyUnexpectedCalls(Object... mocks)
+Expected the method of a mock object called, its returned value is set as andReturn(dummyValue)
+    - static <T> IExpectationSetters<T> expect(T value) 
+    - static <T> IExpectationSetters<T> 	expectLastCall()
+
 - IExpectationSetters<T>
     - IExpectationSetters<T> 	anyTimes()/	atLeastOnce()/once()/times(int count)/times(int min, int max)
     - IExpectationSetters<T> 	andThrow(Throwable throwable)/andVoid()/andReturn(T value)/andDelegateTo(Object delegateTo)/andAnswer(IAnswer<? extends T> answer)    
