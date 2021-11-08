@@ -150,6 +150,8 @@ all core annotations are located in the org.junit.jupiter.api package in the [ju
 | @ExtendWith | Used to register extensions declaratively. Such annotations are inherited. |
 | @RegisterExtension | Used to register extensions programmatically via fields. Such fields are inherited unless they are shadowed. |
 | @TempDir | Used to supply a temporary directory via field injection or parameter injection in a lifecycle method or test method; located in the org.junit.jupiter.api.io package. |
+|@Rule|Annotates fields that reference rules or methods that return a rule. A field must be public, not static, and a subtype of TestRule (preferred) or MethodRule. A method must be public, not static, and must return a subtype of TestRule (preferred) or MethodRule. Similar to @Before/@After. Replaced by @Extension in JUnit5|
+|@ClassRule|Similar to @Rule, but for class static fields|
 
 ## Test Classes and Methods
 - Test Class: any top-level class, static member class, or @Nested class that contains at least one test method.
