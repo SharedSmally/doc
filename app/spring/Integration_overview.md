@@ -224,6 +224,66 @@ public MessageSource<?> source() {
     
     Marks Converter, GenericConverter, or ConverterFactory beans as candidate converters for integrationConversionService. It can be used at the class level (with a @Component stereotype annotation) or on @Bean methods within @Configuration classes.
     
+## Finding Class Names for Java and DSL Configuration
+
+The Framework automatically produces the components with appropriate annotations and BeanPostProcessor implementations. When building components manually, should use the ConsumerEndpointFactoryBean to help determine the target AbstractEndpoint consumer implementation to create, based on the provided inputChannel property.
+
+The ConsumerEndpointFactoryBean delegates to an another first class citizen in the Framework - org.springframework.messaging.MessageHandler. The goal of the implementation of this interface is to handle the message consumed by the endpoint from the channel. All EIP components in Spring Integration are MessageHandler implementations (for example, AggregatingMessageHandler, MessageTransformingHandler, AbstractMessageSplitter, and others). The target protocol outbound adapters (FileWritingMessageHandler, HttpRequestExecutingMessageHandler, AbstractMqttMessageHandler, and others) are also MessageHandler implementations. When you develop Spring Integration applications with Java configuration, should look into the Spring Integration module to find an appropriate MessageHandler implementation to use for the @ServiceActivator configuration.
+    
+For example, to send an XMPP message:    
+```
+@Bean
+@ServiceActivator(inputChannel = "input")
+public MessageHandler sendChatMessageHandler(XMPPConnection xmppConnection) {
+    ChatMessageSendingMessageHandler handler = new ChatMessageSendingMessageHandler(xmppConnection);
+    DefaultXmppHeaderMapper xmppHeaderMapper = new DefaultXmppHeaderMapper();
+    xmppHeaderMapper.setRequestHeaderNames("*");
+    handler.setHeaderMapper(xmppHeaderMapper);
+
+    return handler;
+}    
+```      
+
+The inbound message flow side has its own components, and are divided into polling and listening behaviors. The listening (message-driven) components are simple and typically require only one target class implementation to be ready to produce messages. Listening components can be one-way MessageProducerSupport implementations, (such as AbstractMqttMessageDrivenChannelAdapter and ImapIdleChannelAdapter) or request-reply MessagingGatewaySupport implementations (such as AmqpInboundGateway and AbstractWebServiceInboundGateway).
+
+Polling inbound endpoints are for those protocols that do not provide a listener API or are not intended for such a behavior, including any file based protocol (such as FTP), any data bases (RDBMS or NoSQL), and others.
+
+These inbound endpoints consist of two components: the poller configuration, to initiate the polling task periodically, and a message source class to read data from the target protocol and produce a message for the downstream integration flow. The first class for the poller configuration is a SourcePollingChannelAdapter. It is one more AbstractEndpoint implementation, but especially for polling to initiate an integration flow. Typically, with the messaging annotations or Java DSL, should not worry about this class. The Framework produces a bean for it, based on the @InboundChannelAdapter configuration or a Java DSL builder spec.
+
+Message source components are more important for the target application development, and they all implement the MessageSource interface (for example, MongoDbMessageSource and AbstractTwitterMessageSource). With that in mind, the config for reading data from an RDBMS table with JDBC could resemble the following:
+```
+@Bean
+@InboundChannelAdapter(value = "fooChannel", poller = @Poller(fixedDelay="5000"))
+public MessageSource<?> storedProc(DataSource dataSource) {
+    return new JdbcPollingChannelAdapter(dataSource, "SELECT * FROM foo where status = 0");
+}
+```
+
+## POJO Method invocation    
+```
+@ServiceActivator
+public String myService(String payload) { ... }
+```
+The framework extracts a String payload, invokes the method, and wraps the result in a message to send to the next component in the flow (the original headers are copied to the new message). 
+
+Obtain header information:
+```
+@ServiceActivator
+public String myService(@Payload String payload, @Header("foo") String fooHeader) { ... }
+```
+
+Dereference properties on the message
+```
+@ServiceActivator
+public String myService(@Payload("payload.foo") String foo, @Header("bar.baz") String barbaz) { ... }
+```
+The org.springframework.messaging.handler.invocation.InvocableHandlerMethod is used by default to invoke the POJO methods.
+ Set up POJO method to always use SpEL, using  UseSpelInvoker annotation,
+```
+@UseSpelInvoker(compilerMode = "IMMEDIATE")
+public void bar(String bar) { ... }
+```
+
     
 ## [Annotations](https://docs.spring.io/spring-integration/docs/current/api/org/springframework/integration/annotation/package-summary.html)
 - IntegrationComponentScan: Configures component scanning directives for use with Configuration classes.
