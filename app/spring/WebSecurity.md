@@ -45,6 +45,7 @@ public class ApplicationSecurity extends WebSecurityConfigurerAdapter {
   }
 }
 ```
+
 AuthenticationManagerBuilder is local to build a “local” AuthenticationManager, it is a child of the global one. Can @Autowired the global one into the bean.
 
 Spring Boot provides a default global AuthenticationManager (with only one user) unless pre-empted by providing the own bean of type AuthenticationManager.
@@ -52,6 +53,7 @@ Spring Boot provides a default global AuthenticationManager (with only one user)
 ## Authorization or Access Control
 
 Once authentication is successful, the next authorization is using AccessDecisionManager. The implementaion delegate to a chain of AccessDecisionVoter instances
+
 ```
 boolean supports(ConfigAttribute attribute);
 boolean supports(Class<?> clazz);
@@ -60,7 +62,7 @@ int vote(Authentication authentication, S object, Collection<ConfigAttribute> at
 - object:  anything that a user might want to access (a web resource or a method in a Java class are the two most common cases
 - attributes: a decoration of the secure Object with some metadata that determines the level of permission required to access it.  A typical ConfigAttribute is the name of a user role (like ROLE_ADMIN or ROLE_AUDIT), they often have special formats (like the ROLE_ prefix) or represent expressions that need to be evaluated.
 
-- Web Security Filter
+## Web Security Filter
 ![Security Filter](https://github.com/spring-guides/top-spring-security-architecture/raw/main/images/security-filters.png)
 The order of Filters:
 - @Beans of type Filter with an @Order 
