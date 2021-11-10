@@ -52,7 +52,12 @@ public class StateMachineWorker {
    }
 }
 ```
+Can use Lambda function to create Action<S,E>:
+```
+Action<S,E> getAction() { return ctx->{ ....; }; }
 
+Action<S,E> action =  ctx->{ ....; }; 
+```
 ## Main classes
 - StateMachine<S,E>: from Region<S,E> from StateMachineReactiveLifecycle; use ExtendedState() to store additioal messages.
 
@@ -124,7 +129,6 @@ public class StateMachineWorker {
 |Methods|Description|
 |-------|----------|  
 |void	execute(StateContext<S,E> context)|Execute action with a StateContext.|
-Action<S,E> getAction() { return ctx->{ ....; }; }
   
   
 ## Interface StateMachineListener<S,E>
@@ -142,8 +146,6 @@ Action<S,E> getAction() { return ctx->{ ....; }; }
 |void 	transition(Transition<S,E> transition)|
 |void 	transitionEnded(Transition<S,E> transition)|
 |void 	transitionStarted(Transition<S,E> transition)|
-
-  
 
 
 ## State<S,E>
