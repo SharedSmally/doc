@@ -55,6 +55,8 @@ public class StateMachineWorker {
 
 ## Main classes
 - StateMachine<S,E>: from Region<S,E> from StateMachineReactiveLifecycle; use ExtendedState() to store additioal messages.
+|Methods|Description|
+|-------|----------|
 |void 	addStateListener(StateMachineListener<S,E> listener)|Adds the state listener.|
 |void 	removeStateListener(StateMachineListener<S,E> listener)|Removes the state listener.|
 |boolean 	sendEvent(E event)|in favor of sendEvent(Mono)|
