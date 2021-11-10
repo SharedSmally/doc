@@ -154,4 +154,50 @@ public class ApplicationConfiguration extends AsyncConfigurerSupport {
 }
 ```
 
+## Password Storage
+PasswordEncoder interface is used to perform a one way transformation of a password to allow the password to be stored securely.
+- DelegatingPasswordEncoder: 
+```
+ PasswordEncoder passwordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
+ 
+ String idForEncode = "bcrypt";  Map encoders = new HashMap<>();
+encoders.put(idForEncode, new BCryptPasswordEncoder());
+encoders.put("noop", NoOpPasswordEncoder.getInstance());
+encoders.put("pbkdf2", new Pbkdf2PasswordEncoder());
+encoders.put("scrypt", new SCryptPasswordEncoder());
+encoders.put("sha256", new StandardPasswordEncoder());
 
+PasswordEncoder passwordEncoder = new DelegatingPasswordEncoder(idForEncode, encoders); 
+```
+The general format for a password is:   {id}encodedPassword
+```
+UserBuilder users = User.withDefaultPasswordEncoder();
+User user = users
+  .username("user")
+  .password("password")
+  .roles("USER")
+  .build();  
+System.out.println(user.getPassword());
+// {bcrypt}$2a$10$dXJ3SW6G7P50lGmMkkmwe.20cQQubK3.HZWzG3YB1tlRy.fqvM/BG  
+User admin = users
+  .username("admin")
+  .password("password")
+  .roles("USER","ADMIN")
+  .build();
+```
+Can use Spring Boot CLI to encode the password.
+```
+spring encodepassword password
+{bcrypt}$2a$10$X5wFBtLrL/kHcmrOGGTrGufsBX8CJ0WpQpF3pgeuxBB/H73BK1DW6
+```
+
+Some Encoders
+```
+// Create an encoder with strength 16
+BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(16);
+//Pbkdf2PasswordEncoder encoder = new Pbkdf2PasswordEncoder();
+//SCryptPasswordEncoder encoder = new SCryptPasswordEncoder();
+//NoOpPasswordEncoder passwordEncoder = NoOpPasswordEncoder.getInstance();
+String result = encoder.encode("myPassword");
+assertTrue(encoder.matches("myPassword", result));
+```
