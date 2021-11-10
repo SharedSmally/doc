@@ -17,6 +17,10 @@
      - com.cainet.xxx.web.controller
          - XxxController.java: use @AutoWired services 
          - @Controller: return xxx.html template file
+  - src/main/application.properties
+  - src/main/static: static files
+  - src/main/templates/: template files (return string from mapping method is mapped to xxx.html in templates/ or static/)
+  - src/main/webapp/WEB-INF: dynamic generated files
   
   ## Component Annotations
   - @Configuration
