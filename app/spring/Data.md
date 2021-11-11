@@ -91,4 +91,44 @@ Superinterfaces: Iterable<T>, Slice<T>, Streamable<T>, Supplier<Stream<T>>
 |int 	getTotalPages() | Returns the number of total pages.|
 |<U> Page<U> 	map(Function<? super T,? extends U> converter) | Returns a new Page with the content of the current one mapped by the given Function.|
 
-##
+## Sample 
+- Define Repository interface with Query Methods: from Repository, CrudRepository, or PagingAndSortingRepository
+```
+@Repository
+interface UserRepository extends CrudRepository<User, Long> {
+  long deleteByLastname(String lastname);
+  List<User> removeByLastname(String lastname);
+}
+```
+- Set up Spring to create proxy instances for those interfaces,
+```
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+@EnableJpaRepositories
+class RepositoryConfig { … }
+```
+- Inject the repository instance and use it, 
+```
+class SomeClient {
+  private final PersonRepository repository;
+
+  SomeClient(PersonRepository repository) {
+    this.repository = repository;
+  }
+
+  void doSomething() {
+    List<Person> persons = repository.findByLastname("Matthews");
+  }
+}
+```
+- To distinguish the repository for different data module, use either module-specific repositories (such as @JpaRepository) or module-specific annotations(@Entity for JPA and @Document for MongoDB and Elasticsearch) in the domain classes, or use scoping repository base packages:
+```
+@EnableJpaRepositories(basePackages = "com.acme.repositories.jpa")
+@EnableMongoRepositories(basePackages = "com.acme.repositories.mongo")
+class Configuration { … }
+```
+
+## Defining Query Methods
+The repository proxy has two ways to derive a store-specific query from the method name:
+- By deriving the query from the method name directly.
+- By using a manually defined query.
+
