@@ -10,6 +10,7 @@
 ## Common
 - [Reference](https://docs.spring.io/spring-data/commons/docs/2.5.6/reference/html/#reference)
 - [API Doc](https://docs.spring.io/spring-data/commons/docs/2.5.6/api/): Annotations in org.springframework.data.annotation:
+- 
 | Annotation Type |	Description |
 |-----------------|-------------|
 |@CreatedBy | Declares a field as the one representing the principal that created the entity containing the field.|
