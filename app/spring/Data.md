@@ -15,7 +15,7 @@
 |-----------------|-------------|
 |@CreatedBy | Declares a field as the one representing the principal that created the entity containing the field.|
 |@CreatedDate | Declares a field as the one representing the date the entity containing the field was created.|
-|@Id: Demarcates an identifier.|
+|@Id | Demarcates an identifier.|
 |@LastModifiedBy  | Declares a field as the one representing the principal that recently modified the entity containing the field.|
 |@LastModifiedDate |	Declares a field as the one representing the date the entity containing the field was recently modified.|
 |@Immutable |	Annotation for persistent entities to indicate the class is designed in immutable way.|
