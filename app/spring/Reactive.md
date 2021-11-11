@@ -59,6 +59,7 @@ A Reactive Streams Publisher with basic rx operators that emits at most one item
 
 
 ## Class reactor.core.publisher.Flux<T>: extends Object implements CorePublisher<T>
+![flux](https://projectreactor.io/docs/core/release/api/reactor/core/publisher/doc-files/marbles/flux.svg)
 A Reactive Streams Publisher with rx operators that emits 0 to N elements, and then completes (successfully or with an error). 
 ```
 Mono<Boolean> 	all(Predicate<? super T> predicate)
