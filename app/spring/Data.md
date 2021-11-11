@@ -24,7 +24,7 @@
 |@Transient |	Marks a field to be transient for the mapping framework.|
 |@Persistent |	Annotation to generally identify persistent types, fields and parameters.|
 |@AccessType |	Annotation to define how Spring Data shall access values of persistent properties.|
-|@PersistenceConstructor||
+|@PersistenceConstructor|Constructor used for object creation|
 |@QueryAnnotation |	Meta-Annotation to mark a store specific annotation as a query annotation.|
 |@ReadOnlyProperty |	Marks a field to be read-only for the mapping framework and therefore will not be persisted.|
 |@Reference |	Meta-annotation to be used to annotate annotations that mark references to other objects.|
@@ -90,3 +90,5 @@ Superinterfaces: Iterable<T>, Slice<T>, Streamable<T>, Supplier<Stream<T>>
 |long 	getTotalElements() |Returns the total amount of elements.|
 |int 	getTotalPages() | Returns the number of total pages.|
 |<U> Page<U> 	map(Function<? super T,? extends U> converter) | Returns a new Page with the content of the current one mapped by the given Function.|
+
+##
