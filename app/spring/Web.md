@@ -37,16 +37,16 @@
   
 
   ## [Web Controller Annotations](https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/bind/annotation/package-summary.html)
-  - @Controller
-  - @RestController
-  - @
-  
+  ### Controller
 |  Annotation Type | 	Description |
 |------------------|-----------------|
 |ControllerAdvice 	|Specialization of @Component for classes that declare @ExceptionHandler, @InitBinder, or @ModelAttribute methods to be shared across multiple @Controller classes.|
 |RestController 	|A convenience annotation that is itself annotated with @Controller and @ResponseBody.|
 |RestControllerAdvice 	|A convenience annotation that is itself annotated with @ControllerAdvice and @ResponseBody.|
 
+Mapping
+|  Annotation Type | 	Description |
+|------------------|-----------------|
 |Mapping 	|Meta annotation that indicates a web mapping annotation.|
 |GetMapping 	|Annotation for mapping HTTP GET requests onto specific handler methods.|
 |PostMapping 	|Annotation for mapping HTTP POST requests onto specific handler methods.|
@@ -56,16 +56,27 @@
 |RequestMapping 	|Annotation for mapping web requests onto methods in request-handling classes with flexible method signatures.|
 |ExceptionHandler 	|Annotation for handling exceptions in specific handler classes and/or handler methods.|
 
+### Binding
+|  Annotation Type | 	Description |
+|------------------|-----------------|
 |CookieValue 	|Annotation to indicate that a method parameter is bound to an HTTP cookie.|
 |CrossOrigin 	|Annotation for permitting cross-origin requests on specific handler classes and/or handler methods.|
 |InitBinder 	|Annotation that identifies methods which initialize the WebDataBinder which will be used for populating command and form object arguments of annotated handler methods.|
 |ModelAttribute 	|Annotation that binds a method parameter or method return value to a named model attribute, exposed to a web view.|
+
+### Request
+|  Annotation Type | 	Description |
+|------------------|-----------------|
 |MatrixVariable 	|Annotation which indicates that a method parameter should be bound to a name-value pair within a path segment.|
 |PathVariable 	|Annotation which indicates that a method parameter should be bound to a URI template variable.|
 |RequestAttribute 	|Annotation to bind a method parameter to a request attribute.|
 |RequestBody 	|Annotation indicating a method parameter should be bound to the body of the web request.|
 |RequestHeader |Annotation which indicates that a method parameter should be bound to a web request header.|
 |RequestParam 	|Annotation which indicates that a method parameter should be bound to a web request parameter.|
+
+## Response
+|  Annotation Type | 	Description |
+|------------------|-----------------|
 |ResponseBody 	|Annotation that indicates a method return value should be bound to the web response body.|
 |ResponseStatus |Marks a method or exception class with the status ResponseStatus.code() and ResponseStatus.reason() that should be returned.|
 |SessionAttribute 	|Annotation to bind a method parameter to a session attribute.|
