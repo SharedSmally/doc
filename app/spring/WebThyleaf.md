@@ -1,4 +1,4 @@
-# Web - Thyleaf template
+# Web - Thymeleaf template
 - [Tutorial](https://www.thymeleaf.org/doc/tutorials/3.0/thymeleafspring.html)
 
 ## Beans
