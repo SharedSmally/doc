@@ -62,23 +62,25 @@
 |CookieValue 	|Annotation to indicate that a method parameter is bound to an HTTP cookie.|
 |CrossOrigin 	|Annotation for permitting cross-origin requests on specific handler classes and/or handler methods.|
 |InitBinder 	|Annotation that identifies methods which initialize the WebDataBinder which will be used for populating command and form object arguments of annotated handler methods.|
-|ModelAttribute 	|Annotation that binds a method parameter or method return value to a named model attribute, exposed to a web view.|
 
 ### Request
 |  Annotation Type | 	Description |
 |------------------|-----------------|
 |MatrixVariable 	|Annotation which indicates that a method parameter should be bound to a name-value pair within a path segment.|
 |PathVariable 	|Annotation which indicates that a method parameter should be bound to a URI template variable.|
-|RequestAttribute 	|Annotation to bind a method parameter to a request attribute.|
+|RequestParam 	|Annotation which indicates that a method parameter should be bound to a web request parameter.|
 |RequestBody 	|Annotation indicating a method parameter should be bound to the body of the web request.|
 |RequestHeader |Annotation which indicates that a method parameter should be bound to a web request header.|
-|RequestParam 	|Annotation which indicates that a method parameter should be bound to a web request parameter.|
 
 ## Response
 |  Annotation Type | 	Description |
 |------------------|-----------------|
 |ResponseBody 	|Annotation that indicates a method return value should be bound to the web response body.|
 |ResponseStatus |Marks a method or exception class with the status ResponseStatus.code() and ResponseStatus.reason() that should be returned.|
+
+## Attribute
+|ModelAttribute 	|Annotation that binds a method parameter or method return value to a named model attribute, exposed to a web view.|
+|RequestAttribute 	|Annotation to bind a method parameter to a request attribute.|
 |SessionAttribute 	|Annotation to bind a method parameter to a session attribute.|
 |SessionAttributes 	|Annotation that indicates the session attributes that a specific handler uses.|
 
