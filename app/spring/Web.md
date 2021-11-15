@@ -79,10 +79,54 @@
 |ResponseStatus |Marks a method or exception class with the status ResponseStatus.code() and ResponseStatus.reason() that should be returned.|
 
 ## Attribute
+|  Annotation Type | 	Description |
+|------------------|-----------------|
 |ModelAttribute 	|Annotation that binds a method parameter or method return value to a named model attribute, exposed to a web view.|
 |RequestAttribute 	|Annotation to bind a method parameter to a request attribute.|
 |SessionAttribute 	|Annotation to bind a method parameter to a session attribute.|
 |SessionAttributes 	|Annotation that indicates the session attributes that a specific handler uses.|
 
   ## Web Security
+  
+  ## Sample
+```
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+
+@Controller
+public class GreetingController {
+  @GetMapping("/greeting")
+  public String greetingForm(Model model) {
+    model.addAttribute("greeting", new Greeting());
+    return "greeting";
+  }
+
+  @PostMapping("/greeting")
+  public String greetingSubmit(@ModelAttribute Greeting greeting, Model model) {
+    model.addAttribute("greeting", greeting);
+    return "result";
+  }
+}
+```
+Model will be passed to the view: the template.html file.
+```
+<!DOCTYPE HTML>
+<html xmlns:th="https://www.thymeleaf.org">
+<head> 
+    <title>Getting Started: Handling Form Submission</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<h1>Form</h1>
+    <form action="#" th:action="@{/greeting}" th:object="${greeting}" method="post">
+    	<p>Id: <input type="text" th:field="*{id}" /></p>
+        <p>Message: <input type="text" th:field="*{content}" /></p>
+        <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+    </form>
+</body>
+</html>
+```
   
