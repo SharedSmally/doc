@@ -44,7 +44,7 @@
 |RestController 	|A convenience annotation that is itself annotated with @Controller and @ResponseBody.|
 |RestControllerAdvice 	|A convenience annotation that is itself annotated with @ControllerAdvice and @ResponseBody.|
 
-Mapping
+### Mapping
 |  Annotation Type | 	Description |
 |------------------|-----------------|
 |Mapping 	|Meta annotation that indicates a web mapping annotation.|
