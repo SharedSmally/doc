@@ -1,6 +1,9 @@
 # [Reactive](https://projectreactor.io/)
 - [API](https://projectreactor.io/docs/core/release/api/)
 - [Reference](https://projectreactor.io/docs/core/release/reference/)
+- [Flux](https://projectreactor.io/docs/core/release/api/reactor/core/publisher/Flux.html)
+- [Mono](https://projectreactor.io/docs/core/release/api/reactor/core/publisher/Mono.html)
+- [Sink](https://projectreactor.io/docs/core/release/api/reactor/core/publisher/Sinks.html)
 
 ## Dependency
 ```
@@ -19,8 +22,7 @@
 <dependencies>
     <dependency>
         <groupId>io.projectreactor</groupId>
-        <artifactId>reactor-core</artifactId> 
-        
+        <artifactId>reactor-core</artifactId>         
     </dependency>
     <dependency>
         <groupId>io.projectreactor</groupId>
@@ -30,5 +32,11 @@
 </dependencies>
 ```
 
-## Flux<T>/Mono<T>
--  
+## Flux<T>/Mono<T>: implement Publisher
+- Flux object represents a reactive sequence of 0..N items, 
+![Flux](https://projectreactor.io/docs/core/release/reference/images/flux.svg)    
+- Mono object represents a single-value-or-empty (0..1) result.
+![Mono](https://projectreactor.io/docs/core/release/reference/images/mono.svg)    
+
+### Create     
+    
