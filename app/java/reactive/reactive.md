@@ -38,9 +38,9 @@
 - Mono object represents a single-value-or-empty (0..1) result.
 ![Mono](https://projectreactor.io/docs/core/release/reference/images/mono.svg)    
 
-### Create     
-
 ### Sinks
+
+####  Sinks.Many<T>
 | Method | Description |
 |--------|-------------|
 | Flux<T> 	asFlux() | Return a Flux view of this sink.|
@@ -52,7 +52,7 @@
 |Sinks.EmitResult 	tryEmitError(Throwable error)|Try to fail the sequence, generating an onError signal.|
 |Sinks.EmitResult 	tryEmitNext(T t)|Try emitting a non-null element, generating an onNext signal.|
     
-- FluxSink<T>
+#### FluxSink<T>
 | Method | Description |
 |--------|-------------|
 |void complete() | Terminate the sequence successfully, generating an onComplete signal.|
@@ -65,7 +65,7 @@
 |FluxSink<T> onRequest(LongConsumer consumer)|Attaches a LongConsumer to this FluxSink that will be notified of any request to this sink.|
 |long requestedFromDownstream()|The current outstanding request amount.|
     
-- MonoSink<T>   
+#### MonoSink<T>   
 | Method | Description |
 |--------|-------------|
 |Context currentContext()|Return the current subscriber Context.|
