@@ -36,3 +36,9 @@ public static interface Flow.Processor<T,R> extends Flow.Subscriber<T>, Flow.Pub
 |--------|--------------|
 |void cancel() |	Causes the Subscriber to (eventually) stop receiving messages. |
 |void request(long n) |	Adds the given number n of items to the current unfulfilled demand for this subscription.|
+
+- Consumer<T>
+| Method |	Description |
+|--------|--------------|
+|void 	accept(T t)|Performs this operation on the given argument.|
+|default Consumer<T> 	andThen(Consumer<? super T> after)|Returns a composed Consumer that performs, in sequence, this operation followed by the after operation.|
