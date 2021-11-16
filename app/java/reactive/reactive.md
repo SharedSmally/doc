@@ -52,4 +52,27 @@
 |Sinks.EmitResult 	tryEmitError(Throwable error)|Try to fail the sequence, generating an onError signal.|
 |Sinks.EmitResult 	tryEmitNext(T t)|Try emitting a non-null element, generating an onNext signal.|
     
+- FluxSink<T>
+| Method | Description |
+|--------|-------------|
+|void complete() | Terminate the sequence successfully, generating an onComplete signal.|
+|Context currentContext()|Return the current subscriber Context.|
+|void error(Throwable e)|Fail the sequence, generating an onError signal.|
+|boolean isCancelled()|Returns true if the downstream cancelled the sequence.|
+|FluxSink<T> next(T t)|Emit a non-null element, generating an onNext signal.|
+|FluxSink<T> onCancel(Disposable d)|Attach a Disposable as a callback for when this FluxSink is cancelled.|
+|FluxSink<T> onDispose(Disposable d)|Attach a Disposable as a callback for when this FluxSink is effectively disposed, that is it cannot be used anymore.|
+|FluxSink<T> onRequest(LongConsumer consumer)|Attaches a LongConsumer to this FluxSink that will be notified of any request to this sink.|
+|long requestedFromDownstream()|The current outstanding request amount.|
+    
+- MonoSink<T>   
+| Method | Description |
+|--------|-------------|
+|Context currentContext()|Return the current subscriber Context.|
+|void error(Throwable e)|Terminate with the given exception|
+|MonoSink<T> onCancel(Disposable d)|Attach a Disposable as a callback for when this MonoSink is cancelled.|
+|MonoSink<T> onDispose(Disposable d)|Attach a Disposable as a callback for when this MonoSink is effectively disposed, that is it cannot be used anymore.|
+|MonoSink<T> onRequest(LongConsumer consumer)|Attaches a LongConsumer to this MonoSink that will be notified of any request to this sink.|
+|void success()|Complete without any value.|
+|void success(T value)|Complete this Mono with the given value.|
     
