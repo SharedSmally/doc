@@ -1,9 +1,10 @@
 # Java Flow
 The useful implementation is reactive: Similar to callback, Publisher pushes the data to the subscribers.
 
-# [Flow](https://docs.oracle.com/javase/9/docs/api/java/util/concurrent/Flow.html) 
+## [Flow](https://docs.oracle.com/javase/9/docs/api/java/util/concurrent/Flow.html) 
 in java.util.concurrent
-- Flow.Subscription
+
+### Flow.Subscription
 
 | Method |	Description |
 |--------|--------------|
@@ -12,13 +13,13 @@ in java.util.concurrent
 |static interface  	Flow.Subscriber<T> | A receiver of messages.|
 |static interface  	Flow.Subscription  | Message control linking a Flow.Publisher and Flow.Subscriber.|
 
-- Flow.Publisher:  public static interface Flow.Processor<T,R> extends Flow.Subscriber<T>, Flow.Publisher<R>
+### Flow.Publisher:  public static interface Flow.Processor<T,R> extends Flow.Subscriber<T>, Flow.Publisher<R>
 
 | Method |	Description |
 |--------|--------------|
 | void subscribe(Flow.Subscriber<? super T> subscriber) | Adds the given Subscriber if possible.|
   
-- Flow.Subscriber
+### Flow.Subscriber
 
 | Method |	Description |
 |--------|--------------|
@@ -27,17 +28,17 @@ in java.util.concurrent
 |void onNext(T item) 	|Method invoked with a Subscription's next item.|
 |void onSubscribe(Flow.Subscription subscription) 	| Method invoked prior to invoking any other Subscriber methods for the given Subscription.|
   
-- Flow.Processor
+### Flow.Processor
 public static interface Flow.Processor<T,R> extends Flow.Subscriber<T>, Flow.Publisher<R>
   
-- Flow.Subscription
+### Flow.Subscription
 
 | Method |	Description |
 |--------|--------------|
 |void cancel() |	Causes the Subscriber to (eventually) stop receiving messages. |
 |void request(long n) |	Adds the given number n of items to the current unfulfilled demand for this subscription.|
 
-- Consumer<T>
+### Consumer<T>
 | Method |	Description |
 |--------|--------------|
 |void 	accept(T t)|Performs this operation on the given argument.|
