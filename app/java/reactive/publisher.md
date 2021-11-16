@@ -4,6 +4,7 @@ The useful implementation is reactive: Similar to callback, Publisher pushes the
 # [Flow](https://docs.oracle.com/javase/9/docs/api/java/util/concurrent/Flow.html) 
 in java.util.concurrent
 - Flow.Subscription
+
 | Method |	Description |
 |--------|--------------|
 |static interface Flow.Processor<T,R> | A component that acts as both a Subscriber and Publisher.|
@@ -12,11 +13,13 @@ in java.util.concurrent
 |static interface  	Flow.Subscription  | Message control linking a Flow.Publisher and Flow.Subscriber.|
 
 - Flow.Publisher:  public static interface Flow.Processor<T,R> extends Flow.Subscriber<T>, Flow.Publisher<R>
+
 | Method |	Description |
 |--------|--------------|
 | void subscribe(Flow.Subscriber<? super T> subscriber) | Adds the given Subscriber if possible.|
   
 - Flow.Subscriber
+
 | Method |	Description |
 |--------|--------------|
 |void onComplete() |Method invoked when it is known that no additional Subscriber method invocations will occur for a Subscription that is not already terminated by error, after which no other Subscriber methods are invoked by the Subscription.
@@ -28,6 +31,7 @@ in java.util.concurrent
 public static interface Flow.Processor<T,R> extends Flow.Subscriber<T>, Flow.Publisher<R>
   
 - Flow.Subscription
+
 | Method |	Description |
 |--------|--------------|
 |void cancel() |	Causes the Subscriber to (eventually) stop receiving messages. |
