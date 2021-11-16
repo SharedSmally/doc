@@ -1,0 +1,162 @@
+# [Reactive Reference](https://projectreactor.io/docs/core/release/reference/)
+- Create Flux/Mono
+```
+Flux<String> seq1 = Flux.just("foo", "bar", "foobar");
+
+List<String> iterable = Arrays.asList("foo", "bar", "foobar");
+Flux<String> seq2 = Flux.fromIterable(iterable);
+
+Flux<Integer> numbersFromFiveToSeven = Flux.range(5, 3);
+
+Mono<String> noData = Mono.empty(); 
+Mono<String> data = Mono.just("foo");
+```
+- Publish
+This is synchronous and one-by-one emissions, the sink is a SynchronousSink 
+and that its next() method can only be called at most once per callback invocation. 
+cann additionally call error(Throwable) or complete(), but this is optional.
+```
+Flux<String> flux = Flux.generate(
+    () -> 0, 
+    (state, sink) -> {
+      sink.next("3 x " + state + " = " + 3*state); 
+      if (state == 10) sink.complete(); 
+      return state + 1; 
+    });
+
+Flux<String> flux = Flux.generate(
+    AtomicLong::new, 
+    (state, sink) -> {
+      long i = state.getAndIncrement(); 
+      sink.next("3 x " + i + " = " + 3*i);
+      if (i == 10) sink.complete();
+      return state; 
+    },(state) -> System.out.println("state: " + state));
+```
+- create: asynchronous and Multi-threaded, suitable for multiple emissions per round, even from multiple threads.
+```
+Flux<String> bridge = Flux.create(sink -> {
+    myEventProcessor.register( 
+      new MyEventListener<String>() { 
+        public void onDataChunk(List<String> chunk) {
+          for(String s : chunk) {
+            sink.next(s); 
+          }
+        }
+
+        public void processComplete() {
+            sink.complete(); 
+        }
+    });
+});
+```
+OverflowStrategy: manage backpressure hebavoir:
+- IGNORE to Completely ignore downstream backpressure requests. This may yield IllegalStateException when queues get full downstream.
+- ERROR to signal an IllegalStateException when the downstream can’t keep up.
+- DROP to drop the incoming signal if the downstream is not ready to receive it.
+- LATEST to let downstream only get the latest signals from upstream.
+- BUFFER (the default) to buffer all signals if the downstream can’t keep up. (this does unbounded buffering and may lead to OutOfMemoryError).
+
+- push: asynchronous but single-threaded
+push is a middle ground between generate and create which is suitable for processing events from a single producer. 
+It is similar to create in the sense that it can also be asynchronous and can manage backpressure using any of 
+the overflow strategies supported by create. However, only one producing thread may invoke next, complete or error at a time.
+```
+Flux<String> bridge = Flux.push(sink -> {
+    myEventProcessor.register(
+      new SingleThreadEventListener<String>() { 
+        public void onDataChunk(List<String> chunk) {
+          for(String s : chunk) {
+            sink.next(s); 
+          }
+        }
+
+        public void processComplete() {
+            sink.complete(); 
+        }
+
+        public void processError(Throwable e) {
+            sink.error(e); 
+        }
+    });
+});
+```
+- A hybrid push/pull model
+The consumer pulls data from the source in the sense that it won’t emit anything until first requested. 
+The source pushes data to the consumer whenever it becomes available, but within the bounds of its requested amount.
+
+push() and create() both allow to set up an onRequest consumer in order to manage the request amount and to ensure 
+that data is pushed through the sink only when there is pending request.
+```
+Flux<String> bridge = Flux.create(sink -> {
+    myMessageProcessor.register(
+      new MyMessageListener<String>() {
+
+        public void onMessage(List<String> messages) {
+          for(String s : messages) {
+            sink.next(s); 
+          }
+        }
+    });
+    sink.onRequest(n -> {
+        List<String> messages = myMessageProcessor.getHistory(n); 
+        for(String s : messages) {
+           sink.next(s); 
+        }
+    });
+});
+```
+Need to clean up after push() or create()
+```
+Flux<String> bridge = Flux.create(sink -> {
+    sink.onRequest(n -> channel.poll(n))
+        .onCancel(() -> channel.cancel()) 
+        .onDispose(() -> channel.close())  
+    });
+```
+
+- handle:  Flux<R> handle(BiConsumer<T, SynchronousSink<R>>);
+It is close to generate for it uses a SynchronousSink and only allows one-by-one emissions. 
+However, handle can be used to generate an arbitrary value out of each source element, 
+possibly skipping some elements. In this way, it can serve as a combination of map and filter.
+```
+Flux<String> alphabet = Flux.just(-1, 30, 13, 9, 20)
+    .handle((i, sink) -> {
+        String letter = alphabet(i); 
+        if (letter != null) 
+            sink.next(letter); 
+    });
+
+alphabet.subscribe(System.out::println);
+```
+
+
+## Subscribe:
+```
+subscribe(); 
+subscribe(Consumer<? super T> consumer); 
+subscribe(Consumer<? super T> consumer, Consumer<? super Throwable> errorConsumer); 
+subscribe(Consumer<? super T> consumer, Consumer<? super Throwable> errorConsumer, Runnable completeConsumer); 
+subscribe(Consumer<? super T> consumer, Consumer<? super Throwable> errorConsumer, Runnable completeConsumer,Consumer<? super Subscription> subscriptionConsumer);
+```
+Use lambda function or extension of BaseSubscriber
+```
+Flux<Integer> ints = Flux.range(1, 4);
+
+ints.subscribe(i -> System.out.println(i));
+
+SampleSubscriber<Integer> ss = new SampleSubscriber<Integer>();
+ints.subscribe(ss);
+
+public class SampleSubscriber<T> extends BaseSubscriber<T> {
+	public void hookOnSubscribe(Subscription subscription) {
+		System.out.println("Subscribed");
+		request(1);
+	}
+
+	public void hookOnNext(T value) {
+		System.out.println(value);
+		request(1);
+	}
+}
+```
