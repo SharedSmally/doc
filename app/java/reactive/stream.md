@@ -9,6 +9,7 @@
 ```                      
 
 ## Method
+```
 boolean 	allMatch(Predicate<? super T> predicate)
 boolean 	anyMatch(Predicate<? super T> predicate)
 boolean 	noneMatch(Predicate<? super T> predicate)
