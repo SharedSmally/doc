@@ -1,10 +1,58 @@
-# [Flud](https://projectreactor.io/docs/core/release/api/reactor/core/publisher/Flux.html)
+# [Flux](https://projectreactor.io/docs/core/release/api/reactor/core/publisher/Flux.html)
 
-
-## Static methods
+##  methods
+- all/any/as
+- blockfirst/last
+- buffer
+- cache
+- checkpoint
+- collectXxx
+- combine
+- concat
 - create
+- defer
+- delay
+-	distinct
+-	doXxx/doOnXxx
+-	error
+-	expand
+-	filter
+-	first/last
+-	flatMap
+-	fromXxx
 - generate
+- groupBy
+- interval
+- join/just
+- limit
+- log
+- map
+- merge
+- onXxx
+- parallel
+- publish
+- push
+- range
+- reduce
+- repeat
+- replay
+- retry
+- sample
+- scan
+- single/share
+- skip
+- sort
+- startWith
+- subscribe
+- switch
+- take
+- then
+- timed/timeout/timestamp
+- transfrom
+- using
+- windows
 - with
+- zip
 
 
 ## buffer
