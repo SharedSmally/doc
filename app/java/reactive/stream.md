@@ -56,3 +56,10 @@ static <T> Stream<T> 	iterate(T seed, UnaryOperator<T> f)
 static <T> Stream<T> 	of(T... values)
 static <T> Stream<T> 	of(T t)
 ```
+
+## Collection:
+```
+default Stream<E> 	stream()
+Object[] 	toArray()
+<T> T[] 	toArray(T[] a)
+```
