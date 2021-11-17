@@ -2,6 +2,69 @@
 - Web Service
 - REST Web Service
 - WebSocket
+- Rest-Data/Hal-Browser/H2 Console
+
+## Web Config
+- Web Config - implements [interface WebMvcConfigurer](https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/servlet/config/annotation/WebMvcConfigurer.html) for config for formatters, controllers, resources,filters,.... It has default implementation, can be implemented directly
+```
+import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
+@Configuration
+public class WebConfig implements WebMvcConfigurer {
+	public void addViewControllers(ViewControllerRegistry registry) {
+		registry.addViewController("/home").setViewName("home");
+		registry.addViewController("/").setViewName("home");
+		registry.addViewController("/hello").setViewName("hello");
+		registry.addViewController("/login").setViewName("login");
+	}
+}
+```
+- Web Security Config - extends [class WebSecurityConfigurerAdapter](https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/config/annotation/web/configuration/WebSecurityConfigurerAdapter.html) to setup secuity context
+```
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+
+@Configuration
+@EnableWebSecurity
+public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+	@Override
+	protected void configure(HttpSecurity http) throws Exception {
+		http
+			.authorizeRequests()
+				.antMatchers("/", "/home").permitAll()
+				.anyRequest().authenticated()
+				.and()
+			.formLogin()
+				.loginPage("/login")
+				.permitAll()
+				.and()
+			.logout()
+				.permitAll();
+	}
+
+	@Bean
+	@Override
+	public UserDetailsService userDetailsService() {
+		UserDetails user =
+			 User.withDefaultPasswordEncoder()
+				.username("user")
+				.password("password")
+				.roles("USER")
+				.build();
+
+		return new InMemoryUserDetailsManager(user);
+	}
+}
+```
 
 ## Web Application Layout
 - com.cainet.xxx.web
