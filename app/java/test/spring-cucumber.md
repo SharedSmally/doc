@@ -178,8 +178,7 @@ Interface Matcher<T>
     - containsString, endsWith, startsWith - test string matching
     
 ## [WireMock](http://wiremock.org/)
-    
-WireMock is a simulator for HTTP-based APIs, consider as a service virtualization or a mock server.
+WireMock is a simulator for HTTP-based APIs (Http Server), consider as a service virtualization or a mock server.
 
 - [Docs](http://wiremock.org/docs/)    
 - [API](https://javadoc.io/doc/com.github.tomakehurst/wiremock-jre8/latest/index.html)    
@@ -196,8 +195,6 @@ import static com.github.tomakehurst.wiremock.client.WireMock.*;
 
 ## PowerMock:
 On EasyMock/Mockit to provide more features
-
-## WireMock: Mock of Http Server
 
 ## [TestContainer](https://www.testcontainers.org/): Mock of container
 - [Features]()
