@@ -108,7 +108,7 @@ cucumber.publish.quite=true
 ## Hamcrest Matchers
 - [Home](http://hamcrest.org/JavaHamcrest/index)
 - [Tutorial](http://hamcrest.org/JavaHamcrest/tutorial)
-- [API]()
+- [API](http://hamcrest.org/JavaHamcrest/javadoc/2.2/)
 ```
 import org.junit.jupiter.api.Test;
 import static org.hamcrest.MatcherAssert.assertThat; 
@@ -178,6 +178,14 @@ Interface Matcher<T>
     - containsString, endsWith, startsWith - test string matching
     
 ## [WireMock](http://wiremock.org/)
+    
+WireMock is a simulator for HTTP-based APIs, consider as a service virtualization or a mock server.
+
+- [Docs](http://wiremock.org/docs/)    
+- [API](https://javadoc.io/doc/com.github.tomakehurst/wiremock-jre8/latest/index.html)    
+- [OpenAPI](http://wiremock.org/docs/api/)    
+- [Stubbing](http://wiremock.org/docs/stubbing/): stubFor/givenThat
+- [Verifying](http://wiremock.org/docs/verifying/)    
 
 ## EasyMock
 
