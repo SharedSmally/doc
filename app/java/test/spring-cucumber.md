@@ -18,6 +18,7 @@ public class CucumberRunnerTest {
 }
 ```
 - CucumberSpringTest: 
+
 Annotate a configuration class on glue path with @CucumberContextConfiguration and with one of the following annotations: @ContextConfiguration, @ContextHierarchy or @BootstrapWith. see [](https://github.com/cucumber/cucumber-jvm/tree/main/spring)
 ```
 import io.cucumber.spring.CucumberContextConfiguration;
