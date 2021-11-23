@@ -185,8 +185,13 @@ WireMock is a simulator for HTTP-based APIs, consider as a service virtualizatio
 - [API](https://javadoc.io/doc/com.github.tomakehurst/wiremock-jre8/latest/index.html)    
 - [OpenAPI](http://wiremock.org/docs/api/)    
 - [Stubbing](http://wiremock.org/docs/stubbing/): stubFor/givenThat
-- [Verifying](http://wiremock.org/docs/verifying/)    
-
+- [Verifying](http://wiremock.org/docs/verifying/): verify(
+- Using WireMockServer or WireMock(static methods)    
+```
+import static com.github.tomakehurst.wiremock.client.WireMock.*;    
+```
+- [Configuration](http://wiremock.org/docs/configuration/)    
+    
 ## EasyMock
 
 ## PowerMock:
