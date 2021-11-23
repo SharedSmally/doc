@@ -17,7 +17,8 @@ public class CucumberRunnerTest {
     public static TestRule rule = new Xxx();    
 }
 ```
-- CucumberSpringTest: annotate a configuration class on glue path with @CucumberContextConfiguration and with one of the following annotations: @ContextConfiguration, @ContextHierarchy or @BootstrapWith. see [](https://github.com/cucumber/cucumber-jvm/tree/main/spring)
+- CucumberSpringTest: 
+Annotate a configuration class on glue path with @CucumberContextConfiguration and with one of the following annotations: @ContextConfiguration, @ContextHierarchy or @BootstrapWith. see [](https://github.com/cucumber/cucumber-jvm/tree/main/spring)
 ```
 import io.cucumber.spring.CucumberContextConfiguration;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -28,6 +29,7 @@ public class CucumberSpringConfiguration {
 }
 ```
     - @CucumberContextConfiguration: tells Cucumber to use this class as the test context configuration for Spring
+    
 - Sharing state between steps
 
 Beans containing glue code (i.e. step definitions, hooks, ect) are bound to the cucumber-glue scope, which starts prior to a scenario and ends after a scenario. All beans in this scope will be created before a scenario execution and disposed at the end of it.
@@ -52,6 +54,7 @@ public class TestUserInformation {
 The glue scoped component can then be autowired into a step definition:
 
 - Define Step Definition classes:
+- 
 The components can be injected into the Cucumber step definition clas
 
 ```
