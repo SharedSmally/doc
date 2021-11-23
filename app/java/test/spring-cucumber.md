@@ -113,7 +113,10 @@ On EasyMock/Mockit to provide more features
 
 ## WireMock: Mock of Http Server
 
-## TestContainer: Mock of container
+## [TestContainer](https://www.testcontainers.org/): Mock of container
+- [Features]()
+- [API](https://javadoc.io/doc/org.testcontainers/testcontainers/latest/index.html)
+     - [GenericContainer](https://javadoc.io/doc/org.testcontainers/testcontainers/latest/org/testcontainers/containers/GenericContainer.html)
 - PostgresContainer
 ```
 import java.util.Arrays;
@@ -138,7 +141,7 @@ public class PostgresContainer extends GenericContainer {
        withNetworkAliases(ALIAS);
        withExposedPorts(PORT);
        waitingFor(Wait.forListeningPort());
-       //withLogConsumernew ContainerConsumer(ALIAS));
+       //withLogConsumernew ContainerConsumer(ALIAS)); withLogConsumer(new Slf4jLogConsumer(log));
        setPortBindings(Arrays.asList(PORT+":"+PORT));
    }
    @Override
