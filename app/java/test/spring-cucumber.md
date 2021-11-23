@@ -105,6 +105,79 @@ cucumber.publish.enabled=false
 cucumber.publish.quite=true
 ```
 
+## Hamcrest Matchers
+- [Home](http://hamcrest.org/JavaHamcrest/index)
+- [Tutorial](http://hamcrest.org/JavaHamcrest/tutorial)
+- [API]()
+```
+import org.junit.jupiter.api.Test;
+import static org.hamcrest.MatcherAssert.assertThat; 
+import static org.hamcrest.Matchers.*;
+
+public class BiscuitTest {
+  @Test 
+  public void testEquals() { 
+    Biscuit theBiscuit = new Biscuit("Ginger"); 
+    Biscuit myBiscuit = new Biscuit("Ginger"); 
+    assertThat(theBiscuit, equalTo(myBiscuit)); 
+  } 
+} 
+```
+MatcherAssert class:
+```
+static void assertThat(java.lang.String reason, boolean assertion)          
+static <T> void	assertThat(T actual, Matcher<? super T> matcher)
+static <T> void assertThat(java.lang.String reason, T actual, Matcher<? super T> matcher)
+```
+Interface Matcher<T>
+```
+ void 	describeMismatch(java.lang.Object item, Description mismatchDescription)
+ boolean 	matches(java.lang.Object item)
+```
+
+- Core
+    
+    - anything - always matches, useful if you don’t care what the object under test is
+    - describedAs - decorator to adding custom failure description
+    - is - decorator to improve readability - see “Sugar”, below
+    
+- Logical
+    
+    - allOf - matches if all matchers match, short circuits (like Java &&)
+    - anyOf - matches if any matchers match, short circuits (like Java ||)
+    - not - matches if the wrapped matcher doesn’t match and vice versa
+    
+- Object
+    
+    - equalTo - test object equality using Object.equals
+    - hasToString - test Object.toString
+    - instanceOf, isCompatibleType - test type
+    - notNullValue, nullValue - test for null
+    - sameInstance - test object identity
+    
+- Beans
+    
+    - hasProperty - test JavaBeans properties
+    
+- Collections
+    
+    - array - test an array’s elements against an array of matchers
+    - hasEntry, hasKey, hasValue - test a map contains an entry, key or value
+    - hasItem, hasItems - test a collection contains elements
+    - hasItemInArray - test an array contains an element
+    
+- Number
+    
+    - closeTo - test floating point values are close to a given value
+    - greaterThan, greaterThanOrEqualTo, lessThan, lessThanOrEqualTo - test ordering
+    
+- Text
+    
+    - equalToIgnoringCase - test string equality ignoring case
+    - equalToIgnoringWhiteSpace - test string equality ignoring differences in runs of whitespace
+    - containsString, endsWith, startsWith - test string matching
+    
+## [WireMock](http://wiremock.org/)
 
 ## EasyMock
 
