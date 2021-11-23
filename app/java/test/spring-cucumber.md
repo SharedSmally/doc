@@ -99,6 +99,13 @@ public ckass TestSpringConfig {
 }
 ```
 
+src/test/resources/cucumber.properties
+```
+cucumber.publish.enabled=false
+cucumber.publish.quite=true
+```
+
+
 ## EasyMock
 
 ## PowerMock:
@@ -107,5 +114,50 @@ On EasyMock/Mockit to provide more features
 ## WireMock: Mock of Http Server
 
 ## TestContainer: Mock of container
+- PostgresContainer
+```
+import java.util.Arrays;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import org.testcontainers.containers.GenericContainer;
+import org.testcontainers.containers.Network;
+import org.testcontainers.containers.wait.strategt.Wait;
+
+public class PostgresContainer extends GenericContainer {
+   private static final String IMAGE_NAME="postgres:latest";
+   private static final String ALIAS="postgres";
+   private static final Interger PORT=Integer.valueof(5432);
+   
+   private static final Logger logger=LoggerFactory.getLogger(PostgresContainer.class);
+   
+   public PostgresContainer(Network network) {
+       super(IMAGE_NAME);
+       withNetwork(network);
+       withNetworkAliases(ALIAS);
+       withExposedPorts(PORT);
+       waitingFor(Wait.forListeningPort());
+       //withLogConsumernew ContainerConsumer(ALIAS));
+       setPortBindings(Arrays.asList(PORT+":"+PORT));
+   }
+   @Override
+   public void start() {
+      try {
+          super.start();
+          loadDataSchema();
+      } catch (Exception ex) {
+          logger.debug(ex);
+          throw ex;
+      }
+   }
+
+   private void loadDataSchema() throw Exception {
+       execInContainer("psql", "-f", "classpath:meta/ddl/ddl.sql");
+       execInContainer("psql", "-f", "classpath:meta/ddl/provision.sql");
+   }
+}
+```
+
 
 ## ServerMock: Mock of Network server 
