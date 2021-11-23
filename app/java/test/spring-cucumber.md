@@ -1,6 +1,7 @@
 # Spring-Cucumber-junit5
-- Needs cucumber(cucumber-java,cucumber-junit,junit), spring, and cucumber-spring
-- Startup Point:
+- Needs cucumber(cucumber-core,cucumber-java,cucumber-junit,junit), cucumber-spring and spring
+- Startup Point: Cucumber Test Runner
+- ![Runner](https://thepracticaldeveloper.com/images/posts/uploads/2018/03/cucumber-spring-boot-1024.webp)
 ```
 @RunWith(Cucumber.class)
 @CucumberOptions(
@@ -9,10 +10,19 @@
     glue={"com.cainet.test"},      // packages that implemented the tests attached with the feature files
     plugin={"pretty","junit:target/cucumber_junut.xml","html:target/cucumber"} // register plugins
 ) 
-public class CucumberIntegrationTest {
+public class CucumberRunnerTest {
+    // global variables
     @ClassRule
-    public static TestRule rule = new Xxx();
-    
+    public static TestRule rule = new Xxx();    
+}
+```
+- CucumberSpringTest
+```
+@CucumberContextConfiguration
+@SpringBootTest(
+   classes = { CucumberTestConfig.class }
+) 
+public ckass CucumberSpringTest {
 }
 ```
 - SpringBootConfiguration
