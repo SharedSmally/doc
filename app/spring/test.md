@@ -3,7 +3,7 @@
 
 ## Java Test
 - Unit Test: junit4/5 + mockit/easymock + powermock + hamcrest-matcher + [WireMock/MockServer for Http(s) server]
-- Integration Test: [cucumber](https://cucumber.io/docs/cucumber/)
+- Integration Test: [cucumber](https://cucumber.io/docs/cucumber/): [Syntax](https://sodocumentation.net/cucumber/topic/9296/gherkin-syntax)
 ```
 Feature: Some terse yet descriptive text of what is desired
      Textual description of the business value of this feature
