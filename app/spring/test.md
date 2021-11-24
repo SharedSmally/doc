@@ -1,7 +1,5 @@
 # Spring Test
 - [Doc](https://docs.spring.io/spring-framework/docs/current/reference/html/testing.html)
-- [Sample]()
-
 
 ## Basic Unit Test
 ### @SpringRunner: for Spring unit-test in JUnit4
