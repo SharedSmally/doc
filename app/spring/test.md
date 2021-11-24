@@ -182,3 +182,12 @@ public class MapTests {
 }
 
 ```
+
+## Spring + Cucumber (cucumber-core+cucumber-java+cucumber-spring+cucumber-junit)
+
+## JUnit 5:
+- Jupiter: the new programming model and extension model for writing tests and extensions in JUnit 5
+- Vintage: provide a TestEngine for running JUnit 3 and JUnit 4 
+- Platform: launch testing frameworks on the JVM.
+
+## SLF4J: Simple Logging Facade for Java
