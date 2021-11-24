@@ -98,7 +98,7 @@ public class SpringtestingApplication {
     // ...
 }
 
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT, classes = {XxxRepository.class, XxxService.class})
 public class TodoControllerTest {
     @Autowired
     TestRestTemplate restTemplate;
