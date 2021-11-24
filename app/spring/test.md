@@ -117,7 +117,33 @@ public class TodoControllerTest {
 
     @MockBean
     private TodoService todoService;
-    // ...
+    
+    @Test
+	public void getCarShouldReturnCarDetails() {
+    	given(this.carService.schedulePickup(new Date(), new Route());)
+        	.willReturn(new Date());
+    	this.mvc.perform(get("/schedulePickup")
+        	.accept(MediaType.JSON)
+        	.andExpect(status().isOk());
+	}
 }
 ```
 
+### @DataJpaTest: 
+only loads @Repository spring components, not loading @Service, @Controller, etc.
+```
+@RunWith(SpringRunner.class)
+@DataJpaTest
+public class MapTests {
+	@Autowired
+	private MapRepository repository;
+
+	@Test
+	public void findByUsernameShouldReturnUser() {
+    	final String expected = "NJ";
+    	String actual = repository.findByZip("07677")
+    	assertThat(expected).isEqualTo(actual);
+	}
+}
+
+```
