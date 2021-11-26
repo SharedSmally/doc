@@ -4,7 +4,7 @@
 The services communicate with each other by using lightweight protocols such as HTTP or REST or messaging protocols.
 - [Netflix](https://www.optisolbusiness.com/insight/micro-services-architecture-spring-boot-and-netflix-infrastructure)
 ![Netflix Architecture](https://1nwu8i3sj55rdbw4k4fm55i1-wpengine.netdna-ssl.com/wp-content/uploads/2015/09/MSArchitech.png)
-
+- [Netflix OSS - Open Source Software](https://netflix.github.io/)
 
 ## Principles of Microservices
 - Single Responsibility principle
@@ -32,17 +32,18 @@ The services communicate with each other by using lightweight protocols such as 
     - HashiCorp Consul
     - Apache Zookeeper
 - API Gateway
+    - Netflix Zuul
 - Config 
     - Cloud Config  Server (based on git, filesystem, database,...)
     - Vault for Secrets
     - Cloud Config Client
 - Load Balance
-    - Server-Side LB
+    - Netflix Zuul : Server-Side LB
     - Client-Side LB (LB among list of servers in client side)
 - Circuit breakers
+    - Hystrix
     - Resilience4J
     - Sentinel
-    - Hystrix
 - Distributed Loagging
     - Sleuth 
     - Zipkin (visualialization)
