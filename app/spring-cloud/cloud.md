@@ -6,6 +6,13 @@ The services communicate with each other by using lightweight protocols such as 
 ![Netflix Architecture](https://1nwu8i3sj55rdbw4k4fm55i1-wpengine.netdna-ssl.com/wp-content/uploads/2015/09/MSArchitech.png)
 - [Netflix OSS - Open Source Software](https://netflix.github.io/)
 
+| Application |	Port |
+|-------------|------|
+|Spring Cloud Config Server  | 8888 |
+|Netflix Eureka Naming Server | 8761 |
+|Netflix Zuul API gateway Server |	8765 |
+|Zipkin distributed Tracing Server |	9411 |
+
 ## Principles of Microservices
 - Single Responsibility principle
 - Modelled around business domain
