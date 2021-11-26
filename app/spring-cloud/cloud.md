@@ -16,35 +16,35 @@ The services communicate with each other by using lightweight protocols such as 
 
 ## Main Projects
 
-- Spring Cloud Config
+- **Spring Cloud Config**
 
 Centralized external configuration management backed by a git repository. The configuration resources map directly to Spring Environment but could be used by non-Spring applications if desired.
 
-- Spring Cloud Netflix
+- **Spring Cloud Netflix
 
 Integration with various Netflix OSS components (Eureka, Hystrix, Zuul, Archaius, etc.).
 
-- Spring Cloud Cloudfoundry
-
-Integrates your application with Pivotal Cloud Foundry. Provides a service discovery implementation and also makes it easy to implement SSO and OAuth2 protected resources.
-
-- Spring Cloud Open Service Broker
-
-Provides a starting point for building a service broker that implements the Open Service Broker API.
-
-- Spring Cloud Consul
-
-Service discovery and configuration management with Hashicorp Consul.
-
-- Spring Cloud Sleuth
-
-Distributed tracing for Spring Cloud applications, compatible with Zipkin, HTrace and log-based (e.g. ELK) tracing.
-
-- Spring Cloud Zookeeper
+- **Spring Cloud Zookeeper
 
 Service discovery and configuration management with Apache Zookeeper.
 
-- Spring Cloud OpenFeign
+- **Spring Cloud Cloudfoundry
+
+Integrates your application with Pivotal Cloud Foundry. Provides a service discovery implementation and also makes it easy to implement SSO and OAuth2 protected resources.
+
+- **Spring Cloud Open Service Broker
+
+Provides a starting point for building a service broker that implements the Open Service Broker API.
+
+- **Spring Cloud Consul
+
+Service discovery and configuration management with Hashicorp Consul.
+
+- **Spring Cloud Sleuth
+
+Distributed tracing for Spring Cloud applications, compatible with Zipkin, HTrace and log-based (e.g. ELK) tracing.
+
+- **Spring Cloud OpenFeign
 
 Spring Cloud OpenFeign provides integrations for Spring Boot apps through autoconfiguration and binding to the Spring Environment and other Spring programming model idioms.
 
