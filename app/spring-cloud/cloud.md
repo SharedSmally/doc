@@ -14,11 +14,25 @@ The services communicate with each other by using lightweight protocols such as 
 |Netflix Zuul API gateway Server |	8765 |
 |Zipkin distributed Tracing Server |	9411 |
 
-## Main Projects
+## [Main Cloud Projects](https://spring.io/projects/spring-cloud)
 
 - **Spring Cloud Config**
 
 Centralized external configuration management backed by a git repository. The configuration resources map directly to Spring Environment but could be used by non-Spring applications if desired.
+
+- **Spring Cloud Sleuth**
+
+Distributed tracing for Spring Cloud applications, compatible with Zipkin, HTrace and log-based (e.g. ELK) tracing.
+
+- **Spring Cloud Open Service Broker**
+
+Provides a starting point for building a service broker that implements the Open Service Broker API.
+
+- **Spring Cloud OpenFeign**
+
+Spring Cloud OpenFeign provides integrations for Spring Boot apps through autoconfiguration and binding to the Spring Environment and other Spring programming model idioms.
+
+### Integration Projects
 
 - **Spring Cloud Netflix**
 
@@ -28,27 +42,15 @@ Integration with various Netflix OSS components (Eureka, Hystrix, Zuul, Archaius
 
 Service discovery and configuration management with Apache Zookeeper.
 
-- **Spring Cloud Cloudfoundry**
-
-Integrates your application with Pivotal Cloud Foundry. Provides a service discovery implementation and also makes it easy to implement SSO and OAuth2 protected resources.
-
-- **Spring Cloud Open Service Broker**
-
-Provides a starting point for building a service broker that implements the Open Service Broker API.
-
 - **Spring Cloud Consul**
 
 Service discovery and configuration management with Hashicorp Consul.
 
-- **Spring Cloud Sleuth**
+- **Spring Cloud Cloudfoundry**
 
-Distributed tracing for Spring Cloud applications, compatible with Zipkin, HTrace and log-based (e.g. ELK) tracing.
+Integrates your application with Pivotal Cloud Foundry. Provides a service discovery implementation and also makes it easy to implement SSO and OAuth2 protected resources.
 
-- **Spring Cloud OpenFeign**
-
-Spring Cloud OpenFeign provides integrations for Spring Boot apps through autoconfiguration and binding to the Spring Environment and other Spring programming model idioms.
-
-## Starter Projects
+### Starter Projects
 - **Spring Cloud Starters**
 
 Spring Boot-style starter projects to ease dependency management for consumers of Spring Cloud. (Discontinued as a project and merged with the other projects after Angel.SR2.)
@@ -61,7 +63,7 @@ Spring Cloud Task App Starters are Spring Boot applications that may be any proc
 
 Spring Boot CLI plugin for creating Spring Cloud component applications quickly in Groovy
 
-## Common Projects
+### Common Projects
 - **Spring Cloud Bus**
 
 An event bus for linking services and service instances together with distributed messaging. Useful for propagating state changes across a cluster (e.g. config change events).
@@ -90,7 +92,7 @@ Spring Cloud Pipelines provides an opinionated deployment pipeline with steps to
 
 Spring Cloud Function promotes the implementation of business logic via functions. It supports a uniform programming model across serverless providers, as well as the ability to run standalone (locally or in a PaaS).
 
-
+### Connection Projects
 - **Spring Cloud Cluster**
 
 Leadership election and common stateful patterns with an abstraction and implementation for Zookeeper, Redis, Hazelcast, Consul.
@@ -107,7 +109,7 @@ Spring Cloud Gateway is an intelligent and programmable router based on Project 
 
 Makes it easy for PaaS applications in a variety of platforms to connect to backend services like databases and message brokers (the project formerly known as "Spring Cloud").
 
-
+### Testing Projects
 - **Spring Cloud Contract**
 
 Spring Cloud Contract is an umbrella project holding solutions that help users in successfully implementing the Consumer Driven Contracts approach.
