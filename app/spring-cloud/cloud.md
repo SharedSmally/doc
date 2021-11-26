@@ -3,7 +3,7 @@
 - [Tutorial](https://www.javatpoint.com/microservices)
 The services communicate with each other by using lightweight protocols such as HTTP or REST or messaging protocols.
 - [Netflix](https://www.optisolbusiness.com/insight/micro-services-architecture-spring-boot-and-netflix-infrastructure)
-[Netflix Architecture](https://1nwu8i3sj55rdbw4k4fm55i1-wpengine.netdna-ssl.com/wp-content/uploads/2015/09/MSArchitech.png)
+![Netflix Architecture](https://1nwu8i3sj55rdbw4k4fm55i1-wpengine.netdna-ssl.com/wp-content/uploads/2015/09/MSArchitech.png)
 
 
 ## Principles of Microservices
