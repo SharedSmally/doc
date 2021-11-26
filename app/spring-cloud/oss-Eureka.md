@@ -24,3 +24,4 @@ Eureka Service Urls (eureka.serviceUrls)
 ```
 
 ## Configuring Eureka Server
+Use [Ribbon]() for LB and [Archaius](https://github.com/Netflix/archaius) for configuration management.
