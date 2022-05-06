@@ -79,3 +79,15 @@ void 	registerServiceHandler(java.lang.String id, ServiceHandler serviceHandler)
 void 	unregisterServiceHandler(java.lang.String id)
 ```
 - SettingStore
+```
+java.lang.String 	getId()
+void 	loadById(java.lang.String id)
+
+void 	addSettingStoreListener(SettingStoreListener listener)
+void 	removeSettingStoreListener(SettingStoreListener listener)
+
+java.lang.String 	getAttribute(java.lang.String name)
+java.util.Enumeration<java.lang.String> 	getAttributeNames()
+void 	removeAttribute(java.lang.String name)
+void 	setAttribute(java.lang.String name, java.lang.String value)
+```
