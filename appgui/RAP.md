@@ -81,7 +81,7 @@ java.lang.String 	getServiceHandlerUrl(java.lang.String id)
 void 	registerServiceHandler(java.lang.String id, ServiceHandler serviceHandler)
 void 	unregisterServiceHandler(java.lang.String id)
 ```
-- SettingStore
+- SettingStore:  FileSettingStore
 ```
 java.lang.String 	getId()
 void 	loadById(java.lang.String id)
