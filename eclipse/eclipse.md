@@ -2,6 +2,7 @@
 
 ## Workbench
 The term Workbench refers to the desktop development environment. 
+
 The Workbench aims to achieve seamless tool integration and controlled openness by providing a common 
 paradigm for the creation, management, and navigation of workspace resources.
 
@@ -42,10 +43,17 @@ Any number of editors can be open at once, but only one can be active at a time.
 operations that are applicable to the active editor.
 
 ## Views (View resources only)
-Views support editors and provide alternative presentations as well as ways to navigate the information in your Workbench. 
+The primary use of Views is to provide navigation of the information in the Workbench. Views support editors and provide alternative presentations as well as ways to navigate the information in your Workbench. 
 
 Views also have their own menus. To open the menu for a view, click the icon at the left end of the view's title bar. 
 Some views also have their own toolbars. The actions represented by buttons on view toolbars only affect the items within that view.
 
 A view might appear by itself, or stacked with other views in a tabbed notebook. You can change the layout of a perspective 
 by opening and closing views and by docking them in different positions in the Workbench window.
+
+Modifications made in a view are saved immediately.
+
+## Part
+Some features are common to both views and editors. We use the term "part" to mean either a view or an editor. Parts can be active or inactive, but only one part can be active at any one time. The active part is the one whose title bar is highlighted. The active part is the target for common operations like cut, copy and paste. The active part also determines the contents of the status line. If an editor tab is not highlighted it indicates the editor is not active, however views may show information based on the last active editor.
+
+When an editor is active, the Workbench menu bar and toolbar contain operations applicable to the editor. When a view becomes active, the editor operations are disabled. However, certain operations may be appropriate in the context of a view and will remain enabled.
