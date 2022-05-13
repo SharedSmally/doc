@@ -16,6 +16,11 @@
 - [e4 tutorial](https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&ved=2ahUKEwivj-mLpt33AhVHnHIEHZd2B84QFnoECB4QAQ&url=https%3A%2F%2Ftomsondev.files.wordpress.com%2F2010%2F07%2Ftutorial.pdf&usg=AOvVaw0JxTDRD0WsRADGS1Z37TJa)
 File/New/Other... >Plugin Project (No for create a rich cleint application) > RAP e4 Application
 
+- list of built-in command of the RAP framework at:
+
+http://help.eclipse.org/mars/topic/org.eclipse.platform.doc.isv/reference/api/org/eclipse/ui/actions/ActionFactory.html
+
+
 ## Run the application
 - Run directly
 Right click the project and select:
