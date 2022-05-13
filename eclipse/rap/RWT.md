@@ -25,8 +25,8 @@
 | <T extends ClientService> T 	getService(java.lang.Class<T> type) | Returns this client's implementation of a given service, if available.|
 
 - ClientService
-All Known Subinterfaces: BrowserNavigation, ClientFileLoader, ClientFileUploader, ClientInfo, ExitConfirmation, JavaScriptExecutor, JavaScriptLoader, StartupParameters, UrlLauncher
-All Known Implementing Classes: AbstractEntryPoint 
+  - All Known Subinterfaces: BrowserNavigation, ClientFileLoader, ClientFileUploader, ClientInfo, ExitConfirmation, JavaScriptExecutor, JavaScriptLoader, StartupParameters, UrlLauncher
+  - All Known Implementing Classes: AbstractEntryPoint 
   
 - ApplicationContext
   
