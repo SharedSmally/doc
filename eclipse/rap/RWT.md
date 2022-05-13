@@ -2,6 +2,7 @@
 - [Overview](https://wiki.eclipse.org/RAP/RWT):  org.eclipse.rap.rwt
 - [javadoc](https://download.eclipse.org/rt/rap/doc/3.6/guide/reference/api/index.html)
 - RWT
+
 | Method | Description |
 |--------|-------------|
 | static Client 	getClient()| Returns a representation of the client that is connected with the server in the current UI session.| 
@@ -18,6 +19,7 @@
 | static void 	setLocale(java.util.Locale locale)| Sets the preferred Locale for the current UI session.| 
 
 - Client  : WebClient
+
 | Method | Description |
 |--------|-------------|
 | <T extends ClientService> T 	getService(java.lang.Class<T> type) | Returns this client's implementation of a given service, if available.|
@@ -27,6 +29,7 @@ All Known Subinterfaces: BrowserNavigation, ClientFileLoader, ClientFileUploader
 All Known Implementing Classes: AbstractEntryPoint 
   
 - ApplicationContext
+  
 | Method | Description |
 |--------|-------------|
 | ResourceManager 	getResourceManager()| Returns the instance of the resource manager for this application context.| 
@@ -40,6 +43,7 @@ All Known Implementing Classes: AbstractEntryPoint
 | void 	setAttribute(java.lang.String name, java.lang.Object value)| Stores the given value in this application context, associated with the given name.| 
 
 - ResourceManager
+  
 | Method | Description |
 |--------|-------------|
 | java.lang.String 	getLocation(java.lang.String name)| Returns the location within the web-applications context where the resource will be available for download.| 
@@ -49,6 +53,7 @@ All Known Implementing Classes: AbstractEntryPoint
 | boolean 	unregister(java.lang.String name)| Unregisters the resource with the given name.| 
    
 - ServiceManager
+  
 | Method | Description |
 |--------|-------------|
 | java.lang.String 	getServiceHandlerUrl(java.lang.String id)|Returns the URL to access a service handler.|
@@ -56,6 +61,7 @@ All Known Implementing Classes: AbstractEntryPoint
 |void 	unregisterServiceHandler(java.lang.String id)|Unregisters the service handler with the given id.  |
   
 - SettingStore : FileSettingStore
+  
 | Method | Description |
 |--------|-------------|
 | java.lang.String 	getId()| Returns the unique identifier of this setting store.| 
@@ -68,6 +74,7 @@ All Known Implementing Classes: AbstractEntryPoint
 | void 	setAttribute(java.lang.String name, java.lang.String value)| Stores a given attribute in this setting store, using the name specified.| 
 
 - UISession
+  
 | Method | Description |
 |--------|-------------|
 | ApplicationContext 	getApplicationContext()| Returns the ApplicationContext this UISession belongs to.| 
