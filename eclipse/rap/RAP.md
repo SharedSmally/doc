@@ -1,4 +1,7 @@
-# Eclipse Remote Application Platform - RAP 
+# Eclipse Remote Application Platform
+- [RAP](http://www.eclipse.org/rap/) 
+- [Developer guide](http://www.eclipse.org/rap/developers-guide/)
+- [RAP Protocol](http://wiki.eclipse.org/RAP/Protocol)
 
 ## Eclipse 3.x 
 - WorkBench
