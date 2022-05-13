@@ -5,7 +5,13 @@
 - Extension for Plugin: 
     - Extension points
 
-## Eclipse 4.x: e4 
+## Eclipse 4.x: e4 using DI (Dependency Injection)
+- [Eclipse API doc](https://javadoc.scijava.org/Eclipse/index.html)
+     - di
+     - ui
+         - model
+              - application
+                  - [commands](https://javadoc.scijava.org/Eclipse/org/eclipse/e4/ui/model/application/commands/package-summary.html)
 - Tools with Eclipse J2EE
     - WindowBuilder
     - e4 Tools Developer Resources
@@ -22,6 +28,42 @@
     - model processors: programmtically extend the application model
 
 ## Application Model
+- Addon
+To participate in dependency injection with customized Java objects, they can be added as model add-ons to the application model. The classes referred to by the model add-ons can access and modify the IEclipseContext or interact with other services, e.g., the event system.
+```
+import javax.annotation.PostConstruct;
+import org.eclipse.e4.core.contexts.IEclipseContext;
+public class MyModelAddon {
+    @PostConstruct
+    public void init(IEclipseContext context) {
+        // injected IEclipseContext comes from the application
+        context.set("test1", "Hello");
+    }
+}
+```
+- Binding Contexts
+- Bindin Tables
+- Handlers
+- Commands
+- Command Categories
+- Windows and Dialogs
+- Part Descriptors
+- Menu Contributions
+- Toolbar Contributions
+- Trim Contributions
+- Snippets
+
+## DI
+
+## Addons
+- [e4 context](https://www.vogella.com/tutorials/Eclipse4ContextUsage/article.html)
+using @Inject, IEclipseContext and MContext.
+
+If a model object implements MContext, can use dependency injection to get the model object injected and call the getContext() method to access its context. For example, MPart, MWindow, MDialog,MApplication and MPerspective extend MContext.
+
+## Services
+
+## Application Model components
 - Handler: need declare the ID, Handler class and Command.
 The classes handling for the commands of Menu or Toolbar. When MenuItem or ToolItem is clicked,it means the call to execute a command, 
 Handler will be executed before the Command is executed, can cancel the command is executed in Handler.
