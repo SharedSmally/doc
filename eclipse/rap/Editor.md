@@ -2,6 +2,15 @@
 - [javadoc](https://javadoc.scijava.org/Eclipse/org/eclipse/ui/texteditor/package-summary.html): 
 Provides a framework for text editors obeying to the desktop rules. 
 
+| package | description |
+ |org.eclipse.ui.texteditor 	 |Provides a framework for text editors obeying to the desktop rules. |
+ |org.eclipse.ui.texteditor.link 	 |Adds a LinkedModeUI subclass that is aware of workbench editors. |
+ |org.eclipse.ui.texteditor.quickdiff 	 |Provides interfaces to for the org.eclipse.ui.editors.quickDiffReferenceProvider extension point and adds an action to enable quick diff display for an editor. |
+ |org.eclipse.ui.texteditor.rulers 	 |Provides interfaces and classes for the org.eclipse.ui.workbench.texteditor.rulerColumns. |
+ |org.eclipse.ui.texteditor.spelling 	 |Partial infrastructure for spell checking in text editors. |
+ |org.eclipse.ui.texteditor.templates 	 |Application programming interfaces for interaction with the Eclipse text editor template support. |
+
+
 ITextEditor extends IEditorPart with text editor specific functionality. 
 Text editors use source viewers (ISourceViewer) for displaying and editing the given editor input. 
 In order to translate the editor input into a document and vice versa (e.g., for saving a change), 
