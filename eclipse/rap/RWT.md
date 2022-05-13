@@ -1,6 +1,7 @@
 # RWT - RAP Widget Toolkit
 - [Overview](https://wiki.eclipse.org/RAP/RWT):  org.eclipse.rap.rwt
 - [javadoc](https://download.eclipse.org/rt/rap/doc/3.6/guide/reference/api/index.html)
+
 - RWT
 
 | Method | Description |
@@ -15,14 +16,14 @@
 | static HttpServletRequest 	getRequest()| Returns the HttpServletRequest that is currently processed.| 
 | static HttpServletResponse 	getResponse()| Returns the HttpServletResponse that will be sent to the client after processing the current request.| 
 | static void 	requestThreadExec(java.lang.Runnable runnable)| Executes the run method of the given runnable on the request thread.| 
-| static java.util.Locale 	getLocale()| Returns the preferred Locale for the current UI session.| 
-| static void 	setLocale(java.util.Locale locale)| Sets the preferred Locale for the current UI session.| 
+| static Locale 	getLocale()| Returns the preferred Locale for the current UI session.| 
+| static void 	setLocale(Locale locale)| Sets the preferred Locale for the current UI session.| 
 
 - Client  : WebClient
 
 | Method | Description |
 |--------|-------------|
-| <T extends ClientService> T 	getService(java.lang.Class<T> type) | Returns this client's implementation of a given service, if available.|
+| <T extends ClientService> T 	getService(Class<T> type) | Returns this client's implementation of a given service, if available.|
 
 - ClientService
   - All Known Subinterfaces: BrowserNavigation, ClientFileLoader, ClientFileUploader, ClientInfo, ExitConfirmation, JavaScriptExecutor, JavaScriptLoader, StartupParameters, UrlLauncher
@@ -40,14 +41,14 @@
 | void 	removeUIThreadListener(UIThreadListener listener)| Removes a UIThreadListener from this application context.| 
 | java.lang.Object 	getAttribute(String name)| Returns the value which is stored under the given name in this application context.| 
 | void 	removeAttribute(String name)| Removes the object which is stored under the given name in this application context.| 
-| void 	setAttribute(String name, java.lang.Object value)| Stores the given value in this application context, associated with the given name.| 
+| void 	setAttribute(String name, Object value)| Stores the given value in this application context, associated with the given name.| 
 
 - ResourceManager
   
 | Method | Description |
 |--------|-------------|
 | String 	getLocation(String name)| Returns the location within the web-applications context where the resource will be available for download.| 
-| java.io.InputStream 	getRegisteredContent(java.lang.String name)| Returns the content of the registered resource with the given name.| 
+| java.io.InputStream 	getRegisteredContent(String name)| Returns the content of the registered resource with the given name.| 
 | boolean 	isRegistered(String name)| Determines whether the resource with the given name has been registered.| 
 | void 	register(String name, java.io.InputStream inputStream)| Registers a given resource and makes it available for download.| 
 | boolean 	unregister(String name)| Unregisters the resource with the given name.| 
@@ -71,7 +72,7 @@
 | String 	getAttribute(String name)| Returns the attribute stored under the specified name in this setting store.| 
 | Enumeration<String> 	getAttributeNames()| Returns an Enumeration of strings with the names of all attributes in this setting store.| 
 | void 	removeAttribute(String name)| Removes the attribute stored under the specified name from this setting store.| 
-| void 	setAttribute(String name, java.lang.String value)| Stores a given attribute in this setting store, using the name specified.| 
+| void 	setAttribute(String name, String value)| Stores a given attribute in this setting store, using the name specified.| 
 
 - UISession
   
