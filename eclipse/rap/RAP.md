@@ -1,4 +1,4 @@
-# Eclipse RAP 
+# Eclipse Remote Application Platform - RAP 
 
 ## Eclipse 3.x 
 - WorkBench
