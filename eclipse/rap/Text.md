@@ -1,5 +1,6 @@
 # JFace Text
 - [javadoc](https://javadoc.scijava.org/Eclipse/org/eclipse/jface/text/package-summary.html)
+
 | org.eclipse.jface.text 	| Provides a framework for creating and manipulating text documents.|
 |org.eclipse.jface.text.contentassist 	|Provides a content assist add-on for an ITextViewer.|
 |org.eclipse.jface.text.formatter 	|Provides a content formatter add-on for an ITextViewer.|
