@@ -19,6 +19,5 @@
 |org.eclipse.jface.text.source.projection 	|This package provides the UI part for projection documents of which the most important part is the projection viewer.|
 |org.eclipse.jface.text.templates 	|Application programming interfaces for interaction with the Eclipse text template support.|
 |org.eclipse.jface.text.templates.persistence 	|Provides persistence support for templates.|
-|org.eclipse.jface.viewers 	|Provides a framework for viewers, which are model-based content adapters for SWT widgets.|
-|org.eclipse.jface.viewers.deferred 	|Provides a framework for viewers that handle deferred contents.|
+
 
