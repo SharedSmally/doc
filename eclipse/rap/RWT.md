@@ -1,6 +1,7 @@
 # RWT - RAP Widget Toolkit
 - [Overview](https://wiki.eclipse.org/RAP/RWT):  org.eclipse.rap.rwt
 - [javadoc](https://download.eclipse.org/rt/rap/doc/3.6/guide/reference/api/index.html)
+- [RWT Standalone Application](https://www.eclipse.org/rap/developers-guide/devguide.php?topic=rwt-standalone.html&version=3.20)
 
 - RWT
 
