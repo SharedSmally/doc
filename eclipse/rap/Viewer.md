@@ -5,6 +5,16 @@
 | ----------- | ----------- |
 |org.eclipse.jface.viewers 	|Provides a framework for viewers, which are model-based content adapters for SWT widgets.|
 |org.eclipse.jface.viewers.deferred 	|Provides a framework for viewers that handle deferred contents.|
+| org.eclipse.ui.themes 	| Application programming interfaces for interaction with and extension of the Eclipse Platform User Interface.| 
+| org.eclipse.ui.views 	| Application programming interfaces for interaction with and extension of the Eclipse Platform User Interface.| 
+| org.eclipse.ui.views.bookmarkexplorer 	| Provides the standard Bookmarks view which displays bookmarks on resources.| 
+| org.eclipse.ui.views.contentoutline 	| Provides the standard Content Outline view which can show the active editor's custom outline for the document being edited.| 
+| org.eclipse.ui.views.framelist 	| Provides support for a web-browser style of navigation within a view by maintaining a list of frames.| 
+| org.eclipse.ui.views.markers 	| Utility classes for working with markers in views| 
+ | org.eclipse.ui.views.navigator 	| Provides the standard Resource Navigator view which presents the tree of resources in the workspace.| 
+| org.eclipse.ui.views.properties 	| Provides the standard Property Sheet view which displays custom properties of the active workbench part's current selection.| 
+| org.eclipse.ui.views.properties.tabbed 	| Provides the Tabbed Properties framework.| 
+| org.eclipse.ui.views.tasklist 	| Provides the standard Task List view for displaying tasks and problem annotations on resources.| 
 
 
 ## [Viewer](https://javadoc.scijava.org/Eclipse/org/eclipse/jface/viewers/package-summary.html)
