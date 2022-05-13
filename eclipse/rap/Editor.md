@@ -3,6 +3,7 @@
 Provides a framework for text editors obeying to the desktop rules. 
 
 | package | description |
+|---------|-------------|
  |org.eclipse.ui.texteditor 	 |Provides a framework for text editors obeying to the desktop rules. |
  |org.eclipse.ui.texteditor.link 	 |Adds a LinkedModeUI subclass that is aware of workbench editors. |
  |org.eclipse.ui.texteditor.quickdiff 	 |Provides interfaces to for the org.eclipse.ui.editors.quickDiffReferenceProvider extension point and adds an action to enable quick diff display for an editor. |
