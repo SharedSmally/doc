@@ -3,6 +3,22 @@
 - [Developer guide](http://www.eclipse.org/rap/developers-guide/)
 - [RAP Protocol](http://wiki.eclipse.org/RAP/Protocol)
 
+## RAP Applications
+
+Running in Server Side via Javascript /Ajax using RAP Protocol on Http.
+
+| RAP Type | RAP with OSGi | RAP with Workbench | RWT Standalone |
+|----------|---------------|--------------------|----------------|
+| Summary  | Lightweight and flexible, recommended for new applications that do not use Eclipse extensions |For applications using the Eclipse Workbench (RCP applications) | No OSGi, RWT used as a library in a traditional web app |
+| OSGi | Compatible with any OSGi implementation including Equinox | Eclipse Equinox required |	No OSGi|
+| Deployment | As WAR file in servlet container or directly in OSGi container with embedded server. Direct access to JEE contexts possible with JEE compatibility mode. | As WAR file in servlet container or directly in OSGi container with embedded server. | As WAR file in servlet container. Direct access to JEE contexts possible with JEE compatibility mode. Clustering supported.|
+| Configuration  | Using the Application Configuration API | Using extension points Branding | Using the Application Configuration API RWT servlet and application configured in web.xml.|
+| Entry-point |	EntryPoint | EntryPoint or IApplication | EntryPoint |
+| Operation Modes | SWT or JEE compatibility mode | SWT compatibility mode enforced | SWT or JEE compatibility mode|
+|RCP Compatibility | SWT, JFace | SWT, JFace, Workbench |SWT, JFace |
+| Launch from IDE  | RAP Launcher 	| RAP Launcher | RWT Launcher |
+
+
 ## Eclipse 3.x 
 - WorkBench
 - Extension for Plugin: 
