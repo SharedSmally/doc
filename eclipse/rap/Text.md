@@ -1,5 +1,6 @@
 # JFace Text
 - [javadoc](https://javadoc.scijava.org/Eclipse/org/eclipse/jface/text/package-summary.html)
+
 | package      | Description |
 | ----------- | ----------- |
 | org.eclipse.jface.text 	| Provides a framework for creating and manipulating text documents.|
