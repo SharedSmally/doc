@@ -72,6 +72,14 @@ public class BasicApplication implements ApplicationConfiguration {
 ```
 ![Handle-Command-Item](https://eclipsesource.com/wp-content/uploads/2012/06/image09.png)
 
+## E4Application ->IApplication; create E4Workbench (with created IEclipseContext appctx; MApplication appModel)
+Source code: https://github.com/eclipse-rap/org.eclipse.rap
+
+XMI URL: private final static String E4XMI = "platform:/plugin/RAPe4Tutorial/Application.e4xmi"; 
+- schema: platform:/  or bundleclass://
+- segment: plugin/ or fragment/
+- plugin name:    Bundle.getSymbolicName()
+- filename: Application.e4xmi
 
 ## RWT standalone Application embedded in Spring Boot
 - Gradle project Sample: https://github.com/bwolff/rwt-on-spring-boot
