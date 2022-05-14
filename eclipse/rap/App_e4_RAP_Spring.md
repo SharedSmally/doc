@@ -15,7 +15,7 @@ Eclipse e4 RAP Application:
 ![RCP vs RAP](http://file.itpub.net/forum/itpub/attachment/day_090706/20090706_62f02d78bd33e0c81efdo3T6I3wMso7j.jpg)
 
 - Code Samples: https://github.com/eclipsesource/tabris-demos/tree/master/com.eclipsesource.tabris.demos
-- Eclipse 4 (e4) Tutorial Part 1: https://eclipsesource.com/blogs/2012/05/10/eclipse-4-final-sprint-part-1-the-e4-application-model/
+- Eclipse 4 (e4) Tutorial Part 1-7: https://eclipsesource.com/blogs/2012/05/10/eclipse-4-final-sprint-part-1-the-e4-application-model/
 - Eclipse 4 (e4) Tutorial Part 2: https://eclipsesource.com/blogs/2012/06/12/eclipse-4-e4-tutorial-part-2/
 - Eclipse 4 (e4) FAQ: https://wiki.eclipse.org/Eclipse4/RCP/FAQ
 
@@ -73,9 +73,11 @@ public class BasicApplication implements ApplicationConfiguration {
 ![Handle-Command-Item](https://eclipsesource.com/wp-content/uploads/2012/06/image09.png)
 
 ## E4Application ->IApplication; create E4Workbench (with created IEclipseContext appctx; MApplication appModel)
-RAP Source code: https://github.com/eclipse-rap/org.eclipse.rap and https://github.com/eclipse-rap
-E4 Source code: https://git.eclipse.org
-E4book Samples: https://github.com/vogellacompany/eclipse4book
+Source code:
+- RAP : https://github.com/eclipse-rap/org.eclipse.rap and https://github.com/eclipse-rap
+- E4: https://git.eclipse.org
+- E4book: https://github.com/vogellacompany/eclipse4book
+- E4Application.java: https://git.eclipse.org/c/platform/eclipse.platform.ui.git/tree/bundles/org.eclipse.e4.ui.workbench.swt/src/org/eclipse/e4/ui/internal/workbench/swt/E4Application.java
 
 XMI URL: private final static String E4XMI = "platform:/plugin/RAPe4Tutorial/Application.e4xmi"; 
 - schema: platform:/  or bundleclass://
