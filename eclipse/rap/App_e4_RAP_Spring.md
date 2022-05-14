@@ -9,3 +9,9 @@ Eclipse e4 RAP Application:
 - [Eclipse RAP Developer's Guide](https://www.eclipse.org/rap/developers-guide/)
 - [RWT Standalone](https://www.eclipse.org/rap/developers-guide/devguide.php?topic=rwt-standalone.html&version=3.20)
 - [RWT Application Configuration](https://www.eclipse.org/rap/developers-guide/devguide.php?topic=application-configuration.html&version=3.20)
+
+## RWT standalone Application embedded in Spring Boot
+- Gradle project Sample: https://github.com/bwolff/rwt-on-spring-boot
+
+## RWT standalone Application 
+- Create gradle project
