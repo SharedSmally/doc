@@ -9,7 +9,9 @@ Eclipse e4 RAP Application:
 - [Eclipse RAP Developer's Guide](https://www.eclipse.org/rap/developers-guide/)
 - [RWT Standalone](https://www.eclipse.org/rap/developers-guide/devguide.php?topic=rwt-standalone.html&version=3.20)
 - [RWT Application Configuration](https://www.eclipse.org/rap/developers-guide/devguide.php?topic=application-configuration.html&version=3.20)
-- Run in Debug:  ./gradlew bootRoot -Dlogging.level.root=DEBUG
+- Run in Debug: 
+*./gradlew bootRoot -Dlogging.level.root=DEBUG*
+
 ![RCP vs RAP](http://file.itpub.net/forum/itpub/attachment/day_090706/20090706_62f02d78bd33e0c81efdo3T6I3wMso7j.jpg)
 
 - Code Samples: https://github.com/eclipsesource/tabris-demos/tree/master/com.eclipsesource.tabris.demos
