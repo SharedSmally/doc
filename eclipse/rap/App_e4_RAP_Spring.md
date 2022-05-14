@@ -15,6 +15,7 @@ Eclipse e4 RAP Application:
 - Code Samples: https://github.com/eclipsesource/tabris-demos/tree/master/com.eclipsesource.tabris.demos
 - Eclipse 4 (e4) Tutorial Part 1: https://eclipsesource.com/blogs/2012/05/10/eclipse-4-final-sprint-part-1-the-e4-application-model/
 - Eclipse 4 (e4) Tutorial Part 2: https://eclipsesource.com/blogs/2012/06/12/eclipse-4-e4-tutorial-part-2/
+- Eclipse 4 (e4) FAQ: https://wiki.eclipse.org/Eclipse4/RCP/FAQ
 
 Main
 ```
@@ -50,7 +51,25 @@ public class MyHandler {
    }
 }
 ```
+For Plugin e4 application with EntryPoint:
+```
+public class BasicApplication implements ApplicationConfiguration {
+    public void configure(Application application) {
+        Map<String, String> properties = new HashMap<String, String>();
+        properties.put(WebClient.PAGE_TITLE, "My RAP Application");
+        Bundle bundle = FrameworkUtil.getBundle(my.package.E4LifeCycle.class);
+        String symbolicName = bundle.getSymbolicName();
+        String appXmiLocation = "platform:/plugin/" + symbolicName + "/Application.e4xmi";
+        String lifeCycleLocation = "bundleclass://" + symbolicName + "/" + my.package.E4LifeCycle.class.getName();
+        E4ApplicationConfig applicationConfig = E4ApplicationConfig.create(appXmiLocation, lifeCycleLocation);
+        E4EntryPointFactory entryPointFactory = new E4EntryPointFactory(applicationConfig);
+        application.addEntryPoint("/myapp", entryPointFactory, properties);
+        application.setOperationMode(OperationMode.SWT_COMPATIBILITY);
+    }
+}
+```
 ![Handle-Command-Item](https://eclipsesource.com/wp-content/uploads/2012/06/image09.png)
+
 
 ## RWT standalone Application embedded in Spring Boot
 - Gradle project Sample: https://github.com/bwolff/rwt-on-spring-boot
