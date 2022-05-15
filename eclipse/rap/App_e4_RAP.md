@@ -50,5 +50,26 @@ Right-click the RAPe4Tutorial project and select:
 - Snippets
 
 ## Depoly as WAR
+- Use an ApplicationConfiguration to bind different entrypoints to different url-patterns.
+```
+application.addEntryPoint("/start", MyEntryPoint.class, properties);
+application.addEntryPoint("/admin", MyAdminEntryPoint.class, properties);
+```
+-  bind the RapServlet to all used url-patterns in the web.xml
+```
+<servlet>
+    <servlet-name>RAPServlet</servlet-name>
+    <servlet-class>org.eclipse.rwt.internal.engine.RWTDelegate</servlet-class>
+</servlet>
+<servlet-mapping>
+    <servlet-name>RAPServlet</servlet-name>
+    <url-pattern>/start</url-pattern>
+</servlet-mapping>
+<servlet-mapping>
+    <servlet-name>RAPServlet</servlet-name>
+    <url-pattern>/admin</url-pattern>
+</servlet-mapping>
+```
+
 
 ### [Command and Handler](https://www.vogella.com/tutorials/EclipseCommands/article.html)
