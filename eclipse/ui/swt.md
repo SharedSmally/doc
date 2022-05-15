@@ -103,3 +103,14 @@
         - TextTransfer
         - URLTransfer
 - org.eclipse.swt.dnd.TransferData
+
+
+### Client Service: org.eclipse.rap.rwt.client.service 
+- BrowserNavigation: provides methods to access a web browser's history for navigating within the application.
+- BrowserNavigationListener 	An event handler that is invoked whenever the user navigates within the application, i.e.
+- ClientInfo: provides basic information about the client device.
+- ClientService: 	The generic interface for RWT client services.
+- ExitConfirmation: allows applications to show a confirmation dialog before the user leaves the application, e.g.
+- JavaScriptExecutor: allows executing JavaScript code on the client.
+- JavaScriptLoader: allows loading additional JavaScript files at runtime.
+- UrlLauncher: allows loading an URL in an external window, application or save dialog.
