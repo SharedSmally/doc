@@ -7,6 +7,21 @@
 - [Eclipse RAP Tutorial for Beginners - Workbench Application-OLD](https://o7planning.org/10385/eclipse-rap-tutorial-for-beginners-workbench-application)
 
 
+## PDE: Plugin Development Environment
+- Category Definition: group of features and plugins. include content into a p2 repository and to specify how to display the content in the p2 installation dialog
+- Component Definition: OSGi service (scr) definitions;  
+- Feature Project: Branding Plugin
+- Product Configuration:  File > New > Other > Plugin Development > Product Configuration
+- Target Definition: Target environment that the PDE is developed for
+- OSGi > Deployment Package Definition
+
+Product > Feature > Plugin
+
+In OSGi, the activator, a Java class that controls the plug-in’s life cycle. An Activator class will not be created; instead, OSGi Declarative Services will be used to start and stop the bundle.
+
+## Product Definition
+trictly speaking, a product is an extension to the extension point called org.eclipse.core.runtime.products. The purpose of a product is to define application-specific branding on top of a configuration of Eclipse plug-ins. Minimally, a product defines the ID of the application it is associated with and provides a name, description, and unique ID of its own. A product also stores a table of additional properties, where the UI stores information such as the application window icon and the all-important blurb in the Help > About... dialog. 
+
 ## Target Platform: New > Other > Plugin Development > Target Definition
 The Target Platform refers to the plug-ins which your workspace will be built and run against. It describes the platform that you are developing for. When developing with PDE, the target platform is used to:
 
