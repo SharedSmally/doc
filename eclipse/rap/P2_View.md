@@ -88,3 +88,40 @@ After all three elements are created, both the handler and the item need to be b
 application, as an example, key bindings can be used to trigger the execution of a command or other items can be bound to it.
 ![CmdLinks](https://eclipsesource.com/wp-content/uploads/2012/06/image13.png)
 
+https://eclipsesource.com/blogs/2012/06/26/eclipse-4-e4-tutorial-part-3-extending-the-application-model/
+
+## extensions
+The application model needs to be extended from new plugins. Eclipse 3.x uses extensions points, while Eclipse 4 offers model fragments and model processors. 
+- A model fragment is a small application model in itself and defines elements which need to be added to the root application model. Fragments can add anything that can be part of the application model, for example handlers, menu items or even windows.
+![fragments](https://eclipsesource.com/wp-content/uploads/2012/06/fragmentextension-300x162.png)
+
+- Processors offer a mechanism to programmatically extend an application model. This allows the application to react to the current state of the model. 
+
+ The elements in the application model which will be extended should have a unique id. This id is used to reference elements from the extending fragment. 
+
+## Fragments
+- creating a fragment is provided by the “Extract Fragment” wizard of the e4 model editor.
+- A file containing model fragments can be created using the wizard provided by the e4 tools. 
+
+Every model fragment has to be registered via an extension point. This will usually  happen automatically, e.g. if you use the “Extract” wizard or the “New model fragment wizard”. There is an optional attribute “apply” for the extension, which controls if model fragments are merged into the core application model. There are three possible values:
+
+- initial: The model fragments is only added to the core application model, if there is no persistent application model, typically, if the application is started the first time. On a second start-up, if the former state of the application model is loaded, the fragment will not be merged again
+- notexist: The model fragments is only added to the core application model, if the elements added by the fragment are not already existing in the core application model
+- always: The model fragments are always added. Please note, that this might lead to duplicated elements in the core, as elements in the model fragment are added again on every start-up
+
+## Processor
+```
+public class Processor {
+   @Execute
+   public void execute(MApplication application, EModelService modelService){
+      MWindow existingWindow = modelService.find(String “IdOfExistingWindow”, MUIElement application);
+      existingWindow.setX(200);
+      MTrimmedWindow newWindow = modelService.createModelElement(MTrimmedWindow.class);
+      newWindow.setWidth(200);
+      newWindow.setHeight(existingWindow.getHeight());
+      application.getChildren().add(newWindow);
+   }
+}
+```
+The processor has to be registered via an extension point. The “beforefragment” attribute specifies, if the processors should be executed before or after all model fragments have been merged.
+
