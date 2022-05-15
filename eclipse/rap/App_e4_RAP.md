@@ -12,6 +12,8 @@
 - [RAP App Sample](https://o7planning.org/10183/eclipse-rap-tutorial-for-beginners-workbench-application)
 
 ## Create Project: 
+- [RAP Demo](https://rap.eclipsesource.com/demo/release/workbench/)
+- [RAP tutorial](https://o7planning.org/10955/eclipse-rap)
 - [Tutorial](https://o7planning.org/10183/eclipse-rap-tutorial-for-beginners-workbench-application)
 - [e4 tutorial](https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&ved=2ahUKEwivj-mLpt33AhVHnHIEHZd2B84QFnoECB4QAQ&url=https%3A%2F%2Ftomsondev.files.wordpress.com%2F2010%2F07%2Ftutorial.pdf&usg=AOvVaw0JxTDRD0WsRADGS1Z37TJa)
 File/New/Other... >Plugin Project (No for create a rich cleint application) > RAP e4 Application
