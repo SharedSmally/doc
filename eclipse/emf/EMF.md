@@ -18,7 +18,9 @@ The model interface (inherits from EObject) and implementation can be generated 
 
 ## Relationship
 - One-way references
+
 ![one-way](http://help.eclipse.org/latest/topic/org.eclipse.emf.doc/references/overview/images/EMF/image002.gif)
+
 In interface Book:
 ```
   Writer getAuthor();
@@ -26,6 +28,7 @@ In interface Book:
 ```
 
 - Two-way references
+
 ![two-way](http://help.eclipse.org/latest/topic/org.eclipse.emf.doc/references/overview/images/EMF/image003.gif)
 
 
@@ -40,6 +43,7 @@ In interface Book:
 
 - Containment references
 A class, Library act as the container for Books:
+
 ![containment](http://help.eclipse.org/latest/topic/org.eclipse.emf.doc/references/overview/images/EMF/image004.gif)
 
 The containment reference is indicated by the black diamond on the Library end of the association. 
@@ -48,9 +52,11 @@ By-value aggregation (containment) associations are particularly important becau
 the parent or owner of a target instance, which implies the physical location of the object when persisted. 
 
 If you want to avoid the downcast, you can change the association to be explicitly two-way instead: 
+
 ![downcast](http://help.eclipse.org/latest/topic/org.eclipse.emf.doc/references/overview/images/EMF/image005.gif)
 
 - Enumeration attributes
+
 ![enum](http://help.eclipse.org/latest/topic/org.eclipse.emf.doc/references/overview/images/EMF/image006.gif)
 
 - Factories and packages
@@ -65,8 +71,11 @@ public interface LibraryFactory extends EFactory {
 ```
 
 - Generating classes with super classes
+
 ![inheraritance](http://help.eclipse.org/latest/topic/org.eclipse.emf.doc/references/overview/images/EMF/image007.gif)
+
 Multiple interface inheritance is supported, but each EMF class can only extend one implementation base class.
+
 ![multipleInheritance](http://help.eclipse.org/latest/topic/org.eclipse.emf.doc/references/overview/images/EMF/image008.gif)
 ```
   public interface SchoolBook extends Book, Asset
@@ -92,7 +101,9 @@ In the set methods in generated EMF classes, the notifications are always sent w
 - Data types
 All the classes defined in a model implicitly derive from the EMF base class EObject. However, all the classes that a model 
 uses are not necessarily EObjects. We need to define an EMF DataType to represent the external type (import datatype).
+
 ![Data types](http://help.eclipse.org/latest/topic/org.eclipse.emf.doc/references/overview/images/EMF/image009.gif)
 
 ## Ecore Model
+
 ![Ecore Model](http://help.eclipse.org/latest/topic/org.eclipse.emf.doc/references/overview/images/EMF/image011.gif)
