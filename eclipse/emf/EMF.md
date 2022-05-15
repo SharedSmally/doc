@@ -11,10 +11,16 @@ Get the model into that form:
 - Use a modeling tool that works with EMF
 - Create the XMI document directly, using an XML or text editor
 - Export the XMI document from a modeling tool such as Rational Rose
-- Annotate Java interfaces with model properties
+- Annotate Java interfaces with model properties: @model in Interface
 - Use XML Schema to describe the form of a serialization of the model
 
 The model interface (inherits from EObject) and implementation can be generated from the model.
+
+## EMF.Edit Code Generator
+platform:/resources/\*.xml
+Generate Model/Edit/Editor/Test Code from XMI, XSD. ... from EMF Model/Project using JET. Java Emitter Templates, 
+
+JET (EMF Code Generator UI plugin), provides an expressive and powerful mechanism for generating arbitrary text files. JET is provided by the Eclipse Modeling Framework (EMF) and is used extensively in EMF's code generation framework to implement Java code generation. 
 
 ## Relationship
 - One-way references
