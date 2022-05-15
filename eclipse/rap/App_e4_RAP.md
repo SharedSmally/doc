@@ -14,6 +14,7 @@
 ## Create Project: 
 - [RAP Demo](https://www.eclipse.org/rap/demos/)
     - [WorkBench](https://rap.eclipsesource.com/demo/release/workbench/)
+     ![workbench](https://s1.o7planning.com/en/10385/images/756956.png) using Plugin project
 - [Eclipse Dirigible](https://www.dirigible.io/help/development/)
     - [github](https://github.com/SAP-archive/cloud-dirigible)
 - [RAP tutorial](https://o7planning.org/10955/eclipse-rap)
