@@ -25,7 +25,7 @@
     - MessageBox
 
 ### Widget
--Widget
+- Widget
     - Control
     - Item
     - Menu
@@ -35,7 +35,7 @@
     - Tray
     
 ### Control
--Widget
+- Widget
     - Control
         - Button
         - Label
@@ -63,7 +63,7 @@
         - Slider
     
 ### Item
--Widget
+- Widget
     - Item
         - CoolItem
         - ExpandItem
