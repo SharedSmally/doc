@@ -23,6 +23,7 @@
 | ESelectionService 	| workbench selection service |
 
 - [Eclipse 4 state and container model](https://javadoc.scijava.org/Eclipse/org/eclipse/e4/ui/model/application/ui/package-summary.html)
+- 
 | Interface | Description |
 |-----------|-------------|
 | MContext 	|  A representation of the model object 'Context'. getIEclipseContext() | 
@@ -41,6 +42,7 @@
 | MUILabel 	| A representation of the model object 'UI Label'.| 
     
 - [ Eclipse 4 application model elements](https://javadoc.scijava.org/Eclipse/org/eclipse/e4/ui/model/application/package-summary.html)
+	
 | Interface | Description |
 |-----------|-------------|
 | MAddon 	| A representation of the model object 'Addon'.| 
