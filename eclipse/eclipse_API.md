@@ -54,7 +54,7 @@ Eclipse 4.0 Architecture
     - ui.service
     - ui.worbench
 - jface
-- jface.text
+    - text
 - swt
 - ui
     - editor
