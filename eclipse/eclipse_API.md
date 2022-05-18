@@ -15,10 +15,32 @@ Exported plugins are considered public API.
 
 Eclipse 3.0 Architecture
 
+The Eclipse 3.x Workbench UI was originally structured as a thin extension layer atop JFace/SWT. 
+JFace/SWT provided the mechanisms for managing a UI (e.g., resource registries, windows and dialogs, key bindings), 
+and the workbench defined various extension points for plugins to extend and customize the workbench. 
+Over time, additional areas of functionality were added to the workbench, including theming support, control over 
+the visibility of UI elements, accessing additional services.
+
 
 ![eclipse 4.0](https://wiki.eclipse.org/images/thumb/8/80/Eclipse_4_Architecture.png/640px-Eclipse_4_Architecture.png)
 
 Eclipse 4.0 Architecture
+
+Eclipse 4 breaks the workbench layer into two parts: a new Eclipse 4 Application Platform that builds on top of JFace/SWT, 
+and a re-implementation of the Eclipse 3.x Workbench APIs on top of this new Eclipse 4 Application Platform. 
+
+The original Workbench UI model has been simplified and is now represented through an EMF-based model. The model is 
+entirely public, and allows programatic access to the UI model. This access means that a plugin could easily provide code 
+to split an editor stack, or move a part from one part of the window.
+
+Eclipse 4 uses CSS to providing theming support.Rather than having to through navigate a chain of objects, services are 
+now provided using Dependency Injection (DI).
+
+
+## Eclipse 4 Applicatin Platform - E4AP
+
+![e4AP model](http://jaxenter.com/wp-content/uploads/2012/11/Eclipse-4-Workbench.png)
+E4 application model
 
 ## [eclipse javadoc](https://javadoc.scijava.org/Eclipse/index.html)
 - compare
