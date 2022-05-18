@@ -58,12 +58,12 @@
 ## Package org.eclipse.e4.ui.di
 ### Class Summary
 | Class | 	Description| 
-|-------|-------------|
+|-------|--------------|
 | UISynchronize 	| Widget toolkit abstract to synchronize back into the UI-Thread from other threads| 
 
 ### Annotation Types Summary 
 | Annotation Type | 	Description| 
-|-----------------|-------------|
+|-----------------|----------------|
 | AboutToHide 	| Used to act on to the list of dynamically shown entries within a DynamicMenuContributionItem.| 
 | AboutToShow 	| Used to provide MMenuElements to the list of dynamically shown entries within a DynamicMenuContributionItem.| 
 | Focus 	| Parts can specify this annotation on one of its methods to tag it as the method to be invoked when it has been granted focus.| 
@@ -111,7 +111,7 @@
 ## Package org.eclipse.e4.ui.model.application.ui
 ###  Interface Summary 
     | Interface | 	Description| 
-    |-----------|-------------|
+    |-----------|--------------|
     | MContext 	|     A representation of the model object 'Context'| 
     | MCoreExpression 	|     A representation of the model object 'Core Expression'| 
     | MDirtyable 	|     A representation of the model object 'Dirtyable'| 
