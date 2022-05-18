@@ -110,8 +110,8 @@
 
 ## Package org.eclipse.e4.ui.model.application.ui
 ###  Interface Summary 
-    | Interface | 	Description| 
-    |-----------|--------------|
+| Interface | 	Description| 
+|-----------|--------------|
     | MContext 	|     A representation of the model object 'Context'| 
     | MCoreExpression 	|     A representation of the model object 'Core Expression'| 
     | MDirtyable 	|     A representation of the model object 'Dirtyable'| 
@@ -120,7 +120,7 @@
     | MGenericStack<T extends MUIElement> 	|     A representation of the model object 'Generic Stack'| 
     | MGenericTile<T extends MUIElement> 	|     A representation of the model object 'Generic Tile'| 
     | MGenericTrimContainer<T extends MUIElement> 	|     A representation of the model object 'Generic Trim Container'| 
-    | MInput 	Deprecated|     No longer used| 
+    | MInput 	| Deprecated     No longer used| 
     | MLocalizable 	|     A representation of the model object 'Localizable'| 
     | MSnippetContainer 	|     A representation of the model object 'Snippet Container'| 
     | MUIElement 	|     A representation of the model object 'UI Element'| 
@@ -134,8 +134,8 @@
 
 ## Package org.eclipse.e4.ui.model.application.ui.advanced
 ###    Interface Summary 
-    |  Interface 	| Description| 
-    |---------------|------------|
+|  Interface 	| Description| 
+|---------------|------------|
     | MAdvancedFactory 	|     The Factory for the model.| 
     | MArea 	|     A representation of the model object 'Area'| 
     | MPerspective 	|     A representation of the model object 'Perspective'| 
@@ -145,8 +145,8 @@
 
 ## Package org.eclipse.e4.ui.model.application.ui.basic
 ### Interface Summary 
-    | Interface |	Description|
-    |-----------|--------------|
+| Interface |	Description|
+|-----------|--------------|
     |MBasicFactory 	|    The Factory for the model.|
     |MCompositePart 	|    A representation of the model object 'Composite Part'|
     |MDialog 	|    A representation of the model object 'Dialog'|
@@ -165,8 +165,8 @@
 
 ## Package org.eclipse.e4.ui.model.application.ui.menu
 ###    Interface Summary
-    | Interface | 	Description| 
-    |-----------|--------------|
+| Interface | 	Description| 
+|-----------|--------------|
     | MDirectMenuItem 	|     A representation of the model object 'Direct Menu Item'| 
     | MDirectToolItem 	|     A representation of the model object 'Direct Tool Item'| 
     | MDynamicMenuContribution 	|     A representation of the model object 'Dynamic Menu Contribution'| 
@@ -200,8 +200,8 @@
   
 ## Package org.eclipse.e4.ui.model.fragment
 ### Interface Summary  
-    | Interface | 	Description| 
-    |-----------|--------------|
+| Interface | 	Description| 
+|-----------|--------------|
     | MFragmentFactory 	|     The Factory for the model.| 
     | MModelFragment 	|     A representation of the model object 'Model Fragment'| 
     | MModelFragments 	|     A representation of the model object 'Model Fragments'| 
@@ -209,8 +209,8 @@
 
 ## Package org.eclipse.e4.ui.services
 ### Interface Summary  
-    | Interface 	| Description| 
-    |---------------|------------|
+| Interface 	| Description| 
+|---------------|------------|
     | EContextService 	 |   | 
     | EMenuService 	|     Provide for management of different menus.| 
     | IServiceConstants 	 | | 
@@ -223,8 +223,8 @@
 
 ## Package org.eclipse.e4.ui.workbench
 ### Interface Summary 
-    |  Interface |	Description|
-    |------------|-------------|
+|  Interface |	Description|
+|------------|-------------|
     |IExceptionHandler 	|    This handler allows clients to be notified when an exception occurs|
     |IModelResourceHandler 	|    This handler allows clients load, create and save model resources|
     |IPresentationEngine 	|    The presentation engine is used to translate the generic workbench model into widgets.|
@@ -291,15 +291,15 @@
     |UIEvents.Window 	 ||
   
 ## Class Summary
-    |Class |	Description|
-    |----------|-------------|
+|Class |	Description|
+|----------|-------------|
     |UIEvents 	|    E4 UI events and event topic definitions.|
 
 
 ## Package org.eclipse.e4.ui.workbench.modeling
 ###    Interface Summary
-    | Interface | 	Description| 
-    |-----------|--------------|
+| Interface | 	Description| 
+|-----------|--------------|
     | EModelService 	|     This service is used to find, create and handle model elements| 
     | EPartService 	|     The part service provides clients with the functionalities of showing and hiding parts.| 
     | EPlaceholderResolver 	|     This service is used to resolve references from MPlaceholders.| 
@@ -312,8 +312,8 @@
     | IWindowCloseHandler 	|     A handler that can be inserted into the context of the application or a particular window to determine whether the window should be closed or not.| 
   
 ###   Class Summary
-    |   Class | 	Description| 
-    |---------|----------------|
+|   Class | 	Description| 
+|---------|----------------|
     | ElementMatcher 	|     This is an implementation of a Selector that implements the existing 'findElements'.| 
     | EObjModelHandler 	 ||
     |ModelDelta 	 ||
