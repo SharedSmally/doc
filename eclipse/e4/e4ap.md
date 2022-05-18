@@ -112,20 +112,20 @@
 ###  Interface Summary 
 | Interface | 	Description| 
 |-----------|--------------|
-    | MContext 	|     A representation of the model object 'Context'| 
-    | MCoreExpression 	|     A representation of the model object 'Core Expression'| 
-    | MDirtyable 	|     A representation of the model object 'Dirtyable'| 
-    | MElementContainer<T extends MUIElement> 	|     A representation of the model object 'Element Container'| 
-    | MExpression 	|     A representation of the model object 'Expression'| 
-    | MGenericStack<T extends MUIElement> 	|     A representation of the model object 'Generic Stack'| 
-    | MGenericTile<T extends MUIElement> 	|     A representation of the model object 'Generic Tile'| 
-    | MGenericTrimContainer<T extends MUIElement> 	|     A representation of the model object 'Generic Trim Container'| 
-    | MInput 	| Deprecated     No longer used| 
-    | MLocalizable 	|     A representation of the model object 'Localizable'| 
-    | MSnippetContainer 	|     A representation of the model object 'Snippet Container'| 
-    | MUIElement 	|     A representation of the model object 'UI Element'| 
-    | MUiFactory 	|     The Factory for the model.| 
-    | MUILabel 	|     A representation of the model object 'UI Label'| 
+| MContext 	|     A representation of the model object 'Context'| 
+| MCoreExpression 	|     A representation of the model object 'Core Expression'| 
+| MDirtyable 	|     A representation of the model object 'Dirtyable'| 
+| MElementContainer<T extends MUIElement> 	|     A representation of the model object 'Element Container'| 
+| MExpression 	|     A representation of the model object 'Expression'| 
+| MGenericStack<T extends MUIElement> 	|     A representation of the model object 'Generic Stack'| 
+| MGenericTile<T extends MUIElement> 	|     A representation of the model object 'Generic Tile'| 
+| MGenericTrimContainer<T extends MUIElement> 	|     A representation of the model object 'Generic Trim Container'| 
+| MInput 	| Deprecated     No longer used| 
+| MLocalizable 	|     A representation of the model object 'Localizable'| 
+| MSnippetContainer 	|     A representation of the model object 'Snippet Container'| 
+| MUIElement 	|     A representation of the model object 'UI Element'| 
+| MUiFactory 	|     The Factory for the model.| 
+| MUILabel 	|     A representation of the model object 'UI Label'| 
   
 ###  Enum Summary 
 | Enum | 	Description| 
@@ -136,62 +136,62 @@
 ###    Interface Summary 
 |  Interface 	| Description| 
 |---------------|------------|
-    | MAdvancedFactory 	|     The Factory for the model.| 
-    | MArea 	|     A representation of the model object 'Area'| 
-    | MPerspective 	|     A representation of the model object 'Perspective'| 
-    | MPerspectiveStack 	|     A representation of the model object 'Perspective Stack'| 
-    | MPlaceholder 	|     A representation of the model object 'Placeholder'| 
+| MAdvancedFactory 	|     The Factory for the model.| 
+| MArea 	|     A representation of the model object 'Area'| 
+| MPerspective 	|     A representation of the model object 'Perspective'| 
+| MPerspectiveStack 	|     A representation of the model object 'Perspective Stack'| 
+| MPlaceholder 	|     A representation of the model object 'Placeholder'| 
 
 
 ## Package org.eclipse.e4.ui.model.application.ui.basic
 ### Interface Summary 
 | Interface |	Description|
 |-----------|--------------|
-    |MBasicFactory 	|    The Factory for the model.|
-    |MCompositePart 	|    A representation of the model object 'Composite Part'|
-    |MDialog 	|    A representation of the model object 'Dialog'|
-    |MInputPart |	Deprecated,    Use Part instead.|
-    |MPart 	|    A representation of the model object 'Part'|
-    |MPartSashContainer 	|    A representation of the model object 'Part Sash Container'|
-    |MPartSashContainerElement 	|    A representation of the model object 'Part Sash Container Element'|
-    |MPartStack 	|    A representation of the model object 'Part Stack'|
-    |MStackElement 	|    A representation of the model object 'Stack Element'|
-    |MTrimBar 	|    A representation of the model object 'Trim Bar'|
-    |MTrimElement 	|    A representation of the model object 'Trim Element'|
-    |MTrimmedWindow 	|    A representation of the model object 'Trimmed Window'|
-    |MWindow 	|    A representation of the model object 'Window'|
-    |MWindowElement 	|    A representation of the model object 'Window Element'|
-    |MWizardDialog 	|    A representation of the model object 'Wizard Dialog'|
+|MBasicFactory 	|    The Factory for the model.|
+|MCompositePart 	|    A representation of the model object 'Composite Part'|
+|MDialog 	|    A representation of the model object 'Dialog'|
+|MInputPart |	Deprecated,    Use Part instead.|
+|MPart 	|    A representation of the model object 'Part'|
+|MPartSashContainer 	|    A representation of the model object 'Part Sash Container'|
+|MPartSashContainerElement 	|    A representation of the model object 'Part Sash Container Element'|
+|MPartStack 	|    A representation of the model object 'Part Stack'|
+|MStackElement 	|    A representation of the model object 'Stack Element'|
+|MTrimBar 	|    A representation of the model object 'Trim Bar'|
+|MTrimElement 	|    A representation of the model object 'Trim Element'|
+|MTrimmedWindow 	|    A representation of the model object 'Trimmed Window'|
+|MWindow 	|    A representation of the model object 'Window'|
+|MWindowElement 	|    A representation of the model object 'Window Element'|
+|MWizardDialog 	|    A representation of the model object 'Wizard Dialog'|
 
 ## Package org.eclipse.e4.ui.model.application.ui.menu
 ###    Interface Summary
 | Interface | 	Description| 
 |-----------|--------------|
-    | MDirectMenuItem 	|     A representation of the model object 'Direct Menu Item'| 
-    | MDirectToolItem 	|     A representation of the model object 'Direct Tool Item'| 
-    | MDynamicMenuContribution 	|     A representation of the model object 'Dynamic Menu Contribution'| 
-    | MHandledItem 	|     A representation of the model object 'Handled Item'| 
-    | MHandledMenuItem 	|     A representation of the model object 'Handled Menu Item'| 
-    | MHandledToolItem 	|     A representation of the model object 'Handled Tool Item'| 
-    | MItem 	|     A representation of the model object 'Item'| 
-    | MMenu 	|     A representation of the model object 'Menu'| 
-    | MMenuContribution 	|     A representation of the model object 'Contribution'| 
-    | MMenuContributions 	|     A representation of the model object 'Contributions'| 
-    | MMenuElement 	|     A representation of the model object 'Element'| 
-    | MMenuFactory 	|     The Factory for the model.| 
-    | MMenuItem 	|     A representation of the model object 'Item'| 
-    | MMenuSeparator 	|     A representation of the model object 'Separator'| 
-    | MPopupMenu 	|     A representation of the model object 'Popup Menu'| 
-    | MToolBar 	|     A representation of the model object 'Tool Bar'| 
-    | MToolBarContribution 	|     A representation of the model object 'Tool Bar Contribution'| 
-    | MToolBarContributions 	|     A representation of the model object 'Tool Bar Contributions'| 
-    | MToolBarElement 	|     A representation of the model object 'Tool Bar Element'| 
-    | MToolBarSeparator 	|     A representation of the model object 'Tool Bar Separator'| 
-    | MToolControl 	|     A representation of the model object 'Tool Control'| 
-    | MToolItem 	|     A representation of the model object 'Tool Item'| 
-    | MTrimContribution 	|     A representation of the model object 'Trim Contribution'| 
-    | MTrimContributions 	|     A representation of the model object 'Trim Contributions'| 
-   
+| MDirectMenuItem 	|     A representation of the model object 'Direct Menu Item'| 
+| MDirectToolItem 	|     A representation of the model object 'Direct Tool Item'| 
+| MDynamicMenuContribution 	|     A representation of the model object 'Dynamic Menu Contribution'| 
+| MHandledItem 	|     A representation of the model object 'Handled Item'| 
+| MHandledMenuItem 	|     A representation of the model object 'Handled Menu Item'| 
+| MHandledToolItem 	|     A representation of the model object 'Handled Tool Item'| 
+| MItem 	|     A representation of the model object 'Item'| 
+| MMenu 	|     A representation of the model object 'Menu'| 
+| MMenuContribution 	|     A representation of the model object 'Contribution'| 
+| MMenuContributions 	|     A representation of the model object 'Contributions'| 
+| MMenuElement 	|     A representation of the model object 'Element'| 
+| MMenuFactory 	|     The Factory for the model.| 
+| MMenuItem 	|     A representation of the model object 'Item'| 
+| MMenuSeparator 	|     A representation of the model object 'Separator'| 
+| MPopupMenu 	|     A representation of the model object 'Popup Menu'| 
+| MToolBar 	|     A representation of the model object 'Tool Bar'| 
+| MToolBarContribution 	|     A representation of the model object 'Tool Bar Contribution'| 
+| MToolBarContributions 	|     A representation of the model object 'Tool Bar Contributions'| 
+| MToolBarElement 	|     A representation of the model object 'Tool Bar Element'| 
+| MToolBarSeparator 	|     A representation of the model object 'Tool Bar Separator'| 
+| MToolControl 	|     A representation of the model object 'Tool Control'| 
+| MToolItem 	|     A representation of the model object 'Tool Item'| 
+| MTrimContribution 	|     A representation of the model object 'Trim Contribution'| 
+| MTrimContributions 	|     A representation of the model object 'Trim Contributions'| 
+ 
 ### Enum Summary 
 | Enum | 	Description| 
 |------|---------------|
@@ -202,19 +202,19 @@
 ### Interface Summary  
 | Interface | 	Description| 
 |-----------|--------------|
-    | MFragmentFactory 	|     The Factory for the model.| 
-    | MModelFragment 	|     A representation of the model object 'Model Fragment'| 
-    | MModelFragments 	|     A representation of the model object 'Model Fragments'| 
-    | MStringModelFragment 	|     A representation of the model object 'String Model Fragment'  | 
+| MFragmentFactory 	|     The Factory for the model.| 
+| MModelFragment 	|     A representation of the model object 'Model Fragment'| 
+| MModelFragments 	|     A representation of the model object 'Model Fragments'| 
+| MStringModelFragment 	|     A representation of the model object 'String Model Fragment'  | 
 
 ## Package org.eclipse.e4.ui.services
 ### Interface Summary  
 | Interface 	| Description| 
 |---------------|------------|
-    | EContextService 	 |   | 
-    | EMenuService 	|     Provide for management of different menus.| 
-    | IServiceConstants 	 | | 
-    | IStylingEngine 	 | | 
+| EContextService 	 |   | 
+| EMenuService 	|     Provide for management of different menus.| 
+| IServiceConstants 	 | | 
+| IStylingEngine 	 | | 
   
 ### Class Summary
 |   Class | 	Description| 
@@ -225,13 +225,13 @@
 ### Interface Summary 
 |  Interface |	Description|
 |------------|-------------|
-    |IExceptionHandler 	|    This handler allows clients to be notified when an exception occurs|
-    |IModelResourceHandler 	|    This handler allows clients load, create and save model resources|
-    |IPresentationEngine 	|    The presentation engine is used to translate the generic workbench model into widgets.|
-    |IResourceUtilities<ImageDesc> 	|    This interface describes a utility that is used to load ImageDesc's from URIs|
-    |IWorkbench 	|    A running instance of the workbench.|
-    |Selector 	|    Selector to find element|
-    |
+|IExceptionHandler 	|    This handler allows clients to be notified when an exception occurs|
+|IModelResourceHandler 	|    This handler allows clients load, create and save model resources|
+|IPresentationEngine 	|    The presentation engine is used to translate the generic workbench model into widgets.|
+|IResourceUtilities<ImageDesc> 	|    This interface describes a utility that is used to load ImageDesc's from URIs|
+|IWorkbench 	|    A running instance of the workbench.|
+|Selector 	|    Selector to find element|
+|
     UIEvents.Application 	 
     UIEvents.ApplicationElement 	 
     UIEvents.BindingContext 	
@@ -249,8 +249,7 @@
     UIEvents.ElementContainer 	 
     |UIEvents.EventTags 	|    E4 UI Event argument attribute keys.|
     |UIEvents.EventTypes 	|    E4 UI Event Types.|
-    |
-    UIEvents.GenericTile 	 
+|   UIEvents.GenericTile 	 
     UIEvents.GenericTrimContainer 	 
     UIEvents.HandledItem 	 
     UIEvents.Handler 	 
@@ -287,38 +286,38 @@
     UIEvents.TrimmedWindow 	 
     UIEvents.UIElement 	 
     UIEvents.UILabel 	 ||
-    |UIEvents.UILifeCycle 	|    E4 UI life cycle events.|
-    |UIEvents.Window 	 ||
+|UIEvents.UILifeCycle 	|    E4 UI life cycle events.|
+|UIEvents.Window 	 ||
   
 ## Class Summary
 |Class |	Description|
 |----------|-------------|
-    |UIEvents 	|    E4 UI events and event topic definitions.|
+|UIEvents 	|    E4 UI events and event topic definitions.|
 
 
 ## Package org.eclipse.e4.ui.workbench.modeling
 ###    Interface Summary
 | Interface | 	Description| 
 |-----------|--------------|
-    | EModelService 	|     This service is used to find, create and handle model elements| 
-    | EPartService 	|     The part service provides clients with the functionalities of showing and hiding parts.| 
-    | EPlaceholderResolver 	|     This service is used to resolve references from MPlaceholders.| 
-    | ESelectionService 	|     This interface describes the workbench selection service| 
-    | IDelta 	 
+| EModelService 	|     This service is used to find, create and handle model elements| 
+| EPartService 	|     The part service provides clients with the functionalities of showing and hiding parts.| 
+| EPlaceholderResolver 	|     This service is used to resolve references from MPlaceholders.| 
+| ESelectionService 	|     This interface describes the workbench selection service| 
+| IDelta 	 
     IModelReconcilingService 	 
     IPartListener 	 
     ISaveHandler 	 
     ISelectionListener 	 | | 
-    | IWindowCloseHandler 	|     A handler that can be inserted into the context of the application or a particular window to determine whether the window should be closed or not.| 
+| IWindowCloseHandler 	|     A handler that can be inserted into the context of the application or a particular window to determine whether the window should be closed or not.| 
   
 ###   Class Summary
 |   Class | 	Description| 
 |---------|----------------|
-    | ElementMatcher 	|     This is an implementation of a Selector that implements the existing 'findElements'.| 
-    | EObjModelHandler 	 ||
-    |ModelDelta 	 ||
-    |ModelHandlerBase 	 ||
-    |ModelReconciler 	 | | 
+| ElementMatcher 	|     This is an implementation of a Selector that implements the existing 'findElements'.| 
+| EObjModelHandler 	 ||
+|ModelDelta 	 ||
+|ModelHandlerBase 	 ||
+|ModelReconciler 	 | | 
   
 ###    Enum Summary
 |   Enum 	|  Description| 
