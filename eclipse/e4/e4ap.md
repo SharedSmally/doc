@@ -110,7 +110,6 @@
 
 ## Package org.eclipse.e4.ui.model.application.ui
 ###  Interface Summary 
-
     | Interface | 	Description| 
     |-----------|-------------|
     | MContext 	|     A representation of the model object 'Context'| 
@@ -193,7 +192,7 @@
     | MTrimContribution 	|     A representation of the model object 'Trim Contribution'| 
     | MTrimContributions 	|     A representation of the model object 'Trim Contributions'| 
    
-  ### Enum Summary 
+### Enum Summary 
 | Enum | 	Description| 
 |------|---------------|
 |     ItemType 	|     A representation of the literals of the enumeration 'Item Type', and utility methods for working with them| 
@@ -316,15 +315,15 @@
     |   Class | 	Description| 
     |---------|----------------|
     | ElementMatcher 	|     This is an implementation of a Selector that implements the existing 'findElements'.| 
-    | EObjModelHandler 	 
-    ModelDelta 	 
-    ModelHandlerBase 	 
-    ModelReconciler 	 | | 
+    | EObjModelHandler 	 ||
+    |ModelDelta 	 ||
+    |ModelHandlerBase 	 ||
+    |ModelReconciler 	 | | 
   
 ###    Enum Summary
 |   Enum 	|  Description| 
 |-----------|-------------|
-| EPartService.PartState 	|     Applicable states that a part can be in.| 
+| EPartService.PartState  |     Applicable states that a part can be in.| 
 |   ISaveHandler.Save 	 | | 
   
   
