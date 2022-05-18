@@ -47,6 +47,8 @@ now provided using Dependency Injection (DI).
 E4 application model
 
 ## eclipse javadoc
+### [platform javadoc](https://www.ibm.com/docs/tr/rational-soft-arch/9.6.1?topic=reference-orgeclipsecoreresources)
+### [platform maven](https://mvnrepository.com/artifact/org.eclipse.platform)
 - compare
 - core
     - command
