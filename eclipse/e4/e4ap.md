@@ -58,12 +58,12 @@
 ## Package org.eclipse.e4.ui.di
 ### Class Summary
 | Class | 	Description| 
-|----------|-------------|
+|-------|-------------|
 | UISynchronize 	| Widget toolkit abstract to synchronize back into the UI-Thread from other threads| 
 
 ### Annotation Types Summary 
 | Annotation Type | 	Description| 
-|----------|-------------|
+|-----------------|-------------|
 | AboutToHide 	| Used to act on to the list of dynamically shown entries within a DynamicMenuContributionItem.| 
 | AboutToShow 	| Used to provide MMenuElements to the list of dynamically shown entries within a DynamicMenuContributionItem.| 
 | Focus 	| Parts can specify this annotation on one of its methods to tag it as the method to be invoked when it has been granted focus.| 
@@ -74,7 +74,7 @@
 ## Package org.eclipse.e4.ui.model.application
 ### Interface Summary 
 | Interface |	Description|
-|----------|-------------|
+|-----------|-------------|
 | MAddon 	|    A representation of the model object 'Addon'|
 |MApplication 	|    A representation of the model object 'Application'|
 |MApplicationElement 	|    A representation of the model object 'Element'|
@@ -85,7 +85,7 @@
 ## Package org.eclipse.e4.ui.model.application.commands
 ### Interface Summary 
 | Interface | 	Description| 
-|----------|-------------|
+|-----------|-------------|
 |     MBindingContext 	|     A representation of the model object 'Binding Context'| 
 |     MBindings 	|     A representation of the model object 'Bindings'| 
 | MBindingTable 	|     A representation of the model object 'Binding Table'| 
@@ -103,7 +103,7 @@
 ## Package org.eclipse.e4.ui.model.application.descriptor.basic
 ###   Interface Summary  
 | Interface | 	Description| 
-|----------|-------------|
+|-----------|-------------|
 | MBasicFactory 	|     The Factory for the model.| 
 | MPartDescriptor 	|     A representation of the model object 'Part Descriptor'| 
 | MPartDescriptorContainer 	|     A representation of the model object 'Part Descriptor Container'| 
@@ -112,7 +112,7 @@
 ###  Interface Summary 
 
     | Interface | 	Description| 
-    |----------|-------------|
+    |-----------|-------------|
     | MContext 	|     A representation of the model object 'Context'| 
     | MCoreExpression 	|     A representation of the model object 'Core Expression'| 
     | MDirtyable 	|     A representation of the model object 'Dirtyable'| 
@@ -130,13 +130,13 @@
   
 ###  Enum Summary 
 | Enum | 	Description| 
-|----------|-------------|
+|------|---------------|
 | SideValue 	|     A representation of the literals of the enumeration 'Side Value', and utility methods for working with them| 
 
 ## Package org.eclipse.e4.ui.model.application.ui.advanced
 ###    Interface Summary 
-|  Interface 	| Description| 
-|----------|-------------|
+    |  Interface 	| Description| 
+    |---------------|------------|
     | MAdvancedFactory 	|     The Factory for the model.| 
     | MArea 	|     A representation of the model object 'Area'| 
     | MPerspective 	|     A representation of the model object 'Perspective'| 
@@ -147,7 +147,7 @@
 ## Package org.eclipse.e4.ui.model.application.ui.basic
 ### Interface Summary 
     | Interface |	Description|
-    |----------|-------------|
+    |-----------|--------------|
     |MBasicFactory 	|    The Factory for the model.|
     |MCompositePart 	|    A representation of the model object 'Composite Part'|
     |MDialog 	|    A representation of the model object 'Dialog'|
@@ -167,7 +167,7 @@
 ## Package org.eclipse.e4.ui.model.application.ui.menu
 ###    Interface Summary
     | Interface | 	Description| 
-    |----------|-------------|
+    |-----------|--------------|
     | MDirectMenuItem 	|     A representation of the model object 'Direct Menu Item'| 
     | MDirectToolItem 	|     A representation of the model object 'Direct Tool Item'| 
     | MDynamicMenuContribution 	|     A representation of the model object 'Dynamic Menu Contribution'| 
@@ -195,14 +195,14 @@
    
   ### Enum Summary 
 | Enum | 	Description| 
-|----------|-------------|
+|------|---------------|
 |     ItemType 	|     A representation of the literals of the enumeration 'Item Type', and utility methods for working with them| 
   
   
 ## Package org.eclipse.e4.ui.model.fragment
 ### Interface Summary  
     | Interface | 	Description| 
-    |----------|-------------|
+    |-----------|--------------|
     | MFragmentFactory 	|     The Factory for the model.| 
     | MModelFragment 	|     A representation of the model object 'Model Fragment'| 
     | MModelFragments 	|     A representation of the model object 'Model Fragments'| 
@@ -211,7 +211,7 @@
 ## Package org.eclipse.e4.ui.services
 ### Interface Summary  
     | Interface 	| Description| 
-    |----------|-------------|
+    |---------------|------------|
     | EContextService 	 |   | 
     | EMenuService 	|     Provide for management of different menus.| 
     | IServiceConstants 	 | | 
@@ -219,13 +219,13 @@
   
 ### Class Summary
 |   Class | 	Description| 
-|----------|-------------|
+|---------|----------------|
 |     ContextServiceAddon| | 
 
 ## Package org.eclipse.e4.ui.workbench
 ### Interface Summary 
     |  Interface |	Description|
-    |----------|-------------|
+    |------------|-------------|
     |IExceptionHandler 	|    This handler allows clients to be notified when an exception occurs|
     |IModelResourceHandler 	|    This handler allows clients load, create and save model resources|
     |IPresentationEngine 	|    The presentation engine is used to translate the generic workbench model into widgets.|
@@ -300,7 +300,7 @@
 ## Package org.eclipse.e4.ui.workbench.modeling
 ###    Interface Summary
     | Interface | 	Description| 
-    |----------|-------------|
+    |-----------|--------------|
     | EModelService 	|     This service is used to find, create and handle model elements| 
     | EPartService 	|     The part service provides clients with the functionalities of showing and hiding parts.| 
     | EPlaceholderResolver 	|     This service is used to resolve references from MPlaceholders.| 
@@ -314,7 +314,7 @@
   
 ###   Class Summary
     |   Class | 	Description| 
-    |----------|-------------|
+    |---------|----------------|
     | ElementMatcher 	|     This is an implementation of a Selector that implements the existing 'findElements'.| 
     | EObjModelHandler 	 
     ModelDelta 	 
@@ -323,7 +323,7 @@
   
 ###    Enum Summary
 |   Enum 	|  Description| 
-|----------|-------------|
+|-----------|-------------|
 | EPartService.PartState 	|     Applicable states that a part can be in.| 
 |   ISaveHandler.Save 	 | | 
   
