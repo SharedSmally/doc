@@ -231,61 +231,60 @@
 |IResourceUtilities<ImageDesc> 	|    This interface describes a utility that is used to load ImageDesc's from URIs|
 |IWorkbench 	|    A running instance of the workbench.|
 |Selector 	|    Selector to find element|
-|
-    UIEvents.Application 	 
-    UIEvents.ApplicationElement 	 
-    UIEvents.BindingContext 	
-    GENERATED CODE!!
-    UIEvents.Bindings 	 
-    UIEvents.BindingTable 	 
-    UIEvents.BindingTableContainer 	 
-    UIEvents.Category 	 
-    UIEvents.Command 	 
-    UIEvents.CommandParameter 	 
-    UIEvents.Context 	 
-    UIEvents.Contribution 	 
-    UIEvents.CoreExpression 	 
-    UIEvents.Dirtyable 	 
-    UIEvents.ElementContainer 	 
-    |UIEvents.EventTags 	|    E4 UI Event argument attribute keys.|
-    |UIEvents.EventTypes 	|    E4 UI Event Types.|
-|   UIEvents.GenericTile 	 
-    UIEvents.GenericTrimContainer 	 
-    UIEvents.HandledItem 	 
-    UIEvents.Handler 	 
-    UIEvents.HandlerContainer 	 
-    UIEvents.Input 	 
-    UIEvents.Item 	 
-    UIEvents.KeyBinding 	 
-    UIEvents.KeySequence 	 
-    UIEvents.Menu 	 
-    UIEvents.MenuContribution 	 
-    UIEvents.MenuContributions 	 
-    UIEvents.MenuElement 	 
-    UIEvents.OpaqueMenuItem 	 
-    UIEvents.OpaqueMenuSeparator 	 
-    UIEvents.OpaqueToolItem 	 
-    UIEvents.Parameter 	 
-    UIEvents.Part 	 
-    UIEvents.PartDescriptor 	 
-    UIEvents.PartDescriptorContainer 	 
-    UIEvents.Perspective 	 
-    UIEvents.Placeholder 	 
-    UIEvents.RenderedMenu 	 
-    UIEvents.RenderedMenuItem 	 
-    UIEvents.RenderedToolBar 	 
-    UIEvents.SnippetContainer 	 
-    UIEvents.StringToObjectMap 	 
-    UIEvents.StringToStringMap 	 
-    UIEvents.ToolBarContribution 	 
-    UIEvents.ToolBarContributions 	 
-    UIEvents.ToolItem 	 
-    UIEvents.TrimBar 	 
-    UIEvents.TrimContribution 	 
-    UIEvents.TrimContributions 	 
-    UIEvents.TrimmedWindow 	 
-    UIEvents.UIElement 	 
-    UIEvents.UILabel 	 ||
+| UIEvents.Application 	 ||
+| UIEvents.ApplicationElement 	 ||
+| UIEvents.BindingContext 	||
+|   GENERATED CODE!!||
+|   UIEvents.Bindings ||	 
+|   UIEvents.BindingTable 	 ||
+|   UIEvents.BindingTableContainer 	 ||
+|   UIEvents.Category 	 ||
+|   UIEvents.Command 	 ||
+|   UIEvents.CommandParameter 	 ||
+|   UIEvents.Context 	 ||
+|   UIEvents.Contribution|| 	 
+|   UIEvents.CoreExpression|| 	 
+|   UIEvents.Dirtyable 	 ||
+|   UIEvents.ElementContainer 	 ||
+|   |UIEvents.EventTags 	|    E4 UI Event argument attribute keys.|
+|   |UIEvents.EventTypes 	|    E4 UI Event Types.|
+|   UIEvents.GenericTile 	 ||
+|    UIEvents.GenericTrimContainer 	 ||
+|    UIEvents.HandledItem 	 ||
+|   UIEvents.Handler 	 ||
+|    UIEvents.HandlerContainer 	 ||
+|    UIEvents.Input 	 ||
+|    UIEvents.Item 	 ||
+|    UIEvents.KeyBinding|| 	 
+|    UIEvents.KeySequence ||	 
+|    UIEvents.Menu 	 ||
+|    UIEvents.MenuContribution 	 ||
+|    UIEvents.MenuContributions 	 ||
+|    UIEvents.MenuElement 	 ||
+|    UIEvents.OpaqueMenuItem 	|| 
+|    UIEvents.OpaqueMenuSeparator|| 	 
+|    UIEvents.OpaqueToolItem 	 ||
+|    UIEvents.Parameter 	 ||
+|    UIEvents.Part 	 ||
+|    UIEvents.PartDescriptor 	 ||
+|    UIEvents.PartDescriptorContainer 	 ||
+|    UIEvents.Perspective 	 ||
+|    UIEvents.Placeholder 	 ||
+|    UIEvents.RenderedMenu 	 ||
+|    UIEvents.RenderedMenuItem 	|| 
+|    UIEvents.RenderedToolBar 	 ||
+|    UIEvents.SnippetContainer 	 ||
+|    UIEvents.StringToObjectMap 	 ||
+|    UIEvents.StringToStringMap 	 ||
+|    UIEvents.ToolBarContribution 	 ||
+|    UIEvents.ToolBarContributions 	 ||
+|    UIEvents.ToolItem 	 ||
+|    UIEvents.TrimBar 	 ||
+|    UIEvents.TrimContribution 	 ||
+|    UIEvents.TrimContributions 	 ||
+|    UIEvents.TrimmedWindow 	 ||
+|    UIEvents.UIElement 	 ||
+|    UIEvents.UILabel 	 ||
 |UIEvents.UILifeCycle 	|    E4 UI life cycle events.|
 |UIEvents.Window 	 ||
   
@@ -303,11 +302,11 @@
 | EPartService 	|     The part service provides clients with the functionalities of showing and hiding parts.| 
 | EPlaceholderResolver 	|     This service is used to resolve references from MPlaceholders.| 
 | ESelectionService 	|     This interface describes the workbench selection service| 
-| IDelta 	 
-    IModelReconcilingService 	 
-    IPartListener 	 
-    ISaveHandler 	 
-    ISelectionListener 	 | | 
+| IDelta 	 ||
+|   IModelReconcilingService 	 ||
+|    IPartListener 	 ||
+|    ISaveHandler 	 ||
+|    ISelectionListener 	 | | 
 | IWindowCloseHandler 	|     A handler that can be inserted into the context of the application or a particular window to determine whether the window should be closed or not.| 
   
 ###   Class Summary
