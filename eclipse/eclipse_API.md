@@ -40,6 +40,7 @@ now provided using Dependency Injection (DI).
 ## Eclipse 4 Applicatin Platform - E4AP
 
 ![e4AP model](http://jaxenter.com/wp-content/uploads/2012/11/Eclipse-4-Workbench.png)
+
 E4 application model
 
 ## [eclipse javadoc](https://javadoc.scijava.org/Eclipse/index.html)
