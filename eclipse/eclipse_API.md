@@ -12,9 +12,11 @@ that are available outside the plugin, as opposed to making all public methods o
 Exported plugins are considered public API.
 
 ![eclipse 3.0](https://www.aosabook.org/images/eclipse/rcp.png)
+
 Eclipse 3.0 Architecture
 
-![eclipse 4.0]([https://www.aosabook.org/images/eclipse/rcp.png](https://wiki.eclipse.org/images/thumb/8/80/Eclipse_4_Architecture.png/640px-Eclipse_4_Architecture.png))
+![eclipse 4.0](https://www.aosabook.org/images/eclipse/rcp.png](https://wiki.eclipse.org/images/thumb/8/80/Eclipse_4_Architecture.png/640px-Eclipse_4_Architecture.png)
+
 Eclipse 4.0 Architecture
 
 ## [eclipse javadoc](https://javadoc.scijava.org/Eclipse/index.html)
