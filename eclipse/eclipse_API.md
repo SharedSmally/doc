@@ -16,7 +16,7 @@ Exported plugins are considered public API.
 Eclipse 3.0 Architecture
 
 
-![eclipse 4.0](https://www.aosabook.org/images/eclipse/rcp.png](https://wiki.eclipse.org/images/thumb/8/80/Eclipse_4_Architecture.png/640px-Eclipse_4_Architecture.png)
+![eclipse 4.0](https://wiki.eclipse.org/images/thumb/8/80/Eclipse_4_Architecture.png/640px-Eclipse_4_Architecture.png)
 
 Eclipse 4.0 Architecture
 
