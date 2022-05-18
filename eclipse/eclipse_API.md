@@ -1,6 +1,10 @@
 # eclipse platform
 - [eclipse javadoc](https://javadoc.scijava.org/Eclipse/index.html)
 - [IBM eclipse javadoc](https://www.ibm.com/docs/tr/rational-soft-arch/9.6.1?topic=r-api-reference)
+- [Platform javadoc](https://www.ibm.com/docs/tr/rational-soft-arch/9.6.1?topic=reference-orgeclipsecoreresources)
+- [Platform maven](https://mvnrepository.com/artifact/org.eclipse.platform)
+- [RAP maven]https://mvnrepository.com/artifact/org.eclipse.rap)
+- [eclipse project](https://projects.eclipse.org/)
 
 The Eclipse platform is written using Java and a Java VM is required to run it. It is built from small units of functionality called plugins. 
 Plugins are the basis of the Eclipse component model. A plugin is essentially a JAR file with a manifest which describes itself, 
@@ -47,8 +51,6 @@ now provided using Dependency Injection (DI).
 E4 application model
 
 ## eclipse javadoc
-### [platform javadoc](https://www.ibm.com/docs/tr/rational-soft-arch/9.6.1?topic=reference-orgeclipsecoreresources)
-### [platform maven](https://mvnrepository.com/artifact/org.eclipse.platform)
 - compare
 - core
     - command
