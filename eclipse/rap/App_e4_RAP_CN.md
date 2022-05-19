@@ -11,6 +11,7 @@
 - URI pattern for class and static file references
 
 | Pattern 	| Description |
+|---------------|-------------|
 |bundleclass://Bundle-SymbolicName/package.classname Example: bundleclass://test/test.parts.MySavePart |
 	Identifier for a Java class. It consists of the following parts: bundleclass:// is a fixed prefix. Bundle-SymbolicName is defined in MANIFEST.MF file. The Bundle-SymbolicName is followed by a '/' and the fully qualified classname.|
 |platform:/plugin/Bundle-SymbolicName/path/filename.extension Example:platform:/plugin/com.example.plugin/icons/save_edit.gif|	
