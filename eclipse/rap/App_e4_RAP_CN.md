@@ -1,6 +1,10 @@
 # 带有Spring Boot的Eclipse RAP
-https://blog.csdn.net/danpu0978/article/details/106766502
-https://www.javacodegeeks.com/2018/11/eclipse-rap-spring-boot.html
+- https://blog.csdn.net/danpu0978/article/details/106766502
+- https://www.javacodegeeks.com/2018/11/eclipse-rap-spring-boot.html
+- [RAP](https://javarepos.com/lib/eclipse-rap-runtime-remote-application-platform)
+- https://www.eclipse.org/forums/index.php/t/1110729/
+- https://github.com/bwolff/rwt-on-spring-boot   (without OSGi or workbench )
+
 
  Eclipse Framework中的UI基于两件事：
 - 应用模型: 在较高的层次上处理许多UI组件的交互。 它以类似XML的格式定义。 它定义了窗口，部件，命令，处理程序，菜单等。
