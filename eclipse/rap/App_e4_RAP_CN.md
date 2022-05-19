@@ -5,6 +5,7 @@
 - https://www.eclipse.org/forums/index.php/t/1110729/
 - https://github.com/bwolff/rwt-on-spring-boot   (without OSGi or workbench )
 - https://wiki.eclipse.org/Equinox_Application_Model_Demo 
+- Eclipse 4 RCP: The complete guide to Eclipse application development
 
 
  Eclipse Framework中的UI基于两件事：
