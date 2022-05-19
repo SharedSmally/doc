@@ -12,10 +12,8 @@
 
 | Pattern 	| Description |
 |---------------|-------------|
-|bundleclass://Bundle-SymbolicName/package.classname Example: bundleclass://test/test.parts.MySavePart |
-	Identifier for a Java class. It consists of the following parts: bundleclass:// is a fixed prefix. Bundle-SymbolicName is defined in MANIFEST.MF file. The Bundle-SymbolicName is followed by a '/' and the fully qualified classname.|
-|platform:/plugin/Bundle-SymbolicName/path/filename.extension Example:platform:/plugin/com.example.plugin/icons/save_edit.gif|	
-Used to identify resources. Identifier for a resource in a plug-in. platform:/plugin/ is a fixed prefix, followed by the Bundle-SymbolicName, followed by the path to the file and the filename.|
+|bundleclass://Bundle-SymbolicName/package.classname Example: bundleclass://test/test.parts.MySavePart |Identifier for a Java class. It consists of the following parts: bundleclass:// is a fixed prefix. Bundle-SymbolicName is defined in MANIFEST.MF file. The Bundle-SymbolicName is followed by a '/' and the fully qualified classname.|
+|platform:/plugin/Bundle-SymbolicName/path/filename.extension Example:platform:/plugin/com.example.plugin/icons/save_edit.gif|Used to identify resources. Identifier for a resource in a plug-in. platform:/plugin/ is a fixed prefix, followed by the Bundle-SymbolicName, followed by the path to the file and the filename.|
 
 
  Eclipse Framework中的UI基于两件事：
