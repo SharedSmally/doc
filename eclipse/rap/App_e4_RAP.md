@@ -1,4 +1,7 @@
 # RAP e4 on Application Model
+## Tutorial
+- Chinese https://blog.csdn.net/danpu0978/article/details/106766502 from https://www.javacodegeeks.com/2018/11/eclipse-rap-spring-boot.html
+
 
 ## Eclipse IDE Setup
 - Eclipse RCP/RAP IDE
