@@ -4,6 +4,7 @@
 - [RAP](https://javarepos.com/lib/eclipse-rap-runtime-remote-application-platform)
 - https://www.eclipse.org/forums/index.php/t/1110729/
 - https://github.com/bwolff/rwt-on-spring-boot   (without OSGi or workbench )
+- https://wiki.eclipse.org/Equinox_Application_Model_Demo 
 
 
  Eclipse Framework中的UI基于两件事：
