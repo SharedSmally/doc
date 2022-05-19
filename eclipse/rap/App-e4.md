@@ -10,3 +10,4 @@
 - RWT + Spring Boot: 
 - SWT: http://www.eclipse.org/swt/
 
+https://stackoverflow.com/questions/62057321/using-swt-in-gradle-could-not-resolve-all-dependencies
