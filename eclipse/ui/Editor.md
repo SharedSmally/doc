@@ -7,6 +7,7 @@ The JFace text framework is model-view-controller based:
 - a text document is modeled as an IDocument (model)
 - an ITextViewer (controller) to view or edit an IDocument document
 - ITextViewer turns a StyledText widget (view) into a documentbased text component
+
 Usually no need to implement the IDocument and ITextViewer interfaces from scratch because the framework provides many abstract as well as concrete implementations of these interfaces. Built on ITextViewer and its descendant classes, many editor-related classes in the org.eclipse.ui.texteditor and org.eclipse.ui.editors.text packages also act in the controller role. Such classes include AbstractTextEditor and TextEditor, which act as the controller and manage the view (through ITextViewer) and the model.
 
 ![MVC](https://flylib.com/books/1/70/1/html/2/images/fig20-1.jpg)
