@@ -3,6 +3,15 @@
 - [JFace javadoc](https://www.ibm.com/docs/en/rsar/9.5?topic=SS5JSH_9.5.0/org.eclipse.platform.doc.isv/reference/api/org/eclipse/e4/core/contexts/class-use/RunAndTrack.html)
 
 ## JFace Text Framework
+### Customized Editor
+- Custom Editor extends from TextEditor/Source
+- Custom DocumentProvider extends from FileDocumentProvider, ...
+- Custom PartitionScanner extends from RuleBasedPartitionScanner, ..., 
+- Custom Rule extends from MultiLineRule(IRule) 
+- Advance Features
+    - Syntax highlighting: Custom ViewerConfiguration extends from SourceViewerConfiguration
+    - Content Assistance: usign IContentAssistantProcessor and ContentAssistant
+
 ### Models, Views, and Controllers in JFace Text Framework
 The JFace text framework is model-view-controller based: 
 - a text document is modeled as an IDocument (model)
