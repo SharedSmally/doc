@@ -27,6 +27,20 @@ Components:
 - Resources: Font, Image, Color
 - Transfer: Drag and Drop
 - Data Binding
+- Dialogs
+
+## SWT Dialogs
+![dialogs](https://www.wideskills.com/sites/default/files/subjects/Eclipse%20Plugin/Images/06/SWT_Dialogs.jpg)
+
+| Subclass| Description| 
+|---------|------------| 
+| ColorDialog| Dialog for selecting a color| 
+| DirectoryDialog| Dialog for selecting a directory in host file system| 
+| FileDialog| Dialog for selecting a file in host file system. Supported styles are SWT.OPEN and SWT.SAVE| 
+| FontDialog| Dialog for selecting text font| 
+| MessageBox| Dialog for displaying a message. |
+|PrintDialog|Dialog for selecting printer and for printer settings|
+
 
 ## org.eclipse.swt.widgets 
 - [Hierarchy For All Packages](https://download.eclipse.org/rt/rap/doc/2.2/guide/reference/api/overview-tree.html)
