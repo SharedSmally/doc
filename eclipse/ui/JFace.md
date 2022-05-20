@@ -29,6 +29,7 @@ The adaptoer used to filter out some of the elements from original list of eleme
 ![Jface dialogs](https://www.wideskills.com/sites/default/files/subjects/Eclipse%20Plugin/Images/06/Jface_Dialogs.jpg)
 
 | Subclass | Description| 
+|----------|------------|
 | IconAndMessageDialog| superclass of dialogs with an icon and a message.| 
 | SelectionDialog| 	superclass for displaying a selection| 
 | StatusDialog| superclass for dialogs with status bar| 
