@@ -1,4 +1,26 @@
 # Eclipe SWT
+ 
+## SWT Application
+```
+import org.eclipse.swt.*;
+import org.eclipse.swt.graphics.*;
+import org.eclipse.swt.widgets.*;
+
+public class FirstExample {
+    public static void main(String[] args){
+        Display firstDisplay = new Display();
+        Shell firstShell = new Shell(firstDisplay);
+        firstShell.setText("First Example");
+        firstShell.setSize(200,100);
+         firstShell.open ();
+         while (!firstShell.isDisposed()) {
+             if (!firstDisplay.readAndDispatch())
+                 firstDisplay.sleep ();
+         }
+         firstDisplay.dispose ();
+     }
+}
+```
 
 ## org.eclipse.swt.widgets 
 - [Hierarchy For All Packages](https://download.eclipse.org/rt/rap/doc/2.2/guide/reference/api/overview-tree.html)
