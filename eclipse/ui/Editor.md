@@ -1,5 +1,6 @@
 # JFace Editor
 - [Creating a Text Editor with JFace Text](https://flylib.com/books/en/1.70.1/creating_a_text_editor_with_jface_text.html)
+- [JFace javadoc](https://www.ibm.com/docs/en/rsar/9.5?topic=SS5JSH_9.5.0/org.eclipse.platform.doc.isv/reference/api/org/eclipse/e4/core/contexts/class-use/RunAndTrack.html)
 
 ## JFace Text Framework
 ### Models, Views, and Controllers in JFace Text Framework
@@ -12,11 +13,39 @@ Usually no need to implement the IDocument and ITextViewer interfaces from scrat
 
 ![MVC](https://flylib.com/books/1/70/1/html/2/images/fig20-1.jpg)
 
+### IDocument, AbstractDocument, Document
+The IDocument interface represents text providing support for text manipulation, partition, search, and document change event notification.
+```
+public void set(String text)
+```
+ A partition is a certain part of the document. The whole document can be viewed as a sequence of non-overlapping partitions.One of the advantages of document partitioning is that you can manipulate partitions in different ways according to their types.
+ 
+The process of dividing a document into non-overlapping partitions is called document partitioning. Usually, you need a document partitioner to perform the task.
+```
+public void setDocumentPartitioner(IDocumentPartitioner partitioner)
+```
+An IDocumentPartitioner is capable of dividing a document into a set of disjointed partitions. A partition is represented by the ITypedRegion interface. The ITypedRegion interface defines the content type, offset (to the beginning of the document), and the length of a partition. Once the document changes, the document partitioner is invoked to update the partition.
+
+In most cases, a document partitioner uses a scanner to scan the document from the beginning to the end to perform partitioning. Such a scanner is represented by the IPartitionTokenScanner interface. A partition token scanner returns tokens representing partitions. The RuleBasedPartitionScanner class is a concrete implementation of the IPartitionTokenScanner interface. A rule-based partition scanner performs document partitioning according to the specified predicate rules.
+
+### ITextViewer, TextViewer
+An ITextViewer enables a text widget to support model documents mentioned in the preceding subsection. You can register various listeners on a text viewer to listen for text change events. A text viewer supports a set of plugins: undo manager, double-click behavior, auto indentation, and text hover. Implementing the ITextViewer is complicated and error prone; usually, you should use or extend classes implementing the ITextViewer class in the framework. The TextViewer class is a concrete implementation of the ITextViewer interface.
+
+#### ISourceViewer, SourceViewer, SourceViewerConfiguration
+An AbstractTextEditor controls and manages the source viewer and the document.
+The source viewer (represented by SourceViewer) is created and maintained by an AbstractTextEditor.  You cannot set the source viewer for the text editor. However, with the SourceViewerConfiguration class, you can configure the source viewer wrapped by the text editor with the following method:
+```
+ protected void setSourceViewerConfiguration(SourceViewerConfiguration configuration)
+```
+
+The setSourceViewerConfiguration method is protected; you need to call it in a subclass of the AbstractTextEditor class.
+
+An AbstractTextEditor requests a document through a document provider. A document provider is represented by the IDocumentProvider interface, which maps between domain elements and documents. A text editor employs document providers to bridge the gap between input elements and documents. 
+
 
 ## JFace Text Framework
 The org.eclipse.jface.text package is the main package, which provides a framework for creating, displaying, and manipulating text documents. The org.eclipse.jface.text.contentassist, org.eclipse.jface.text.formatter, org.eclipse.jface.text.information, org.eclipse.jface.text.presentation, and org.eclipse.jface.text.reconciler packages provide various add-ons for a text viewer. The org.eclipse.jface.text.rules package contains classes that handle rule-based text scanning. The org.eclipse.jface.text.source package provides utility classes handling text annotations. Finally, the two subpackages of the org.eclipse.ui package provide many ready-to-use text editors.
 
-[JFace javadoc](https://www.ibm.com/docs/en/rsar/9.5?topic=SS5JSH_9.5.0/org.eclipse.platform.doc.isv/reference/api/org/eclipse/e4/core/contexts/class-use/RunAndTrack.html)
 | Package | Description |
 |---------|-------------|
 | org.eclipse.jface.text 	|Provides a framework for creating and manipulating text documents.|
