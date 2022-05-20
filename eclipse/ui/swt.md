@@ -21,6 +21,12 @@ public class FirstExample {
      }
 }
 ```
+Components:
+- Widgets
+- Layout
+- Resources: Font, Image, Color
+- Transfer: Drag and Drop
+- Data Binding
 
 ## org.eclipse.swt.widgets 
 - [Hierarchy For All Packages](https://download.eclipse.org/rt/rap/doc/2.2/guide/reference/api/overview-tree.html)
