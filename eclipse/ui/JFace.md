@@ -40,3 +40,8 @@ The adaptoer used to filter out some of the elements from original list of eleme
 | ProgressMonitorDialog| A modal dialog to display progress of a operation.| 
 | WizardDialog| A dialog to show a wizard to the end user.| 
 | InputDialog| A simple input dialog for getting an input from the user.| 
+
+## FieldEditorPreferencePage
+FieldEditorPreferencePage is a special abstract preference page to host field editors.
+A field editor can be thought of as an item which is used to show the user with the value of a preference. FieldEditor is mostly used together with a FieldEditorPreferencePage,
+![FieldEditor](https://www.wideskills.com/sites/default/files/subjects/Eclipse%20Plugin/Images/09/Eclipse_Ready_to_use_Field_Editors.jpg)
