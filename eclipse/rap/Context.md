@@ -15,8 +15,7 @@ import org.eclipse.e4.core.di.annotations.Execute;
 public class ShowMapHandler {
     @Execute
     public void execute(IEclipseContext context) {
-        // add objects to the active local context injected into
-        // this handler
+        // add objects to the active local context injected into this handler
         // ...
     }
 }
