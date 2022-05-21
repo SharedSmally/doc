@@ -2,8 +2,29 @@
 - [Overview](https://wiki.eclipse.org/RAP/RWT):  org.eclipse.rap.rwt
 - [javadoc](https://download.eclipse.org/rt/rap/doc/3.6/guide/reference/api/index.html)
 - [RWT Standalone Application](https://www.eclipse.org/rap/developers-guide/devguide.php?topic=rwt-standalone.html&version=3.20)
+- [RWT Help](https://help.eclipse.org/latest/index.jsp?topic=%2Forg.eclipse.platform.doc.isv%2Freference%2Fapi%2Findex.html)
+![architecture](https://owenou.com/assets/images/posts/rap_archi.png)
 
-- RWT
+## RWT Packages
+- org.eclipse.rap.json
+- org.eclipse.rap.rwt
+- org.eclipse.rap.rwt.application
+- org.eclipse.rap.rwt.client
+- org.eclipse.rap.rwt.client.service
+- org.eclipse.rap.rwt.dnd
+- org.eclipse.rap.rwt.engine
+- org.eclipse.rap.rwt.osgi
+- org.eclipse.rap.rwt.remote
+- org.eclipse.rap.rwt.scripting
+- org.eclipse.rap.rwt.service
+- org.eclipse.rap.rwt.template
+- org.eclipse.rap.rwt.theme
+- org.eclipse.rap.rwt.widgets
+- org.eclipse.rap.fileupload
+- org.eclipse.nebula.widgets.grid
+- org.eclipse.nebula.jface.gridviewer
+
+## RWT
 
 | Method | Description |
 |--------|-------------|
@@ -30,7 +51,7 @@
   - All Known Subinterfaces: BrowserNavigation, ClientFileLoader, ClientFileUploader, ClientInfo, ExitConfirmation, JavaScriptExecutor, JavaScriptLoader, StartupParameters, UrlLauncher
   - All Known Implementing Classes: AbstractEntryPoint 
   
-- ApplicationContext
+## ApplicationContext
   
 | Method | Description |
 |--------|-------------|
@@ -44,7 +65,7 @@
 | void 	removeAttribute(String name)| Removes the object which is stored under the given name in this application context.| 
 | void 	setAttribute(String name, Object value)| Stores the given value in this application context, associated with the given name.| 
 
-- ResourceManager
+## ResourceManager
   
 | Method | Description |
 |--------|-------------|
@@ -54,7 +75,7 @@
 | void 	register(String name, java.io.InputStream inputStream)| Registers a given resource and makes it available for download.| 
 | boolean 	unregister(String name)| Unregisters the resource with the given name.| 
    
-- ServiceManager
+## ServiceManager
   
 | Method | Description |
 |--------|-------------|
@@ -62,7 +83,7 @@
 |void 	registerServiceHandler(String id, ServiceHandler serviceHandler)|Registers a new service handler with the given unique id.|
 |void 	unregisterServiceHandler(String id)|Unregisters the service handler with the given id.  |
   
-- SettingStore : FileSettingStore
+## SettingStore : FileSettingStore
   
 | Method | Description |
 |--------|-------------|
@@ -75,7 +96,7 @@
 | void 	removeAttribute(String name)| Removes the attribute stored under the specified name from this setting store.| 
 | void 	setAttribute(String name, String value)| Stores a given attribute in this setting store, using the name specified.| 
 
-- UISession
+### UISession
   
 | Method | Description |
 |--------|-------------|
