@@ -5,6 +5,7 @@
 - RCP vs RAP: https://owenou.com/introducing-eclipse-rap/
 ![RCP-RAP](https://owenou.com/assets/images/posts/rap_archi.png)
 - Spring WebApplicationInitializer and ApplicationContextInitializer: https://dzone.com/articles/spring-1
+- RWT: https://download.eclipse.org/rt/rap/doc/2.2/guide/reference/api/overview-summary.html
 
 
 ## Eclipse Application Context
