@@ -86,6 +86,7 @@ E4 application model
 - jface
     - text
 - swt
+- rwt
 - ui
     - editor
     - view
