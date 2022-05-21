@@ -10,7 +10,8 @@
 - rwt/swt: Widget Toolkits
 
 
-![Architecture](https://wiki.eclipse.org/File:Eclipse_4_Architecture.png)
+![Architecture](https://wiki.eclipse.org/images/thumb/8/80/Eclipse_4_Architecture.png/640px-Eclipse_4_Architecture.png)
+
 
 ![rcp vs rap](https://owenou.com/assets/images/posts/rap_archi.png)
 
