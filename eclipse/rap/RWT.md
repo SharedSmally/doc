@@ -3,6 +3,7 @@
 - [javadoc](https://download.eclipse.org/rt/rap/doc/3.6/guide/reference/api/index.html)
 - [RWT Standalone Application](https://www.eclipse.org/rap/developers-guide/devguide.php?topic=rwt-standalone.html&version=3.20)
 - [RWT Help](https://help.eclipse.org/latest/index.jsp?topic=%2Forg.eclipse.platform.doc.isv%2Freference%2Fapi%2Findex.html)
+
 ![architecture](https://owenou.com/assets/images/posts/rap_archi.png)
 
 ## RWT Packages
