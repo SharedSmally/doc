@@ -1,4 +1,5 @@
-# CDO - 
+# CDO - Connected Data Objects
+CDO Model Repository is a distributed shared model framework for EMF models and meta models.
 - [CDO document](https://www.eclipse.org/cdo/documentation/)
 - Overview
 
