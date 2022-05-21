@@ -1,4 +1,5 @@
 # Eclipse e4 Application Platform
+[Help](https://help.eclipse.org/latest/index.jsp?topic=%2Forg.eclipse.platform.doc.isv%2Freference%2Fapi%2Findex.html)
 - runtime
 - equinox: OSGi implementation
 - emf: core
