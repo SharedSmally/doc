@@ -4,6 +4,7 @@
 - Eclipse Application Context: https://www.vogella.com/tutorials/Eclipse4ContextUsage/article.html
 - RCP vs RAP: https://owenou.com/introducing-eclipse-rap/
 ![RCP-RAP](https://owenou.com/assets/images/posts/rap_archi.png)
+- Spring WebApplicationInitializer and ApplicationContextInitializer: https://dzone.com/articles/spring-1
 
 
 ## Eclipse Application Context
