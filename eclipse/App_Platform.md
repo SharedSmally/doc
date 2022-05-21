@@ -9,6 +9,7 @@
 - jface: High level Widgets
 - rwt/swt: Widget Toolkits
 
+
 ![Architecture](https://wiki.eclipse.org/File:Eclipse_4_Architecture.png)
 
 ![rcp vs rap](https://owenou.com/assets/images/posts/rap_archi.png)
