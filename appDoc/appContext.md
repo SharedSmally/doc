@@ -2,6 +2,9 @@
 ## Application Context
 - Spring Application Context: https://zetcode.com/springboot/applicationcontext/
 - Eclipse Application Context: https://www.vogella.com/tutorials/Eclipse4ContextUsage/article.html
+- RCP vs RAP: https://owenou.com/introducing-eclipse-rap/
+![RCP-RAP](https://owenou.com/assets/images/posts/rap_archi.png)
+
 
 ## Eclipse Application Context
 Use @Inject or other annocations, such as @Execute, to place IEclipseContext available directly.
