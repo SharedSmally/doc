@@ -47,6 +47,7 @@ public static void main(String[] args) {
     - org.eclipe.ui.workbench
     - com.ibm.icu_50.1.1
     - org.eclipse.ui.forms
+    
 This will work out for any SWT application that need to be launched directly without any RCP product.This can also be done via a tool "Windows Builder" wherein the dependencies are automatically added when a SWT/JFACE Java project is created
 
 ## plugin.xml
