@@ -28,7 +28,7 @@ Can use the org.eclipse.ui.startup extension point to activate the plug-in as so
 The startup extension point allows to specify a class that implements the IStartup interface. If the class is omitted from the extension, the Plugin subclass will be used and therefore must implement IStartup. This class will be loaded in a background thread after the workbench starts, and its earlyStartup method will be run. The Plugin class will be loaded first, and its startup method will be called before any other classes are loaded. The earlyStartup method essentially distinguish eager activation from normal plug-in activation. 
 
 ### plugin.xml contents
-- Dependencies: list all the plug-ins required on the classpth to compile and run
-- Runtime: list the libraries for the runtime of this plugin
-- Extensions: delares contributions this plugin makes to the platform
-- Extension Points: declare new functions piints this plugin adds to the platform
+- **Dependencies**: list all the plug-ins required on the classpth to compile and run
+- **Runtime**: list the libraries for the runtime of this plugin
+- **Extensions**: delares contributions this plugin makes to the platform
+- **Extension Points**: declare new functions piints this plugin adds to the platform
