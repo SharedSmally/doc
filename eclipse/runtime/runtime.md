@@ -25,6 +25,22 @@ Document:
 - macosx.cocoa: x86_64 and aarch64
 SWT supports more: hp, ibm, solaris, aix,...
 
+## OSGi Launch
+- org.eclipse.osgi.launch.EquinoxFactory
+```
+Framework 	newFramework(Map<String,String> configuration) 	 
+Framework 	newFramework(Map<String,String> configuration, ModuleConnector moduleConnector)
+```
+- org.osgi.framework.launch.Framework extends Bundle
+```
+void 	init()/init(FrameworkListener... listeners)    Initialize this Framework.
+void 	start()/start(int options)   Start this Framework.
+void 	stop()/stop(int options)     Stop this Framework.
+void 	update()/update(java.io.InputStream in)   Stop and restart this Framework.
+FrameworkEvent 	waitForStop(long timeout)       Wait until this Framework has completely stopped.
+```
+
+
 ## Components: org.eclipse.platform 
 - runtime:  
   - core: org.eclipse.core.runtime
