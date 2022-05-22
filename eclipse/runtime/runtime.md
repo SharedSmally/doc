@@ -1,4 +1,30 @@
-# Eclipse Platform: org.eclipse.platform 
+# Eclipse [Platform](http://wiki.eclipse.org/Platform): 
+Eclipse Platform defines the set of frameworks and common services that collectively make up infrastructure required to support the use of Eclipse as a component model, as a Rich Client Platform (RCP) and as a comprehensive tool integration platform.
+
+The Eclipse Platform is divided into component areas as follows:
+- Platform UI - Platform user interface, runtime, text editor, search and help components 
+- SWT - Standard Widget Toolkit 
+- Workspace (Team, CVS, Compare, Resources) - Platform resource management
+- Debug - Generic execution debug framework
+- Releng - Release Engineering
+
+Maven:
+- Web Site
+  - Eclipse: https://mvnrepository.com/artifact/org.eclipse
+    - Core: https://mvnrepository.com/artifact/org.eclipse.core
+    - Platform: https://mvnrepository.com/artifact/org.eclipse.platform
+- OSGi: compileOnly 'org.eclipse:osgi:3.10.0-v20140606-1445'
+- Runtime: org.eclipse.platform:org.eclipse.core.runtime:3.24.100 (OSGi + equinox.*)
+- Platform: org.eclipse.platform:org.eclipse.platform:4.23.0 (Runtime + org.eclipse.ui)
+- SDK: org.eclipse.platform:org.eclipse.sdk:4.23.0  (Platform + UIs)
+
+## Platforms / SDK
+- linux: gtk.x86_64
+- windows: win32.x86_64
+- macosx.cocoa: x86_64 and aarch64
+SWT supports more: hp, ibm, solaris, aix,...
+
+## Components: org.eclipse.platform 
 - runtime:  
   - core: org.eclipse.core.runtime
   - expression: org.eclipse.core.expressions
@@ -12,8 +38,6 @@
   - observables: org.eclipse.core.databinding.observable
   - properties: org.eclipse.core.databinding.property
   - javabeans: org.eclipse.core.databinding.beans
-  
-  
   
 - compare: 
    - compare: org.eclipse.compare
@@ -29,11 +53,15 @@
   - scheme: org.eclipse.urischeme
   - update: org.eclipse.update.configurator
   - tips:  org.eclipse.tips.core
+  - tips ui: org.eclipse.tips.ui
+  - tips json: org.eclipse.tips.json
 - osgi: 
   - core: org.eclipse.osgi
   - services: org.eclipse.osgi.services
   - compatibility: org.eclipse.osgi.compatibility.state
   - util: org.eclipse.osgi.util
+- cvs client:
+  - cvs: org.eclipse.cvs
 - filesystem: 
   - filesystem: org.eclipse.core.filesystem
   - filebuffers: org.eclipse.core.filebuffers
@@ -43,6 +71,8 @@
   - ui: org.eclipse.help.ui
 - search
   - core: org.eclipse.search
+- update
+  - core: org.eclipse.update.core
 - team
   - core: org.eclipse.team.core
   - ui: org.eclipse.team.ui
@@ -50,6 +80,7 @@
   - cvs ui: org.eclipse.team.cvs.ui
 - jsch
   - core: org.eclipse.jsch.core
+  - ui: org.eclipse.jsch.ui
 - text: org.eclipse.text
 - debug
   - core:  org.eclipse.debug.core
