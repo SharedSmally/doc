@@ -3,11 +3,32 @@ Provides support for the runtime platform, core utility methods and the extensio
 
 ## Classes
 - org.eclipse.core.runtime.Platform
+
 |  Method  | 	Description |
 |----------|--------------|
 |static IProduct getProduct() 	|Returns the product which was selected when running this Eclipse instance or null if none|
 |static IPreferencesService 	getPreferencesService() 	|Return the interface into the preference mechanism.|
 |static IExtensionRegistry 	getExtensionRegistry() 	|Returns the extension registry for this platform.|
+
+- org.eclipse.core.runtime.IExtensionRegistry
+
+|  Method  | 	Description |
+|----------|--------------|
+| IConfigurationElement[] 	getConfigurationElementsFor(String extensionPointId) 	| Returns all configuration elements from all extensions configured into the identified extension point.| 
+| IConfigurationElement[] 	getConfigurationElementsFor(String namespace, String extensionPointName) 	| Returns all configuration elements from all extensions configured into the identified extension point.| 
+| IConfigurationElement[] 	getConfigurationElementsFor(String namespace, String extensionPointName, String extensionId) 	| Returns all configuration elements from the identified extension.| 
+| IExtension 	getExtension(String extensionId) 	| Returns the specified extension in this extension registry, or null if there is no such extension.| 
+| IExtension 	getExtension(String extensionPointId, String extensionId) 	| Returns the specified extension in this extension registry, or null if there is no such extension.| 
+| IExtension 	getExtension(String namespace, String extensionPointName, String extensionId) 	| Returns the specified extension in this extension registry, or null if there is no such extension.| 
+| IExtensionPoint 	getExtensionPoint(String extensionPointId) 	| Returns the extension point with the given extension point identifier in this extension registry, or null if there is no such extension point.| 
+| IExtensionPoint 	getExtensionPoint(String namespace, String extensionPointName) 	| Returns the extension point in this extension registry with the given namespace and extension point simple identifier, or null if there is no such extension point.| 
+| IExtensionPoint[] 	getExtensionPoints() 	| Returns all extension points known to this extension registry.| 
+| IExtensionPoint[] 	getExtensionPoints(String namespace) 	| Returns all extension points declared in the given namespace.| 
+| IExtensionPoint[] 	getExtensionPoints(IContributor contributor) 	| Returns all extension points supplied by the contributor, or null if there are no such extension points.| 
+| IExtension[] 	getExtensions(String namespace) 	| Returns all extensions declared in the given namespace.| 
+| IExtension[] 	getExtensions(IContributor contributor) 	| Returns all extensions supplied by the contributor, or null if there are no such extensions.| 
+
+
 - org.eclipse.core.runtime.Plugin
 
 ## runtime Interfaces
@@ -37,8 +58,8 @@ Provides support for the runtime platform, core utility methods and the extensio
 |Interface | 	Description |
 |----------|--------------|
 | IExtensionRegistry 	| The extension registry holds the master list of all discovered namespaces, extension points and extensions.| 
-| IExtensionPoint 	| An extension point declared in a plug-in.| 
-| IExtension 	| An extension declared in a plug-in.| 
+| IExtensionPoint 	| An extension point declared in a plug-in (plugin.xml).| 
+| IExtension 	| An extension declared in a plug-in (plugin.xml).| 
 | IConfigurationElement 	| A configuration element, with its attributes and children, directly reflects the content and structure of the extension section within the declaring plug-in's manifest (plugin.xml) file.| 
 | IContributor 	| This interface describes a registry contributor - an entity that supplies information to the extension registry.| 
 | IExecutableExtension 	| Interface for executable extension classes that require access to their configuration element, or implement an extension adapter.| 
