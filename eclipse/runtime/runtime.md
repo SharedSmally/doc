@@ -31,7 +31,7 @@ SWT supports more: hp, ibm, solaris, aix,...
 Framework 	newFramework(Map<String,String> configuration) 	 
 Framework 	newFramework(Map<String,String> configuration, ModuleConnector moduleConnector)
 ```
-- org.osgi.framework.launch.Framework extends Bundle
+- org.osgi.framework.launch - Framework extends Bundle
 ```
 void 	init()/init(FrameworkListener... listeners)    Initialize this Framework.
 void 	start()/start(int options)   Start this Framework.
@@ -39,6 +39,9 @@ void 	stop()/stop(int options)     Stop this Framework.
 void 	update()/update(java.io.InputStream in)   Stop and restart this Framework.
 FrameworkEvent 	waitForStop(long timeout)       Wait until this Framework has completely stopped.
 ```
+- org.eclipse.osgi.launch-Equinox implements Framework
+
+The System Bundle implementation for the Equinox Framework.
 
 
 ## Components: org.eclipse.platform 
