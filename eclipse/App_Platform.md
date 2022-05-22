@@ -2,14 +2,16 @@
 [Help](https://help.eclipse.org/latest/index.jsp?topic=%2Forg.eclipse.platform.doc.isv%2Freference%2Fapi%2Findex.html)
 - runtime
 - equinox: OSGi implementation
-- emf: core
-- common services: help, team;
-- p2:
+- common services: 
+  - help
+  - team;
 - e4: Application Model; DI container; CSS
-- rap/rcp:
-- jface: High level Widgets
-- rwt/swt: Widget Toolkits
-
+- emf: core
+- p2:
+- ui
+  - rap/rcp:
+    - jface: High level Widgets
+    - rwt/swt: Widget Toolkits
 
 ![Architecture](https://wiki.eclipse.org/images/thumb/8/80/Eclipse_4_Architecture.png/640px-Eclipse_4_Architecture.png)
 
