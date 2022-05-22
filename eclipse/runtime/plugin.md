@@ -14,6 +14,41 @@
 - Traget Platform: Running platform
 - Run Configuration: 
 
+## make executable:
+Run the plugin outside eclipse - launch as a stand alone application(
+- Create an Eclipse RCP product, then export this product and run as an application.
+    - RCP
+    - Prodcut config
+    - Product Export
+```
+public static void main(String[] args) {
+    Display display = new Display();
+    Shell shell = new Shell(display);
+    shell.setSize(0, 0);
+    shell.setVisible(false);
+    shell.open();
+
+    WizardDialog dialog = new WizardDialog(shell, new __YOUR_WIZARD());
+    dialog.open();
+
+    shell.dispose();
+    display.dispose();
+}
+```
+- Create Java project and add the following 12 plugin jars as referenced libraries
+    - org.eclipse.osgi
+    - org.eclipse.core.commands 
+    - org.eclipse.equinox.common
+    - org.eclipse.equinox.registry
+    - org.eclipse.core.runtime
+    - org.eclipse.text
+    - org.eclipse.swt.win32.win32.x86_64
+    - org.eclipse.jface,eclipse.jface.text
+    - org.eclipe.ui.workbench
+    - com.ibm.icu_50.1.1
+    - org.eclipse.ui.forms
+This will work out for any SWT application that need to be launched directly without any RCP product.This can also be done via a tool "Windows Builder" wherein the dependencies are automatically added when a SWT/JFACE Java project is created
+
 ## plugin.xml
 The plug-in manifest file, plugin.xml, describes how the plug-in extends the platform, what extensions it publishes itself, and how it implements its functionality.
 - [When to start](https://wiki.eclipse.org/FAQ_When_does_a_plug-in_get_started%3F)
