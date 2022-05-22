@@ -28,8 +28,20 @@ Provides support for the runtime platform, core utility methods and the extensio
 | IExtension[] 	getExtensions(String namespace) 	| Returns all extensions declared in the given namespace.| 
 | IExtension[] 	getExtensions(IContributor contributor) 	| Returns all extensions supplied by the contributor, or null if there are no such extensions.| 
 
-
 - org.eclipse.core.runtime.Plugin
+
+
+- Launcher
+
+| Launch Parameter |	Description |
+|------------------|--------------|
+|consoleLog| Error messages of the running Eclipse application are written to standard-out (System.out) which can be viewed in the Eclipse IDE Console view that started the RCP application.|
+|nl| Specifies the locale used for your application. The locale defines the language specific settings, i.e., which translation is used and the number, date and currency formatting. For example -nl en starts your application using the English language. This is useful for testing translations.|
+|console|Provides access to an OSGi console where you can check the status of your application.|
+|noExit|Keeps the OSGi console open even if the application crashes. This allows to analyze the application dependencies even if the application crashes during startup.|
+|clearPersistedState|Deletes cached runtime changes of the Eclipse 4 application model.|
+
+
 
 ## runtime Interfaces
 |Interface | 	Description |
