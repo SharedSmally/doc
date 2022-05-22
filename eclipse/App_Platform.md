@@ -1,13 +1,24 @@
-# Eclipse e4 Application Platform
-[Help](https://help.eclipse.org/latest/index.jsp?topic=%2Forg.eclipse.platform.doc.isv%2Freference%2Fapi%2Findex.html)
-- runtime
-- equinox: OSGi implementation
-- common services: 
+# Eclipse 
+- [Help](https://help.eclipse.org/latest/index.jsp)
+- [Eclipse Platform Maven](https://mvnrepository.com/artifact/org.eclipse.platform)
+
+## Eclipse Platform
+- core
+  - runtime
+  - resources
+  - filesystem; filebuffer
+  - expression
+  - commands; jobs
+  - databinding
   - help
-  - team;
-- e4: Application Model; DI container; CSS
+  - team
+- equinox: OSGi implementation
+  - p2
 - emf: core
-- p2:
+- e4: Application Plaform
+-   Application Model
+-   DI container
+-   CSS
 - ui
   - rap/rcp:
     - jface: High level Widgets
