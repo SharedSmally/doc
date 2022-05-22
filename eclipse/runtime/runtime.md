@@ -1,9 +1,59 @@
-# Eclipse Platform
-- runtime
+# Eclipse Platform: org.eclipse.platform 
+- runtime:  
+  - core: org.eclipse.core.runtime
+  - expression: org.eclipse.core.expressions
+  - jobs: org.eclipse.core.jobs
+  - commands: org.eclipse.core.commands
+  - contenttype: org.eclipse.core.contenttype
+  - variables: org.eclipse.core.variables
+  - external tools: org.eclipse.core.externaltools
 - databinding
-- compare
+  - core: org.eclipse.core.databinding
+  - observables: org.eclipse.core.databinding.observable
+  - properties: org.eclipse.core.databinding.property
+  - javabeans: org.eclipse.core.databinding.beans
+  
+  
+  
+- compare: 
+   - compare: org.eclipse.compare
+   - core: org.eclipse.compare.core
 - commands
-- resources
+- resources: org.eclipse.core.resources
+- misc
+  - net:  org.eclipse.core.net
+  - proxy for linux: org.eclipse.core.net.linux
+  - ant build tool: org.eclipse.ant.core
+  - ant launch: org.eclipse.ant.launching
+  - ant ui: org.eclipse.ant.ui
+  - scheme: org.eclipse.urischeme
+  - update: org.eclipse.update.configurator
+  - tips:  org.eclipse.tips.core
+- osgi: 
+  - core: org.eclipse.osgi
+  - services: org.eclipse.osgi.services
+  - compatibility: org.eclipse.osgi.compatibility.state
+  - util: org.eclipse.osgi.util
+- filesystem: 
+  - filesystem: org.eclipse.core.filesystem
+  - filebuffers: org.eclipse.core.filebuffers
+- help
+  - core: org.eclipse.help
+  - base: org.eclipse.help.base
+  - ui: org.eclipse.help.ui
+- search
+  - core: org.eclipse.search
+- team
+  - core: org.eclipse.team.core
+  - ui: org.eclipse.team.ui
+  - cvs: org.eclipse.team.cvs.core
+  - cvs ui: org.eclipse.team.cvs.ui
+- jsch
+  - core: org.eclipse.jsch.core
+- text: org.eclipse.text
+- debug
+  - core:  org.eclipse.debug.core
+  - ui:  org.eclipse.debug.ui
 
 ## runtime
 - org.eclipse.core.runtime
@@ -66,17 +116,6 @@
 - org.eclipse.core.net.proxy
 - org.eclipse.core.variables
 
-## help
-- org.eclipse.help
-- org.eclipse.help.base
-- org.eclipse.help.browser
-- org.eclipse.help.search
-- org.eclipse.help.server
-- org.eclipse.help.standalone
-- org.eclipse.help.ui
-- org.eclipse.help.ui.browser
-- org.eclipse.help.webapp
-
 ## osgi
 - org.eclipse.osgi.framework.console
 - org.eclipse.osgi.framework.eventmgr
@@ -92,6 +131,17 @@
 - org.eclipse.osgi.signedcontent
 - org.eclipse.osgi.storagemanager
 - org.eclipse.osgi.util
+
+## help
+- org.eclipse.help
+- org.eclipse.help.base
+- org.eclipse.help.browser
+- org.eclipse.help.search
+- org.eclipse.help.server
+- org.eclipse.help.standalone
+- org.eclipse.help.ui
+- org.eclipse.help.ui.browser
+- org.eclipse.help.webapp
 
 ## search
 - org.eclipse.search.core.text
