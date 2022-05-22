@@ -8,8 +8,9 @@ The Eclipse Platform is divided into component areas as follows:
 - Debug - Generic execution debug framework
 - Releng - Release Engineering
 
-Maven:
-- Web Site
+Document:
+- Help: https://help.eclipse.org/latest/index.jsp
+- Maven Web Site
   - Eclipse: https://mvnrepository.com/artifact/org.eclipse
     - Core: https://mvnrepository.com/artifact/org.eclipse.core
     - Platform: https://mvnrepository.com/artifact/org.eclipse.platform
