@@ -5,10 +5,10 @@
 
 ## Concepts
 - Plugin: the basic OSGi Bundle using MANIFEST.MF with plugin.xml
-- Feature: Reference a list of plugins in feature.xml file:  File > New > Other > Plug-in Development > Feature Project
-- Product: Product configuration for a feature in \*.product: File > New > Othe > Plug-in Development > Product Configuration
-- Category Definition: Reference a feature in category.xml: File > New > Other > Plug-in development > Category Definition
-- Update Site: for plugin/feature: File > Export > Deployable features
+- Feature: Reference a list of plugins in feature.xml file:  **File > New > Other > Plug-in Development > Feature Project**
+- Product: Product configuration for a feature in \*.product: **File > New > Othe > Plug-in Development > Product Configuration**
+- Category Definition: Reference a feature in category.xml: **File > New > Other > Plug-in development > Category Definition**
+- Update Site: for plugin/feature: **File > Export > Deployable features**
 - Extension Point schema
 - Component Configuration: for OSGi services
 - Traget Platform: Running platform
