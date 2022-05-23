@@ -40,9 +40,9 @@
 | method    | description |
 |-----------|-------------|
 | void 	load(InputStream inputStream, Map<?,?> options) | Loads the resource from the input stream using the specified options.|
-| void 	load(Map<?,?> options)| Loads the resource using the specified options.|
-| void 	save(Map<?,?> options) | Saves the resource using the specified options.|
-| void 	save(OutputStream outputStream, java.util.Map<?,?> options)|Saves the resource to the output stream using the specified options.|
+| void 	load(Map options)| Loads the resource using the specified options.|
+| void 	save(Map options) | Saves the resource using the specified options.|
+| void 	save(OutputStream outputStream, Map options)|Saves the resource to the output stream using the specified options.|
 | TreeIterator<EObject>	getAllContents() | Returns a tree iterator that iterates over all the direct contents and indirect contents of this resource.|
 | EList<EObject> 	getContents() |  Returns the list of the direct content objects; each is of type EObject.|
 | EObject	getEObject(String uriFragment) |    Returns the resolved object for the given URI fragment.|
