@@ -58,7 +58,7 @@
 |Notifier   |BasicNotifierImpl:NotifierImpl |
 |Resource   |ResourceImpl : BinaryResourceImpl| Factory;ResourceFactoryImpl |
 |XMLResource |XMLResourceImpl : GenericXMLResourceImpl, XMLTypeResourceImpl|XMLResourceFactoryImpl; GenericXMLResourceFactoryImpl|
-|XMIResource |XMIResourceImpl : Ecore2EcoreResourceImpl, EMOFResourceImpl|XMIResourceFactoryImpl:Ecore2EcoreResourceFactoryImpl, , EcoreResourceFactoryImpl, EMOFResourceFactoryImpl|
+|XMIResource |XMIResourceImpl : Ecore2EcoreResourceImpl, EMOFResourceImpl|XMIResourceFactoryImpl : Ecore2EcoreResourceFactoryImpl, EcoreResourceFactoryImpl, EMOFResourceFactoryImpl|
 |Ecore2XMLResource| Ecore2XMLResourceImpl|Ecore2XMLResourceFactoryImpl|
   
 
