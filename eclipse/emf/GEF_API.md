@@ -9,6 +9,15 @@ The GEF component is separated into three plug-ins:
 - GEF (org.eclipse.gef) - an interactive MVC framework built on top of Draw2d
 - Zest (org.eclipse.zest) - a visualization toolkit built on top of Draw2d
 
+![GEF Components](https://help.eclipse.org/latest/topic/org.eclipse.gef.dot.doc/reference/wiki/images/dot/components.dot.jpeg)
+
+Advanced features:
+- FX/JFace
+- Layout
+- Graph
+- DOT
+- Cloudio
+
 ### Draw2d
   - org.eclipse.draw2d
   - org.eclipse.draw2d.geometry
