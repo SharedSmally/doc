@@ -78,6 +78,7 @@
 |IRequestor 	|Requestor represents an atomary operation performed during the injection.|
 
 |Class |	Description|
+|---------|-------------|
 |ExtendedObjectSupplier 	|The base class for an "object supplier" - something that knows how to instantiate objects corresponding to the object descriptor.|
 |PrimaryObjectSupplier 	|The base class for an "object supplier" - something that knows how to instantiate objects corresponding to the object descriptor.|
 
