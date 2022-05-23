@@ -49,7 +49,21 @@
 | ResourceSet 	getResourceSet()|  Returns the containing resource set.|
   
           
+- Interface ResourceSet : ResourceSetImpl
 
+| method    | description |
+|-----------|-------------|
+| Resource 	createResource(URI uri)|          Creates a new resource, of the appropriate type, and returns it.|
+| Resource 	createResource(URI uri, java.lang.String contentType)|         Creates a new resource, of the appropriate type, and returns it.|
+| Resource 	getResource(URI uri, boolean loadOnDemand)|          Returns the resource resolved by the URI.|
+| EList<Resource> 	getResources()|          Returns the direct Resources being managed.|
+| EList<AdapterFactory> 	getAdapterFactories()|          Returns the list of registered AdapterFactory instances.|
+| TreeIterator<Notifier> 	getAllContents()|         Returns a tree iterator that iterates over all the direct resources and over the content tree of each.|
+| EObject 	getEObject(URI uri, boolean loadOnDemand)|          Returns the object resolved by the URI.|
+| Map<Object,Object> 	getLoadOptions()|          Returns the options used during demand load.|
+| EPackage.Registry 	set/getPackageRegistry()|          Returns the registry used for looking up a package based namespace.|
+| Resource.Factory.Registry 	set/getResourceFactoryRegistry()|          Returns the registry used for creating a resource of the appropriate type.|
+| URIConverter 	set/getURIConverter()|          Returns the converter used to normalize URIs and to open streams.|
 
 - Resource Hiarchy (Resource for save/load)
   
