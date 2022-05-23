@@ -39,6 +39,7 @@ How to start the product
 ## Target Platform 
 Where to get the dependencies
 - [Tutorial](https://www.modumind.com/2009/09/01/creating-an-eclipse-rcp-target-platform/)
+
 Target platform definitiion outlines what should be included in the product and where the features and bundles can be located. It can also be checked in to the version control repository and shared among the members of your team. Eclipse 3.5 supports four types of locations:
 - directories
 - installations
