@@ -5,10 +5,12 @@
 - [EMF javadoc](https://download.eclipse.org/modeling/emf/emf/javadoc/2.7.0/overview-summary.html)
 
 ## Ecore Resource API
+
 | package | description |
 |---------|-------------|
 |org.eclipse.emf.ecore 	| Provides an API for the Ecore dialect of UML.|
 |org.eclipse.emf.ecore.impl |	Provides an implementation of Ecore.|
+
 
 | interface | description |
 |-----------|-------------|
@@ -17,6 +19,7 @@
 |EValidator.Registry |	A map from EPackage to EValidator.|
 
 - Interface Resource.Factory.Registry
+
 | interface | description |
 |-----------|-------------|
 | static Resource.Factory.Registry 	INSTANCE | The global static resource factory registry. |
@@ -27,11 +30,13 @@
 |Resource.Factory 	getFactory(URI uri, String contentType) |    Returns the resource factory appropriate for the given URI with the given content type identifier.|
 
 - Interface Resource.Factory
+
 | method    | description |
 |-----------|-------------|
 |  Resource 	createResource(URI uri) |  Creates a resource with the given URI and returns it. |
 
 - Interface Resource.Factory
+
 | method    | description |
 |-----------|-------------|
 | void 	load(InputStream inputStream, Map<?,?> options) | Loads the resource from the input stream using the specified options.|
@@ -47,6 +52,7 @@
 
 
 - Resource Hiarchy (Resource for save/load)
+  
 | Resource  | Resource Implementaion | ResourceFactory Implementation|
 |-----------|------------------------|-------------------------------|
 |Notifier   |BasicNotifierImpl:NotifierImpl |
