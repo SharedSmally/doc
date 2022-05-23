@@ -29,7 +29,7 @@ EcorePackage > EcoreFactory (EPackage and EFactory for Model)
 
 ## EditingDomain -> MappingDomain
 
-## EMF Data Management
+## EMF Data Management via AdapterFactories
 First, create an editing domain. An editing domain manages a set of interrelated models and the commands that 
 are run to modify them. For example, it contains the stack of all former commands. An editing domain can create 
 a resource, which is a container for storing EObjects. Resources can be saved and loaded and contents can be added to them. 
@@ -60,3 +60,14 @@ protected void addMatchup() { // add a new Matchup using a Command
 protected void undo() {  // Undo the last change
   AdapterFactoryEditingDomain.getEditingDomainFor(getTournament()).getCommandStack().undo();
 }
+
+@Override
+protected void initializeTreeviewer(TreeViewer treeViewer) {
+  // initialize a TreeViewer to show the Matchups and Games of the opened Tournament
+  AdapterFactoryLabelProvider labelProvider = new AdapterFactoryLabelProvider(getAdapterFactory());
+  AdapterFactoryContentProvider contentProvider = new AdapterFactoryContentProvider(getAdapterFactory());
+  treeViewer.setLabelProvider(labelProvider);
+  treeViewer.setContentProvider(contentProvider);
+  treeViewer.setInput(getTournament());
+}
+```
