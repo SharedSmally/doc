@@ -16,6 +16,11 @@ EMF consists of three fundamental pieces:
 - [Eclipse Help](https://help.eclipse.org/latest/index.jsp)
 - [javadoc](https://www.eclipse.org/modeling/emf/javadoc/)
 
+##
+- Ecore Model
+![model](https://help.eclipse.org/latest/topic/org.eclipse.emf.doc/references/overview/images/EMF/image011.gif)
+
+
 ## EMF Tools
 - Ecore model
 - EMF Generator Model (from Ecore, xsd, Rational Rose, etc) to generate code
