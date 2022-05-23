@@ -24,6 +24,10 @@ EValidator
 
 EcorePackage > EcoreFactory (EPackage and EFactory for Model)
 
+##
+- org.eclipse.emf.ecore.provider: XxxItemProvider for ecore.
+- org.eclipse.emf.edit.domain: manage a set of Model and Commands to modify them, EditingDomain/AdapterFactoryEditingDomain
+- org.eclipse.emf.edit.provider: xxxItemProvider for Widgets
 
 ## Command
 
@@ -70,4 +74,22 @@ protected void initializeTreeviewer(TreeViewer treeViewer) {
   treeViewer.setContentProvider(contentProvider);
   treeViewer.setInput(getTournament());
 }
+```
+EMF allows you to generate a maximum of four different plugins for a defined model:
+- Model: The model contains all entities, packages and factories to create instances of the model.
+- Edit: The edit plugin contains providers to display a model in a UI. For example, the providers offer a label for every model element, which can be used to display an entity showing an icon and a name.
+- Editor: The editor plugin is a generated example editor to create and modify instances of a model.
+- Test: The test plugin contains templates to write tests for a model.
+
+### AdapterFactories
+The basic function of AdapterFactories is to provide you with the interface you need for a certain purpose such as an ILabelProvider needed in the UI. EMF generates a lot of these classes for you. To retrieve the right class, you can use an AdapterFactory implementation of the interface you need, e.g., an AdapterFactoryLabelProvider. The AdapterFactoryLabelProvider will retrieve the generated LabelProviders for all EObjects using an AdapterFactory.
+
+## Mapping: model/edit/editor
+- frameworkd
+- ecore to ecore mapping
+- ecore to xml mapping
+```
+1. metamodel #1, described by an ecore-file
+2. metamodel #2, described by an ecore-file
+3. an ecore2ecore mapping-file
 ```
