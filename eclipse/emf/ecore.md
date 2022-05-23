@@ -31,9 +31,14 @@ EcorePackage > EcoreFactory (EPackage and EFactory for Model)
 
 ## Command
 
-## EditingDomain -> MappingDomain
 
-## EMF Data Management via AdapterFactories
+## EMF Features
+
+### EditingDomain -> MappingDomain
+
+### EMF Listener
+
+### EMF Data Management
 First, create an editing domain. An editing domain manages a set of interrelated models and the commands that 
 are run to modify them. For example, it contains the stack of all former commands. An editing domain can create 
 a resource, which is a container for storing EObjects. Resources can be saved and loaded and contents can be added to them. 
