@@ -19,6 +19,39 @@
 - SWT: http://www.eclipse.org/swt/
 
 ## RAP 
+- E4Application
+- E4Workbench
+- IEclipseContext: via extension in plugin.xml 
+- EModelService 
+- MApplication 
+```
+import org.eclipse.e4.core.di.annotations.Execute;
+import org.eclipse.e4.ui.model.application.MApplication;
+import org.eclipse.e4.ui.model.application.ui.advanced.MPerspectiveStack;
+import org.eclipse.e4.ui.workbench.modeling.EModelService;
+import org.eclipse.ui.PlatformUI;
+
+public class ResetPerspectiveHandler {
+    private static final String MAIN_PERSPECTIVE_STACK_ID = "MainPerspectiveStack";
+
+    @Execute
+    public void execute(EModelService modelService, MApplication application) {
+         MPerspectiveStack perspectiveStack = (MPerspectiveStack) modelService.find(MAIN_PERSPECTIVE_STACK_ID, application);
+         PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().resetPerspective();
+         perspectiveStack.getSelectedElement().setVisible(true);
+         perspectiveStack.setVisible(true);
+    }
+    
+    // Reset perspective logic .
+    IEclipseContext serviceContext = E4Workbench.getServiceContext();
+    final IEclipseContext appContext = (IEclipseContext) serviceContext.getActiveChild();
+    EModelService modelService = appContext.get(EModelService.class);
+    MApplication application = serviceContext.get(MApplication.class);
+    MWindow mWindow = application.getChildren().get(0);
+}
+```
+
+
 ### OSGi and Servlet Container
 https://angelozerr.wordpress.com/2011/05/20/rap_step4/
 - Embedding an HTTP server in Equinox:
