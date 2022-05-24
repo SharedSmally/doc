@@ -3,6 +3,7 @@
 ## Document
 - [Help](https://help.eclipse.org/latest/index.jsp): e4
 - [Using the Eclipse context for RCP applications and plug-ins](https://www.vogella.com/tutorials/Eclipse4ContextUsage/article.html)
+- [e4 DI](http://wiki.eclipse.org/Eclipse4/RCP/Dependency_Injection)
 
 ## Tools
 - e4 Tools Developer Resources
