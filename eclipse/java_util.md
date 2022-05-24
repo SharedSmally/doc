@@ -18,3 +18,8 @@
     - EasyMocker
     - Mockito
     - Power Mocker
+
+
+## Dependency Injection Implementation in Core Java
+- https://medium.com/globant/dependency-injection-implementation-in-core-java-fe9729f8ae27
+Defined customized Annotation. Handle all classes with the specific associated Annotations; and autowired them.
