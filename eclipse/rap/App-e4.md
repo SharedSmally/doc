@@ -22,9 +22,11 @@
 ### OSGi and Servlet Container
 https://angelozerr.wordpress.com/2011/05/20/rap_step4/
 - Embedding an HTTP server in Equinox:
+
 ![embed HTTP](https://angelozerr.files.wordpress.com/2011/05/embeddinghttpserverinequinox.png?w=595)
 
 - Equinox in a Servlet Container
+
 ![Equinox in a Servlet Container](https://angelozerr.files.wordpress.com/2011/05/equinoxinservletcontainer.png?w=595)
 
 
