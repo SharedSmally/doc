@@ -2,10 +2,56 @@
 
 ## Document
 - [Help](https://help.eclipse.org/latest/index.jsp): e4
+-[Using the Eclipse context for RCP applications and plug-ins](https://www.vogella.com/tutorials/Eclipse4ContextUsage/article.html)
 
 ## Tools
 - e4 Tools Developer Resources
 - RCP/RAP SDKs
+
+## e4 features
+- OSGi Bundle Context / EcliseContext(hiarchy structure)
+- Dependency-Injection: Context; Services; ...; Components;
+
+## Context
+- Get Eclipse Context by DI:
+```
+import org.eclipse.e4.core.contexts.IEclipseContext;
+import org.eclipse.e4.core.di.annotations.Execute;
+
+public class ShowMapHandler {
+    @Execute
+    public void execute(IEclipseContext context) {
+        // add objects to the active local context injected into this handler
+        
+       // create a new IEclipseContext instance
+       IEclipseContext myContext = EclipseContextFactory.create();
+       // add objects to context
+       myContext.set("mykey1", "Hello1");
+       myContext.set("mykey2", "Hello2");
+
+       // adding a parent relationship
+       myContext.setParent(context);
+    }
+}
+```
+- Get Eclipse Context by MContext (extension MApplication, MPart, MWindow, MApplication and MPerspective):
+```
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
+import org.eclipse.e4.core.contexts.IEclipseContext;
+import org.eclipse.e4.ui.model.application.ui.basic.MPart;
+import org.eclipse.swt.widgets.Composite;
+
+public class TodoDetailsPart {
+    @PostConstruct
+    public void createControls(Composite parent, MApplication application) {
+        // getting the IEclipseContext via the MApplication object
+        IEclipseContext context = application.getContext();
+
+        // add or access objects to and from the application context ...
+    }
+}
+```
 
 ## e4: MApplication > MContext > IEclipseContext 	
 
