@@ -35,7 +35,7 @@
 | Interface |	Description |
 |---------|-------------|
 |IContextFunction 	|A context function encapsulates evaluation of some code within an IEclipseContext.|
-|IEclipseContext 	|A context is used to isolate application code from its dependencies on an application framework or container.|
+|**IEclipseContext** 	|A context is used to isolate application code from its dependencies on an application framework or container.|
 
 | Class |Description |
 |---------|-------------|
@@ -108,9 +108,9 @@
 |Interface |	Description|
 |---------|-------------|
 |MAddon 	|A representation of the model object 'Addon'.|
-|MApplication 	|A representation of the model object 'Application'.|
+|**MApplication** 	|A representation of the model object 'Application'.|
 |MApplicationElement 	|A representation of the model object 'Element'.|
-|MApplicationFactory 	|The Factory for the model.|
+|**MApplicationFactory** 	|The Factory for the model.|
 |MContribution 	|A representation of the model object 'Contribution'.|
 
 ## org.eclipse.e4.ui.model.application.commands 	 
@@ -142,7 +142,7 @@
 
 |Interface |	Description|
 |---------|-------------|
-|MContext 	|A representation of the model object 'Context'.|
+|**MContext **	|A representation of the model object 'Context'.|
 |MCoreExpression 	|A representation of the model object 'Core Expression'.|
 |MDirtyable 	|A representation of the model object 'Dirtyable'.|
 |MElementContainer<T extends MUIElement> 	|A representation of the model object 'Element Container'.|
@@ -178,7 +178,7 @@
 |MBasicFactory 	|The Factory for the model.|
 |MCompositePart 	|A representation of the model object 'Composite Part'.|
 |MDialog 	Deprecated. ||
-|MPart 	|A representation of the model object 'Part'.|
+|**MPart **	|A representation of the model object 'Part'.|
 |MPartSashContainer 	|A representation of the model object 'Part Sash Container'.|
 |MPartSashContainerElement 	|A representation of the model object 'Part Sash Container Element'.|
 |MPartStack 	|A representation of the model object 'Part Stack'.|
@@ -228,7 +228,7 @@
 |Interface |	Description|
 |---------|-------------|
 |MFragmentFactory 	|The Factory for the model.|
-|MModelFragment 	|A representation of the model object 'Model Fragment'.|
+|**MModelFragment **	|A representation of the model object 'Model Fragment'.|
 |MModelFragments 	|A representation of the model object 'Model Fragments'.|
 |MStringModelFragment 	|A representation of the model object 'String Model Fragment'.|
 
@@ -236,9 +236,9 @@
 
 |Interface |	Description|
 |---------|-------------|
-|EContextService 	| |
+|**EContextService **	| |
 |EMenuService 	|Provide for management of different menus.|
-|IServiceConstants 	 ||
+|**IServiceConstants **	 ||
 |IStylingEngine 	 ||
 
 |Class |	Description|
@@ -273,8 +273,8 @@
 
 |Interface |	Description|
 |---------|-------------|
-|EModelService 	|This service is used to find, create and handle model elements|
-|EPartService 	|The part service provides clients with the functionalities of showing and hiding parts.|
+|**EModelService **	|This service is used to find, create and handle model elements|
+|**EPartService **	|The part service provides clients with the functionalities of showing and hiding parts.|
 |EPlaceholderResolver 	|This service is used to resolve references from MPlaceholders.|
 |ESelectionService 	|This interface describes the workbench selection service|
 |IModelProcessorContribution 	|Service component interface to be able to register model processors via OSGi services.|
