@@ -4,7 +4,9 @@
 ### postgresql
 bitnami => zalando
 
-## kafka
+## zookeeper (2n+1_
+
+## kafka (2n+1)
 
 ## redis
 
