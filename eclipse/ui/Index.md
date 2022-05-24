@@ -16,6 +16,12 @@
 ## IApplication : E4Application
 
 ## IWorkbench : E4Workbench
+- WorkbenchAdvisor: Configuration of Workbench
+- WorkbenchWindowAdvisor: configuring a workbench window. 
+- IWorkbenchWindow: a top level window in a workbench.
+- IWorkbenchPage: an arrangement of views and editors intended to be presented together
+- IViewPart
+- IViewSite
 
 PlatformUI.getWorkbench(): https://javadoc.scijava.org/Eclipse/org/eclipse/ui/IWorkbench.html
 
