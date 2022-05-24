@@ -14,7 +14,8 @@
 - Dependency-Injection: Context; Services; ...; Components;
 
 ## e4 RAP Application Demo:
-https://git.eclipse.org/c/rap/incubator/org.eclipse.rap.incubator.e4.git/tree/demo/org.eclipse.rap.e4.demo
+- https://git.eclipse.org/c/rap/incubator/org.eclipse.rap.incubator.e4.git/tree/demo/org.eclipse.rap.e4.demo
+search E4ApplicationConfig.java
 ```
 import java.util.HashMap;
 import java.util.Map;
