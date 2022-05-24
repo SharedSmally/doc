@@ -5,16 +5,17 @@
 | Method | 	Description| 
 |--------|-------------|
 | static int 	createAndRunWorkbench(Display display, WorkbenchAdvisor advisor) 	| Creates the workbench and associates it with the given display and workbench advisor, and runs the workbench UI.| 
-| static Display 	createDisplay() 	| Creates the Display to be used by the workbench.| 
+| static Display 	**createDisplay**() 	| Creates the Display to be used by the workbench.| 
 | static IPreferenceStore 	createPreferenceStore(Class<?> clazz) 	| Creates a IPreferenceStore store for the bundle that loaded that class| 
 | static IDialogSettingsProvider 	getDialogSettingsProvider(Bundle bundle) 	| Returns the dialog settings provider for the passed bundle.| 
 | static IPreferenceStore 	getPreferenceStore() 	| Returns the preference store used for publicly settable workbench preferences.| 
 | static TestableObject 	getTestableObject() 	| Returns the testable object facade, for use by the test harness.| 
-| static IWorkbench 	getWorkbench() 	| Returns the workbench.| 
+| static IWorkbench 	**getWorkbench**() 	| Returns the workbench.| 
 | static boolean 	isWorkbenchRunning() 	| Returns whether createAndRunWorkbench has been called to create the workbench, and the workbench has yet to terminate.| 
 
+## IApplication : E4Application
 
-## IWorkbench
+## IWorkbench : E4Workbench
 
 PlatformUI.getWorkbench(): https://javadoc.scijava.org/Eclipse/org/eclipse/ui/IWorkbench.html
 
