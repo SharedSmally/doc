@@ -8,5 +8,5 @@ bitnami => zalando
 
 ## redis
 
-## proxyHA
+## HAproxy
 
