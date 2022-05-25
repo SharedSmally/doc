@@ -1,6 +1,8 @@
 # RAP packages
-https://mvnrepository.com/artifact/org.eclipse.rap
+- Maven: https://mvnrepository.com/artifact/org.eclipse.rap
+- RAP javadoc: https://download.eclipse.org/rt/rap/doc/3.6/guide/reference/api/index.html
 
+## packages
 | Name | Maven |
 |------|-------|
 | RAP Widget Toolkit (RWT) |org.eclipse.rap » org.eclipse.rap.rwt |
