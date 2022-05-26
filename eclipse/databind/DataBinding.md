@@ -31,6 +31,7 @@ The **IObservableValue** interface is the basis for observing properties in JFac
 The **Properties** API provides factories to create IObservableValue objects. 
 
 | Factory |	Description |
+|---------|-------------|
 |PojoProperties|Used to create IObservableValue for Java objects. The term Pojo (Plain old Java object) is used to describe a Java object which does not implement a specific framework API.|
 |BeanProperties|Used for Java Beans. A Java Bean is a Java object which follows the Java Bean specification. This specification requires that the class implements getter and setter methods for all its attributes. It must also implement property change support via the PropertyChangeSupport class and propagate changes to registered listeners.|
 |WidgetProperties|Used for properties of SWT widgets.|
