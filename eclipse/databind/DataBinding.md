@@ -5,7 +5,8 @@
 - [Data Binding HOWTO](https://wiki.eclipse.org/Data_Binding_HOWTO)
 
 Originally there are 2 objects, source (model) and target(viewer), Make them IObserverable, and Binding together,
-When one side is update, another side will be updated automatically. The binding could be one-side or two-side. 
+When one side is update, another side will be updated automatically. The binding could be one-side or two-side.
+The main purpose for the new package is to provide the Factories to create the IObserverable from the target viewer object.
 
 ## Maven
 - org.eclipse.core » org.eclipse.core.databinding
