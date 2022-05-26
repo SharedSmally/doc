@@ -3,6 +3,15 @@
 ## Tutorial:
 - [JFace Data Binding ](https://www.vogella.com/tutorials/EclipseDataBinding/article.html)
 
+## Maven
+- org.eclipse.core » org.eclipse.core.databinding
+- org.eclipse.core » org.eclipse.core.databinding.beans
+- org.eclipse.core.databinding » property
+- org.eclipse.core.databinding » observable
+- org.eclipse.core.databinding » beans
+- org.eclipse.jface » org.eclipse.jface.databinding 
+- at.bestsolution.efxclipse.rt » org.eclipse.fx.core.databinding
+
 ## DataBinding Packages
 | Package | Description |
 |---------|-------------|
