@@ -2,6 +2,10 @@
 
 ## Tutorial:
 - [JFace Data Binding ](https://www.vogella.com/tutorials/EclipseDataBinding/article.html)
+- [Data Binding HOWTO](https://wiki.eclipse.org/Data_Binding_HOWTO)
+
+Originally there are 2 objects, source (model) and target(viewer), Make them IObserverable, and Binding together,
+When one side is update, another side will be updated automatically. The binding could be one-side or two-side. 
 
 ## Maven
 - org.eclipse.core » org.eclipse.core.databinding
