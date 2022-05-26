@@ -4,15 +4,65 @@
 With IObserverable + Value/List/Set/Map + Viewer/SWT
 - IObservable
     - IDecoratingObservable
-    - IVetoableValue
-    - IObservableValue
+    - IVetoableValue: 
+    - IObservableValue: get/setValue
     - IObservableCollection (extends java.util.Collection<E>)
         - IObservableList (extends java.util.List<E>)
         - IObservableSet (extends java.util.Set<E>)
         - IObservableMap (extends java.util.Map<E>)
 
+### IObserverable 
+Extending the corresponding classes or ChangeSupport to handle the listeners management.
+    
+| Method | Description|
+|--------|-------------|    
+|void 	remove/addChangeListener(IChangeListener listener) 	 | Adds the given change listener to the list of change listeners.
+|void 	remove/addDisposeListener(IDisposeListener listener) 	|Adds the given dispose listener to the list of dispose listeners.|
+|void 	remove/addStaleListener(IStaleListener listener) 	|Adds the given stale listener to the list of stale listeners.|
+|void 	dispose() 	|Disposes of this observable object, removing all listeners registered with this object, and all listeners this object might have registered on other objects.|
+|Realm 	getRealm() 	|Returns the realm for this observable.|
+|boolean 	isDisposed() 	|Returns whether the observable has been disposed|
+|boolean 	isStale() 	|Returns whether the state of this observable is stale and is expected to change soon.|
+  
+### IVetoableValue<T>     
+| Method | Description|
+|--------|-------------|    
+|void 	remove/addValueChangingListener​(IValueChangingListener<T> listener)||
+    
+### ISWTObservable  
+| Method | Description|
+|--------|-------------|    
+|Widget 	getWidget() 	|Returns the widget of this observable    |
+    
+### IDecoratingObservable    
+| Method | Description|
+|--------|-------------|    
+|IObservable 	getDecorated()||
+    
+### IObservableValue<T>    
+| Method | Description|
+|--------|-------------|    
+|void 	remove/addValueChangeListener(IValueChangeListener<? super T> listener) 	 
+|T 	getValue() 	|Returns the value.|
+|void 	setValue(T value) 	|Sets the value.|
+|Object 	getValueType() 	|The value type of this observable value, or null if this observable value is untyped.|
 
+### IObservableSet<T>    
+| Method | Description|
+|--------|-------------|    
+|abstract Set<E> 	getAdditions() 	 ||
+|abstract Set<E> 	getRemovals()    ||
+    
+### Interface IDiff
+    All Known Implementing Classes: ListDiff, MapDiff, SetDiff, ValueDiff 
 
+### Class ValueDiff<T>
+| Method | Description|
+|--------|-------------|  
+|abstract T 	getNewValue() 	 ||
+|abstract T 	getOldValue()    ||
+
+##  classes Hierarchy 
 - IObservable
     - IDecoratingObservable
     - IObservableCollection (extends java.util.Collection<E>)
