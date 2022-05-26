@@ -44,7 +44,7 @@ An object with state that allows to listen for state changes: **add/removeListen
 
 Implementations must not manage listeners themselves, listener management must be delegated to a private instance of type ChangeSupport if it is not inherited from AbstractObservable. 
 
-##  IObservable Factories: Create IObservable 
+##  IObservable Factories: Create IObservable; or use xxx.observe()
 
 The **IObservableValue** interface is the basis for observing properties in JFace. 
 The **Properties** API provides factories to create IObservableValue objects. 
