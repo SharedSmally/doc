@@ -25,6 +25,8 @@ Common Components
 | Eclipse GEF Doc | org.eclipse.gef.doc|
 
 ## Zest
+The Zest component provides support for visualizing Graph-based graph models, applying automatic layout as provided by Layout. 
+It is internally decomposed into the Zest.FX, Zest.FX.JFace, and Zest.FX.UI modules.
 | Description | Package |
 |-------------|---------|
 | Eclipse Zest Core|org.eclipse.zest » org.eclipse.zest.core |
@@ -34,6 +36,13 @@ Common Components
 ## DOT/DOY.UI
 
 ## Cloudio 
+
+## Layout: org.eclipse.gef.layout
+The Layout component provides basic abstractions for layout algorithms and related listeners, as well as a set of layout algorithm implementations. It is internally decomposed into the single Layout module. 
+
+## MVC :
+The MVC component provides support for building up graphical applications based on a model-view-controller architecture. It is internally composed out of two modules, which provide JavaFX-specific abstractions ( MVC.FX ) and a related Eclipse UI-integration ( MVC.FX.UI ).
+
 
 ## GEF FX - FX, FX.SWT, FX.JFACE
 |Eclipse Equinox Common|org.eclipse.fx » org.eclipse.equinox.common|
