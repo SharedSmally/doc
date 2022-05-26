@@ -25,8 +25,12 @@
 |org.eclipse.ui.databinding|APIs for Workbench properties and observables for use with data binding Package Specification |
 
 
+## IObservable 
+An object with state that allows to listen for state changes: **add/removeListener(xxxListener)**
 
-## Factories
+Implementations must not manage listeners themselves, listener management must be delegated to a private instance of type ChangeSupport if it is not inherited from AbstractObservable. 
+
+##  IObservable Factories: Create IObservable 
 
 The **IObservableValue** interface is the basis for observing properties in JFace. 
 The **Properties** API provides factories to create IObservableValue objects. 
@@ -43,6 +47,46 @@ The **Properties** API provides factories to create IObservableValue objects.
 |WorkbenchProperties 	|Factory methods for creating properties for the Workbench.|
 
 ## Binding
+This abstract class represents a binding between a model and a target. 
 
+| Factory |	Description |
+|---------|-------------|
+|Binding(IObservable target, IObservable model) 	|Creates a new binding.|
+|void 	dispose() 	|Disposes of this Binding.|
+|IObservable 	getModel() 	|Returns the model observable|
+|IObservableList<IObservable> 	getModels() 	|Returns an IObservableList containing the model observables (if any) that are being tracked by this validation status provider.|
+|IObservable 	getTarget() 	|Returns the target observable|
+|IObservableList<IObservable> 	getTargets() 	|Returns an IObservableList containing the target observables (if any) that are being tracked by this validation status provider.|
+|void 	init(DataBindingContext context) 	|Initializes this binding with the given context and adds it to the list of bindings of the context.|
+|protected abstract void 	postInit() 	|Called by init(DataBindingContext) after adding this binding to the context.|
+|protected abstract void 	preInit() 	|Called by init(DataBindingContext) after setting context but before adding this binding to the context.|
+|abstract void 	updateModelToTarget() 	|Updates the target's state from the model's state at the next reasonable opportunity.|
+|abstract void 	updateTargetToModel() 	|Updates the model's state from the target's state at the next reasonable opportunity.|
+|abstract void 	validateModelToTarget() 	|Validates the model's state at the next reasonable opportunity.|
+|abstract void 	validateTargetToModel() 	|Validates the target's state at the next reasonable opportunity.|
 
-## BindContext
+## DataBindingContext
+A DataBindingContext is the point of contact for the creation and management of bindings, and aggregates validation statuses of its bindings, or more generally, its validation status providers. 
+
+ A DataBindingContext provides the following abilities:
+- Ability to create bindings between observable values.
+- Ability to create bindings between observable lists.
+- Access to the bindings created by the instance.
+- Access to the list of validation status providers (this includes all bindings). 
+  
+## Interface IConverter<F,T>
+| Method |	Description |
+|---------|-------------|
+|static <F,T> IConverter<F,T> 	create(Object fromType, Object toType, Function<F,T> conversion) |	Creates a converter which calls the argument conversion function.|
+|static <F,T> IConverter<F,T> 	create(Function<F,T> conversion) |	Creates an untyped converter which calls the argument conversion function.  |
+|T 	convert(F fromObject) 	|Returns the result of the conversion of the given object.|
+|Object 	getFromType() 	|Returns the type whose instances can be converted by this converter.|
+|Object 	getToType() 	|Returns the type to which this converter can convert.|
+  
+## Interface IValidator<T>
+A validator is responsible for determining if a given value is valid. Validators can be used on target or model values
+| Method |	Description |
+|---------|-------------|
+|IStatus 	validate(T value) 	|Determines if the given value is valid.  |
+IStatus: OK, CANCEL, ERROR, INFO, WARNING 
+
