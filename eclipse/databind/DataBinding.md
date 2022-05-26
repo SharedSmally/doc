@@ -114,3 +114,18 @@ IStatus: OK, CANCEL, ERROR, INFO, WARNING
 |PojoProperties 	|A factory for creating properties for POJOs (plain old java objects) that conform to idea of an object with getters and setters but does not provide property change events on change. |
 |Properties 	|Contains static methods to operate on or return IProperty objects. in org.eclipse.core.databinding.property|
  
+## IProperty
+ Marker interface for all property types in the properties framework. Use the subinterface to observe the target to make target Observerable.
+ Subinterfaces: IBeanListProperty, IBeanMapProperty, IBeanProperty, IBeanSetProperty, IBeanValueProperty, IListProperty, IMapProperty, ISetProperty, IValueProperty, IViewerListProperty, IViewerSetProperty, IViewerValueProperty, IWidgetListProperty, IWidgetValueProperty
+ 
+ For IWidgetValueProperty
+| Class |	Description |
+|---------|-------------|
+|ISWTObservableValue 	observe(Widget widget)|Returns an ISWTObservableValue observing this value property on the given widget|
+|ISWTObservableValue 	observeDelayed(int delay, Widget widget)|Returns an ISWTObservableValue observing this value property on the given widget|
+ 
+  For  IWidgetListProperty
+| Class |	Description |
+|---------|-------------|
+|ISWTObservableList 	observe(Widget widget)|Returns an ISWTObservableList observing this list property on the given widget|
+ 
