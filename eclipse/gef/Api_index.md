@@ -10,7 +10,7 @@ Common Components
 
 | Description | Package |
 |-------------|---------|
-| Graphical Editing Framework GEF  org.eclipse.gef » org.eclipse.gef
+| Graphical Editing Framework GEF | org.eclipse.gef » org.eclipse.gef
 | GEF Developer Resources | org.eclipse.gef » org.eclipse.gef.source |
 | GEF Examples UI PDE Plug In  | org.eclipse.gef » org.eclipse.gef.examples.ui.pde |
 | Graphical Editing Framework Documentation | org.eclipse.gef » org.eclipse.gef.doc.isv |
