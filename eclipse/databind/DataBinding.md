@@ -104,3 +104,13 @@ A validator is responsible for determining if a given value is valid. Validators
 |IStatus 	validate(T value) 	|Determines if the given value is valid.  |
 IStatus: OK, CANCEL, ERROR, INFO, WARNING 
 
+ 
+## Package org.eclipse.core.databinding.beans 
+| Class |	Description |
+|---------|-------------|
+|BeanProperties 	|A factory for creating properties for Java objects that conform to the JavaBean specification for bound properties.|
+|BeansObservables 	|A factory for creating observable objects of Java objects that conform to the JavaBean specification for bound properties.|
+|PojoObservables 	|A factory for creating observable objects for POJOs (plain old java objects) that conform to idea of an object with getters and setters but does not provide property change events on change.|
+|PojoProperties 	|A factory for creating properties for POJOs (plain old java objects) that conform to idea of an object with getters and setters but does not provide property change events on change. |
+|Properties 	|Contains static methods to operate on or return IProperty objects. in org.eclipse.core.databinding.property|
+ 
