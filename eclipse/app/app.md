@@ -2,7 +2,7 @@
 https://eclipsesource.com/blogs/tutorials/your-first-application-based-on-eclipse-faq/amp/
 - Development Environment: OSGi + IDE + Extension Point + SDKs
 - Application Environment: 
-[OSGi Application](https://eclipsesource.com/wp-content/uploads/2016/04/image05.png)
+![OSGi Application](https://eclipsesource.com/wp-content/uploads/2016/04/image05.png)
 
 ## Application Architecture
 - Product: Product Definition; Target Platform
