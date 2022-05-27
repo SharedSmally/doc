@@ -10,6 +10,11 @@
 - RCP/RAP SDKs
 
 ## e4 features
+Eclipse 4 applications are built using 3 core technologies
+- The application model
+- The DI-Container
+- CSS
+The context:
 - OSGi Bundle Context / EcliseContext(hiarchy structure)
 - Dependency-Injection: Context; Services; ...; Components;
 
