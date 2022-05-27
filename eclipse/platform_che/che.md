@@ -4,6 +4,7 @@ Eclipse Che is a Kubernetes-native IDE and developer collaboration platform.
 In Eclipse Che, the IDE is completely decoupled, it can plug a different IDE into Che workspaces: such as Theia (Browser-based IDE with language tools) 
 
 Two parts of  Eclipse Che: the workspace server and the web-based IDE connected to it (Editor in Che):
+
 ![Che](https://eclipsesource.com/wp-content/uploads/2018/11/image2-1.png)
 
 The Eclipse Che workspace server creates, manages and orchestrates developer environments that are running on a cloud container platform (Kubernetes, Docker, OpenShift, etc.). Che workspaces run in containers which provide all the dependencies that are needed to code, build, test, run and debug a project.
