@@ -19,6 +19,7 @@ $ chectl --version
 $ minikube start
 $ chectl server:deploy --platform=minikube     #minikube|k8s|openshift|microk8s|docker-desktop|crc
 ```
+
     - in cloud
 
 ## Tutorial
