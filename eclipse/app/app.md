@@ -19,6 +19,10 @@ Technically, an OSGi bundle is either a Jar file or an unpacked Jar file (direct
 ## Feature
 Features are a way to organize bundles by grouping them. In a typical Eclipse application, you deal with up to 1000 bundles, it would be hard to manage on that level of granularity. Therefore, bundles are grouped into features which provide a consistent set of functionalities. Features can be further grouped again into other features.
 
+## Product
+product, is an artefact to configure a complete application. It is basically a collection of bundles or features, so it defines what is in the final application. Products can be setup with bundles or features. The definition of a product is contained in a file called “Product Definition”, which can be created within Eclipse IDE. Beside the list of bundles or features, a product also contains information about the branding of the final application such as a logo, the splash screen, etc.
+
+
 ## Target Platform
 Every Eclipse Application project uses a target platform. The custom bundles are located as sources in the workspace, they have some dependencies to other bundles. Those target bundles are needed for compiling and application running. So there needs to be a location to retrieve those “target bundles” from. This location is called “Target Platform” as is defined with a “Target Definition”.
 
@@ -39,3 +43,23 @@ May use Oomph for further project build.
 - Tool Platform: extensible platform with OSGi + IDE + Extension Point + SDKs
 - Application Platform: RCP/RAP
 ![PLatform](https://eclipsesource.com/wp-content/uploads/2016/04/image09.png) 
+
+
+## OSGi dependencies
+
+- Bundle-based: managed by “**Required bundles**”. The bundle has a dependency on the other bundle including all its packages.
+- Package-based: managed by “**Imported packages**”. The bundle has a dependency on the Java package, only. Therefore, “package imports” are more fine-grained than “required bundles”.
+
+## Set-up a build - Maven Tycho
+Tycho is a plugin for maven, which enables two things:
+- Building Eclipse-specific artefacts, such as bundles or features
+- It uses the informations stored in MANIFEST.MF files, e.g. the dependencies.
+
+Maven has its own way of specifying dependencies in pom.xml. Tycho enables a “Manifest first” approach,
+so no need to duplicate the information of the Manifest file in the pom.xml.
+
+These are typically three different types: 
+- bundles
+- features
+- products
+![Tycho](https://eclipsesource.com/wp-content/uploads/2016/04/image08.png)
