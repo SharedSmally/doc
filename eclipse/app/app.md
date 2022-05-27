@@ -22,6 +22,8 @@ Features are a way to organize bundles by grouping them. In a typical Eclipse ap
 ## Product
 product, is an artefact to configure a complete application. It is basically a collection of bundles or features, so it defines what is in the final application. Products can be setup with bundles or features. The definition of a product is contained in a file called “Product Definition”, which can be created within Eclipse IDE. Beside the list of bundles or features, a product also contains information about the branding of the final application such as a logo, the splash screen, etc.
 
+## Category: catergory.xml
+Create a category definition file (catergory.xml, includes a list of features) for the update site:  File > New > Other ... > Plug-in Development > Category Definition
 
 ## Target Platform
 Every Eclipse Application project uses a target platform. The custom bundles are located as sources in the workspace, they have some dependencies to other bundles. Those target bundles are needed for compiling and application running. So there needs to be a location to retrieve those “target bundles” from. This location is called “Target Platform” as is defined with a “Target Definition”.
@@ -41,7 +43,7 @@ May use Oomph for further project build.
 
 ## Platform
 - Tool Platform: extensible platform with OSGi + IDE + Extension Point + SDKs
-- Application Platform: RCP/RAP
+- Application Platform: RCP/RAP;  (OSGi plugin project/select OSGi framework can be converted to Maven project/add pom.xml)
 ![PLatform](https://eclipsesource.com/wp-content/uploads/2016/04/image09.png) 
 
 
