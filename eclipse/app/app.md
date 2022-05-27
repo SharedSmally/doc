@@ -37,7 +37,8 @@ A target definition is basically a collection of locations, where bundles can be
 
 The Eclipse IDE ships with a default target platform. This is of type “Eclipse Installation” and points to the running IDE itself. That is the IDE you use for development as all Eclipse IDEs contain the most common Eclipse frameworks. 
 
-May use Oomph for further project build.
+May use **Oomph** for further project build, it can manage a list of Target Platforms.
+
 ![target platform](https://eclipsesource.com/wp-content/uploads/2016/04/image07-768x442.png)
 
 
