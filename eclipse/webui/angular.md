@@ -1,7 +1,17 @@
 # Angular
 
-- Angular as front-end
-- Spring Boot REST as backend
+- Angular as front-end: using HttpClient to connect to Spring Boot REST API (app.module.ts: import HttpClient)
+     - Service:
+```   
+export class UserService {
+    private baseUrl="http://localhost:8080/api/users";  // Spring Boot
+    constructor(private http:HttpClient) {}
+    
+    getUsers(): Observerable<User[]>  {
+         return this.http.get<User[]>(`${this.baseUri}`)[
+    }
+```     
+- Spring Boot REST API as backend
 
 ## Document
 - [Angular: Angular-2;new version](https://angular.io/)/React
@@ -17,8 +27,6 @@ Can use Bootstrap in in \*.html.
 - Install npm
 - Install Angular CLI: ng command
 - Visual Code for JS
-
-
 
 Angular is based on TypeScript while AngularJS is based on JavaScript. TypeScript is a superset of ES6 with new features: 
 lambda operators, iterators or reflection’s mechanism.
@@ -36,4 +44,5 @@ in: “[ ]”, you’ll get one-way binding.  If you want to create two-way bind
 it this way because of the fact that “[ ]” is used to property binding and “( )” is used to event binding. In Angular,
 some directives have changed their names like ng-repeat to ngFor.
 
+## Angular CLI
 
