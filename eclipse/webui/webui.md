@@ -3,8 +3,7 @@
 ## JS framework
 - Angular
 - Reactjs
-
-- Bootstrap
+- Bootstrap + Angular: https://ng-bootstrap.github.io/#/home 
 
 
 ## Angular vs React
