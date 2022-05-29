@@ -18,7 +18,7 @@ $ sudo npm install -g npm
 - Install CLI
 ```
 $ sudo npm install -g @angular/cli
-``
+```
 - Start project
 ```
 $ ng new my-first-project
@@ -26,7 +26,9 @@ $ cd my-first-project
 $ ng serve
 ```
 
+
 ## ng commands
+
 - **new(n)**: Creates a new workspace and an initial Angular application.
 - **generate(g)**: Generates and/or modifies files based on a schematic.
 - **build(b)**: Compiles an Angular app into an output directory named dist/ at the given output path. Must be executed from within a workspace directory.
