@@ -3,6 +3,7 @@
 ## Document
 - [API Reference](https://angular.io/api)
 - [Tutorial](https://www.tektutorialshub.com/angular-tutorial/)
+- [First Application](https://www.tektutorialshub.com/angular/angular-create-first-application/)
 
 ## API
 - core
