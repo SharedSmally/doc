@@ -258,6 +258,37 @@ We can pass arguments to pipe and chain pipes. The Angular also allows us to cre
 <td>{{customer.name | uppercase}}</td>
 ```
 
+## Root Module
+
+Angular organizes the application code as Angular modules. The Modules are closely related blocks of code in functionality. Every application must have at least one module.
+
+The Module, which loads first is the root Module. This Module is our root module.
+
+The root module is called app.module.ts. (under src/app folder). It contains the following code
+``` 
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+ 
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+ 
+@NgModule({
+  declarations: [
+    AppComponent
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
+``` 
+
+The structure of the Angular module is similar to the component class. Like Component, it consists of three parts. A class, class decorator and import statement
+
+
 ## Components
 
 The Component is the main building block of an Angular Application. A Component contains the definition of the View and the 
