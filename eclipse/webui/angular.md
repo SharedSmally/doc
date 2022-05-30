@@ -20,6 +20,8 @@ The Typescript framework developing web applications for front-end developers us
 - [AngularJS: Angular-1](https://angularjs.org/)/Reactjs
 A Javascript open-source front-end framework that is mainly used to develop single-page web applications(SPAs) using MVC.
 
+- [Angular Tutorial](https://www.tektutorialshub.com/angular/angular-dependency-injection/)
+
 Can use Bootstrap in in \*.html.
 
 ## Environment Setup for FrontEnd
@@ -44,5 +46,63 @@ in: “[ ]”, you’ll get one-way binding.  If you want to create two-way bind
 it this way because of the fact that “[ ]” is used to property binding and “( )” is used to event binding. In Angular,
 some directives have changed their names like ng-repeat to ngFor.
 
-## Angular CLI
+## [Angular DI](https://www.tektutorialshub.com/angular/angular-dependency-injection/)
+### Angular Dependency Injection Framework
+
+Angular Dependency Injection framework implements the Dependency Injection in Angular. It creates & maintains the Dependencies and injects them into the Components, Directives, or Services.
+
+There are five main players in the Angular Dependency injection Framework.
+- **Consumer**:  The Consumer is the class (Component, Directive, or Service) that needs the Dependency. In the above example, the AppComponent is the Consumer.
+- **Dependency**:  The Service that we want to in our consumer. In the above example the ProductService is the Dependency
+- **Injection Token (DI Token)**:  The Injection Token (DI Token) uniquely identifies a Dependency. We use DI Token when we register dependency
+- **Provider**:  The Providers Maintain the list of Dependencies along with their Injection Token. It uses the Injection Token is to identify the Dependency.  
+- **Injector**:  Injector holds the Providers and is responsible for resolving the dependencies and injecting the instance of the Dependency to the Consumer. The Injector uses Injection Token to search for Dependency in the Providers. It then creates an instance of the dependency and injects it into the consumer.
+
+### Registering the Dependency with the Injector
+
+Angular Provides an instance of Injector & Provider to every component & directive in the application ( Consumers). It also creates an Injector instance at the module level and also at the root of the application. Basically, it creates a Tree of Injectors with parent-child relationship 
+
+The dependencies are registered with the Provider. This is done in the Providers metadata of the Injector.
+```
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  providers: [ProductService] 
+})
+export class AppComponent
+{
+```
+We can also add the Services to Providers array of the @NgModule. Then they will be available for use in all the components & Services of the application.
+```
+@NgModule({
+  declarations: [...],
+  imports: [...],
+  providers: [ProductService],
+  bootstrap: []
+})
+```
+
+Next, need to tell angular that our component needs dependency injection. This is done by using the @Injectable() decorator.
+
+@Injectable() decorator is not needed if the class already has other Angular decorators like @Component, @pipe or @directive etc. Because all these are a subtype of Injectible.
+
+Since our AppComponent is already decorated with @Component, we do not need to decorate with the @Injectable
+
+
+### Asking for Dependency in the Constructor
+The Components, Directives & Services (Consumers) declare the dependencies that they need in their constructor.
+	
+``` 
+constructor(private productService:ProductService) { 
+}
+```
+
+Injector reads the dependencies from the constructor of the Consumer. It then looks for that dependency in the provider. 
+The Provider provides the instance and injector, then injects it into the consumer.
+
+If the instance of the Dependency already exists, then it will reuse it. This will make the dependency singleton.
+
+
+
+
 
