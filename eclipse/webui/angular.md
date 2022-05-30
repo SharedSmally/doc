@@ -102,11 +102,15 @@ There are two ways register the services participating in the dependency injecti
 - Register directly in the Providers array of the @NgModule or @Component or in @Directive.  
 - Use the providedIn property of the @Injectable decorator.
 
+### Angular Providers
+
+The Angular Provider is an instruction (or recipe) that describes how an object for a certain token is created. The Angular Providers is an array of such instructions (Provider). Each provider is uniquely identified by a token (or DI  Token ) in the Providers Array.
+
 There are four ways to create the dependency: 
-- Class Provider (useClass)
-- Value Provider (useValue )
-- Factory Provider ( useFactory )
-- Aliased Class Provider ( useExisting).
+- Class Provider (useClass): want to provide an instance of the provided class.
+- Value Provider (useValue ): want to provide a simple value.
+- Factory Provider ( useFactory ): provide a function to injects the returned value.
+- Aliased Class Provider ( useExisting): use the new provider in place of the old Provider.
 
 ![Provider](https://www.tektutorialshub.com/wp-content/uploads/2017/01/Angular-Provider.png)
 ```
@@ -114,6 +118,11 @@ There are four ways to create the dependency:
  {provide:'USE_FAKE', useValue: true },   
  {provide:'APIURL', useValue: 'http://SomeEndPoint.com/api' },    
 ```
+
+Each Injector gets its own copy of the Providers. We can the same dependency with multiple providers. Where & how you register the dependency defines the scope of the dependency
+
+The Angular Components or Angular Services declare the dependencies they need in their constructor. The Injector reads the dependencies and looks for the provider in the providers array using the Token. It then instantiates the dependency using the instructions provided by the provider. The Injector then injects the instance of the dependency into the Components/Services.
+
 
 ### Asking for Dependency in the Constructor
 The Components, Directives & Services (Consumers) declare the dependencies that they need in their constructor.
