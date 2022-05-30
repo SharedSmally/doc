@@ -57,6 +57,8 @@ The Root Component contains all other components. Angular App will create child 
 
 The Every Injector gets its own copy of Providers.
 
+![DI Tree](https://www.tektutorialshub.com/wp-content/uploads/2021/05/Module-Injector-Tree-Hierarchy-2.png)
+
 ### Angular Dependency Injection Framework
 
 Angular Dependency Injection framework implements the Dependency Injection in Angular. It creates & maintains the Dependencies and injects them into the Components, Directives, or Services.
