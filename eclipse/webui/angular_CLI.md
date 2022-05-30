@@ -56,18 +56,18 @@ Additional commands:
 ### ng generate subcommands:
 -   app-shell
 -    application
--    class
+-    module
 -    component
+-    class
 -    directive
+-    service
 -    enum
 -    guard
 -    interceptor
--    interface
 -    library
--    module
+-    interface
 -    pipe
 -    resolver
--    service
 -    service-worker
 -    web-worker
 
