@@ -57,7 +57,9 @@ The Root Component contains all other components. Angular App will create child 
 
 The Every Injector gets its own copy of Providers.
 
-![DI Tree](https://www.tektutorialshub.com/wp-content/uploads/2021/05/Module-Injector-Tree-Hierarchy-2.png)
+![Module DI Tree](https://www.tektutorialshub.com/wp-content/uploads/2021/05/Module-Injector-Tree-Hierarchy-2.png)
+
+![Element DI Tree](https://www.tektutorialshub.com/wp-content/uploads/2021/05/Element-Injector-Tree-Hierarchy.png)
 
 ### Angular Dependency Injection Framework
 
