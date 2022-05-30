@@ -141,6 +141,22 @@ export class ProductService{
 }
 ```
 
+- @Injectable
 
+The Injectable is a decorator, which you need to add to the consumer of the dependency. This decorator tells angular that it must Inject the constructor arguments via the Angular DI system
 
+The injectable decorator also has the ProvidedIn property using which you can specify how Angular should provide the dependency.
 
+- @Inject
+
+The @Inject() is a constructor parameter decorator, which tells angular to Inject the parameter with the dependency provided in the given token. It is a manual way of injecting the dependency
+
+The @Inject takes the Injector token as the parameter. The token is used to locate the dependency in the Providers.
+``` 
+export class ProductService{
+    constructor(@Inject(LoggerService) private loggerService) {
+        this.loggerService.log("Product Service Constructed");
+    }
+}
+``` 
+ 
