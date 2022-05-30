@@ -47,6 +47,16 @@ it this way because of the fact that “[ ]” is used to property binding and �
 some directives have changed their names like ng-repeat to ngFor.
 
 ## [Angular DI](https://www.tektutorialshub.com/angular/angular-dependency-injection/)
+The Angular creates two Injector trees when the Application bootstraps. One is the ModuleInjector tree for the Modules and the other one is the ElementInjector tree which is for the Elements (Components & Directives etc).
+
+The Angular loads the Root Module (named as AppModule) when the application bootstraps. It creates RootModule Injector for the Root Module. This Injector has an application-wide scope. The RootModule Injector becomes part of the ModuleInjector Tree.
+
+Angular Root Module loads the AppComponent, which is the root component of our app. The AppComponent gets its own Injector. We call this root Injector. This Injector becomes the root of the ElementInjector tree.
+
+The Root Component contains all other components. Angular App will create child components under the Root Component. All these child component can have their own child components creating a tree of components. The Angular also creates an Injector for all those components creating an Injector tree closely mimicking the component tree. These Injectors become part of the ElementInjector tree.
+
+The Every Injector gets its own copy of Providers.
+
 ### Angular Dependency Injection Framework
 
 Angular Dependency Injection framework implements the Dependency Injection in Angular. It creates & maintains the Dependencies and injects them into the Components, Directives, or Services.
@@ -102,6 +112,34 @@ The Provider provides the instance and injector, then injects it into the consum
 
 If the instance of the Dependency already exists, then it will reuse it. This will make the dependency singleton.
 
+
+### Injecting Service into Another Service
+Create a sevice class using @Injectible metadata to decorate it. Technically,do not have to do that if it not have any external dependencies.
+
+```
+import { Injectable } from '@angular/core';
+ 
+//@Injectable()
+@Injectable({
+  providedIn:'root'   # where to get the dependencies
+})
+export class LoggerService {
+  log(message:any) {
+    console.log(message);
+  }
+} 
+```
+
+The ProductService needs loggerService to be injected. Hence the class requires @Injectible metadata
+```	
+
+@Injectable()
+export class ProductService{
+  constructor(private loggerService: LoggerService) {
+    this.loggerService.log("Product Service Constructed");
+  }
+}
+```
 
 
 
