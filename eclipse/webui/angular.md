@@ -98,6 +98,22 @@ Next, need to tell angular that our component needs dependency injection. This i
 
 Since our AppComponent is already decorated with @Component, we do not need to decorate with the @Injectable
 
+There are two ways register the services participating in the dependency injections in the Providers metadata:
+- Register directly in the Providers array of the @NgModule or @Component or in @Directive.  
+- Use the providedIn property of the @Injectable decorator.
+
+There are four ways to create the dependency: 
+- Class Provider (useClass)
+- Value Provider (useValue )
+- Factory Provider ( useFactory )
+- Aliased Class Provider ( useExisting).
+
+![Provider](https://www.tektutorialshub.com/wp-content/uploads/2017/01/Angular-Provider.png)
+```
+ {provide:'PRODUCT_SERVICE', useClass: ProductService }, 
+ {provide:'USE_FAKE', useValue: true },   
+ {provide:'APIURL', useValue: 'http://SomeEndPoint.com/api' },    
+```
 
 ### Asking for Dependency in the Constructor
 The Components, Directives & Services (Consumers) declare the dependencies that they need in their constructor.
