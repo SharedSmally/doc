@@ -14,13 +14,14 @@ export class UserService {
 - Spring Boot REST API as backend
 
 ## Document
+- [Angular Tutorial](https://www.tektutorialshub.com/angular-tutorial/)
+
 - [Angular: Angular-2;new version](https://angular.io/)/React
 The Typescript framework developing web applications for front-end developers use frameworks using Components and directive. 
 
 - [AngularJS: Angular-1](https://angularjs.org/)/Reactjs
 A Javascript open-source front-end framework that is mainly used to develop single-page web applications(SPAs) using MVC.
 
-- [Angular Tutorial](https://www.tektutorialshub.com/angular/angular-dependency-injection/)
 
 Can use Bootstrap in in \*.html.
 
