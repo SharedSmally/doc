@@ -38,6 +38,7 @@ console.log('Server running at http://127.0.0.1:8081/');
 - Callback:
 Callback is an asynchronous equivalent for a function. A callback function is called at the completion of a given task.
 - EventLoop: Single Thread for EventLoop
+
 ![EventLoop](https://www.tutorialspoint.com/nodejs/images/event_loop.jpg)
 ```
 // Import events module
