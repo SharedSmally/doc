@@ -1,11 +1,40 @@
 # Modules
 
-## HTTP
+## HTTP/HTTP2/HTTPs
 - express
+- Body-parser
 
-## REST
 
-## JSON
+## REST framework
+- **express**
+- Sails
+- Meteor
+- Loopback: REST ORM
+
+## Buitin Objects
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects
+- Array
+- JSON
+- Date
+- String
+- Number
+- RegExp
+- Container: Set/Map/
+
+## [JSON](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON):
+- JSON.parse(): 
+parses a JSON string, constructing the JavaScript value or object described by the string. 
+```
+JSON.parse(text)
+JSON.parse(text, reviver)
+```
+- **JSON.stringify()**:
+converts a JavaScript object or value to a JSON string, optionally replacing values if a replacer function is specified or optionally including only the specified properties if a replacer array is specified. 
+```
+JSON.stringify(value)
+JSON.stringify(value, replacer)
+JSON.stringify(value, replacer, space)
+```
 
 ## XML
 [xml parser](https://openbase.com/categories/js/best-nodejs-xml-parser-libraries)
