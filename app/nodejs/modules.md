@@ -4,6 +4,8 @@
 - express
 - Body-parser
 
+## Desktop Application
+- [electron](https://pkief.medium.com/angular-desktop-apps-a9ce9e3574e8)
 
 ## REST framework
 - **express**
