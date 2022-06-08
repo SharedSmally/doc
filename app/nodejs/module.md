@@ -56,9 +56,9 @@ const jim = new User('Jim', 37, 'jim@example.com');
 console.log(jim.getUserStats());
 ```
 
-- Difference between **module.exports** and **exports**
+- Difference between **[module](https://nodejs.org/api/modules.html#modules_the_module_object).exports** and **[exports](https://nodejs.org/api/modules.html#modules_exports_shortcut)**
 
-Using module.exports:
+Using module.exports: return an object
 ```
 module.exports = {
   greet: function (name) {
@@ -70,7 +70,7 @@ module.exports = {
   }
 }
 ```
-Using exports:
+Using exports: define properties of exports
 ```
 exports.greet = function (name) {
   console.log(`Hi ${name}!`);
