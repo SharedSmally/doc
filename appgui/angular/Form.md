@@ -99,3 +99,20 @@ export class AppComponent {
   }
 }  
 ```  
+
+In app.component.html:
+```
+<form [formGroup] = "angForm" (ngSubmit)="onFormSubmit()">
+  <div formArrayName="names">
+    <div *ngFor="let name of names.controls; index as idx">
+      <input [formControlName]="idx" placeholder="Enter a Name">
+      <label *ngIf="name.invalid" [ngClass] = "'error'"> Name is required. </label>
+      <button (click)="deleteNameField(idx)">Delete</button>
+    </div>
+  </div> 
+  <div>
+    <button type="submit">Send</button>
+    <button type="button" (click)="addNameField()">Add More Names</button>
+  </div>
+</form>
+```
