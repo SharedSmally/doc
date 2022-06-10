@@ -5,11 +5,13 @@
 - FormBuilder: create FormControl, FormGroup, and FormArray.
 
 ## FormControl
+
 Angular FormControl is an inbuilt class that is used to get and set values and validation of the form control fields like <input> 
 or <select>. The FormControl tracks the value and validation status of an individual form control. It can be used standalone 
   as well as with a parent form.
 
 In app.component.ts: 
+  
 ```
 import { Component } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
@@ -23,7 +25,9 @@ export class AppComponent {
   name = new FormControl('default', [Validators.required]); //value: name.value
 }  
 ```  
-In app.component.html
+
+  In app.component.html
+  
 ```
 <div>
   <input [formControl]="name">
@@ -32,6 +36,7 @@ In app.component.html
 ```
   
 ## FormGroup
+  
 ```
 import { Component } from '@angular/core';
 import { FormControl, Validators, FormGroup } from '@angular/forms';
@@ -57,6 +62,7 @@ export class AppComponent {
 ```  
   
 ## FormArray
+  
 ```
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, FormArray, Validators } from '@angular/forms';
