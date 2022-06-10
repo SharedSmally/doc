@@ -6,8 +6,8 @@
 
 ## FormControl
 
-Angular FormControl is an inbuilt class that is used to get and set values and validation of the form control fields like <input> 
-or <select>. The FormControl tracks the value and validation status of an individual form control. It can be used standalone 
+Angular FormControl is an inbuilt class that is used to get and set values and validation of the form control fields like \<input\> 
+or \<select\>. The FormControl tracks the value and validation status of an individual form control. It can be used standalone 
   as well as with a parent form.
 
 In app.component.ts: 
