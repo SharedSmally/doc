@@ -1,10 +1,48 @@
 # Angular Form
-- FormControl: the basic
-- FormGroup: A list of FormControl with Validator
-- FormArray: Array of FormControl, FormGroup, or FormArray instances.
-- FormBuilder: create FormControl, FormGroup, and FormArray.
+- Template Driven Forms:  the form's construction is performed inside the view.
+    -  NgModel
+    -  NgModelGroup
+    -  NgForm
+- Reactive Forms: form is created when the view is being built, for complex form
+    - FormControlDirective/FormControlName/FormControl: a class that tracks the value and validation status of an individual form control. 
+    - FormGroupDirective/FormGroupName/FormGroup: A list of FormControl with Validator
+    - FormArrayName; FormArray: Array of FormControl, FormGroup, or FormArray instances.
+    - FormBuilder: create FormControl, FormGroup, and FormArray.
 
-## FormControl
+## Template Driven Forms in html
+```
+<form> <!-- `NgForm` - automatically bound to `<form>` -->
+  <input type="text" ngModel name="companyName"/>
+
+  <div ngModelGroup="personal">
+    <input type="text" ngModel name="name"/>
+
+    <div ngModelGroup="address">
+      <input type="text" ngModel name="city"/>
+      <input type="text" ngModel name="street" />
+    </div>
+  </div>
+</form>
+```
+
+## Reactive Forms in ts
+```
+<form [formGroup]="myFormGroup">
+  <!-- path: 'name' -->
+  <input formControlName="name" type="text">
+
+  <!-- path: 'address' -->
+  <ng-container formGroupName="address">
+    <!-- path: ['address', 'city'] -->
+    <input formControlName="city" type="text">
+
+    <!-- path: ['address', 'street'] -->
+    <input formControlName="street" type="text">
+  </ng-container>
+</form>
+```
+
+### FormControl
 
 Angular FormControl is an inbuilt class that is used to get and set values and validation of the form control fields like \<input\> 
 or \<select\>. The FormControl tracks the value and validation status of an individual form control. It can be used standalone 
@@ -35,8 +73,10 @@ export class AppComponent {
 </div>  
 ```
   
-## FormGroup
-  
+### FormGroup
+
+FormGroup is used with FormControl to track the value and validate the state of form control. It aggregates the values of each child FormControl into a single object, using each control name as the key. It calculates its status by reducing the status values of its children so that if one control in a group is invalid, the entire group is rendered invalid.
+
 ```
 import { Component } from '@angular/core';
 import { FormControl, Validators, FormGroup } from '@angular/forms';
@@ -60,8 +100,10 @@ export class AppComponent {
   } 
 }  
 ```  
-  
-## FormArray
+
+The Angular reactive forms API makes it possible to nest a form group inside another form group.
+
+### FormArray
   
 ```
 import { Component } from '@angular/core';
@@ -116,3 +158,50 @@ In app.component.html:
   </div>
 </form>
 ```
+
+## FormBuilder
+
+```
+import { Component } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
+@Component({
+  selector: 'app-employeeDetails-editor',
+  templateUrl: './employeeDetails-editor.component.html',
+  styleUrls: ['./employeeDetails-editor.component.css']
+})
+
+export class EmployeeDetailsEditorComponent {
+  employeeDetailsForm = this.fb.group({
+    firstName: ['', Validators.required],
+    lastName: [''],
+    address: this.fb.group({
+      street: [''],
+      city: [''],
+      state: [''],
+      zip: ['']
+    }),
+  });
+
+  constructor(private fb: FormBuilder) { }
+}
+```
+
+## Validators
+Angular comes with a small set of pre-built validators to match the ones we can define via standard HTML5 attributes, namely required, minlegth, maxlength and pattern which we can access from the Validators module.
+```
+    // user details form validations
+    this.userDetailsForm = this.fb.group({
+      pseudo: new FormControl('', Validators.required),
+      email: new FormControl(
+        '',
+        Validators.compose([
+          Validators.required,
+          Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')
+        ])
+      ),
+      matching_passwords: this.matching_passwords_group,
+      terms: new FormControl(false, Validators.pattern('true'))
+    });
+```
+
+##  Model Driven Template Reactive forms
