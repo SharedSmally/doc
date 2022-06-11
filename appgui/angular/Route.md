@@ -142,6 +142,7 @@ this.router.navigate(['/login'], navigationExtras);
 ```
 
 - Add route sub
+
 In app-routing:
 ```
 { path: 'detail/:id', component: HeroDetailComponent },
