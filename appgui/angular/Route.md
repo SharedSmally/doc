@@ -1,7 +1,11 @@
 # Route
 Can route between components, but not tetween applications.
 
-## Add Route: https://angular.io/guide/router
+## Tutorial
+- https://angular.io/guide/router
+- https://angular.io/tutorial/toh-pt5
+
+## Add Route: 
 - Create an application with Routing
 ```
 ng new routing-app --routing --defaults
@@ -135,4 +139,22 @@ let navigationExtras: NavigationExtras = {
 
 // Navigate to the login page with extras
 this.router.navigate(['/login'], navigationExtras);
+```
+
+- Add route sub
+In app-routing:
+```
+{ path: 'detail/:id', component: HeroDetailComponent },
+```
+In html
+```
+<a *ngFor="let hero of heroes" routerLink="/detail/{{hero.id}}"> {{hero.name}}</a>
+```
+In component:
+```
+constructor(private route: ActivatedRoute,
+    //private heroService: HeroService, private location: Location
+  ) {}
+  
+const id = Number(this.route.snapshot.paramMap.get('id'));
 ```
