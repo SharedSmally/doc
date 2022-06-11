@@ -4,6 +4,23 @@ Can route between components, but not tetween applications.
 ## Tutorial
 - https://angular.io/guide/router
 - https://angular.io/tutorial/toh-pt5
+- https://www.smashingmagazine.com/2018/11/a-complete-guide-to-routing-in-angular/
+
+## Directive
+- In route component, map path to component
+```
+{ path:  'contacts/:id, canActivate:[MyGuard], component:  ContactDetailComponent}
+```
+- In html for routine:
+```
+<router-outlet></router-outlet>
+```
+The Router-Outlet is a directive that’s available from the router library where the Router inserts the component that gets matched based on the current browser’s URL. Any component that gets matched by the Router will render it as a sibling of the Router outlet.
+
+- In html for link:
+```
+<a [routerLink]="'/contacts'">Contacts</a>
+```
 
 ## Add Route: 
 - Create an application with Routing
@@ -81,6 +98,11 @@ In first-component.html:
 ```
 - Route order
 The order of routes is important because the Router uses a first-match wins strategy when matching routes, so more specific routes should be placed above less specific routes. List routes with a static path first, followed by an empty path route, which matches the default route. The wildcard route comes last because it matches every URL and the Router selects it only if no other routes match first.
+
+- Match Strategy: prefix(default)/full/
+```
+{ path:  'contacts',pathMatch: 'full', component:  ContactListComponent}
+```
 
 ## Getting route information
 https://angular.io/guide/router#query-parameters-and-fragments
