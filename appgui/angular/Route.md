@@ -159,3 +159,18 @@ constructor(private route: ActivatedRoute,
   
 const id = Number(this.route.snapshot.paramMap.get('id'));
 ```
+
+## Route Strategy
+https://codecraft.tv/courses/angular/routing/routing-strategies/
+There are two strategies to implement client-side routing with client-side SPAs
+- HashLocationStrategy 
+
+Ues the hash fragment part of the URL to store state for the client, it easier to setup and doesn’t require any co-operation from the server side.
+```
+   RouterModule.forRoot(routes, {useHash: true})
+```
+
+- PathLocationStrategy (default)
+
+Can speed up loading time by pre-rendering the pages with Angular running on the server side and then once it’s downloaded to the browser the client can take over routing. 
+
