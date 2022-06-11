@@ -5,6 +5,7 @@ Can route between components, but not tetween applications.
 - https://angular.io/guide/router
 - https://angular.io/tutorial/toh-pt5
 - https://www.smashingmagazine.com/2018/11/a-complete-guide-to-routing-in-angular/
+- https://www.netjstech.com/2020/09/what-is-client-side-routing-in-angular.html
 
 ## Directive
 - In route component, map path to component
