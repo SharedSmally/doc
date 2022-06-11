@@ -54,13 +54,38 @@ ng serve
 ```
 
 ## ng -bootstrap: https://ng-bootstrap.github.io/#/home
-
-In an angular project:
+Provides some directives for the components.
+- install bootstrap and ng-bootstrap:
+```
+npm install bootstrap --save
+```
+- Import bootstrap.css in style.css in **angular.json** file:
+```
+        "styles": [
+          "node_modules/bootstrap/dist/css/bootstrap.min.css",
+          "src/styles.css"
+        ],
+```
+- Install ng-bootstrap as npm package:
 ```
 ng add @ng-bootstrap/ng-bootstrap
 ng add @ng-bootstrap/ng-bootstrap --project myProject  # for specific project
 ```
-It provides some directives for the components.
+- import ng-bootstrap’s main module in app.module.ts file :
+```
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+```
+- In html file, use ng directive:
+``` 
+<div ngbDropdown class="d-inline-block">
+      <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>Toggle dropdown</button>
+      <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+        <button ngbDropdownItem>Action - 1</button>
+        <button ngbDropdownItem>Another Action</button>
+        <button ngbDropdownItem>Something else is here</button>
+      </div>
+</div>
+```
 
 ## ngx-bootstrap: https://valor-software.com/ngx-bootstrap/#/
 ```
