@@ -1,7 +1,8 @@
 # Angular + Bootstrap + NodeJS
 
-## bootstrap:
-### npm install packages in node_modules/. --save: Package will appear in the dependencies. 
+## setup bootstrap:
+npm install packages in node_modules/. --save: Package will appear in the dependencies. 
+- Install bootstrap
 ```
 npm install bootstrap --save
 ```
@@ -15,7 +16,7 @@ Update **angular.json** file:
           "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
         ]
 ```
-For popper js:
+- Install popper js:
 ```
 npm install @popperjs/core --save
 ```
@@ -26,7 +27,7 @@ Update **angular.json** file in scripts section:
           "node_modules/@popperjs/core/dist/umd/popper.min.js"
         ]       
 ```
-For jquery:
+- Install jquery:
 ```
 npm install jquery --save
 ```
@@ -47,7 +48,7 @@ In **src/app/app.component.html**:
   </div>
 </div>
 ```
-### run the project
+- run the project
 ```
 ng serve
 ```
