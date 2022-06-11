@@ -22,6 +22,12 @@ The Router-Outlet is a directive that’s available from the router library wher
 <a [routerLink]="'/contacts'">Contacts</a>
 ```
 
+## Client side routing
+
+In a traditional web application every request for displaying a page goes to the server and results in a full page load. Whereas in a Single page application each request doesn’t go to the server. Web server gives a single page, any further rendering is done locally by the Java script. So, in a SPA you will get a single page and part of the page is updated dynamically for further requests.
+
+That is done by using selector like <app-root></app-root> and <router-outlet></router-outlet>. Your components will be dynamically loaded with in the selector without causing a full page load.
+
 ## Add Route: 
 - Create an application with Routing
 ```
