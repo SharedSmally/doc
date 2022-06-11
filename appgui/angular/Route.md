@@ -103,16 +103,24 @@ export class FirstComponent implements OnInit {
     </ul>
 </nav>
 ```
-    - queryParams: queryParams is another input of routerLink where they can be passed like
+- queryParams: queryParams is another input of routerLink where they can be passed like
 ```
 <a [routerLink]="['../']" [queryParams]="{prop: 'xxx'}">Somewhere</a>
 ```
-    - fragment
+
+- fragment
 ```    
 <a [routerLink]="['../']" [queryParams]="{prop: 'xxx'}" [fragment]="yyy">Somewhere</a>
+
+a [routerLink]="['../']" [queryParams]="{name: 'ferret'}" [fragment]="nose">Ferret Nose</a>
+
+foo://example.com:8042/over/there?name=ferret#nose
+\_/   \______________/\_________/ \_________/ \__/
+ |           |            |            |        |
+scheme    authority      path        query   fragment
 ```
 
-    - routerLinkActiveOptions:
+- routerLinkActiveOptions:
 
 To get routes active class set on parent routes:
 ```
