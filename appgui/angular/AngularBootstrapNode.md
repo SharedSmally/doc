@@ -1,9 +1,9 @@
 # Angular + Bootstrap + NodeJS
 
 ## bootstrap:
---save for current project
+### npm install packages in node_modules/. --save: Package will appear in the dependencies. 
 ```
-npm install bootstrap
+npm install bootstrap --save
 ```
 Update **angular.json** file:
 ```
@@ -17,17 +17,20 @@ Update **angular.json** file:
 ```
 For popper js:
 ```
-npm install @popperjs/core
+npm install @popperjs/core --save
 ```
 Update **angular.json** file in scripts section:
 ```
-       "./node_modules/@popperjs/core/dist/umd/popper.min.js"
+        "scripts": [
+          "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
+          "node_modules/@popperjs/core/dist/umd/popper.min.js"
+        ]       
 ```
 For jquery:
 ```
-npm install jquery 
+npm install jquery --save
 ```
-In src/app/app.component.html:
+In **src/app/app.component.html**:
 ```
 <div class="container">
   <h1>Install Bootstrap 5 in Angular 13 - ItSolutionStuff.com</h1> 
@@ -44,6 +47,10 @@ In src/app/app.component.html:
   </div>
 </div>
 ```
+### run the project
+```
+ng serve
+```
 
 ## ng -bootstrap: https://ng-bootstrap.github.io/#/home
 
@@ -52,6 +59,7 @@ In an angular project:
 ng add @ng-bootstrap/ng-bootstrap
 ng add @ng-bootstrap/ng-bootstrap --project myProject  # for specific project
 ```
+It provides some directives for the components.
 
 ## ngx-bootstrap: https://valor-software.com/ngx-bootstrap/#/
 ```
