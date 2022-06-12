@@ -1,7 +1,23 @@
 # Angular Tutorial
 ## Books
 - Angular development with typescript: https://livebook.manning.com/book/angular-development-with-typescript-second-edition/about-this-book/
-- Angular in Action
+- Angular in Action: in pdf
+
+## Communication between components
+- Child from Parent: via Input
+- Child to Parent: via event emit
+
+## UI
+- Bootstrap (https://getbootstrap.com/)
+- ng-bootstrap (https://ng-bootstrap.github.io)
+- Angular Material (https://github.com/angular/material2)
+- Covalent (https://teradata.github.io/covalent)
+- Clarity (https://vmware.github.io/clarity)
+- Kendo UI (https://www.telerik.com/kendo-angular-ui/)
+- PrimeNG (www.primefaces.org/primeng/)
+- Wijmo (http://wijmo.com/angular2/)
+- Ionic (http://ionic.io)
+- Fuel-UI (http://fuelinteractive.github.io/fuel-ui/)
 
 ## Communication: use HttpClient for http
 https://medium.com/@ZombieCodeKill/angular-fundamentals-communicating-with-the-server-using-http-observables-and-rx-2a1b939cc66b
