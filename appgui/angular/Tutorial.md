@@ -4,6 +4,22 @@
 - Angular in Action: in pdf
 
 ## Angular Components
+- Modules: Objects that help to organize dependencies into discrete units
+- Components: New elements that will compose the majority of the application’s structure and logic (with html and css for rendering with data/method from the Component)
+- Directives: Objects that modify elements to give them new capabilities or change behaviors (tag behavior in html)
+    - NgClass —Conditionally apply a class to an element
+    - NgStyle —Conditionally apply a set of styles to an element
+    - NgIf —Conditionally insert or remove an element from the DOM
+    - NgFor —Iterate over a collection of items
+    - NgSwitch —Conditionally display an item from a set of options
+- Pipes: Functions that format data before it’s rendered
+```
+{{user.registered_date | date:'shortDate'}}
+```
+- Services: Reusable objects that fill niche roles such as data access or helper utilities (used by Component to access the model)
+
+
+## Angular Bootstrap
 The application must be bootstrapped at runtime to start the process of rendering. It is specified by _main_ property in angular.json, which points to **main.ts**. The role of main.ts is to bootstrap the Angular application, which use platformBrowserDynamic to load the bootstrap module to render _index.html_. There was a selector of app-root used to identify the component in markup:
 ```
 <body><app-root></app-root></body>
