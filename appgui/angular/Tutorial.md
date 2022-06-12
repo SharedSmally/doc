@@ -24,6 +24,8 @@ https://medium.com/@ZombieCodeKill/angular-fundamentals-communicating-with-the-s
 
 - Use callback:
 ```
+var bill: number = 20;
+
 Server.request(requestData, function(responseData) {
  // asynchronously handle data
 });
@@ -52,6 +54,18 @@ obs.subscribe(function(responseData) {
 
 doSomethingElse();
 return obs;
+
+this.http.get('/api/user').subscribe(user => {
+    // Do something with the user record
+  }, (error) => {
+    // Handle the error
+})
+
+this.keyboardService.keypress().subscribe(key => {
+   // Do something with the key record
+  }, (error) => {
+   // Handle the error
+})
 ```
 
 ## Service
