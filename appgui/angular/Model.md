@@ -2,7 +2,7 @@
 
 ## Model
 - Struct
-- Enum
+- Enum: type
     - name; value; desc
 - Data Model:
     - model: 
