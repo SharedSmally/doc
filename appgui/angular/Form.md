@@ -1,15 +1,16 @@
 # Angular Form
 - Template Driven Forms:  the form's construction is performed inside the view.
-    -  NgModel
-    -  NgModelGroup
-    -  NgForm
+    -  **NgModel**
+    -  **NgModelGroup**
+    -  **NgForm**
 - Reactive Forms: form is created when the view is being built, for complex form
-    - FormControlDirective/FormControlName/FormControl: a class that tracks the value and validation status of an individual form control. 
-    - FormGroupDirective/FormGroupName/FormGroup: A list of FormControl with Validator
-    - FormArrayName; FormArray: Array of FormControl, FormGroup, or FormArray instances.
-    - FormBuilder: create FormControl, FormGroup, and FormArray.
+    - **FormControlDirective/FormControlName/FormControl**: a class that tracks the value and validation status of an individual form control. 
+    - **FormGroupDirective/FormGroupName/FormGroup**: A list of FormControl with Validator
+    - **FormArrayName/FormArray**: Array of FormControl, FormGroup, or FormArray instances.
+    - **FormBuilder**: create FormControl, FormGroup, and FormArray.
 
 ## Template Driven Forms in html
+Binding model data to inputs with NgModel directly.
 ```
 <form> <!-- `NgForm` - automatically bound to `<form>` -->
   <input type="text" ngModel name="companyName"/>
@@ -18,8 +19,8 @@
     <input type="text" ngModel name="name"/>
 
     <div ngModelGroup="address">
-      <input type="text" ngModel name="city"/>
-      <input type="text" ngModel name="street" />
+      <input type="text" [(ngModel)]="city"/>
+      <input type="text" [(ngModel)]="street" />
     </div>
   </div>
 </form>
