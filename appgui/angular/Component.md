@@ -43,3 +43,162 @@ use various hooks to trigger application logic to execute. Such as run initializ
 logic once during the instantiation of the component and tear
 down logic during the destruction. You can also use these hooks to bring data
 into the component, so lifecycle hooks work well with both inputs and outputs.
+
+
+## Lifecycle hooks
+- OnChanges
+- On Init
+- OnDestroy
+- DoCheck
+- AfterContentInit
+- AfterContentChecked
+- AfterViewInit
+- AfterViewChecked
+
+The OnInit , OnChanges , and OnDestroy hooks are the most commonly used lifecycle
+hooks. The DoCheck , AfterContentChecked , and AfterViewChecked hooks are most
+useful to keep track of logic that needs to run during any change detection process, and
+respond if necessary. The OnInit , AfterContentInit , and AfterViewInit hooks are
+primarily useful to run logic during the component’s initial rendering to set it up, and
+each one ensures a different level of component integrity
+
+Angular is a tree of components, the component can be nested inside one another.
+
+- **View Child**: Most often, components are nested by being declared in the template of another component.
+    A View Child is declared inside the component template.
+- **Content Child**: a component accepts content to be inserted into its template. The components are inserted as content
+inside the component rather than being directly declared in the template. A Content
+Child is declared between the opening and closing tags when a component is used.
+Any component passed in through NgContent would be considered a Content Child.
+```
+<user-avatar [avatar]="avatar"></user-avatar>
+<ng-content></ng-content>
+```
+
+## Component Types
+- **App component**: This is the root app component, and you only get one of these per application.
+- **Display component**: This is a stateless component that reflects the values passed into it, making it highly reusable.
+- **Data component** : This is a component that helps get data into the application by loading it from external sources.
+- **Route component** : When using the router, each route will render a component, and this makes the component intrinsically linked to the route.
+
+```
+import { Component, Input } from '@angular/core';
+
+interface Metric {  // interface as data type
+  used: number,
+  available: number
+};
+interface Node {
+  name: string,
+  cpu: Metric,
+  mem: Metric
+};
+
+export class DashboardComponent implements OnInit, OnDestroy {
+  cpu: Metric;
+  mem: Metric;
+  cluster1: Node[];
+  cluster2: Node[];
+  interval: any;
+  
+  ngOnInit(): void { }
+}
+
+<p>{{cluster1 | json}}</p>
+```
+
+## Inputs: from parent to children
+Component can define properties that can accept input through property bindings. Any default HTML element properties can also be
+bound to a component, but you can define additional properties that the component can use to manage its lifecycle or display.
+```
+<summary [stock]="stock"></summary>
+```
+The inputs declared means that all the properties of this component are made available for binding
+```
+@Component({
+  selector: 'app-metric',
+  templateUrl: './metric.component.html',
+  styleUrls: ['./metric.component.css']
+})
+export class MetricComponent {
+  @Input() title: string = '';
+  @Input() description: string = '';
+  @Input('used') value: number = 0;
+  @Input('available') max: number = 100;
+  
+  @Input('used')  //intercept inputs using set/put keyword
+  set value(value: number) {
+    if (isNaN(value)) value = 0;
+    this._value = value;
+  }
+  get value(): number { return this._value; }
+
+  isDanger() {
+    return this.value / this.max > 0.7;
+  }
+}
+```
+
+## Change detection
+```
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
+@Component({
+  selector: '[app-nodes-row]',
+  templateUrl: './nodes-row.component.html',
+  styleUrls: ['./nodes-row.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
+})
+
+export class MetricComponent implements OnChanges {
+  @Input('used') value: number = 0;
+  @Input('available') max: number = 100;
+  ngOnChanges(changes) {
+    if (changes.value && isNaN(changes.value.currentValue)) this.value = 0;
+    if (changes.max && isNaN(changes.max.currentValue)) this.max = 0;
+  }
+}
+```
+
+## Output events: from child to parent or descendent
+```
+import { Component, Output, EventEmitter } from '@angular/core';
+
+@Component({
+  selector: 'app-navbar',
+  templateUrl: './navbar.component.html',
+  styleUrls: ['./navbar.component.css']
+})
+export class NavbarComponent {
+  @Output() onRefresh: EventEmitter<null> = new EventEmitter<null>();
+  refresh() {
+    this.onRefresh.emit();
+  }
+}
+```
+In component.html:
+```
+<button class="btn btn-success" type="button" (click)="refresh()">Reload</button>
+```
+In app.component.html:
+```
+<app-navbar (onRefresh)="dashboard.generateData()"></app-navbar>
+<app-dashboard #dashboard></app-dashboard>
+```
+## View Child
+In order to access a child component’s controller inside a parent controller, we can
+leverage ViewChild to inject that controller into our component.
+
+ViewChild is a decorator for a controller property, like Inject or Output , which tells
+Angular to fill in that property with a reference to a specific child component control-
+ler. It’s limited to injecting only children, so if you try to inject a component that isn’t a
+direct descendent, it will provide you with an undefined value.
+```
+export class AppComponent {
+  @ViewChild(DashboardComponent) dashboard: DashboardComponent;
+  refresh() {
+    this.dashboard.generateData();
+  }
+}
+```
+
+
