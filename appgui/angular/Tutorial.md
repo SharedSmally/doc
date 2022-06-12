@@ -27,6 +27,15 @@ Services are shareable objects that abstract some common logic that can be reuse
 ```
 ng generate service services/stocks
 ```
+In StockComponent:
+```
+imports: [
+   BrowserModule,
+   HttpClientModule
+],
+
+providers: [StocksService],
+```
 - Add Material CSS and markup:
 ```
 <link rel="stylesheet" href="//storage.googleapis.com/code.getmdl.io/1.0.1/material.indigo-orange.min.css">
@@ -133,3 +142,19 @@ export class StocksService {
    }
 }
 ```
+- Sample in component.html:
+```
+<div class="mdl-card stock-card mdl-shadow--2dp" [ngClass]="{increase: isPositive(), decrease: isNegative()}" style="width: 100%;">
+ <span>
+  <div class="mdl-card__title">
+    <h4 style="color: #fff; margin: 0">
+     {{stock?.symbol?.toUpperCase()}}<br />
+     {{stock?.lastTradePriceOnly | currency:'USD':'symbol':'.2'}}<br />
+     {{stock?.change | currency:'USD':'symbol':'.2'}} ({{stock?.changeInPercent | percent:'.2'}})
+   </h4>
+  </div>
+ </span>
+</div>
+```
+NgClass directive: add or remove CSS classes to and from the element
+NgStyle directive: add or remove CSS styles to and from the element
