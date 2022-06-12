@@ -1,6 +1,12 @@
 # Angular Data Binding
 Binding links the result of a property (Component ) with a template (html).
 
+- Interpolative Binding: {{ }}. from component to template element
+- Property Binding:  [ ]; from component to template element
+- Attribute Binding; [ ]; from component to template element
+- Event Binding: (); from template element to component
+- Two-way Binding: [()], Event + Property binding; between component and template element
+
 ## Component 
 The controller (Component) has properties, which might be methods or data:
 ```
@@ -11,7 +17,7 @@ The controller (Component) has properties, which might be methods or data:
   },
   save: function() {…}
 ```
-## Interpolative Binding:   using  {{ }}, from component to template element
+## Interpolative Binding:   using  {{ }}
 The binding works by taking an expression, evaluating it, and replacing the binding with the result.
 ```
 <p>{{user.name}}</p>
@@ -32,7 +38,7 @@ These expressions are evaluated within the context of the component, meaning the
 user and a getName() method. The expression context is how the view resolves what a particular value refers to, so {{user.name}} is resolved based on the user.name property from the controller
 
 
-## Property Binding:  using  [ ]; from component to template element
+## Property Binding:  using  [ ]
 Bind values to properties of an element to modify their behavior or appearance.
 This can include properties such as class , disabled , href , or textContent . Property
 bindings also allow to bind to custom component properties.
@@ -71,7 +77,7 @@ for an element.
 <h1 style="line-height: 2em;">Title</h1>
 ```
 
-## Attribute Binding; from component to template element
+## Attribute Binding; 
 Some element properties can’t be directly bound, because some HTML elements have
 attributes that aren't also made available as properties of the element. The aria (acces-
 sibility) attributes are one such example of an attribute.
