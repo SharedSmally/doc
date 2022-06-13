@@ -1,5 +1,8 @@
 # Application:
 
+## Dependency Injection (DI)
+Hierarchy Context to support DI.
+
 ## Application: standalone application
 - Application: process
     - TaskApp: , short-lived; run and then completed.
