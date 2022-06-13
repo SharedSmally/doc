@@ -5,21 +5,25 @@ Deployment: Cloud + Ansible + Kubernates
 K8s Cluster:
    - master: 1..n
    - worker: 2..m
-   - network: calioco
+   - network: calico
    - helm:
-   - pvc: g
+   - pvc: 
 
-Basic Applications
+Basic Applications  
    - haproxy
    - 
+
+
 Database:   
    - postgres:
    - liquibase:
+
 Kafka/Zookeeper : bitnami   
    - kafka
    - zookeeper
    one set for generic purpse; kafka-0/1/2: $zookeeper-0/1/2; 
-   multiple for needed app: $proj-kafka-0/1/2: $proj-zookeeper-0/1/2   
+   multiple for needed app: $proj-kafka-0/1/2: $proj-zookeeper-0/1/2  
+   
 Redis:   bitnami
    - redis: multi-sets, $app-redis-0/1/2
 
