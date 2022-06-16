@@ -21,7 +21,7 @@ The distribution format for Ansible content that can include playbooks, roles, m
 ## [Role](https://docs.ansible.com/ansible/latest/user_guide/playbooks_reuse_roles.html)
 Automatically load related vars, files, tasks, handlers, and other Ansible artifacts based on a known file structure.
 
-To create ansible role, use **ansible-galaxy init _<role_name>_** to create the role directory structure, then add roles directory via "mkdir roles".
+Create roles directory via "mkdir roles", then initialize each role by **ansible-galaxy init _<role_name>_** to create the role directory structure. 
 
 ```
 # playbooks
