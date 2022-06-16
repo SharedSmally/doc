@@ -1,0 +1,64 @@
+---
+- hosts: all
+  gather_facts: true
+  become: yes
+  become_method: sudo
+  vars_files:
+    - var1.yml
+  pre_tasks:
+    - name: include image files
+      include_vars:
+        file: image_values.yml
+      when: use_local_image
+      
+  roles:
+    - app-facts
+    - chrony
+    - collectd
+    - k8s-coredns-ip
+    - dns-resolv
+    - rsyslog_forward
+    - { role: elk_tls, when "elk.support and elk.config.tls.enabled and elc.conf.tls.ssl_verify.enable }
+    - { role: k8s-tls-cert, when "'k8s_master1' in group_names" }   #=>roles/k8s-tls-cert/tasks/main.yml
+    - { role: k8s-copy-tls-cert, when "'k8s_workers' in group_names" }
+    - { role: k8s-dnsresolve, when "'k8s_master1' in group_names" }
+    - { role: k8s-copy-tls-cert, when "'k8s_workers' in group_names" }   
+    
+roles/k8s-tls-cert/tasks/main.yml 
+---
+  - name: copy token
+    copy:
+      src: gen_k8s_token.sh
+      desc: /opt/app/vin/gen_k8s_token.sh
+      owner: "{{ app_user }}"
+      group: "{{ app_group }}"
+      mode: 0755
+
+  - name: add calicoctl alias in bashrc
+    lineinfile:
+      path: "/home/{{ app_user }}/.bashrc"
+      line: "{{ calico.ctl.alias}}" 
+      state: present
+
+  - name: render config template file 
+    template:
+      src: "{{ item }}.j2"
+      dest: "/home/{{ app_user }}/manifest/{{ ite, }}" 
+      with_items:
+        - kube-calico-node-cfg.yml
+        - calico-bgpconfig.yml
+
+  - name: start Http server
+    systemd:
+      name: http_apache
+      daemon_reload: yes
+      state: stated
+      enabled: true
+    ignore_errors: yes
+    when: "helm_port.failed == true "
+
+  - name: check kubernetes
+    stat:
+      path: /etc/kubernetes/kubelet.conf
+    register: kurbenetes_state
+    changed_when: false
