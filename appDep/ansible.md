@@ -46,5 +46,16 @@ $ sudo apt install ansible
 ## Config
 The config file: **/etc/ansible/ansible.cfg** and  **/etc/ansible/hosts**(default inventory, specified by **-i** _inventory_)
 
-## [Invntory](https://docs.ansible.com/ansible/latest/user_guide/intro_inventory.html#intro-inventory)
+## [Inventory](https://docs.ansible.com/ansible/latest/user_guide/intro_inventory.html#intro-inventory)
 Ansible works against multiple managed nodes or “hosts” in your infrastructure at the same time, using a list or group of lists known as inventory. Once your inventory is defined, Ansible use patterns to select the hosts or groups to run against.
+
+- Inventory: a list of groups; default groups: all, ungrouped
+- Group: a list of hosts, could include variables for the group, can be inheriting
+- Host: host name with host variables and alias
+
+Host and group variables can be stored in the file (/etc/ansible/group_vars/_group_name_,/etc/ansible/host_vars/_host_name_).
+
+Can use multiple inventory sources with multiple -i: 
+```
+-i staging -i production
+```
