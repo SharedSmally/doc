@@ -62,3 +62,8 @@ Can use multiple inventory sources with multiple -i:
 ```
 -i staging -i production
 ```
+## Ansible Facts 
+Ansible Facts is used for system information of the managed nodes, such as OS distribution, release, processor, IP address etc. The task of colleting this remote system information is referred as "Gathering facts" and the collected data or gathered information is referred as facts or variable.
+```
+$ ansible server2 -m file -a "path=/etc/ansible/facts.d state=directory" --become
+```
