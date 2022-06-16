@@ -3,7 +3,9 @@
 - **ansible-playbook**: executable playbook, ansible script file (tasks): **ansible-playbook test.yml -i inventory all**
 - **ansible-lint**: verify the ansible playbook
 - ansible-inventory
-- ansible-galaxy/vault/pull/doc/config/console
+- ansible-galaxy:
+- ansible-vault: encrypt/decrypt messages
+- ansible-pull/doc/config/console
 
 ## Tutorial
 - Docs:https://docs.ansible.com/
