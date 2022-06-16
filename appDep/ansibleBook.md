@@ -43,3 +43,16 @@ roles/
         defaults/
         meta/
 ```
+The playbook file deploys the role to the managed hosts:
+```
+---
+- name: use motd role playbook
+  hosts: server1.example.com
+  user: ansible
+  become: true
+
+  roles:
+    - role: motd
+      system_manager: admin@golinuxcloud.com
+    - { role: motd1, when: "'master' in group_names" " }
+```
