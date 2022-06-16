@@ -62,3 +62,9 @@ roles/k8s-tls-cert/tasks/main.yml
       path: /etc/kubernetes/kubelet.conf
     register: kurbenetes_state
     changed_when: false
+
+---
+  - block:
+    - set_fact:
+        myregex: "^.*{{ site }}{{ flavor }}([0-9][0-9]).*$"
+      changed_when: false
