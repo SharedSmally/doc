@@ -1,6 +1,7 @@
 # Ansible
-- ansible: execute one task against hosts: **ansible -m ping -i inventory all**
-- ansible-playbook: executable playbook, ansible script file (tasks): **ansible-playbook test.yml -i inventory all**
+- **ansible**: execute one task against hosts: **ansible -m ping -i inventory all**
+- **ansible-playbook**: executable playbook, ansible script file (tasks): **ansible-playbook test.yml -i inventory all**
+- **ansible-lint**: verify the ansible playbook
 - ansible-inventory
 - ansible-galaxy/vault/pull/doc/config/console
 
