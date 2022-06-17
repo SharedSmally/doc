@@ -5,6 +5,7 @@
 - Worker Nodes (work nodes)
 
 ## Setup K8s Cluster
+- Kubeadm Ansible Playbook: https://github.com/kairen/kubeadm-ansible
 - Vargent and Ansible: https://kubernetes.io/blog/2019/03/15/kubernetes-setup-using-ansible-and-vagrant/
 - Ansible only: https://buildvirtual.net/deploy-a-kubernetes-cluster-using-ansible/
 - Ansible on centos: https://faun.pub/how-to-create-your-own-kubernetes-cluster-using-ansible-7c6b5c031a5d
