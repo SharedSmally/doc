@@ -11,6 +11,10 @@
 - Ansible on centos: https://computingforgeeks.com/deploy-kubernetes-cluster-on-centos-with-ansible-calico/
 - kubeadm only: https://devopscube.com/setup-kubernetes-cluster-kubeadm/
 
+## Setup Gluster
+- Gluster on k8s: https://computingforgeeks.com/configure-kubernetes-dynamic-volume-provisioning-with-heketi-glusterfs/
+- Setup Gluster on centos: https://computingforgeeks.com/setup-glusterfs-storage-with-heketi-on-centos-server/
+
 ## Steps
 - Install container runtime on all nodes- We will be using Docker.
 - Install Kubeadm, Kubelet, and kubectl on all the nodes.
