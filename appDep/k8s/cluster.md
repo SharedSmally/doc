@@ -1,6 +1,7 @@
 # K8s Cluster
 
 - kubeadm: https://devopscube.com/setup-kubernetes-cluster-kubeadm/
+- Deploy K8s Cluster using Ansible: https://buildvirtual.net/deploy-a-kubernetes-cluster-using-ansible/
 
 ## Roles
 - Master Node (control node)
