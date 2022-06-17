@@ -1,13 +1,15 @@
 # K8s Cluster
 
-- kubeadm: https://devopscube.com/setup-kubernetes-cluster-kubeadm/
-- Deploy K8s Cluster using Ansible: https://buildvirtual.net/deploy-a-kubernetes-cluster-using-ansible/
-
 ## Roles
 - Master Node (control node)
 - Worker Nodes (work nodes)
 
-## Setup
+## Setup K8s Cluster
+- Vargent and Ansible: https://kubernetes.io/blog/2019/03/15/kubernetes-setup-using-ansible-and-vagrant/
+- Ansible only: https://buildvirtual.net/deploy-a-kubernetes-cluster-using-ansible/
+- kubeadm only: https://devopscube.com/setup-kubernetes-cluster-kubeadm/
+
+## Steps
 - Install container runtime on all nodes- We will be using Docker.
 - Install Kubeadm, Kubelet, and kubectl on all the nodes.
 - Initiate Kubeadm control plane configuration on the master node.
