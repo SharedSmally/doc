@@ -8,6 +8,7 @@
 - Vargent and Ansible: https://kubernetes.io/blog/2019/03/15/kubernetes-setup-using-ansible-and-vagrant/
 - Ansible only: https://buildvirtual.net/deploy-a-kubernetes-cluster-using-ansible/
 - Ansible on centos: https://faun.pub/how-to-create-your-own-kubernetes-cluster-using-ansible-7c6b5c031a5d
+- Ansible on centos: https://computingforgeeks.com/deploy-kubernetes-cluster-on-centos-with-ansible-calico/
 - kubeadm only: https://devopscube.com/setup-kubernetes-cluster-kubeadm/
 
 ## Steps
