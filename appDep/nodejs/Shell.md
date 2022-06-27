@@ -2,6 +2,7 @@
 
 ## Tutorial
 - Child process: https://nodejs.org/docs/latest/api/child_process.html
+- https://medium.com/stackfame/how-to-run-shell-script-file-or-command-using-nodejs-b9f2455cb6b7
 - ShellJS: 
 -  https://stackabuse.com/executing-shell-commands-with-node-js/
 
@@ -10,6 +11,7 @@
 The child_process module creates new child processes of the main Node.js process, executes shell commands with these child processes.
 
 - **exec**: Buffered
+- 
 creates a new shell and executes a given command. It stores all the output in a buffer, and is more memory intensive.
 ```
 child_process.exec(command or script file,[, options][, callback]);
@@ -28,8 +30,21 @@ exec("ls -la", (error, stdout, stderr) => {
     console.log(`stdout: ${stdout}`);
 });
 ```
+or
+```
+const exec = require('child_process').exec, child;
+const myShellScript = exec('sh doSomething.sh /myDir');
+myShellScript.stdout.on('data', (data)=>{
+    console.log(data); 
+    // do whatever needed with data
+});
+myShellScript.stderr.on('data', (data)=>{
+    console.error(data);
+});
+```
 
 - **spawn**: Stream
+- 
 executes a command in a new process, it uses a Stream API, and its output of the command is made available via listeners.
 ```
 const { spawn } = require("child_process");
@@ -52,7 +67,23 @@ ls.on("close", code => {
     console.log(`child process exited with code ${code}`);
 });
 ```
+or
+```
+const { spawn } = require('child_process');
+const child = spawn('ls', );
+  // use child.stdout.setEncoding('utf8'); if you want text chunks
+child.stdout.on('data', (chunk) => {
+  // data from the standard output is here as buffers
+});
+  // since these are streams, you can pipe them elsewhere
+child.stderr.pipe(dest);
+child.on('close', (code) => {
+  console.log(`child process exited with code ${code}`);
+});
+```
 - **sync spawn**:
+
+execute shell script synchronously
 ```
 'use strict';
 
@@ -62,7 +93,33 @@ const ls = spawnSync( 'ls', [ '-lh', '/usr' ] );
 console.log( `stderr: ${ ls.stderr.toString() }` );
 console.log( `stdout: ${ ls.stdout.toString() }` );
 ```
+or
+```
+const { execSync } = require('child_process');
+// stderr is sent to stdout of parent process, can set options.stdio if want it to go elsewhere
+const stdout = execSync('ls');
+const { spawnSync} = require('child_process');
+const child = spawnSync('ls', );
+console.error('error', child.error);
+console.log('stdout ', child.stdout);
+console.error('stderr ', child.stderr);
+```
 - **promise**: buffered,non-stream formatted output
+```
+const util = require('util');
+const exec = util.promisify(require('child_process').exec);
+async function lsWithGrep() {
+  try {
+      const { stdout, stderr } = await exec('ls | grep js');
+      console.log('stdout:', stdout);
+      console.log('stderr:', stderr);
+  }catch (err)=>{
+     console.error(err);
+  };
+};
+lsWithGrep();
+```
+or 
 ```
 function execShellCommand(cmd) {
   const exec = require("child_process").exec;
