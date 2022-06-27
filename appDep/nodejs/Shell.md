@@ -44,7 +44,7 @@ myShellScript.stderr.on('data', (data)=>{
 ```
 
 - **spawn**: Stream
-- 
+
 executes a command in a new process, it uses a Stream API, and its output of the command is made available via listeners.
 ```
 const { spawn } = require("child_process");
@@ -81,7 +81,7 @@ child.on('close', (code) => {
   console.log(`child process exited with code ${code}`);
 });
 ```
-- **sync spawn**:
+- **sync spawn/exec**:
 
 execute shell script synchronously
 ```
@@ -98,6 +98,7 @@ or
 const { execSync } = require('child_process');
 // stderr is sent to stdout of parent process, can set options.stdio if want it to go elsewhere
 const stdout = execSync('ls');
+
 const { spawnSync} = require('child_process');
 const child = spawnSync('ls', );
 console.error('error', child.error);
