@@ -1,6 +1,6 @@
 # Makefile
 
-## app
+## app makefile
 ```
 CXXFLAGS += -std=c++17 -I./ -lrt
 
@@ -25,3 +25,5 @@ print:
   @echo " Tests: ${TESTS}"
   @echo " Objs: ${OBJS}"
 ```
+
+## lib makefile
