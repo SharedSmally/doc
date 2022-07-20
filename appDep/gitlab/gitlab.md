@@ -35,3 +35,4 @@ sudo docker logs -f gitlab
 sudo docker exec -it gitlab grep 'Password:' /etc/gitlab/initial_root_password
 ```
 http://gitlab.example.com:81/
+http://127.0.0.1:81/
