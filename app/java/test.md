@@ -47,7 +47,7 @@ public class Test1 {
 
 ## Junit
 - [junit4](https://junit.org/junit4/)
-- [junit5-Jupiter](https://junit.org/junit5/)
+- [junit5-Jupiter](https://junit.org/junit5/):  JUnit 5 = JUnit Platform(launch testing framework) + JUnit Jupiter(program and extension model for tests) + JUnit Vintage(for JUnit3/4)
 ```
 impoort org.junit.Assert;
 impoort org.junit.Before;
