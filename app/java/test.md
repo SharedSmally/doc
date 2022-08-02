@@ -1,7 +1,7 @@
 # Java Test (docker plugin)
 ## Unit Test: surefire plugin
 - Test Framework:
-    - Junit
+    - Junit: JUnit4/JUnit5
     - TestNG: 
     -  Provide Assert, Before, Test.
 See [difference](https://www.guru99.com/junit-vs-testng.html). TestNG is powerful than JUnit. 
