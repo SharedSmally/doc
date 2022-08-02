@@ -124,7 +124,14 @@ class StandardTests {
 
 ## [EasyMock](https://easymock.org/)
 When generating a mock, we can simulate the target object, specify its behavior, and finally verify whether it's used as expected.
-
+```
+<dependency>
+  <groupId>org.easymock</groupId>
+  <artifactId>easymock</artifactId>
+  <version>4.3</version>
+  <scope>test</scope>
+</dependency>
+```
 Working with EasyMock's mocks involves four steps, Each is relate to methods in org.easymock.EasyMock:
 - creating a mock of the target class: mock(…): generates a mock of the target class, be it a concrete class or an interface. Once created, a mock is in “recording” mode, meaning that EasyMock will record any action the Mock Object takes, and replay them in the “replay” mode
 - recording its expected behavior, including the action, result, exceptions, etc. With expect(…) to set expectations, including calls, results, and exceptions, for associated recording actions
