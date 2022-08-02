@@ -15,8 +15,7 @@ See [difference](https://www.guru99.com/junit-vs-testng.html). TestNG is powerfu
 
 ## Integration Test: failsafe plugin 
 - Framework
-
-      - Cucumber: https://cucumber.io/
+    - Cucumber: https://cucumber.io/
 
 ## [TestNG](https://testng.org/doc/)
 - [Document](https://testng.org/doc/documentation-main.html)
