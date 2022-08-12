@@ -1,4 +1,5 @@
 # Maven
+- Maven Reference: https://books.sonatype.com/mvnref-book/reference/index.html
 - Apache Maven: https://maven.apache.org/index.html
 - Maven available Plugins:  https://maven.apache.org/plugins/index.html
 - pom.xml: https://maven.apache.org/guides/introduction/introduction-to-the-pom.html
