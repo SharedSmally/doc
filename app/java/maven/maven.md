@@ -105,8 +105,8 @@ mvn phase
 ### Mojo parameters
 https://books.sonatype.com/mvnref-book/reference/writing-plugins-sect-mojo-params.html
 
-
 | annotation | desc |
+|------------|------|
 |@parameter [alias="someAlias"] [expression="${someExpression}"] [default-value="value"]|
     Marks a private field (or a setter method) as a parameter. The alias provides the name of the parameter. If alias is omitted, Maven will use the name of the variable as the parameter name. The expression is an expression that Maven will evaluate to obtain a value. Usually the expression is a property reference like ${echo.message}. default-value is the value that this Mojo will use if no value can be derived from the expression or if a value was not explicitly supplied via plugin configuration in a POM. |
 |@required|
