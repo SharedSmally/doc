@@ -71,6 +71,7 @@ Items a Maven POM inherits from its parent POM:
 Group dependencies in <packaging>pom</packaging> project, which could be depdended or inherited.
 
 ### LifeCycle
+
 #### Clean LifeCycle: mvn clean
 - pre-clean
 - clean
@@ -104,6 +105,48 @@ Group dependencies in <packaging>pom</packaging> project, which could be depdend
 | verify	| Run any checks to verify the package is valid and meets quality criteria |
 | install | Install the package into the local repository, for use as a dependency in other projects locally |
 | deploy	| Copies the final package to the remote repository for sharing with other developers and projects (usually only relevant during a formal release)|
+
+### Package-specific Lifecycles
+The specific goals bound to each phase default to a set of goals specific to a project’s packaging. For Jar packaging:
+- jar
+- pom
+- maven plugin
+- ejb/war/ear
+- nar/swf/wwc
+For cusomized packaging type, need a plugin which defines the lifecycle for a custom packaging type and a repository which contains this plugin.
+
+For jar
+| Lifecycle Phase | Goal  |
+|-----------------|-------|
+| process-resources | resources:resources |
+| compile | compiler:compile |
+| process-test-resources | resources:testResources |
+| test-compile | compiler:testCompile |
+| test | surefire:test |
+| package | jar:jar |
+| install | install:install |
+| deploy | deploy:deploy |
+
+### Common Lifecycle Goals
+- Process resources / Process Test resources
+The process-resources phase "processes" resources and copies them to the output directory. The default directory locations defined in the Super POM, Maven will copy the files from ${basedir}/src/main/resources to ${basedir}/target/classes or the directory defined in ${project.build.outputDirectory}. 
+
+Maven can also apply a filter to the resources to replace tokens within resource file, such as variables are referenced in a POM using ${...} to reference variables in project’s resources using the same syntax: 
+```
+<build>
+    <filters>
+        <filter>src/main/filters/default.properties</filter>
+    </filters>
+    <resources>
+        <resource>
+            <directory>src/main/resources</directory>
+            <filtering>true</filtering>
+        </resource>
+    </resources>
+</build>
+```
+- Compile / Test compile 
+- Test / Install / Deploy
 
 
 ## Archetype
