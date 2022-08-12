@@ -7,7 +7,8 @@
 
 ## pom.xml
 ![POM (Project Object Model)](https://books.sonatype.com/mvnref-book/reference/figs/web/pom-relationships_pom-small.png)
-
+The super pom.xml: https://maven.apache.org/ref/3.1.1/maven-model-builder/super-pom.html
+The pom.xml layout:  https://maven.apache.org/ref/3.8.6/maven-model/maven.html
 - parent project
 - properties:
 - depdendencies: for list of dependencies
