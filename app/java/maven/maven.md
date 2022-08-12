@@ -48,6 +48,7 @@ to this phase by the order in executions.
 ### Tutorials
 - https://maven.apache.org/plugin-developers/index.html
 - https://www.baeldung.com/maven-plugin
+- List of available plugins: https://maven.apache.org/plugins/index.html
 
 ### Create a plugin project
 ```
