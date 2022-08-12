@@ -49,7 +49,7 @@ to this phase by the order in executions.
 - https://maven.apache.org/plugin-developers/index.html
 - https://www.baeldung.com/maven-plugin
 - List of available plugins: https://maven.apache.org/plugins/index.html
-- Plugin name: * <plugin-name>-maven-plugin *
+- Plugin name: *<plugin-name>-maven-plugin*
 
 ### Create a plugin project
 ```
