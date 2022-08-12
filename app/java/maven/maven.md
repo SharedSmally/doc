@@ -107,14 +107,10 @@ https://books.sonatype.com/mvnref-book/reference/writing-plugins-sect-mojo-param
 
 | annotation | desc |
 |------------|------|
-|@parameter [alias="someAlias"] [expression="${someExpression}"] [default-value="value"]|
-    Marks a private field (or a setter method) as a parameter. The alias provides the name of the parameter. If alias is omitted, Maven will use the name of the variable as the parameter name. The expression is an expression that Maven will evaluate to obtain a value. Usually the expression is a property reference like ${echo.message}. default-value is the value that this Mojo will use if no value can be derived from the expression or if a value was not explicitly supplied via plugin configuration in a POM. |
-|@required|
-    If this annotation is present, a valid value for this parameter is required prior to Mojo execution. If Maven tries to execute this Mojo and the parameter has a null value, Maven will throw an error when it tries to execute this goal. |
-|@readonly |
-    If this annotation is present, the user cannot directly configure this parameter in the POM. You would use this annotation with the expression attribute of the parameter annotation. For example, if you wanted to make sure that a particular parameter always had the value of the finalName POM property, you would list an expression of ${build.finalName} and then add the @readOnly annotation. If this were the case, the user could only change the value of this parameter by changing the value of finalName in the POM. |
-|@component|
-    Tells Maven to populate a field with a Plexus Component. A valid value for the @component annotation would be:
+|@parameter [alias="someAlias"] [expression="${someExpression}"] [default-value="value"]|Marks a private field (or a setter method) as a parameter. The alias provides the name of the parameter. If alias is omitted, Maven will use the name of the variable as the parameter name. The expression is an expression that Maven will evaluate to obtain a value. Usually the expression is a property reference like ${echo.message}. default-value is the value that this Mojo will use if no value can be derived from the expression or if a value was not explicitly supplied via plugin configuration in a POM. |
+|@required|If this annotation is present, a valid value for this parameter is required prior to Mojo execution. If Maven tries to execute this Mojo and the parameter has a null value, Maven will throw an error when it tries to execute this goal. |
+|@readonly |If this annotation is present, the user cannot directly configure this parameter in the POM. You would use this annotation with the expression attribute of the parameter annotation. For example, if you wanted to make sure that a particular parameter always had the value of the finalName POM property, you would list an expression of ${build.finalName} and then add the @readOnly annotation. If this were the case, the user could only change the value of this parameter by changing the value of finalName in the POM. |
+|@component| Tells Maven to populate a field with a Plexus Component. A valid value for the @component annotation would be:
     @component role="org.codehaus.plexus.archiver.Archiver" roleHint="zip"|
 
 
