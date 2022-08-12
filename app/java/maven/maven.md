@@ -6,7 +6,7 @@
 - Lifecycle: https://maven.apache.org/guides/introduction/introduction-to-the-lifecycle.html#Lifecycle_Reference
 
 ## pom.xml
-POM (Project Object Model): ![https://books.sonatype.com/mvnref-book/reference/figs/web/pom-relationships_pom-small.png]
+POM (Project Object Model): !(https://books.sonatype.com/mvnref-book/reference/figs/web/pom-relationships_pom-small.png)
 
 - parent project
 - properties:
