@@ -7,8 +7,10 @@
 
 ## pom.xml
 ![POM (Project Object Model)](https://books.sonatype.com/mvnref-book/reference/figs/web/pom-relationships_pom-small.png)
+
 The super pom.xml: https://maven.apache.org/ref/3.1.1/maven-model-builder/super-pom.html
 The pom.xml layout:  https://maven.apache.org/ref/3.8.6/maven-model/maven.html
+
 - parent project
 - properties:
 - depdendencies: for list of dependencies
@@ -26,6 +28,83 @@ mvn archetype:generate         \
    -DarchetypeVersion=xxx [-DarchetypeCatalog=local]	\
    -DgroupId=com.xxx -DartifactId=xxx -Dversion=xxx -Dpackage=xxx	\
 ```
+
+### Property in pom.xml
+The syntax for using a property in Maven is to surround the property name with two curly braces and precede it with a dollar symbol.
+- env
+    The env variable exposes environment variables exposed by os or shell. A reference to ${env.PATH} in a Maven POM would be replaced by the ${PATH} environment variable (or %PATH% in Windows). 
+- project
+    The project variable exposes the POM. use a dot-notated (.) path to reference the value of a POM element. For example, the groupId and artifactId to set the finalName element in the build configuration was: ${project.groupId}-${project.artifactId}. 
+- settings
+    The settings variable exposes Maven settings information. Can use a dot-notated (.) path to reference the value of an element in a settings.xml file. For example, ${settings.offline} would reference the value of the offline element in ~/.m2/settings.xml. 
+ - Java System Properties
+    All properties accessible via getProperties() on java.lang.System are exposed as POM properties. Some examples of system properties are: ${user.name}, ${user.home}, ${java.home}, and ${os.name}. A full list of system properties can be found in the Javadoc for the System class.  
+ - x
+    Arbitrary properties can be set with a properties element in a pom.xml or settings.xml, or properties can be loaded from external files. 
+
+### Dependency Scope: 
+| scope | desc |
+|-------|-------|
+| compile | the default scope; all dependencies are compile-scoped if a scope is not supplied. compile dependencies are available in all classpaths, and they are packaged. |
+| provided |   Used when expect the JDK or a container to provide them. provided dependencies are available on the compilation classpath (not runtime). They are not transitive, nor are they packaged. |
+| runtime |  runtime dependencies are required to execute and test the system, but they are not required for compilation. |
+| test | test-scoped dependencies are not required during the normal operation of an application, and they are available only during test compilation and execution phases. |
+| system | similar to provided except that need to provide an explicit path to the JAR on the local file system. This is intended to allow compilation against native objects that may be part of the system libraries. The artifact is assumed to always be available and is not looked up in a repository. If declare the scope to be system, must also provide the systemPath element.|
+
+The dependency can be optiona via <optioanl>true</optional>.
+
+#### dependencyManagement for dependency
+Using the dependencyManagement element in a pom.xml allows you to reference a dependency in a child project without having to explicitly list the version. Maven will walk up the parent-child hierarchy until it finds a project with a dependencyManagement element, it will then use the version specified in this dependencyManagement element.
+
+### classifier
+    Use a classifier if releasing the same code but needed to produce two separate artifacts for technical reasons. Classifiers are commonly used to package up an artifact’s sources, JavaDocs or binary assemblies.
+
+### pom inheritance
+Items a Maven POM inherits from its parent POM:
+- identifiers (at least one of groupId or artifactId must be overridden.)
+- dependencies
+- developers and contributors
+- plugin lists
+- reports lists
+- plugin executions (executions with matching ids are merged)
+- plugin configuration
+Group dependencies in <packaging>pom</packaging> project, which could be depdended or inherited.
+
+### LifeCycle
+#### Clean LifeCycle: mvn clean
+- pre-clean
+- clean
+- post-clean
+#### Site LifeCycle: mvn site
+- pre-site
+- site
+- post-site
+- site-deploy
+#### Default LifeCycle
+| Lifecycle Phase | Description |
+|-----------------|-------------|
+| validate | Validate the project is correct and all necessary information is available to complete a build | 
+| generate-sources | Generate any source code for inclusion in compilation |
+| process-sources | Process the source code, for example to filter any values |
+| generate-resources | Generate resources for inclusion in the package |
+| process-resources | Copy and process the resources into the destination directory, ready for packaging |
+| compile | Compile the source code of the project |
+| process-classes | Post-process the generated files from compilation, for example to do bytecode enhancement on Java classes |
+| generate-test-sources | Generate any test source code for inclusion in compilation |
+| process-test-sources | Process the test source code, for example to filter any values |
+| generate-test-resources | Create resources for testing |
+| process-test-resources | Copy and process the resources into the test destination directory |
+| test-compile	| Compile the test source code into the test destination directory |
+| test	| Run tests using a suitable unit testing framework. These tests should not require the code be packaged or deployed |
+| prepare-package | Perform any operations necessary to prepare a package before the actual packaging. This often results in an unpacked, processed version of the package | 
+| package	| Take the compiled code and package it in its distributable format, such as a JAR, WAR, or EAR |
+| pre-integration-test | Perform actions required before integration tests are executed. This may involve things such as setting up the required environment |
+| integration-test | Process and deploy the package if necessary into an environment where integration tests can be run |
+| post-integration-test | Perform actions required after integration tests have been executed. This may include cleaning up the environment | 
+| verify	| Run any checks to verify the package is valid and meets quality criteria |
+| install | Install the package into the local repository, for use as a dependency in other projects locally |
+| deploy	| Copies the final package to the remote repository for sharing with other developers and projects (usually only relevant during a formal release)|
+
 
 ## Archetype
 Template to create a project
