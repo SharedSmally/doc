@@ -148,7 +148,83 @@ Maven can also apply a filter to the resources to replace tokens within resource
 - Compile / Test compile 
 - Test / Install / Deploy
 
+### Profile
+#### Profile Override Default
+Profiles allow for the ability to customize a particular build for a particular environment; profiles enable portability between different build environments. Profiles can also be activated by the environment and platform, such as depending the Operating System or the installed JDK version.
+```
+    <profiles> 
+            <profile>
+                <id>production</id> 
+                    <build> 
+                            <plugins>
+                                <plugin>
+                                    <groupId>org.apache.maven.plugins</groupId>
+                                    <artifactId>maven-compiler-plugin</artifactId>
+                                    <configuration>
+                                        <debug>false</debug>
+                                        <optimize>true</optimize>
+                                    </configuration>
+                                </plugin>
+                            </plugins>
+                    </build>
+            </profile>
+    </profiles>
+</project>
+```
+Run the command use the specific profile: **mvn install -Pproduction -X**
+Maven profile can override almost everything that in a pom.xml. 
 
+#### Profile Activation: based on variables
+The activation element lists the conditions for profile activation. Activations can contain one of more selectors including JDK versions, Operating System parameters, files, and properties. A profile is activated when all activation criteria has been satisfied:
+```
+    <profiles>
+        <profile>
+            <id>jdk16</id>
+            <activation>
+                <activeByDefault>false</activeByDefault> (1)
+                    <jdk>1.5</jdk> (2)
+                        <os>
+                            <name>Windows XP</name> (3)
+                            <family>Windows</family>
+                            <arch>x86</arch>
+                            <version>5.1.2600</version>
+                        </os>
+                        <property>
+                            <name>customProperty</name> (4)
+                            <value>BLUE</value>
+                        </property>
+                        <file>
+                            <exists>file2.properties</exists> (5)
+                            <missing>file1.properties</missing>
+                        </file>
+                       <property>
+                            <name>!environment.type</name>
+                       </property>
+            </activation>
+            <modules>
+                    <module>simple-script</module>
+            </modules>
+        </profile>
+    </profiles>
+```
+Listing Active Profiles: **mvn help:active-profiles**
+
+### Command Line Options
+Usage: mvn [options] [<goal(s)>] [<phase(s)>]
+
+- **-D, --define <arg>**: Defines a system property 
+```
+$ mvn install -Dmaven.test.skip=true
+```
+- **-h, --help**:  Display help information 
+- **-P, --activate-profiles <arg>**:  Comma-delimited list of profiles to activate 
+
+## Assembly   
+2 goals: 
+- assembly:assembly: invoked directly from the command line
+- single: a part of build, should be bound to a phase in  project’s build lifecycle.
+   
+   
 ## Archetype
 Template to create a project
 ### Tutorials
