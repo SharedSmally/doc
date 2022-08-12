@@ -14,8 +14,7 @@
 - repositories: where to deploy the build targets
 
 ### Create a project based on archetype:
-- List of available archetypes: https://maven.apache.org/archetypes/index.html
-    - 
+- List of available archetypes: https://maven.apache.org/archetypes/index.html  
 ```
 mvn archetype:generate         \
    -DarchetypeGroupId=org.apache.maven.archetypes     \
