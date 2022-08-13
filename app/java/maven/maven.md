@@ -220,10 +220,164 @@ $ mvn install -Dmaven.test.skip=true
 - **-P, --activate-profiles <arg>**:  Comma-delimited list of profiles to activate 
 
 ## Assembly   
-2 goals: 
+### goals: 
 - assembly:assembly: invoked directly from the command line
 - single: a part of build, should be bound to a phase in  project’s build lifecycle.
+### Predefined Assembly Descriptors
+- bin   
+- jar-with-dependencies   
+- project
+- src   
+```
+$ mvn -DdescriptorId=project assembly:single   
+```
+Within the build
+```
+$ mvn package
+$ java -jar target/executable-jar-1.0-SNAPSHOT-jar-with-dependencies.jar
+pom.xml:   
+            <plugin>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>2.2-beta-2</version>
+                <executions>
+                    <execution>
+                        <id>create-executable-jar</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                        <configuration>
+                            <descriptorRefs>
+                                <descriptorRef>jar-with-dependencies</descriptorRef>
+                            </descriptorRefs>
+                            <archive>
+                                <manifest>
+                                    <mainClass>org.sonatype.mavenbook.App</mainClass>
+                                </manifest>
+                            </archive>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>   
+```   
+### Assembly Descriptor
+- Base Configuration: id, formats 
+- File Information: files(specific files), fileSets(files with the pattern)
+- Dependency Information:  dependencySets
+- Repository Information: repositories 
+- Module Information: moduleSets     
+```
+<assembly>
+    <id>bundle</id>
+    <formats>
+        <format>zip</format>
+    </formats>
+    ...
+    <files>
+        <file>
+            <source>target/my-app-1.0.jar</source>
+            <outputDirectory>lib</outputDirectory>
+            <destName>my-app.jar</destName>
+            <fileMode>0644</fileMode>
+        </file>
+    </files>  
+    <fileSets>
+        <fileSet>
+            <directory>src/main/java</directory>
+            <outputDirectory>src/main/java</outputDirectory>
+            <includes>
+                <include>**</include>
+            </includes>
+            <useDefaultExcludes>true</useDefaultExcludes>
+            <fileMode>0644</fileMode>
+            <directoryMode>0755</directoryMode>
+        </fileSet>
+    </fileSets>
    
+    <dependencySets>
+        <dependencySet>
+            <outputDirectory>${artifact.groupId}</outputDirectory>
+            <outputFileNameMapping>${artifact.artifactId}.${artifact.extension}</outputFileNameMapping>
+        </dependencySet>
+    </dependencySets> 
+
+    <moduleSets>
+        <moduleSet>
+            <binaries>
+                <outputDirectory>${module.artifactId}-${module.version}</outputDirectory>
+                <dependencySets>
+                    <dependencySet/>
+                </dependencySets>
+            </binaries>
+        </moduleSet>
+    </moduleSets>
+</assembly>   
+```   
+
+## Properties
+###  project.*
+    Maven Project Object Model (POM). use the project.* prefix to reference values in a Maven POM. 
+- project.groupId, project.artifactId and project.version 
+- project.name and project.description    
+- project.build.*:
+   - project.build.sourceDirectory
+   - project.build.scriptSourceDirectory
+   - project.build.testSourceDirectory
+   - project.build.outputDirectory
+   - project.build.testOutputDirectory
+   - project.build.directory
+- project.baseUri  
+   
+### settings.*
+    Maven Settings. use the settings.* prefix to reference values from Maven Settings in ~/.m2/settings.xml. 
+
+###  env.*
+    Environment variables like PATH and M2_HOME can be referenced using the env.* prefix. 
+- env.PATH: Contains the current PATH in which Maven is running. The PATH contains a list of directories used to locate executable scripts and programs. 
+- env.HOME: points to a user’s home directory. or use the ${user.home} 
+- env.JAVA_HOME: Contains the Java installation directory, either JDK or JRE. can use ${java.home} 
+- env.M2_HOME: Contains the Maven 2 installation directory. 
+     
+### System Properties
+    Any property which can be retrieved from the System.getProperty() method can be referenced as a Maven property. 
+
+| System Property | Description |
+| java.version | Java Runtime Environment version | 
+| java.vendor | Java Runtime Environment vendor | 
+| java.vendor.url | Java vendor URL | 
+| java.home | Java installation directory | 
+| java.vm.specification.version | Java Virtual Machine specification version | 
+| java.vm.specification.vendor | Java Virtual Machine specification vendor | 
+| java.vm.specification.name | Java Virtual Machine specification name | 
+| java.vm.version | Java Virtual Machine implementation version | 
+| java.vm.vendor | Java Virtual Machine implementation vendor | 
+| java.vm.name | Java Virtual Machine implementation name | 
+| java.specification.version | Java Runtime Environment specification version | 
+| java.specification.vendor | Java Runtime Environment specification vendor | 
+| java.specification.name | Java Runtime Environment specification name | 
+| java.class.version | Java class format version number | 
+| java.class.path | Java class path | 
+| java.ext.dirs | Path of extension directory or directories | 
+| os.name | Operating system name | 
+| os.arch | Operating system architecture | 
+| os.version | Operating system version | 
+| file.separator | File separator ("/" on UNIX, "\" on Windows) | 
+| path.separator | Path separator (":" on UNIX, ";" on Windows) | 
+| line.separator | Line separator ("\n" on UNIX and Windows) | 
+| user.name | User’s account name | 
+| user.home | User’s home directory | 
+| user.dir | User’s current working | 
+
+### Resource Filtering
+Use Maven to perform variable replacement on project resources.
+   
+### User defined Properties
+```
+    <properties>
+        <arbitrary.property.a>This is some text</arbitrary.property.a>
+        <hibernate.version>3.3.0.ga</hibernate.version>
+    </properties>   
+```   
    
 ## Archetype
 Template to create a project
