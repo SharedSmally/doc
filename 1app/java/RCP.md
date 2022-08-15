@@ -1,5 +1,5 @@
 # Eclipse RCP
-IoC for OSGi and Application; based on EMF for MVC.
+IoC for OSGi and Application; based on EMF for MVC; Builder to provision context.
 - https://www.vogella.com/tutorials/EclipseRCP/article.html
 
 E4RCP Architecture
