@@ -21,3 +21,60 @@ The  model elements implement the MContext interface:
  
  EclipseContextOSGi osgiContext = EclipseContextFactory.getServiceContext(BundleContext);
 ```
+
+Get OSGi context:
+```
+BundleContext bundleContext = FrameworkUtil.getBundle(this.getClass()).getBundleContext();
+
+Bundle bundle = FrameworkUtil.getBundle(this.getClass());
+BundleContext bundleContext = bundle.getBundleContext();
+
+Bundle[] bundles = InternalPlatform.getDefault().getBundleContext().getBundles();
+
+bundleContext.registerService(IMyService.class.getName(), new MzServiceImpl(), null);
+```
+Spring Boot ApplicationContext: implement ApplicationContextAware
+```
+import org.springframework.beans.BeansException;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
+import org.springframework.stereotype.Component;
+
+@Component
+public class ApplicationContextProvider implements ApplicationContextAware {
+    private ApplicationContext applicationContext;
+
+    @Override
+    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
+        this.applicationContext = applicationContext;
+    }
+
+    ApplicationContext getApplicationContext() {
+        return this.applicationContext;
+    }
+}
+```
+AutoWire ApplicationContext:
+```
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ApplicationContext;
+
+@SpringBootApplication
+public class SpringGetApplicationContextApplication implements CommandLineRunner {
+    @Autowired
+    private ApplicationContext applicationContext;
+
+    public static void main(String[] args) {
+        SpringApplication.run(SpringGetApplicationContextApplication.class, args);
+    }
+
+    @Override
+    public void run(String...args) throws Exception {
+        Message message = applicationContext.getBean(Message.class);
+        System.out.println(message.getMessage());
+    }
+}
+```
