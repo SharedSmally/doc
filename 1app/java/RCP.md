@@ -3,12 +3,15 @@ IoC for OSGi and Application; based on EMF for MVC; Builder to provision context
 - https://www.vogella.com/tutorials/EclipseRCP/article.html
 
 E4RCP Architecture
+
 ![Architecture](https://wiki.eclipse.org/images/thumb/8/80/Eclipse_4_Architecture.png/640px-Eclipse_4_Architecture.png)
 
 E4RCP Context
+
 ![Context](https://www.vogella.com/tutorials/EclipseRCP/img/contexthierarchy_withosgi12.png)
 
 E3 Product
+
 ![Product](https://www.javacodegeeks.com/wp-content/uploads/2018/11/pic1-2.png)
 RCP is based on the same principles as the Eclipse IDE: the product includes some features, any feature includes some plugins.
 
