@@ -8,6 +8,10 @@ E4RCP Architecture
 E4RCP Context
 ![Context](https://www.vogella.com/tutorials/EclipseRCP/img/contexthierarchy_withosgi12.png)
 
+E3 Product
+![Product](https://www.javacodegeeks.com/wp-content/uploads/2018/11/pic1-2.png)
+RCP is based on the same principles as the Eclipse IDE: the product includes some features, any feature includes some plugins.
+
 The  model elements implement the MContext interface:
 - MApplication
 - MWindow
