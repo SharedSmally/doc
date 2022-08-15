@@ -1,6 +1,6 @@
-# Mojo
+# Mojo Plugin
 
-One plugin has one or more Mojo. Each Mojo is assigned to one Goal name. One goal can be assigned to one or more phases. Its configuration could be within execution, or configuration. 
+Use Plexus IoC. One plugin has one or more Mojo. Each Mojo is assigned to one Goal name. One goal can be assigned to one or more phases. Its configuration could be within execution, or configuration. 
 
 ## create a Mojo plugin
 ```
