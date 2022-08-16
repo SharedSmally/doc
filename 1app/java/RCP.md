@@ -10,10 +10,11 @@ E4RCP Context
 
 ![Context](https://www.vogella.com/tutorials/EclipseRCP/img/contexthierarchy_withosgi12.png)
 
-E3 Product
+RCP Product
 
 ![Product](https://www.javacodegeeks.com/wp-content/uploads/2018/11/pic1-2.png)
 RCP is based on the same principles as the Eclipse IDE: the product includes some features, any feature includes some plugins.
+RAP: Remote Application Platform, using RAP adapted SWT redenered by special RWTServelet. 
 
 The  model elements implement the MContext interface:
 - MApplication
