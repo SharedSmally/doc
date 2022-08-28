@@ -70,6 +70,8 @@ or
     $ mvn package
     $ java -jar target/myproject-0.0.1-SNAPSHOT.jar
 ```
+Open a web browser to localhost:8080
+
 
     Best practices: Code Structure | @Configuration | @EnableAutoConfiguration | Beans and Dependency Injection
 
@@ -151,28 +153,28 @@ or
 
 
 ## [Properties](https://docs.spring.io/spring-boot/docs/current/reference/html/configuration-metadata.html#appendix.configuration-metadata) 
+```java
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.boot.context.properties.DeprecatedConfigurationProperty;
 
-    import org.springframework.boot.context.properties.ConfigurationProperties;
-    import org.springframework.boot.context.properties.DeprecatedConfigurationProperty;
-
-    @ConfigurationProperties("my.app")
-    public class MyProperties {
-        private String name;
-        public String getName() {
-            return this.name;
-        }
-        public void setName(String name) {
-            this.name = name;
-        }
-        @Deprecated
-        @DeprecatedConfigurationProperty(replacement = "my.app.name")
-        public String getTarget() {
-            return this.name;
-        }
-        @Deprecated
-        public void setTarget(String target) {
-            this.name = target;
-        }
+@ConfigurationProperties("my.app")
+public class MyProperties {
+    private String name;
+    public String getName() {
+        return this.name;
     }
-
+    public void setName(String name) {
+        this.name = name;
+    }
+    @Deprecated
+    @DeprecatedConfigurationProperty(replacement = "my.app.name")
+    public String getTarget() {
+        return this.name;
+    }
+    @Deprecated
+    public void setTarget(String target) {
+        this.name = target;
+    }
+}
+```
 ## Auto Configuration
