@@ -302,8 +302,7 @@ app.description=${app.name} is a Spring Boot application written by ${username:U
     
 The standard YAML multi-document syntax, **---**, is used for application.yml files, and  #--- for application.properties.
 
-- Activation Properties
-    
+- Activation Properties    
 Conditionally activate a properties document using **spring.config.activate.\* **.    
     
     - on-profile: A profile expression that must match for the document to be active.
@@ -315,6 +314,218 @@ spring.config.activate.on-cloud-platform=kubernetes
 spring.config.activate.on-profile=prod | staging
 myotherprop=sometimes-set
 ```    
+
+# Configuring Random Values
+
+Inject random values for integers, longs, uuids, or strings:
+```
+my.secret=${random.value}
+my.number=${random.int}
+my.bignumber=${random.long}
+my.uuid=${random.uuid}
+my.number-less-than-ten=${random.int(10)}
+my.number-in-range=${random.int[1024,65536]}
+``` 
+    
+- Configuring System Environment Properties
+    
+Spring Boot supports setting a prefix for environment properties. The prefix for system environment properties can be set directly on SpringApplication.
+For example, set the prefix to input, a property such as remote.timeout will also be resolved as input.remote.timeout in the system environment.   
+
+- Type-safe Configuration Properties    
+
+Use @ConfigurationProperties in stead of @Value:
+```java
+import java.net.InetAddress;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+import org.springframework.boot.context.properties.ConfigurationProperties;
+
+@ConfigurationProperties("my.service")
+public class MyProperties {
+    private boolean enabled;
+    private InetAddress remoteAddress;
+    private final Security security = new Security();
+
+    // getters / setters...
+    public boolean isEnabled() {
+        return this.enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
+
+    public InetAddress getRemoteAddress() {
+        return this.remoteAddress;
+    }
+
+    public void setRemoteAddress(InetAddress remoteAddress) {
+        this.remoteAddress = remoteAddress;
+    }
+
+    public Security getSecurity() {
+        return this.security;
+    }
+
+    public static class Security {
+        private String username;
+        private String password;
+        private List<String> roles = new ArrayList<>(Collections.singleton("USER"));
+
+        // getters / setters...
+        public String getUsername() {
+            return this.username;
+        }
+        public void setUsername(String username) {
+            this.username = username;
+        }
+        public String getPassword() {
+            return this.password;
+        }
+        public void setPassword(String password) {
+            this.password = password;
+        }
+        public List<String> getRoles() {
+            return this.roles;
+        }
+        public void setRoles(List<String> roles) {
+            this.roles = roles;
+        }
+    }
+}
+```    
+Use Constructor binding in an immutable fashion (getter):
+```
+import java.net.InetAddress;
+import java.util.List;
+
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.boot.context.properties.ConstructorBinding;
+import org.springframework.boot.context.properties.bind.DefaultValue;
+
+@ConstructorBinding
+@ConfigurationProperties("my.service")
+public class MyProperties {
+    // fields...
+    private final boolean enabled;
+    private final InetAddress remoteAddress;
+    private final Security security;
+
+    public MyProperties(boolean enabled, InetAddress remoteAddress, Security security) {
+        this.enabled = enabled;
+        this.remoteAddress = remoteAddress;
+        this.security = security;
+    }
+
+    // getters...
+    public boolean isEnabled() {
+        return this.enabled;
+    }
+
+    public InetAddress getRemoteAddress() {
+        return this.remoteAddress;
+    }
+
+    public Security getSecurity() {
+        return this.security;
+    }
+
+    public static class Security {
+        // fields...
+        private final String username;
+        private final String password;
+        private final List<String> roles;
+
+        public Security(String username, String password, @DefaultValue("USER") List<String> roles) {
+            this.username = username;
+            this.password = password;
+            this.roles = roles;
+        }
+
+        // getters...
+        public String getUsername() {
+            return this.username;
+        }
+
+        public String getPassword() {
+            return this.password;
+        }
+
+        public List<String> getRoles() {
+            return this.roles;
+        }
+    }
+}
+```  
+The class must be enabled using @EnableConfigurationProperties or configuration property scanning for constructor binding. Spring Boot provides infrastructure to bind @ConfigurationProperties types and register them as beans:
+```
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.context.annotation.Configuration;
+
+@Configuration(proxyBeanMethods = false)
+@EnableConfigurationProperties(SomeProperties.class)
+public class MyConfiguration {
+
+}    
+```   
+    or
+```
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.properties.ConfigurationPropertiesScan;
+
+@SpringBootApplication
+@ConfigurationPropertiesScan({ "com.example.app", "com.example.another" })
+public class MyApplication {
+
+}
+```   
+The @ConfigurationProperties beans can be injected in the same way as any other bean:    
+```
+import org.springframework.stereotype.Service;
+
+@Service
+public class MyService {
+    private final SomeProperties properties;
+    public MyService(SomeProperties properties) {
+        this.properties = properties;
+    }
+
+    public void openConnection() {
+        Server server = new Server(this.properties.getRemoteAddress());
+        server.start();
+        // ...
+    }
+    // ...
+}
+```    
+- Third-party Configuration
+
+Use @ConfigurationProperties to annotate a class on public @Bean methods:
+```
+@Configuration(proxyBeanMethods = false)
+public class ThirdPartyConfiguration {
+    @Bean
+    @ConfigurationProperties(prefix = "another")
+    public AnotherComponent anotherComponent() {
+        return new AnotherComponent();
+    }
+}
+```
+Any JavaBean property defined with the another prefix is mapped onto that AnotherComponent bean
+
+- Relaxed Binding    
+
+@ConfigurationProperties(prefix = "my.main-project.person") can be mapped to
+
+| Property |	Note |
+|----------|---------|
+|my.main-project.person.first-name|Kebab case, which is recommended for use in .properties and .yml files.|
+|my.main-project.person.firstName|Standard camel case syntax.|
+|my.main-project.person.first_name|Underscore notation, which is an alternative format for use in .properties and .yml files.|
+|MY_MAINPROJECT_PERSON_FIRSTNAME|Upper case format, which is recommended when using system environment variables.|
     
     
 ### Profiles
