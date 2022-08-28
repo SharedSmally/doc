@@ -155,34 +155,7 @@ spring.task.scheduling.pool.size=2
 ```    
 Both a TaskExecutorBuilder bean and a TaskSchedulerBuilder bean are made available in the context if a custom executor or scheduler needs to be created.
 
-### Testing
-Two modules:    
-- spring-boot-test: contains core items
-- spring-boot-test-autoconfigure: supports auto-configuration for tests    
-    
-The **spring-boot-starter-test** Starter imports both Spring Boot test modules as well as JUnit Jupiter, AssertJ, Hamcrest, and a number of other useful libraries:
-- JUnit 5: The de-facto standard for unit testing Java applications.
-- Spring Test & Spring Boot Test: Utilities and integration test support for Spring Boot applications.
-- AssertJ: A fluent assertion library.
-- Hamcrest: A library of matcher objects (also known as constraints or predicates).
-- Mockito: A Java mocking framework.
-- JSONassert: An assertion library for JSON.
-- JsonPath: XPath for JSON.
-    
-To support JUnit4, add a dependency on **junit-vintage-engine** (hamcrest-core is excluded in favor of org.hamcrest:hamcrest):
-```
-<dependency>
-    <groupId>org.junit.vintage</groupId>
-    <artifactId>junit-vintage-engine</artifactId>
-    <scope>test</scope>
-    <exclusions>
-        <exclusion>
-            <groupId>org.hamcrest</groupId>
-            <artifactId>hamcrest-core</artifactId>
-        </exclusion>
-    </exclusions>
-</dependency>    
-```     
+  
 
     
     
