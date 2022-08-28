@@ -56,7 +56,7 @@ public class MyApplication {
 }
 ```
 **@EnableAutoConfiguration** tells Spring Boot to guess how to configure Spring based on the jar dependencies added. 
-**@SpringBootApplication** does more than @EnableAutoConfiguration does, it is a combination: and @SpringBootConfiguration(enable registration of extra beans in the context or the import of additional configuration classes) from @Configuration(for Java-based configuration on Spring framework), @ComponentScan(enable component scanning of components like @Controller), and @EnableAutoConfgiuration(allow for auto-configuration in Spring Boot application), .
+**@SpringBootApplication** does more than @EnableAutoConfiguration does, it is a combination: and **@SpringBootConfiguration**(enable registration of extra beans in the context or the import of additional configuration classes) from **@Configuration**(for Java-based configuration on Spring framework), **@ComponentScan**(enable component scanning of components like @Controller in current and sub-packages), and **@EnableAutoConfgiuration**(allow for auto-configuration in Spring Boot application).
 
 - Run the application
 ```shell
