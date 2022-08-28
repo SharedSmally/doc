@@ -17,6 +17,14 @@ Core,Cache,Mail,JSON,Data,Transaction,Data,Integration,Web,Templating,Server,Sec
 ## Tutorial
 
 
+## Components
+- [Developing setup](boot/boot.md)
+- [Core Features](boot/core.md)
+- [Data](boot/data.md)
+- [Web](boot/web.md)
+- [IO](boot/io.md) 
+- [Messaging](boot/message.md) 
+- [Misc](boot/misc.md) 
 
 ## Misc
 ### [Production-ready Features](https://docs.spring.io/spring-boot/docs/current/reference/html/actuator.html)
