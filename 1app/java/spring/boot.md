@@ -7,11 +7,10 @@ Auto Configuration based on Dependencies
 - [User Guide](https://docs.spring.io/spring-boot/docs/current/reference/html/)
 - [API Javadoc](https://docs.spring.io/spring-boot/docs/current/api/)
 - [Starters]()
-- [AutoConfig Properties](https://docs.spring.io/spring-boot/docs/current/reference/html/application-properties.html#appendix.application-properties)
+- [AutoConfig Properties](https://docs.spring.io/spring-boot/docs/current/reference/html/application-properties.html#appendix.application-properties): Properties for **Core, Cache, Mail, JSON, Data, Transaction, Data, Integration, Web, Templating, Server, Security, RSocket, Actuator, Devtools and
+Testing**.
     - [Auto-configuration Properties Classes](https://docs.spring.io/spring-boot/docs/current/reference/html/auto-configuration-classes.html#appendix.auto-configuration-classes)
 
-Includes Properties for **Core, Cache, Mail, JSON, Data, Transaction, Data, Integration, Web, Templating, Server, Security, RSocket, Actuator, Devtools and
-Testing**.
 
 
 
