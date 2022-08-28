@@ -246,13 +246,14 @@ Use a JNDI variable named java:comp/env/spring.application.json if deployed to a
 
 Spring Boot will automatically find and load **application.properties** and **application.yaml** files from the following locations:
 
-    - From the classpath
-         - The classpath root
-         - The classpath /config package
-    - From the current directory
-         - The current directory
-         - The /config subdirectory in the current directory
-         - Immediate child directories of the /config subdirectory
+     - From the classpath
+          - The classpath root
+          - The classpath /config package
+
+     - From the current directory
+          - The current directory
+          - The /config subdirectory in the current directory
+          - Immediate child directories of the /config subdirectory
 
 
 ### Profiles
