@@ -36,7 +36,7 @@ Core,Cache,Mail,JSON,Data,Transaction,Data,Integration,Web,Templating,Server,Sec
     </dependencies>
 
 - Application.java
-
+```java
     @RestController
     @EnableAutoConfiguration
     public class MyApplication {
@@ -46,6 +46,7 @@ Core,Cache,Mail,JSON,Data,Transaction,Data,Integration,Web,Templating,Server,Sec
             SpringApplication.run(MyApplication.class, args);
         }
     }
+```    
 - Run the application
 
     $ mvn spring-boot:run
