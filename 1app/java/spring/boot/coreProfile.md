@@ -52,8 +52,8 @@ By default Logback is used for logging when using the Starters.
 - logging.register-shutdown-hook=false/true: trigger log system cleanup when the JVM exits is provided.
 - logging.\*: Custom Log Configuration    
 - logback.xml or logback-spring.xml to config Logback configuration
-     - <springProfile>: include or exclude sections of configuration based on the active Spring profiles.
-     - <springProperty>: expose properties from the Spring Environment for use within Logback.
+     - \<springProfile\>: include or exclude sections of configuration based on the active Spring profiles.
+     - \<springProperty\>: expose properties from the Spring Environment for use within Logback.
 
 ### Internationalization
     
