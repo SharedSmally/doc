@@ -21,7 +21,7 @@ Core,Cache,Mail,JSON,Data,Transaction,Data,Integration,Web,Templating,Server,Sec
 - Install Build systems: Maven/Gradle
 - Install the Spring Boot CLI, use the command: **spring**
 - Create pom.xml:
-
+```xml
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
@@ -34,7 +34,7 @@ Core,Cache,Mail,JSON,Data,Transaction,Data,Integration,Web,Templating,Server,Sec
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
     </dependencies>
-
+```
 - Application.java
 ```java
     @RestController
