@@ -233,6 +233,7 @@ $ java -jar app.jar --name="Spring"
 By default, SpringApplication converts any command line option arguments (arguments starting with --, such as --server.port=9000) to a property and adds them to the Spring Environment. It can be disabled by using **SpringApplication.setAddCommandLineProperties(false)**.
 
 - JSON Application Properties
+
 When the application starts, any **spring.application.json** or **SPRING_APPLICATION_JSON** properties will be parsed and added to the Environment.
 ```
 $ SPRING_APPLICATION_JSON='{"my":{"name":"test"}}' java -jar myapp.jar
@@ -244,6 +245,7 @@ Use a JNDI variable named java:comp/env/spring.application.json if deployed to a
 - External Application Properties 
 
 Spring Boot will automatically find and load **application.properties** and **application.yaml** files from the following locations:
+
     - From the classpath
          - The classpath root
          - The classpath /config package
