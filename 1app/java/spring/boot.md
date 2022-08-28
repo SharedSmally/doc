@@ -8,24 +8,35 @@ Auto Configuration based on Dependencies
 - [API Javadoc](https://docs.spring.io/spring-boot/docs/current/api/)
 - [Starters]()
 - [AutoConfig Properties](https://docs.spring.io/spring-boot/docs/current/reference/html/application-properties.html#appendix.application-properties)
-    - Core Properties
-    - Cache Properties
-    - Mail Properties
-    - JSON Properties
-    - Data Properties
-    - Transaction Properties
-    - Data Migration Properties
-    - Integration Properties
-    - Web Properties
-    - Templating Properties
-    - Server Properties
-    - Security Properties
-    - RSocket Properties
-    - Actuator Properties
-    - Devtools Properties
-    - Testing Properties
+Includes Properties for **Core, Cache, Mail, JSON, Data, Transaction, Data, Integration, Web, Templating, Server, Security, RSocket, Actuator, Devtools and
+Testing**.
+
+
 
 ## Tutorial
 -
 
-## 
+## Properties
+
+    import org.springframework.boot.context.properties.ConfigurationProperties;
+    import org.springframework.boot.context.properties.DeprecatedConfigurationProperty;
+
+    @ConfigurationProperties("my.app")
+    public class MyProperties {
+        private String name;
+        public String getName() {
+            return this.name;
+        }
+        public void setName(String name) {
+            this.name = name;
+        }
+        @Deprecated
+        @DeprecatedConfigurationProperty(replacement = "my.app.name")
+        public String getTarget() {
+            return this.name;
+        }
+        @Deprecated
+        public void setTarget(String target) {
+            this.name = target;
+        }
+    }
