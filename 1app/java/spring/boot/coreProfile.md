@@ -159,8 +159,17 @@ Both a TaskExecutorBuilder bean and a TaskSchedulerBuilder bean are made availab
 Two modules:    
 - spring-boot-test: contains core items
 - spring-boot-test-autoconfigure: supports auto-configuration for tests    
-The **spring-boot-starter-test** Starter imports both Spring Boot test modules as well as JUnit Jupiter, AssertJ, Hamcrest, and a number of other useful libraries.    
-Add a dependency on **junit-vintage-engine** to support JUnit4(hamcrest-core is excluded in favor of org.hamcrest:hamcrest):
+    
+The **spring-boot-starter-test** Starter imports both Spring Boot test modules as well as JUnit Jupiter, AssertJ, Hamcrest, and a number of other useful libraries:
+- JUnit 5: The de-facto standard for unit testing Java applications.
+- Spring Test & Spring Boot Test: Utilities and integration test support for Spring Boot applications.
+- AssertJ: A fluent assertion library.
+- Hamcrest: A library of matcher objects (also known as constraints or predicates).
+- Mockito: A Java mocking framework.
+- JSONassert: An assertion library for JSON.
+- JsonPath: XPath for JSON.
+    
+To support JUnit4, add a dependency on **junit-vintage-engine** (hamcrest-core is excluded in favor of org.hamcrest:hamcrest):
 ```
 <dependency>
     <groupId>org.junit.vintage</groupId>
@@ -174,16 +183,6 @@ Add a dependency on **junit-vintage-engine** to support JUnit4(hamcrest-core is 
     </exclusions>
 </dependency>    
 ```     
-
-The **spring-boot-starter-test** Starter contains the following provided libraries:
-- JUnit 5: The de-facto standard for unit testing Java applications.
-- Spring Test & Spring Boot Test: Utilities and integration test support for Spring Boot applications.
-- AssertJ: A fluent assertion library.
-- Hamcrest: A library of matcher objects (also known as constraints or predicates).
-- Mockito: A Java mocking framework.
-- JSONassert: An assertion library for JSON.
-- JsonPath: XPath for JSON.
-
 
     
     
