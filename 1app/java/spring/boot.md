@@ -51,6 +51,10 @@ Core,Cache,Mail,JSON,Data,Transaction,Data,Integration,Web,Templating,Server,Sec
 ```shell
     $ mvn spring-boot:run
 ```
+or
+```shell
+    $ spring run
+```
 - Creating an Executable Jar
 ```xml
     <build>
