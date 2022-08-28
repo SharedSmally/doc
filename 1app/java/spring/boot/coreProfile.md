@@ -41,3 +41,19 @@ Use *--spring.profiles.active=production* to active the *production*, *proddb* a
 The active profiles can be set by calling SpringApplication.setAdditionalProfiles() before the application runs, or Spring’s ConfigurableEnvironment interface.
 
 ### Logging
+
+By default Logback is used for logging when using the Starters. 
+
+- spring.output.ansi.enabled: support ANSI, color output
+- logging.file.name or logging.file.path: for logging File Output
+- logging.logback.rollingpolicy.\*: for File Rotation. Use the corresponding config files for other logging framework.
+- logging.level.<logger-name>=<level>: for Log Level: ERROR, WARN, INFO, DEBUG, or TRACE.
+- logging.group.xxx: for logging group, the group can be set using logging.level.xxx=<level>
+- logging.register-shutdown-hook=false/true: trigger log system cleanup when the JVM exits is provided.
+- logging.\*: Custom Log Configuration    
+- logback.xml or logback-spring.xml to config Logback configuration
+     - <springProfile>: include or exclude sections of configuration based on the active Spring profiles.
+     - <springProperty>: expose properties from the Spring Environment for use within Logback.
+
+### Internationalization
+    
