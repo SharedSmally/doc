@@ -306,6 +306,16 @@ The standard YAML multi-document syntax, **---**, is used for application.yml fi
     
 Conditionally activate a properties document using **spring.config.activate.\* **.    
     
+    - on-profile: A profile expression that must match for the document to be active.
+    - on-cloud-platform: The CloudPlatform that must be detected for the document to be active.
+```
+myprop=always-set
+#---
+spring.config.activate.on-cloud-platform=kubernetes
+spring.config.activate.on-profile=prod | staging
+myotherprop=sometimes-set
+```    
+    
     
 ### Profiles
 
