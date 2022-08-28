@@ -252,7 +252,60 @@ Spring Boot will automatically find and load **application.properties** and **ap
           - The /config subdirectory in the current directory
           - Immediate child directories of the /config subdirectory
 
+The configuration file name can be specified by **spring.config.name**, and location by **spring.config.location** (replace), **spring.config.additional-location**(add additional locations). The optional: means not mind if not exist. They must be defined as an environment property (typically an OS environment variable, a system property, or a command-line argument):
+```
+$ java -jar myproject.jar --spring.config.name=myproject
+$ java -jar myproject.jar 
+    --spring.config.location=\
+    optional:classpath:/default.properties,\
+    optional:classpath:/override.properties,\
+    optional:file:./custom-config/
+```
+Use the **spring.config.on-not-found=ignore** to ignore all ConfigDataLocationNotFoundExceptions and continue to start the application, either using SpringApplication.setDefaultProperties() or with a system/environment variable.
 
+Wildcard location, a config file location includes the * character for the last path segment, is expanded when the config is loaded so that immediate subdirectories are also checked. By default, Spring Boot includes **config/\*/** in the default search locations.
+
+A wildcard location must contain only one * and end with \*/ for search locations that are directories or \*/<filename> for search locations that are files.
+
+- Profile Specific Files
+    
+Spring Boot loads profile-specific files using the naming convention *application-{profile}*.
+
+- Importing Additional Data
+
+Application properties may import further config data from other locations using the *spring.config.import* property. Several locations can be specified under a single spring.config.import key.
+
+```
+    spring.config.import=optional:file:./dev.properties
+```
+When using k8s ConfigMaps and Secrets, uultiple files are written to a directory tree, with the filename becoming the ‘key’ and the contents becoming the ‘value’.
+```
+etc/
+  config/
+    myapp/
+      username
+      password
+    
+    spring.config.import=optional:configtree:/etc/config/   # inject myapp.username and myapp.password properties
+    spring.config.import=optional:configtree:/etc/config/*/ # import multiple config trees  
+```
+    
+- Property Placeholders in property files
+The standard ${name} property-placeholder syntax can be used anywhere within a value. It can specify a default value using a : to separate the default value from the property name, for example ${name:default}.
+```
+app.name=MyApp
+app.description=${app.name} is a Spring Boot application written by ${username:Unknown}
+```
+    
+- Working with Multi-Document Files
+    
+The standard YAML multi-document syntax, **---**, is used for application.yml files, and  #--- for application.properties.
+
+- Activation Properties
+    
+Conditionally activate a properties document using **spring.config.activate.\* **.    
+    
+    
 ### Profiles
 
 ### Logging
