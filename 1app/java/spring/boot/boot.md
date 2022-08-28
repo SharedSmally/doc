@@ -106,32 +106,3 @@ Open a web browser to localhost:8080
 
 ### [How-to Guides](https://docs.spring.io/spring-boot/docs/current/reference/html/howto.html)
 
-
-
-
-## [Properties](https://docs.spring.io/spring-boot/docs/current/reference/html/configuration-metadata.html#appendix.configuration-metadata) sample
-```java
-import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.boot.context.properties.DeprecatedConfigurationProperty;
-
-@ConfigurationProperties("my.app")
-public class MyProperties {
-    private String name;
-    public String getName() {
-        return this.name;
-    }
-    public void setName(String name) {
-        this.name = name;
-    }
-    @Deprecated
-    @DeprecatedConfigurationProperty(replacement = "my.app.name")
-    public String getTarget() {
-        return this.name;
-    }
-    @Deprecated
-    public void setTarget(String target) {
-        this.name = target;
-    }
-}
-```
-## Auto Configuration
