@@ -165,6 +165,7 @@ readinessProbe:
   periodSeconds: ...
 ```
     - Injecting the *ApplicationAvailability*
+
 Export the "Readiness" state of the application to a file so that a Kubernetes "exec Probe" can look at this file:
 ```java
 import org.springframework.boot.availability.AvailabilityChangeEvent;
@@ -212,8 +213,11 @@ public class MyLocalCacheVerifier {
 }
  ```
 - [Application Events and Listeners](https://docs.spring.io/spring-boot/docs/current/reference/html/features.html#features.spring-application.application-events-and-listeners)
+
 In addition to the usual Spring Framework events, such as ContextRefreshedEvent, a SpringApplication sends some additional application events. Some events are triggered before the ApplicationContext is created, the listener cannot be registered as a @Bean, but can register them with the SpringApplication.addListeners() method or the SpringApplicationBuilder.listeners() method.
+
 - Accessing Application Arguments
+
 Inject a org.springframework.boot.ApplicationArguments bean to access the application arguments that were passed to SpringApplication.run(). It can access  both the raw String[] arguments as well as parsed option and non-option arguments.
 ```java
 import java.util.List;
@@ -233,7 +237,9 @@ public class MyBean {
     }
 }
 ```
+
 - Use the ApplicationRunner or CommandLineRunner
+
 Implement the **ApplicationRunner**(as ApplicationArguments) or **CommandLineRunner**( a string array) interfaces to run some specific code once the SpringApplication has started, their run() method is called just before SpringApplication.run() completes.
 ```java
 import org.springframework.boot.CommandLineRunner;
@@ -250,6 +256,7 @@ public class MyCommandLineRunner implements CommandLineRunner {
 If must be called in a specific order, implement the *org.springframework.core.Ordered* interface or use the *org.springframework.core.annotation.Order* annotation.
 
 - Application Exit
+
 Each SpringApplication registers a shutdown hook with the JVM to ensure that the ApplicationContext closes gracefully on exit. All the standard Spring lifecycle callbacks (such as the DisposableBean interface or the @PreDestroy annotation) can be used.
 
 Beans may implement the org.springframework.boot.ExitCodeGenerator interface to return a specific exit code when SpringApplication.exit() is called.
@@ -266,12 +273,16 @@ public class MyApplication {
     }
 }
 ```
+
 - Admin Features
+
 Enable admin-related features to exposes the SpringApplicationAdminMXBean on the platform MBeanServer
 ```
 spring.application.admin.enabled=true
 ```
+
 - Application Startup tracking using ApplicationStartup (StartFlightRecording or BufferingApplicationStartup)
+
 ```java
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
