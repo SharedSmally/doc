@@ -16,7 +16,7 @@ Testing**.
 ## Tutorial
 -
 
-## Properties
+## [Properties](https://docs.spring.io/spring-boot/docs/current/reference/html/configuration-metadata.html#appendix.configuration-metadata)
 
     import org.springframework.boot.context.properties.ConfigurationProperties;
     import org.springframework.boot.context.properties.DeprecatedConfigurationProperty;
