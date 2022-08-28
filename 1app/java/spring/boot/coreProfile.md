@@ -57,3 +57,4 @@ By default Logback is used for logging when using the Starters.
 
 ### Internationalization
     
+By default, Spring Boot looks for the presence of a messages resource (**spring.messages.\***) bundle at the root of the classpath. See [MessageSourceProperties](https://github.com/spring-projects/spring-boot/blob/v2.7.3/spring-boot-project/spring-boot-autoconfigure/src/main/java/org/springframework/boot/autoconfigure/context/MessageSourceProperties.java) for more supported options.
