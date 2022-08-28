@@ -48,11 +48,11 @@ Core,Cache,Mail,JSON,Data,Transaction,Data,Integration,Web,Templating,Server,Sec
     }
 ```    
 - Run the application
-
+```shell
     $ mvn spring-boot:run
-
+```
 - Creating an Executable Jar
-
+```xml
     <build>
         <plugins>
             <plugin>
@@ -61,10 +61,11 @@ Core,Cache,Mail,JSON,Data,Transaction,Data,Integration,Web,Templating,Server,Sec
             </plugin>
         </plugins>
     </build>
-
+```
+```shell
     $ mvn package
     $ java -jar target/myproject-0.0.1-SNAPSHOT.jar
-
+```
 
     Best practices: Code Structure | @Configuration | @EnableAutoConfiguration | Beans and Dependency Injection
 
