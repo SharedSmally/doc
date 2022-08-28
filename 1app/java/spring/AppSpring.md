@@ -1,9 +1,7 @@
 # Spring
 ## Reference
 - [Site](https://spring.io/)
-- [Quick Start]()
-- [User Guide]()
-- [API Javadoc]()
+- [Quick Start](https://spring.io/quickstart)
 
 ## Features
 - **Microservices**
