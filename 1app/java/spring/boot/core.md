@@ -189,6 +189,69 @@ public class MyApplication {
 ```
 
 ### External Configuration
+Property values can be injected directly into beans by using the **@Value** annotation, accessed through Spring’s Environment abstraction, or be bound to structured objects through **@ConfigurationProperties**.
+
+- Default properties (specified by setting SpringApplication.setDefaultProperties).
+- @PropertySource annotations on the @Configuration classes. 
+- Config data (such as application.properties files).
+- A RandomValuePropertySource that has properties only in random.*.
+- OS environment variables.
+- Java System properties (System.getProperties()).
+- JNDI attributes from java:comp/env.
+- ServletContext init parameters.
+- ServletConfig init parameters.
+- Properties from SPRING_APPLICATION_JSON (inline JSON embedded in an environment variable or system property).
+- Command line arguments.
+- properties attribute on the tests. Available on @SpringBootTest and the test annotations for testing a particular slice of the application.
+- @TestPropertySource annotations on the tests.
+- Devtools global settings properties in the $HOME/.config/spring-boot directory when devtools is active.
+
+Config data files are considered in the following order:
+- Application properties packaged inside the jar (application.properties and YAML variants).
+- Profile-specific application properties packaged the your jar (application-{profile}.properties and YAML variants).
+- Application properties outside of the packaged jar (application.properties and YAML variants).
+- Profile-specific application properties outside of the packaged jar (application-{profile}.properties and YAML variants).
+
+```java
+@Component
+public class MyBean {
+    @Value("${name}")
+    private String name;
+    // ...
+}
+```
+In application.properties file:
+```
+name=Spring
+```
+or 
+```
+$ java -jar app.jar --name="Spring"
+```
+- Accessing Command Line Properties
+
+By default, SpringApplication converts any command line option arguments (arguments starting with --, such as --server.port=9000) to a property and adds them to the Spring Environment. It can be disabled by using **SpringApplication.setAddCommandLineProperties(false)**.
+
+- JSON Application Properties
+When the application starts, any **spring.application.json** or **SPRING_APPLICATION_JSON** properties will be parsed and added to the Environment.
+```
+$ SPRING_APPLICATION_JSON='{"my":{"name":"test"}}' java -jar myapp.jar
+$ java -Dspring.application.json='{"my":{"name":"test"}}' -jar myapp.jar
+$ java -jar myapp.jar --spring.application.json='{"my":{"name":"test"}}'
+```
+Use a JNDI variable named java:comp/env/spring.application.json if deployed to a classic Application Server.
+
+- External Application Properties 
+
+Spring Boot will automatically find and load **application.properties** and **application.yaml** files from the following locations:
+    - From the classpath
+         - The classpath root
+         - The classpath /config package
+    - From the current directory
+         - The current directory
+         - The /config subdirectory in the current directory
+         - Immediate child directories of the /config subdirectory
+
 
 ### Profiles
 
