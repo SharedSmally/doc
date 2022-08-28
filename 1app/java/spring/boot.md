@@ -46,7 +46,9 @@ Core,Cache,Mail,JSON,Data,Transaction,Data,Integration,Web,Templating,Server,Sec
             SpringApplication.run(MyApplication.class, args);
         }
     }
-```    
+```
+@EnableAutoConfiguration tells Spring Boot to guess how to configure Spring based on the jar dependencies added. 
+
 - Run the application
 ```shell
     $ mvn spring-boot:run
