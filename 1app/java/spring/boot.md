@@ -97,6 +97,10 @@ Open a web browser to localhost:8080
      - **@EnableAutoConfiguration/@SpringBootApplication**:attempts to automatically configure the Spring application based on the jar dependencies
 
 - Add Developer Tools, can be configured by *spring-boot-devtools.properties/yaml/yml*.
+     - Cache: can improve performance, the [cache options](https://docs.spring.io/spring-boot/docs/current/reference/html/using.html#using.devtools.property-defaults) are configured by settings in *application.properties* file.
+     - [Automatic Restart](https://docs.spring.io/spring-boot/docs/current/reference/html/using.html#using.devtools.restart):Triggered by the updating of the classpath, can be disabled, and set/exclude the trigger files/resources. 
+     - [Live Reload](https://docs.spring.io/spring-boot/docs/current/reference/html/using.html#using.devtools.livereload)
+     - [Remote Application](https://docs.spring.io/spring-boot/docs/current/reference/html/using.html#using.devtools.remote-applications)
 ```xml
     <dependency>
         <groupId>org.springframework.boot</groupId>
@@ -105,10 +109,6 @@ Open a web browser to localhost:8080
     </dependency>
 ```
 
-     - Cache: can improve performance, the [cache options](https://docs.spring.io/spring-boot/docs/current/reference/html/using.html#using.devtools.property-defaults) are configured by settings in *application.properties* file.
-     - [Automatic Restart](https://docs.spring.io/spring-boot/docs/current/reference/html/using.html#using.devtools.restart):Triggered by the updating of the classpath, can be disabled, and set/exclude the trigger files/resources. 
-     - [Live Reload](https://docs.spring.io/spring-boot/docs/current/reference/html/using.html#using.devtools.livereload)
-     - [Remote Application](https://docs.spring.io/spring-boot/docs/current/reference/html/using.html#using.devtools.remote-applications)
     
 ## [Boot](https://docs.spring.io/spring-boot/docs/current/reference/html/features.html)
 
