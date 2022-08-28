@@ -37,18 +37,26 @@ Core,Cache,Mail,JSON,Data,Transaction,Data,Integration,Web,Templating,Server,Sec
 ```
 - Application.java
 ```java
-    @RestController
-    @EnableAutoConfiguration
-    public class MyApplication {
-        @RequestMapping("/")
-        String home() {  return "Hello World!"; }
-        public static void main(String[] args) {
-            SpringApplication.run(MyApplication.class, args);
-        }
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+
+@RestController
+@EnableAutoConfiguration
+//disable AutoConfiguration using exclude or excludeName 
+//@SpringBootApplication(exclude = { DataSourceAutoConfiguration.class })
+public class MyApplication {
+    @RequestMapping("/")
+    String home() {  return "Hello World!"; }
+    public static void main(String[] args) {
+        SpringApplication.run(MyApplication.class, args);
     }
+}
 ```
 **@EnableAutoConfiguration** tells Spring Boot to guess how to configure Spring based on the jar dependencies added. 
-**@SpringBootApplication** does more than @EnableAutoConfiguration does, it is a combination: @Configuration(for Java-based configuration on Spring framework), @ComponentScan(enable component scanning of components like @Controller), and @EnableAutoConfgiuration(allow for auto-configuration in Spring Boot application).
+**@SpringBootApplication** does more than @EnableAutoConfiguration does, it is a combination: and @SpringBootConfiguration(enable registration of extra beans in the context or the import of additional configuration classes) from @Configuration(for Java-based configuration on Spring framework), @ComponentScan(enable component scanning of components like @Controller), and @EnableAutoConfgiuration(allow for auto-configuration in Spring Boot application), .
 
 - Run the application
 ```shell
@@ -79,7 +87,7 @@ Open a web browser to localhost:8080
      - @Configuration: build beans for the application. The class defining the main method is a good candidate as the primary @Configuration.
      - @Import: import additional configuration classes.
      - @ImportResource: load XML configuration files 
-     - @ComponentScan: automatically pick up all Spring components, including @Configuration classes.
+     - @ComponentScan: automatically pick up all Spring components, including @Configuration classes. All the application components (@Component, @Service, @Repository, @Controller, and others) are automatically registered as Spring Beans.
      - @EnableAutoConfiguration/@SpringBootApplication:attempts to automatically configure the Spring application based on the jar dependencies
 
 
