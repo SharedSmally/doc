@@ -291,6 +291,7 @@ etc/
 ```
     
 - Property Placeholders in property files
+
 The standard ${name} property-placeholder syntax can be used anywhere within a value. It can specify a default value using a : to separate the default value from the property name, for example ${name:default}.
 ```
 app.name=MyApp
