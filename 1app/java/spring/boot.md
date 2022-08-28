@@ -86,6 +86,7 @@ or
 ```shell
     $ mvn package
     $ java -jar target/myproject-0.0.1-SNAPSHOT.jar
+    $ java -jar target/myproject-0.0.1-SNAPSHOT.jar --debug   #  enable debug
 ```
 Open a web browser to localhost:8080
 
@@ -111,14 +112,50 @@ Open a web browser to localhost:8080
 
     
 ## [Boot](https://docs.spring.io/spring-boot/docs/current/reference/html/features.html)
+### Spring Application
+- Enable debug: *--debug*
+- Lazy Initialization: 
+    - *spring.main.lazy-initialization=true*
+    - *SpringApplicationBuilder.lazyInitialization/SpringApplication.setLazyInitialization* 
+    - *@Lazy(false)* for specific beans
+- Customize the Banner:
+    - A *banner.txt* and *banner.gif/jpg/png* in classpath or in *spring.banner.location*
+    - SpringApplication.setBanner() for org.springframework.boot.Banner
+- Customize SpringApplication
+```java
+import org.springframework.boot.Banner;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-    Spring Application: SpringApplication
+@SpringBootApplication
+public class MyApplication {
+    public static void main(String[] args) {
+        SpringApplication application = new SpringApplication(MyApplication.class);
+        application.setBannerMode(Banner.Mode.OFF);
+        application.run(args);
+    }
+```
+The constructor arguments passed to SpringApplication are configuration sources for Spring beans. 
+- Fluent Builder
+Use the SpringApplicationBuilder to build an ApplicationContext hierarchy (multiple contexts with a parent/child relationship) or others:
+```java
+new SpringApplicationBuilder()
+        .sources(Parent.class)
+        .child(Application.class)
+        .bannerMode(Banner.Mode.OFF)
+        .run(args);
+```
+- Application Availability for k8s
+    - Liveness State
+    - Readiness State
+    - Spring Boot *actuator* health endpoint groups
+    - Injecting the *ApplicationAvailability*
 
-    External Configuration: External Configuration
+### External Configuration
 
-    Profiles: Profiles
+### Profiles
 
-    Logging: Logging
+### Logging
 
 ## [Web](https://docs.spring.io/spring-boot/docs/current/reference/html/web.html)
 
