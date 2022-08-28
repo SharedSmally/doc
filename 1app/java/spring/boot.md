@@ -15,7 +15,21 @@ Core,Cache,Mail,JSON,Data,Transaction,Data,Integration,Web,Templating,Server,Sec
 - [Dependency Versions](https://docs.spring.io/spring-boot/docs/current/reference/html/dependency-versions.html#appendix.dependency-versions)
 
 ## Tutorial
--
+
+## Boot
+
+## Web
+
+## Data
+
+## Messaging
+
+## IO
+
+## Container Images
+
+## Misc
+
 
 ## [Properties](https://docs.spring.io/spring-boot/docs/current/reference/html/configuration-metadata.html#appendix.configuration-metadata) 
 
