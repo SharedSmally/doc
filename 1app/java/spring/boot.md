@@ -61,6 +61,12 @@ public class MyApplication {
 - Run the application
 ```shell
     $ mvn spring-boot:run
+    $ export MAVEN_OPTS=-Xmx1024m
+```
+or
+```shell
+    $ gradle bootRun
+    $ export JAVA_OPTS=-Xmx1024m
 ```
 or
 ```shell
@@ -83,14 +89,26 @@ or
 ```
 Open a web browser to localhost:8080
 
-- Configuration Classes
-     - @Configuration: build beans for the application. The class defining the main method is a good candidate as the primary @Configuration.
-     - @Import: import additional configuration classes.
-     - @ImportResource: load XML configuration files 
-     - @ComponentScan: automatically pick up all Spring components, including @Configuration classes. All the application components (@Component, @Service, @Repository, @Controller, and others) are automatically registered as Spring Beans.
-     - @EnableAutoConfiguration/@SpringBootApplication:attempts to automatically configure the Spring application based on the jar dependencies
+- Configuration Classes (@Depends)
+     - **@Configuration**: build beans for the application. The class defining the main method is a good candidate as the primary @Configuration.
+     - **@Import**: import additional configuration classes.
+     - **@ImportResource**: load XML configuration files 
+     - **@ComponentScan**: automatically pick up all Spring components, including @Configuration classes. All the application components (@Component, @Service, @Repository, @Controller, and others) are automatically registered as Spring Beans.
+     - **@EnableAutoConfiguration/@SpringBootApplication**:attempts to automatically configure the Spring application based on the jar dependencies
 
-
+- Add Developer Tools, can be configured by *spring-boot-devtools.properties/yaml/yml*.
+```xml
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-devtools</artifactId>
+        <optional>true</optional>
+    </dependency>
+```
+    - Cache: can improve performance, the [cache options](https://docs.spring.io/spring-boot/docs/current/reference/html/using.html#using.devtools.property-defaults) are configured by settings in *application.properties* file.
+    - [Automatic Restart](https://docs.spring.io/spring-boot/docs/current/reference/html/using.html#using.devtools.restart):Triggered by the updating of the classpath, can be disabled, and set/exclude the trigger files/resources. 
+    - [Live Reload](https://docs.spring.io/spring-boot/docs/current/reference/html/using.html#using.devtools.livereload)
+    - [Remote Application](https://docs.spring.io/spring-boot/docs/current/reference/html/using.html#using.devtools.remote-applications)
+    
 
     Best practices: Code Structure | @Configuration | @EnableAutoConfiguration | Beans and Dependency Injection
 
