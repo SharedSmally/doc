@@ -526,8 +526,140 @@ Any JavaBean property defined with the another prefix is mapped onto that Anothe
 |my.main-project.person.firstName|Standard camel case syntax.|
 |my.main-project.person.first_name|Underscore notation, which is an alternative format for use in .properties and .yml files.|
 |MY_MAINPROJECT_PERSON_FIRSTNAME|Upper case format, which is recommended when using system environment variables.|
-    
-    
-### Profiles
 
-### Logging
+When binding to Map properties, need to use a special bracket notation so that the original key value is preserved. If the key is not surrounded by [], any characters that are not alpha-numeric, - or . are removed.
+```
+my.map.[/key1]=value1
+my.map.[/key2]=value2
+my.map./key3=value3    
+```    
+    
+To convert a property name in the canonical-form to an environment variable name:
+     - Replace dots (.) with underscores (_).
+     - Remove any dashes (-).
+     - Convert to uppercase.
+
+To bind to a List, the element number should be surrounded with underscores in the variable name. For example, the configuration property my.service[0].other would use an environment variable named MY_SERVICE_0_OTHER.
+
+- Duration for java.time.Duration
+
+Use the following formats:
+    - A regular long representation (using milliseconds as the default unit unless a @DurationUnit has been specified)
+    - The standard ISO-8601 format used by java.time.Duration
+    - A more readable format where the value and the unit are coupled (10s means 10 seconds, ns,us,ms,s,m,h,d)
+```
+import java.time.Duration;
+import java.time.temporal.ChronoUnit;
+
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.boot.context.properties.ConstructorBinding;
+import org.springframework.boot.context.properties.bind.DefaultValue;
+import org.springframework.boot.convert.DurationUnit;
+
+@ConfigurationProperties("my")
+@ConstructorBinding
+public class MyProperties {
+    // fields...
+    private final Duration sessionTimeout;
+    private final Duration readTimeout;
+
+    public MyProperties(@DurationUnit(ChronoUnit.SECONDS) @DefaultValue("30s") Duration sessionTimeout,
+            @DefaultValue("1000ms") Duration readTimeout) {
+        this.sessionTimeout = sessionTimeout;
+        this.readTimeout = readTimeout;
+    }
+
+    // getters...
+    public Duration getSessionTimeout() {
+        return this.sessionTimeout;
+    }
+
+    public Duration getReadTimeout() {
+        return this.readTimeout;
+    }
+}
+```
+    
+- Period for java.time.Period   
+
+Use the following formats:    
+     - An regular int representation (using days as the default unit unless a @PeriodUnit has been specified)
+     - The standard ISO-8601 format used by java.time.Period
+     - A simpler format where the value and the unit pairs are coupled (1y3d means 1 year and 3 days; y,w,m,d)
+
+- Data Sizes for DataSize
+
+Use the following formats:    
+     - A regular long representation (using bytes as the default unit unless a @DataSizeUnit has been specified)
+     - A more readable format where the value and the unit are coupled (10MB means 10 megabytes; B,KB,MB,GB,TB)
+```
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.boot.context.properties.ConstructorBinding;
+import org.springframework.boot.context.properties.bind.DefaultValue;
+import org.springframework.boot.convert.DataSizeUnit;
+import org.springframework.util.unit.DataSize;
+import org.springframework.util.unit.DataUnit;
+
+@ConfigurationProperties("my")
+@ConstructorBinding
+public class MyProperties {
+    // fields...
+    private final DataSize bufferSize;
+    private final DataSize sizeThreshold;
+    public MyProperties(@DataSizeUnit(DataUnit.MEGABYTES) @DefaultValue("2MB") DataSize bufferSize,
+            @DefaultValue("512B") DataSize sizeThreshold) {
+        this.bufferSize = bufferSize;
+        this.sizeThreshold = sizeThreshold;
+    }
+
+    // getters...
+    public DataSize getBufferSize() {
+        return this.bufferSize;
+    }
+    public DataSize getSizeThreshold() {
+        return this.sizeThreshold;
+    }
+}
+```    
+
+- @ConfigurationProperties Validation    
+
+Spring Boot attempts to validate @ConfigurationProperties classes whenever they are annotated with Spring’s @Validated annotation. 
+
+```
+@ConfigurationProperties("my.service")
+@Validated
+public class MyProperties {
+    @NotNull
+    private InetAddress remoteAddress;
+
+    @Valid
+    private final Security security = new Security();
+
+    // getters/setters...
+    public InetAddress getRemoteAddress() {
+        return this.remoteAddress;
+    }
+
+    public void setRemoteAddress(InetAddress remoteAddress) {
+        this.remoteAddress = remoteAddress;
+    }
+
+    public Security getSecurity() {
+        return this.security;
+    }
+
+    public static class Security {
+        @NotEmpty
+        private String username;
+
+        // getters/setters...
+        public String getUsername() {
+            return this.username;
+        }
+        public void setUsername(String username) {
+            this.username = username;
+        }
+    }
+}    
+```    
