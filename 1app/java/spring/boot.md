@@ -8,6 +8,8 @@ Auto Configuration based on Dependencies
 - [API Javadoc](https://docs.spring.io/spring-boot/docs/current/api/)
 - [Starters]()
 - [AutoConfig Properties](https://docs.spring.io/spring-boot/docs/current/reference/html/application-properties.html#appendix.application-properties)
+    - [Auto-configuration Properties Classes](https://docs.spring.io/spring-boot/docs/current/reference/html/auto-configuration-classes.html#appendix.auto-configuration-classes)
+
 Includes Properties for **Core, Cache, Mail, JSON, Data, Transaction, Data, Integration, Web, Templating, Server, Security, RSocket, Actuator, Devtools and
 Testing**.
 
@@ -16,7 +18,7 @@ Testing**.
 ## Tutorial
 -
 
-## [Properties](https://docs.spring.io/spring-boot/docs/current/reference/html/configuration-metadata.html#appendix.configuration-metadata)
+## [Properties](https://docs.spring.io/spring-boot/docs/current/reference/html/configuration-metadata.html#appendix.configuration-metadata) 
 
     import org.springframework.boot.context.properties.ConfigurationProperties;
     import org.springframework.boot.context.properties.DeprecatedConfigurationProperty;
