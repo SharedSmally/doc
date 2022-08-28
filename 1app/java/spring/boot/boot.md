@@ -1,6 +1,6 @@
 # Spring Boot
 
-## [Developing](https://docs.spring.io/spring-boot/docs/current/reference/html/using.html#using)
+## [Developing Env Setup](https://docs.spring.io/spring-boot/docs/current/reference/html/using.html#using)
 - Install Build systems: Maven/Gradle
 - Install the Spring Boot CLI(*spring-boot-cli*), use the command: **spring grab|help|jar|run|test|version**
 - Create pom.xml:
