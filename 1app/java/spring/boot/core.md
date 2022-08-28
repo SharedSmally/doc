@@ -243,8 +243,7 @@ $ java -jar myapp.jar --spring.application.json='{"my":{"name":"test"}}'
 Use a JNDI variable named java:comp/env/spring.application.json if deployed to a classic Application Server.
 
 - External Application Properties 
-
-Spring Boot will automatically find and load **application.properties** and **application.yaml** files from the following locations:
+    Spring Boot will automatically find and load **application.properties** and **application.yaml** files from the following locations:
      - From the classpath
           - The classpath root
           - The classpath /config package
