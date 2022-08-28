@@ -17,7 +17,7 @@ Core,Cache,Mail,JSON,Data,Transaction,Data,Integration,Web,Templating,Server,Sec
 ## Tutorial
 
 
-## Develop Tool
+## Developing
 - Install Build systems: Maven/Gradle
 - Install the Spring Boot CLI(*spring-boot-cli*), use the command: **spring grab|help|jar|run|test|version**
 - Create pom.xml:
@@ -104,21 +104,13 @@ Open a web browser to localhost:8080
         <optional>true</optional>
     </dependency>
 ```
-    - Cache: can improve performance, the [cache options](https://docs.spring.io/spring-boot/docs/current/reference/html/using.html#using.devtools.property-defaults) are configured by settings in *application.properties* file.
-    - [Automatic Restart](https://docs.spring.io/spring-boot/docs/current/reference/html/using.html#using.devtools.restart):Triggered by the updating of the classpath, can be disabled, and set/exclude the trigger files/resources. 
-    - [Live Reload](https://docs.spring.io/spring-boot/docs/current/reference/html/using.html#using.devtools.livereload)
-    - [Remote Application](https://docs.spring.io/spring-boot/docs/current/reference/html/using.html#using.devtools.remote-applications)
+
+     - Cache: can improve performance, the [cache options](https://docs.spring.io/spring-boot/docs/current/reference/html/using.html#using.devtools.property-defaults) are configured by settings in *application.properties* file.
+     - [Automatic Restart](https://docs.spring.io/spring-boot/docs/current/reference/html/using.html#using.devtools.restart):Triggered by the updating of the classpath, can be disabled, and set/exclude the trigger files/resources. 
+     - [Live Reload](https://docs.spring.io/spring-boot/docs/current/reference/html/using.html#using.devtools.livereload)
+     - [Remote Application](https://docs.spring.io/spring-boot/docs/current/reference/html/using.html#using.devtools.remote-applications)
     
-
-    Best practices: Code Structure | @Configuration | @EnableAutoConfiguration | Beans and Dependency Injection
-
-    Running your code: IDE | Packaged | Maven | Gradle
-
-    Packaging your app: Production jars
-
-    Spring Boot CLI: Using the CLI
-    
-## Boot
+## [Boot](https://docs.spring.io/spring-boot/docs/current/reference/html/features.html)
 
     Spring Application: SpringApplication
 
@@ -128,7 +120,7 @@ Open a web browser to localhost:8080
 
     Logging: Logging
 
-## Web
+## [Web](https://docs.spring.io/spring-boot/docs/current/reference/html/web.html)
 
 
     Servlet Web Applications: Spring MVC, Jersey, Embedded Servlet Containers
@@ -144,7 +136,7 @@ Open a web browser to localhost:8080
     Spring HATEOAS: Auto-configuration for Spring HATEOAS
 
 
-## Data
+## [Data](https://docs.spring.io/spring-boot/docs/current/reference/html/data.html)
 
 
     SQL: Configuring a SQL Datastore, Embedded Database support, Connection pools, and more.
@@ -152,7 +144,7 @@ Open a web browser to localhost:8080
     NOSQL: Auto-configuration for NOSQL stores such as Redis, MongoDB, Neo4j, and others.
 
 
-## Messaging
+## [Messaging](https://docs.spring.io/spring-boot/docs/current/reference/html/messaging.html)
 
 
     JMS: Auto-configuration for ActiveMQ and Artemis, Sending and Receiving messages through JMS
@@ -166,7 +158,7 @@ Open a web browser to localhost:8080
     Spring Integration: Auto-configuration for Spring Integration
 
 
-## IO
+## [IO](https://docs.spring.io/spring-boot/docs/current/reference/html/io.html)
 
 
     Caching: Caching support EhCache, Hazelcast, Infinispan and more
@@ -184,9 +176,20 @@ Open a web browser to localhost:8080
     JTA: Distributed Transactions with JTA
 
 
-## Container Images
+## [Container Images](https://docs.spring.io/spring-boot/docs/current/reference/html/container-images.html)
 
 ## Misc
+### [Production-ready Features](https://docs.spring.io/spring-boot/docs/current/reference/html/actuator.html)
+
+### [Deploying Spring Boot Applications](https://docs.spring.io/spring-boot/docs/current/reference/html/deployment.html)
+
+### [Spring Boot CLI](https://docs.spring.io/spring-boot/docs/current/reference/html/cli.html)
+
+### [Build Tool Plugins](https://docs.spring.io/spring-boot/docs/current/reference/html/build-tool-plugins.html)
+
+### [How-to Guides](https://docs.spring.io/spring-boot/docs/current/reference/html/howto.html)
+
+
 
 
 ## [Properties](https://docs.spring.io/spring-boot/docs/current/reference/html/configuration-metadata.html#appendix.configuration-metadata) sample
