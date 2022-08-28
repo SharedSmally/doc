@@ -34,10 +34,10 @@ Integrate with your enterprise. React to business events. Act on your streaming 
 Automated tasks. Offline processing of data at a time to suit you.
 
 ## Components
-- Framework
-- Boot
-- Data
-- Web
+- Framework: IoC, interfaces on different implementations
+- Boot: Start point for Application
+- Data: Data Access Layer
+- Web: User Interface
 - Cloud
 - Misc
 
