@@ -1,21 +1,4 @@
 # Spring Boot
-Auto Configuration based on Dependencies
-
-## Reference
-- [Site](https://spring.io/projects/spring-boot/)
-- [Quick Start](https://spring.io/quickstart)
-- [User Guide](https://docs.spring.io/spring-boot/docs/current/reference/html/)
-- [API Javadoc](https://docs.spring.io/spring-boot/docs/current/api/)
-- [Starters](https://docs.spring.io/spring-boot/docs/current/reference/html/using.html#using.build-systems.starters): spring-boot-starter-\*, a set of convenient dependency descriptors that can be included in the application. 
-- [AutoConfig Properties](https://docs.spring.io/spring-boot/docs/current/reference/html/application-properties.html#appendix.application-properties):
-Core,Cache,Mail,JSON,Data,Transaction,Data,Integration,Web,Templating,Server,Security,RSocket,Actuator,Devtools and Testing.
-- [Auto-configuration Classes](https://docs.spring.io/spring-boot/docs/current/reference/html/auto-configuration-classes.html#appendix.auto-configuration-classes)
-- [Test Auto Configuration Annotations](https://docs.spring.io/spring-boot/docs/current/reference/html/test-auto-configuration.html#appendix.test-auto-configuration):
-@DataCassandraTest,@DataCouchbaseTest,@DataElasticsearchTest,@DataJdbcTest,@DataJpaTest,@DataLdapTest,@DataMongoTest,@DataNeo4jTest,@DataR2dbcTest,@DataRedisTest,@GraphQlTest,@JdbcTest,@JooqTest,@JsonTest,@RestClientTest,@WebFluxTest,@WebMvcTest,@WebServiceClientTest,@WebServiceServerTest
-- [Dependency Versions](https://docs.spring.io/spring-boot/docs/current/reference/html/dependency-versions.html#appendix.dependency-versions)
-
-## Tutorial
-
 
 ## Developing
 - Install Build systems: Maven/Gradle
@@ -110,65 +93,7 @@ Open a web browser to localhost:8080
     </dependency>
 ```
 
- 
 
-## [Web](https://docs.spring.io/spring-boot/docs/current/reference/html/web.html)
-
-
-    Servlet Web Applications: Spring MVC, Jersey, Embedded Servlet Containers
-
-    Reactive Web Applications: Spring Webflux, Embedded Servlet Containers
-
-    Graceful Shutdown: Graceful Shutdown
-
-    Spring Security: Default Security Configuration, Auto-configuration for OAuth2, SAML
-
-    Spring Session: Auto-configuration for Spring Session
-
-    Spring HATEOAS: Auto-configuration for Spring HATEOAS
-
-
-## [Data](https://docs.spring.io/spring-boot/docs/current/reference/html/data.html)
-
-
-    SQL: Configuring a SQL Datastore, Embedded Database support, Connection pools, and more.
-
-    NOSQL: Auto-configuration for NOSQL stores such as Redis, MongoDB, Neo4j, and others.
-
-
-## [Messaging](https://docs.spring.io/spring-boot/docs/current/reference/html/messaging.html)
-
-
-    JMS: Auto-configuration for ActiveMQ and Artemis, Sending and Receiving messages through JMS
-
-    AMQP: Auto-configuration for RabbitMQ
-
-    Kafka: Auto-configuration for Spring Kafka
-
-    RSocket: Auto-configuration for Spring Framework’s RSocket Support
-
-    Spring Integration: Auto-configuration for Spring Integration
-
-
-## [IO](https://docs.spring.io/spring-boot/docs/current/reference/html/io.html)
-
-
-    Caching: Caching support EhCache, Hazelcast, Infinispan and more
-
-    Quartz: Quartz Scheduling
-
-    Mail: Sending Email
-
-    Validation: JSR-303 Validation
-
-    REST Clients: Calling REST Services with RestTemplate and WebClient
-
-    Webservices: Auto-configuration for Spring Web Services
-
-    JTA: Distributed Transactions with JTA
-
-
-## [Container Images](https://docs.spring.io/spring-boot/docs/current/reference/html/container-images.html)
 
 ## Misc
 ### [Production-ready Features](https://docs.spring.io/spring-boot/docs/current/reference/html/actuator.html)
