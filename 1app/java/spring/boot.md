@@ -6,7 +6,7 @@ Auto Configuration based on Dependencies
 - [Quick Start](https://spring.io/quickstart)
 - [User Guide](https://docs.spring.io/spring-boot/docs/current/reference/html/)
 - [API Javadoc](https://docs.spring.io/spring-boot/docs/current/api/)
-- [Starters]()
+- [Starters](https://docs.spring.io/spring-boot/docs/current/reference/html/using.html#using.build-systems.starters): spring-boot-starter-\*, a set of convenient dependency descriptors that can be included in the application. 
 - [AutoConfig Properties](https://docs.spring.io/spring-boot/docs/current/reference/html/application-properties.html#appendix.application-properties):
 Core,Cache,Mail,JSON,Data,Transaction,Data,Integration,Web,Templating,Server,Security,RSocket,Actuator,Devtools and Testing.
 - [Auto-configuration Classes](https://docs.spring.io/spring-boot/docs/current/reference/html/auto-configuration-classes.html#appendix.auto-configuration-classes)
@@ -19,7 +19,7 @@ Core,Cache,Mail,JSON,Data,Transaction,Data,Integration,Web,Templating,Server,Sec
 
 ## Develop Tool
 - Install Build systems: Maven/Gradle
-- Install the Spring Boot CLI, use the command: **spring**
+- Install the Spring Boot CLI(*spring-boot-cli*), use the command: **spring grab|help|jar|run|test|version**
 - Create pom.xml:
 ```xml
     <parent>
