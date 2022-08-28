@@ -47,12 +47,8 @@ Core,Cache,Mail,JSON,Data,Transaction,Data,Integration,Web,Templating,Server,Sec
         }
     }
 ```
-@EnableAutoConfiguration tells Spring Boot to guess how to configure Spring based on the jar dependencies added. 
-@SpringBootApplication does more than @EnableAutoConfiguration does, it is a combination: @Configuration(for Java-based configuration on Spring framework), @ComponentScan(enable component scanning of components like @Controller), and @EnableAutoConfgiuration(allow for auto-configuration in Spring Boot application).
-
-Read more: https://www.java67.com/2018/05/difference-between-springbootapplication-vs-EnableAutoConfiguration-annotations-Spring-Boot.html#ixzz7dGj7T0q5
-
-
+**@EnableAutoConfiguration** tells Spring Boot to guess how to configure Spring based on the jar dependencies added. 
+**@SpringBootApplication** does more than @EnableAutoConfiguration does, it is a combination: @Configuration(for Java-based configuration on Spring framework), @ComponentScan(enable component scanning of components like @Controller), and @EnableAutoConfgiuration(allow for auto-configuration in Spring Boot application).
 
 - Run the application
 ```shell
