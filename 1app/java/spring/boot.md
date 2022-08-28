@@ -75,6 +75,14 @@ or
 ```
 Open a web browser to localhost:8080
 
+- Configuration Classes
+     - @Configuration: build beans for the application. The class defining the main method is a good candidate as the primary @Configuration.
+     - @Import: import additional configuration classes.
+     - @ImportResource: load XML configuration files 
+     - @ComponentScan: automatically pick up all Spring components, including @Configuration classes.
+     - @EnableAutoConfiguration/@SpringBootApplication:attempts to automatically configure the Spring application based on the jar dependencies
+
+
 
     Best practices: Code Structure | @Configuration | @EnableAutoConfiguration | Beans and Dependency Injection
 
