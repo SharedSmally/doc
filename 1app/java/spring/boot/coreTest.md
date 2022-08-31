@@ -1,5 +1,7 @@
 # Spring Boot
 ## Spring Core Features
+- [Guide to Test a Spring Boot App](https://howtodoinjava.com/spring-boot2/testing/spring-boot-2-junit-5/)
+- [EasyMock](https://www.baeldung.com/easymock)
 
 ### [Test](https://docs.spring.io/spring-boot/docs/current/reference/html/features.html#features.testing)
 Two modules:    
@@ -29,6 +31,61 @@ To support JUnit4, add a dependency on **junit-vintage-engine** (hamcrest-core i
     </exclusions>
 </dependency>    
 ``` 
+
+## Test 
+-  Unit Testing the REST Controller: @WebMvcTest and mock the service layer
+```
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+ 
+import java.util.Arrays;
+import java.util.List;
+ 
+import org.hamcrest.Matchers;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mockito;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
+import org.springframework.test.web.servlet.MockMvc;
+ 
+import com.howtodoinjava.employees.model.Employee;
+import com.howtodoinjava.employees.services.EmployeeService;
+ 
+@ExtendWith(SpringExtension.class)
+@WebMvcTest(EmployeeController.class)
+public class StandaloneControllerTests {
+  @MockBean  EmployeeService employeeService;
+  @Autowired  MockMvc mockMvc;
+  @Test  public void testfindAll() throws Exception {
+    Employee employee = new Employee("Lokesh", "Gupta");
+    List<Employee> employees = Arrays.asList(employee);
+    Mockito.when(employeeService.findAll()).thenReturn(employees);
+    mockMvc.perform(get("/employee"))
+        .andExpect(status().isOk())
+        .andExpect(jsonPath("$", Matchers.hasSize(1)))
+        .andExpect(jsonPath("$[0].firstName", Matchers.is("Lokesh")));
+  }
+}
+
+```
+- Unit Testing the Service Layer: mock the DAO layer, and  @InjectMocks the Service layer.
+```
+
+```
+-  Unit testing DAO / Repository Layer:
+
+### Annotaions
+- **@DataJpaTest**: disables full auto-configuration except for JPA tests. @Autowired the repository.
+- **@Mock**:creates mock in mockit/easymock
+- **@TestSubject**: object to be tested
+- **@Autowired**: auto get Bean from Spring application context
+- **@InjectMocks**: creates actual objects and injects mocked dependencies into it.
+- **@MockBean** to add mock objects to the Spring application context.  
+
 
 #### Auto Configuration
 Auto-configuration can be associated to a starter that provides the auto-configuration code as well as the typical libraries that you would use with it.
