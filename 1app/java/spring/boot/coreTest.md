@@ -32,6 +32,121 @@ To support JUnit4, add a dependency on **junit-vintage-engine** (hamcrest-core i
 </dependency>    
 ``` 
 
+## [Test Web Application](https://spring.io/guides/gs/testing-web/)
+- Simple sanity check test that will fail if the application context cannot start.
+```
+import static org.assertj.core.api.Assertions.assertThat;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+
+@SpringBootTest
+public class SmokeTest {
+	@Autowired
+	private HomeController controller;
+
+	@Test
+	public void contextLoads() throws Exception {
+		assertThat(controller).isNotNull();
+	}
+}
+```
+The application context is cached between tests, can use @DirtiesContext to control the cache.
+
+- Start the application to listen for a connection, then send an HTTP request and assert the response
+```
+import static org.assertj.core.api.Assertions.assertThat;
+import org.junit.jupiter.api.Test;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
+import org.springframework.boot.test.web.client.TestRestTemplate;
+import org.springframework.boot.web.server.LocalServerPort;
+
+@SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
+public class HttpRequestTest {
+	@LocalServerPort
+	private int port;
+	@Autowired
+	private TestRestTemplate restTemplate; //Spring Boot provides a TestRestTemplate
+
+	@Test
+	public void greetingShouldReturnDefaultMessage() throws Exception {
+		assertThat(this.restTemplate.getForObject("http://localhost:" + port + "/",
+				String.class)).contains("Hello, World");
+	}
+}
+```
+- Start full Sprimg application context without the server, and test only the web layer 
+```
+import org.junit.jupiter.api.Test;
+
+import static org.hamcrest.Matchers.containsString;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.*; //print,content,status;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.web.servlet.MockMvc;
+
+@SpringBootTest
+@AutoConfigureMockMvc
+public class TestingWebApplicationTest {
+	@Autowired
+	private MockMvc mockMvc;
+
+	@Test
+	public void shouldReturnDefaultMessage() throws Exception {
+		this.mockMvc.perform(get("/")).andDo(print()).andExpect(status().isOk())
+				.andExpect(content().string(containsString("Hello, World")));
+	}
+}
+```
+- Instantiates only the web layer rather than the whole context using @WebMvcTest
+```
+@WebMvcTest   #@WebMvcTest(HomeController.class) for specific Controller
+public class WebLayerTest {
+	@Autowired
+	private MockMvc mockMvc;
+
+	@Test
+	public void shouldReturnDefaultMessage() throws Exception {
+		this.mockMvc.perform(get("/")).andDo(print()).andExpect(status().isOk())
+				.andExpect(content().string(containsString("Hello, World")));
+	}
+}
+```
+- Automatically injects the service dependency into the controller 
+```
+import org.junit.jupiter.api.Test;
+
+import static org.hamcrest.Matchers.containsString;
+import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.*; //print,content,status;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.test.web.servlet.MockMvc;
+
+@WebMvcTest(GreetingController.class)
+public class WebMockTest {
+	@Autowired
+	private MockMvc mockMvc;
+	@MockBean
+	private GreetingService service;
+	@Test
+	public void greetingShouldReturnMessageFromService() throws Exception {
+		when(service.greet()).thenReturn("Hello, Mock");
+		this.mockMvc.perform(get("/greeting")).andDo(print()).andExpect(status().isOk())
+				.andExpect(content().string(containsString("Hello, Mock")));
+	}
+}
+```
+
 ## Test 
 -  Unit Testing the REST Controller: @WebMvcTest and mock the service layer
 ```
