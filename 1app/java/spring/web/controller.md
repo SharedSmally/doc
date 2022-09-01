@@ -69,8 +69,80 @@ public String getBarBySimplePathWithRequestParam(@RequestParam("id") long id)
 public ResponseEntity<?> getBazz(@PathVariable String id){}
 ```
 
-### [RequestBody](https://www.baeldung.com/spring-request-response-body)**: method parameter
-for automatic deserialization of the inbound HttpRequest body (default in json format) onto a Java object
+### [InitBinder](https://www.logicbig.com/tutorials/spring-framework/spring-web-mvc/spring-custom-property-editor.html)
+Used with the methods which initializes WebDataBinder and as a preprocessor for each request coming to the controller.
+
+```
+@Controller
+public class MyController{
+ # void method with one parameter as WebDataBinder to register custom formatter, validators and PropertyEditors
+ @InitBinder
+ @InitBinder("user") #
+ public void customizeBinding (WebDataBinder binder, ......) {  
+ }
+   ....
+}
+```
+The Model class with custom validatioin:
+```
+  public class User {
+    private Long id;
+
+    @Size(min = 5, max = 20)
+    private String name;
+
+    @Size(min = 6, max = 15)
+    @Pattern(regexp = "\\S+", message = "Spaces are not allowed")
+    private String password;
+
+    @NotEmpty
+    @Email
+    private String emailAddress;
+
+    @NotNull
+    private Date dateOfBirth;
+ }
+```
+Using InitBinder to validate the input in BindingResult:
+```
+@Controller
+@RequestMapping("/register")
+public class UserRegistrationController {
+    @Autowired
+    private UserService userService;
+
+    @InitBinder("user")
+    public void customizeBinding (WebDataBinder binder) {
+        SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd");
+        dateFormatter.setLenient(false);
+        binder.registerCustomEditor(Date.class, "dateOfBirth", new CustomDateEditor(dateFormatter, true));
+    }
+
+    @RequestMapping(method = RequestMethod.GET)
+    public String handleGetRequest (Model model) {
+        model.addAttribute("user", new User());
+        return "user-registration";
+    }
+
+    @RequestMapping(method = RequestMethod.POST)
+    public String handlePostRequest (@Valid @ModelAttribute("user") User user,
+                                     BindingResult bindingResult, Model model) {
+        if (bindingResult.hasErrors()) {
+            return "user-registration";
+        }
+
+        userService.saveUser(user);
+        model.addAttribute("users", userService.getAllUsers());
+        return "registration-done";
+    }
+}
+```
+
+The @InitBinder annotated methods will get called on each HTTP request if nt specify the 'value' element. Each time this method is called a new instance of WebDataBinder is passed to it.
+
+
+### [RequestBody](https://www.baeldung.com/spring-request-response-body): 
+method parameter for automatic deserialization of the inbound HttpRequest body (default in json format) onto a Java object
 ```
 @PostMapping("/request")
 public ResponseEntity postController(@RequestBody LoginForm loginForm) {
