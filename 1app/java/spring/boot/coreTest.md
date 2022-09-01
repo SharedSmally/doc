@@ -225,14 +225,30 @@ public class StandaloneControllerTests {
 -  Unit testing DAO / Repository Layer:
 
 ### Annotaions
-- **@DataJpaTest**: disables full auto-configuration except for JPA tests. @Autowired the repository.
+- **@TestSubject**: object to be tested from junit
 - **@Mock**:creates mock in mockit/easymock
-- **@TestSubject**: object to be tested
-- **@Autowired**: auto get Bean from Spring application context
 - **@InjectMocks**: creates actual objects and injects mocked dependencies into it.
-- **@MockBean** to add mock objects to the Spring application context.  
+- **@Autowired**: auto get Bean from Spring application context
+- **@MockBean**: create and add mock objects to the Spring application context.  
+- **@DataJpaTest**: disables full auto-configuration except for JPA tests. @Autowired the repository.
 
+## Mock
+- @TestSubject: an actual instance of a class and any method invoked using object reference will execute the method body defined in the class file.
+- @Mock: a proxy interface to hide an underlying dependency with cannot be tested in a test environment e.g. database, network locations etc. A method invoked using mocked reference does not execute the actual method body defined in the class file, rather the method behavior is configured using when(...).thenReturn(...) methods.
+    - In a junit test, we create objects for the class which need to be tested and its methods to be invoked.
+    - Create mocks for the dependencies which will not be present in the test environment and objects are dependent on it to complete the method call.
+    
+### @Mock, @InjectMocks and @MockBean
+- @Mock, @InjectMocks: plain mockito annotations 
+- @MockBean: spring wrappers for mockito, create mock object and insert into context.
 
+In mockito-based junit tests, @Mock annotation creates mocks and @InjectMocks creates actual objects and injects mocked dependencies into it.
+- Use @InjectMocks to create class instances that need to be tested in the test class. 
+- Use @InjectMocks when actual method body needs to be executed for a given class.
+- Use @InjectMocks when need all or few internal dependencies initialized with mock objects to work method correctly.
+- Use @Mock to create mocks that are needed to support the testing of SUT.
+- Must define the when(...).thenReturn(...) methods for mock objects whose class methods will be invoked during actual test execution.
+    
 #### Auto Configuration
 Auto-configuration can be associated to a starter that provides the auto-configuration code as well as the typical libraries that you would use with it.
 
