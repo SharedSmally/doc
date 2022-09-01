@@ -1,4 +1,4 @@
-# Spring Boot
+# Spring Boot Test
 ## Spring Core Features
 - [Guide to Test a Spring Boot App](https://howtodoinjava.com/spring-boot2/testing/spring-boot-2-junit-5/)
 - [EasyMock](https://www.baeldung.com/easymock)
@@ -8,6 +8,16 @@
     - **@InjectMocks**: automatically inject mocks/spies fields annotated with @Spy or @Mock
     - **verify()**: to check methods were called with given arguments, or any expression via the **any()**
     - **@Captor**: capture what arguments were called
+
+## Lombok Setup
+- Download lombok from https://projectlombok.org/
+- Run the command: java -jar lombok
+- Verify the installation: Eclipse > Help > About
+- In java class: use log to log the message by adding:
+```
+import lombok.extern.slf4j.Slf4j;
+@Slf4j
+```
 
 ### [Test](https://docs.spring.io/spring-boot/docs/current/reference/html/features.html#features.testing)
 Two modules:    
