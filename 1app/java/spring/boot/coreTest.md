@@ -3,11 +3,11 @@
 - [Guide to Test a Spring Boot App](https://howtodoinjava.com/spring-boot2/testing/spring-boot-2-junit-5/)
 - [EasyMock](https://www.baeldung.com/easymock)
 - [mockit](https://javadoc.io/doc/org.mockito/mockito-core/latest/org/mockito/Mockito.html)
-    - mock()/@Mock: create mock; and when()/given() to specify how a mock should behave
-    - spy()/@Spy: partial mocking, real methods are invoked but still can be verified and stubbed
-    - @InjectMocks: automatically inject mocks/spies fields annotated with @Spy or @Mock
-    - verify(): to check methods were called with given arguments, or any expression via the any()
-    - @Captor: capture what arguments were called
+    - **mock()/@Mock**: create mock; and **when()/given()** to specify how a mock should behave
+    - **spy()/@Spy**: partial mocking, real methods are invoked but still can be verified and stubbed
+    - **@InjectMocks**: automatically inject mocks/spies fields annotated with @Spy or @Mock
+    - **verify()**: to check methods were called with given arguments, or any expression via the **any()**
+    - **@Captor**: capture what arguments were called
 
 ### [Test](https://docs.spring.io/spring-boot/docs/current/reference/html/features.html#features.testing)
 Two modules:    
