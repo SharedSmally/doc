@@ -149,7 +149,7 @@ public class WebLayerTest {
 	}
 }
 ```
-- Automatically injects the service dependency into the controller 
+- Automatically injects the service dependency into the controller: use **@MockBean** to create and inject a mock for the GreetingService. 
 ```
 import org.junit.jupiter.api.Test;
 
