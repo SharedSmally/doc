@@ -22,7 +22,7 @@ import lombok.extern.slf4j.Slf4j;
 ### [Test](https://docs.spring.io/spring-boot/docs/current/reference/html/features.html#features.testing)
 Two modules:    
 - spring-boot-test: contains core items
-- spring-boot-test-autoconfigure: supports auto-configuration for tests    
+- spring-boot-test-autoconfigure: supports auto-configuration for tests with @...Test
     
 The **spring-boot-starter-test** Starter imports both Spring Boot test modules as well as JUnit Jupiter, AssertJ, Hamcrest, and a number of other useful libraries:
 - JUnit 5: The de-facto standard for unit testing Java applications.
@@ -47,6 +47,71 @@ To support JUnit4, add a dependency on **junit-vintage-engine** (hamcrest-core i
     </exclusions>
 </dependency>    
 ``` 
+## Test Environment
+### @SpringBootTest
+Normal Spring Test uses spring-test/@ContextConfiguration to test the application, and @SpringBootTest for Spring boot application,  creating the ApplicationContext in the tests through SpringApplication, and Spring Boot features.
+ @SpringBootTest webEnvironment attribute:
+- MOCK(Default) : Loads a web ApplicationContext and provides a mock web environment, Embedded servers are not started, can be used with @AutoConfigureMockMvc or @AutoConfigureWebTestClient for mock-based testing
+- RANDOM_PORT: Loads a WebServerApplicationContext and provides a real web environment. Embedded servers are started and listen on a random port.
+- DEFINED_PORT: Loads a WebServerApplicationContext and provides a real web environment. Embedded servers are started and listen on a defined port via application.properties
+- NONE: Loads an ApplicationContext by using SpringApplication but does not provide any web environment (mock or otherwise).
+    
+### Test Configuration
+- @ContextConfiguration(classes=...): specify the Configuration to load. Alternatively, can used nested @Configuration classes within the test.
+- @TestConfiguration: in addition to the application’s primary configuration
+- @Import: including more configurations, such as configs in src/test/java, which are not scanned default.
+- @WebMvcTest: focus only on the web layer and not start a complete ApplicationContext
+- @SpringBootTest: By default, @SpringBootTest does not start the server. 
+- @...Test: load only the parts of the configuration that are required to test a slice of the application. The auto-configuration classes can be excluded  by #excludeAutoConfiguration attribute, or @ImportAutoConfiguration#exclude.     
+- @MockBean/@SpyBean: Wrapper of @Mock and @Spy to mock the Beans to be inserted into ApplicationContext
+Use MocMvc to test with a mock environment:
+```
+@SpringBootTest
+@AutoConfigureMockMvc
+public class MockMvcExampleTests {
+	@Autowired
+	private MockMvc mvc;
+	// @Autowired private TestRestTemplate restTemplate;
+```
+or WebClient for reactive Web:
+```
+@SpringBootTest
+@AutoConfigureWebTestClient
+public class MockWebTestClientExampleTests {
+	@Autowired
+	private WebTestClient webClient;
+```
+In RANDOM_PORT and DEFINED_PORT, the test application can autowire MockMvc/WebTestClient and TestRestTemplate.
+
+If needs JMX:
+```
+@SpringBootTest(properties = "spring.jmx.enabled=true")
+@DirtiesContext
+public class SampleJmxTests {
+	@Autowired
+	private MBeanServer mBeanServer;
+```
+
+## Auto-configured tests((@...Test) and [AutoWired Beans](https://docs.spring.io/spring-boot/docs/2.0.4.RELEASE/reference/html/test-auto-configuration.html)
+- **@JsonTest/@AutoConfigureJsonTesters**: for json
+    - Jackson: Jackson **ObjectMapper**, any **@JsonComponent** beans, **JacksonTester**
+    - Gson: **Gson**, **GsonTester**
+    - Jsonb: **Jsonb**, **JsonbTester**
+    - String: **BasicJsonTester** 
+- **@WebMvcTest**: for sepcific Controller with autowire **MockMvc** (available in @SpringBootTest + @AutoConfigureMockMvc).
+    Scanned beans to **@Controller, @ControllerAdvice, @JsonComponent, Converter, GenericConverter, Filter, WebMvcConfigurer**, and **HandlerMethodArgumentResolver**, not scan @Component. 
+    If use HtmlUnit or Selenium, auto-configuration provides an HTMLUnit **WebClient** and/or a **WebDriver** bean
+- **@WebFluxTest**: for Reactive Controller with autowire **WebTestClient**
+- **@DataJpaTest**: for Data JPA with autowire **TestEntityManager/@AutoConfigureTestEntityManager,JdbcTemplate**, @Entity classes and JPA repositories,
+- **@JdbcTest**: for JDBC Tests with autowire **JdbcTemplate**, No scan on @Component
+- **@JooqTest**: for jOOQ Tests with autowire **DSLContext**,No scan on @Component
+- **@DataMongoTest**: for Data MongoDB Tests with autowire **MongoTemplate** and @Document classes and Mongo repositories
+- **@DataNeo4jTest**: for Data Neo4j Tests with autowire **@NodeEntity** classes and Neo4j repositories
+- **@DataRedisTest**: for  Data Redis Tests with autowire **@RedisHash** classes and Redis repositories 
+- **@DataLdapTest**: for Data LDAP Tests with autowire **LdapTemplate**, @Entry classes, and LDAP repositories.
+- **@RestClientTest**: for REST Clients with autowire JSON,**RestTemplateBuilder,MockRestServiceServer**
+- **@AutoConfigureRestDocs**: for Spring REST Docs Tests with **@WebMvcTest** and **RequestSpecification**
+
 
 ## [Test Web Application](https://spring.io/guides/gs/testing-web/)
 - Simple sanity check test that will fail if the application context cannot start.
