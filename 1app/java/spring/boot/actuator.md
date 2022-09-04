@@ -306,5 +306,60 @@ The /cloudfoundryapplication path provides an alternative secured route to all @
 server.servlet.context-path=/app   #Cloud Foundry endpoints: /app/cloudfoundryapplication/*
 management.cloudfoundry.enabled=false
 management.cloudfoundry.skip-ssl-validation=true
+```
 
+## [Deploying Spring Boot Applications](https://docs.spring.io/spring-boot/docs/2.7.3/reference/html/deployment.html#deployment)
+- Cloud Foundry
+- Kubernetes
+- Heroku
+- OpenShift
+- Amazon Web Services (AWS)
+- CloudCaptain and Amazon Web Services
+- Azure
+- Google Cloud
+### Kubernaetest Container Lifecycle
+```
+spec:
+  containers:
+  - name: "example-container"
+    image: "example-image"
+    lifecycle:
+      preStop:
+        exec:
+          command: ["sh", "-c", "sleep 10"]
+```
+
+### create a fully executable jar:
+```
+<plugin>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-maven-plugin</artifactId>
+    <configuration>
+        <executable>true</executable>
+    </configuration>
+</plugin>
+```
+Run the command:
+```
+$ ./my-application.jar
+```
+
+###  Installation as a systemd Service
+The Spring Boot application installed in /var/myapp, is to be installed as a systemd service with a script /etc/systemd/system/myapp.service:
+```
+[Unit]
+Description=myapp
+After=syslog.target
+
+[Service]
+User=myapp
+ExecStart=/var/myapp/myapp.jar
+SuccessExitStatus=143
+
+[Install]
+WantedBy=multi-user.target
+```
+Start the service:
+```
+$ systemctl enable myapp.service
 ```
