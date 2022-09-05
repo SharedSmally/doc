@@ -22,8 +22,12 @@ For Maven project:
   </dependency>
 ```
 
+Spring Data REST builds on top of Spring MVC. It creates a collection of Spring MVC controllers, JSON converters, and other beans to provide a RESTful front end. These components link up to the Spring Data JPA backend. This is all autoconfigured when using Spring Boot. 
+
 Spring Data REST configuration is defined in a class called **RepositoryRestMvcConfiguration**.
 To customize the configuration, register a **RepositoryRestConfigurer** and implement/override the configure()methods
+
+
 
 - Repository Detection Strategy
 
@@ -55,6 +59,60 @@ Spring Data REST uses a RepositoryDetectionStrategy to determine whether a repos
         - profile link:  Application-Level Profile Semantics (ALPS). 
         - Content-Type: application/hal+json or application/json
 
+## [Accessing JPA Data with REST](https://spring.io/guides/gs/accessing-data-rest/)
+- Entity
+```
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
+public class Person {
+
+  @Id
+  @GeneratedValue(strategy = GenerationType.AUTO)
+  private long id;
+
+  private String firstName;
+  private String lastName;
+
+  public String getFirstName() {
+    return firstName;
+  }
+
+  public void setFirstName(String firstName) {
+    this.firstName = firstName;
+  }
+
+  public String getLastName() {
+    return lastName;
+  }
+
+  public void setLastName(String lastName) {
+    this.lastName = lastName;
+  }
+}
+```
+- Repository
+```
+import java.util.List;
+
+import org.springframework.data.repository.query.Param;
+import org.springframework.data.repository.PagingAndSortingRepository;
+import org.springframework.data.rest.core.annotation.RepositoryRestResource;
+
+@RepositoryRestResource(collectionResourceRel = "people", path = "people")
+public interface PersonRepository extends PagingAndSortingRepository<Person, Long> {
+  List<Person> findByLastName(@Param("name") String name);
+}
+```
+- Test the Application
+```
+$ curl http://localhost:8080
+$ curl http://localhost:8080/people
+```
+
 ## Repository Resources
 The core functionality of Spring Data REST is to export resources for Spring Data repositories.
 
@@ -65,7 +123,8 @@ Annotations in org.springframework.data.rest.core.annotation:
 - @Handle[Before|After][Create|Deleta|Save|LinkSave|LinkDelete]
 - @Project
 - @RepositoryRestController in org.springframework.data.rest.webmvc
-- 
+
+
 
 
 
