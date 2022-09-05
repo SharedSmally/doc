@@ -247,3 +247,220 @@ Spring Data REST recognizes sorting parameters that use the repository sorting s
 ```
 curl -v "http://localhost:8080/people/search/nameStartsWith?name=K&sort=name,desc"
 ```
+
+## Object Mapping
+Currently only supports JSON using Jackson’s ObjectMapper. can configure Jackson’s ObjectMapper with custom mappings, serializers, and deserializers:
+
+- Abstract Class Registration
+```
+@Override
+protected void configureJacksonObjectMapper(ObjectMapper objectMapper) {
+  objectMapper.registerModule(new SimpleModule("MyCustomModule") {
+    @Override
+    public void setupModule(SetupContext context) {
+      context.addAbstractTypeResolver(
+        new SimpleAbstractTypeResolver()
+          .addMapping(MyInterface.class, MyInterfaceImpl.class));
+    }
+  });
+}
+```
+- Adding Custom Serializers for Domain Types
+```
+@Override
+public void setupModule(SetupContext context) {
+  SimpleSerializers serializers = new SimpleSerializers();
+  SimpleDeserializers deserializers = new SimpleDeserializers();
+
+  serializers.addSerializer(MyEntity.class, new MyEntitySerializer());
+  deserializers.addDeserializer(MyEntity.class, new MyEntityDeserializer());
+
+  context.addSerializers(serializers);
+  context.addDeserializers(deserializers);
+}
+```
+
+##  Projections and Excerpts
+### Projections
+```
+@Entity
+public class Person {
+  @Id @GeneratedValue
+  private Long id;
+  private String firstName, lastName;
+
+  @OneToOne
+  private Address address;
+}
+```
+If Address has no Repositories, Spring Data REST exports all of its attributes (except the id). If don't expose the address:
+```
+//name of noAddresses and only apply for Person class
+@Projection(name = "noAddresses", types = { Person.class })  
+interface NoAddresses {   // Project is an Interface
+  String getFirstName(); // exports only firstName
+  String getLastName();  // exports only lastName
+}
+```
+To view the projection to the resource, look up http://localhost:8080/persons/1?projection=noAddresses
+
+The existing projections can be found in the ALPS profile.
+
+### Hidden data using @JsonIgnore in JSON serialization
+```
+@Entity
+public class User {
+	@Id @GeneratedValue
+	private Long id;
+	private String name;
+
+	@JsonIgnore private String password; 
+
+private String[] roles;
+```
+Can create a projection that combines the two data fields:
+```
+@Projection(name = "virtual", types = { Person.class })
+public interface VirtualProjection {
+  @Value("#{target.firstName} #{target.lastName}")   //SpEL expression to render a read-only fullName
+  String getFullName();
+}
+```
+
+### Excerpts
+An excerpt is a projection that is automatically applied to a resource collection.
+```
+@RepositoryRestResource(excerptProjection = NoAddresses.class)
+interface PersonRepository extends CrudRepository<Person, Long> {}
+```
+ It directs Spring Data REST to use the NoAddresses projection when embedding Person resources into collections or related resources.
+ 
+Normally the doamin objects are stored in different tables. The excerpt projection can put this extra piece of data inline to save an extra GET.
+```
+@Projection(name = "inlineAddress", types = { Person.class }) 
+interface InlineAddress {
+  String getFirstName();
+  String getLastName();
+  Address getAddress();   //included inline in Http GET request
+}
+
+@RepositoryRestResource(excerptProjection = InlineAddress.class)
+interface PersonRepository extends CrudRepository<Person, Long> {}
+```
+
+## Conditional Operations with Headers
+- ETag, If-Match, and If-None-Match Headers
+The ETag header provides a way to tag resources to prevent overriding and reduce unnecessary calls:
+```
+class Sample {
+	@Version Long version;  // in org.springframework.data.annotation
+	Sample(Long version) {
+		this.version = version;
+	}
+}
+```
+This REST resource has an ETag header with the value of the version field, can conditionally PUT, PATCH, or DELETE that resource if provide If-Match/If-None-Match header
+```
+curl -v -X PATCH -H 'If-Match: <value of previous ETag>' ...
+```
+- If-Modified-Since header to check whether a resource has been updated since the last request,
+```
+@Document
+public class Receipt {
+	public @Id String id;
+	public @Version Long version;
+  // DateTime,Date, Calendar, or long/Long
+	public @LastModifiedDate Date date;  
+	public String saleItem;
+	public BigDecimal amount;
+}
+```
+
+```
+curl -H "If-Modified-Since: Wed, 24 Jun 2015 20:28:15 GMT" ...
+```
+
+## Validation
+- Wire it by bean name : In order to tell Spring Data REST using a particular Validator assigned to a particular event, prefix the bean name with the event in question. For example, to validate instances of the Person class before new ones are saved into the repository, declare an instance of a **Validator<Person>** in  the ApplicationContext with a bean name of **beforeCreatePersonValidator**. 
+  
+- Assign validators manually:  register an validator instance to invoke validators after the correct event. In your configuration that implements RepositoryRestConfigurer, override the configureValidatingRepositoryEventListener method and call addValidator on the ValidatingRepositoryEventListener, passing the event on which this validator to be triggered and an instance of the validator:
+```
+@Override
+void configureValidatingRepositoryEventListener(ValidatingRepositoryEventListener v) {
+  v.addValidator("beforeSave", new BeforeSaveValidator());
+}
+```
+
+## Events
+
+The REST exporter emits eight different events throughout the process of working with an entity:
+- BeforeCreateEvent/AfterCreateEvent
+- BeforeSaveEvent/AfterSaveEvent
+- BeforeLinkSaveEvent/AfterLinkSaveEvent
+- BeforeDeleteEvent/AfterDeleteEvent
+
+- Writing an ApplicationListener
+```
+  public class BeforeSaveEventListener extends AbstractRepositoryEventListener {
+  @Override
+  public void onBeforeSave(Object entity) {
+    ... logic to handle inspecting the entity before the Repository saves it
+  }
+
+  @Override
+  public void onAfterDelete(Object entity) {
+    ... send a message that this entity has been deleted
+  }
+}
+```
+  
+- Writing an Annotated Handler
+```
+@RepositoryEventHandler 
+public class PersonEventHandler {
+  @HandleBeforeSave
+  public void handlePersonSave(Person p) {
+    // … you can now deal with Person in a type-safe way
+  }
+
+  @HandleBeforeSave
+  public void handleProfileSave(Profile p) {
+    // … you can now deal with Profile in a type-safe way
+  }
+}
+```
+  To register the event handler, using @Component or create one in @Configuration:
+  ```
+@Configuration
+public class RepositoryConfiguration {
+  @Bean
+  PersonEventHandler personEventHandler() {
+    return new PersonEventHandler();
+  }
+}
+  ```
+
+## Integration
+Programmatic Links:
+- Manually assembling links.
+- Using Spring HATEOAS’s LinkBuilder with linkTo(), slash(), and so on.
+- Using Spring Data REST’s implementation of RepositoryEntityLinks.
+```
+public class MyWebApp {
+	private RepositoryEntityLinks entityLinks;
+
+	@Autowired
+	public MyWebApp(RepositoryEntityLinks entityLinks) {
+		this.entityLinks = entityLinks;
+	}
+}
+```  
+  
+| Method | 	Description| 
+| -------| ------------| 
+| entityLinks.linkToCollectionResource(Person.class)| Provide a link to the collection resource of the specified type (Person, in this case).| 
+| entityLinks.linkToItemResource(Person.class, 1)| Provide a link to a single resource.| 
+| entityLinks.linkToPagedResource(Person.class, new PageRequest(…​))| Provide a link to a paged resource.| 
+| entityLinks.linksToSearchResources(Person.class)| Provides a list of links for all the finder methods exposed by the corresponding repository.| 
+| entityLinks.linkToSearchResource(Person.class, "findByLastName")| Provide a finder link by rel (that is, the name of the finder).| 
+  
