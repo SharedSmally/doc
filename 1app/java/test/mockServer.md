@@ -106,6 +106,20 @@ And a response action will contain:
    - headers – response headers with name and one or more values
    - cookies – response cookies with name and one or more values
 ```
+
+    private ClientAndServer mockServer;
+
+    @BeforeClass
+    public void startServer() {
+        mockServer = startClientAndServer(PORT);
+    }
+ 
+    @AfterClass 
+    public void stopServer() { 
+        mockServer.stop();
+    }
+    
+@Test
 public class TestMockServer {
     private void createExpectationForInvalidAuth() {
         new MockServerClient("127.0.0.1", 1080)
