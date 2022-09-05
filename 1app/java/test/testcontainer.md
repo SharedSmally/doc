@@ -151,3 +151,19 @@ public GenericContainer<?> nginx = new GenericContainer<>("nginx:1.9.4").depends
     - WaitingConsumer
 
 ## Create image on-the-fly: ImageFromDockerfile().withXxx
+
+## [Modules]()
+### MockServer module with [MockServer](https://www.mock-server.com/)
+MockServer mocks any server or service via HTTP or HTTPS, such as a REST or RPC service. 
+- [mockserver javadoc API](https://javadoc.io/doc/org.mock-server)
+- [MockServerClient](https://www.mock-server.com/mock_server/mockserver_clients.html)
+```
+public MockServerContainer mockServer = new MockServerContainer(MOCKSERVER_IMAGE);
+
+new MockServerClient(mockServer.getHost(), mockServer.getServerPort())
+    .when(request()
+        .withPath("/person")
+        .withQueryStringParameter("name", "peter"))
+    .respond(response()
+        .withBody("Peter the person!"));
+```
