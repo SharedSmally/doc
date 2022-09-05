@@ -179,7 +179,7 @@ Parsing query method names is divided into subject and predicate. The first part
 |Primitives|Java primitives.|
 |Wrapper types|Java wrapper types.|
 |T|A unique entity. Expects the query method to return one result at most. If no result is found, null is returned. More than one result triggers an IncorrectResultSizeDataAccessException.|
-|Iterator<T>|An Iterator.|
+|Iterator\<T\>|An Iterator.|
 |Collection<T>|A Collection.|
 |List<T>|A List.|
 |Optional<T>|A Java 8 or Guava Optional. Expects the query method to return one result at most. If no result is found, Optional.empty() or Optional.absent() is returned. More than one result triggers an IncorrectResultSizeDataAccessException.|
