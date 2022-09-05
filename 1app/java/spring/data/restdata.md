@@ -464,3 +464,129 @@ public class MyWebApp {
 | entityLinks.linksToSearchResources(Person.class)| Provides a list of links for all the finder methods exposed by the corresponding repository.| 
 | entityLinks.linkToSearchResource(Person.class, "findByLastName")| Provide a finder link by rel (that is, the name of the finder).| 
   
+
+##  Meta
+- ALPS: with Accept header: application/alsp+json for profile. Custom profile using *rest-messages.properties*.
+- JSON Schema: with Accept header: application/schema+json.
+```
+curl -H 'Accept:application/schema+json' http://localhost:8080/profile/persons
+```
+	
+## Security
+- @Pre and @Post Security
+```
+@PreAuthorize("hasRole('ROLE_USER')") 
+public interface PreAuthorizedOrderRepository extends CrudRepository<Order, UUID> {
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@Override
+	Optional<Order> findById(UUID id);
+
+	@PreAuthorize("hasRole('ROLE_ADMIN')") 
+	@Override
+	void deleteById(UUID aLong);
+
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@Override
+	void delete(Order order);
+
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@Override
+	void deleteAll(Iterable<? extends Order> orders);
+
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@Override
+	void deleteAll();
+}
+```
+- @Secured security: older style
+```
+@Secured("ROLE_USER") 
+@RepositoryRestResource(collectionResourceRel = "people", path = "people")
+public interface SecuredPersonRepository extends CrudRepository<Person, UUID> {
+	@Secured("ROLE_ADMIN") 
+	@Override
+	void deleteById(UUID aLong);
+
+	@Secured("ROLE_ADMIN")
+	@Override
+	void delete(Person person);
+
+	@Secured("ROLE_ADMIN")
+	@Override
+	void deleteAll(Iterable<? extends Person> persons);
+
+	@Secured("ROLE_ADMIN")
+	@Override
+	void deleteAll();
+}
+```
+-  Enabling Method-level Security
+```
+@Configuration 
+@EnableWebSecurity
+@EnableGlobalMethodSecurity(securedEnabled = true, prePostEnabled = true) 
+class SecurityConfiguration extends WebSecurityConfigurerAdapter { 
+}
+```
+
+## ToolsL HAL Explorer
+
+## Customizing Spring Data REST
+- Customizing Item Resource URIs
+- Customizing repository exposure
+- Customizing supported HTTP methods
+- Configuring the REST URL Path
+```
+@RepositoryRestResource(path = "people", rel = "people")
+interface PersonRepository extends CrudRepository<Person, Long> {
+  @RestResource(path = "names", rel = "names")
+  List<Person> findByName(String name);
+}
+```
+- Hiding Certain Repositories, Query Methods, or Fields: 
+```
+@RepositoryRestResource(exported = false)
+  @RestResource(exported = false)
+```
+- Overriding Spring Data REST Response Handlers
+```
+@RepositoryRestController
+public class ScannerController {
+    private final ScannerRepository repository;
+
+    @Autowired
+    public ScannerController(ScannerRepository repo) { 
+        repository = repo;
+    }
+
+    @RequestMapping(method = GET, value = "/scanners/search/listProducers") 
+    public @ResponseBody ResponseEntity<?> getProducers() {
+        List<String> producers = repository.listProducers(); 
+        // do some intermediate processing, logging, etc. with the producers
+        CollectionModel<String> resources = CollectionModel.of(producers); 
+        resources.add(linkTo(methodOn(ScannerController.class).getProducers()).withSelfRel()); 
+        // add other links as needed
+        return ResponseEntity.ok(resources); 
+    }
+}
+```
+-  Customizing the JSON Output
+- CORS Support
+For Repository:
+```
+@CrossOrigin(origins = "http://domain2.example",
+  methods = { RequestMethod.GET, RequestMethod.POST, RequestMethod.DELETE },
+  maxAge = 3600)
+interface PersonRepository extends CrudRepository<Person, Long> {}
+```
+For Controller
+```
+@RepositoryRestController
+public class PersonController {
+  @CrossOrigin(maxAge = 3600)
+  @RequestMapping(path = "/people/xml/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_XML_VALUE)
+  public Person retrieve(@PathVariable Long id) {
+    // …
+  }
+}
+```
