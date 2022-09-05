@@ -61,7 +61,131 @@ import static org.mockserver.model.HttpResponse.response;
 import static org.mockserver.model.StringBody.exact;
 ```
 ## [MockServerClient](https://www.baeldung.com/mockserver)
-MockServerClient API is used for providing a capability to connect to the MockServer. It models requests and the corresponding responses from the server
+**MockServerClient** API is used for providing a capability to connect to the MockServer. It models requests and the corresponding responses from the server
+- when: ForwardChainExpectation	when(HttpRequest httpRequest[, Times times])
+- verify: MockServerClient verify(HttpRequest httpRequest, Times times)
+- retrieve: Expectation[] retrieveAsExpectations(HttpRequest httpRequest)
+- retrieve: String 	retrieveAsJSON(HttpRequest httpRequest)
+
+**HttpRequest**/**HttpResponse** API: 
+- withBody
+- withClientCertificateChain
+- withContentType
+- withCookie(s)
+- withHeader(s)
+- withMethod
+- withPath
+- withPathParameter
+- withQueryStringParameter
+
+- static HttpRequest 	request() 
+- static HttpRequest 	request(String path) 
+- static HttpResponse 	response()
+- static HttpResponse 	response(String body)
+
+**HttpForward** API
+- static HttpForward 	forward()
+- HttpForward 	withHost(String host)
+- HttpForward 	withPort(Integer port)
+- HttpForward 	withScheme(HttpForward.Scheme scheme)
+
+**ForwardChainExpectation** API:
+- void 	forward(HttpForward httpForward)
+- void 	respond(HttpResponse httpResponse)
+
+### Creating Expectations by request matcherand returns With Mock Responses
+Requests can be matched using plain text or regular expressions for:
+   - path – URL path
+   - query string – URL parameters
+   - headers – request headers
+   - cookies – client side cookies
+   -  body – POST request body with XPATH, JSON, JSON schema, regular expression, exact matching plain text or body parameters
+And a response action will contain:
+   - status codes – valid HTTP status codes e.g. 200, 400 etc.
+   - body – it is the sequence of bytes containing any content
+   - headers – response headers with name and one or more values
+   - cookies – response cookies with name and one or more values
+```
+public class TestMockServer {
+    private void createExpectationForInvalidAuth() {
+        new MockServerClient("127.0.0.1", 1080)
+          .when(
+            request()  // static HttpRequest.request()
+              .withMethod("POST")
+              .withPath("/validate")
+              .withHeader("\"Content-type\", \"application/json\"")
+              .withBody(exact("{username: 'foo', password: 'bar'}")),
+            exactly(1))
+          .respond(
+            response() // static HttpResponse.response()
+              .withStatusCode(401)
+              .withHeaders(
+                   new Header("Content-Type", "application/json; charset=utf-8"),
+                   new Header("Cache-Control", "public, max-age=86400"))
+              .withBody("{ message: 'incorrect username and password combination' }")
+              .withDelay(TimeUnit.SECONDS,1)
+          );
+    }
+```
+
+### Forwarding a Request
+Expectation can be set up to forward the request. 
+    - host – the host to forward to 
+    - port – the port where the request to be forwarded, the default port is 80
+    - scheme – protocol to use e.g. HTTP or HTTPS
+```
+private void createExpectationForForward(){
+    new MockServerClient("127.0.0.1", 1080)
+      .when(
+        request()
+          .withMethod("GET")
+          .withPath("/index.html"),
+        exactly(1))
+      .forward(
+        forward()
+          .withHost("www.mock-server.com")
+          .withPort(80)
+          .withScheme(HttpForward.Scheme.HTTP)
+      );
+}
+```
+### Executing a Callback
+The server can be set to execute a callback when receiving a particular request.Callback action can define callback class that implements org.mockserver.mock.action.ExpectationCallback interface:
+```
+private void createExpectationForCallBack() {
+    mockServer
+      .when(
+        request().withPath("/callback"))
+      .callback(
+        callback().withCallbackClass("com.jpw.mock.server.TestExpectationCallback")
+    );
+}
+
+public class TestExpectationCallback implements ExpectationCallback {
+    public HttpResponse handle(HttpRequest httpRequest) {
+        if (httpRequest.getPath().getValue().endsWith("/callback")) {
+            return httpResponse;
+        } else {
+            return notFoundResponse();
+        }
+    }
+
+    public static HttpResponse httpResponse = response()
+      .withStatusCode(200);
+}
+```
+### Verifying Requests
+```
+private void verifyPostRequest() {
+    new MockServerClient("localhost", 1080).verify(
+      request()
+        .withMethod("POST")
+        .withPath("/validate")
+        .withBody(exact("{username: 'foo', password: 'bar'}")),
+      VerificationTimes.exactly(1)
+    );
+}
+```
 
 ## ClientAndServer
 
