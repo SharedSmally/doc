@@ -111,12 +111,12 @@ And a response action will contain:
 
     @BeforeClass
     public void startServer() {
-        mockServer = startClientAndServer(PORT);
+        mockServer = startClientAndServer(PORT); //start the server
     }
  
     @AfterClass 
     public void stopServer() { 
-        mockServer.stop();
+        mockServer.stop();  //stop the server
     }
     
 @Test
