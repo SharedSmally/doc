@@ -23,10 +23,12 @@ For Maven project:
 ```
 
 Spring Data REST configuration is defined in a class called **RepositoryRestMvcConfiguration**.
-To customize the configuration, register a **RepositoryRestConfigurer** and implement/override the configure()methods: 
+To customize the configuration, register a **RepositoryRestConfigurer** and implement/override the configure()methods
 
 - Repository Detection Strategy
+
 Spring Data REST uses a RepositoryDetectionStrategy to determine whether a repository is exported as a REST resource:
+
 | Strategy | Description |
 |----------|-------------|
 |ALL | Considers all repositories.|
@@ -35,6 +37,7 @@ Spring Data REST uses a RepositoryDetectionStrategy to determine whether a repos
 |VISIBILITY|Considers the repository interface's visibility, which means only public interfaces will be exposed.|
 
 - spring.data.rest Properties
+
 | Property | Description |
 |----------|-------------|
 |basePath|the root URI for Spring Data REST: default is "/"|
