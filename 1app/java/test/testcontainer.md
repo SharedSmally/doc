@@ -6,7 +6,7 @@
     - Network
     - DockerClient
     - Images.builder
-- [testcontainers modules](https://javadoc.io/doc/org.testcontainers)
+- [testcontainers modules javadoc](https://javadoc.io/doc/org.testcontainers)
     - junit-jupiter: org.testcontainers.junit.jupiter@Container/@Testcontainers(autatic start/stop containers)
     - postgresql: withDatabaseName/Username/Password
     - cassandra
@@ -17,13 +17,34 @@
     - mockserver: MockServerContainer(getEndpoint()/getServerPort())
     - mongodb
     - neo4j
-    - nginx: NginxContainer<SELF extends NginxContainer<SELF>>  (getBaseUrl: set/withCustomContent) 
+    - nginx: NginxContainer<>  (getBaseUrl: set/withCustomContent) for static content
     - rabbitmq
     - selenium
     - spock
     - testcontainers
     - toxiproxy
+- [testcontainers modules](https://www.testcontainers.org/modules/databases/)
+```
+@Testcontainers
+class MixedLifecycleTests {
+    // will be shared between test methods
+    @Container
+    private static final MySQLContainer MY_SQL_CONTAINER = new MySQLContainer();
 
+    // will be started before and stopped after each test method
+    @Container
+    private PostgreSQLContainer postgresqlContainer = new PostgreSQLContainer()
+        .withDatabaseName("foo")
+        .withUsername("foo")
+        .withPassword("secret");
+
+    @Test
+    void test() {
+        assertThat(MY_SQL_CONTAINER.isRunning()).isTrue();
+        assertThat(postgresqlContainer.isRunning()).isTrue();
+    }
+}
+```
 ## org.testcontainers.containers.GenericContainer<>
 - GenericContainer(@NonNull RemoteDockerImage image) 
 - GenericContainer(@NonNull DockerImageName dockerImageName) 
