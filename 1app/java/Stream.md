@@ -31,6 +31,24 @@
      Map<Boolean, List<Student>> passingFailing = students.stream()
                     .collect(Collectors.partitioningBy(s -> s.getGrade() >= PASS_THRESHOLD));
 ```
+- map() vs flatMap()
+
+Both methods work similarly for Optional.
+
+The map() method wraps the underlying sequence in a Stream instance, whereas the flatMap() method allows avoiding nested Stream<Stream<R>> structure.
+The flatMap() method first flattens the input Stream of Streams to a Stream of Strings. Thereafter, it works similarly to the map() method.
+```
+  List<List<String>> list = Arrays.asList(Arrays.asList("a"), Arrays.asList("b"));
+  System.out.println(list);
+
+  System.out.println(list.stream().flatMap(Collection::stream).collect(Collectors.toList()));
+     
+List<Integer> together = Stream.of(asList(1, 2), asList(3, 4)) // Stream of List<Integer>
+            .flatMap(List::stream)
+            .map(integer -> integer + 1)
+            .collect(Collectors.toList());
+```     
+Both map and flatMap can be applied to a Stream<T> and they both return a Stream<R>. The difference is that the map operation produces one output value for each input value, whereas the flatMap operation produces an arbitrary number (zero or more) values for each input value.
 
 ## Collectors
 - averagingDouble/Int/Long; summarizingInt/Long/Double; summingInt/Long
