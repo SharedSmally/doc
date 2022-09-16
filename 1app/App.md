@@ -6,8 +6,16 @@
 
 ## HA Platform
 - keepalived: master/backup
-- haproxy
+- haproxy: http://www.haproxy.org/
 
+Global parameters
+
+Proxy configuration can be located in a set of sections :
+- defaults [<name>] [ from <defaults_name> ]
+- frontend <name>   [ from <defaults_name> ]
+- backend  <name>   [ from <defaults_name> ]
+- listen   <name>   [ from <defaults_name> ]
+  
 ## Application Platform
 - Postgresql for database
 - Redis for Cache
