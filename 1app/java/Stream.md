@@ -1,9 +1,8 @@
 # Java Stream
 - [Stream API](https://docs.oracle.com/javase/8/docs/api/java/util/stream/package-summary.html)
 - [Collectors API](https://docs.oracle.com/javase/8/docs/api/java/util/stream/Collectors.html)
-Implementations of Collector that implement various useful reduction operations, such as accumulating elements into collections, summarizing elements according to various criteria, etc: 
 ```
-    Collections.stream() => operations =>collect() => Collection<T>
+     Collections.stream() => operations =>collect() => Collection<T>
 
      // Accumulate names into a List
      List<String> list = people.stream().map(Person::getName).collect(Collectors.toList());
@@ -12,29 +11,25 @@ Implementations of Collector that implement various useful reduction operations,
      Set<String> set = people.stream().map(Person::getName).collect(Collectors.toCollection(TreeSet::new));
 
      // Convert elements to strings and concatenate them, separated by commas
-     String joined = things.stream()
-                           .map(Object::toString)
-                           .collect(Collectors.joining(", "));
+     String joined = things.stream().map(Object::toString)
+                    .collect(Collectors.joining(", "));
 
      // Compute sum of salaries of employee
      int total = employees.stream()
-                          .collect(Collectors.summingInt(Employee::getSalary)));
+                    .collect(Collectors.summingInt(Employee::getSalary)));
 
      // Group employees by department
-     Map<Department, List<Employee>> byDept
-         = employees.stream()
+     Map<Department, List<Employee>> byDept = employees.stream()
                     .collect(Collectors.groupingBy(Employee::getDepartment));
 
      // Compute sum of salaries by department
-     Map<Department, Integer> totalByDept
-         = employees.stream()
+     Map<Department, Integer> totalByDept=  employees.stream()
                     .collect(Collectors.groupingBy(Employee::getDepartment,
                                                    Collectors.summingInt(Employee::getSalary)));
 
      // Partition students into passing and failing
-     Map<Boolean, List<Student>> passingFailing =
-         students.stream()
-                 .collect(Collectors.partitioningBy(s -> s.getGrade() >= PASS_THRESHOLD));
+     Map<Boolean, List<Student>> passingFailing = students.stream()
+                    .collect(Collectors.partitioningBy(s -> s.getGrade() >= PASS_THRESHOLD));
 ```
 
 ## Collectors
