@@ -1,8 +1,10 @@
 # Java Stream
 - [Stream API](https://docs.oracle.com/javase/8/docs/api/java/util/stream/package-summary.html)
 
-## Stream Operators
 
+Collections.stream() => Stream<T>
+
+## Stream Static Mehods
 | Method | Description |
 |--------|--------------|
 |static <T> Stream.Builder<T> 	builder()| Returns a builder for a Stream.|
@@ -13,3 +15,58 @@
 |static <T> Stream<T> 	of(T t)|Returns a sequential Stream containing a single element.|
 
 
+## Stream Methods
+| Method | Description |
+|--------|--------------|
+|boolean 	noneMatch/allMatch/anyMatch(Predicate<? super T> predicate)|Returns whether none, all or any elements of this stream match the provided predicate.|
+|long 	count()| Returns the count of elements in this stream.|
+|Optional<T> 	findAny/findFirst()()|Returns an Optional describing some /firstelement of the stream, or an empty Optional if the stream is empty.|
+|Optional<T> 	min/max(Comparator<? super T> comparator)|Returns the minium/maximum element of this stream according to the provided Comparator.|
+|Object[] 	toArray()|Returns an array containing the elements of this stream.|
+|<A> A[] 	toArray(IntFunction<A[]> generator)|eturns an array containing the elements of this stream, using the provided generator function to allocate the returned array|
+|void 	forEach/forEachOrdered(Consumer<? super T> action)|Performs an action for each element of this stream.|
+
+### Collect
+| Method | Description |
+|--------|--------------|
+| <R,A> R 	collect(Collector<? super T,A,R> collector)|Performs a mutable reduction operation on the elements of this stream using a Collector.|
+|<R> R 	collect(Supplier<R> supplier, BiConsumer<R,? super T> accumulator, BiConsumer<R,R> combiner)|Performs a mutable reduction operation on the elements of this stream.|
+
+### flatMap
+| Method | Description |
+|--------|--------------|
+|<R> Stream<R> 	flatMap(Function<? super T,? extends Stream<? extends R>> mapper)|Returns a stream consisting of the results of replacing each element of this stream with the contents of a mapped stream produced by applying the provided mapping function to each element.|
+|DoubleStream 	flatMapToDouble(Function<? super T,? extends DoubleStream> mapper)|Returns an DoubleStream consisting of the results of replacing each element of this stream with the contents of a mapped stream produced by applying the provided mapping function to each element.|
+|IntStream 	flatMapToInt(Function<? super T,? extends IntStream> mapper)|Returns an IntStream consisting of the results of replacing each element of this stream with the contents of a mapped stream produced by applying the provided mapping function to each element.|
+|LongStream 	flatMapToLong(Function<? super T,? extends LongStream> mapper)|Returns an LongStream consisting of the results of replacing each element of this stream with the contents of a mapped stream produced by applying the provided mapping function to each element.|
+
+### Map
+| Method | Description |
+|--------|--------------|
+|<R> Stream<R> 	map(Function<? super T,? extends R> mapper)|Returns a stream consisting of the results of applying the given function to the elements of this stream.|
+|DoubleStream 	mapToDouble(ToDoubleFunction<? super T> mapper)|Returns a DoubleStream consisting of the results of applying the given function to the elements of this stream.|
+|IntStream 	mapToInt(ToIntFunction<? super T> mapper)|Returns an IntStream consisting of the results of applying the given function to the elements of this stream.|
+|LongStream 	mapToLong(ToLongFunction<? super T> mapper)|Returns a LongStream consisting of the results of applying the given function to the elements of this stream.|
+
+### Reduce
+| Method | Description |
+|--------|--------------|
+|Optional<T> 	reduce(BinaryOperator<T> accumulator)|Performs a reduction on the elements of this stream, using an associative accumulation function, and returns an Optional describing the reduced value, if any.|
+|T 	reduce(T identity, BinaryOperator<T> accumulator)|Performs a reduction on the elements of this stream, using the provided identity value and an associative accumulation function, and returns the reduced value.|
+|<U> U 	reduce(U identity, BiFunction<U,? super T,U> accumulator, BinaryOperator<U> combiner)|Performs a reduction on the elements of this stream, using the provided identity, accumulation and combining functions.|
+
+### Operations
+| Method | Description |
+|--------|--------------|
+|Stream<T> 	distinct()|Returns a stream consisting of the distinct elements (according to Object.equals(Object)) of this stream.|
+|Stream<T> 	filter(Predicate<? super T> predicate)|Returns a stream consisting of the elements of this stream that match the given predicate.|
+|Stream<T> 	limit(long maxSize)|Returns a stream consisting of the elements of this stream, truncated to be no longer than maxSize in length.|
+|Stream<T> 	peek(Consumer<? super T> action)|Returns a stream consisting of the elements of this stream, additionally performing the provided action on each element as elements are consumed from the resulting stream.|
+|Stream<T> 	skip(long n)|Returns a stream consisting of the remaining elements of this stream after discarding the first n elements of the stream.|
+|Stream<T> 	sorted()|Returns a stream consisting of the elements of this stream, sorted according to natural order.|
+|Stream<T> 	sorted(Comparator<? super T> comparator)|Returns a stream consisting of the elements of this stream, sorted according to the provided Comparator.|
+
+
+
+
+R, as well as any additional arrays that might be required for a partitioned execution or for resizing.
