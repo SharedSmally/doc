@@ -67,6 +67,3 @@ Collections.stream() => Stream<T>
 |Stream<T> 	sorted(Comparator<? super T> comparator)|Returns a stream consisting of the elements of this stream, sorted according to the provided Comparator.|
 
 
-
-
-R, as well as any additional arrays that might be required for a partitioned execution or for resizing.
