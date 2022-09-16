@@ -1,7 +1,7 @@
 # Java Stream
 - [Stream API](https://docs.oracle.com/javase/8/docs/api/java/util/stream/package-summary.html)
 - [Collectors API](https://docs.oracle.com/javase/8/docs/api/java/util/stream/Collectors.html)
-Implementations of Collector that implement various useful reduction operations, such as accumulating elements into collections, summarizing elements according to various criteria, etc: toList/Map/Set/ConcurrentMap/Collection.
+Implementations of Collector that implement various useful reduction operations, such as accumulating elements into collections, summarizing elements according to various criteria, etc: 
 ```
     Collections.stream() => operations =>collect() => Collection<T>
 
@@ -36,6 +36,14 @@ Implementations of Collector that implement various useful reduction operations,
          students.stream()
                  .collect(Collectors.partitioningBy(s -> s.getGrade() >= PASS_THRESHOLD));
 ```
+
+## Collectors
+- averagingDouble/Int/Long; summarizingInt/Long/Double; summingInt/Long
+- groupingBy: return Map/ConcurrentMap with key/value
+- partitioningBy: partioned to 2 Lists: True False
+- minBy/maxBy
+- reducing/joining/mapping/counting:
+- toList/Map/Set/ConcurrentMap/Collection.
 
 ## Stream Static Mehods
 | Method | Description |
