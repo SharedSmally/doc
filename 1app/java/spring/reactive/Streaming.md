@@ -13,8 +13,7 @@ To perform a computation, stream operations are composed into a stream pipeline.
 |<R> Stream<R> 	flatMap(Function<? super T,? extends Stream<? extends R>> mapper)|Returns a stream consisting of the results of replacing each element of this stream with the contents of a mapped stream produced by applying the provided mapping function to each element.|
 |void 	forEach(Consumer<? super T> action)|Performs an action for each element of this stream.|
 |<R> Stream<R> 	map(Function<? super T,? extends R> mapper)|Returns a stream consisting of the results of applying the given function to the elements of this stream.|
-Optional<T> 	reduce(BinaryOperator<T> accumulator)
-Performs a reduction on the elements of this stream, using an associative accumulation function, and returns an Optional describing the reduced value, if any.
+|Optional<T> 	reduce(BinaryOperator<T> accumulator)|Performs a reduction on the elements of this stream, using an associative accumulation function, and returns an Optional describing the reduced value, if any.|
 |T 	reduce(T identity, BinaryOperator<T> accumulator)|Performs a reduction on the elements of this stream, using the provided identity value and an associative accumulation function, and returns the reduced value.|
 |Stream<T> 	peek(Consumer<? super T> action)|Returns a stream consisting of the elements of this stream, additionally performing the provided action on each element as elements are consumed from the resulting stream.|
 |Object[] 	toArray()|Returns an array containing the elements of this stream.|
