@@ -5,8 +5,8 @@
 - Worker Node (2)
 
 ## HA Platform
-- keepalived: master/backup
-- haproxy: http://www.haproxy.org/
+- [keepalived](https://github.com/acassen/keepalived):Load Balancing & High-Availability based on Virtual Router Redundancy Protocol (VRRP)/IP Multicast.
+- [haproxy](http://www.haproxy.org/)
 
 Global parameters
 
@@ -27,3 +27,7 @@ https://www.digitalocean.com/community/tutorials/how-to-set-up-an-elasticsearch-
 (namespace kube-logging/)
 
 ## Application
+
+  
+### AppContext
+Contains a list of predefined Beans or BeanFactory  
