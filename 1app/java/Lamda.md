@@ -51,6 +51,7 @@ public class Main {
 }
 
 Function<String,String> mapper = String::toUpperCase;
+
      // Assignment context
      Predicate<String> p = String::isEmpty;
 
