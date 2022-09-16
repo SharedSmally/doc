@@ -8,6 +8,7 @@
 To perform a computation, stream operations are composed into a stream pipeline. A stream pipeline consists of a source (which might be an array, a collection, a generator function, an I/O channel, etc), zero or more intermediate operations (which transform a stream into another stream, such as filter(Predicate)), and a terminal operation (which produces a result or side-effect, such as count() or forEach(Consumer)). Streams are lazy; computation on the source data is only performed when the terminal operation is initiated, and source elements are consumed only as needed. 
 
 | Method | Description |
+|--------|-------------|
 | Stream<T> 	filter(Predicate<? super T> predicate) |Returns a stream consisting of the elements of this stream that match the given predicate.|
 |<R> Stream<R> 	flatMap(Function<? super T,? extends Stream<? extends R>> mapper)|Returns a stream consisting of the results of replacing each element of this stream with the contents of a mapped stream produced by applying the provided mapping function to each element.|
 |void 	forEach(Consumer<? super T> action)|Performs an action for each element of this stream.|
