@@ -90,7 +90,7 @@ gNBs can be interneccted through Xn interface. A gNB may consist of a gNB-CU and
 ## 5G Security
 - 3GPP TS 33.501: Security Architecture and Procedures for 5G System
 
-## 5GS Network Functions (NFs): Stage 3 (https://www.3gpp.org/ftp/Specs/archive/29_series/)
+## [5GS Network Functions (NFs): Stage 3](https://www.3gpp.org/ftp/Specs/archive/29_series/)
 - 3GPP TS 29.502: 5G System; Session Management Services
 - 3GPP TS 29.503: 5G System; Unified Data Management Services
 - 3GPP TS 29.504: 5G System; Unified Data Repository Services
