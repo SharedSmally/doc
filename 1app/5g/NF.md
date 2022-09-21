@@ -1,8 +1,8 @@
 # Network Functions (NF)
- 5GC Service Based Architecture (SBA) and Interface (SBI):[Index](https://www.3gpp.org/dynareport/SpecList.htm?release=Rel-16&tech=4&ts=1&tr=0) 
-- 29.500 	5G System; Technical Realization of Service Based Architecture
-- 29.501 	5G System; Principles and Guidelines for Services Definition
-- 29.502 	5G System; Session Management Services
+ 5GC Service Based Architecture (SBA) and Interface (SBI):[Index](https://www.3gpp.org/dynareport/SpecList.htm?release=Rel-16&tech=4&ts=1&tr=0)(AMF;SMF;NRF;UDM) 
+- **29.500** 	5G System; Technical Realization of Service Based Architecture
+- **29.501** 	5G System; Principles and Guidelines for Services Definition
+- **29.502** 	5G System; Session Management Services
 - 29.503 	5G System; Unified Data Management Services
 - 29.504 	5G System; Unified Data Repository Services
 - 29.505 	5G System; Usage of the Unified Data Repository services for Subscription Data
@@ -37,7 +37,7 @@
 - 29.561 	5G System; Interworking between 5G Network and external Data Networks
 - 29.562 	5G System; Home Subscriber Server (HSS) services
 - 29.563 	5G System; Home Subscriber Server (HSS) services for interworking with Unified Data Management (UDM)
-- 29.571 	5G System; Common Data Types for Service Based Interfaces
+- **29.571** 	5G System; Common Data Types for Service Based Interfaces
 - 29.572 	5G System; Location Management Services
 - 29.573 	5G System; Public Land Mobile Network (PLMN) Interconnection
 - 29.582 	Mission Critical Data (MCData) interworking with Land Mobile Radio (LMR) systems
