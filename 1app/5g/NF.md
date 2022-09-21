@@ -1,4 +1,5 @@
-# 5GC Service Based Architecture (SBA) and Interface (SBI) for Network Functions (NF): [Index](https://www.3gpp.org/dynareport/SpecList.htm?release=Rel-16&tech=4&ts=1&tr=0) 
+# Network Functions (NF)
+ 5GC Service Based Architecture (SBA) and Interface (SBI):[Index](https://www.3gpp.org/dynareport/SpecList.htm?release=Rel-16&tech=4&ts=1&tr=0) 
 - 29.500 	5G System; Technical Realization of Service Based Architecture
 - 29.501 	5G System; Principles and Guidelines for Services Definition
 - 29.502 	5G System; Session Management Services
