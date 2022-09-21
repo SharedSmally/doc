@@ -47,4 +47,4 @@
 - 29.658 	SIP Transfer of IP Multimedia Service Tariff Information; Protocol specification
 - 29.673 	5G System; UE radio capability management services
 - 29.674 	Interface between the UE radio Capability Management Function (UCMF) and the Mobility Management Entity (MME)
-- 29.675 	User Equipment (UE) radio capability provisioning service; Stage 3
+- 29.675 	User Equipment (UE) radio capability provisioning service
