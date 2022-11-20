@@ -117,3 +117,29 @@ Export file(s)
       </xsl:result-document>
     </xsl:for-each> 
 ```
+### Select specific nodes
+```
+@*: All attributes
+<xsl:apply-templates select="*[name(  ) != 'element-to-ignore']"/>
+```
+
+### Command Parameters
+```
+    <xsl:param name="startX" as="xs:integer" required="yes"/>
+    
+  java org.apache.xalan.xslt.Process -in xyz.xml -xsl params.xsl -param startX 50 -param baseColor magenta
+  java org.apache.xalan.xslt.Process -in xyz.xml -xsl params.xsl startX=50 baseColor=magenta
+```
+
+### call-template
+```
+<xsl:call-template name="draw-box">
+  <xsl:with-param name="startX" select="50"/>
+  <xsl:with-param name="startY" select="50"/>
+</xsl:call-template>
+
+<xsl:template name="draw-box">
+  <xsl:parameter name="startX" />
+  <xsl:parameter name="startY" />
+</xsl:template>
+```
