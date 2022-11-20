@@ -12,7 +12,7 @@
 
 ## Useful Functions
 - xsl file: static-base-uri()/base-uri(document(''))
-- target xml: base-uri()
+- target xml: base-uri() [xx]
 - source xml: document-uri(root())
 - collections: 
 
@@ -103,11 +103,17 @@
 ```
 
 ### Import/Export documents
-import xml file
+Import xml file
 ```
 <xsl:for-each select="document('somefile.xml')/groups/group/member[@name='somename']">
     something
 </xsl:for-each>
+```
+Import text file
+```
+unparsed-text($href as xs:string?) as xs:string?
+unparsed-text($href as xs:string?, $encoding as xs:string) as xs:string?
+unparsed-text-available($href as xs:string?, $encoding as xs:string?) as xs:boolean
 ```
 Export file(s)
 ```
@@ -117,6 +123,12 @@ Export file(s)
       </xsl:result-document>
     </xsl:for-each> 
 ```
+Multiple soruces
+```
+document($uri-sequence as item()*) as node()*
+document($uri-sequence as item()*, $base-node as node()) as node()*
+```
+
 ### Select specific nodes
 ```
 @*: All attributes
@@ -130,6 +142,8 @@ Export file(s)
   java org.apache.xalan.xslt.Process -in xyz.xml -xsl params.xsl -param startX 50 -param baseColor magenta
   java org.apache.xalan.xslt.Process -in xyz.xml -xsl params.xsl startX=50 baseColor=magenta
 ```
+### array
+- fn:remove($target as item()*, $position as xs:integer) as item()*
 
 ### call-template
 ```
