@@ -79,7 +79,7 @@
 </xsl:template>
 ```
 
-### Collection
+### Collection: import mltiple xml files
 ```
 <collection>
   <doc href="po38292.xml"/>
@@ -103,11 +103,17 @@
 ```
 
 ### Import/Export documents
+import xml file
 ```
 <xsl:for-each select="document('somefile.xml')/groups/group/member[@name='somename']">
     something
 </xsl:for-each>
 ```
+Export file(s)
 ```
-
+     <xsl:for-each select="products/product">
+      <xsl:result-document method="xml" href="product_{@id}-output.xml">
+        <xsl:copy-of select="."/>
+      </xsl:result-document>
+    </xsl:for-each> 
 ```
