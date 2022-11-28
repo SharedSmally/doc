@@ -64,6 +64,8 @@ For Spring:
    </executions>
 </plugin>
 ```
+     - Reference: https://openapi-generator.tech/
+
 ## OpenAPI Object
 The root document object of the OpenAPI document.
 | Field Name	 | Type | 	Description |
