@@ -2,7 +2,68 @@
 - Standard: https://swagger.io/specification/ 
 - Code Generator
 
+## Tools
+- [Swagger]()
+      - CLI: https://github.com/swagger-api/swagger-codegen
+- [OpenAPI Generator](https://github.com/OpenAPITools/openapi-generator-cli): OpenAPI Generator allows generation of API client libraries (SDK generation), server stubs, documentation and configuration automatically given an OpenAPI Spec (both 2.0 and 3.0 are supported). 
+     - CLI:
+```
+ https://repo1.maven.org/maven2/org/openapitools/openapi-generator-cli/6.2.1/openapi-generator-cli-6.2.1.jar
+```
+     - [OpenAPI Generator Maven Plugin](https://github.com/OpenAPITools/openapi-generator/tree/master/modules/openapi-generator-maven-plugin)
+```
+<plugin>
+    <groupId>org.openapitools</groupId>
+    <artifactId>openapi-generator-maven-plugin</artifactId>
+    <version>6.2.1</version>
+    <executions>
+        <execution>
+            <goals>
+                <goal>generate</goal>
+            </goals>
+            <configuration>
+                <inputSpec>${project.basedir}/src/main/resources/api.yaml</inputSpec>
+                <generatorName>java</generatorName>
+                <configOptions>
+                   <sourceFolder>src/gen/java/main</sourceFolder>
+                </configOptions>
+            </configuration>
+        </execution>
+    </executions>
+</plugin>
 
+mvn clean compile
+```
+For Spring:
+```
+<plugin>
+   <groupId>org.openapitools</groupId>
+   <artifactId>openapi-generator-maven-plugin</artifactId>
+   <executions>
+      <execution>
+         <goals>
+            <goal>generate</goal>
+         </goals>
+         <configuration>
+            <inputSpec>
+                 ${project.basedir}/src/main/resources/openapi.yml
+            </inputSpec>
+            <generatorName>spring</generatorName>
+            <apiPackage>io.tej.SwaggerCodgen.api</apiPackage>
+            <modelPackage>io.tej.SwaggerCodgen.model</modelPackage>
+            <supportingFilesToGenerate>
+                 ApiUtil.java
+            </supportingFilesToGenerate>
+            <configOptions>
+               <sourceFolder>src/main/java/</sourceFolder>
+               <delegatePattern>true</delegatePattern>
+               <interfaceOnly>true</interfaceOnly>
+            </configOptions>
+         </configuration>
+      </execution>
+   </executions>
+</plugin>
+```
 ## OpenAPI Object
 The root document object of the OpenAPI document.
 | Field Name	 | Type | 	Description |
