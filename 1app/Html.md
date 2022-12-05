@@ -1,4 +1,4 @@
-# Free host static HTML (https://graygrids.com/blog/free-static-html-hosting-providers)
+# (Free host static HTML)[https://graygrids.com/blog/free-static-html-hosting-providers]
 - Surge: https://surge.sh/
 - Statically: https://statically.io/
 - Gitlab
