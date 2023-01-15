@@ -24,6 +24,7 @@ The Node.js project needs to have a **package.json** file, it describes the proj
 - devDepenendcies
 ```
   "scripts": {
+    //"default": "node index.js",
     "dev": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
