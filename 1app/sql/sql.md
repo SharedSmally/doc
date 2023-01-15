@@ -22,3 +22,10 @@ SELECT table1.column1,table1.column2,table2.column1,....
 FROM table1 FULL JOIN table2
 ON table1.matching_column = table2.matching_column;
 ```
+
+## Union
+Combine two separate select statements and produce the result set as a union of both the select statements:
+```
+SELECT column_name(s) FROM table1 UNION SELECT column_name(s) FROM table2;     // Resultant set consists of distinct values.
+SELECT column_name(s) FROM table1 UNION ALL SELECT column_name(s) FROM table2; // Resultant set consists of duplicate values too.
+```
