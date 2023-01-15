@@ -11,12 +11,12 @@
 ## Tool
 Use the application generator tool, express-generator, to quickly create an application skeleton.
 ```
-$ sudo apt install node-express-generator
-$ sudo npm install -g express
-$ sudo npm install -g express-generator
+$ sudo rm -Rf /usr/local/lib/node_modules/express
+$ sudo rm -Rf /usr/local/bin/express
+$ sudo npm install express -g
+$ sudo npm install express-generator -g
 
 //$ npx express-generator
-
 ```
 ## Express Application
 ```
