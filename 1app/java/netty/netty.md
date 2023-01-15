@@ -31,6 +31,7 @@ will be released. An access exception will be reported if try to access the rele
    ByteBuf wrappedBuffer = wrappedBuffer(new byte[128], new byte[256]);
    ByteBuf copiedBuffer  = copiedBuffer(ByteBuffer.allocate(128));
 ```
+- CompositeByteBuf: contains multiple ByteBufs without Copying, but with ByteBuf methods
 
 ## Channel
 - Channel extends AttributeMap, ChannelOutboundInvoker
