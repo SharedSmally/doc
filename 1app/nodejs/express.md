@@ -1,6 +1,5 @@
 # [Express](https://expressjs.com/)
 - [API doc](https://expressjs.com/en/4x/api.html)
-- []
 - Components
     - Application
     - Request
@@ -15,6 +14,7 @@ $ sudo rm -Rf /usr/local/lib/node_modules/express
 $ sudo rm -Rf /usr/local/bin/express
 $ sudo npm install express -g
 $ sudo npm install express-generator -g
+$ npm install
 
 //$ npx express-generator
 ```
