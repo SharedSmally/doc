@@ -10,8 +10,14 @@
 ## ByteBuf (ByteBufAllocator)
 ```
 public abstract class ByteBuf implements ReferenceCounted, Comparable<ByteBuf> 
+
+// ByteBufferAllocator.DEFAULT select pooled or unpooled automatically by the system
+ByteBuf byteBuf = ByteBufferAllocator.DEFAULT.buffer(10);  // select direct/heap automatically by the system
+ByteBuf byteBuf = ByteBufferAllocator.DEFAULT.headp/directBuffer(10);  // specific direct or heap 
+
+ByteBuf byteBuf = Unpooled.buffer(10); // used widely, unpooled
 ```
-2 Types of ByteBuf:
+2 Types of ByteBuf(memory):
 - HeapByteBuffer (byte arrays allocated on heap by JVM, cheaper)
 - DirectByteBuffer (off-heap memory, can be directly passed to native OS functions for performing I/O, expensive)
 
