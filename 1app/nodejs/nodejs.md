@@ -10,7 +10,7 @@
 - [Tutorial](https://docs.npmjs.com/getting-started)
 - npm init
 - npm install/install-test/install-ci-test/clean-install/clean-install-test [-g] <module>  [--save/--save-dev]
-- npm ls/uninstall/update/search  # list installed package  
+- npm ls/uninstall/update/search/view <package_name>  # list installed package  
 - npm login/logout/publish/unpublish/ping/whoami/adduser
 - npm start/stop/test/star/stars/rebuild
 - npm run <script-name>   # script name in package.json
