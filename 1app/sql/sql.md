@@ -1,4 +1,5 @@
 # SQL
+- [Tutorial](https://www.w3schools.com/sql/default.asp)
 
 ## [Join](https://www.geeksforgeeks.org/sql-join-set-1-inner-left-right-and-full-joins/)
 - Inner Join: the common parts from left and right tables: n = common(n1, n2), no null items 
