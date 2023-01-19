@@ -106,7 +106,7 @@ npm install @myorg/mypackage
   ng g directive Some
 ```
 Generate Some.Directive.ts and some.directive.spec.ts:
-``
+```
 import { Directive } from '@angular/core';
 @Directive({
   selector: '[appSome]'
