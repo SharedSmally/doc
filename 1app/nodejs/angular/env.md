@@ -39,3 +39,72 @@ File **angular.json** tells angular which files to use for each environment in n
 - Add a new environment file environment.test.ts in app->environments/  
 - Create a test node under the build->configurations  in angular.json
 - run ng serve --configuration="test"   
+
+## [Angular Runtime Configuration using the APP_INITIALIZER](https://www.tektutorialshub.com/angular/angular-runtime-configuration/)
+Store the configuration information in a config file in a secured location(src/app/assets/config). It is deployed with the App. The App can load the configuration from it when the application loads. The Angular provides the injection token named APP_INITIALIZER, which it executes when the application starts.
+- Create the IAppConfig in src/app/app-config.service.ts
+```
+export interface IAppConfig {
+    env: {
+        name: string
+    }
+    apiServer: {
+        link1:string,
+        link2:string,
+    }
+}
+```
+- Create config file: appConfig.json:
+```
+{
+   "appTitle": "APP_INITIALIZER Example App",
+        
+   "apiServer" : {
+        "link1" :"http://amazon.com",
+        "link2" :"http://ebay.com"
+    },
+ 
+   "appSetting"             : {
+        "config1"    : "Value1",
+        "config2"    : "Value2",
+        "config3"    : "Value3",
+        "config3"    : "Value4"
+    }
+}
+```
+- import APP_INITIALIZER in Root Module.
+```
+import { NgModule, APP_INITIALIZER } from '@angular/core';
+```
+-  create a service, AppConfigService, responsible for reading the configuration file.
+```
+@Injectable()
+export class AppConfigService { 
+   constructor(private http: HttpClient) {}
+   load() {
+       //Read Configuration
+        const jsonFile = `assets/config/config.json`;
+        return new Promise<void>((resolve, reject) => {
+            this.http.get(jsonFile).toPromise().then((response : IAppConfig) => {
+               AppConfigService.settings = <IAppConfig>response;
+               console.log( AppConfigService.settings);
+               resolve();   //Return Sucess
+            }).catch((response: any) => {
+               reject(`Failed to load the config file`);
+            });
+        });
+   }
+}
+//create a factory method to call the load method of AppConfigService
+export function initializeApp(appConfigService: AppConfigService) {
+  return () => appConfigService.load();
+}
+  
+```
+-  use the APP_INITIALIZER token to provide the initializeApp using the useFactory
+```
+providers: [ 
+  AppConfigService,
+  { provide: APP_INITIALIZER,useFactory: initializeApp, deps:  [AppConfigService], multi: true}
+],
+```
