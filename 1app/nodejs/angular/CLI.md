@@ -6,9 +6,9 @@
 ```
 npm install -g @angular/cli
 ```
-- Create a workspace
+- Create a workspace: A Workspace is a collection of Angular apps, projects, or libraries. Can create multiple apps in one Project or workspace.
 ```
-ng new project   # select to use Typescript and css
+ng new project_name   # select to use Typescript and css
 ```
 - Run the application
 ```
@@ -26,6 +26,35 @@ ng g component --module=account account/hello
 ng g directive --module=account --flat=false account/Some
 ng g service --module=account --flat=false account/Data
 ng g pipe --module=account --flat=false account/Date
+```
+
+## Create Multiple Angular Apps in One Project
+*projects/* replacing *src/* with individual project and *dist/* has the folder for each of the new application.
+The *angular.json* contains the configuration settings for the workspace, and for each project. 
+- Create the Empty Workspace
+```
+ng new MultipleApps --createApplication="false"
+cd MultipleApps 
+```
+- Add a new Project to Workspace
+```
+ng generate application gettingStarted
+```
+- Run the App. Default project is defined in angular.json as defaultProject for ng serve.
+```
+ng serve gettingStarted
+ng serve --project="gettingStarted"
+```
+- Add Another Project to the workspace and run it
+```
+ng generate application exampleApp
+ng serve exampleApp
+ng serve --project="exampleApp"
+```
+- Building the App for Production
+```
+ng build --prod --project="gettingStarted"
+ng build --prod --project="exampleApp"
 ```
 
 ## Commands
