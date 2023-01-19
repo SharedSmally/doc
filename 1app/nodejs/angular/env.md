@@ -38,4 +38,4 @@ File **angular.json** tells angular which files to use for each environment in n
 ## Create new configuration
 - Add a new environment file environment.test.ts in app->environments/  
 - Create a test node under the build->configurations  in angular.json
--   
+- run ng serve --configuration="test"   
