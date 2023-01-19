@@ -33,4 +33,9 @@ The same for ng build:
 - ng build: uses the default environment i.e. development environment.
 - ng build --prod or (ng build --configuration="production"): uses the production environment.
 
-File **angular.json** tells angular which files to use for each environment in node *projects -> <name> -> architect -> build*.
+File **angular.json** tells angular which files to use for each environment in node *projects/name/architect/build*.
+
+## Create new configuration
+- Add a new environment file environment.test.ts in app->environments/  
+- Create a test node under the build->configurations  in angular.json
+-   
