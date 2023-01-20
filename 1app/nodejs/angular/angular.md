@@ -7,7 +7,74 @@
 - Create a new Project: **ng new *project_name* **
 - Run the application: **ng serve** (compiled in memory, not save the compiled ones in disk)
 - Build the application: **ng build** (build final html and js files in dist/; **ng build --prod** to build and distribute the app for production)
-The generated *dist/index.html* includes *runtime, polyfills, styles, vendor, & main* and the other script files. The **main.js** is the code of the application.
+The generated *dist/index.html* includes *runtime, polyfills, styles, vendor, & main* and the other script files. 
+
+### Bootstrap
+The entry point: **main.ts**, specified in *angular.json*.
+```
+import { enableProdMode } from '@angular/core';
+import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+ 
+import { AppModule } from './app/app.module';
+import { environment } from './environments/environment';
+ 
+if (environment.production) {
+  enableProdMode();
+}
+ 
+platformBrowserDynamic().bootstrapModule(AppModule)
+  .catch(err => console.error(err));
+```
+
+**platformBrowserDynamic** is the module to load the Angular application in the desktop browser. It import AppModule, the Root module of the app (load first whe the application is loaded).
+
+#### Root Module - AppModule
+```
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+ 
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+ 
+@NgModule({
+  declarations: [
+    AppComponent
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
+```
+The root module must have at least one root component(AppComponent). The root component is loaded when the module is loaded by the Angular.
+- imports: list of external modules
+- declarations: list of components, directives, pipes,services that belong to this module
+- providers: register the services created that can be injected by DI
+- bootstrap: the component (within this module) that should be loaded when this module is loaded
+
+#### Root Component - AppComponent
+```
+import { Component } from '@angular/core';
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
+})
+export class AppComponent {
+  title = 'GettingStarted';
+}
+```
+- templateURL:the HTML template file to be displayed in the browser.
+- selector: where the template should be inserted into the HTML
+#### Root Template - app.component.html
+```
+<body>
+  <app-root></app-root>
+</body>
+```
 
 ## Samples
 ### Components
