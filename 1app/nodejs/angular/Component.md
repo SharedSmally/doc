@@ -1,5 +1,5 @@
 # Component
-A Component contains the View (via Template) and the data for the View.
+A Component is a class with **@Component**, contains the View (via Template) and the data for the View.
 ```
 import { Component } from '@angular/core';
 @Component({    
