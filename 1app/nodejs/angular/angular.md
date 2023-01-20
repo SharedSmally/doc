@@ -3,10 +3,11 @@
 - [API doc](https://angular.io/api)
 
 ## Startup:
-- Install angular-CLI: npm install -g @angular/cli
-- Create a new Project: ng new *project_name*
-- Run the application: ng serve (compiled in memory, not save the compiled ones in disk)
-- Build the application: ng build (build final html and js files in dist/; ng build --prod to build and distribute the app for production)
+- Install angular-CLI: **npm install -g @angular/cli**
+- Create a new Project: **ng new *project_name* **
+- Run the application: **ng serve** (compiled in memory, not save the compiled ones in disk)
+- Build the application: **ng build** (build final html and js files in dist/; **ng build --prod** to build and distribute the app for production)
+The generated *dist/index.html* includes *runtime, polyfills, styles, vendor, & main* and the other script files. The **main.js** is the code of the application.
 
 ## Samples
 ### Components
