@@ -2,6 +2,10 @@
 - [CLI](https://angular.io/cli)
 - [API doc](https://angular.io/api)
 
+## Modules
+- [bootstrap](https://ng-bootstrap.github.io/): ng add @ng-bootstrap/ng-bootstrap
+
+
 ## Startup:
 - Install angular-CLI: **npm install -g @angular/cli**
 - Create a new Project: **ng new *project_name* **
