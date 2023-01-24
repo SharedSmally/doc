@@ -13,7 +13,7 @@
 
 typedef struct SRVRecord {
 	u_int16_t ttl;
-  u_int16_t priority;
+        u_int16_t priority;
 	u_int16_t weight;
 	u_int16_t port;
 	char dname[MAXCDNAME];
