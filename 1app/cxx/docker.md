@@ -20,25 +20,65 @@ $ docker build -t succeeds --no-cache=true .
       FROM [--platform=<platform>] <image>[@<digest>] [AS <name>]
 ```      
 - RUN
-- CMD
-- LABEL
-- EXPOSE
-- ENV:  ENV abc=bye def=$abc
+```
+    RUN <command> (shell form, the command is run in a shell,/bin/sh -c on Linux or cmd /S /C on Windows)
+    RUN ["executable", "param1", "param2"] (exec form)
+    RUN --mount=[type=<TYPE>][,option=<value>[,option=<value>]...]
+```
+- CMD: only one CMD in one docker file,  provide defaults for an executing container.
+```
+    CMD ["executable","param1","param2"] (exec form, the preferred form)
+    CMD ["param1","param2"] (as default parameters to ENTRYPOINT)
+    CMD command param1 param2 (shell form)
+```
+- LABEL:  LABEL <key>=<value> <key>=<value> <key>=<value> ...
+- EXPOSE: EXPOSE <port> [<port>/<protocol>...]
+- ENV:  ENV <key>=<value> ...     #ENV abc=bye def=$abc
      - ${variable_name};
      - ${variable:-word}: If not set, word is the result.
      - ${variable:+word}: If set, word is the result, otherwise is the empty string.
-- ADD
+- ADD:  copies new files, directories or remote file URLs, accept *, ? 
+```
+   ADD [--chown=<user>:<group>] [--checksum=<checksum>] <src>... <dest>
+   ADD [--chown=<user>:<group>] ["<src>",... "<dest>"]
+   ADD [--keep-git-dir=<boolean>] <git ref> <dir>      
+```      
 - COPY
-- ENTRYPOINT
-- VOLUME
-- USER
-- WORKDIR
-- ARG
-- ONBUILD
-- STOPSIGNAL
+```
+   COPY [--chown=<user>:<group>] <src>... <dest>
+   COPY [--chown=<user>:<group>] ["<src>",... "<dest>"]
+```
+- ENTRYPOINT:  configure a container that will run as an executable.
+```
+  ENTRYPOINT ["executable", "param1", "param2"]
+  ENTRYPOINT command param1 param2
+```      
+- VOLUME:  VOLUME ["/data"]
+- USER:  USER <user>[:<group>]/<UID>[:<GID>]
+- WORKDIR: WORKDIR /path/to/workdir  # dir for RUN, CMD, ENTRYPOINT, COPY and ADD
+- ARG:  ARG <name>[=<default value>] # variable passed at build-time using --build-arg <varname>=<value> flag
+     - Predefined ARGs: HTTP_PROXY/ http_proxy/HTTPS_PROXY/https_proxy/FTP_PROXY/ftp_proxy/NO_PROXY/no_proxy/ALL_PROXY/all_proxy
+     - Automatic platform ARGs: TARGETPLATFORM/TARGETOS/TARGETARCH/TARGETVARIANT; BUILDPLATFORM/BUILDOS/BUILDARCH/BUILDVARIANT    
+- ONBUILD:  ONBUILD <INSTRUCTION>  #trigger instruction
+- STOPSIGNAL: STOPSIGNAL signal    #system signal that will be sent to the container to exit.
 - HEALTHCHECK
-- SHELL
+```      
+   HEALTHCHECK [OPTIONS] CMD command (check container health by running a command inside the container)
+   HEALTHCHECK NONE (disable any healthcheck inherited from the base image      
+  OPTIONS:
+    --interval=DURATION (default: 30s)
+    --timeout=DURATION (default: 30s)
+    --start-period=DURATION (default: 0s)
+    --retries=N (default: 3)      
+```      
+- SHELL: SHELL ["executable", "parameters"]  # default shell used for the shell form of commands 
 
+### ADD vs COPY
+- COPY takes in a source and destination. It only copy in a local or directory from the host (the machine-building the Docker image) into the Docker image itself.
+- ADD  does that same but in addition, it also supports 2 other sources. 
+     - A URL instead of a local file/directory.
+     - Extract tar from the source directory into the destination.    
+      
 ## Docker CLI
 - Management Commands:
 ```
