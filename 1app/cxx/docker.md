@@ -78,6 +78,12 @@ $ docker build -t succeeds --no-cache=true .
 - ADD  does that same but in addition, it also supports 2 other sources. 
      - A URL instead of a local file/directory.
      - Extract tar from the source directory into the destination.    
+
+### RUN vs CMD vs ENTRYPOINT
+- RUN: executes commands and creates new image layers.
+- CMD: sets the command and its parameters to be executed by default after the container is started. it can be replaced by docker run command line parameters.
+- ENTRYPOINT: configures the command to run when the container starts, similar to CMD from a functionality perspective.
+- SHELL: set the shell command used by the shell form of commands 
       
 ## Docker CLI
 - Management Commands:
