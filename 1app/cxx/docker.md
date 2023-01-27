@@ -14,9 +14,11 @@ COPY \$FOO /quux # COPY $FOO /quux
 $ docker build -t succeeds --no-cache=true .
 ```
 - FROM: FROM ImageName
-     - FROM [--platform=<platform>] <image> [AS <name>]
-     - FROM [--platform=<platform>] <image>[:<tag>] [AS <name>]
-     - FROM [--platform=<platform>] <image>[@<digest>] [AS <name>]
+```
+      FROM [--platform=<platform>] <image> [AS <name>]
+      FROM [--platform=<platform>] <image>[:<tag>] [AS <name>]
+      FROM [--platform=<platform>] <image>[@<digest>] [AS <name>]
+```      
 - RUN
 - CMD
 - LABEL
