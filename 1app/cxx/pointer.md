@@ -27,3 +27,4 @@ if( !tempParentSharedPtr ) {
 // tempParentSharedPtr is released when it goes out of scope
 ```
   
+![https://i.stack.imgur.com/iKXVO.png]
