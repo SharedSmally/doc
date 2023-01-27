@@ -81,10 +81,20 @@ $ docker build -t succeeds --no-cache=true .
 
 ### RUN vs CMD vs ENTRYPOINT
 - RUN: executes commands and creates new image layers.
-- CMD: sets the command and its parameters to be executed by default after the container is started. it can be replaced by docker run command line parameters.
-- ENTRYPOINT: configures the command to run when the container starts, similar to CMD from a functionality perspective.
+- CMD: sets the command and its parameters to be executed by default after the container is started. it can be replaced by docker run command line parameters. 
+- ENTRYPOINT: configures the command to run when the container starts, Sets default parameters that cannot be overridden while executing Docker containers with CLI parameters.
 - SHELL: set the shell command used by the shell form of commands 
+When both CMD and ENTRYPOINT are used, the executable is defined with ENTRYPOINT, while CMD specifies the default parameter.
+```
+FROM ubuntu
+ENTRYPOINT ["echo", "Hello"]
+CMD ["Abhinav"]      
       
+docker build -t entrypoint-cmd .
+docker run entrypoint-cmd   => Hello Abhinav
+docker run entrypoint-cmd @abhinavd26 =>    Hello @abhinavd26 
+      
+```
 ## Docker CLI
 - Management Commands:
 ```
@@ -157,3 +167,12 @@ Commands:
   push        Push an image or a repository to a registry
 ```
 
+###
+- exec: run a command in a running container or open a shell session to a running container     
+```
+$ docker exec -it cranky_spence /bin/bash
+$ docker exec cranky_spence /bin/bash -c "uptime; whoami; date"      
+```  
+- create: creates a fresh new container from a docker image. However, it doesn’t run it immediately.
+- start: start any stopped container. If using docker create command to create a container, can start it with this command.
+- run: a combination of create and start as it creates a new container and starts it immediately.
