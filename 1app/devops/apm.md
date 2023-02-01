@@ -22,8 +22,10 @@ Beats can send data directly to Elasticsearch or via Logstash, where you can fur
 - Metrics: Metricbeat
 - Network traffic: Packetbeat
 - Windows event logs: Winlogbeat
+- [Community Beats](https://www.elastic.co/guide/en/beats/libbeat/current/community-beats.html)
 
 ### [MetricBeat](https://www.elastic.co/guide/en/beats/metricbeat/current/index.html)
+Metricbeat is a lightweight shipper that installed on the servers to periodically collect metrics from the operating system and from services running on the server. Metricbeat takes the metrics and statistics that it collects and ships them to the specified output, such as Elasticsearch or Logstash.
 - [MetricBeat Modules](https://www.elastic.co/guide/en/beats/metricbeat/current/metricbeat-modules.html): including database, Prometheus, Linux,...
 
 ## [Prometheus](https://prometheus.io/)
