@@ -14,6 +14,7 @@
 
 ### [Beats](https://www.elastic.co/guide/en/beats/libbeat/current/beats-reference.html)
 Beats can send data directly to Elasticsearch or via Logstash, where you can further process and enhance the data, before visualizing it in Kibana.
+
 ![Beats](https://www.elastic.co/guide/en/beats/libbeat/current/images/beats-platform.png)
 - Audit data: Auditbeat
 - Log files and journals: Filebeat
