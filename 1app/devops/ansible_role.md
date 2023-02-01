@@ -37,7 +37,7 @@ By default Ansible will look in each directory within a role for a main.yml file
 - templates/main.yml - templates that the role deploys.
 - meta/main.yml - metadata for the role, including role dependencies and optional Galaxy metadata such as platforms supported.
 
-## Using roles
+## Using roles
 - at the play level with the roles option: This is the classic way of using roles in a play.
 - at the tasks level with include_role: You can reuse roles dynamically anywhere in the tasks section of a play using include_role.
 - at the tasks level with import_role: You can reuse roles statically anywhere in the tasks section of a play using import_role.
@@ -61,4 +61,27 @@ By default Ansible will look in each directory within a role for a main.yml file
         app_port: 5001
       tags: typeB
 ```
+
+## Role dependencies: automatically pull in other roles when using a role.
+
+The roles do not have a parent/child relationship. Ansible loads all listed roles, runs the roles listed under dependencies first, then runs the role that lists them. The play object is the parent of all roles, including roles called by a dependencies list.
+
+Role dependencies are stored in the meta/main.yml file within the role directory. This file should contain a list of roles and parameters to insert before the specified role. 
+```
+# roles/myapp/meta/main.yml
+---
+dependencies:
+  - role: common
+    vars:
+      some_parameter: 3
+  - role: apache
+    vars:
+      apache_port: 80
+  - role: postgres
+    vars:
+      dbname: blarg
+      other_parameter: 12
+```
+
+
 
