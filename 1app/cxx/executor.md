@@ -9,6 +9,9 @@
        - Repeater: initial; interval; maxCount;
 - Job
 
+## ThreadPool
+- exec(Task)
+
 ## Executor
 - exec(Task)
 
