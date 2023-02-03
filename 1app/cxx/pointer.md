@@ -1,4 +1,8 @@
-# std::shared_ptr vs weak_ptr
+# std::shared_ptr vs weak_ptr vs unique_ptr
+- unique_ptr: only one ownes the object (replaced auto_ptr)
+- shared_ptr: owned by multiple owners (based on reference counter)
+- weak_ptr: now owned the object, needs to convert to shared_ptr to get the object
+
 https://stackoverflow.com/questions/12030650/when-is-stdweak-ptr-useful
 
 Suppose you have Team and Member objects.
