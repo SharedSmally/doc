@@ -3,10 +3,10 @@
 ## Task
 - Runnable: void run()
 - Task: 
-       - state: init,waiting,running,cancelled,complete
-       - cancel
+       -- state: init,waiting,running,cancelled,complete
+       -- cancel
 - Timer:  single; timeout
-       - Repeater: initial; interval; maxCount;
+       -- Repeater: initial; interval; maxCount;
 - Job
 
 ## ThreadPool
