@@ -6,7 +6,8 @@
     - state: init,waiting,running,cancelled,complete
     - cancel()
 - Timer:  single; timeout
-       -- Repeater: initial; interval; maxCount;
+    - Repeater: initial; interval; maxCount;
+        - CronJob
 - Job
 
 ## ThreadPool
