@@ -10,7 +10,7 @@
 - Job
 
 ## ThreadPool
-- exec(Task)
+- exec(Runnable)
 
 ## Executor
 - exec(Task)
