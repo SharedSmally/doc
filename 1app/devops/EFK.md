@@ -8,7 +8,7 @@
 - LogStash: Use filebeat to push logging to LogStash; Good with ES and Kibana.
 
 ## Visualization
-- Kibana: With ElasticSearch as DataSource
+- Kibana: With ElasticSearch as DataSource (Logging Searching and Analysis; with Machine Learning)
 - Grafana: Mostly used by InfluxDB, Graphite, and Elasticsearch. Good for time series analytics
 Commeicial Software
 - Splunk
