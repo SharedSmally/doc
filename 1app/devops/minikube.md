@@ -1,5 +1,6 @@
 # MiniKube
-- [https://minikube.sigs.k8s.io/docs/]
+- [Document](https://minikube.sigs.k8s.io/docs/)
+- [Commands](https://minikube.sigs.k8s.io/docs/commands/)
 
 ## Commands
 ```
