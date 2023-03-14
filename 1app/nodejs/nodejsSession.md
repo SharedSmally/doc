@@ -8,7 +8,6 @@ A cookie is a key-value pair that is stored in the browser. The browser attaches
 Components: 
 - Express - a web framework for Node.js used to create HTTP web servers. 
 - [Express-session](https://expressjs.com/en/resources/middleware/session.html) - an HTTP server-side framework used to create and manage a session middleware. 
-    - Compatible Session Stores: in [Express-session](https://expressjs.com/en/resources/middleware/session.html)
 - Cookie-parser - used to parse cookie header to store data on the browser whenever a session is established on the server-side.
 ```
 npm install express express-session cookie-parser
@@ -75,7 +74,35 @@ app.get('/logout',(req,res) => {
 
 app.listen(PORT, () => console.log(`Server Running at port ${PORT}`));
 ```
-
+## Use Store
+- Compatible Session Stores: in [Express-session](https://expressjs.com/en/resources/middleware/session.html)
+```
+app.use(
+  express.session({
+    secret: 'SomeSuperLongHardToGuessSecretString',
+    resave: true,
+    saveUninitialized: false,
+    store: new (require('express-sessions'))({
+      storage: 'mongodb',
+      instance: mongoose,
+      host: 'localhost',
+      port: 27017,
+      db: 'test',
+      collection: 'sessions',
+      expire: 86400
+    })
+}));
+```
+- [MySQL + Redis](https://arctype.com/blog/node-session/)
+    - Bcryptjs - hash the user’s password.
+    - Connect-redis - provide Redis session storage for Express.
+    - Express-session - create sessions.
+    - Ejs - template engine
+    - Passport - for user’s authentication
+    - Passport-local - for local username and password authentication
+    - Sequelize - MySQL ORM to connect app to MySQL database.
+    - Dotenv - load our environment variables.
+    
 ## Load Balance
 - Server-Side LB: HAProxy,...
 - Client-Side LB:
