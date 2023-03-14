@@ -8,7 +8,7 @@ A cookie is a key-value pair that is stored in the browser. The browser attaches
 Components: 
 - Express - a web framework for Node.js used to create HTTP web servers. 
 - [Express-session](https://expressjs.com/en/resources/middleware/session.html) - an HTTP server-side framework used to create and manage a session middleware. 
-      - Compatible Session Stores: in [Express-session](https://expressjs.com/en/resources/middleware/session.html)
+    - Compatible Session Stores: in [Express-session](https://expressjs.com/en/resources/middleware/session.html)
 - Cookie-parser - used to parse cookie header to store data on the browser whenever a session is established on the server-side.
 ```
 npm install express express-session cookie-parser
