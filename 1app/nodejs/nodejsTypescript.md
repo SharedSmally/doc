@@ -1,6 +1,7 @@
 # NodeJS with Typescript
 - [NodeJS with Typescript](https://nodejs.dev/en/learn/nodejs-with-typescript/)
-- [Typescript with NodeJS](https://www.section.io/engineering-education/how-to-use-typescript-with-nodejs/))
+- [Typescript with NodeJS](https://www.section.io/engineering-education/how-to-use-typescript-with-nodejs/)
+- [NodeJS+Typescript](https://betterstack.com/community/guides/scaling-nodejs/nodejs-typescript/)
 ```
 $ npm install -g typescript
 $ tsc --init
