@@ -30,4 +30,4 @@ app.listen(PORT, ():void => {
    "dev": "nodemon ./src/index.ts"
  }
 ```
-- npm run dev
+- npm run dev / npm run build
