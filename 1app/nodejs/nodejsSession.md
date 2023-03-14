@@ -5,15 +5,15 @@ which will now be stored on the client. This cookie will be sent on every reques
 
 A cookie is a key-value pair that is stored in the browser. The browser attaches cookies to every HTTP request that is sent to the server.
 
-Components: https://www.section.io/engineering-education/session-management-in-nodejs-using-expressjs-and-express-session/
+Components: 
 - Express - a web framework for Node.js used to create HTTP web servers. 
-- Express-session - an HTTP server-side framework used to create and manage a session middleware. 
+- [Express-session](https://expressjs.com/en/resources/middleware/session.html) - an HTTP server-side framework used to create and manage a session middleware. 
 - Cookie-parser - used to parse cookie header to store data on the browser whenever a session is established on the server-side.
 ```
 npm install express express-session cookie-parser
 ```
 
-## Setup Session
+## [Setup Session](https://www.section.io/engineering-education/session-management-in-nodejs-using-expressjs-and-express-session/)
 ```
 const express = require('express');
 const cookieParser = require("cookie-parser");
