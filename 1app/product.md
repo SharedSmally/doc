@@ -23,14 +23,20 @@
 </project>
 ```
 ### Application: application.xml 
+- command-line arg
+- library/service/database/protocol
 
 ### Library: library.xml 
+- module
 
 ### Service: service.xml 
+- configs(view/config/update/reset;count/gauge/metric)
 
 ### Database: database.xml 
 
 ### Protocol: protocol.xml 
+- message (protocol buffer; binary/json)
+- rpc services
 
 #### CXX File: cxxfile.xml 
 - import
