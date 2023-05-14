@@ -1,5 +1,5 @@
 # Python
-- [Python](https://www.python.org/)
+- [Python](https://www.python.org/): Original impl is cpython.
 - [Doc 3](https://docs.python.org/3/)
     - [Language Reference](https://docs.python.org/3/reference/index.html)
     - [Standard Library Reference](https://docs.python.org/3/library/index.html)
@@ -21,5 +21,13 @@
 |Libraries |are not forward compatible | strictly used with Python 3. |
 |Application |	DevOps Engineer | Software Engineering, Data Science, etc.|
 
+```
+def main():
+  print ("Hi! This is Python 3")
+  //print "Hi! This is Python 2"
+  
+if __name__== "__main__":
+  main()
+```
 
 
