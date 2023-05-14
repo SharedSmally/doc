@@ -4,7 +4,7 @@
     - [Language Reference](https://docs.python.org/3/reference/index.html)
     - [Standard Library Reference](https://docs.python.org/3/library/index.html)
 
-## Python 2/3
-
 ## Modules
+
+## Python 2/3
 
