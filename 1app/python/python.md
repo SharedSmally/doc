@@ -9,6 +9,7 @@
 
 ## Python 2/3 (not compatibility)
 |Item |	Python 2 |	Python 3 |
+|-----|----------|-----------|
 |Year of Release | 2000-2020 |	2008- |
 |Print Keyword |	considered to be a statement and not a function. | considered to be a function and not a statement |
 |Storage of Strings	| stored as ASCII by default | stored as UNICODE by default.|
