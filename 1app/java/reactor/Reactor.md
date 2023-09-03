@@ -34,6 +34,17 @@ This is an interface that is extended by both publisher and subscriber interface
 
 ![Processor](https://miro.medium.com/v2/resize:fit:720/format:webp/0*y0vILBzlmLThhI9D.png)
 
+
+## Reactive Stream Workflow
+![Reactive Stream Workflow](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiWutE6WCv-AUqLjvTqHGyFG2qUCrbMdMQeR4nBWCEbBSbyVtTQ_eT_a-c4285jZ01u0yLbYH8LYEQvw9Ch4uceh_quuIy43icE9bpFqnf7FwsLnwGae3VwFweJq1dLJIu7wu8KA2B4QEchi6GgT6jZ_0Y0QaGt9oy0oTQAkfwpuoYEw1198BsQLcbG/s16000/Spring%20WebFlux%20-%20Reactive%20Programming.001.jpeg)
+
+1. The Subscriber will call subscribe() method of the Publisher to subscribe or register with the Publisher.
+2. The Publisher creates an instance of Subscription and sends it to Subscriber saying that your subscription is successful.
+3. Next, the Subscriber will call the request(n) method of Subscription to request data from the Publisher.
+4. Next, Publisher call onNext(data) method to send data to the Subscriber. Publisher call onNext(data) n times. It means if there are 10 items then the Publisher call onNext(data) method 10 times.
+5. Once the Publisher sends all the data to Subscriber, the next Publisher call onComplete() method to notify Subscriber that all the data has been sent. If there are any errors while sending the data then the Publisher call onError() method to send error details to the Subscriber.
+ 
+
 ## Project Reactor
 - Reactor core
 - Reactor Test;Extra;Adaptor;Pool
@@ -41,20 +52,21 @@ This is an interface that is extended by both publisher and subscriber interface
 - Reactor Kafka
 - Reactor RabbitMQ
   
-### Flux
+### Flux / FluxOperator
 
 Flux represents an Asynchronous Sequence of 0-N Items. This is like a stream of 0 to N items, and we can do various transformations to this stream, including transforming it to an entirely different type of 0-N item stream.
 
 ![Flux](https://miro.medium.com/v2/resize:fit:640/format:webp/0*dahFWzPbgq5EXwoE.png)
 
-### Mono
+### Mono / MonoOperator
 
 Mono represents only one value stream of items. We can do various transformations to this, including transforming it entirely.
 
 ![Mono](https://miro.medium.com/v2/resize:fit:720/0*YbFa5e6k_DO4zsEn)
 
-### Sink
-
+### [Sink](https://projectreactor.io/docs/core/release/api/)
+- MonoSink<T>
+- FluxSink<T>
 Sinks are constructs through which Reactive Streams signals can be programmatically pushed, with Flux or Mono semantics. These standalone sinks expose tryEmit methods that return an Sinks.EmitResult enum, allowing to atomically fail in case the attempted signal is inconsistent with the spec and/or the state of the sink. 
 
 - **Sinks.EmissionException**:  An exception representing a failed Sinks.EmitResult.
@@ -71,3 +83,18 @@ Sinks are constructs through which Reactive Streams signals can be programmatica
     - **Sinks.RootSpec**:  Provides a choice of Sinks.One/Sinks.Empty factories and further specs for Sinks.Many.
     - **Sinks.UnicastSpec**: Provides unicast: 1 sink, 1 Subscriber
 
+### [Scheduler/Schedulers](https://projectreactor.io/docs/core/release/api/): reactor.core.scheduler
+
+Schedulers provides various Scheduler flavors usable by publishOn or subscribeOn : 
+- parallel(): Optimized for fast Runnable non-blocking executions
+- single(): Optimized for low-latency Runnable one-off executions
+- boundedElastic(): Optimized for longer executions, an alternative for blocking tasks where the number of active tasks (and threads) is capped
+- immediate(): to immediately run submitted Runnable instead of scheduling them (somewhat of a no-op or "null object" Scheduler)
+- fromExecutorService(ExecutorService) to create new instances around Executors
+
+Factories prefixed with new (eg. newBoundedElastic(int, int, String) return a new instance of their flavor of Scheduler, while other factories like boundedElastic() return a shared instance - which is the one used by operators requiring that flavor as their default Scheduler. All instances are returned in a initialized state.
+
+### [Operators](https://projectreactor.io/docs/core/release/api/)
+
+### Processor
+Deprecated. Using Sinks directly
