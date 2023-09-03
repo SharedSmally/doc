@@ -66,10 +66,10 @@ static <T> Flux<T> 	create(Consumer<? super FluxSink<T>> emitter, FluxSink.Overf
 ```
 ### Defer
 Lazily supply a Publisher every time a Subscription is made on the resulting Flux, so the actual source instantiation is deferred until each subscribe and the Supplier can create a subscriber-specific instance.
-
+```
 static <T> Flux<T> 	defer(Supplier<? extends Publisher<T>> supplier)
 static <T> Flux<T> 	deferContextual(Function<ContextView,? extends Publisher<T>> contextualPublisherFactory)
-
+```
 ### First
 Pick the first Publisher to emit any signal (onNext/onError/onComplete) and replay all signals from that Publisher, effectively behaving like the fastest of these competing sources.
 ```
