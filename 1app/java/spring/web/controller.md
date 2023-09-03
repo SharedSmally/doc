@@ -64,7 +64,8 @@ public ResponseTransfer postResponseJsonContent( @RequestBody LoginForm loginFor
     return new ResponseTransfer("JSON Content!");
 }
 ```
-- **ResponseStatus: Marks a method or exception class with the status ResponseStatus.code() and ResponseStatus.reason() that should be returned.
+
+- **ResponseStatus**: Marks a method or exception class with the status ResponseStatus.code() and ResponseStatus.reason() that should be returned.
 
 - **InitBinder**: identifies methods that initialize the WebDataBinder which will be used for populating command and form object arguments of annotated handler methods.
 
