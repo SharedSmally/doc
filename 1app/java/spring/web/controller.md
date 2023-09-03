@@ -114,6 +114,25 @@ public ResponseTransfer postResponseJsonContent( @RequestBody LoginForm loginFor
 | @RequestAttribute | For access to request attributes. See @RequestAttribute for more details. |
 | Any other argument | If a method argument is not matched to any of the above, it is, by default, resolved as a @RequestParam if it is a simple type, as determined by BeanUtils#isSimpleProperty, or as a @ModelAttribute, otherwise. |
 
+### Method Return Values
+| Controller method return value  | Description |
+|---------|--------------|
+| @ResponseBody | The return value is encoded through HttpMessageWriter instances and written to the response. See @ResponseBody.|
+| HttpEntity<B>, ResponseEntity<B> | The return value specifies the full response, including HTTP headers, and the body is encoded through HttpMessageWriter instances and written to the response. See ResponseEntity. |
+| HttpHeaders | For returning a response with headers and no body. |
+| ErrorResponse | To render an RFC 7807 error response with details in the body, see Error Responses |
+| ProblemDetail | To render an RFC 7807 error response with details in the body, see Error Responses |
+| String | A view name to be resolved with ViewResolver instances and used together with the implicit model — determined through command objects and @ModelAttribute methods. The handler method can also programmatically enrich the model by declaring a Model argument (described earlier). |
+| View | A View instance to use for rendering together with the implicit model — determined through command objects and @ModelAttribute methods. The handler method can also programmatically enrich the model by declaring a Model argument (described earlier). |
+| java.util.Map, org.springframework.ui.Model | Attributes to be added to the implicit model, with the view name implicitly determined based on the request path. |
+| @ModelAttribute | An attribute to be added to the model, with the view name implicitly determined based on the request path.Note that @ModelAttribute is optional. See “Any other return value” later in this table. |
+| Rendering | An API for model and view rendering scenarios. |
+| void | A method with a void, possibly asynchronous (for example, Mono<Void>), return type (or a null return value) is considered to have fully handled the response if it also has a ServerHttpResponse, a ServerWebExchange argument, or an @ResponseStatus annotation. The same is also true if the controller has made a positive ETag or lastModified timestamp check. See Controllers for details.If none of the above is true, a void return type can also indicate “no response body” for REST controllers or default view name selection for HTML controllers. |
+| Flux<ServerSentEvent>, Observable<ServerSentEvent>, or other reactive type | Emit server-sent events. The ServerSentEvent wrapper can be omitted when only data needs to be written (however, text/event-stream must be requested or declared in the mapping through the produces attribute). |
+| Other return values | If a return value remains unresolved in any other way, it is treated as a model attribute, unless it is a simple type as determined by BeanUtils#isSimpleProperty, in which case it remains unresolved. |
+
+
+
 
 ## Samples
 ### [RequestMapping](https://www.baeldung.com/spring-requestmapping): For class/method
