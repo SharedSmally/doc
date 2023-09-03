@@ -77,15 +77,15 @@ public ResponseTransfer postResponseJsonContent( @RequestBody LoginForm loginFor
 - **RestControllerAdvice**: @ControllerAdvice and @ResponseBody.
 
 ### URI Patterns
+
 | Patterm | Desc  | Example |
 |---------|-------|---------|
-|?|Matches one character|"/pages/t?st.html" matches "/pages/test.html" and "/pages/t3st.html"|
-|*|Matches zero or more characters within a path segment|"/resources/*.png" matches "/resources/file.png"; "/projects/*/versions" matches "/projects/spring/versions" but does not match "/projects
-/spring/boot/versions"|
-|**|Matches zero or more path segments until the end of the path|"/resources/**" matches "/resources/file.png" and "/resources/images/file.png" "/resources/**/file.png" is invalid as ** is only allowed at the end of the path.|
-|{name}|Matches a path segment and captures it as a variable named "name"|"/projects/{project}/versions" matches "/projects/spring/versions" and captures project=spring|
-|{name:[a-z]+}|Matches the regexp "[a-z]+" as a path variable named "name"|"/projects/{project:[a-z]+}/versions" matches "/projects/spring/versions" but not "/projects/spring1/versions"|
-|{*path}|Matches zero or more path segments until the end of the path and captures it as a variable named "path"|"/resources/{*file}" matches "/resources/images/file.png" and captures file=/images/file.png|
+|   ?     | Matches one character | "/pages/t?st.html" matches "/pages/test.html" and "/pages/t3st.html" |
+|   *     | Matches zero or more characters within a path segment | "/resources/*.png" matches "/resources/file.png"; "/projects/*/versions" matches "/projects/spring/versions" but does not match "/projects/spring/boot/versions"|
+|  **     | Matches zero or more path segments until the end of the path | "/resources/**" matches "/resources/file.png" and "/resources/images/file.png" "/resources/**/file.png" is invalid as ** is only allowed at the end of the path.|
+| {name}  | Matches a path segment and captures it as a variable named "name" | "/projects/{project}/versions" matches "/projects/spring/versions" and captures project=spring |
+| {name:[a-z]+} | Matches the regexp "[a-z]+" as a path variable named "name" | "/projects/{project:[a-z]+}/versions" matches "/projects/spring/versions" but not "/projects/spring1/versions" |
+| {*path} | Matches zero or more path segments until the end of the path and captures it as a variable named "path" | "/resources/{*file}" matches "/resources/images/file.png" and captures file=/images/file.png|
 
 
 
