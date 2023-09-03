@@ -2,10 +2,10 @@
 
 ## Annotations:org.springframework.web.bind.annotation
 ### Mapping
-- **RestController**:  @Controller + @ResponseBody.
+- **RestController**:  @Controller + @ResponseBody. class level annotations
 - **CrossOrigin**: permitting cross-origin requests on specific handler classes and/or handler methods.
 - **Mapping**: Meta annotation that indicates a web mapping annotation.
-- **RequestMapping**: generic mapping web requests onto methods in request-handling classes with flexible method signatures(URL,request parameters,headers,media types).
+- **RequestMapping**: generic mapping web requests onto methods in request-handling classes with flexible method signatures(URL,request parameters,headers,media types). (class or method annotations)
 ```
 @Configuration
 @ComponentScan("org.example.web") 
@@ -37,7 +37,7 @@ public Pet findPet(@PathVariable Long ownerId, @PathVariable Long petId) {
 }
 ```
 
-### Method Mapping: GET/POST/PUT/DELETE/PATCH
+### Method Mapping: GET/POST/PUT/DELETE/PATCH (Method annotations)
 - **GetMapping**: mapping HTTP GET requests
 - **PostMapping**: mapping HTTP POST requests
 - **PutMapping**: mapping HTTP PUT requests
@@ -45,7 +45,7 @@ public Pet findPet(@PathVariable Long ownerId, @PathVariable Long petId) {
 - **PatchMapping**: mapping HTTP PATCH requests
 - **ExceptionHandler**: handling exceptions in classes and/or methods.
  
-### Request
+### Request: Method arguments
 - **PathVariable**: indicates that a method parameter should be bound to a URI template variable.
 - **RequestParam**: indicating a method parameter should be bound to a web request parameter.
 - **RequestHeader**: indicating a method parameter should be bound to a web request header.
@@ -78,7 +78,6 @@ public ResponseTransfer postResponseJsonContent( @RequestBody LoginForm loginFor
 - **RestControllerAdvice**: @ControllerAdvice and @ResponseBody.
 
 ### URI Patterns
-
 | Patterm | Desc  | Example |
 |---------|-------|---------|
 |   ?     | Matches one character | "/pages/t?st.html" matches "/pages/test.html" and "/pages/t3st.html" |
