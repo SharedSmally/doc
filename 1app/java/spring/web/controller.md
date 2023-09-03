@@ -77,8 +77,8 @@ public ResponseTransfer postResponseJsonContent( @RequestBody LoginForm loginFor
 - **RestControllerAdvice**: @ControllerAdvice and @ResponseBody.
 
 ### URI Patterns
-|---------|-------|---------|
 | Patterm | Desc  | Example |
+|---------|-------|---------|
 |?|Matches one character|"/pages/t?st.html" matches "/pages/test.html" and "/pages/t3st.html"|
 |*|Matches zero or more characters within a path segment|"/resources/*.png" matches "/resources/file.png"; "/projects/*/versions" matches "/projects/spring/versions" but does not match "/projects
 /spring/boot/versions"|
