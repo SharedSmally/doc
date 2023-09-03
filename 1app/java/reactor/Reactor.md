@@ -57,17 +57,17 @@ Mono represents only one value stream of items. We can do various transformation
 
 Sinks are constructs through which Reactive Streams signals can be programmatically pushed, with Flux or Mono semantics. These standalone sinks expose tryEmit methods that return an Sinks.EmitResult enum, allowing to atomically fail in case the attempted signal is inconsistent with the spec and/or the state of the sink. 
 
-- Sinks.EmissionException:  An exception representing a failed Sinks.EmitResult.
-- Sinks.EmitFailureHandler: A handler supporting the emit API (eg.
-- Sinks.EmitResult: Represents the immediate result of an emit attempt (eg.
-- Sinks.Empty<T>: A base interface for standalone Sinks with complete-or-fail semantics.
-- Sinks.Many<T>: A base interface for standalone Sinks with Flux semantics.
-    - Sinks.ManySpec: Provides Sinks.Many specs for sinks which can emit multiple elements
-- Sinks.ManyWithUpstream<T>: A Sinks.Many which additionally allows being subscribed to an upstream Publisher, which is an advanced pattern requiring external synchronization.
-    - Sinks.ManyWithUpstreamUnsafeSpec: Instead of unsafe flavors of Sinks.Many, this spec provides Sinks.ManyWithUpstream implementations.
-    - Sinks.MulticastReplaySpec: Provides multicast with history/replay capacity : 1 sink, N Subscriber
-    - Sinks.MulticastSpec: Provides multicast : 1 sink, N Subscriber
-- Sinks.One<T>: A base interface for standalone Sinks with Mono semantics.
-    - Sinks.RootSpec:  Provides a choice of Sinks.One/Sinks.Empty factories and further specs for Sinks.Many.
-    - Sinks.UnicastSpec: Provides unicast: 1 sink, 1 Subscriber
+- **Sinks.EmissionException**:  An exception representing a failed Sinks.EmitResult.
+- **Sinks.EmitFailureHandler**: A handler supporting the emit API
+- **Sinks.EmitResult**: Represents the immediate result of an emit attempt
+- **Sinks.Empty<T>**: A base interface for standalone Sinks with complete-or-fail semantics.
+- **Sinks.Many<T>**: A base interface for standalone Sinks with Flux semantics.
+    - **Sinks.ManySpec**: Provides Sinks.Many specs for sinks which can emit multiple elements
+- **Sinks.ManyWithUpstream<T>**: A Sinks.Many which additionally allows being subscribed to an upstream Publisher, which is an advanced pattern requiring external synchronization.
+    - **Sinks.ManyWithUpstreamUnsafeSpec**: Instead of unsafe flavors of Sinks.Many, this spec provides Sinks.ManyWithUpstream implementations.
+    - **Sinks.MulticastReplaySpec**: Provides multicast with history/replay capacity : 1 sink, N Subscriber
+    - **Sinks.MulticastSpec**: Provides multicast : 1 sink, N Subscriber
+- **Sinks.One<T>**: A base interface for standalone Sinks with Mono semantics.
+    - **Sinks.RootSpec**:  Provides a choice of Sinks.One/Sinks.Empty factories and further specs for Sinks.Many.
+    - **Sinks.UnicastSpec**: Provides unicast: 1 sink, 1 Subscriber
 
