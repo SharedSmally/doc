@@ -47,14 +47,141 @@ public Pet findPet(@PathVariable Long ownerId, @PathVariable Long petId) {
  
 ### Request: Method arguments
 - **PathVariable**: indicates that a method parameter should be bound to a URI template variable.
-- **RequestParam**: indicating a method parameter should be bound to a web request parameter.
+- **RequestParam**: indicating a method parameter should be bound to a web request(query) parameter.
+```
+	@GetMapping
+	public String setupForm(@RequestParam("petId") int petId, Model model) { 
+		Pet pet = this.clinic.loadPet(petId);
+		model.addAttribute("pet", pet);
+		return "petForm";
+	}
+When a @RequestParam annotation is declared on a Map<String, String> or MultiValueMap<String, String> argument, the map is populated with all query parameters.
+```
 - **RequestHeader**: indicating a method parameter should be bound to a web request header.
-- **MatrixVariable**: indicates that a method parameter should be bound to a name-value pair within a path segment.
-- **RequestAttribute**: bind a method parameter to a request attribute. The return type for attributes is an Object, whereas String for a parameter.
-- **RequestBody**: indicating a method parameter should be bound to the body of the web request
-- **RequestPart**: associate the part of a "multipart/form-data" request with a method argument.
-- **CookieValue**: indicate that a method parameter is bound to an HTTP cookie.
+```
+Host                    localhost:8080
+Accept                  text/html,application/xhtml+xml,application/xml;q=0.9
+Accept-Language         fr,en-gb;q=0.7,en;q=0.3
+Accept-Encoding         gzip,deflate
+Accept-Charset          ISO-8859-1,utf-8;q=0.7,*;q=0.7
+Keep-Alive              300
 
+@GetMapping("/demo")
+public void handle(
+		@RequestHeader("Accept-Encoding") String encoding, 
+		@RequestHeader("Keep-Alive") long keepAlive) { 
+	//...
+}
+When a @RequestHeader annotation is used on a Map<String, String>, MultiValueMap<String, String>, or HttpHeaders argument, the map is populated with all header values.
+```
+- **MatrixVariable**: indicates that a method parameter should be bound to a name-value pair within a path segment.
+```
+// GET /owners/42;q=11/pets/21;q=22
+@GetMapping("/owners/{ownerId}/pets/{petId}")
+public void findPet(@MatrixVariable(name="q", pathVar="ownerId") int q1,
+	@MatrixVariable(name="q", pathVar="petId") int q2) {
+	// q1 == 11
+	// q2 == 22
+}
+// GET /pets/42
+@GetMapping("/pets/{petId}")
+public void findPet(@MatrixVariable(required=false, defaultValue="1") int q) {
+	// q == 1
+}
+// GET /owners/42;q=11;r=12/pets/21;q=22;s=23
+@GetMapping("/owners/{ownerId}/pets/{petId}")
+public void findPet(@MatrixVariable MultiValueMap<String, String> matrixVars,
+		@MatrixVariable(pathVar="petId") MultiValueMap<String, String> petMatrixVars) {
+	// matrixVars: ["q" : [11,22], "r" : 12, "s" : 23]
+	// petMatrixVars: ["q" : 22, "s" : 23]
+}
+```
+- **RequestAttribute**: bind a method parameter to a request attribute. The return type for attributes is an Object, whereas String for a parameter.@RequestAttribute annotation to access pre-existing request attributes created earlier (for example, by a WebFilter)
+```
+@GetMapping("/")
+public String handle(@RequestAttribute Client client) { 
+	// ...
+}
+```
+- **RequestBody**: indicating a method parameter should be bound to the body of the web request
+```
+@PostMapping("/accounts")
+public void handle(@RequestBody Account account) {
+	// ...
+}
+@PostMapping("/accounts")
+public void handle(@RequestBody Mono<Account> account) {
+	// ...
+}
+@PostMapping("/accounts")
+public void handle(@Valid @RequestBody Mono<Account> account) {
+	// use one of the onError* operators...
+}
+
+@PostMapping("/accounts")
+public void handle(HttpEntity<Account> entity) { // similar to RequestBody
+	// ...
+}
+```
+- **RequestPart**: associate the part of a "multipart/form-data" request with a method argument.
+```
+POST /someUrl
+Content-Type: multipart/mixed
+
+--edt7Tfrdusa7r3lNQc79vXuhIIMlatb7PQg7Vp
+Content-Disposition: form-data; name="meta-data"
+Content-Type: application/json; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+{
+	"name": "value"
+}
+--edt7Tfrdusa7r3lNQc79vXuhIIMlatb7PQg7Vp
+Content-Disposition: form-data; name="file-data"; filename="file.properties"
+Content-Type: text/xml
+Content-Transfer-Encoding: 8bit
+... File Data ...
+
+@PostMapping("/")
+public String handle(@RequestPart("meta-data") Part metadata, 
+		@RequestPart("file-data") FilePart file) { 
+	// ...
+}
+@PostMapping("/")
+public String handle(@Valid @RequestPart("meta-data") Mono<MetaData> metadata) {
+	// use one of the onError* operators...
+}
+@PostMapping("/")
+public String handle(@RequestBody Mono<MultiValueMap<String, Part>> parts) { //access all multipart data
+	// ...
+}
+@PostMapping("/")
+public void handle(@RequestBody Flux<PartEvent> allPartsEvents) { //access multipart data sequentially, in a streaming fashion,
+}
+
+or using data binding to a command object,
+class MyForm {
+	private String name;
+	private MultipartFile file;
+	// ...
+}
+
+@Controller
+public class FileUploadController {
+	@PostMapping("/form")
+	public String handleFormUpload(MyForm form, BindingResult errors) {
+		// ...
+	}
+}
+```
+- **CookieValue**: indicate that a method parameter is bound to an HTTP cookie.
+```
+JSESSIONID=415A4AC178C59DACE0B2C9CA727CDD84
+@GetMapping("/demo")
+public void handle(@CookieValue("JSESSIONID") String cookie) { 
+	//...
+}
+```
 ### Response
 - **ResponseBody**: indicates a method return value should be bound to the web response body. produces to set the foramt
 ```
@@ -63,19 +190,215 @@ public Pet findPet(@PathVariable Long ownerId, @PathVariable Long petId) {
 public ResponseTransfer postResponseJsonContent( @RequestBody LoginForm loginForm) {
     return new ResponseTransfer("JSON Content!");
 }
+ResponseEntity is like @ResponseBody but with status and headers:
+@GetMapping("/something")
+public ResponseEntity<String> handle() {
+	String body = ... ;
+	String etag = ... ;
+	return ResponseEntity.ok().eTag(etag).body(body);
+}
+```
+WebFlux supports using a single value reactive type to produce the ResponseEntity asynchronously, and/or single and multi-value reactive types for the body. This allows a variety of async responses with ResponseEntity as follows:
+    - ResponseEntity<Mono<T>> or ResponseEntity<Flux<T>> make the response status and headers known immediately while the body is provided asynchronously at a later point. Use Mono if the body consists of 0..1 values or Flux if it can produce multiple values.
+    - Mono<ResponseEntity<T>> provides all three — response status, headers, and body, asynchronously at a later point. This allows the response status and headers to vary depending on the outcome of asynchronous request handling.
+    - Mono<ResponseEntity<Mono<T>>> or Mono<ResponseEntity<Flux<T>>> are yet another possible, albeit less common alternative. They provide the response status and headers asynchronously first and then the response body, also asynchronously, second.
+
+ Use Jackson’s @JsonView annotation to activate a serialization view class with @ResponseBody or ResponseEntity controller methods, 
+```
+@RestController
+public class UserController {
+	@GetMapping("/user")
+	@JsonView(User.WithoutPasswordView.class)
+	public User getUser() {
+		return new User("eric", "7!jd#h23");
+	}
+}
+
+public class User {
+	public interface WithoutPasswordView {};
+	public interface WithPasswordView extends WithoutPasswordView {};
+
+	private String username;
+	private String password;
+
+	public User() {
+	}
+
+	public User(String username, String password) {
+		this.username = username;
+		this.password = password;
+	}
+
+	@JsonView(WithoutPasswordView.class)
+	public String getUsername() {
+		return this.username;
+	}
+
+	@JsonView(WithPasswordView.class)
+	public String getPassword() {
+		return this.password;
+	}
+}
+``` 
+- **ResponseStatus**: Marks a method or exception class with the status ResponseStatus.code() and ResponseStatus.reason() that should be returned.
+- **ModelAttribute**: Access an attribute from the model or have it instantiated if not present. It is overlaid with the values of query parameters and form fields whose names match to field name( data binding, no need to parse and converting individual query parameters and form fields.)
+```
+@PostMapping("/owners/{ownerId}/pets/{petId}/edit")
+public String processSubmit(@ModelAttribute Pet pet) { }
+
+@PostMapping("/owners/{ownerId}/pets/{petId}/edit")
+public String processSubmit(@ModelAttribute("pet") Pet pet, BindingResult result) { 
+	if (result.hasErrors()) {
+		return "petForm";
+	}
+	// ...
+}
+@PostMapping("/owners/{ownerId}/pets/{petId}/edit")
+public String processSubmit(@Valid @ModelAttribute("pet") Pet pet, BindingResult result) { //apply validation automatically
+	if (result.hasErrors()) {
+		return "petForm";
+	}
+	// ...
+}
+@PostMapping("/owners/{ownerId}/pets/{petId}/edit")
+public Mono<String> processSubmit(@Valid @ModelAttribute("pet") Mono<Pet> petMono) { // for WebFlux
+	return petMono
+		.flatMap(pet -> {
+			// ...
+		})
+		.onErrorResume(ex -> {
+			// ...
+		});
+}
+
+The Pet instance in the preceding example is resolved as follows:
+    From the model if already added through Model.
+    From the HTTP session through @SessionAttributes.
+    From the invocation of a default constructor.
+    From the invocation of a “primary constructor” with arguments that match query parameters or form fields. Argument names are determined through JavaBeans @ConstructorProperties or through runtime-retained parameter names in the bytecode.
+
+The default arguments are ModelAttribute.
+```
+- **InitBinder**: identifies methods that initialize the WebDataBinder which will be used for populating command and form object arguments of annotated handler methods.
+@Controller or @ControllerAdvice classes can have @InitBinder methods, to initialize instances of WebDataBinder. Those, in turn, are used to:
+    - Bind request parameters (that is, form data or query) to a model object.
+    - Convert String-based request values (such as request parameters, path variables, headers, cookies, and others) to the target type of controller method arguments.
+    - Format model object values as String values when rendering HTML forms.
+```
+@Controller
+public class FormController {
+	@InitBinder 
+	public void initBinder(WebDataBinder binder) {
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		dateFormat.setLenient(false);
+		binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, false));
+	}
+}
 ```
 
-- **ResponseStatus**: Marks a method or exception class with the status ResponseStatus.code() and ResponseStatus.reason() that should be returned.
-
-- **InitBinder**: identifies methods that initialize the WebDataBinder which will be used for populating command and form object arguments of annotated handler methods.
+- @ExceptionHandler
+@Controller and @ControllerAdvice classes can have @ExceptionHandler methods to handle exceptions from controller methods. The same signature as @RequestMapping methods
+```
+@Controller
+public class SimpleController {
+	@ExceptionHandler 
+	public ResponseEntity<String> handle(IOException ex) {
+		// ...
+	}
+}
+```
 
 ### Seesion attribute
-- **SessionAttribute**: bind a method parameter to a session attribute.
-- **SessionAttributes**: indicates the session attributes that a specific handler uses.
+- **SessionAttribute**: bind a method parameter to a session attribute. store model attributes in the WebSession between requests.
+```
+@Controller
+@SessionAttributes("pet") 
+public class EditPetForm {
+	// ...
+}
+On the first request, when a model attribute with the name, pet, is added to the model, it is automatically promoted to and saved in the WebSession. It remains there until another controller method uses a SessionStatus method argument to clear the storage,
+
+	@PostMapping("/pets/{id}")
+	public String handle(Pet pet, BindingResult errors, SessionStatus status) { 
+		if (errors.hasErrors()) {
+			// ...
+		}
+			status.setComplete();
+			// ...
+		}
+	}
+
+If you need access to pre-existing session attributes that are managed globally (that is, outside the controller — for example, by a filter) and may or may not be present, you can use the @SessionAttribute annotation on a method parameter
+@GetMapping("/")
+public String handle(@SessionAttribute User user) { 
+	// ...
+}
+```  
+- **SessionAttributes**: indicates the session attributes that a specific handler uses (temperatively).
+
+### Model & Data Binder
+Use the @ModelAttribute annotation:
+- On a method argument in @RequestMapping methods to create or access an Object from the model and to bind it to the request through a WebDataBinder.
+- As a method-level annotation in @Controller or @ControllerAdvice classes, helping to initialize the model prior to any @RequestMapping method invocation.
+- On a @RequestMapping method to mark its return value as a model attribute.
+
+The @ModelAttribute methods: similar signatures to @RequestMapping methods, A controller can have any number of @ModelAttribute methods. All such methods are invoked before @RequestMapping methods in the same controller.
+```
+@ModelAttribute
+public void populateModel(@RequestParam String number, Model model) {
+	model.addAttribute(accountRepository.findAccount(number));
+	// add more ...
+}
+//only add one attribute, the default name is used. can be override
+@ModelAttribute
+public Account addAccount(@RequestParam String number) { 
+	return accountRepository.findAccount(number);
+}
+// For Spring WebFlux
+@ModelAttribute
+public void addAccount(@RequestParam String number) {
+    Mono<Account> accountMono = accountRepository.findAccount(number);
+    model.addAttribute("account", accountMono);
+}
+
+@PostMapping("/accounts")
+public String handle(@ModelAttribute Account account, BindingResult errors) {
+	// ...
+}
+//use @ModelAttribute as a method-level annotation on @RequestMapping methods, in which case
+//the return value of the @RequestMapping method is interpreted as a model attribute. 
+@GetMapping("/accounts/{id}")
+@ModelAttribute("myAccount")
+public Account handle() {
+	// ...
+	return account;
+}
+```
 
 ### Misc
 - **ControllerAdvice**: Specialization of @Component for classes that declare @ExceptionHandler, @InitBinder, or @ModelAttribute methods to be shared across multiple @ontroller classes.
 - **RestControllerAdvice**: @ControllerAdvice and @ResponseBody.
+
+Typically, the @ExceptionHandler, @InitBinder, and @ModelAttribute methods apply within the @Controller class (or class hierarchy) in which they are declared. If you want such methods to apply more globally (across controllers), you can declare them in a class annotated with @ControllerAdvice or @RestControllerAdvice.
+
+@ControllerAdvice is annotated with @Component, which means that such classes can be registered as Spring beans through component scanning . @RestControllerAdvice is a composed annotation that is annotated with both @ControllerAdvice and @ResponseBody, which essentially means @ExceptionHandler methods are rendered to the response body through message conversion (versus view resolution or template rendering).
+
+By default, @ControllerAdvice methods apply to every request (that is, all controllers), but you can narrow that down to a subset of controllers by using attributes on the annotation,
+```
+// Target all Controllers annotated with @RestController
+@ControllerAdvice(annotations = RestController.class)
+public class ExampleAdvice1 {}
+
+// Target all Controllers within specific packages
+@ControllerAdvice("org.example.controllers")
+public class ExampleAdvice2 {}
+
+// Target all Controllers assignable to specific classes
+@ControllerAdvice(assignableTypes = {ControllerInterface.class, AbstractController.class})
+public class ExampleAdvice3 {}
+```
+
+
 
 ### URI Patterns
 | Patterm | Desc  | Example |
