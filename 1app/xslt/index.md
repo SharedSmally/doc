@@ -47,6 +47,20 @@
 </xsl:template>
 </  
 ```
+## Tips
+- **if/else**: only has if, no else, which may use choose/when/otherwise 
+```
+<xsl:value-of select="if (price > 100) then 'Expensive' else 'Affordable'"/>
+```
+- wrap the variable name in curly braces **{}** within the attribute value instead of <xsl:attribute>
+```
+<xsl:variable name="imagePath" select="'/images/logo.png'"/>
+<img src="{$imagePath}" />
+```
+- use list with **()**
+```
+<xsl:variable name="size" select="normalize-space(string-join( ($item1,$item2,$item3,$item4), ' '))"/>
+```
 
 ### Group
 ```
