@@ -1,0 +1,36 @@
+<page title="Bootstrap demo">
+   <container bp="xs">
+      <row>
+          <col></col>
+          <col></col>
+          <br></br> <!-- break -->
+          <col></col>
+      </row>
+      <row md="5" cxs="4" justify="start" align="start" salign="start">
+          <col lg="auto"></col>
+          <col sm="3" md="5"></col>
+      </row>
+   </container>
+   
+   <grid>
+      <col xs="6" md="4">.g-col-6 .g-col-md-4</col>
+   </grid>
+   
+   <form>
+      <row>
+         <col></col>
+      </row>
+      
+      <label></label>
+      <input name="exampleInputEmail1" id="exampleInputEmail1" label="Email address" mb="3"
+             type="email" value="" floating="true" help="We'll never share your email with anyone else."></input>
+      <password name="exampleInputPassword1" label="Password" mb="3" disabled="true"></password>
+      <inputs></inputs>
+      <select></select>
+      <check></check>
+      <radio></radio>
+      <range></range>
+      <button color="primary"></button>
+   </form>
+   
+</page>
