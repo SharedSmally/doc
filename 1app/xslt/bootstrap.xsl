@@ -36,21 +36,161 @@
 		</html>
 	</xsl:template>
 	
-	<!--  match  container/row/col -->
+<!-- section 1:  match  container/row/col -->
 	<xsl:template match="container">
-		<div class="{cpw:getContainerClass(.)}">
+		<div class="{cpw:container(.)}">
 			<xsl:apply-templates/>
 		</div>
 	</xsl:template>
 	<xsl:template match="container/row"> <!--  size; cols= -->
-		<div class="{cpw:getRowClass(.)}">
+		<div class="{cpw:row(.)}">
 			<xsl:apply-templates/>
 		</div>
 	</xsl:template>
 	<xsl:template match="container/row/col">
-		<div class="{cpw:getColumnClass(.)}">
+		<div class="{cpw:column(.)}">
 			<xsl:apply-templates/>
 		</div>	
+	</xsl:template>
+	
+<!--  section 1: match  grid/col -->
+	<xsl:template match="grid">
+		<div class="{cpw:grid(.)}">
+		     <xsl:variable name="style" select="cpw:gridStyle(.)"/>
+		     <xsl:if test="$style"><xsl:attribute name="style"><xsl:value-of select="$style"/></xsl:attribute></xsl:if>
+			<xsl:apply-templates/>
+		</div>
+	</xsl:template>
+	<xsl:template match="grid/col"> <!--  size; cols= -->
+		<div class="{cpw:gridCol(.)}">
+		   <xsl:variable name="col" select="cpw:gridCol(.)"/>
+		   <xsl:if test="$col"><xsl:attribute name="class"><xsl:value-of select="$col"/></xsl:attribute></xsl:if>
+		   <xsl:apply-templates/>
+		</div>
+	</xsl:template>
+	
+<!--  section 2: match  form -->	
+	<xsl:template match="form"> 
+		<form>
+		   <xsl:apply-templates/>
+		</form>
+	</xsl:template>
+	<!--  form-control-{bp}; disabled/readonly -->
+	<xsl:template match="label"> 
+		     <xsl:variable name="id" select="cpw:getDefault(@id,@name)"/>
+		     <xsl:variable name="label" select="@label"/>
+		     <xsl:variable name="disable" select="cpw:getDefault(@disable,'false')"/>
+		     
+		     <label for="{$id}" class="form-label"><xsl:value-of select="$label"/></label>
+	</xsl:template>
+	<xsl:template match="password"> 
+		<div class="mb-3">
+		     <xsl:variable name="id" select="cpw:getDefault(@id,@name)"/>
+		     <xsl:variable name="name" select="cpw:getDefault(@name,@id)"/>
+		     <xsl:variable name="label" select="@label"/>
+		     <xsl:variable name="disable" select="cpw:getDefault(@disable,'false')"/>
+		     
+		     <xsl:if test="$label"><label for="{$id}" class="form-label"><xsl:value-of select="$label"/></label></xsl:if>
+             <input type="password" class="form-control" id="{$id}">
+                <xsl:if test="$disable='true'"><xsl:attribute name="disabled"><xsl:value-of select="$disable"/></xsl:attribute></xsl:if>
+             </input>
+		</div>
+	</xsl:template>
+	<xsl:template match="input"> 
+		<div class="mb-3">
+		     <xsl:variable name="id" select="cpw:getDefault(@id,@name)"/>
+		     <xsl:variable name="name" select="cpw:getDefault(@name,@id)"/>
+		     <xsl:variable name="type" select="cpw:getDefault(@type,'input')"/>
+		     <xsl:variable name="label" select="@label"/>
+		     <xsl:variable name="help" select="@help"/>
+		     <xsl:variable name="val" select="@val"/>
+		     <xsl:variable name="disable" select="cpw:getDefault(@disable,'false')"/>
+		     
+		     <xsl:if test="$label"><label for="{$id}" class="form-label"><xsl:value-of select="$label"/></label></xsl:if>
+             <input type="{$type}" class="form-control" id="{$id}">
+                <xsl:if test="$val"><xsl:attribute name="value"><xsl:value-of select="$val"/></xsl:attribute></xsl:if>
+                <xsl:if test="$help"><xsl:attribute name="aria-describedby"><xsl:value-of select="concat($id,'Help')"/></xsl:attribute></xsl:if>
+                <xsl:if test="$disable='true'"><xsl:attribute name="disabled">true</xsl:attribute></xsl:if>
+             </input>
+             <xsl:if test="count(option)>0">
+             <datalist id="{$id}">
+             <xsl:for-each select="option">
+             	<option><xsl:value-of select="text()"/></option>
+             </xsl:for-each>
+             </datalist>
+             </xsl:if>
+             <xsl:if test="$help"><div id="{concat($id,'Help')}" class="form-text"><xsl:value-of select="$help"/></div></xsl:if>
+		</div>
+	</xsl:template>
+	<xsl:template match="textarea"> 
+		<div class="mb-3">
+		     <xsl:variable name="id" select="cpw:getDefault(@id,@name)"/>
+		     <xsl:variable name="name" select="cpw:getDefault(@name,@id)"/>
+		     <xsl:variable name="type" select="cpw:getDefault(@type,'input')"/>
+		     <xsl:variable name="label" select="@label"/>
+		     <xsl:variable name="help" select="@help"/>
+		     <xsl:variable name="val" select="@val"/>
+		     <xsl:variable name="disable" select="cpw:getDefault(@disable,'false')"/>
+		     
+		     <xsl:if test="$label"><label for="{$id}" class="form-label"><xsl:value-of select="$label"/></label></xsl:if>
+             <textarea class="form-control" id="{$id}" name="{$name}" rows="{@rows}">
+                <xsl:if test="$val"><xsl:attribute name="value"><xsl:value-of select="$val"/></xsl:attribute></xsl:if>
+                <xsl:if test="$help"><xsl:attribute name="aria-describedby"><xsl:value-of select="concat($id,'Help')"/></xsl:attribute></xsl:if>
+                <xsl:if test="$disable='true'"><xsl:attribute name="disabled">true</xsl:attribute></xsl:if>
+             </textarea>
+             <xsl:if test="$help"><div id="{concat($id,'Help')}" class="form-text"><xsl:value-of select="$help"/></div></xsl:if>
+		</div>
+	</xsl:template>
+	<xsl:template match="inputs"> 
+		<div class="{cpw:form(.)}">
+		   <xsl:apply-templates/>
+		</div>
+	</xsl:template>
+	<xsl:template match="check"> 
+    	<div class="mb-3">
+    	   <div class="form-check">
+    	     <xsl:variable name="id" select="cpw:getDefault(@id,@name)"/>
+		     <xsl:variable name="name" select="cpw:getDefault(@name,@id)"/>
+		     <xsl:variable name="label" select="@label"/>
+		     <xsl:variable name="val" select="@val"/>
+		     <xsl:variable name="disable" select="cpw:getDefault(@disable,'false')"/>
+		     
+		     <input type="checkbox" class="form-check-input" id="{$id}">
+		         <xsl:if test="$disable='true'"><xsl:attribute name="disabled">true</xsl:attribute></xsl:if>
+		     </input>
+		     <xsl:if test="$label"><label for="{$id}" class="form-check-label"><xsl:value-of select="$label"/></label></xsl:if>
+      		</div>
+    	</div>
+    </xsl:template>
+	<xsl:template match="radio"> 
+		<div class="{cpw:form(.)}">
+		   <xsl:apply-templates/>
+		</div>
+	</xsl:template>
+	<xsl:template match="select"> 
+    	<div class="mb-3">
+    	     <xsl:variable name="id" select="cpw:getDefault(@id,@name)"/>
+		     <xsl:variable name="name" select="cpw:getDefault(@name,@id)"/>
+		     <xsl:variable name="label" select="@label"/>
+		     <xsl:variable name="val" select="@val"/>
+		     <xsl:variable name="disable" select="cpw:getDefault(@disable,'false')"/>
+		     
+             <select id="{$id}" class="form-select"  aria-label="{$label}">
+                <xsl:if test="$label"><xsl:attribute name="aria-label"><xsl:value-of select="$label"/> </xsl:if>
+             <option selected><xsl:value-of select="$label"/></option>
+             <xsl:for-each select="option">
+                 <option value="{@value}"><xsl:value-of select="./text()"/></option>
+             </xsl:for-each>
+      		</select>
+    	</div>
+	</xsl:template>
+	<xsl:template match="range"> 
+		<div class="{cpw:form(.)}">
+		   <xsl:apply-templates/>
+		</div>
+	</xsl:template>
+		<xsl:template match="button"> 
+		<button type="submit" class="{cpw:button(.)}"><xsl:value-of select="cpw:getDefault(@label,'Submit')"/></button>
 	</xsl:template>
 	
 	<xsl:template match="*"></xsl:template>
