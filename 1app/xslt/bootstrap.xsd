@@ -1,0 +1,711 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" 
+     xmlns:cpw="http://www.cpw.com/app/ui/bootstrap/" 
+     targetNamespace="http://www.cpw.com/app/ui/bootstrap/">
+    <include schemaLocation=""></include>
+    <include schemaLocation=""></include>
+    <element name="page" type="cpw:Page"></element>
+    
+    <complexType name="Page">
+    	<sequence>
+    		<element name="container" type="string"></element>
+    	</sequence>
+    </complexType>
+    
+    <complexType name="Container">
+    	<sequence>
+    		<element name="NewElement" type="string"></element>
+    	</sequence>
+    </complexType>
+
+    <complexType name="Grid"></complexType>
+
+    <complexType name="Row"></complexType>
+
+    <complexType name="Column"><attributeGroup ref="cpw:BPGroup"></attributeGroup></complexType>
+
+    <complexType name="Form">
+    	<choice>
+    		<element name="label" type="cpw:Label"></element>
+    		<element name="input" type="cpw:Input"></element>
+    		<element name="password" type="cpw:Password"></element>
+    		<element name="checkbox" type="cpw:Checkbox"></element>
+    		<element name="radio" type="cpw:Radio"></element>
+    		<element name="range" type="cpw:Range"></element>
+    		<element name="text" type="cpw:Text"></element>
+            <element name="textarea" type="cpw:TextArea"></element>
+            <element name="button" type="cpw:Button"></element>
+    	</choice>
+    </complexType>
+
+<!--  Component -->
+    <complexType name="Component">
+    	<annotation>
+    		<documentation>The super class for the following components:
+    		<ul>
+<li>Accordion</li>
+<li>Alerts</li>
+<li>Badge</li>
+<li>Breadcrumb</li>
+<li>Buttons - Button</li>
+<li>Button group - Buttons </li>
+<li>Card</li>
+<li>Carousel</li>
+<li>Close button - Close</li>
+<li>Collapse</li>
+<li>Dropdowns</li>
+<li>List group - Lists</li>
+<li>Modal - Dialog</li>
+<li>Navbar</li>
+<li>Navs &amp; tabs - Tab</li>
+<li>Offcanvas</li>
+<li>Pagination</li>
+<li>Placeholders</li>
+<li>Popovers</li>
+<li>Progress</li>
+<li>Scrollspy</li>
+<li>Spinners</li>
+<li>Toasts</li>
+<li>Tooltips</li>
+        <ul>
+</documentation>
+    	</annotation></complexType>
+
+    <complexType name="Accordion">
+    	<complexContent>
+    		<extension base="cpw:Component"></extension>
+    	</complexContent>
+    </complexType>
+    <complexType name="Alert">
+    	<complexContent>
+    		<extension base="cpw:Component"></extension>
+    	</complexContent>
+    </complexType>
+    <complexType name="Badge">
+    	<complexContent>
+    		<extension base="cpw:Component"></extension>
+    	</complexContent>
+    </complexType>
+    <complexType name="Breadcrumb">
+    	<complexContent>
+    		<extension base="cpw:Component"></extension>
+    	</complexContent>
+    </complexType>
+    <complexType name="Button">
+    	<complexContent>
+    		<extension base="cpw:Component"></extension>
+    	</complexContent>
+    </complexType>
+
+    <complexType name="Card">
+    	<complexContent>
+    		<extension base="cpw:Component"></extension>
+    	</complexContent>
+    </complexType>
+    <complexType name="Carousel">
+    	<complexContent>
+    		<extension base="cpw:Component"></extension>
+    	</complexContent>
+    </complexType>
+    
+    <complexType name="Close">
+    	<complexContent>
+    		<extension base="cpw:Component"></extension>
+    	</complexContent>
+    </complexType>
+    <complexType name="Collapse">
+    	<complexContent>
+    		<extension base="cpw:Component"></extension>
+    	</complexContent>
+    </complexType>
+
+    <complexType name="Dropdown">
+    	<complexContent>
+    		<extension base="cpw:Component"></extension>
+    	</complexContent>
+    </complexType>
+    <complexType name="List">
+    	<complexContent>
+    		<extension base="cpw:Component"></extension>
+    	</complexContent>
+    </complexType>
+
+    <complexType name="Dialog">
+    	<complexContent>
+    		<extension base="cpw:Component"></extension>
+    	</complexContent>
+    </complexType>
+    <complexType name="Navbar">
+    	<complexContent>
+    		<extension base="cpw:Component"></extension>
+    	</complexContent>
+    </complexType>
+
+    <complexType name="Tab">
+    	<complexContent>
+    		<extension base="cpw:Component"></extension>
+    	</complexContent>
+    </complexType>
+    <complexType name="Offcanvas">
+    	<complexContent>
+    		<extension base="cpw:Component"></extension>
+    	</complexContent>
+    </complexType>
+
+    <complexType name="Pagination">
+    	<complexContent>
+    		<extension base="cpw:Component"></extension>
+    	</complexContent>
+    </complexType>
+    <complexType name="Placeholder">
+    	<complexContent>
+    		<extension base="cpw:Component"></extension>
+    	</complexContent>
+    </complexType>
+
+    <complexType name="Popover">
+    	<complexContent>
+    		<extension base="cpw:Component"></extension>
+    	</complexContent>
+    </complexType>
+    <complexType name="Progress">
+    	<complexContent>
+    		<extension base="cpw:Component"></extension>
+    	</complexContent>
+    </complexType>
+
+    <complexType name="Scroller">
+    	<complexContent>
+    		<extension base="cpw:Component"></extension>
+    	</complexContent>
+    </complexType>
+    <complexType name="Spinner">
+    	<complexContent>
+    		<extension base="cpw:Component"></extension>
+    	</complexContent>
+    </complexType>
+
+    <complexType name="Toast">
+    	<complexContent>
+    		<extension base="cpw:Component"></extension>
+    	</complexContent>
+    </complexType>
+    <complexType name="Tooltip">
+    	<complexContent>
+    		<extension base="cpw:Component"></extension>
+    	</complexContent>
+    </complexType>
+    
+<!--  controls for Form -->
+    <complexType name="Control">
+        	<annotation>
+    		<documentation>The super class for the following controls:
+<ul>
+<li>Label</li>
+<li>Input</li>
+<li>Checkbox</li>
+<li>Radio</li>
+<li>Password</li>
+<li>Range</li>
+<li>Text</li>
+<li>TextArea</li>
+</ul>
+</documentation>
+    	</annotation>
+    	<attribute name="name" type="string"></attribute>
+    	<attribute name="id" type="string"></attribute>
+    	<attribute name="label" type="string"></attribute>
+    	<attribute name="help" type="string"></attribute>
+    	<attribute name="value" type="string"></attribute>
+    	<attribute name="disabled" type="boolean"></attribute>
+    </complexType>
+
+    <complexType name="Input">
+    	<complexContent>
+    		<extension base="cpw:Control"></extension>
+    	</complexContent>
+    </complexType>
+
+    <complexType name="Label">
+    	<complexContent>
+    		<extension base="cpw:Control"></extension>
+    	</complexContent>
+    </complexType>
+
+    <complexType name="Password">
+    	<complexContent>
+    		<extension base="cpw:Control"></extension>
+    	</complexContent>
+    </complexType>
+
+    <complexType name="Checkbox">
+    	<complexContent>
+    		<extension base="cpw:Control"></extension>
+    	</complexContent>
+    </complexType>
+
+    <complexType name="Radio">
+    	<complexContent>
+    		<extension base="cpw:Control"></extension>
+    	</complexContent>
+    </complexType>
+    
+    <complexType name="Range">
+    	<complexContent>
+    		<extension base="cpw:Control"></extension>
+    	</complexContent>
+    </complexType>
+    
+    <complexType name="Text">
+    	<complexContent>
+    		<extension base="cpw:Control"></extension>
+    	</complexContent>
+    </complexType>
+
+    <complexType name="TextArea">
+    	<complexContent>
+    		<extension base="cpw:Control"></extension>
+    	</complexContent>
+    </complexType>
+
+
+
+
+
+<!--  enums -->
+    <simpleType name="BPEnum">
+        <annotation>
+        	<documentation>Enums for Breakpoint using attribute @bp:
+        	<ul>
+<li>xs(None) - Extra small</li>
+<li>sm - Small</li>
+<li>md - Medium</li>
+<li>lg - Large</li>
+<li>xl - Extra large</li>
+<li>xxl - Extra extra large</li>
+</ul>
+</documentation>
+        </annotation>
+        <restriction base="string">
+    		<enumeration value="xs"></enumeration>
+    		<enumeration value="sm"></enumeration>
+    		<enumeration value="md"></enumeration>
+    		<enumeration value="lg"></enumeration>
+    		<enumeration value="xl"></enumeration>
+    		<enumeration value="xxl"></enumeration>
+    		<enumeration value="value"></enumeration>
+    	</restriction>
+    </simpleType>
+    <simpleType name="SizeEnum">
+        <annotation>
+        	<documentation>Enums for Size using attribute @size: 0-12, auto</documentation>
+        </annotation>
+        <restriction base="string">
+    		<enumeration value="0"></enumeration>
+    		<enumeration value="1"></enumeration>
+    		<enumeration value="2"></enumeration>
+    		<enumeration value="3"></enumeration>
+    		<enumeration value="4"></enumeration>
+    		<enumeration value="5"></enumeration>
+    		<enumeration value="6"></enumeration>
+    		<enumeration value="7"></enumeration>
+    		<enumeration value="8"></enumeration>
+    		<enumeration value="9"></enumeration>
+    		<enumeration value="10"></enumeration>
+    		<enumeration value="11"></enumeration>
+    		<enumeration value="12"></enumeration>
+    		<enumeration value="auto"></enumeration>
+    	</restriction>
+    </simpleType>
+
+    <simpleType name="GridSizeEnum">
+        <annotation>
+        	<documentation>Enums for Grid Size using attribute @gsize: 1-5</documentation>
+        </annotation>
+        <restriction base="string">
+    		<enumeration value="1"></enumeration>
+    		<enumeration value="2"></enumeration>
+    		<enumeration value="3"></enumeration>
+    		<enumeration value="4"></enumeration>
+    		<enumeration value="5"></enumeration>
+    	</restriction>
+    </simpleType>
+    
+    <simpleType name="ColorEnum">
+        <annotation>
+        	<documentation>Enums for theme Color using attribute @color</documentation>
+        </annotation>
+        <restriction base="string">
+    		<enumeration value="primary"></enumeration>
+    		<enumeration value="secondary"></enumeration>
+    		<enumeration value="success"></enumeration>
+    		<enumeration value="info"></enumeration>
+    		<enumeration value="warning"></enumeration>
+    		<enumeration value="danger"></enumeration>
+    		<enumeration value="light"></enumeration>
+    		<enumeration value="dark"></enumeration>
+    	</restriction>
+    </simpleType>
+
+
+    <simpleType name="AlignEnum">
+        <annotation>
+        	<documentation>Enums for Align Items/Vertical alignment  (align-items-) using attribute @align or Align Self (align-self-) using attribute @salign</documentation>
+        </annotation>
+        <restriction base="string">
+    		<enumeration value="start"></enumeration>
+    		<enumeration value="center"></enumeration>
+    		<enumeration value="end"></enumeration>
+    	</restriction>
+    </simpleType>
+
+    <simpleType name="JustifyEnum">
+        <annotation>
+        	<documentation>Enums for Justify (justify-content-) using attribute @justify</documentation>
+        </annotation>
+        <restriction base="string">
+    		<enumeration value="start"></enumeration>
+    		<enumeration value="center"></enumeration>
+    		<enumeration value="end"></enumeration>
+    		<enumeration value="around"></enumeration>
+    		<enumeration value="between"></enumeration>
+    		<enumeration value="evenly"></enumeration>
+    	</restriction>
+    </simpleType>
+    
+    <!-- background: @bg,@bg_subtle=true/false, @bg_gradient=true/false, @bg_opacity=0/25/50/75/100 -->
+    <simpleType name="BackgroundEnum">
+        <annotation>
+        	<documentation>Enums for Background bg-using attribute @bg and @bg_subtle</documentation>
+        </annotation>
+        <restriction base="string">
+    		<enumeration value="primary"></enumeration>
+    		<enumeration value="secondary"></enumeration>
+    		<enumeration value="success"></enumeration>
+    		<enumeration value="info"></enumeration>
+    		<enumeration value="warning"></enumeration>
+    		<enumeration value="danger"></enumeration>
+    		<enumeration value="light"></enumeration>
+    		<enumeration value="dark"></enumeration>
+    		<enumeration value="body"></enumeration>
+    		<enumeration value="white"></enumeration>
+    		<enumeration value="black"></enumeration>
+    		<enumeration value="transprent"></enumeration>
+    	</restriction>
+    </simpleType>
+    <simpleType name="OpacityEnum">
+        <annotation>
+        	<documentation>Enums for Background Opacity attribute @opacity</documentation>
+        </annotation>
+        <restriction base="integer">
+            <enumeration value="0"></enumeration>
+    		<enumeration value="25"></enumeration>
+    		<enumeration value="50"></enumeration>
+    		<enumeration value="75"></enumeration>
+    		<enumeration value="100"></enumeration>
+    	</restriction>
+    </simpleType>
+    
+    <simpleType name="DisplayEnum">
+        <annotation>
+        	<documentation>Enums for Display(d-) or Pring(d-print-) using attribute @d{-bp} and @d-print{-bp}</documentation>
+        </annotation>
+        <restriction base="string">
+    		<enumeration value="none"></enumeration>
+    		<enumeration value="block"></enumeration>
+    		<enumeration value="grid"></enumeration>
+    		<enumeration value="table"></enumeration>
+    		<enumeration value="cell"></enumeration>
+    		<enumeration value="flex"></enumeration>
+    	</restriction>
+    </simpleType>
+
+    <simpleType name="FlexAlignEnum">
+        <annotation>
+        	<documentation>Enums for Flex Align Items/Vertical alignment  (align-items-) using attribute @align or Align Self (align-self-) using attribute @salign</documentation>
+        </annotation>
+        <restriction base="string">
+    		<enumeration value="start"></enumeration>
+    		<enumeration value="center"></enumeration>
+    		<enumeration value="end"></enumeration>
+    		<enumeration value="baseline"></enumeration>
+    		<enumeration value="stretch"></enumeration>
+    	</restriction>
+    </simpleType>
+    
+    <simpleType name="WrapEnum">
+        <annotation>
+        	<documentation>Enums for flex wrap (flex-)</documentation>
+        </annotation>
+        <restriction base="string">
+    		<enumeration value="no"></enumeration>
+    		<enumeration value="yes"></enumeration>
+    		<enumeration value="reverse"></enumeration>
+    	</restriction>
+    </simpleType>
+
+    <simpleType name="FloatEnum">
+        <annotation>
+        	<documentation>Enums for float (float-)</documentation>
+        </annotation>
+        <restriction base="string">
+    		<enumeration value="start"></enumeration>
+    		<enumeration value="end"></enumeration>
+    		<enumeration value="none"></enumeration>
+    	</restriction>
+    </simpleType>
+
+    <simpleType name="OverflowEnum">
+        <annotation>
+        	<documentation>Enums for overflow (overflow-; overflow-x-,overflow-y-) via @overflow,@overflowx,@overflowy </documentation>
+        </annotation>
+        <restriction base="string">
+    		<enumeration value="auto"></enumeration>
+    		<enumeration value="hidden"></enumeration>
+    		<enumeration value="visible"></enumeration>
+    		<enumeration value="scroll"></enumeration>
+    	</restriction>
+    </simpleType>    
+
+    <simpleType name="PositionEnum">
+        <annotation>
+        	<documentation>Enums for Position (position-) via @pos </documentation>
+        </annotation>
+        <restriction base="string">
+    		<enumeration value="static"></enumeration>
+    		<enumeration value="relative"></enumeration>
+    		<enumeration value="absolute"></enumeration>
+    		<enumeration value="fixed"></enumeration>
+    		<enumeration value="sticky"></enumeration>
+    	</restriction>
+    </simpleType>    
+
+    <simpleType name="PositionArrangeEnum">
+        <annotation>
+        	<documentation>Enums for Position Arrange ({property}-{position}0/50/100) via @pos </documentation>
+        </annotation>
+        <restriction base="string">
+    		<enumeration value="top"></enumeration>
+    		<enumeration value="start"></enumeration>
+    		<enumeration value="bottom"></enumeration>
+    		<enumeration value="end"></enumeration>
+    	</restriction>
+    </simpleType> 
+
+    <simpleType name="SizingEnum">
+        <annotation>
+        	<documentation>Enums for Width via @w and Height via @h </documentation>
+        </annotation>
+        <restriction base="string">
+    		<enumeration value="25"></enumeration>
+    		<enumeration value="50"></enumeration>
+    		<enumeration value="75"></enumeration>
+    		<enumeration value="100"></enumeration>
+    		<enumeration value="auto"></enumeration>
+    	</restriction>
+    </simpleType> 
+    
+    <!--  Spacing: Margin/padding 
+    {property}{sides}-{breakpoint}-{size}
+margin: m, mt, mb, ms, me, mx, my
+padding:p, pt, pb, ps, pe, px, py
+
+property is one of:
+  m - for classes that set margin
+  p - for classes that set padding
+sides is one of:
+  t - for classes that set margin-top or padding-top
+  b - for classes that set margin-bottom or padding-bottom
+  s - (start) for classes that set margin-left or padding-left in LTR, margin-right or padding-right in RTL
+  e - (end) for classes that set margin-right or padding-right in LTR, margin-left or padding-left in RTL
+  x - for classes that set both *-left and *-right
+  y - for classes that set both *-top and *-bottom
+  blank - for classes that set a margin or padding on all 4 sides of the element
+    -->
+    <simpleType name="SpacerEnum">
+        <annotation>
+        	<documentation>Enums for spacer via @w and Height via @h </documentation>
+        </annotation>
+        <restriction base="string">
+    		<enumeration value="0"></enumeration>
+    		<enumeration value="1"></enumeration>
+    		<enumeration value="2"></enumeration>
+    		<enumeration value="3"></enumeration>
+    		<enumeration value="4"></enumeration>
+    		<enumeration value="5"></enumeration>
+    		<enumeration value="auto"></enumeration>
+    	</restriction>
+    </simpleType>
+
+
+<!--  attribute groups -->
+    <attributeGroup name="BPGroup">
+    	<attribute name="xs" type="cpw:SizeEnum"></attribute>
+    	<attribute name="sm" type="cpw:SizeEnum"></attribute>
+    	<attribute name="md" type="cpw:SizeEnum"></attribute>
+    	<attribute name="lg" type="cpw:SizeEnum"></attribute>
+    	<attribute name="xl" type="cpw:SizeEnum"></attribute>
+    	<attribute name="xxl" type="cpw:SizeEnum"></attribute>
+    </attributeGroup>
+
+    <attributeGroup name="OrderGroup">
+    	<attribute name="order" type="cpw:GridSizeEnum"></attribute>
+    	<attribute name="order_xs" type="cpw:GridSizeEnum"></attribute>
+    	<attribute name="order_sm" type="cpw:GridSizeEnum"></attribute>
+    	<attribute name="order_md" type="cpw:GridSizeEnum"></attribute>
+    	<attribute name="order_lg" type="cpw:GridSizeEnum"></attribute>
+    	<attribute name="order_xl" type="cpw:GridSizeEnum"></attribute>
+    	<attribute name="order_xxl" type="cpw:GridSizeEnum"></attribute>
+    	<attribute name="order_first" type="cpw:GridSizeEnum"></attribute>
+    	<attribute name="order_last" type="cpw:GridSizeEnum"></attribute>
+    </attributeGroup>
+
+    <attributeGroup name="OffsetGroup">
+    	<attribute name="offset" type="cpw:GridSizeEnum"></attribute>
+    	<attribute name="offset_xs" type="cpw:GridSizeEnum"></attribute>
+    	<attribute name="offset_sm" type="cpw:GridSizeEnum"></attribute>
+    	<attribute name="offset_md" type="cpw:GridSizeEnum"></attribute>
+    	<attribute name="offset_lg" type="cpw:GridSizeEnum"></attribute>
+    	<attribute name="offset_xl" type="cpw:GridSizeEnum"></attribute>
+    	<attribute name="offset_xxl" type="cpw:GridSizeEnum"></attribute>
+    </attributeGroup>
+    
+     <!--  background/text(text/text-opacity) -->
+    <attributeGroup name="BackgroundGroup">
+    	<attribute name="bg" type="cpw:BackgroundEnum"></attribute>
+    	<attribute name="substle" type="boolean"></attribute>
+    	<attribute name="gradient" type="boolean"></attribute>
+    	<attribute name="opacity" type="cpw:OpacityEnum"></attribute>
+    </attributeGroup>
+
+     <!--  text: text/text-opacity) -->
+    <attributeGroup name="TextGroup">
+    	<attribute name="text" type="cpw:BackgroundEnum"></attribute>
+    	<attribute name="emphasis" type="boolean"></attribute>
+    	<attribute name="text_opacity" type="cpw:OpacityEnum"></attribute>
+    	<!--  alignment for bp:
+    	<attribute name="align" type="boolean"></attribute>
+    	wrap : transform; fs/font-size; fw/font-weight; lh/line height; monospace, 
+    	       reset, decoration: undeline/none/through
+    	 -->
+    </attributeGroup>
+
+
+     <!--  Border -->
+    <attributeGroup name="BorderGroup">
+    	<attribute name="border" type="cpw:BorderEnum"></attribute>
+    	<attribute name="bd_substle" type="boolean"></attribute>
+    	<attribute name="bd_color" type="cpw:BorderColorEnum"></attribute>
+    	<attribute name="bd_opacity" type="cpw:OpacityEnum"></attribute>
+    	<attribute name="bd_width" type="cpw:BorderWidthEnum"></attribute>
+    	<attribute name="bd_radius" type="cpw:BorderRadiusEnum"></attribute>
+    	<attribute name="bd_size" type="cpw:BorderSizeEnum"></attribute>
+    </attributeGroup>
+    
+    
+    <attributeGroup name="LinkGroup">
+    	<attribute name="bp" type="cpw:BPEnum"></attribute>
+    	<attribute name="opacity" type="cpw:FloatEnum"></attribute>
+    	<attribute name="hover" type="cpw:FloatEnum"></attribute>
+    	<attribute name="undeline" type="cpw:FloatEnum"></attribute>
+    	<attribute name="offset" type="cpw:FloatEnum"></attribute>
+    </attributeGroup>
+
+    <attributeGroup name="PositionGroup">
+    	<attribute name="pos" type="cpw:PositionEnum"></attribute>
+    	<attribute name="top" type="cpw:FloatEnum"></attribute>
+    	<attribute name="bottom" type="cpw:FloatEnum"></attribute>
+    	<attribute name="start" type="cpw:FloatEnum"></attribute>
+    	<attribute name="end" type="cpw:FloatEnum"></attribute>
+    	<attribute name="translate" type="cpw:FloatEnum"></attribute>
+    </attributeGroup>
+
+	<!--  Spacing: margin and padding -->
+    <attributeGroup name="SpacerGroup">
+    	<attribute name="m" type="cpw:SpacerEnum"></attribute>
+    	<attribute name="p" type="cpw:SpacerEnum"></attribute>
+
+    	<attribute name="mt" type="cpw:SpacerEnum"></attribute>
+    	<attribute name="pt" type="cpw:SpacerEnum"></attribute>
+    	<attribute name="mb" type="cpw:SpacerEnum"></attribute>
+    	<attribute name="pb" type="cpw:SpacerEnum"></attribute>
+
+    	<attribute name="ms" type="cpw:SpacerEnum"></attribute>
+    	<attribute name="ps" type="cpw:SpacerEnum"></attribute>
+    	<attribute name="me" type="cpw:SpacerEnum"></attribute>
+    	<attribute name="pe" type="cpw:SpacerEnum"></attribute>
+
+    	<attribute name="mx" type="cpw:SpacerEnum"></attribute>
+    	<attribute name="px" type="cpw:SpacerEnum"></attribute>
+    	<attribute name="my" type="cpw:SpacerEnum"></attribute>
+    	<attribute name="py" type="cpw:SpacerEnum"></attribute>
+    </attributeGroup>
+
+    <!--  Gutter -->
+    <attributeGroup name="BPAttrsGroup">
+    	<attribute name="g" type="cpw:GutterEnum"></attribute>
+    	<attribute name="gx" type="cpw:GutterEnum"></attribute>
+    	<attribute name="gy" type="cpw:GutterEnum"></attribute>
+    </attributeGroup>
+    
+	<!--  Display: d-{breakpoint}-{value}; val={none/block/grid/table/cell/flex}{-inline}  -->
+    <attributeGroup name="BPAttrsGroup">
+    	<attribute name="display" type="cpw:DisplayEnum"></attribute>
+    	<attribute name="inline" type="boolean"></attribute>
+
+    	<attribute name="print" type="cpw:DisplayEnum"></attribute>
+    	<attribute name="inlineP" type="boolean"></attribute>
+
+    	<attribute name="float" type="boolean"></attribute>
+
+		<!--  Spacing: m-margin; p-padding -->
+    	<attributeGroup ref="cpw:SpacerGroup"></attributeGroup>
+
+		<!--  Gutter: g, gx, gy -->
+    	<attributeGroup ref="cpw:GutterGroup"></attributeGroup>
+    </attributeGroup>
+    
+    <complexType name="BP">
+    	<attributeGroup ref="cpw:BPAttrsGroup"></attributeGroup>
+    </complexType>
+
+    <group name="BPs">
+    	<sequence>
+    		<element name="sm" type="cpw:BP" maxOccurs="1" minOccurs="0"></element>
+    		<element name="md" type="cpw:BP" maxOccurs="1" minOccurs="0"></element>
+    		<element name="lg" type="cpw:BP" maxOccurs="1" minOccurs="0"></element>
+    		<element name="xl" type="cpw:BP" maxOccurs="1" minOccurs="0"></element>
+    		<element name="xxl" type="cpw:BP" maxOccurs="1" minOccurs="0"></element>
+    		
+    		<!--  Flex  -->
+    		<element name="fxs" type="cpw:Flex" maxOccurs="1" minOccurs="0"></element>
+    		<element name="fsm" type="cpw:Flex" maxOccurs="1" minOccurs="0"></element>
+    		<element name="fmd" type="cpw:Flex" maxOccurs="1" minOccurs="0"></element>
+    		<element name="flg" type="cpw:Flex" maxOccurs="1" minOccurs="0"></element>
+    		<element name="fxl" type="cpw:Flex" maxOccurs="1" minOccurs="0"></element>
+    		<element name="fxxl" type="cpw:Flex" maxOccurs="1" minOccurs="0"></element>
+    	</sequence>
+    </group>
+
+    <!--  Flex -->
+    <complexType name="Flex">
+    	<attribute name="inline" type="boolean"></attribute>
+    	<attribute name="row" type="boolean"></attribute>
+    	<attribute name="reverse" type="boolean"></attribute>
+    	<attribute name="justify" type="cpw:JustifyEnum"></attribute>
+    	<attribute name="align" type="cpw:FlexAlignEnum"></attribute>
+    	<attribute name="self" type="cpw:FlexAlignEnum"></attribute>
+    	<attribute name="fill" type="boolean"></attribute>
+    	<attribute name="grow" type="boolean"></attribute>
+    	<attribute name="size0" type="boolean"></attribute>
+    	<attribute name="wrap" type="cpw:FlexWrapEnum"></attribute>
+    	<attribute name="order" type="cpw:OrderEnum"></attribute>
+    </complexType>
+
+    <complexType name="Div">
+    	<sequence>
+    		<any></any>
+    	</sequence>
+    	<attributeGroup ref="cpw:BPAttrsGroup"></attributeGroup>
+    </complexType>
+</schema>
